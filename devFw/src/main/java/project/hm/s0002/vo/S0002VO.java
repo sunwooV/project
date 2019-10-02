@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component("s0002VO")
 public class S0002VO {
-	private String id = "";
+	private String id;
 	private String pwd = "";
 	private String name = "";
 	private String email = "";
@@ -22,7 +22,7 @@ public class S0002VO {
 	}
 
 	public S0002VO() {
-		System.out.println("MemberVO »ý¼ºÀÚ È£Ãâ!!!!!!!!");
+		System.out.println("MemberVO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½!!!!!!!!");
 	}
 
 	public String getId() {
