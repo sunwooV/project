@@ -38,6 +38,7 @@ public class P0001ControllerImpl implements P0001Controller {
 	P0001Service p0001Service;
 	@Autowired
 	P0001VO p0001VO;
+	int n;
 	
 	@Override
 	@RequestMapping(value = "/hm/p0001/searchInit.do", method = { RequestMethod.GET, RequestMethod.POST })
