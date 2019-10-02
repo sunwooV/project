@@ -22,7 +22,7 @@ public class S0002VO {
 	}
 
 	public S0002VO() {
-		System.out.println("MemberVO 생성자 호출!!!!!!!!!");
+		System.out.println("MemberVO 생성자 호출!!!!!!!!");
 	}
 
 	public String getId() {
