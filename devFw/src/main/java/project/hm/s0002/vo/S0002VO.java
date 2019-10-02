@@ -49,7 +49,6 @@ public class S0002VO {
 		this.name = name;
 	}
 
-
 	public String getEmail() {
 		return email;
 	}
