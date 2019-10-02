@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component("s0002VO")
 public class S0002VO {
-	private String id;
+	private String id = "";
 	private String pwd = "";
 	private String name = "";
 	private String email = "";
