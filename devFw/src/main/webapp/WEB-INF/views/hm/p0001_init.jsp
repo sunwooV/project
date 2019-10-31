@@ -6,7 +6,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>회원 검색창</title>
+  <title>플리마켓 테스트</title>
   <script type="text/javascript">
 	function frm_add() {
 		var frmPro = document.frm;
@@ -17,9 +17,9 @@
    </script>
 </head> 
 <body>
-   <form name="frm" method="post" action="${contextPath}/hm/p0001/searchList.do">   
-	   id:<input type="text" name="p_id"><br>
-	   <input type ="submit" value="조회하기"><br>
+   <form name="frm" method="post" action="${contextPath}/FleaMarket/P002/D001/searchList.do">   
+	   플리마켓 코드:<input type="text" name="p_id"><br>
+	   <input type ="submit" value="해당 플리마켓으로 이동"><br>
 	   <input type = "button" value = "제품추가" onclick = "frm_add()">
    </form>
 </body>

@@ -1,17 +1,23 @@
 package project.hm.p0003.controller;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +28,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import project.hm.p0003.controller.P0003Controller;
-import project.hm.p0003.controller.P0003ControllerImpl;
-import project.hm.p0003.service.P0003Service;
-import project.hm.p0003.vo.P0003VO;
 import project.hm.p0003.service.P0003Service;
 import project.hm.p0003.vo.P0003VO;
 
@@ -65,6 +67,7 @@ public class P0003ControllerImpl implements P0003Controller {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		searchMap.put("p_id", p_id);	 
+		System.out.println("1111");
 		
 		List list = p0003Service.searchMod(searchMap);
 		if(!list.isEmpty()) {
@@ -76,17 +79,20 @@ public class P0003ControllerImpl implements P0003Controller {
 		mav.addObject("command", "modSearch");
 		return mav;
 	}
-	/*
+	
+	
 	@Override
 	public ModelAndView searchInsert(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
-*/
+
 	@Override
 	@RequestMapping(value = "/hm/p0003/updateMember.do", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
 	public ResponseEntity updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("controller수정확인");
+		
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		Enumeration enu = request.getParameterNames();
@@ -95,13 +101,15 @@ public class P0003ControllerImpl implements P0003Controller {
 			String value = request.getParameter(name);
 			dataMap.put(name, value);
 		}
-
+		System.out.println("dateMap전:"+dataMap);
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		try {
+			System.out.println("dateMap:"+dataMap);
 			p0003Service.updateMember(dataMap);
+			System.out.println("dateMap:"+dataMap);
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher("/hm/p0003/searchList.do");
 			dispatch.forward(request, response);
@@ -116,12 +124,4 @@ public class P0003ControllerImpl implements P0003Controller {
 		return resEnt;
 	}
 	
-	//@RequestMapping(value = "/common/ajaxTest", produces="application/json", method = { RequestMethod.GET, RequestMethod.POST })
-	@ResponseBody
-	public Map<String, Object> ajaxTest() {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("id", "hong");
-		map.put("name", "홍길동");
-		return map;
-	}
 }

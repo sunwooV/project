@@ -6,19 +6,15 @@ import org.springframework.stereotype.Component;
 
 @Component("p0003VO")
 public class P0003VO {
-	private String cust_id = "";
-	private String cust_name = "";
-	private String cust_address = "";
-	private String cust_zip = "";
-	private String cust_country = "";
-	private String cust_state = "";
-	private String cust_contact = "";
-	private String cust_email = "";
+	private String cust_id; 
+	private String cust_name; 
+	private String cust_address; 
+	private String cust_state;
+	private String cust_zip;
+	private String cust_country;
+	private String cust_contact ;
+	private String cust_email;
 	
-	public P0003VO() {
-		System.out.println("MemberVO 생성자 호출");
-	}
-
 	public String getCust_id() {
 		return cust_id;
 	}
@@ -41,6 +37,14 @@ public class P0003VO {
 
 	public void setCust_address(String cust_address) {
 		this.cust_address = cust_address;
+	}
+
+	public String getCust_state() {
+		return cust_state;
+	}
+
+	public void setCust_state(String cust_state) {
+		this.cust_state = cust_state;
 	}
 
 	public String getCust_zip() {
@@ -75,12 +79,8 @@ public class P0003VO {
 		this.cust_email = cust_email;
 	}
 
-	public String getCust_state() {
-		return cust_state;
-	}
-
-	public void setCust_state(String cust_state) {
-		this.cust_state = cust_state;
+	public P0003VO() {
+		System.out.println("MemberVO 생성자 호출");
 	}
 
 	

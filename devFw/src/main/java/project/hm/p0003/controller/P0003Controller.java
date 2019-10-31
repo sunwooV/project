@@ -12,13 +12,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 public interface P0003Controller {
 	public ModelAndView searchList(String p_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView searchInit(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	
 	public ModelAndView searchMod(String p_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	
-	/*
+	public ModelAndView searchInit(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView searchInsert(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	*/
-	public ResponseEntity updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
+	public ResponseEntity updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

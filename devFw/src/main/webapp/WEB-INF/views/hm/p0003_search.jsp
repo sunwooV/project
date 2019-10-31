@@ -16,22 +16,22 @@ text-align: center;
 <title>회원 정보 출력창</title> 
 </head>
 <body>
+<h1>회원 정보 출력</h1>
 <%
    request.setCharacterEncoding( "utf-8" );
 %>
-   <h1 style="text-align:center">고객 조회</h1>
-   <table align="center" border="1px solid black">
-      <tr align="center" bgcolor="lightpink">
-         <td>고객 번호</td>
-         <td>고객 이름</td>
-         <td>고객 주소</td>
-         <td>고객 주</td>
-         <td>고객 우편번호</td>
-         <td>고객 국가</td>
-         <td>고객 담당자</td>
-         <td>고객 메일주소</td>
-         <td>수정</td>
-      </tr>
+<table border=1 width=800 align=center>
+		<tr align=center bgcolor="FFFF66">
+		<td>고객번호</td>
+		<td>고객이름</td>
+		<td>고객주소</td>
+		<td>고객주</td>
+		<td>고객우편번호</td>
+		<td>고객국가</td>
+		<td>고객담당자</td>
+		<td>고객메일주소</td>
+		<td>수정</td>
+		</tr>
 
   <c:forEach var="member" items="${searchList}" >	
 	 <c:url var="url"  value="searchMod.do"  >

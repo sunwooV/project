@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -14,11 +14,11 @@
 		<result property="cust_contact" column="cust_contact" />
 		<result property="cust_email" column="cust_email" />
 	</resultMap>
-	
+
 	<select id="searchList" resultMap="p0003Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         SELECT cust_id, cust_name, cust_address, cust_state, cust_zip, cust_country, cust_contact, cust_email
-         FROM customers
+         select cust_id, cust_name, cust_address, cust_state, cust_zip, cust_country, cust_contact, cust_email
+         from   customers
       ]]>
 		<where>
 			<if test=" p_id != ''  and  p_id != null">
@@ -26,11 +26,10 @@
 			</if>
 		</where>
 	</select>
-	
 	<select id="searchMod" resultMap="p0003Result01" parameterType="java.util.Map"> 
-      <![CDATA[
-         SELECT cust_id, cust_name, cust_address, cust_state, cust_zip, cust_country, cust_contact, cust_email
-         FROM customers
+       <![CDATA[
+         select cust_id, cust_name, cust_address, cust_state, cust_zip, cust_country, cust_contact, cust_email
+         from   customers
       ]]>
 		<where>
 			<if test=" p_id != ''  and  p_id != null">
@@ -38,17 +37,18 @@
 			</if>
 		</where>
 	</select>
-	
+
 	<update id="updateMember" parameterType="java.util.Map">
 		update customers
-		set  cust_name = #{name}
-		   , cust_address = #{address}
-		   , cust_state = #{state}
-		   , cust_zip = #{zip}
-		   , cust_country = #{country}
-		   , cust_contact = #{contact}
-		   , cust_email = #{email}
-		where cust_id = #{id}
+		set cust_id = #{cust_id}
+		   , cust_name = #{cust_name}
+		   , cust_address = #{cust_address}
+		   , cust_state = #{cust_state}
+		   , cust_zip = #{cust_zip}
+		   , cust_country = #{cust_country}
+		   , cust_contact = #{cust_contact}
+		   , cust_email = #{cust_email}
+		where cust_id = #{key_id}
 	</update>
 
 </mapper>

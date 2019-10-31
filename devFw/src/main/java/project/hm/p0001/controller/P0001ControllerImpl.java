@@ -38,7 +38,6 @@ public class P0001ControllerImpl implements P0001Controller {
 	P0001Service p0001Service;
 	@Autowired
 	P0001VO p0001VO;
-	int n;
 	
 	@Override
 	@RequestMapping(value = "/hm/p0001/searchInit.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -110,21 +109,12 @@ public class P0001ControllerImpl implements P0001Controller {
 			dispatch.forward(request, response);
 		} catch (Exception e) {
 			message = " <script>";
-			message += " alert('오류가 발생했습니다. 다시 시도해 주세요');";
+			message += " alert('오류가 발생했습니다.다시 시도해 주세요');";
 			message += " location.href='" + request.getContextPath() + "/hm/p0001/searchInit.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();
 		}		
 		return resEnt;
-	}
-	
-	@RequestMapping(value = "/common/ajaxTest", produces="application/json", method = { RequestMethod.GET, RequestMethod.POST })
-	@ResponseBody
-	public Map<String, Object> ajaxTest() {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("id", "hong");
-		map.put("name", "홍길동");
-		return map;
 	}
 }

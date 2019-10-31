@@ -6,21 +6,21 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>고객 검색 창</title>
+  <title>고객번호 입력창</title>
   <script type="text/javascript">
 	function frm_add() {
 		var frmPro = document.frm;
 		frmPro.method = "post";
-		frmPro.action = "${contextPath}/hm/p0003/searchInsert.do"; 
+		frmPro.action = "${contextPath}/hm/p0003/searchList.do"; 
 		frmPro.submit();
 	}
    </script>
 </head> 
 <body>
    <form name="frm" method="post" action="${contextPath}/hm/p0003/searchList.do">   
-	   	<h1 style="text-align:center">고객 조회 창</h1><br>
-	   	고객번호:<input type="text" name="p_id"><br>
-	   <input type ="submit" value="조회하기"><br>
+	   <h1>고객번호 입력창 </h1><br> 
+	     고객번호 :<input type="text" name="p_id"><br>
+	   <input type ="submit" value="조회"><br>
 	   <input type = "button" value = "고객추가" onclick = "frm_add()">
    </form>
 </body>
