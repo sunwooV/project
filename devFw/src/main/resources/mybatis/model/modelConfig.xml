@@ -22,5 +22,6 @@
 	
 	<typeAlias type="project.Buy.P001.D003.vo.B_P001_D003VO"  alias="B_P001_D003VO" />
       <typeAlias type="project.Buy.P001.D004.vo.B_P001_D004VO"  alias="B_P001_D004VO" />
+      <typeAlias type="project.Customers.p001.d001.vo.C_P001_D002_VO"  alias="C_P001_D002_VO" />
 	</typeAliases> 
 </configuration>

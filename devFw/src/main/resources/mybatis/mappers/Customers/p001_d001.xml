@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+   <mapper namespace="Customers.join">
+   <!-- 아이디 중복 검사 -->
+	<select id="check_id" parameterType="String" resultType="int">
+		select count(*) from member where MEMBERID = #{MEMBERID}
+	</select>
+	<!-- 이메일 중복 검사 -->
+  <select resultType="int" parameterType="String" id="check_email">
+  select count(*) from member where EMAIL = #{email}
+   </select>
+	
+<!-- 회원 가입 -->
+	<insert id="join_member" parameterType="C_P001_D002_VO">
+		insert into member(MEMBERID, PW, EMAIL, NAME, BIRTH, ADDRESS, ROADADDRESS, JIBUNADDRESS, DETAILADDRESS, EXTRAADADDRESS ,NICKNAME, PHONENUMBER, REG_DATE, LOG_DATE,APPROVAL_STATUS, APPROVAL_KEY)
+		values(#{memberid}, #{pw}, #{email}, #{name}, #{birth}, #{address}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, #{extraAddress}, #{nickname}, #{phonenumber}, sysdate, sysdate,'false', #{approval_key})
+	</insert>
+
+
+<!-- 이메일 인증 -->
+<update id="approval_member" parameterType="C_P001_D002_VO">
+	update member set approval_status = 'true' where email = #{email} and approval_key = #{approval_key}
+</update>
+
+<!-- 로그인 -->
+	<select id="login" parameterType="String" resultType="C_P001_D002_VO">
+		select * from member where MEMBERID = #{MEMBERID}
+	</select>
+	
+		<!-- 로그인 접속일자 수정 -->
+	<update id="update_log" parameterType="String">
+		update member set log_date = sysdate where MEMBERID = #{MEMBERID}
+	</update>
+</mapper>
