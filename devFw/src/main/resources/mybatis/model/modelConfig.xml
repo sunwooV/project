@@ -15,6 +15,9 @@
 		<typeAlias type="project.Sell.P001.D002.vo.S_P001_D002_VO" alias="S_P001_D002_VO"/>
 		<typeAlias type="project.FleaMarket.P002.D001.vo.F_P002_D001VO"  alias="F_P002_D001VO" />
 		<typeAlias type="project.FleaMarket.P002.D002.vo.F_P002_D002VO"  alias="F_P002_D002VO" />  
-		<typeAlias type="project.FleaMarket.P002.D003.vo.F_P002_D003VO"  alias="F_P002_D003VO" />  
+		<typeAlias type="project.FleaMarket.P002.D003.vo.F_P002_D003VO"  alias="F_P002_D003VO" /> 
+		
+		<typeAlias type="project.Buy.P001.D003.vo.B_P001_D003VO"  alias="B_P001_D003VO" />
+		<typeAlias type="project.Buy.P001.D004.vo.B_P001_D004VO"  alias="B_P001_D004VO" /> 
 	</typeAliases> 
 </configuration>
