@@ -100,10 +100,11 @@ body {
 form header {
   margin: 0 0 20px 0; 
 }
-form header div {
+form header div fieldset{
   font-size: 90%;
   color: #999;
 }
+
 form header h2 {
   margin: 0 0 5px 0;
 }
@@ -130,9 +131,21 @@ form > div > fieldset > div {
 form > div > fieldset label {
 	font-size: 90%;
 }
+
+#title5{
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+    border-style: none;
+}
 fieldset {
 	border: 0;
-  padding: 0;
+  	padding: 0;
 }
 
 input[type=text],
@@ -236,7 +249,7 @@ textarea:focus {
     
   <div>
     <fieldset>
-      <label class="desc" id="join_product" for="join_product">판매 품목</label>
+      <div id="title5" class="desc">판매품목</div>
       <div>
       	<input id="radioDefault_5" name="join_product" type="hidden" value="">
       	<div>
