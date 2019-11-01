@@ -3,24 +3,22 @@
     import= "java.util.*, project.FleaMarket.*"
     isELIgnored="false"  %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>    
-
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  /> 
 <%
-	request.setCharacterEncoding("utf-8");
-	List list = (List)request.getAttribute("searchList");
-	String flea_id = request.getParameter("flea_name");
-	String intro_content = request.getParameter("intro_content");
-	System.out.println("플리마켓 아이디="+flea_id);
-	System.out.println("플리마켓 소개글=" + intro_content);
+ request.setCharacterEncoding("utf-8");
+ List list = (List)request.getAttribute("searchList");
+ String flea_id = request.getParameter("flea_name");
+ String intro_content = request.getParameter("intro_content");
+ System.out.println("플리마켓 아이디="+flea_id);
+ System.out.println("플리마켓 소개글=" + intro_content);
 %>
-
 <!DOCTYPE html>
 <html>
 <style>
 ul {
-	list-style-type: none;
-	margin: 0;
-	padding-left: 0;
+ list-style-type: none;
+ margin: 0;
+ padding-left: 0;
 }
 .ui_title__txt{
   color: #333;
@@ -37,7 +35,6 @@ ul {
   left: 40%;
   transform: translate(-50%, -50%);
 }
-
  .left-images, .left-categories-list {
    float: left;
 }
@@ -48,7 +45,7 @@ ul {
     padding: 5px 0;
 }
 .categories-list li :hover{
-		background:inherit !important;
+  background:inherit !important;
 }
 .left-images > p {
     background: none repeat scroll 0 0 #ff7f50;
@@ -64,50 +61,49 @@ ul {
     text-transform: uppercase;
 }
 .mm-view-more{
-	background: none repeat scroll 0 0 #ff7f50;
+ background: none repeat scroll 0 0 #ff7f50;
     color: #fff;
     display: inline !important;
     line-height: normal;
     padding: 5px 8px !important;
-	margin-top:10px;
+ margin-top:10px;
 }
-
 .profile-picture {
-	border-radius: 100%;
-	overflow: hidden;
-	-webkit-box-sizing: content-box;
-  	-moz-box-sizing: content-box;
-  	box-sizing: content-box;	
-  	margin-left: 50px;
-  	
+ border-radius: 100%;
+ overflow: hidden;
+ -webkit-box-sizing: content-box;
+   -moz-box-sizing: content-box;
+   box-sizing: content-box; 
+   display: block;
+    margin: 0px auto;
+   
 }
 .big-profile-picture {
-	width: 120px;
-	height: 120px;
+ width: 120px;
+ height: 120px;
 }
 .add-button .icon {
-	float: right;
-	line-height: 18px;
-	width: 23px;					
-	border: 2px solid;
-	border-radius: 100%;
-	font-size: 18px;
-	text-align: center;
-	margin: 10px;					
+ float: right;
+ line-height: 18px;
+ width: 23px;     
+ border: 2px solid;
+ border-radius: 100%;
+ font-size: 18px;
+ text-align: center;
+ margin: 10px;     
 }
 .add-button .icon:hover {
-	color: #e64c65;
-	border-color: #e64c65;
+ color: #e64c65;
+ border-color: #e64c65;
 }
-
+<%--
 .user-name {
-	margin-left: 50px;
+ margin-left: 50px;
 }
-.profile-description {
-	width: 210px;
-	text-align: center;
+--%>
+.profile-description .user_name{
+ text-align: center;
 }
-
 .ui_card, .ui_card--flex-orientation, .ui_card--side, .ui_card--white {
     overflow: hidden;
     position: relative;
@@ -136,7 +132,6 @@ element.style {
     display: block;
     padding-bottom: 100%;
 }
-
 .nav-links {
     border: 2px solid #555;
     -webkit-border-radius: 2px;
@@ -144,7 +139,6 @@ element.style {
     border-radius: 2px;
     padding: 16px;
 }
-
 .nav-links a {
     display: inline-block;
     width: 100%;
@@ -153,7 +147,6 @@ element.style {
     margin-top: 4px;
     vertical-align: middle;
 }
-
 .border-row:before {
     content: '';
     display: block;
@@ -162,24 +155,21 @@ element.style {
     border-top: 1px solid #d9d9d9;
     margin-top: 16px;
 }
-
 dt { 
-	float:left;
-	width:50%;
+ float:left;
+ width:50%;
 } 
- 	
+  
 dd { 
-	float:left; 
-	width:50%; 
+ float:left; 
+ width:50%; 
 }
-
 layout-split:after {
     content: '';
     display: block;
     clear: both;
 }
-
-<!-- 구매후기 왼쪽-->
+<%-- 구매후기 왼쪽 --%>
 .layout-split.half>*:first-child {
     margin-left: 0;
 }
@@ -187,6 +177,8 @@ layout-split:after {
     width: 48%;
     margin-left: 1%;
 }
+
+
 
 .ui_card--side .ui_card__title {
     display: block;
@@ -201,11 +193,9 @@ layout-split:after {
     margin: 15px 0;
     font-weight: 700;
 }
-
 .ui_card--side .ui_card__inner {
     display: table;
 }
-
 .ui_card__inner {
     width: 100%;
     display: block;
@@ -215,7 +205,6 @@ layout-split:after {
     text-align: left;
     box-sizing: border-box;
 }
-
 .cardlist_section .split-cardlist .ui_card--side {
     width: 100%;
 }
@@ -229,12 +218,10 @@ layout-split:after {
     font-size: 12px;
     box-shadow: 0 1px 3px 0 hsla(0,0%,86.3%,.3);
 }
-
 .ui_card--flex-orientation>*, .ui_card--side>*, .ui_card--white>*, .ui_card>* {
     text-align: left;
     box-sizing: border-box;
 }
-
 .ui_card, .ui_card--flex-orientation, .ui_card--side, .ui_card--white {
     overflow: hidden;
     position: relative;
@@ -245,7 +232,6 @@ layout-split:after {
     font-size: 12px;
     box-shadow: 0 1px 3px 0 hsla(0,0%,86.3%,.3);
 }
-
 .ui_card__img {
     position: relative;
     display: block;
@@ -256,36 +242,47 @@ layout-split:after {
     background-position: 50%;
     transition: transform .5s ease-in-out;
 }
-
 <!-- 스토리 오른쪽 -->
 .layout-split>* {
     float: left;
     margin-left: 24px;
     width: 336px;
 }
-
+.artist-area {
+    padding: 32px 16px 16px;
+    border: 1px solid #d9d9d9;
+    border-top: 0 none;
+    padding-bottom: 18px;
+    text-align: center;
+}
+.user-name {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5; 
+    color: #333;
+    word-break: break-word;
+}
+ 
 </style>
-
 <head>
 <meta charset="UTF-8">
 <title>금도끼은도끼| 플리마켓</title>
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
   <title>Shop Homepage - Start Bootstrap Template</title>
-
    <!-- Bootstrap core CSS -->
   <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
-
   <!-- Custom styles for this template -->
   <link href="${contextPath}/resources/css/shop-homepage.css" rel="stylesheet">
 </head>
 <body>
-
 <!-- 
 <table border='1' width='800' align='center'>
    <tr align='center' bgcolor='#FFFF66'> 
@@ -298,12 +295,10 @@ layout-split:after {
      <td>메인 사진</td>
      <td>플리 그룹</td>
 </tr>
-
-  <c:forEach var="flea" items="${searchList}" >	
-	 <c:url var="url"  value="searchMod.do"  >
-	   <c:param  name="p_mod_id" value="${member.id}" />
-	 </c:url>     
-
+  <c:forEach var="flea" items="${searchList}" > 
+  <c:url var="url"  value="searchMod.do"  >
+    <c:param  name="p_mod_id" value="${member.id}" />
+  </c:url>     
      <tr align=center>
        <td>${flea.flea_code}</td>
        <td>${flea.memberid}</td>
@@ -318,108 +313,35 @@ layout-split:after {
 </table>
  -->
 
-	 <!-- Navigation 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">금도끼 은도끼</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-     
-		  <div class="wrap">
-		   <div class="search">
-		      <input type="text" class="searchTerm" placeholder="What are you looking for?">
-		      <button type="submit" img src="${contextPath}/resources/magnifying-glass.png">
-		        <i class="fas fa-search"></i>
-		     </button>
-		   </div>
-		</div>
-		
-	 
-     
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="login.jsp">로그인
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">회원가입</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">고객센터</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
-      </div>
-     
-    </div>
-  </nav>
-  -->
-   
-  <!--  
-  <nav class="dropdownmenu">
-  <ul>
-    <li><a href="http://www.jochaho.com/wordpress/">Home</a></li>
-    <li><a href="http://www.jochaho.com/wordpress/about-pritesh-badge/">About Me</a></li>
-    <li><a href="#">Articles on HTML5 & CSS3</a>
-      <ul id="submenu">
-        <li><a href="http://www.jochaho.com/wordpress/difference-between-svg-vs-canvas/">Difference between SVG vs. Canvas</a></li>
-        <li><a href="http://www.jochaho.com/wordpress/new-features-in-html5/">New features in HTML5</a></li>
-        <li><a href="http://www.jochaho.com/wordpress/creating-links-to-sections-within-a-webpage/">Creating links to sections within a webpage</a></li>
-      </ul>
-    </li>
-    <li><a href="http://www.jochaho.com/wordpress/category/news/">News</a></li>
-    <li><a href="http://www.jochaho.com/wordpress/about-pritesh-badge/">Contact Us</a></li>
-  </ul>
-  <br><br>
-</nav>
---> 
   <!-- Page Content -->
-
-
-    <div class="row">
-
-      <aside class="col-lg-3">
-
-		<!-- 
-        <h1 class="my-4">Shop Name</h1>
-        <div class="list-group">
-          <a href="#" class="list-group-item">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
-        </div>
-        -->
-        
-        <div class="profile block"> <!-- PROFILE (MIDDLE-CONTAINER) -->
+    <div class="row-left">
+      <aside class="artist-area">
+        <div class="user-info card-style-profile "> <!-- PROFILE (MIDDLE-CONTAINER) -->
         
              
-                  <c:forEach var="flea" items="${searchList}" >	
-	            	 <c:out value="${flea.profile_photo}"/>
+                  <c:forEach var="flea" items="${searchList}" > 
+               <c:out value="${flea.profile_photo}"/>
              <div class="profile-picture big-profile-picture clear">
-             <!--  
+              
                  <img width="120px" height="120px" alt="Anne Hathaway picture" src= "${contextPath}/resources/img/profile_ex.jpg" >
+             <!-- 
+              <img width="120px" height="120px" alt="Anne Hathaway picture" src= "<c:url value="/img/${file.profile_photo }" />" >
              -->
-            	 <img width="120px" height="120px" alt="Anne Hathaway picture" src= "<c:url value="/img/${file.profile_photo }" />" >
              </div>
              </c:forEach>
              
-	             <h1 class="user-name"><font size="3">
-	             <c:forEach var="flea" items="${searchList}" >	
-	            	 <c:out value="${flea.flea_name}"/>
-	             </c:forEach>
-	             </font></h1>
-	             <div class="profile-description">
-	                 <p class="scnd-font-color"><font size="2">
-	         	 <c:forEach var="flea" items="${searchList}" >	
-	            	 <c:out value="${flea.intro_cotent}"/>
-	             </c:forEach>
-	            
-	            </font>
-	             </div>	
+              <div class="user-name"><font size="3">
+              <c:forEach var="flea" items="${searchList}" > 
+               <c:out value="${flea.flea_name}"/>
+              </c:forEach>
+              </font></div>
+              <div class="profile-description"><font size="2">
+            <c:forEach var="flea" items="${searchList}" > 
+               <c:out value="${flea.intro_cotent}"/>
+              </c:forEach>
+             
+             </font>
+              </div> 
          </div>
          
          
@@ -431,7 +353,7 @@ layout-split:after {
             </i>
             <em class="txt"><i class="ui_icon--heart"></i>스토어 찜하기</em>
         </button>
- 		<br>
+   <br>
         <a href="/w/message/b20eee2f-b3eb-4fee-bc81-735f1e2318d6" class="btn btn-s btn-white pseudo-ico-message">
         <i class="ico-img"><span class="sp-icon icon-line-message"></span></i>
         메시지</a>
@@ -440,23 +362,21 @@ layout-split:after {
         <i class="ico-img"><span class="sp-icon icon-shareproduct"></span></i>
         공유하기<br></button>
     </fieldset>
-
-		<div class="border-row">
-	        <nav class="nav-links">
-	        <!--  
-	                        <a class="active" href="/w/artist/b20eee2f-b3eb-4fee-bc81-735f1e2318d6">
-	                <i class="ui_icon--home"></i>
-	                <span>홈</span>
-	            </a>
-	            -->
-	            <span>홈<br></span>
-	            <span>스토리<br></span>
-	            <span>판매 작품<br></span>
-	            <span>구매 후기<br></span>
-	        </nav>
-	    </div>
-
-	 <div class="list-def border-row">
+  <div class="border-row">
+         <nav class="nav-links">
+         <!--  
+                         <a class="active" href="/w/artist/b20eee2f-b3eb-4fee-bc81-735f1e2318d6">
+                 <i class="ui_icon--home"></i>
+                 <span>홈</span>
+             </a>
+             -->
+             <span>홈<br></span>
+             <span>스토리<br></span>
+             <span>판매 작품<br></span>
+             <span>구매 후기<br></span>
+         </nav>
+     </div>
+  <div class="list-def border-row">
         <strong class="caption">활동정보</strong>
         <dl class="list">
             <dt><font size="2">
@@ -466,10 +386,10 @@ layout-split:after {
             
             
                 <a href="/w/artist/b20eee2f-b3eb-4fee-bc81-735f1e2318d6/favorite/list" data-modal-trigger="user-list" data-modal="open" data-type="favorite" data-title="좋아하는 사람"><span id="like-count">
-	                 <c:forEach var="flea" items="${searchList}" >	
-		             <c:out value="${flea.flea_like_count}"/>
-		             </c:forEach>
-	                </span><em>명</em>
+                  <c:forEach var="flea" items="${searchList}" > 
+               <c:out value="${flea.flea_like_count}"/>
+               </c:forEach>
+                 </span><em>명</em>
                 </a>
             </dd>
             <dt><font size="2">
@@ -484,12 +404,9 @@ layout-split:after {
             </dd>
         </dl>
     </div>
-
       </aside>
       <!-- /.col-lg-3 -->
-
      <div class="col-lg-9">
-
         <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -518,10 +435,9 @@ layout-split:after {
         </div>
         
         <br>
-		<div class="ui_title__txt"><font size="2">판매중인 상품</font></div>
+  <div class="ui_title__txt"><font size="2">판매중인 상품</font></div>
          
         <div class="row">
-
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
             
@@ -541,7 +457,6 @@ layout-split:after {
               </div>
             </div>
           </div>
-
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
@@ -557,7 +472,6 @@ layout-split:after {
               </div>
             </div>
           </div>
-
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
@@ -589,7 +503,6 @@ layout-split:after {
               </div>
             </div>
           </div>
-
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
@@ -605,7 +518,6 @@ layout-split:after {
               </div>
             </div>
           </div>
-
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
@@ -621,7 +533,6 @@ layout-split:after {
               </div>
             </div>
           </div>
-
         </div>
         <!-- /.row -->
         
@@ -630,8 +541,8 @@ layout-split:after {
         
         <br>
  <div class="layout-split half">
-	 <section class="cardlist_section">
-		 <div class="ui_title--sub">
+  <section class="cardlist_section">
+   <div class="ui_title--sub">
              <h3 class="ui_title__txt"><font size="2">구매후기</font></h3>
          </div>
          <ul class="split-cardlist">
@@ -644,14 +555,12 @@ layout-split:after {
                         <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" class="ui_card__img" aria-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" style="background-image: url(https://image.idus.com/image/files/7c7e4972cbdc49b0a43cdb03973786e4_512.png)">
                         </a>
                     </div>
-
                     <div class="ui_card__txtarea">
                         <div class="ui_card__info">
                             <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" arial-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" class="ui_card__title">?? 할인 ?? ??수제마카롱 30여종??</a>
                             <span class="ui_card__para">
                                 포장이 너무 잘되어서 오고 너무 맛있어용??                            </span>
                         </div>
-
                         <div class="ui_card__rating">
                             <div class="ui_card__vcenter">
                                 <div class="ui_rating" data-ui="rating" data-value="5">
@@ -667,7 +576,6 @@ layout-split:after {
                         </div>
                     </div>
                 </div>
-
             </div>
         </li>
        <li class="ui_grid__item">
@@ -677,7 +585,6 @@ layout-split:after {
                         <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" class="ui_card__img" aria-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" style="background-image: url(https://image.idus.com/image/files/7c7e4972cbdc49b0a43cdb03973786e4_512.png)">
                         </a>
                     </div>
-
                     <div class="ui_card__txtarea">
                         <div class="ui_card__info">
                             <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" arial-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" class="ui_card__title">?? 할인 ?? ??수제마카롱 30여종??</a>
@@ -687,7 +594,6 @@ layout-split:after {
 필링도 정말 잘 어울려요
 냉동실에 넣었다가 바로 꺼내먹어도 맛있습니다                            </span>
                         </div>
-
                         <div class="ui_card__rating">
                             <div class="ui_card__vcenter">
                                 <div class="ui_rating" data-ui="rating" data-value="5">
@@ -703,7 +609,6 @@ layout-split:after {
                         </div>
                     </div>
                 </div>
-
             </div>
         </li>
         
@@ -714,14 +619,12 @@ layout-split:after {
                         <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" class="ui_card__img" aria-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" style="background-image: url(https://image.idus.com/image/files/7c7e4972cbdc49b0a43cdb03973786e4_512.png)">
                         </a>
                     </div>
-
                     <div class="ui_card__txtarea">
                         <div class="ui_card__info">
                             <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" arial-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" class="ui_card__title">?? 할인 ?? ??수제마카롱 30여종??</a>
                             <span class="ui_card__para">
                                 잘받았습니다. 배송 빨랐어요~ 블루베리랑 요거트 맛보았는디 블루베리는 필링도 쨈도 맛있었어요. 그런데 요거트는 필링에 설탕 씹히는 식감이 많이 나고 요거트맛도 별로 안나서 별로였습니다ㅠㅠ 다음에 재구매의사는 있는데 요거트 한번더 먹어보야겠네요~                            </span>
                         </div>
-
                         <div class="ui_card__rating">
                             <div class="ui_card__vcenter">
                                 <div class="ui_rating" data-ui="rating" data-value="4.5">
@@ -737,7 +640,6 @@ layout-split:after {
                         </div>
                     </div>
                 </div>
-
             </div>
         </li>
         </ul>
@@ -745,12 +647,11 @@ layout-split:after {
      </section>
      
      <section class="cardlist_section">
-		 <div class="ui_title--sub">
+   <div class="ui_title--sub">
              <h3 class="ui_title__txt"><font size="2">스토리</font></h3>
          </div>
                 <ul class="split-cardlist lines5">
                                                 <li class="ui_card--side">
-
                             <div class="ui_card__inner">
                                                                 <div class="ui_card__imgcover">
                                     <a href="/w/story/a2318646-a0ca-4322-ac8b-da222ec885f6" class="ui_card__img" style="background-image: url(https://image.idus.com/image/files/4b1b9b058f5046d99b0ade714ecdc0c4_720.jpg)"></a>
@@ -759,10 +660,10 @@ layout-split:after {
                                     <div class="ui_card__info">
                                         <a href="${contextPath}/FleaMarket/P002/D003/searchList.do" class="ui_card__title">2019년 10월 17일</a>
                                         <span class="ui_card__para">안녕하세요. ??마카롱에 빠진날??입니다. <br>
-											<br>
-											마카롱, 수제청으로 디저트를 만들기 시작한지 어느덧 <br>
-											10여년이 되었네요.^^<br>
-											</span>
+           <br>
+           마카롱, 수제청으로 디저트를 만들기 시작한지 어느덧 <br>
+           10여년이 되었네요.^^<br>
+           </span>
                                     </div>
                                 </div>
                             </div>
@@ -771,16 +672,12 @@ layout-split:after {
      </section>
 </div>
 
-
       </div>
       <!-- /.col-lg-9 -->
-
     </div>
     <!-- /.row -->
 
-
   <!-- /.container -->
-
   <!-- Footer 
   <footer class="py-5 bg-dark">
     <div class="container">
@@ -788,12 +685,10 @@ layout-split:after {
     </div>
   </footer>
 -->
-
   <!-- Bootstrap core JavaScript -->
   <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
   <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	
+ 
 </body>
 
-
-</html>
+</html> 
