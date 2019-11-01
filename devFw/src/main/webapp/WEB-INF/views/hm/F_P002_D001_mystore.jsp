@@ -294,6 +294,10 @@ layout-split:after {
 .addmember > a:hover{
 	color: #7F593C;
 } 
+
+.center-flea{
+	margin:0 300px;
+}
  
 </style>
 <head>
@@ -342,7 +346,8 @@ layout-split:after {
  -->
 
   <!-- Page Content -->
-    <div class="row-left">
+ 	<div class="center-flea">
+     <div class="row-left">
       <aside class="artist-area">
         <div class="user-info card-style-profile "> <!-- PROFILE (MIDDLE-CONTAINER) -->
         
@@ -700,6 +705,7 @@ layout-split:after {
 
       </div>
       <!-- /.col-lg-9 -->
+    </div>
     </div>
     <!-- /.row -->
 
