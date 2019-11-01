@@ -64,7 +64,7 @@ public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 			System.out.println(list.get(i));
 		}
 		
-		ModelAndView mav = new ModelAndView("hm/d001_mystore");
+		ModelAndView mav = new ModelAndView("hm/F_P002_D001_mystore");
 		mav.addObject("searchList", list);
 		return mav;
 	}
