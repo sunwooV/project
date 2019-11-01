@@ -29,7 +29,7 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller{
 	@RequestMapping(value = "/Buy/P001/D003/cart.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView selectCart(HttpSession session, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-//		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("utf-8");
 //		System.out.println("buy P001 D003 ControlleImpl의 조회 메소드 안");
 //		//session 저장된 아이디 
 //		String userId = (String) session.getAttribute("userId");
