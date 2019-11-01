@@ -20,19 +20,24 @@
       --%>
   
       #header {
-        padding-right: 5px;
-        padding-left:5px;
-        padding-top:5px;
-        margin-bottom: 0px;
-        margin-left:5px;
+        padding: 5px;
+        margin-bottom: 5px;
         border: 0px solid #bcbcbc;
   
       }
+      #sidebar-left {
+        width: 15%;
+        height:700px;
+        padding: 5px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        float: left;
+        border: 0px solid #bcbcbc;
+        font-size:10px;
+      }
       #content {
-        width: 100%;
-        padding-right: 5px;
-        padding-left:5px;
-        padding-bottom:5px;
+        width: 75%;
+        padding: 5px;
         margin-right: 5px;
         float: left;
         border: 0px solid #bcbcbc;
@@ -50,6 +55,9 @@
     <div id="container">
       <div id="header">
          <tiles:insertAttribute name="header"/>
+      </div>
+      <div id="sidebar-left">
+          <tiles:insertAttribute name="side"/> 
       </div>
       <div id="content">
           <tiles:insertAttribute name="body"/>

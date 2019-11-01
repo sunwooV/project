@@ -6000,7 +6000,6 @@ a.badge-dark:focus, a.badge-dark.focus {
 	padding: 63px 76px 35px 146px;
 	margin-bottom: 2rem;
 	background-color: #f7f7f9;
-	width:100%
 }
 
 @media ( min-width : 576px) {
@@ -11144,7 +11143,7 @@ th {
 
 .menubar li {
 	float: left;
-	padding: 0px;
+	padding: 0px 48px 0px 272px;
 }
 
 .menubar li a {
@@ -11156,7 +11155,7 @@ th {
 	font-weight: bold;
 	line-height: 50px;
 	margin: 0px;
-	padding: 0px 273px;
+	padding: 0px 25px;
 	text-align: center;
 	text-decoration: none;
 }
@@ -11191,7 +11190,7 @@ th {
 	float: none;
 	margin: 0px;
 	padding: 0px;
-	width: 630px;
+	width: 200px;
 }
 
 .menubar li:hover li a {
