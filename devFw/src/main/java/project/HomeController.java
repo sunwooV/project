@@ -52,11 +52,11 @@ public class HomeController {
 		return "hm/searchList.do";
 	}
 	*/
-	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
 		return "main";
-	}
+	}*/
 	
 	@RequestMapping(value = "/join.do", method =  RequestMethod.GET)
 	public String join(HttpServletRequest request, HttpServletResponse response) throws Exception {

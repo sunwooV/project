@@ -1,70 +1,59 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"  isELIgnored="false"
- %>
- <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <style>
-		<%--
-      #container {
-        width: 100%;
-        margin: 0px auto;
-          text-align:center;
-        border: 0px solid #bcbcbc;
-      }
-      
-      --%>
-  
-      #header {
-        padding: 5px;
-        margin-bottom: 5px;
-        border: 0px solid #bcbcbc;
-  
-      }
-      #sidebar-left {
-        width: 15%;
-        height:700px;
-        padding: 5px;
-        margin-right: 5px;
-        margin-bottom: 5px;
-        float: left;
-        border: 0px solid #bcbcbc;
-        font-size:10px;
-      }
-      #content {
-        width: 75%;
-        padding: 5px;
-        margin-right: 5px;
-        float: left;
-        border: 0px solid #bcbcbc;
-      }
-      #footer {
-        clear: both;
-        padding: 5px;
-        border: 0px solid #bcbcbc;
-      }
-      
-    </style>
-    <title><tiles:insertAttribute name="title" /></title>
-  </head>
-    <body>
-    <div id="container">
-      <div id="header">
-         <tiles:insertAttribute name="header"/>
-      </div>
-      <div id="sidebar-left">
-          <tiles:insertAttribute name="side"/> 
-      </div>
-      <div id="content">
-          <tiles:insertAttribute name="body"/>
-      </div>
-      <div id="footer">
-          <tiles:insertAttribute name="footer"/>
-      </div>
-    </div>
-  </body>
-</html>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+   <definition name="baseLayout"  template="/WEB-INF/views/common/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
+   </definition>
+<!--  
+   <definition name="main" extends="baseLayout">
+      <put-attribute name="title" value="메인페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
+   </definition>
+-->
+   <definition name="*/*" extends="baseLayout">
+      <put-attribute name="title" value="금도끼은도끼" />
+      <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+   </definition>  
+ <!--  
+    <definition name="/hm/JoinForm" extends="baseLayout">
+      <put-attribute name="title" value="금도끼은도끼|플리마켓 입점 신청창" />
+      <put-attribute name="body" value="/WEB-INF/views/hm/JoinForm.jsp" />
+   </definition>  
+    
+   <definition name="/member/loginForm" extends="baseLayout">
+      <put-attribute name="title" value="로그인창" />
+      <put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" />
+   </definition>
+
+   <definition name="/board/listArticles" extends="baseLayout">
+      <put-attribute name="title" value="글목록창" />
+      <put-attribute name="body" value="/WEB-INF/views/board/listArticles.jsp" />
+   </definition>
+   
+   <definition name="/board/articleForm" extends="baseLayout">
+      <put-attribute name="title" value="글쓰기창" />
+      <put-attribute name="body" value="/WEB-INF/views/board/articleForm.jsp" />
+   </definition>   
+   
+   <definition name="/board/viewArticle" extends="baseLayout">
+    <put-attribute name="title" value="글상세창" />
+    <put-attribute name="body" value="/WEB-INF/views/board/viewArticle.jsp" />
+  </definition>
+ --> 
+   
+<!-- 
+   <definition name="/member/memberForm" extends="baseLayout">
+      <put-attribute name="title" value="회원등록창" />
+      <put-attribute name="body" value="/WEB-INF/views/member/memberForm.jsp" />
+   </definition>
+
+   <definition name="/member/viewDetail" extends="baseLayout">
+      <put-attribute name="title" value="회원상세창" />
+      <put-attribute name="body" value="/WEB-INF/views/member/viewDetail.jsp" />
+   </definition> -->
+</tiles-definitions>
