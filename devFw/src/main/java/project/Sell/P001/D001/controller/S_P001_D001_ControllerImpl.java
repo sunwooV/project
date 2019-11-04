@@ -28,21 +28,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.Sell.P001.D001.vo.S_P001_D001_VO;
-import project.Sell.P001.D001.dao.S_P001_D001_DAO;
+import project.Sell.P001.D001.service.S_P001_D001_Service;
 
 
 @Controller("S_P001_D001_Controller")
 public class S_P001_D001_ControllerImpl implements S_P001_D001_Controller {
 	private static final Logger logger = LoggerFactory.getLogger(S_P001_D001_ControllerImpl.class);
 	@Autowired
-	S_P001_D001_DAO S_P001_D001_Service;
+	S_P001_D001_Service S_P001_D001_Service;
 	@Autowired
 	S_P001_D001_VO S_P001_D001_VO;
 	
 	int cnt=0;
 	
 	@Override
-	@RequestMapping(value = "/Sell/P001/D001/enroll.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/enroll.do", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
 	public ModelAndView high_category(@RequestParam(value="category_name", required=false) String category_name, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
@@ -60,23 +60,9 @@ public class S_P001_D001_ControllerImpl implements S_P001_D001_Controller {
 		return mav;
 	}
 	
+
 	@Override
-	@RequestMapping(value = "/Sell/P001/D001/searchList.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView searchList(@RequestParam(value="searchWord", required=false) String searchWord, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		Map<String, Object> searchMap = new HashMap<String, Object>();
-		searchMap.put("searchWord", searchWord);	 
-		
-		List list = S_P001_D001_Service.searchList(searchMap);
-		
-		ModelAndView mav = new ModelAndView("sell/main");
-		mav.addObject("searchProduct", list);
-		System.out.println("list c처리 \n " + list);
-		return mav;
-	}
-	
-	@Override
-	@RequestMapping(value = "/Sell/P001/D001/searchInsert.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/searchInsert.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView searchInsert(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		
@@ -86,7 +72,7 @@ public class S_P001_D001_ControllerImpl implements S_P001_D001_Controller {
 	}
 	
 	@Override
-	@RequestMapping(value = "/Sell/P001/D001/insertMember.do", method = { RequestMethod.POST, RequestMethod.POST })
+	@RequestMapping(value = "/insertMember.do", method = { RequestMethod.POST, RequestMethod.POST })
 	@ResponseBody
 	public ResponseEntity insertProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
@@ -121,19 +107,19 @@ public class S_P001_D001_ControllerImpl implements S_P001_D001_Controller {
 	}	
 	
 	
-	@RequestMapping(value = "/Sell/P001/D001/coding.do")
+	@RequestMapping(value = "/coding.do")
     public String coding() {
         return "coding";
     }
  
-    @RequestMapping(value = "/Sell/P001/D001/insertBoard.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/insertBoard.do", method = RequestMethod.POST)
     public String insertBoard(String editor) {
         System.err.println("저장할 내용 : " + editor);
         return "redirect:/coding.do";
     }
  
     // 다중파일업로드
-    @RequestMapping(value = "/Sell/P001/D001/file_uploader_html5.do",
+    @RequestMapping(value = "/file_uploader_html5.do",
                   method = RequestMethod.POST)
     @ResponseBody
     public String multiplePhotoUpload(HttpServletRequest request) {
@@ -144,7 +130,7 @@ public class S_P001_D001_ControllerImpl implements S_P001_D001_Controller {
             String oldName = request.getHeader("file-name");
             // 파일 기본경로 _ 상세경로
            
-            String filePath = "C:/myProject/workspace/devFw/src/main/webapp/resources/photoUpload/";
+            String filePath = "C:/Users/bit-user/git/project/devFw/src/main/webapp/resources/photoUpload/";
 
             String saveName = sb.append(new SimpleDateFormat("yyyyMMddHHmmss")
                           .format(System.currentTimeMillis()))
@@ -171,13 +157,4 @@ public class S_P001_D001_ControllerImpl implements S_P001_D001_Controller {
         return sb.toString();
     }
 
-	@Override
-	@RequestMapping(value = "/Sell/P001/D001/enrollSuccess.do", method = RequestMethod.POST)
-	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		
-		ModelAndView mav = new ModelAndView("sell/enrollSuccess");
-		mav.addObject("command", "addSearch");
-		return mav;
-	}
 }

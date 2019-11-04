@@ -24,7 +24,7 @@ public class S_P001_D002_ControllerImpl implements S_P001_D002_Controller {
 	
 	
 	@Override
-	@RequestMapping(value = "/Sell/P001/D002/detail.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/detail.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView detailProduct(@RequestParam(value="prod_number", required=false) String prod_number, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> searchMap = new HashMap<String, Object>();
