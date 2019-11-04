@@ -43,7 +43,7 @@ public class F_P001_D003ControllerImpl implements F_P001_D003Controller {
 	@RequestMapping(value = "/FleaMarket/P001/D003/search.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView search(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		ModelAndView mav = new ModelAndView("hm/p001_d003_search");
+		ModelAndView mav = new ModelAndView("hm/F_P001_D003_search");
 		return mav;
 	}
 	

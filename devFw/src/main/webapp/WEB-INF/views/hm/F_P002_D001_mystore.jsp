@@ -169,7 +169,7 @@ layout-split:after {
     display: block;
     clear: both;
 }
-<%-- 구매후기 왼쪽 --%>
+<!-- 구매후기 왼쪽-->
 .layout-split.half>*:first-child {
     margin-left: 0;
 }
@@ -177,9 +177,6 @@ layout-split:after {
     width: 48%;
     margin-left: 1%;
 }
-
-
-
 .ui_card--side .ui_card__title {
     display: block;
     display: -webkit-box;
@@ -254,8 +251,6 @@ layout-split:after {
     border-top: 0 none;
     padding-bottom: 18px;
     text-align: center;
-    width: 250px;
-    height: 700px;
 }
 .user-name {
     margin-top: 16px;
@@ -267,36 +262,6 @@ layout-split:after {
     line-height: 1.5; 
     color: #333;
     word-break: break-word;
-}
-
-.row-left{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-    margin-top: 19px;
-
-}
- 
-.addmember{
-	text-align: right;
-} 
- 
-.addmember > a:link{
-	color: #513926;
-} 
-.addmember > a:visited{
-	color: #513926;
-} 
-
-.addmember > a:hover{
-	color: #7F593C;
-} 
-
-.center-flea{
-	margin:0 300px;
 }
  
 </style>
@@ -344,14 +309,82 @@ layout-split:after {
   </c:forEach>
 </table>
  -->
-
+  <!-- Navigation 
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">금도끼 은도끼</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+     
+    <div class="wrap">
+     <div class="search">
+        <input type="text" class="searchTerm" placeholder="What are you looking for?">
+        <button type="submit" img src="${contextPath}/resources/magnifying-glass.png">
+          <i class="fas fa-search"></i>
+       </button>
+     </div>
+  </div>
+  
+  
+     
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="login.jsp">로그인
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">회원가입</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">고객센터</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+     
+    </div>
+  </nav>
+  -->
+   
+  <!--  
+  <nav class="dropdownmenu">
+  <ul>
+    <li><a href="http://www.jochaho.com/wordpress/">Home</a></li>
+    <li><a href="http://www.jochaho.com/wordpress/about-pritesh-badge/">About Me</a></li>
+    <li><a href="#">Articles on HTML5 & CSS3</a>
+      <ul id="submenu">
+        <li><a href="http://www.jochaho.com/wordpress/difference-between-svg-vs-canvas/">Difference between SVG vs. Canvas</a></li>
+        <li><a href="http://www.jochaho.com/wordpress/new-features-in-html5/">New features in HTML5</a></li>
+        <li><a href="http://www.jochaho.com/wordpress/creating-links-to-sections-within-a-webpage/">Creating links to sections within a webpage</a></li>
+      </ul>
+    </li>
+    <li><a href="http://www.jochaho.com/wordpress/category/news/">News</a></li>
+    <li><a href="http://www.jochaho.com/wordpress/about-pritesh-badge/">Contact Us</a></li>
+  </ul>
+  <br><br>
+</nav>
+--> 
   <!-- Page Content -->
- 	<div class="center-flea">
-     <div class="row-left">
+
+    <div class="row">
       <aside class="artist-area">
+  <!-- 
+        <h1 class="my-4">Shop Name</h1>
+        <div class="list-group">
+          <a href="#" class="list-group-item">Category 1</a>
+          <a href="#" class="list-group-item">Category 2</a>
+          <a href="#" class="list-group-item">Category 3</a>
+        </div>
+        -->
+        
         <div class="user-info card-style-profile "> <!-- PROFILE (MIDDLE-CONTAINER) -->
         
-             	<p class="addmember"><a target="_blank" href="https://github.com"><i class="fas fa-user-plus pa-4x"></i></a></p>
+             
                   <c:forEach var="flea" items="${searchList}" > 
                <c:out value="${flea.profile_photo}"/>
              <div class="profile-picture big-profile-picture clear">
@@ -388,7 +421,8 @@ layout-split:after {
         </button>
    <br>
         <a href="/w/message/b20eee2f-b3eb-4fee-bc81-735f1e2318d6" class="btn btn-s btn-white pseudo-ico-message">
-        <i class="fa fa-envelope"></i>&nbsp;메세지</a>
+        <i class="ico-img"><span class="sp-icon icon-line-message"></span></i>
+        메시지</a>
         <br>
         <button type="button" class="btn btn-m btn-white pseudo-ico-share" data-ui="url-copy" data-ui-option="short" data-icon-event="hover" data-clipboard-text="https://www.idus.com/w/artist/b20eee2f-b3eb-4fee-bc81-735f1e2318d6" data-clipboard-message="작가님 URL이 복사되었습니다.">
         <i class="ico-img"><span class="sp-icon icon-shareproduct"></span></i>
@@ -482,7 +516,7 @@ layout-split:after {
                   <a href="#"><font size="3">[할로윈]1일배송,마카롱,뚱카롱,선물</font></a>
                 </h4>
                 <h5></h5>
-                <p class="card-text"><font size="2">[할로윈]신데렐라롱9구 마카롱선물세트~!!<br></font></p>
+                <p class="card-text"><font size="2">[할로윈]신데렐라롱9구 마카롱선물세트~!!<br>호박마차가 ??신데렐라를 좋은곳으로 데려다줬듯이 <br>신데렐라롱에서의 디저트는 좋은마음,좋은재료로 여러분을 ??행복한 디저트세상으로 안내해드리겠습니다.<br></font></p>
               </div>
               <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -663,6 +697,7 @@ layout-split:after {
                                     <i class="ui_icon--star-fill" data-state="active"></i>
                                     <i class="ui_icon--star-fill" data-state="active"></i>
                                     <i class="ui_icon--star-fill" data-state="active"></i>
+                                    <i class="ui_icon--star-fill" data-state="active"></i>
                                     <i class="ui_icon--star-half-fill" data-state="active"></i>
                                     <span>&nbsp;| 이진아</span>
                                 </div>
@@ -706,7 +741,6 @@ layout-split:after {
       </div>
       <!-- /.col-lg-9 -->
     </div>
-    </div>
     <!-- /.row -->
 
   <!-- /.container -->
@@ -721,8 +755,6 @@ layout-split:after {
   <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
   <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
  
- <script src="https://kit.fontawesome.com/af7787acb6.js" crossorigin="anonymous"></script>
-
 </body>
 
 </html> 

@@ -5,6 +5,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<style>
+h1{
+    padding-top: 96px;
+    padding-bottom: 27px;
+    font-size: 32px;
+    font-weight: 600;
+}
+</style>
+
 <script>
 	function radio_ch(){
 		var frmCheck = document.frmJoinForm;
@@ -36,13 +46,16 @@
 <title>금도끼은도끼|플리마켓 스토어 등록</title>
 </head>
 <body>
+ <div class="container"
+      style="padding-bottom: 92px; padding-left: 75px;">
 	 <h1>플리마켓 등록</h1>
 	 <form name="frmJoinForm" method="post" action="${contextPath}/FleaMarket/P001/D001/Join.do">   
-	 	<input type="radio" name="join_group" value="1" />개인형 등록
-	 	<input type="radio" name="join_group" value="2" />참여형 등록
-	   	<br>
+	 	<input type="radio" name="join_group" value="1" /><i class="fa fa-user fa-5x">개인형 등록</i>
+	 	<input type="radio" name="join_group" value="2" /><i class="fa fa-users fa-5x">참여형 등록</i>
+	   	<br><br>
 		<input type="button" value="다음" onClick="radio_ch();" /><br>
     </form>
+</div>
    
 </body>
 </html>
