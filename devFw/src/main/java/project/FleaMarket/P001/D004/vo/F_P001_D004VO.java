@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Component("F_P001_D004VO")
 public class F_P001_D004VO {
 	private String join_code = "";
+	private String join_group = "";
 	private String join_name = "";
 	private String join_phonenumber = "";
 	private String join_email = "";
@@ -15,6 +16,8 @@ public class F_P001_D004VO {
 	private String join_product = "";
 	private String join_sns = "";
 	private String join_etc = "";
+	private Date join_date;
+	private String join_status = "";
 	
 	public F_P001_D004VO() {
 		System.out.println("MemberVO 생성자 호출");
@@ -83,7 +86,31 @@ public class F_P001_D004VO {
 	public void setJoin_etc(String join_etc) {
 		this.join_etc = join_etc;
 	}
-	
+
+	public Date getJoin_date() {
+		return join_date;
+	}
+
+	public void setJoin_date(Date join_date) {
+		this.join_date = join_date;
+	}
+
+	public String getJoin_group() {
+		return join_group;
+	}
+
+	public void setJoin_group(String join_group) {
+		this.join_group = join_group;
+	}
+
+	public String getJoin_status() {
+		return join_status;
+	}
+
+	public void setJoin_status(String join_status) {
+		this.join_status = join_status;
+	}
+
 	
 
 	

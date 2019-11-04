@@ -38,7 +38,7 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 	F_P001_D004Service d004Service;
 	@Autowired
 	F_P001_D004VO d004VO;
-
+/*
 	@Override
 	@RequestMapping(value = "/FleaMarket/P001/D004/search.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView search(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -46,19 +46,31 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 		ModelAndView mav = new ModelAndView("hm/p001_d004_search");
 		return mav;
 	}
+*/
+	/*
+	@Override
+	@RequestMapping(value = "/hm/p0001/searchList.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView searchList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		Map<String, Object> searchMap = new HashMap<String, Object>(); 
+		
+		List list = d004Service.searchList(searchMap);
+
+		ModelAndView mav = new ModelAndView("hm/p0001_search");
+		mav.addObject("searchList", list);
+		return mav;
+	}*/
 	
 	@Override
 	@RequestMapping(value = "/FleaMarket/P001/D004/approval.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView JoinStart(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView search(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		/*
-		String command = request.getParameter("command");
-		if(command != null && command.equals("insertMember"))
-		{
-			
-		}
-		*/
+		Map<String, Object> searchMap = new HashMap<String, Object>(); 
+		List list = d004Service.searchList(searchMap);
+		System.out.println("dataMap::::::::::" + list);
+
 		ModelAndView mav = new ModelAndView("hm/F_P001_D004_approval");
+		mav.addObject("searchList", list);
 		return mav;
 	}
 	
@@ -76,7 +88,20 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 		ModelAndView mav = new ModelAndView("hm/JoinForm");
 		return mav;
 	}
+
+	@Override
+	public ModelAndView searchList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResponseEntity insertMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
+	/*
 	@Override
 	@RequestMapping(value = "/FleaMarket/P001/D004/Join.do", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
@@ -111,7 +136,7 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 		}		
 		return resEnt;
 	}
-	
+	*/
 	/*
 	@Override
 	@RequestMapping(value = "/FleaMarket/P001/D001/searchList.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -134,40 +159,42 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 		return mav;
 	}
 	*/
-
 	/*
-	@Override
-	@RequestMapping(value = "/hm/d001/searchMod.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/FleaMarket/P001/D004/searchMod.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView searchMod(@RequestParam(value="p_mod_id", required=false) String p_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		searchMap.put("p_id", p_id);	 
 		
-		List list = d001Service.searchMod(searchMap);
+		List list = d004Service.searchMod(searchMap);
 		if(!list.isEmpty()) {
-			d001VO = (F_P001_D001VO)list.get(0);
+			d004VO = (F_P001_D004VO)list.get(0);
 		}
 		
-		ModelAndView mav = new ModelAndView("hm/p0001_mod");
-		mav.addObject("p0001VO", d001VO);
+		ModelAndView mav = new ModelAndView("hm/F_P001_D004_approval");
+		mav.addObject("p0001VO", d004VO);
 		mav.addObject("command", "modSearch");
 		return mav;
 	}
 	*/
-	
+	/*
 	@Override
 	public ModelAndView searchInsert(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("searchInsert 확인");
 		return null;
 	}
+	*/
 
-	/*
+	
 	@Override
-	@RequestMapping(value = "/hm/d001/updateMember.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/FleaMarket/P001/D004/updateMember.do", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
 	public ResponseEntity updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
+		
+		System.out.println("업데이트 시작!!");
+		
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		Enumeration enu = request.getParameterNames();
 		while (enu.hasMoreElements()) {
@@ -181,10 +208,10 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		try {
-			d001Service.updateMember(dataMap);
-			
-			RequestDispatcher dispatch = request.getRequestDispatcher("/hm/d001/searchList.do");
+			d004Service.updateMember(dataMap);
+			RequestDispatcher dispatch = request.getRequestDispatcher("/FleaMarket/P001/D004/approval.do");
 			dispatch.forward(request, response);
+			
 		} catch (Exception e) {
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해 주세요');";
@@ -196,7 +223,7 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 		return resEnt;
 	}
 	
-	
+	/*
 	@Override
 	@RequestMapping(value = "/FleaMarket/P001/D001/Join.do", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
