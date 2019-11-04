@@ -20,15 +20,15 @@
       --%>
   
       #header {
-        padding: 5px;
-        margin-bottom: 5px;
+        padding: 0px;
+        margin-bottom: 0px;
         border: 0px solid #bcbcbc;
   
       }
       #content {
         width: 100%;
-        padding: 5px;
-        margin-right: 5px;
+        padding: 0px;
+        margin-right: 0px;
         float: left;
         border: 0px solid #bcbcbc;
       }
