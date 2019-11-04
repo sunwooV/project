@@ -23,6 +23,7 @@ public class S_P001_D002_VO {
 	private String tag_list;
 	private String represent_image;
 	private String auction_price;
+	private String prodViews;
 	
 	public S_P001_D002_VO(){
 		System.out.println("S_P001_D002_VO »£√‚");
@@ -160,6 +161,12 @@ public class S_P001_D002_VO {
 	}
 	public void setAuction_price(String auction_price) {
 		this.auction_price = auction_price;
+	}
+	public String getProdViews() {
+		return prodViews;
+	}
+	public void setProdViews(String prodViews) {
+		this.prodViews = prodViews;
 	}
 	
 	

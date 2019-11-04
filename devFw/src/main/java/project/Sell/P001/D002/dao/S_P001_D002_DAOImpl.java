@@ -17,7 +17,7 @@ public class S_P001_D002_DAOImpl implements S_P001_D002_DAO {
 	
 	@Override
 	public List<S_P001_D002_VO> detailProduct(Map<String, Object> searchMap) throws DataAccessException {
-		List<S_P001_D002_VO> list = sqlSession.selectList("Sell.enroll.detailProduct", searchMap);
+		List<S_P001_D002_VO> list = sqlSession.selectList("Sell.detail.detailProduct", searchMap);
 		System.out.println("dao¿¡¼­ list \n " + list);
 		return list;
 	}
