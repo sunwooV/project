@@ -14,12 +14,15 @@
 		<result property="join_product" column="join_product" />
 		<result property="join_sns" column="join_sns" />
 		<result property="join_etc" column="join_etc" />
+		<result property="join_date" column="join_date" />
+		<result property="join_status" column="join_status" />
 	</resultMap>
 
 	<select id="searchList" resultMap="p0001Result01" parameterType="java.util.Map"> 
       <![CDATA[
          select flea_code, memberid, flea_name, intro_cotent, flea_like_count, utl_raw.cast_to_varchar2(profile_photo), utl_raw.cast_to_varchar2(main_photo), flea_group
-         from flea
+         from joinflea
+         order by join_date desc
       ]]>
 		<where>
 			<if test=" p_id != ''  and  p_id != null">

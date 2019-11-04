@@ -5,19 +5,25 @@
 
 <mapper namespace="hm.F_P001_D004">
 	<resultMap id="p0001Result01" type="F_P001_D004VO"> 
-		<result property="memberId" column="memberId" />
-		<result property="flea_code" column="flea_code" />
-		<result property="together_yn" column="together_yn" />
-		<result property="together_request_date" column="together_request_date" />
-		<result property="together_approve_date" column="together_approve_date" />
+		<result property="join_code" column="join_code" />
+		<result property="join_group" column="join_group" />
+		<result property="join_name" column="join_name" />
+		<result property="join_phonenumber" column="join_phonenumber" />
+		<result property="join_email" column="join_email" />
+		<result property="join_companynumber" column="join_companynumber" />
+		<result property="join_product" column="join_product" />
+		<result property="join_sns" column="join_sns" />
+		<result property="join_etc" column="join_etc" />
+		<result property="join_date" column="join_date" />
+		<result property="join_status" column="join_status" />
 	</resultMap>
 
-	<select id="applyList" resultMap="p0001Result01" parameterType="java.util.Map"> 
+	<select id="searchList" resultMap="p0001Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         select memberId, flea_code, together_yn, together_request_date, together_approve_date
-         from togetherlist
+         select * from joinflea order by join_date desc
       ]]>
 	</select>
+	
 
 	<insert id="insertMember" parameterType="java.util.Map"> 
 	<selectKey order="BEFORE" resultType="int" keyProperty="join_code">
@@ -42,11 +48,9 @@
 	</select>
 
 	<update id="updateMember" parameterType="java.util.Map">
-		update t_member
-		set  pwd = #{pwd}
-		   , name = #{name}
-		   , email = #{email}
-		where id = #{id}
+		update joinflea
+		set join_status = 'o'
+		where join_code = #{join_code}
 	</update>
 	
 	

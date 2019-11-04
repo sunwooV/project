@@ -65,7 +65,7 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 			
 		}
 		*/
-		ModelAndView mav = new ModelAndView("hm/JoinForm");
+		ModelAndView mav = new ModelAndView("hm/F_P001_D001_JoinForm");
 		return mav;
 	}
 	

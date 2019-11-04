@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>    
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  /> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${contextPath }/resources/css/approve.css">
+   
 </head>
 <style>
 body {
@@ -84,12 +88,27 @@ body {
     bottom: -20px;
   }
 }
+
+h1{
+	padding-top: 96px;
+    padding-bottom: 27px;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.container{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
 </style>
 
 <body>
+<div class="container"
+      style="padding-bottom: 92px; padding-left: 75px;">
 	<h1>스토어 개설 현황</h1>
-
-	<div class="container">
   <section class="step-indicator">
       <div class="step step1 active">
           <div class="step-icon">1</div>
