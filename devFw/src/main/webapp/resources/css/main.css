@@ -77,7 +77,6 @@ body {
 	font-size: 0.875rem;
 	font-weight: 400;
 	line-height: 1.5;
-	color: #919aa1;
 	text-align: left;
 	background-color: #fff;
 }
@@ -98,7 +97,7 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 0.5rem;
 }
 
-p {
+#p {
 	font-family: 'Noto Sans KR', sans-serif;
 	margin-top: 0;
 	margin-bottom: 1rem;
