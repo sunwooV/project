@@ -52,7 +52,12 @@ public class C_P001_D002_DAOImpl implements C_P001_D002_DAO {
 		public int update_log(String memberid) throws Exception{
 			return sqlsession.update("Customers.join.update_log", memberid);
 		}
-
+		
+		// 비밀번호 변경
+		@Transactional
+		public int update_pw(C_P001_D002_VO member) throws Exception{
+			return sqlsession.update("Customers.join.update_pw", member);
+		}
 	}
 
 

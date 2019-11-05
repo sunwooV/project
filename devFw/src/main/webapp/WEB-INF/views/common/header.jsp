@@ -23,7 +23,7 @@
 <body>
    <nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<!-- 상단바 -->
-		<a class="navbar-brand" href="#"><img src="${contextPath }/resources/img/logo.jpg"
+		<a class="navbar-brand" href="./main.do"><img src="${contextPath }/resources/img/logo.jpg"
 			width=180px; height=50px; /></a>
 		<button class="navbar-toggler collapsed" type="button"
 			data-toggle="collapse" data-target="#navbarColor03"
@@ -33,11 +33,17 @@
 		</button>
 		<div class="navbar-collapse collapse" id="navbarColor03" style="">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Home
+				<li class="nav-item active"><a class="nav-link" href="./main.do">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Join</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+				<li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/Customers/p001/d001/joinInit.do">Join</a></li>
+				<c:set var="member" value="${member }"/>
+							<c:if test ="${ member == null}">
+							      <li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/Customers/p001/d001/loginInit.do">Login</a></li>
+							      </c:if>
+							    <c:if test ="${ member !=null}">
+							      <li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/Customers/p001/d001/logout.do">LOGOUT</a></li>
+							      </c:if>
 				<li class="nav-item"><a class="nav-link" href="#">shopping list</a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">

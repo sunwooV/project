@@ -30,8 +30,15 @@
 		select * from member where MEMBERID = #{MEMBERID}
 	</select>
 	
+
 		<!-- 로그인 접속일자 수정 -->
 	<update id="update_log" parameterType="String">
 		update member set log_date = sysdate where MEMBERID = #{MEMBERID}
 	</update>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="update_pw" parameterType="C_P001_D002_VO">
+		update member set PW = #{pw} where MEMBERID = #{memberid}
+	</update>
+	
 </mapper>

@@ -23,6 +23,7 @@ public interface C_P001_D002_DAO {
 		public int approval_member(C_P001_D002_VO member) throws Exception;
 		public C_P001_D002_VO login(String memberid) throws Exception;
 		public int update_log(String memberid) throws Exception;
+		public int update_pw(C_P001_D002_VO member) throws Exception;
 
 	 
 }

@@ -67,7 +67,12 @@ public class C_P001_D002_ServiceImpl implements C_P001_D002_Service {
 			member.setApproval_key(create_key());
 			c_p001_d002_DAO.join_member(member);
 			//인증메일 발송
-			send_mail(member);
+			send_mail(member,"join");
+			out.println("<script>");
+			out.println("alert('이메일인증해주세요.');");
+			out.println("location.href='http://localhost:8090/devFw/main.do';");
+			out.println("</script>");
+			out.close();
 			return 1;
 		}
 	}
@@ -85,7 +90,7 @@ public class C_P001_D002_ServiceImpl implements C_P001_D002_Service {
 	
 	// 이메일 발송
 		@Override
-		public void send_mail(C_P001_D002_VO member) throws Exception {
+		public void send_mail(C_P001_D002_VO member,String div) throws Exception {
 			// Mail Server 설정
 			String charSet = "utf-8";
 			String hostSMTP = "smtp.naver.com";
@@ -99,6 +104,7 @@ public class C_P001_D002_ServiceImpl implements C_P001_D002_Service {
 			String msg = "";
 
 			// 회원가입 메일 내용
+			if(div.equals("join")) {
 			subject = "Spring Homepage 회원가입 인증 메일입니다.";
 			msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
 			msg += "<h3 style='color: blue;'>";
@@ -109,6 +115,21 @@ public class C_P001_D002_ServiceImpl implements C_P001_D002_Service {
 			msg += "<input type='hidden' name='email' value='" + member.getEmail() + "'>";
 			msg += "<input type='hidden' name='approval_key' value='" + member.getApproval_key() + "'>";
 			msg += "<input type='submit' value='인증'></form><br/></div>";
+		    }else if(div.equals("find_pw")) {
+				subject = "금도끼 은도끼 비밀번호 입니다.";
+				msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+				msg += "<h3 style='color: blue;'>";
+				msg += member.getMemberid() + "님의 비밀번호 입니다.</h3>";
+				msg += "<p>비밀번호 : ";
+				msg += member.getPw()+ "</p>";
+				msg += "<div style='font-size: 130%'>";
+				msg += "하단의  버튼 클릭 시 홈페이지로 돌아갑니다.</div><br/>";
+				msg += "<form method='post' action='http://localhost:8090/devFw/Customers/p001/d001/main.do'>";
+				msg += "<input type='hidden' name='email' value='" + member.getEmail() + "'>";
+				msg += "<input type='button'>";
+				msg += "<input type='submit' value='로그인하기'></form><br/></div>";
+			}
+	
 
 			// 받는 사람 E-Mail 주소
 			String mail = member.getEmail();
@@ -132,6 +153,8 @@ public class C_P001_D002_ServiceImpl implements C_P001_D002_Service {
 			}
 		}
 		
+		
+		
 		// 회원 인증
 		@Override
 		public void approval_member(C_P001_D002_VO member, HttpServletResponse response) throws Exception {
@@ -145,8 +168,8 @@ public class C_P001_D002_ServiceImpl implements C_P001_D002_Service {
 				out.close();
 			} else { // 이메일 인증을 성공하였을 경우
 				out.println("<script>");
-				out.println("alert('인증이 완료되었습니다. 로그인 후 이용하세요.');");
-				out.println("location.href='http://localhost:8090/devFw/main.jsp';");
+				out.println("alert('인증이 완료되었습니다. 로그인해주세요.');");
+				out.println("location.href='http://localhost:8090/devFw/main.do';");
 				out.println("</script>");
 				out.close();
 			}
@@ -198,8 +221,47 @@ public class C_P001_D002_ServiceImpl implements C_P001_D002_Service {
 			response.setContentType("text/html;charset=utf-8");
 			response.sendRedirect("main.do");
 		}
-	
-	
+		
+		// 비밀번호 찾기
+		@Override
+		public void find_pw(HttpServletResponse response, C_P001_D002_VO member) throws Exception {
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			// 아이디가 없으면
+			if(c_p001_d002_DAO.check_id(member.getMemberid()) == 0) {
+				out.println("<script>");
+				out.println("alert('등록된 아이디가 없습니다.');");
+				out.println("history.go(-1);");
+				out.println("</script>");
+				out.close();
+			}
+			// 가입에 사용한 이메일이 아니면
+			else if(!member.getEmail().equals(c_p001_d002_DAO.login(member.getMemberid()).getEmail())) {
+				out.println("<script>");
+				out.println("alert('등록된 이메일이 없습니다.');");
+				out.println("history.go(-1);");
+				out.println("</script>");
+				out.close();
+			}else {
+		
+				// 비밀번호 변경 메일 발송
+				System.out.println("---------------------------------비밀2: "+member.getPw());
+				String pw="";
+				for (int i = 0; i < 12; i++) {
+					pw += (char) ((Math.random() * 26) + 97);
+				}
+				member.setPw(pw);
+				// 비밀번호 변경
+				c_p001_d002_DAO.update_pw(member);
+				send_mail(member,"find_pw");
+				
+				out.println("<script>");
+				out.println("alert('이메일로 비민번호를 보냈습니.');");
+				out.println("location.href='http://localhost:8090/devFw/main.do';");
+				out.println("</script>");
+				out.close();
+			}
+		}
 }
 
 
