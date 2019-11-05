@@ -4,7 +4,7 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Sell.detail">
-	<resultMap id="S_P001_D001Result01" type="S_P001_D001_VO">
+	<resultMap id="S_P001_D002Result02" type="S_P001_D001_VO">
 		<result property="category_code" column="category_code" />
 		<result property="category_name" column="category_name" />
 		<result property="high_category" column="high_category" />
@@ -34,24 +34,24 @@
 		<result property="prodViews" column="prodViews" />
 	</resultMap>
 
-	<select id="high_category" resultMap="S_P001_D001Result01" parameterType="java.util.Map"> 
+	<select id="high_category" resultMap="S_P001_D002Result02" parameterType="java.util.Map"> 
       <![CDATA[
          select category_code, category_name
          from   category	
       ]]>
-      
 		<where>
-			high_category is null
+			category_code='${high_category }'
 		</where>
-		
 	</select>
 	
-	<select id="middle_category" resultMap="S_P001_D001Result01" parameterType="java.util.Map"> 
+	<select id="middle_category" resultMap="S_P001_D002Result02" parameterType="java.util.Map"> 
       <![CDATA[
          select category_code, category_name, high_category
-         from   category	
+         from   category
       ]]>
-		
+		<where>
+			category_code = '${prod_category_code }'
+		</where>
 	</select>
 
 	

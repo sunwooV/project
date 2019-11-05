@@ -12,7 +12,6 @@
 <title>에디터</title>
 <link rel="stylesheet" type="text/css" href="${contextPath }/resources/css/enroll.css?d">
 <script src="//code.jquery.com/jquery.min.js"></script>
-<script src="${contextPath }/resources/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="${contextPath }/resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script src='//rawgit.com/tuupola/jquery_chained/master/jquery.chained.min.js'></script>
 <script type="text/javascript">
@@ -548,7 +547,7 @@
 			<div class="subtitle">
 				<a>상품 상세 * (사진 3장 이상 첨부 필수)</a>
 				<br>
-				<textarea name="editor" id="editor"	style="width: 700px; height: 400px;"></textarea>
+				<textarea name="editor" id="editor"	style="width: 100%; height: 400px;"></textarea>
 				<input type="hidden" value="" name="images"/>
 			</div>
 

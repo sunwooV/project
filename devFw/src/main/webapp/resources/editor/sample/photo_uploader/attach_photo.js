@@ -284,6 +284,7 @@
 				updateViewCount(nImageFileCount, 0);
 				// 저장 버튼 활성화
 				goStartMode();
+				console.log("사진 떨구는 순간");
 			}else{
 				readyModeBG();
 			}
@@ -470,6 +471,7 @@
     		 generalUpload();
     	 }else{
     		 html5Upload();
+    		 console.log("사진 첨부");
     	 }
      }
      
@@ -478,12 +480,12 @@
  	 */
  	function callFileUploader (){
  		oFileUploader = new jindo.FileUploader(jindo.$("uploadInputBox"),{
- 			sUrl  : location.href.replace(/\/[^\/]*$/, '') + '/file_uploader.php',	//샘플 URL입니다.
+ 			sUrl  : location.href.replace(/\/[^\/]*$/, '') + '/file_uploader.jsp',	//샘플 URL입니다.
  	        sCallback : location.href.replace(/\/[^\/]*$/, '') + '/callback.html',	//업로드 이후에 iframe이 redirect될 콜백페이지의 주소
  	    	sFiletype : "*.jpg;*.png;*.bmp;*.gif",						//허용할 파일의 형식. ex) "*", "*.*", "*.jpg", 구분자(;)	
  	    	sMsgNotAllowedExt : 'JPG, GIF, PNG, BMP 확장자만 가능합니다',	//허용할 파일의 형식이 아닌경우에 띄워주는 경고창의 문구
  	    	bAutoUpload : true,									 		//파일이 선택됨과 동시에 자동으로 업로드를 수행할지 여부 (upload 메소드 수행)
- 	    	bAutoReset : true 											// 업로드한 직후에 파일폼을 리셋 시킬지 여부 (reset 메소드 수행)
+ 	    	bAutoReset : true  										// 업로드한 직후에 파일폼을 리셋 시킬지 여부 (reset 메소드 수행)
  	    }).attach({
  	    	select : function(oCustomEvent) {
  	    		//파일 선택이 완료되었을 때 발생
@@ -510,11 +512,17 @@
  	    		// }
  	    		var aResult = []; 
  	    		aResult[0] = oCustomEvent.htResult;
- 	    		setPhotoToEditor(aResult); 
- 	    		//버튼 비활성화
- 	    		goReadyMode();
+ 	    		
+    			setPhotoToEditor(aResult);
+    			goReadyMode();
  	    		oFileUploader.reset();
+ 	    		console.log("reset");
+ 	    		
  	    		window.close();
+ 	
+
+ 	    		//버튼 비활성화
+ 	    		
  	    	},
  	    	error : function(oCustomEvent) {
  	    		//업로드가 실패했을 때 발생
@@ -577,12 +585,17 @@
 	 * ]
 	 */
  	function setPhotoToEditor(oFileInfo){
+ 		setTimeout(function(){
 		if (!!opener && !!opener.nhn && !!opener.nhn.husky && !!opener.nhn.husky.PopUpManager) {
-			//스마트 에디터 플러그인을 통해서 넣는 방법 (oFileInfo는 Array)
-			opener.nhn.husky.PopUpManager.setCallback(window, 'SET_PHOTO', [oFileInfo]);
-			//본문에 바로 tag를 넣는 방법 (oFileInfo는 String으로 <img src=....> )
-			//opener.nhn.husky.PopUpManager.setCallback(window, 'PASTE_HTML', [oFileInfo]);
+			
+				//스마트 에디터 플러그인을 통해서 넣는 방법 (oFileInfo는 Array)
+				opener.nhn.husky.PopUpManager.setCallback(window, 'SET_PHOTO', [oFileInfo]);
+				console.log("사진 넣는다");
+				//본문에 바로 tag를 넣는 방법 (oFileInfo는 String으로 <img src=....> )
+				//opener.nhn.husky.PopUpManager.setCallback(window, 'PASTE_HTML', [oFileInfo]);
+		
 		}
+		}, 5000);
 	}
  	
  	// 2012.05 현재] jindo.$Ajax.prototype.request에서 file과 form을 지원하지 안함. 

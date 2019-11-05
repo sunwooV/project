@@ -169,7 +169,7 @@
 							<div class="col-sm-3">
 								<div class="thumbnail">
 									<h4>${newProduct.prod_group }</h4>
-									<img src="${newProduct.represent_image }" style="width:230px; height:240px;" alt="..." onclick="location.href='./detail.do?prod_number=${newProduct.prod_number }'">
+									<img src="${newProduct.represent_image }" style="width:230px; height:240px;" alt="..." onclick="location.href='./detail.do?prod_number=${newProduct.prod_number }&prod_category_code=${newProduct.prod_category_code }'">
 									<div class="caption">
 										<h3>${newProduct.prod_title }</h3>
 										<p>${newProduct.prod_price }</p>
