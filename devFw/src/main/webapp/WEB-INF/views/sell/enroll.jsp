@@ -50,6 +50,10 @@
 			var tagList = $(".realTag"); //해시태그
 			//var imageList = $(".images");
 
+			
+		/* 	var memberId = document.getElementsByName("memberId")[0].value;
+			alert(memberId); */
+			
 			for(i=0;i<chkbox1.length;i++){ //판매 방법 넘겨주기 ex)중고 경매 플리, 중고 경매, 플리 ...
 				if(chkbox1[i].checked == true){
 					prod_group += chkbox1[i].value + " ";
@@ -127,6 +131,7 @@
 			var price = document.getElementsByName("prod_price")[0].value;
 			var auction_price = document.getElementsByName("auction_price")[0].value;
 			var direct_area = document.getElementsByName("direct_area")[0].value;
+			
 			
 			if(category == null || category == ""){
 	
@@ -450,7 +455,7 @@
 		request.setCharacterEncoding("utf-8");
 	%>
 	<form class="form" name="productEnroll" id="enrollProduct" method="post" action="./enrollSuccess.do">
-
+	
 		<div class="containBox">
 			<h1>상품 등록</h1>
 			<span>(*: 필수항목)</span>
@@ -474,7 +479,7 @@
 				</script>
 
 			</div>
-
+			<%-- <input type="hidden" name="memberId" value="<%=session.getAttribute("member") %>" /> --%>
 			<div class="subtitle" id="group">
 				<a>게시 선택 * &nbsp&nbsp</a> 
 				<input type="checkbox" name="prod_group" value="중고" class="checkSelect1" id="second" />중고 
