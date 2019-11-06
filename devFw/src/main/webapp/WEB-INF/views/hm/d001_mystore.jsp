@@ -291,6 +291,10 @@ layout-split:after {
 .center-flea{
 	margin:0 300px;
 }
+.profile-setting{
+	margin-top: -5%;
+    margin-left: 20%;
+}
  
 </style>
 <head>
@@ -344,15 +348,20 @@ layout-split:after {
       <aside class="artist-area">
         <div class="user-info card-style-profile "> <!-- PROFILE (MIDDLE-CONTAINER) -->
         
-             	<p class="addmember"><a target="_blank" href="https://github.com"><i class="fas fa-user-plus pa-4x"></i></a></p>
+             	<p class="addmember"><a target="_blank" href="/devFw/FleaMarket/P001/D001/JoinForm.do?id=1"><i class="fas fa-user-plus pa-5x"></i></a></p>
                   <c:forEach var="flea" items="${searchList}" > 
                <c:out value="${flea.profile_photo}"/>
-             <div class="profile-picture big-profile-picture clear">
               
+             <div class="profile-picture big-profile-picture clear">
                  <img width="120px" height="120px" alt="Anne Hathaway picture" src= "${contextPath}/resources/img/profile_ex.jpg" >
              <!-- 
               <img width="120px" height="120px" alt="Anne Hathaway picture" src= "<c:url value="/img/${file.profile_photo }" />" >
              -->
+             </div>
+             <div class="profile-setting">
+             	<a target="_blank" href="/devFw/FleaMarket/P001/D001/JoinForm.do?id=1">
+                 <i class="fa fa-cog pa-5x"></i>
+                 </a>
              </div>
              </c:forEach>
              

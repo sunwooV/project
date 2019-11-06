@@ -4,25 +4,21 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="hm.F_P001_D003">
-	<resultMap id="p0001Result01" type="F_P001_D003VO"> 
-		<result property="join_code" column="join_code" />
-		<result property="join_group" column="join_group" />
-		<result property="join_name" column="join_name" />
-		<result property="join_phonenumber" column="join_phonenumber" />
-		<result property="join_email" column="join_email" />
-		<result property="join_companynumber" column="join_companynumber" />
-		<result property="join_product" column="join_product" />
-		<result property="join_sns" column="join_sns" />
-		<result property="join_etc" column="join_etc" />
-		<result property="join_date" column="join_date" />
-		<result property="join_status" column="join_status" />
+	<resultMap id="p0001Result01" type="F_P002_D001VO"> 
+		<result property="flea_code" column="flea_code" />
+		<result property="memberid" column="memberid" />
+		<result property="flea_name" column="flea_name" />
+		<result property="intro_cotent" column="intro_cotent" />
+		<result property="flea_like_count" column="flea_like_count" />
+		<result property="profile_photo" column="profile_photo" />
+		<result property="main_photo" column="main_photo" />
+		<result property="flea_group" column="flea_group" />
 	</resultMap>
 
 	<select id="searchList" resultMap="p0001Result01" parameterType="java.util.Map"> 
       <![CDATA[
          select flea_code, memberid, flea_name, intro_cotent, flea_like_count, utl_raw.cast_to_varchar2(profile_photo), utl_raw.cast_to_varchar2(main_photo), flea_group
-         from joinflea
-         order by join_date desc
+         from flea
       ]]>
 		<where>
 			<if test=" p_id != ''  and  p_id != null">
@@ -32,12 +28,9 @@
 	</select>
 
 	<insert id="insertMember" parameterType="java.util.Map"> 
-	<selectKey order="BEFORE" resultType="int" keyProperty="join_code">
-		SELECT nvl2((max(join_code) + 1), (max(join_code) + 1), 1) FROM joinflea
-	</selectKey>
 
-         insert into joinflea(join_code, join_group, join_name, join_phonenumber, join_email, join_companynumber, join_product, join_sns, join_etc)
-         values(#{join_code}, #{join_group}, #{join_name}, #{join_phonenumber}, #{join_email}, #{join_companynumber}, #{join_product}, #{join_sns}, #{join_etc})
+        insert into flea_code, memberid, flea_name, intro_cotent, flea_like_count, profile_photo, main_photo, flea_group
+        values(#{flea_code}, #{memberid}, #{flea_name}, #{intro_cotent}, #{flea_like_count}, #{profile_photo}, #{main_photo}, #{flea_group})
 
 	</insert>
 

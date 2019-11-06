@@ -86,7 +86,7 @@ public class S_P001_D001_ControllerImpl implements S_P001_D001_Controller {
 		}
 		String message;
 		ResponseEntity resEnt = null;
-		HttpHeaders responseHeaders = new HttpHeaders(); // Çì´õº¯°æ ½Ã »ç¿ë
+		HttpHeaders responseHeaders = new HttpHeaders(); // í—¤ë”ë³€ê²½ ì‹œ ì‚¬ìš©
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		try {
 			S_P001_D001_Service.insertProduct(dataMap);
@@ -97,7 +97,7 @@ public class S_P001_D001_ControllerImpl implements S_P001_D001_Controller {
 //			dispatch.forward(request, response);
 		} catch (Exception e) {
 			message = " <script>";
-			message += " alert('¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØ ÁÖ¼¼¿ä');";
+			message += " alert('ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì‹œë„í•´ ì£¼ì„¸ìš”');";
 			message += " location.href='" + request.getContextPath() + "/Sell/P001/D001/enroll.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -114,21 +114,21 @@ public class S_P001_D001_ControllerImpl implements S_P001_D001_Controller {
  
     @RequestMapping(value = "/insertBoard.do", method = RequestMethod.POST)
     public String insertBoard(String editor) {
-        System.err.println("ÀúÀåÇÒ ³»¿ë : " + editor);
+        System.err.println("ì €ì¥í•  ë‚´ìš© :  " + editor);
         return "redirect:/coding.do";
     }
  
-    // ´ÙÁßÆÄÀÏ¾÷·Îµå
+    // ë‹¤ì¤‘íŒŒì¼ì—…ë¡œë“œ
     @RequestMapping(value = "/file_uploader_html5.do",
                   method = RequestMethod.POST)
     @ResponseBody
     public String multiplePhotoUpload(HttpServletRequest request) {
-        // ÆÄÀÏÁ¤º¸
+    	// íŒŒì¼ì •ë³´
         StringBuffer sb = new StringBuffer();
         try {
-            // ÆÄÀÏ¸íÀ» ¹Ş´Â´Ù - ÀÏ¹İ ¿øº»ÆÄÀÏ¸í
+        	// íŒŒì¼ëª…ì„ ë°›ëŠ”ë‹¤ - ì¼ë°˜ ì›ë³¸íŒŒì¼ëª…
             String oldName = request.getHeader("file-name");
-            // ÆÄÀÏ ±âº»°æ·Î _ »ó¼¼°æ·Î
+            // íŒŒì¼ ê¸°ë³¸ê²½ë¡œ _ ìƒì„¸ê²½ë¡œ
            
             String filePath = "C:/Users/bit-user/git/project/devFw/src/main/webapp/resources/photoUpload/";
 
@@ -145,7 +145,7 @@ public class S_P001_D001_ControllerImpl implements S_P001_D001_Controller {
             }
             os.flush();
             os.close();
-            // Á¤º¸ Ãâ·Â
+            // ì •ë³´ ì¶œë ¥
             sb = new StringBuffer();
             sb.append("&bNewLine=true")
               .append("&sFileName=").append(oldName)
