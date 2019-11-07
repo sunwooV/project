@@ -12,5 +12,5 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 public interface F_P002_D005Controller {
 	public ModelAndView upload(MultipartHttpServletRequest multipartRequest,HttpServletResponse response) throws Exception;
-	public ResponseEntity insertMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ResponseEntity updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	}

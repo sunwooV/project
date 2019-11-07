@@ -16,10 +16,8 @@
 	</resultMap>
 
 	<insert id="insertMember" parameterType="java.util.Map"> 
-        insert into flea_name, intro_cotent, profile_photo, main_photo
-        values(#{flea_name}, #{intro_cotent}, #{profile_photo}, #{main_photo})
+        insert into flea(flea_name, intro_cotent) values(#{flea_name}, #{intro_cotent})
 	</insert>
-
 
 	<select id="searchList" resultMap="p002_d005_Result01" parameterType="java.util.Map"> 
       <![CDATA[
@@ -46,11 +44,16 @@
 	</select>
 
 	<update id="updateMember" parameterType="java.util.Map">
-		update t_member
-		set  pwd = #{pwd}
-		   , name = #{name}
-		   , email = #{email}
-		where id = #{id}
+	<![CDATA[
+		update flea
+		set  flea_name = #{flea_name}
+		   , intro_cotent = #{intro_cotent}
+	]]>
+		<where>
+		<![CDATA[	
+			flea_code = #{flea_code}
+		]]>
+		</where>
 	</update>
 
 </mapper>

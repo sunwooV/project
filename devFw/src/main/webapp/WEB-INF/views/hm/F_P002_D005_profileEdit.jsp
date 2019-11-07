@@ -15,13 +15,16 @@
 	<label>소개글:</label>
 	 <input type="text" name="intro_cotent" value="${map.intro_cotent }" readonly><br>
 	<div class="result-images">
-	  <c:forEach var="imageFileName" items="${ map.fileList}"  >
-	         <%-- <img src="${pageContext.request.contextPath }/download?imageFileName=${imageFileName }" style="width:150px"> --%>
-	         <img src="${pageContext.request.contextPath }/download?imageFileName=${imageFileName }">
+	<!-- 
+	<c:forEach var="imageFileName" items="${ map.fileList}"  >
+	          <img src="${pageContext.request.contextPath }/download?imageFileName=${imageFileName }" style="width:150px"> 
+	         <img src="${pageContext.request.contextPath }/download?imageFileName=${imageFileName }"> 
 	         <br><br><br>
 	  </c:forEach>         
+	 -->
 	</div><p> 
 	
-	<a href='/devFw/FleaMarket/P002/D001/searchList.do'> 마이스토어 가기 </a> </p>
+	<a href="/devFw/FleaMarket/P002/D005/updateMember.do?&flea_code=1&flea_name=${map.flea_name }&intro_cotent=${map.intro_cotent }"> 마이스토어 가기 </a> </p>
+	
 </body>
 </html>

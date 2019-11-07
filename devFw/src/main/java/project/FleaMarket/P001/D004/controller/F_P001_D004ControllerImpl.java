@@ -70,6 +70,8 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> searchMap = new HashMap<String, Object>(); 
 		List list = d004Service.searchList(searchMap);
+		
+		
 		System.out.println("dataMap::::::::::" + list);
 
 		ModelAndView mav = new ModelAndView("hm/F_P001_D004_approval");

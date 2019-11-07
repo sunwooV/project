@@ -175,7 +175,8 @@ layout-split:after {
 }
 .layout-split.half>* {
     width: 48%;
-    margin-left: 1%;
+    margin-left: 4%;
+    float: left;
 }
 .ui_card--side .ui_card__title {
     display: block;
@@ -294,6 +295,10 @@ layout-split:after {
 .profile-setting{
 	margin-top: -5%;
     margin-left: 20%;
+}
+
+#img-full{
+	width:100%;
 }
 
 <%--프로필 수정 팝업--%>
@@ -572,13 +577,13 @@ $(document).ready(function(){
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-              <img class="d-block img-fluid" src="${contextPath}/resources/img/mystore_main.jpg" alt="First slide">
+              <img class="d-block img-fluid" id="img-full" src="${contextPath}/resources/img/mystore_main.jpg" alt="First slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+              <img class="d-block img-fluid" id="img-full" src="http://placehold.it/900x350" alt="Second slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+              <img class="d-block img-fluid" id="img-full" src="http://placehold.it/900x350" alt="Third slide">
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

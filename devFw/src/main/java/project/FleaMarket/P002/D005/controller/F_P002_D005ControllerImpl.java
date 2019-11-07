@@ -90,10 +90,15 @@ public class F_P002_D005ControllerImpl implements F_P002_D005Controller {
 				return mav;
 		}
 	@Override
-	@RequestMapping(value = "/FleaMarket/P002/D005/insert.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/FleaMarket/P002/D005/updateMember.do", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
-	public ResponseEntity insertMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ResponseEntity updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
+		String flea_name = request.getParameter("flea_name");
+		String intro_cotent = request.getParameter("intro_cotent");
+		String flea_code = request.getParameter("flea_code");
+		System.out.println(flea_code + "," + flea_name + "," + intro_cotent);
+		
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		Enumeration enu = request.getParameterNames();
 		while (enu.hasMoreElements()) {
@@ -109,14 +114,15 @@ public class F_P002_D005ControllerImpl implements F_P002_D005Controller {
 		HttpHeaders responseHeaders = new HttpHeaders(); 
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		try {
-			d005Service.insertMember(dataMap);
-			
-			RequestDispatcher dispatch = request.getRequestDispatcher("/FleaMarket/P001/D001/P002/D001/searchList.do");
-			dispatch.forward(request, response);
+			d005Service.updateMember(dataMap);
+
+			response.sendRedirect("/devFw/FleaMarket/P002/D001/searchList.do");
+			/*RequestDispatcher dispatch = request.getRequestDispatcher("/FleaMarket/P002/D001/searchList.do");
+			dispatch.forward(request, response);*/
 		} catch (Exception e) {
 			message = " <script>";
-			message += " alert('������ �߻��߽��ϴ�. �ٽ� �õ��� �ּ���');";
-			message += " location.href='" + request.getContextPath() + "/FleaMarket/P001/D001/JoinStart.do'; ";
+			message += " alert('오류가 발생하였습니다.');";
+			message += " location.href='" + request.getContextPath() + "/FleaMarket/P002/D001/searchList.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
 			e.printStackTrace();
