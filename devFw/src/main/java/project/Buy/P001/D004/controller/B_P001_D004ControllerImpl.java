@@ -25,7 +25,7 @@ public class B_P001_D004ControllerImpl implements B_P001_D004Controller{
 	B_P001_D004VO b_p001_d004VO;
 
 	@Override
-	@RequestMapping(value = "/Buy/P001/D004/payInfo.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/payInfo.do", method = { RequestMethod.GET, RequestMethod.POST })
 
 	public ModelAndView insertPaymentInfo(HttpSession session, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {

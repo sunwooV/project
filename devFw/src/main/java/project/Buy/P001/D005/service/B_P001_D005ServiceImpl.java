@@ -14,8 +14,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -38,8 +40,9 @@ public class B_P001_D005ServiceImpl implements B_P001_D005Service{
 	private kakaopayReadyVo kakaoReady;
 
 	@RequestMapping(value="/oauth", produces="application/json", method ={ RequestMethod.GET, RequestMethod.POST })
-	//ÃâÃ³: https://alpreah.tistory.com/122?category=844976 [»ý°¢¿¡ ÃëÇÏ´Â³¯])
+	//ï¿½ï¿½Ã³: https://alpreah.tistory.com/122?category=844976 [ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´Â³ï¿½])
 	@Override
+	
 	public String kakaopayReady(Map<String, Object> searchMap) throws DataAccessException {
 	RestTemplate restTemplate = new RestTemplate();
 		
@@ -48,12 +51,12 @@ public class B_P001_D005ServiceImpl implements B_P001_D005Service{
 		headers.add("Accept",MediaType.APPLICATION_JSON_VALUE);
 		headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE+";charset=UTF-8");
 		
-		//¼­¹ö·Î ¿äÃ»ÇÒ Body
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ Body
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("cid", "TC0ONETIME");
 		params.add("partner_order_id", "1001");
 		params.add("partner_user_id", "gorany");
-		params.add("item_name", "°¶·°½ÃS9");
+		params.add("item_name", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½S9");
 		params.add("quantity", "1");
 		params.add("total_amount", "2100");
 		params.add("tax_free_amount", "100");
@@ -73,28 +76,29 @@ public class B_P001_D005ServiceImpl implements B_P001_D005Service{
 			e.printStackTrace();
 		}
 		
-		return null;
+		return "redirect: ";
 	}
 
 	@Override
+
 	public B_P001_D005VO kakaopayInfo(String pg_token) throws DataAccessException {
 		System.out.println("kakaopayInfo-----------");
 		
 		RestTemplate restTemplate = new RestTemplate();
 		
-		//¼­¹ö·Î ¿äÃ»ÇÒ Header
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ Header
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", "KakaoAK" +"305bdc00595802bd6993fb67680f53eb");
 		headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
 		headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE+";charset=UTF-8");
 		
-		//¼­¹ö·Î ¿äÃ»ÇÒ Body
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ Body
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("cid", "TC0ONETIME");
 		params.add("tid", kakaoReady.getTid());
 		params.add("partner_order_id", "1001");
 		params.add("partner_user_id", "gorany");
-		params.add("item_name", "°¶·°½ÃS9");
+		params.add("item_name", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½S9");
 		params.add("total_amount", "2100");
 		
 		HttpEntity<MultiValueMap<String,String>> body = new HttpEntity<MultiValueMap<String, String>>(params,headers);
