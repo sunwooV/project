@@ -212,7 +212,7 @@ public class C_P001_D002_ControllerImpl implements C_P001_D002_Controller{
 		         String result = "";
 
 		         while ((line = br.readLine()) != null) {
-		            result += line;
+		             result += line;
 		         }
 		         System.out.println("response body : " + result);
 
