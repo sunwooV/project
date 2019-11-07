@@ -41,8 +41,13 @@
 			var frm = document.productEnroll;
 			var prod_group ="";
 			var auction_date = "";
-			var tag = "";
 			var send_way = "";
+			
+/* 			var tag1 = document.getElementById("tag1").innerHTML;
+			var tag2 = document.getElementById("tag2").innerHTML;
+			var tag3 = document.getElementById("tag3").innerHTML;
+			var tag4 = document.getElementById("tag4").innerHTML;
+			var tag5 = document.getElementById("tag5").innerHTML; */
 			//var images = "";
 			var chkbox1 = $(".checkSelect1"); //판매 방법
 			var chkbox2 = $(".checkSelect2"); //경매 일자
@@ -50,16 +55,12 @@
 			var tagList = $(".realTag"); //해시태그
 			//var imageList = $(".images");
 
-			
-		/* 	var memberId = document.getElementsByName("memberId")[0].value;
-			alert(memberId); */
-			
 			for(i=0;i<chkbox1.length;i++){ //판매 방법 넘겨주기 ex)중고 경매 플리, 중고 경매, 플리 ...
 				if(chkbox1[i].checked == true){
 					prod_group += chkbox1[i].value + " ";
 				}
 			}
-
+			
 			if(chkbox2.length != 0){ //경매 일자 넘겨주기
 				for(i=0;i<chkbox2.length;i++){
 					if(chkbox2[i].checked == true){
@@ -75,15 +76,17 @@
 					}
 				}
 			}
+
 			
 			if(tagList.length != 0){ //tag 넘겨주기 ,로 tag 구분
 				for(i=0;i<tagList.length;i++){
 					if(tagList[i] != "" || tagList[i] != null){
-						if(i==tagList.length-1){ //마지막 tag 처리
-							tag += tagList[i].innerHTML;
-						}else{ //마지막이 아닌 tag는 뒤에 콤마(,)를 붙여서 구분
-							tag += tagList[i].innerHTML + ",";
-						}
+						var tagIndex = "tag" + (i+1);
+						var tagContent = "";
+			
+						tagContent = document.getElementById(tagIndex).innerHTML;
+						document.getElementsByName(tagIndex)[0].value = tagContent;
+
 					}
 				}
 			}
@@ -142,7 +145,7 @@
 			}
 			if(prod_group == null || prod_group == ""){
 				alert("게시 선택을 선택해주세요.");
-				document.getElementById("second").focus();
+				document.getElementById("reused").focus();
 				return false;
 			}
 			//경매를 선택 시 경매 일자, 경매 시작가 필수 선택 확인
@@ -198,7 +201,12 @@
 				document.getElementsByName("images")[0].value = images;
 				document.getElementsByName("prod_group")[0].value = prod_group;
 				document.getElementsByName("auction_date")[0].value = auction_date;
-				document.getElementsByName("tag")[0].value = tag; // 처리한 tag를 param으로 전달
+				
+	/* 			document.getElementsByName("tag1")[0].value = tag1; // 처리한 tag를 param으로 전달
+				document.getElementsByName("tag2")[0].value = tag2;
+				document.getElementsByName("tag3")[0].value = tag3;
+				document.getElementsByName("tag4")[0].value = tag4;
+				document.getElementsByName("tag5")[0].value = tag5; */
 				
 				frm.method="post";
 				frm.action="./insertMember.do";
@@ -208,16 +216,18 @@
 		});
 
 		//중고 버튼
-		$("#second").change(
+		$("#reused").change(
 				function() {
-					if ($("#second").is(":checked")) { //중고 버튼 클릭
+					if ($("#reused").is(":checked")) { //중고 버튼 클릭
 						$("#buyPrice").css("display", "block");
 						$("#direct").attr("disabled", false);
 						$("#way_caution").html("※중고와 경매에 대한 직거래입니다.※");
 						$("#price").css("display", "block"); //상품 가격란 표시
+						document.getElementsByName("reused_yn")[0].value = 'y';
 					} else {
 						$("#buyPrice").css("display", "none"); //구매 금액 입력할 수 있게 한다.
 						$("#price").css("display", "none"); //상품 가격란 미표시
+						document.getElementsByName("reused_yn")[0].value = 'n';
 						if ($("#aution").is(":checked")) { //플리마켓만 체크되어 있지 않을 때
 							$("#direct").attr("disabled", false);
 							$("#way_caution").html("※중고와 경매에 대한 직거래입니다.※");
@@ -241,9 +251,11 @@
 						$("#direct").attr("disabled", false);
 						$("#way_caution").html("※중고와 경매에 대한 직거래입니다.※");
 						$("#auction_price").css("display", "block"); //경매 시작가 표시
+						document.getElementsByName("auction_yn")[0].value = 'y';
 					} else {
 						$("#autionDaySelect").css("display", "none");
-						if ($("#second").is(":checked")) { //플리마켓만 체크되어 있지 않을 때
+						document.getElementsByName("auction_yn")[0].value = 'n';
+						if ($("#reused").is(":checked")) { //플리마켓만 체크되어 있지 않을 때
 							$("#direct").attr("disabled", false);
 							$("#way_caution").html("※중고와 경매에 대한 직거래입니다.※");
 						} else { //플리마켓만 체크되어 있는 경우 직거래 사용 못 하게
@@ -258,7 +270,8 @@
 		$("#flea").change(function() {
 			if ($("#flea").is(":checked")) {
 				$("#price").css("display", "block"); //상품 가격란 표시
-				if ($("#second").is(":checked")) { //중고가 함께 체크되어 있을 때
+				document.getElementsByName("flea_yn")[0].value = 'y';
+				if ($("#reused").is(":checked")) { //중고가 함께 체크되어 있을 때
 					$("#direct").attr("disabled", false); //직거래 가능
 				} else if ($("#aution").is(":checked")) { //경매가 함께 체크되어 있을 때
 					$("#direct").attr("disabled", false); //직거래 가능
@@ -269,7 +282,8 @@
 			} else {
 				$("#direct").attr("disabled", false);
 				$("#way_caution").css("display", "none");
-				if($("#second").is(":checked")){ //플리마켓을 해제해도 중고가 체크되어 있으면 상품 가격란 표시
+				document.getElementsByName("flea_yn")[0].value = 'n';
+				if($("#reused").is(":checked")){ //플리마켓을 해제해도 중고가 체크되어 있으면 상품 가격란 표시
 					$("#price").css("display", "block"); //상품 가격란 표시
 				} else {
 					$("#price").css("display", "none"); //상품 가격란 미표시
@@ -387,7 +401,7 @@
 						if (result.length == 0) {
 	
 							$("#tag-list").append("<li class='tag-item'>"
-													+ "<span class='realTag'>" + tagValue + "</span>"
+													+ "<span class='realTag' id='tag" + (counter+1) + "'>" + tagValue + "</span>"
 													+ "<span class='del-btn' idx='"+counter+"'> X </span></li>");
 							addTag(tagValue);
 							self.val("");
@@ -421,7 +435,7 @@
 						if (result.length == 0) {
 	
 							$("#tag-list").append("<li class='tag-item'>"
-													+ "<span class='realTag'>" + tagValue + "</span>"
+													+ "<span class='realTag' id='tag" + (counter+1) + "'>" + tagValue + "</span>"
 													+ "<span class='del-btn' style='cursor:pointer' idx='"+counter+"'> X </span></li>");
 							addTag(tagValue);
 							self.val("");
@@ -479,13 +493,15 @@
 				</script>
 
 			</div>
-			<%-- <input type="hidden" name="memberId" value="<%=session.getAttribute("member") %>" /> --%>
+			<input type="hidden" name="memberId" value="${member.getMemberid() }" />
 			<div class="subtitle" id="group">
 				<a>게시 선택 * &nbsp&nbsp</a> 
-				<input type="checkbox" name="prod_group" value="중고" class="checkSelect1" id="second" />중고 
+				<input type="checkbox" name="prod_group" value="중고" class="checkSelect1" id="reused" />중고 
 				<input type="checkbox" name="prod_group" value="경매" class="checkSelect1" id="aution" />경매 
 				<input type="checkbox" name="prod_group" value="플리" class="checkSelect1" id="flea" />플리마켓 
-				
+				<input type="hidden" name="reused_yn" value="n"/>
+				<input type="hidden" name="auction_yn" value="n"/>
+				<input type="hidden" name="flea_yn" value="n"/>
 				<br>
 
 				<div id="autionDaySelect" style="display: none">
@@ -568,6 +584,11 @@
 						<input type="button" id="enrollTag" value="태그 등록"/>
 						<ul id="tag-list">
 						</ul>
+						<input type="hidden" name="tag1" value=""/>
+						<input type="hidden" name="tag2" value=""/>
+						<input type="hidden" name="tag3" value=""/>
+						<input type="hidden" name="tag4" value=""/>
+						<input type="hidden" name="tag5" value=""/>
 				</div>
 			</div>
 		</div>

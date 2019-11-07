@@ -98,7 +98,7 @@ public class S_P001_D001_ControllerImpl implements S_P001_D001_Controller {
 		} catch (Exception e) {
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해 주세요');";
-			message += " location.href='" + request.getContextPath() + "/Sell/P001/D001/enroll.do'; ";
+			message += " location.href='" + request.getContextPath() + "/enroll.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
 			e.printStackTrace();

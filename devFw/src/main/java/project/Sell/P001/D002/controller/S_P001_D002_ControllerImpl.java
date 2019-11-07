@@ -42,13 +42,18 @@ public class S_P001_D002_ControllerImpl implements S_P001_D002_Controller {
 		
 		searchMap2.put("high_category", ((S_P001_D001_VO)middle_category.get(0)).getHigh_category());
 		List high_category = S_P001_D002_Service.high_category(searchMap2);
-
+		
+		List auction_left_date = S_P001_D002_Service.auction_left_date(searchMap);
+		System.out.println(auction_left_date);
 		
 		ModelAndView mav = new ModelAndView("sell/detailProduct");
 		mav.addObject("detail", list);
 		mav.addObject("high_category", high_category);
 		mav.addObject("middle_category", middle_category);
-		System.out.println("list c√≥∏Æ \n " + list);
+		if(auction_left_date != null) {
+			mav.addObject("auction_left_date", auction_left_date);
+		}
+		System.out.println("list \n " + list);
 		return mav;
 	}
 	

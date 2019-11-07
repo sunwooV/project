@@ -17,13 +17,6 @@ public class S_P001_D002_DAOImpl implements S_P001_D002_DAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<S_P001_D002_VO> detailProduct(Map<String, Object> searchMap) throws DataAccessException {
-		List<S_P001_D002_VO> list = sqlSession.selectList("Sell.detail.detailProduct", searchMap);
-		System.out.println("dao¿¡¼­ list \n " + list);
-		return list;
-	}
-	
-	@Override
 	public List<S_P001_D001_VO> high_category(Map<String, Object> searchMap2) throws DataAccessException {
 		List<S_P001_D001_VO> high_category = sqlSession.selectList("Sell.detail.high_category", searchMap2);
 		return high_category;
@@ -33,5 +26,18 @@ public class S_P001_D002_DAOImpl implements S_P001_D002_DAO {
 	public List<S_P001_D001_VO> middle_category(Map<String, Object> searchMap2) throws DataAccessException {
 		List<S_P001_D001_VO> middle_category = sqlSession.selectList("Sell.detail.middle_category", searchMap2);
 		return middle_category;
+	}
+	
+	@Override
+	public List<S_P001_D002_VO> detailProduct(Map<String, Object> searchMap) throws DataAccessException {
+		List<S_P001_D002_VO> list = sqlSession.selectList("Sell.detail.detailProduct", searchMap);
+		System.out.println("dao list \n " + list);
+		return list;
+	}
+	
+	@Override
+	public List<S_P001_D002_VO> auction_left_date(Map<String, Object> searchMap) throws DataAccessException {
+		List<S_P001_D002_VO> auction_date = sqlSession.selectList("Sell.detail.auction_left_date", searchMap);
+		return auction_date;
 	}
 }

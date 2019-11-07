@@ -73,18 +73,20 @@
 			SELECT nvl2((max(prod_number) + 1), (max(prod_number) + 1), 1)
 			FROM product
 		</selectKey>
-		<if test="auction_date != null and auction_date != 10"> <!-- 경매를 선택했을 경우 -->
-			INSERT INTO product (prod_number, prod_group, auction_price, auction_date, auction_start_date, auction_end_date, prod_category_code, memberId, prod_price, prod_amount, prod_title, send_way, post_date, sale_percent, buy_price, direct_area, editor, tag_list, represent_image)
-			VALUES (#{prod_number}, #{prod_group}, #{auction_price}, #{auction_date}, sysdate, sysdate+#{auction_date}, #{prod_category_code}, 'ss', #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{tag}, #{images})
-		</if>
-		<if test="auction_date == null"> <!-- 경매를 선택하지 않았을 경우 -->
-			INSERT INTO product (prod_number, prod_group, prod_category_code, memberId, prod_price, prod_amount, prod_title, send_way, post_date, sale_percent, buy_price, direct_area, editor, tag_list, represent_image)
-			VALUES (#{prod_number}, #{prod_group}, #{prod_category_code}, 'ss', #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{tag}, #{images})
-		</if>
-		<if test="auction_date == 10"> <!-- test -->
-			INSERT INTO product (prod_number, prod_group, auction_price, auction_date, auction_start_date, auction_end_date, prod_category_code, memberId, prod_price, prod_amount, prod_title, send_way, post_date, sale_percent, buy_price, direct_area, editor, tag_list, represent_image)
-			VALUES (#{prod_number}, #{prod_group}, #{auction_price}, #{auction_date}, sysdate, sysdate+10/60/24, #{prod_category_code}, 'ss', #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{tag}, #{images})
-		</if>
+		<choose>
+			<when test="auction_date != null and auction_date != 10">
+				INSERT INTO product (prod_number, reused_yn, auction_yn, flea_yn, auction_price, auction_date, auction_start_date, auction_end_date, prod_category_code, memberId, prod_price, prod_amount, prod_title, send_way, post_date, sale_percent, buy_price, direct_area, editor, represent_image)
+				VALUES (#{prod_number}, #{reused_yn}, #{auction_yn}, #{flea_yn}, #{auction_price}, #{auction_date}, sysdate, sysdate+#{auction_date}, #{prod_category_code}, #{memberId}, #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{images})
+			</when>
+			<when test="auction_date == 10">
+				INSERT INTO product (prod_number, reused_yn, auction_yn, flea_yn, auction_price, auction_date, auction_start_date, auction_end_date, prod_category_code, memberId, prod_price, prod_amount, prod_title, send_way, post_date, sale_percent, buy_price, direct_area, editor, represent_image)
+				VALUES (#{prod_number}, #{reused_yn}, #{auction_yn}, #{flea_yn}, #{auction_price}, #{auction_date}, sysdate, sysdate+10/60/24, #{prod_category_code}, #{memberId}, #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{images})
+			</when>
+			<otherwise>
+				INSERT INTO product (prod_number, reused_yn, auction_yn, flea_yn, prod_category_code, memberId, prod_price, prod_amount, prod_title, send_way, post_date, sale_percent, buy_price, direct_area, editor, represent_image)
+				VALUES (#{prod_number}, #{reused_yn}, #{auction_yn}, #{flea_yn}, #{prod_category_code}, #{memberId}, #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{images})
+			</otherwise>
+		</choose>
 	</insert>
 
 </mapper>

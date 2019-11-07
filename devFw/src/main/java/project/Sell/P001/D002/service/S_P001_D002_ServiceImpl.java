@@ -21,12 +21,7 @@ public class S_P001_D002_ServiceImpl implements S_P001_D002_Service {
 	private S_P001_D002_DAO S_P001_D002_DAO;
 	@Autowired
 	private S_P001_D001_DAO S_P001_D001_DAO;
-	
-	@Override
-	public List<S_P001_D002_VO> detailProduct(Map<String, Object> searchMap) throws DataAccessException {
-		List<S_P001_D002_VO> list =  S_P001_D002_DAO.detailProduct(searchMap); 
-		return list;
-	}
+
 	@Override
 	public List<S_P001_D001_VO> high_category(Map<String, Object> searchMap2) throws DataAccessException {
 		List<S_P001_D001_VO> high_category =  S_P001_D001_DAO.high_category(searchMap2); 
@@ -37,5 +32,17 @@ public class S_P001_D002_ServiceImpl implements S_P001_D002_Service {
 	public List<S_P001_D001_VO> middle_category(Map<String, Object> searchMap2) throws DataAccessException {
 		List<S_P001_D001_VO> middle_category =  S_P001_D001_DAO.middle_category(searchMap2); 
 		return middle_category;
+	}
+	
+	@Override
+	public List<S_P001_D002_VO> detailProduct(Map<String, Object> searchMap) throws DataAccessException {
+		List<S_P001_D002_VO> list =  S_P001_D002_DAO.detailProduct(searchMap); 
+		return list;
+	}
+	
+	@Override
+	public List<S_P001_D002_VO> auction_left_date(Map<String, Object> searchMap) throws DataAccessException {
+		List<S_P001_D002_VO> list =  S_P001_D002_DAO.auction_left_date(searchMap); 
+		return list;
 	}
 }
