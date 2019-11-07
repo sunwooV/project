@@ -26,7 +26,7 @@
 				<h3>login</h3>
 			</div>
 			<div>
-			<form name="frm" method="post" action="${contextPath}/Customers/p001/d001/login.do">
+			<form name="frm" method="post" action="${contextPath}/login.do">
 			
 					<p>
 						<label>ID</label> 
@@ -39,13 +39,13 @@
 					</p>
 					<p class="w3-center">
 						<button type="submit" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">LOGIN</button>
-						<button type="button" onClick="location.href='${contextPath}/Customers/p001/d001/joinInit.do'" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">JOIN</button>
+						<button type="button" onClick="location.href='${contextPath}/joinInit.do'" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">JOIN</button>
 						<p class="w3-center">
-						<a id="kakao_id_login" style="text-align: center" href="https://kauth.kakao.com/oauth/authorize?client_id=6694b0d17c224582f266da703a1a0558&redirect_uri=http://localhost:8090/devFw/Customers/p001/d001/kakaoLogin.do&response_type=code"> <img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/></a>
+						<a id="kakao_id_login" style="text-align: center" href="https://kauth.kakao.com/oauth/authorize?client_id=6694b0d17c224582f266da703a1a0558&redirect_uri=http://localhost:8090/devFw/kakaoLogin.do&response_type=code"> <img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/></a>
 					 </p>
 					 <p class="w3-center">
 					 <a href="#"class="find_id_btn">Forgot ID?</a><br>
-					 <a href="http://localhost:8090/devFw/Customers/p001/d001/find_pw_form.do">Forgot Password?</a>
+					 <a href="http://localhost:8090/devFw/find_pw_form.do">Forgot Password?</a>
 					 </p>
 				</form>
 			</div>

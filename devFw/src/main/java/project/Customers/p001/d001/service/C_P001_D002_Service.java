@@ -23,5 +23,7 @@ public interface C_P001_D002_Service {
 	public C_P001_D002_VO login(C_P001_D002_VO member, HttpServletResponse response) throws Exception;
 	public void logout(HttpServletResponse response) throws Exception;
 	public void find_pw(HttpServletResponse response, C_P001_D002_VO member) throws Exception;
+	public int kakao_join_member(C_P001_D002_VO member, HttpServletResponse response) throws Exception;
+	public void check_join(String userId, HttpServletResponse response) throws Exception;
 
 }

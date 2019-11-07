@@ -3,6 +3,9 @@
 <%
   request.setCharacterEncoding("utf-8");
 %>
+<%
+session.removeAttribute("member");
+%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
@@ -85,36 +88,19 @@
 				<h3>Member Join Form</h3>
 			</div>
 			<div>
-			<c:set var="member" value="${member }"/>
-							<!--<c:if test ="${ member == null}"> // 카톡로그인되면
-							      <li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/loginInit.do">Login</a></li>
-							      </c:if>
-							    <c:if test ="${ member !=null}">
-							      <li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/logout.do">LOGOUT</a></li>
-							      </c:if>-->
-				<form id="joinForm" action="./join_member.do" method="post">
+				<form id="joinForm" action="./kakao_join_member.do" method="post">
 					<p>
 						<label>ID</label> 
-						<input class="w3-input" type="text" id="memberid" name="memberid" required> 
+						<input class="w3-input" type="text" id="memberid" name="memberid" value="<%= session.getAttribute("userId") %>" required> 
 						<span id="id_check" class="w3-text-red"></span>
 					</p>
 					<p>
-					
-						<label>Password</label> 
-						<input class="w3-input" id="pw" name="pw" type="password" required>
-					</p>
-					<p>
-						<label>Confirm</label> 
-						<input class="w3-input" id="pw2" type="password" required>
-					</p>
-					<p>
 						<label>Email</label>
-						<input type="text" id="email" name="email" class="w3-input" required placeholder="이메일 인증 후 로그인이 가능합니다.">
-						<span id="email_check" class="w3-text-red"></span>
+						<input type="text" id="email" name="email" class="w3-input" value="<%= session.getAttribute("userId") %>" required>
 					</p>
 					<p>
 						<label>name</label>
-						<input type="text" id="name" name="name" class="w3-input" >
+						<input type="text" id="name" name="name" value="<%= session.getAttribute("username") %>" class="w3-input" >
 					</p>
 						<p>
 						<label>birth</label>
@@ -199,7 +185,7 @@
 						<input type="text" id="phonenumber" name="phonenumber" class="w3-input" >
 					</p>
 					<p class="w3-center">
-						<button type="submit" id="joinBtn" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">Join</button>
+						<button type="submit" id="kakaojoinBtn" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">Join</button>
 						<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">Cancel</button>
 					</p>
 				</form>
