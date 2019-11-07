@@ -36,13 +36,13 @@
 				<li class="nav-item active"><a class="nav-link" href="./main.do">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/Customers/p001/d001/joinInit.do">Join</a></li>
+				<li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/joinInit.do">Join</a></li>
 				<c:set var="member" value="${member }"/>
 							<c:if test ="${ member == null}">
-							      <li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/Customers/p001/d001/loginInit.do">Login</a></li>
+							      <li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/loginInit.do">Login</a></li>
 							      </c:if>
 							    <c:if test ="${ member !=null}">
-							      <li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/Customers/p001/d001/logout.do">LOGOUT</a></li>
+							      <li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/logout.do">LOGOUT</a></li>
 							      </c:if>
 				<li class="nav-item"><a class="nav-link" href="#">shopping list</a></li>
 			</ul>
@@ -89,7 +89,7 @@
 					<li><a href="#">자동차 공구</a></li>
 					<li><a href="#">도서 기타</a></li>
 				</ul></li>
-			<li><a href="/devFw/hm/d001/searchInit.do" id="current"
+			<li><a href="#" id="current"
 				style="font-family: 'Nanum Gothic Coding', monospace;">플리 마켓</a>
 				<ul>
 					<li><a href="#">패션의류</a></li>
