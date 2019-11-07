@@ -5,8 +5,8 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  /> 
 
 <%
-	String type = request.getParameter("type") == null? "" : request.getParameter("type").trim();
-	System.out.println(type);
+	String response_type = request.getParameter("type") == null? "0" : request.getParameter("type").trim();
+	System.out.println(response_type);
 %>
 
 <!DOCTYPE html>
@@ -60,14 +60,15 @@
 		}
 		
 		//alert("입점 신청이 완료되었습니다♥ 입점 승인 시 개별 연락 드리겠습니다.");
-		var type = <%=type%>;
+		type = <%=response_type%>;
 		var join_group = document.getElementsByName("join_group");
 		join_group[0].value = type;
 		
 		var result = confirm("입점 신청이 완료되었습니다♥ 입점 승인 시 개별 연락 드리겠습니다.");
 		if(result){
 			frmCheck.method ="post";
-			frmCheck.action ="${contextPath}/FleaMarket/P001/D001/Join.do";
+			//frmCheck.action ="${contextPath}/FleaMarket/P001/D001/Join.do";
+			frmCheck.action ="/devFw/hm/d001/searchInit.do";
 			frmCheck.submit();
 		}
 		else
@@ -198,7 +199,20 @@ textarea:focus {
 <form name="frmCheck" method="post" action="${contextPath}/FleaMarket/P001/D001/Join.do">
 
   <header>
-    <h2>플리마켓 입점 신청</h2>
+<%
+	String id = request.getParameter("id");
+	System.out.println("=========id="+id);
+	if(id != null && id.length() != 0)
+	{
+%>
+ 	<h2>플리마켓 참여자 신청</h2>
+<%	
+	}else{
+%>
+	<h2>플리마켓 입점 신청</h2>
+<%
+	}
+%>
     <div>안녕하세요. 금도끼은도끼 플리마켓 입점 신청 양식입니다.<br><br>
 	아래 정보를 작성해주시면 확인 후 '입점 안내' 메일을 보내드리겠습니다.<br>
 	안내 메일 받으신 후 입점 심사에 응해주시면 됩니다.<br><br>

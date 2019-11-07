@@ -54,6 +54,7 @@
                <td>${member.join_date}</td>
                <td>${member.join_status}</td>
                <td><input type="button" value="개설 승인" id="approval_Y" onClick="location.href='${contextPath}/FleaMarket/P001/D004/updateMember.do?join_code=${member.join_code}'" />
+                   <input type="hidden" id="join_status" value="${member.join_status}">
                    <input type="button" value="개설 불가" id="approval_N" /></td>
             </tr>
           </c:forEach>

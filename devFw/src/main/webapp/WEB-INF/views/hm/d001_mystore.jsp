@@ -291,11 +291,103 @@ layout-split:after {
 .center-flea{
 	margin:0 300px;
 }
+.profile-setting{
+	margin-top: -5%;
+    margin-left: 20%;
+}
+
+<%--프로필 수정 팝업--%>
+a.selected {
+  background-color:#1F75CC;
+  color:white;
+  z-index:100;
+}
+
+.messagepop {
+  background-color:#FFFFFF;
+  border:1px solid #999999;
+  cursor:default;
+  display:none;
+  margin-top: 10%;
+  margin-left: 40%;
+  position:absolute;
+  text-align:left;
+  width:500px;
+  z-index:50;
+  padding: 25px 25px 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 3px;
+  padding-left: 15px;
+  text-indent: -15px;
+}
+
+.messagepop p, .messagepop.div {
+  border-bottom: 1px solid #EFEFEF;
+  margin: 8px 0;
+  padding-bottom: 8px;
+}
+
+.img_wrap{
+	width: 300px;
+	margin-top: 50px;
+}
+.img_wrap img{
+	max-width: 100%;
+}
  
 </style>
 <head>
 <meta charset="UTF-8">
 <title>금도끼은도끼| 플리마켓</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+	function deselect(e) {
+	  $('.pop').slideFadeToggle(function() {
+	    e.removeClass('selected');
+	  });    
+	}
+
+	$(function() {
+	  $('#contact').on('click', function() {
+	    if($(this).hasClass('selected')) {
+	      deselect($(this));               
+	    } else {
+	      $(this).addClass('selected');
+	      $('.pop').slideFadeToggle();
+	    }
+	    return false;
+	  });
+
+	  $('.close').on('click', function() {
+	    deselect($('#contact'));
+	    return false;
+	  });
+	});
+
+	$.fn.slideFadeToggle = function(easing, callback) {
+	  return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
+	};
+	
+});
+</script>
+<script>
+	var cnt=1;
+	function fn_addFile(){
+		$("#d_file").append("<br>"+"<input  type='file' name='file"+cnt+"' />");
+		cnt++;
+	}
+	var m_cnt=1;
+	function fn_m_addFile(){
+		$("#m_file").append("<br>"+"<input  type='file' name='m_file"+cnt+"' />");
+		m_cnt++;
+	}
+</script>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -338,37 +430,77 @@ layout-split:after {
 </table>
  -->
 
-  <!-- Page Content -->
+<!-- Page Content -->
+  
+  
+<!-- 프로필 수정 팝업창 -->
+ <div class="messagepop pop">
+ 	<h2>프로필 설정</h2>
+    <form method="post" id="new_message" action="/devFw/FleaMarket/P002/D005/upload.do" enctype="multipart/form-data">
+        <p><label for="flea_name">플리마켓 스토어명&nbsp;</label><input type="text" size="30" name="flea_name" id="flea_name" /></p>
+        <p><label for="intro_cotent">소개글</label><br><textarea rows="6" name="intro_cotent" id="intro_cotent" cols="35"></textarea></p>
+ 		
+ 		<p><label for="profile_photo">프로필 이미지</label><br>
+        	<!--  <input type="file" id="profile_photo" name="profile_photo">
+        	<input type="submit" value="사진 업로드"></p>-->
+        	<input type="button" value="이미지 파일 추가" onClick="fn_addFile()" /><br>
+        </p>
+        	<div id="d_file">
+        	</div>
+        	
+        <p><label for="profile_photo">메인 이미지</label><br>
+        	<!--  <input type="file" id="profile_photo" name="profile_photo">
+        	<input type="submit" value="사진 업로드"></p>-->
+        	<input type="button" value="이미지 파일 추가" onClick="fn_m_addFile()" /><br>
+        </p>
+        	<div id="m_file">
+        	</div>
+        	
+        <p><input type="submit" value="확인" name="commit" id="message_submit"/><a class="close" href="/">Cancel</a></p>
+    </form>
+    
+
+</div>
+
+  
  	<div class="center-flea">
      <div class="row-left">
       <aside class="artist-area">
         <div class="user-info card-style-profile "> <!-- PROFILE (MIDDLE-CONTAINER) -->
-        
-             	<p class="addmember"><a target="_blank" href="https://github.com"><i class="fas fa-user-plus pa-4x"></i></a></p>
-                  <c:forEach var="flea" items="${searchList}" > 
-               <c:out value="${flea.profile_photo}"/>
-             <div class="profile-picture big-profile-picture clear">
-              
-                 <img width="120px" height="120px" alt="Anne Hathaway picture" src= "${contextPath}/resources/img/profile_ex.jpg" >
-             <!-- 
-              <img width="120px" height="120px" alt="Anne Hathaway picture" src= "<c:url value="/img/${file.profile_photo }" />" >
-             -->
-             </div>
-             </c:forEach>
-             
-              <div class="user-name"><font size="3">
-              <c:forEach var="flea" items="${searchList}" > 
-               <c:out value="${flea.flea_name}"/>
-              </c:forEach>
-              </font></div>
-              <div class="profile-description"><font size="2">
-            <c:forEach var="flea" items="${searchList}" > 
-               <c:out value="${flea.intro_cotent}"/>
-              </c:forEach>
-             
-             </font>
+   
+		             <p class="addmember"><a target="_blank" href="/devFw/FleaMarket/P001/D001/JoinForm.do?id=1"><i class="fas fa-user-plus pa-5x"></i></a></p>
+		                <c:forEach var="flea" items="${searchList}" > 
+		               		<c:out value="${flea.profile_photo}"/>
+		              
+				             <div class="profile-picture big-profile-picture clear">
+				                 <img width="120px" height="120px" alt="Anne Hathaway picture" src= "${contextPath}/resources/img/profile_ex.jpg" >
+				             <!-- 
+				              <img width="120px" height="120px" alt="Anne Hathaway picture" src= "<c:url value="/img/${file.profile_photo }" />" >
+				             -->
+				             </div>
+				             
+				             <!-- 프로필 수정 아이콘 버튼-->
+				             <div class="profile-setting">
+				             	<a href="#" id="contact">
+				                 <i class="fa fa-cog pa-5x"></i>
+				                 </a>
+				             </div>
+				            
+				             
+				              <div class="user-name"><font size="3">
+				            
+				               <c:out value="${flea.flea_name}"/>
+				              
+				              </font></div>
+				              
+				              <div class="profile-description"><font size="2">
+				           
+				               <c:out value="${flea.intro_cotent}"/>
+							</font></div>
+				          </c:forEach>
+		             
+
               </div> 
-         </div>
          
          
          <fieldset class="ui-field border-row">

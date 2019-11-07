@@ -1,12 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+    import="java.util.*"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>    
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  /> 
+<%
+	request.setCharacterEncoding("utf-8");
+	List list = (List)request.getAttribute("searchList");
+	//int size = list.size();
+	System.out.println("list="+list);
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	$(document).ready(function() {
+		
+	});
+</script>
+
 <link rel="stylesheet" href="${contextPath }/resources/css/approve.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600">
@@ -182,12 +196,7 @@ h1{
       <div class="md-step-bar-left"></div>
       <div class="md-step-bar-right"></div>
     </div>
-    <div class="md-step">
-      <div class="md-step-circle"><span>4</span></div>
-      <div class="md-step-title">Review</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
+   
   </div>
 
 	</div>

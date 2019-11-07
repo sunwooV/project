@@ -89,7 +89,7 @@
 					<li><a href="#">자동차 공구</a></li>
 					<li><a href="#">도서 기타</a></li>
 				</ul></li>
-			<li><a href="#" id="current"
+			<li><a href="/devFw/hm/d001/searchInit.do" id="current"
 				style="font-family: 'Nanum Gothic Coding', monospace;">플리 마켓</a>
 				<ul>
 					<li><a href="#">패션의류</a></li>
