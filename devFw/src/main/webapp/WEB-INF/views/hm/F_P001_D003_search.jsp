@@ -6,8 +6,8 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	List list = (List)request.getAttribute("searchList");
-	int size = list.size();
-	int idx = 1;
+	//int size = list.size();
+	System.out.println("list="+list);
 %>
 <!DOCTYPE html>
 <html>
