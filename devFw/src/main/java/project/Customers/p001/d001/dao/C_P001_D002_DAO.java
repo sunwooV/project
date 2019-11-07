@@ -17,13 +17,14 @@ public interface C_P001_D002_DAO {
 		public int check_id(String memberid) throws Exception;
 		//이메일 중복
 	    public int check_email(String email) throws Exception;
+	    //카카오 로그인 시 최초 1회만 회원 가입
+	    public String check_join(String userId) throws Exception;
 		// 회원가입
 		public int join_member(C_P001_D002_VO member) throws Exception;
+		public int kakao_join_member(C_P001_D002_VO member) throws Exception;
 		//이메일인증
 		public int approval_member(C_P001_D002_VO member) throws Exception;
 		public C_P001_D002_VO login(String memberid) throws Exception;
 		public int update_log(String memberid) throws Exception;
 		public int update_pw(C_P001_D002_VO member) throws Exception;
-
-	 
 }

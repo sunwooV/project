@@ -54,11 +54,11 @@ public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		searchMap.put("p_id", p_id);	 
-		System.out.println("p_id´Â =" + p_id);
+		System.out.println("p_id =" + p_id);
 		
 		List list = d001Service.searchList(searchMap);
 		
-		System.out.println("list µ¥ÀÌÅÍ È®ÀÎ");
+		System.out.println("list="+list);
 		for(int i = 0; i < list.size(); i++)
 		{
 			System.out.println(list.get(i));
@@ -117,7 +117,7 @@ public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 			dispatch.forward(request, response);
 		} catch (Exception e) {
 			message = " <script>";
-			message += " alert('¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØ ÁÖ¼¼¿ä');";
+			message += " alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½');";
 			message += " location.href='" + request.getContextPath() + "/hm/d001/searchInit.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
@@ -131,7 +131,7 @@ public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 	public Map<String, Object> ajaxTest() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", "hong");
-		map.put("name", "È«±æµ¿");
+		map.put("name", "È«ï¿½æµ¿");
 		return map;
 	}
 }

@@ -3,6 +3,7 @@
 <%
   request.setCharacterEncoding("utf-8");
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -14,6 +15,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+
 
 
 <script>
@@ -82,6 +85,13 @@
 				<h3>Member Join Form</h3>
 			</div>
 			<div>
+			<c:set var="member" value="${member }"/>
+							<!--<c:if test ="${ member == null}"> // 카톡로그인되면
+							      <li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/loginInit.do">Login</a></li>
+							      </c:if>
+							    <c:if test ="${ member !=null}">
+							      <li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/logout.do">LOGOUT</a></li>
+							      </c:if>-->
 				<form id="joinForm" action="./join_member.do" method="post">
 					<p>
 						<label>ID</label> 
@@ -89,6 +99,7 @@
 						<span id="id_check" class="w3-text-red"></span>
 					</p>
 					<p>
+					
 						<label>Password</label> 
 						<input class="w3-input" id="pw" name="pw" type="password" required>
 					</p>

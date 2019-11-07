@@ -5,7 +5,9 @@ import org.springframework.stereotype.Component;
 @Component("M_P001_D001_VO")
 public class M_P001_D001_VO {
 	private String prod_number;
-	private String prod_group;
+	private String reused_yn;
+	private String auction_yn;
+	private String flea_yn;
 	private String prod_category_code;
 	private String memberId;
 	private String prod_price;
@@ -28,7 +30,7 @@ public class M_P001_D001_VO {
 	private String auction_price;
 	
 	public M_P001_D001_VO(){
-		System.out.println("S_P001_D002_VO È£Ãâ");
+		System.out.println("S_P001_D002_VO È£ï¿½ï¿½");
 	}
 	public String getProd_number() {
 		return prod_number;
@@ -36,11 +38,24 @@ public class M_P001_D001_VO {
 	public void setProd_number(String prod_number) {
 		this.prod_number = prod_number;
 	}
-	public String getProd_group() {
-		return prod_group;
+	
+	public String getReused_yn() {
+		return reused_yn;
 	}
-	public void setProd_group(String prod_group) {
-		this.prod_group = prod_group;
+	public void setReused_yn(String reused_yn) {
+		this.reused_yn = reused_yn;
+	}
+	public String getAuction_yn() {
+		return auction_yn;
+	}
+	public void setAuction_yn(String auction_yn) {
+		this.auction_yn = auction_yn;
+	}
+	public String getFlea_yn() {
+		return flea_yn;
+	}
+	public void setFlea_yn(String flea_yn) {
+		this.flea_yn = flea_yn;
 	}
 	public String getProd_category_code() {
 		return prod_category_code;

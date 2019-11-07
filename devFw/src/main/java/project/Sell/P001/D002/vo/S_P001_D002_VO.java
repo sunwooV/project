@@ -1,8 +1,13 @@
 package project.Sell.P001.D002.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component("S_P001_D002_VO")
 public class S_P001_D002_VO {
 	private String prod_number;
-	private String prod_group;
+	private String reused_yn;
+	private String auction_yn;
+	private String flea_yn;
 	private String prod_category_code;
 	private String memberId;
 	private String prod_price;
@@ -24,9 +29,13 @@ public class S_P001_D002_VO {
 	private String represent_image;
 	private String auction_price;
 	private String prodViews;
+	private String left_day;
+	private String left_hour;
+	private String left_min;
+	private String left_second;
 	
 	public S_P001_D002_VO(){
-		System.out.println("S_P001_D002_VO È£Ãâ");
+		System.out.println("S_P001_D002_VO í˜¸ì¶œ");
 	}
 	public String getProd_number() {
 		return prod_number;
@@ -34,11 +43,24 @@ public class S_P001_D002_VO {
 	public void setProd_number(String prod_number) {
 		this.prod_number = prod_number;
 	}
-	public String getProd_group() {
-		return prod_group;
+	
+	public String getReused_yn() {
+		return reused_yn;
 	}
-	public void setProd_group(String prod_group) {
-		this.prod_group = prod_group;
+	public void setReused_yn(String reused_yn) {
+		this.reused_yn = reused_yn;
+	}
+	public String getAuction_yn() {
+		return auction_yn;
+	}
+	public void setAuction_yn(String auction_yn) {
+		this.auction_yn = auction_yn;
+	}
+	public String getFlea_yn() {
+		return flea_yn;
+	}
+	public void setFlea_yn(String flea_yn) {
+		this.flea_yn = flea_yn;
 	}
 	public String getProd_category_code() {
 		return prod_category_code;
@@ -130,13 +152,13 @@ public class S_P001_D002_VO {
 	public void setAuction_end_date(String aution_end_date) {
 		this.auction_end_date = aution_end_date;
 	}
+	
 	public String getEditor() {
 		return editor;
 	}
 	public void setEditor(String editor) {
 		this.editor = editor;
 	}
-
 	public String getTag_list() {
 		return tag_list;
 	}
@@ -168,7 +190,30 @@ public class S_P001_D002_VO {
 	public void setProdViews(String prodViews) {
 		this.prodViews = prodViews;
 	}
-	
+	public String getLeft_day() {
+		return left_day;
+	}
+	public void setLeft_day(String left_day) {
+		this.left_day = left_day;
+	}
+	public String getLeft_hour() {
+		return left_hour;
+	}
+	public void setLeft_hour(String left_hour) {
+		this.left_hour = left_hour;
+	}
+	public String getLeft_min() {
+		return left_min;
+	}
+	public void setLeft_min(String left_min) {
+		this.left_min = left_min;
+	}
+	public String getLeft_second() {
+		return left_second;
+	}
+	public void setLeft_second(String left_second) {
+		this.left_second = left_second;
+	}
 	
 	
 	

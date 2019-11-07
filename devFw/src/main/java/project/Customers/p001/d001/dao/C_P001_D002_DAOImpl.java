@@ -29,11 +29,20 @@ public class C_P001_D002_DAOImpl implements C_P001_D002_DAO {
 	public int check_email(String email) throws Exception{
 		return sqlsession.selectOne("Customers.join.check_email", email);
 	}
+	public String check_join(String userId) throws Exception{
+		System.out.println("33333333333333333333333333333333333333333333"+userId);
+		return sqlsession.selectOne("Customers.join.check_join", userId);
+	}
 	
 	// 회원가입
 	@Transactional
 	public int join_member(C_P001_D002_VO member) throws Exception{
 		return sqlsession.insert("Customers.join.join_member", member);
+	}
+	
+	@Transactional
+	public int kakao_join_member(C_P001_D002_VO member) throws Exception{
+		return sqlsession.insert("Customers.join.kakao_join_member", member);
 	}
 	
 	// 이메일 인증

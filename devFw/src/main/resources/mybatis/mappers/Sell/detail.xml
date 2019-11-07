@@ -28,10 +28,16 @@
 		<result property="auction_bid" column="auction_bid" />
 		<result property="auction_start_date" column="auction_start_date" />
 		<result property="auction_end_date" column="auction_end_date" />
-		<result property="editor" column="editor" />
+		<result property="detail" column="detail" />
 		<result property="represent_image" column="represent_image" />
 		<result property="tag_list" column="tag_list" />
 		<result property="prodViews" column="prodViews" />
+	</resultMap>
+	<resultMap id="S_P001_D002Result03" type="S_P001_D002_VO">
+		<result property="left_day" column="left_day" />
+		<result property="left_hour" column="left_hour" />
+		<result property="left_min" column="left_min" />
+		<result property="left_second" column="left_second" />
 	</resultMap>
 
 	<select id="high_category" resultMap="S_P001_D002Result02" parameterType="java.util.Map"> 
@@ -61,6 +67,17 @@
       <where>
       	prod_number = ${prod_number }
       </where>
+	</select>
+	
+	<select id="auction_left_date" resultMap="S_P001_D002Result03" parameterType="java.util.Map">
+		SELECT  trunc(auction_end_date-sysdate) as left_day,
+				trunc(mod((auction_end_date-sysdate),1)*24) as left_hour,
+				trunc(mod((auction_end_date-sysdate)*24,1)*60) as left_min,
+				trunc(round(mod((auction_end_date-sysdate)*24*60,1)*60)) as left_second
+		FROM product
+		<where>
+			prod_number = ${prod_number}
+		</where>
 	</select>
 
 </mapper>

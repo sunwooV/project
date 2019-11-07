@@ -20,7 +20,7 @@
 				<h3>비밀번호 찾기</h3>
 			</div>
 			<div>
-			<form name="frn" method="post" action="${contextPath}/Customers/p001/d001/find_pw.do">
+			<form name="frn" method="post" action="${contextPath}/find_pw.do">
 				<p>
 					<label>ID</label>
 					<input class="w3-input" type="text" id="memberid" name="memberid" required>

@@ -47,17 +47,11 @@ public class C_P001_D002_ControllerImpl implements C_P001_D002_Controller{
 	C_P001_D002_VO c_p001_d002_VO;
 	
 	
-	@Override
-	@RequestMapping(value ="/Customers/p001/d001/main.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		ModelAndView mav = new ModelAndView("main/main");
-		return mav;
-	}
+
 	
 	
 	@Override
-	@RequestMapping(value ="/Customers/p001/d001/loginInit.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value ="/loginInit.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView loginInit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView("hm/C_P001_D002");
@@ -65,32 +59,47 @@ public class C_P001_D002_ControllerImpl implements C_P001_D002_Controller{
 	}
 	
 	@Override
-	@RequestMapping(value = "/Customers/p001/d001/joinInit.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/joinInit.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView joinInit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav2 = new ModelAndView("hm/C_P001_D001");
 		return mav2;
 	}
 	
-	@RequestMapping(value = "/Customers/p001/d001/check_id.do", method =  { RequestMethod.GET, RequestMethod.POST })
+	@Override
+	@RequestMapping(value = "/kakao_joinInit.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView kakao_joinInit(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		session.removeAttribute("member");
+		ModelAndView mav2 = new ModelAndView("hm/kakaojoin");
+		return mav2;
+	}
+	
+	@RequestMapping(value = "/check_id.do", method =  { RequestMethod.GET, RequestMethod.POST })
 	public void check_id(@RequestParam("memberid") String memberid, HttpServletResponse response) throws Exception{
-		System.out.println("안녕안녕안녕앙ㄴ녕아ㅏ아아아아아아아아아앙");
 		c_p001_d002_Service.check_id(memberid, response);
 		
 	}
 	
-	@RequestMapping(value = "/Customers/p001/d001/check_email.do", method =  { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/check_email.do", method =  { RequestMethod.GET, RequestMethod.POST })
 	public void check_email(@RequestParam("email") String email, HttpServletResponse response) throws Exception{
 		c_p001_d002_Service.check_email(email, response);
 	}
 	
-	@RequestMapping(value = "/Customers/p001/d001/join_member.do", method =  { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/join_member.do", method =  { RequestMethod.GET, RequestMethod.POST })
 	public String join_member(@ModelAttribute C_P001_D002_VO member, RedirectAttributes rttr, HttpServletResponse response) throws Exception{
 		rttr.addFlashAttribute("result", c_p001_d002_Service.join_member(member, response));
-		return "main/main";
+		return "redirect:/main.do";
 	}
 	
-	@RequestMapping(value = "/Customers/p001/d001/approval_member.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/kakao_join_member.do", method =  { RequestMethod.GET, RequestMethod.POST })
+	public String kakao_join_member(@ModelAttribute C_P001_D002_VO member, RedirectAttributes rttr, HttpServletResponse response, HttpSession session) throws Exception{
+		rttr.addFlashAttribute("result", c_p001_d002_Service.kakao_join_member(member, response));
+		session.setAttribute("member", true);
+		return "redirect:/main.do";
+	}
+	
+	@RequestMapping(value = "/approval_member.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public void approval_member(@ModelAttribute C_P001_D002_VO member, HttpServletResponse response) throws Exception{
 		c_p001_d002_Service.approval_member(member, response);
 	}
@@ -98,15 +107,15 @@ public class C_P001_D002_ControllerImpl implements C_P001_D002_Controller{
 	 
 		
 		// 로그인
-		@RequestMapping(value = "/Customers/p001/d001/login.do", method =  { RequestMethod.GET, RequestMethod.POST })
+		@RequestMapping(value = "/login.do", method =  { RequestMethod.GET, RequestMethod.POST })
 		public String login(@ModelAttribute C_P001_D002_VO member, HttpSession session, HttpServletResponse response) throws Exception{
 			member = c_p001_d002_Service.login(member, response);
 			session.setAttribute("member", member);
-			return "main/main";
+			return "redirect:/main.do";
 		}
 		
 		// 로그아웃
-		@RequestMapping(value = "/Customers/p001/d001/logout.do", method =  { RequestMethod.GET, RequestMethod.POST })
+		@RequestMapping(value = "/logout.do", method =  { RequestMethod.GET, RequestMethod.POST })
 		public void logout(HttpSession session, HttpServletResponse response) throws Exception{
 			session.invalidate();
 //			session.removeAttribute("member");
@@ -135,7 +144,7 @@ public class C_P001_D002_ControllerImpl implements C_P001_D002_Controller{
 		         StringBuilder sb = new StringBuilder();
 		         sb.append("grant_type=authorization_code");
 		         sb.append("&client_id=6694b0d17c224582f266da703a1a0558");
-		         sb.append("&redirect_uri=http://localhost:8090/devFw/Customers/p001/d001/kakaoLogin.do");
+		         sb.append("&redirect_uri=http://localhost:8090/devFw/kakaoLogin.do");
 		         sb.append("&code=" + authorize_code);
 		         bw.write(sb.toString());
 		         bw.flush();
@@ -196,7 +205,7 @@ public class C_P001_D002_ControllerImpl implements C_P001_D002_Controller{
 		         String result = "";
 
 		         while ((line = br.readLine()) != null) {
-		            result += line;
+		             result += line;
 		         }
 		         System.out.println("response body : " + result);
 
@@ -220,37 +229,43 @@ public class C_P001_D002_ControllerImpl implements C_P001_D002_Controller{
 		      return userInfo;
 		   }
 		   
-		   @RequestMapping(value = "/Customers/p001/d001/kakaoLogin.do")
-		   public String login(@RequestParam("code") String code, HttpSession session) {
+		   @RequestMapping(value = "/kakaoLogin.do")
+		   public String login(@RequestParam("code") String code, HttpSession session, HttpServletResponse response) {
 		      String access_Token = getAccessToken(code);
 		      HashMap<String, Object> userInfo = getUserInfo(access_Token);
-		      System.out.println("login Controller카카오지롱: " + userInfo);
+		      System.out.println("login Controller카카오: " + userInfo);
 
 		      // 클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
 		      if (userInfo.get("email") != null) {
 		         session.setAttribute("member", true);
 		         session.setAttribute("memberInfo",userInfo);
 		         session.setAttribute("userId", userInfo.get("email"));
+		         session.setAttribute("username", userInfo.get("nickname"));
 		         session.setAttribute("access_Token", access_Token);
-		      }
-		      return "main/main";
+		      }	      
+//		      String userId = (String)session.getAttribute("userId");	    
+		      return "redirect:/check_join.do";
 		   }
 		   
 	
-			//비밀번호 찾느 화면
-			@RequestMapping(value = "/Customers/p001/d001/find_pw_form.do")
+			//비밀번호 찾는 화면
+			@RequestMapping(value = "/find_pw_form.do")
 			public String find_pw_form() throws Exception{
 				return "hm/find_pw_form";
 			}
 			
 			//비밀번호 찾기
-			@RequestMapping(value = "/Customers/p001/d001/find_pw.do", method = { RequestMethod.GET, RequestMethod.POST } )
+			@RequestMapping(value = "/find_pw.do", method = { RequestMethod.GET, RequestMethod.POST } )
 			public void find_pw(@ModelAttribute C_P001_D002_VO member, HttpServletResponse response) throws Exception{
-				
-				System.out.println("---------------------------------비밀1: "+ member.getPw());
 				c_p001_d002_Service.find_pw(response, member);
 			}
-		
+			
+			//카카오 로그인시 최초 1회만 회원 가입 하기 위헤서
+			@RequestMapping(value = "/check_join.do", method =  { RequestMethod.GET, RequestMethod.POST })
+			public void check_join(HttpServletResponse response, HttpSession session) throws Exception{
+				String userId = (String)session.getAttribute("userId");
+				c_p001_d002_Service.check_join(userId, response);
+			}
 }
 
 

@@ -86,7 +86,7 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 		
 		String message;
 		ResponseEntity resEnt = null;
-		HttpHeaders responseHeaders = new HttpHeaders(); // Çì´õº¯°æ ½Ã »ç¿ë
+		HttpHeaders responseHeaders = new HttpHeaders(); 
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		try {
 			d001Service.insertMember(dataMap);
@@ -95,7 +95,7 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 			dispatch.forward(request, response);
 		} catch (Exception e) {
 			message = " <script>";
-			message += " alert('¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØ ÁÖ¼¼¿ä');";
+			message += " alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½');";
 			message += " location.href='" + request.getContextPath() + "/FleaMarket/P001/D001/JoinStart.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -111,11 +111,11 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		searchMap.put("p_id", p_id);	 
-		System.out.println("p_id´Â =" + p_id);
+		System.out.println("p_idï¿½ï¿½ =" + p_id);
 		
 		List list = d001Service.searchList(searchMap);
 		
-		System.out.println("list µ¥ÀÌÅÍ È®ÀÎ");
+		System.out.println("list ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½");
 		for(int i = 0; i < list.size(); i++)
 		{
 			System.out.println(list.get(i));
@@ -150,7 +150,7 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 	@Override
 	public ModelAndView searchInsert(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("searchInsert È®ÀÎ");
+		System.out.println("searchInsert È®ï¿½ï¿½");
 		return null;
 	}
 
@@ -179,7 +179,7 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 			dispatch.forward(request, response);
 		} catch (Exception e) {
 			message = " <script>";
-			message += " alert('¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØ ÁÖ¼¼¿ä');";
+			message += " alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½');";
 			message += " location.href='" + request.getContextPath() + "/hm/d001/searchInit.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
@@ -204,7 +204,7 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 		
 		String message;
 		ResponseEntity resEnt = null;
-		HttpHeaders responseHeaders = new HttpHeaders(); // Çì´õº¯°æ ½Ã »ç¿ë
+		HttpHeaders responseHeaders = new HttpHeaders(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		try {
 			d001Service.insertMember(dataMap);
@@ -213,7 +213,7 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 			dispatch.forward(request, response);
 		} catch (Exception e) {
 			message = " <script>";
-			message += " alert('¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØ ÁÖ¼¼¿ä');";
+			message += " alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½');";
 			message += " location.href='" + request.getContextPath() + "/FleaMarket/P001/D001/JoinStart.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);

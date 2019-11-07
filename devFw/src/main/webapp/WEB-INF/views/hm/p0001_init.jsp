@@ -11,7 +11,7 @@
 	function frm_add() {
 		var frmPro = document.frm;
 		frmPro.method = "post";
-		frmPro.action = "${contextPath}/hm/p0001/searchInsert.do"; 
+		frmPro.action = "${contextPath}/FleaMarket/P001/D001/JoinStart.do"; 
 		frmPro.submit();
 	}
    </script>
@@ -20,7 +20,7 @@
    <form name="frm" method="post" action="${contextPath}/FleaMarket/P002/D001/searchList.do">   
 	   플리마켓 코드:<input type="text" name="p_id"><br>
 	   <input type ="submit" value="해당 플리마켓으로 이동"><br>
-	   <input type = "button" value = "제품추가" onclick = "frm_add()">
+	   <input type = "button" value = "플리마켓 개설" onclick = "frm_add()">
    </form>
 </body>
 </html>

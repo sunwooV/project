@@ -43,6 +43,42 @@ public class C_P001_D002_ServiceImpl implements C_P001_D002_Service {
 		out.println(c_p001_d002_DAO.check_email(email));
 		out.close();
 	}
+	//
+	@Override
+	public void check_join(String userId, HttpServletResponse response) throws Exception{
+		PrintWriter out = response.getWriter();
+		 if((c_p001_d002_DAO.check_join(userId)) == null) {
+			 System.out.println("2222222222222222222222222222222222222222222222222222222");
+			 out.println("<script>");
+				out.println("location.href='http://localhost:8090/devFw/kakao_joinInit.do';");
+				out.println("</script>");
+				out.close();
+		 }else {
+			 out.println("<script>");
+				out.println("location.href='http://localhost:8090/devFw/main.do';");
+				out.println("</script>");
+				out.close();
+		 }
+	}
+	
+	@Override
+	public int kakao_join_member(C_P001_D002_VO member, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+	  if (c_p001_d002_DAO.check_email(member.getEmail()) == 1) {
+			out.println("<script>");
+			out.println("alert('동일한 이메일이 있습니다. 일반회원으로 로그인 해주세요');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return 0;
+		}
+	  else {
+			c_p001_d002_DAO.kakao_join_member(member);
+			return 1;
+		}
+	}
 
 	@Override
 	public int join_member(C_P001_D002_VO member, HttpServletResponse response) throws Exception {
@@ -111,7 +147,7 @@ public class C_P001_D002_ServiceImpl implements C_P001_D002_Service {
 			msg += member.getMemberid() + "님 회원가입을 환영합니다.</h3>";
 			msg += "<div style='font-size: 130%'>";
 			msg += "하단의 인증 버튼 클릭 시 정상적으로 회원가입이 완료됩니다.</div><br/>";
-			msg += "<form method='post' action='http://localhost:8090/devFw/Customers/p001/d001/approval_member.do'>";
+			msg += "<form method='post' action='http://localhost:8090/devFw/approval_member.do'>";
 			msg += "<input type='hidden' name='email' value='" + member.getEmail() + "'>";
 			msg += "<input type='hidden' name='approval_key' value='" + member.getApproval_key() + "'>";
 			msg += "<input type='submit' value='인증'></form><br/></div>";
@@ -124,7 +160,7 @@ public class C_P001_D002_ServiceImpl implements C_P001_D002_Service {
 				msg += member.getPw()+ "</p>";
 				msg += "<div style='font-size: 130%'>";
 				msg += "하단의  버튼 클릭 시 홈페이지로 돌아갑니다.</div><br/>";
-				msg += "<form method='post' action='http://localhost:8090/devFw/Customers/p001/d001/main.do'>";
+				msg += "<form method='post' action='http://localhost:8090/devFw/main.do'>";
 				msg += "<input type='hidden' name='email' value='" + member.getEmail() + "'>";
 				msg += "<input type='button'>";
 				msg += "<input type='submit' value='로그인하기'></form><br/></div>";
@@ -218,7 +254,7 @@ public class C_P001_D002_ServiceImpl implements C_P001_D002_Service {
 		@Override
 		public void logout(HttpServletResponse response) throws Exception {
 			response.setContentType("text/html;charset=utf-8");
-			response.sendRedirect("main.do");
+			response.sendRedirect("/devFw/main.do");
 		}
 		
 		// 비밀번호 찾기
@@ -244,7 +280,6 @@ public class C_P001_D002_ServiceImpl implements C_P001_D002_Service {
 			}else {
 		
 				// 비밀번호 변경 메일 발송
-				System.out.println("---------------------------------비밀2: "+member.getPw());
 				String pw="";
 				for (int i = 0; i < 12; i++) {
 					pw += (char) ((Math.random() * 26) + 97);
@@ -260,7 +295,7 @@ public class C_P001_D002_ServiceImpl implements C_P001_D002_Service {
 				out.println("</script>");
 				out.close();
 			}
-		}
+		}                                                                                                                                                                                                                                    
 }
 
 
