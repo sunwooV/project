@@ -20,7 +20,7 @@ public class B_P001_D005VO {
 	
 		
 	public B_P001_D005VO() {
-		System.out.println("B_P001_D004VO »ı¼ºÀÚ È£Ãâ!!");
+		System.out.println("B_P001_D005VOìƒì„±ìí˜¸ì¶œ!");
 	}
 
 

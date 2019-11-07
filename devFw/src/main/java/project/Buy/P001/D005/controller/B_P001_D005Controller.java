@@ -10,9 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 public interface B_P001_D005Controller {
 
 		//
-		public Map kakaopayReady();
-		public ModelAndView kakaopaySuccess(HttpServletRequest request, HttpServletResponse response) throws Exception;
-		public ModelAndView kakaopayFail(HttpServletRequest request, HttpServletResponse response) throws Exception;
-		public ModelAndView kakaopayCancle(HttpServletRequest request, HttpServletResponse response) throws Exception;
+		public Map kakaopay();
+		public ModelAndView kakaopaySuccess( HttpServletResponse response) throws Exception;
+		public ModelAndView kakaopayFail( HttpServletResponse response) throws Exception;
+		public ModelAndView kakaopayCancel(HttpServletResponse response) throws Exception;
 
 }

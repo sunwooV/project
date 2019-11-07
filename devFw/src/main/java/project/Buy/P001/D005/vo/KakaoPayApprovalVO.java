@@ -20,7 +20,7 @@ public class KakaoPayApprovalVO {
 	
 		
 	public KakaoPayApprovalVO() {
-		System.out.println("KakaoPayApprovalVO »ı¼ºÀÚ È£Ãâ!!");
+		System.out.println("KakaoPayApprovalVO ìƒì„±ìí˜¸ì¶œ!");
 	}
 
 

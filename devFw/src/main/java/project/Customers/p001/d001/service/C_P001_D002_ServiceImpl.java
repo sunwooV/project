@@ -130,7 +130,6 @@ public class C_P001_D002_ServiceImpl implements C_P001_D002_Service {
 				msg += "<input type='submit' value='로그인하기'></form><br/></div>";
 			}
 	
-
 			// 받는 사람 E-Mail 주소
 			String mail = member.getEmail();
 			try {
@@ -256,7 +255,7 @@ public class C_P001_D002_ServiceImpl implements C_P001_D002_Service {
 				send_mail(member,"find_pw");
 				
 				out.println("<script>");
-				out.println("alert('이메일로 비민번호를 보냈습니.');");
+				out.println("alert('이메일로 비민번호를 보냈습니다.');");
 				out.println("location.href='http://localhost:8090/devFw/main.do';");
 				out.println("</script>");
 				out.close();

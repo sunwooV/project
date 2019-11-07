@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component("B_P001_D004VO")
 public class B_P001_D004VO {
 	
-	//pay DB¸¦ ¹ŞÀ» °ªÀ» ¼±¾ğ!
+	//pay DBì»¬ëŸ¼ëª…ê³¼ ì¼ì¹˜!
 	private String orderNum;
 	private String payMethod;
 	private int payPrice;
@@ -13,7 +13,7 @@ public class B_P001_D004VO {
 	private String accountTransferYN;
 		
 	public B_P001_D004VO() {
-		System.out.println("B_P001_D004VO »ı¼ºÀÚ È£Ãâ!!");
+		System.out.println("B_P001_D004VO ìƒì„±ìí˜¸ì¶œ!!!!");
 	}
 	public String getOrderNum() {
 		return orderNum;
@@ -44,11 +44,7 @@ public class B_P001_D004VO {
 	}
 	public void setAccountTransferYN(String accountTransferYN) {
 		this.accountTransferYN = accountTransferYN;
-	}
-	
-	
-	
-	
+	}	
 	
 }
 	

@@ -40,7 +40,7 @@ public class B_P001_D005ServiceImpl implements B_P001_D005Service{
 	private kakaopayReadyVo kakaoReady;
 
 	@RequestMapping(value="/oauth", produces="application/json", method ={ RequestMethod.GET, RequestMethod.POST })
-	//��ó: https://alpreah.tistory.com/122?category=844976 [������ ���ϴ³�])
+	
 	@Override
 	
 	public String kakaopayReady(Map<String, Object> searchMap) throws DataAccessException {
@@ -51,7 +51,7 @@ public class B_P001_D005ServiceImpl implements B_P001_D005Service{
 		headers.add("Accept",MediaType.APPLICATION_JSON_VALUE);
 		headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE+";charset=UTF-8");
 		
-		//������ ��û�� Body
+		//Body
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("cid", "TC0ONETIME");
 		params.add("partner_order_id", "1001");
