@@ -11,7 +11,9 @@
 	</resultMap>
 	<resultMap id="M_P001_D001Result01" type="M_P001_D001_VO">
 		<result property="prod_number" column="prod_number" />
-		<result property="prod_group" column="prod_group" />
+		<result property="reused_yn" column="reused_yn" />
+		<result property="auction_yn" column="auction_yn" />
+		<result property="flea_yn" column="flea_yn" />
 		<result property="prod_category_code" column="prod_category_code" />
 		<result property="memberId" column="memberId" />
 		<result property="prod_price" column="prod_price" />

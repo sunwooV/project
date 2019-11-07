@@ -168,11 +168,28 @@
 						<c:forEach var="newProduct" items="${newProduct}" >	
 							<div class="col-sm-3">
 								<div class="thumbnail">
-									<h4>${newProduct.prod_group }</h4>
+									<c:if test="${newProduct.reused_yn == 'y' }"> <!-- 상품 판매 카테고리 -->
+										<h4> 중고 </h4>
+									</c:if>
+									<c:if test="${newProduct.auction_yn == 'y' }">
+										<h4> 경매 </h4>
+									</c:if>
+									<c:if test="${newProduct.flea_yn == 'y' }">
+										<h4> 플리 </h4>
+									</c:if>
 									<img src="${newProduct.represent_image }" style="width:230px; height:240px;" alt="..." onclick="location.href='./detail.do?prod_number=${newProduct.prod_number }&prod_category_code=${newProduct.prod_category_code }'">
 									<div class="caption">
 										<h3>${newProduct.prod_title }</h3>
-										<p id="p">${newProduct.prod_price }</p>
+										<c:choose>
+											<c:when test="${newProduct.auction_yn == 'y' }">
+												<p id="p">${newProduct.auction_bid }</p>
+											</c:when>
+											<c:otherwise>
+												<p id="p">${newProduct.prod_price }</p>
+											</c:otherwise>
+										</c:choose>
+										
+										
 										<p id="p">
 											<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
 											<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>

@@ -252,9 +252,11 @@
 						$("#way_caution").html("※중고와 경매에 대한 직거래입니다.※");
 						$("#auction_price").css("display", "block"); //경매 시작가 표시
 						document.getElementsByName("auction_yn")[0].value = 'y';
+						document.getElementById("discount").readOnly = true;
 					} else {
 						$("#autionDaySelect").css("display", "none");
 						document.getElementsByName("auction_yn")[0].value = 'n';
+						document.getElementById("discount").readOnly = false;
 						if ($("#reused").is(":checked")) { //플리마켓만 체크되어 있지 않을 때
 							$("#direct").attr("disabled", false);
 							$("#way_caution").html("※중고와 경매에 대한 직거래입니다.※");
