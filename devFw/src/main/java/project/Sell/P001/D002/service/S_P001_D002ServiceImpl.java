@@ -19,18 +19,16 @@ import project.Sell.P001.D002.vo.S_P001_D002VO;
 public class S_P001_D002ServiceImpl implements S_P001_D002Service {
 	@Autowired
 	private S_P001_D002DAO S_P001_D002DAO;
-	@Autowired
-	private S_P001_D001DAO S_P001_D001DAO;
 
 	@Override
 	public List<S_P001_D001VO> high_category(Map<String, Object> searchMap2) throws DataAccessException {
-		List<S_P001_D001VO> high_category =  S_P001_D001DAO.high_category(searchMap2); 
+		List<S_P001_D001VO> high_category =  S_P001_D002DAO.high_category(searchMap2); 
 		return high_category;
 	}
 	
 	@Override
 	public List<S_P001_D001VO> middle_category(Map<String, Object> searchMap2) throws DataAccessException {
-		List<S_P001_D001VO> middle_category =  S_P001_D001DAO.middle_category(searchMap2); 
+		List<S_P001_D001VO> middle_category =  S_P001_D002DAO.middle_category(searchMap2); 
 		return middle_category;
 	}
 	

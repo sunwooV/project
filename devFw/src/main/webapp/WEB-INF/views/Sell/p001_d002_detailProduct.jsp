@@ -272,7 +272,7 @@ input[type="number"]::-webkit-inner-spin-button {
 			<c:forEach var="high_category" items="${high_category }">
 				${high_category.category_name }
 			</c:forEach>
-			
+			>
 			<c:forEach var="middle_category" items="${middle_category }">
 				${middle_category.category_name }
 			</c:forEach>

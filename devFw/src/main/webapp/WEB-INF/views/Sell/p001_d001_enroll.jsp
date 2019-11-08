@@ -570,7 +570,7 @@
 			<div class="subtitle">
 				<a>상품 상세 * (사진 3장 이상 첨부 필수)</a>
 				<br>
-				<textarea name="editor" id="editor"	style="width: 100%; height: 400px;"></textarea>
+				<textarea name="editor" id="editor"	style="width: 99%; height: 400px;"></textarea>
 				<input type="hidden" value="" name="images"/>
 			</div>
 

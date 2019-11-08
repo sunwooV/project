@@ -40,7 +40,7 @@ public class S_P001_D001DAOImpl implements S_P001_D001DAO {
 	
 	@Override
 	public void insertProduct(Map<String, Object> datahMap) throws DataAccessException {
-		sqlSession.update("Sell.enroll.enrollProduct", datahMap);
+		sqlSession.update("Sell.p001_d001.enrollProduct", datahMap);
 	}
 	
 	
