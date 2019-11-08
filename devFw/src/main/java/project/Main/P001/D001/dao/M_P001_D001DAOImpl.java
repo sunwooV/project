@@ -17,7 +17,7 @@ public class M_P001_D001DAOImpl implements M_P001_D001DAO {
 	
 	@Override
 	public List<M_P001_D001VO> newProduct(Map<String, Object> searchMap) throws DataAccessException {
-		List<M_P001_D001VO> list = sqlSession.selectList("Main.main.newProduct", searchMap);
+		List<M_P001_D001VO> list = sqlSession.selectList("Main.p001_d001.newProduct", searchMap);
 		return list;
 	}
 }
