@@ -26,6 +26,7 @@ ul {
   font-weight: 700;
   margin-bottom: 24px;
   padding-bottom: 4px;
+  padding-left: 2px;
   border-bottom: 1px solid #d9d9d9;
 }
 .wrap{
@@ -441,7 +442,7 @@ $(document).ready(function(){
 <!-- 프로필 수정 팝업창 -->
  <div class="messagepop pop">
  	<h2>프로필 설정</h2>
-    <form method="post" id="new_message" action="/devFw/fleaProfileEdit.do" enctype="multipart/form-data">
+    <form method="post" id="new_message" action="/devFw/fleaProfileEdit.do" enctype="multipart/form-data">    
         <p><label for="flea_name">플리마켓 스토어명&nbsp;</label><input type="text" size="30" name="flea_name" id="flea_name" /></p>
         <p><label for="intro_cotent">소개글</label><br><textarea rows="6" name="intro_cotent" id="intro_cotent" cols="35"></textarea></p>
  		
@@ -472,7 +473,7 @@ $(document).ready(function(){
      <div class="row-left">
       <aside class="artist-area">
         <div class="user-info card-style-profile "> <!-- PROFILE (MIDDLE-CONTAINER) -->
-   
+   	<p><a href="/devFw/fleaCreateStoreApproval.do">플리마켓 관리자(임시)</a></p>
 		             <p class="addmember"><a target="_blank" href="/devFw/FleaMarket/P001/D001/JoinForm.do?id=1"><i class="fas fa-user-plus pa-5x"></i></a></p>
 		                <c:forEach var="flea" items="${searchList}" > 
 		               		<c:out value="${flea.profile_photo}"/>
@@ -559,8 +560,7 @@ $(document).ready(function(){
             <dd>
                 <a href="/w/artist/b20eee2f-b3eb-4fee-bc81-735f1e2318d6/product">11<em>개</em></a>
             </dd>
-            <dt><font size="2">
-                구매후기</font></dt>
+            <dt><font size="2"><a href="/devFw/fleaReview.do">구매후기</a></font></dt>
             <dd>
                 <a href="/w/artist/b20eee2f-b3eb-4fee-bc81-735f1e2318d6/review">124<em>개</em></a>
             </dd>
@@ -597,7 +597,7 @@ $(document).ready(function(){
         </div>
         
         <br>
-  <div class="ui_title__txt"><font size="2">판매중인 상품</font></div>
+  <div class="ui_title__txt"><font size="2"><a href="/devFw/fleaProduct.do">판매 상품</a></font></div>
          
         <div class="row">
           <div class="col-lg-4 col-md-6 mb-4">
@@ -705,7 +705,7 @@ $(document).ready(function(){
  <div class="layout-split half">
   <section class="cardlist_section">
    <div class="ui_title--sub">
-             <h3 class="ui_title__txt"><font size="2">구매후기</font></h3>
+             <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaReview.do">구매후기</a></font></h3>
          </div>
          <ul class="split-cardlist">
          
@@ -809,7 +809,7 @@ $(document).ready(function(){
      
      <section class="cardlist_section">
    <div class="ui_title--sub">
-             <h3 class="ui_title__txt"><font size="2">스토리</font></h3>
+             <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaStory.do">스토리</a></font></h3>
          </div>
                 <ul class="split-cardlist lines5">
                                                 <li class="ui_card--side">

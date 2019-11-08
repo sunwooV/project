@@ -1,4 +1,4 @@
-package project.FleaMarket.P001.D004.controller;
+package project.FleaMarket.P002.D004.controller;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -28,32 +28,36 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import project.FleaMarket.P001.D003.service.F_P001_D003Service;
-import project.FleaMarket.P001.D004.service.F_P001_D004Service;
-import project.FleaMarket.P001.D004.vo.F_P001_D004VO;
+import project.FleaMarket.P002.D004.dao.F_P002_D004DAO;
+import project.FleaMarket.P002.D004.service.F_P002_D004Service;
+import project.FleaMarket.P002.D004.vo.F_P002_D004VO;
 
-@Controller("F_P001_D004Controller")
-public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
-	private static final Logger logger = LoggerFactory.getLogger(F_P001_D004ControllerImpl.class);
+@Controller("F_P002_D004Controller")
+public class F_P002_D004ControllerImpl implements F_P002_D004Controller {
+	private static final Logger logger = LoggerFactory.getLogger(F_P002_D004ControllerImpl.class);
 	@Autowired
-	F_P001_D004Service d004Service;
+	F_P002_D004Service d004Service;
 	@Autowired
-	F_P001_D003Service d003Service;
-	@Autowired
-	F_P001_D004VO d004VO;
-
+	F_P002_D004VO d004VO;
+	
 	@Override
-	@RequestMapping(value = "/fleaCreateStoreApproval.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView fleaCreateStoreApproval(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/fleaProduct.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView fleaProduct(@RequestParam(value="p_id", required=false) String p_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		Map<String, Object> searchMap = new HashMap<String, Object>(); 
+		Map<String, Object> searchMap = new HashMap<String, Object>();
+		searchMap.put("p_id", p_id);	 
+		System.out.println("p_id =" + p_id);
+		
 		List list = d004Service.searchList(searchMap);
 		
-		System.out.println("dataMap::::::::::" + list);
-
-		ModelAndView mav = new ModelAndView("FleaMarket/p001_d004_fleaCreateStoreApproval");
+		for(int i = 0; i < list.size(); i++)
+		{
+			System.out.println(list.get(i));
+		}
+		
+		ModelAndView mav = new ModelAndView("FleaMarket/p002_d004_fleaProduct");
 		mav.addObject("searchList", list);
 		return mav;
 	}
-	
+
 }

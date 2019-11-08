@@ -570,116 +570,107 @@ $(document).ready(function(){
       <!-- /.col-lg-3 -->
      <div class="col-lg-9">
         
- <!-- 구매후기 -->
- <div class="layout-split half">
-  <section class="cardlist_section">
-   <div class="ui_title--sub">
-             <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaReview.do">구매후기</a></font></h3>
-         </div>
-         <ul class="split-cardlist">
+  <!-- 판매 상품 -->
+  <div class="ui_title__txt"><font size="2">판매 상품</font></div>
          
-         
-            <li class="ui_grid__item">
-            <div class="ui_card--side">
-                <div class="ui_card__inner">
-                    <div class="ui_card__imgcover">
-                        <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" class="ui_card__img" aria-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" style="background-image: url(https://image.idus.com/image/files/7c7e4972cbdc49b0a43cdb03973786e4_512.png)">
-                        </a>
-                    </div>
-                    <div class="ui_card__txtarea">
-                        <div class="ui_card__info">
-                            <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" arial-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" class="ui_card__title">?? 할인 ?? ??수제마카롱 30여종??</a>
-                            <span class="ui_card__para">
-                                포장이 너무 잘되어서 오고 너무 맛있어용??                            </span>
-                        </div>
-                        <div class="ui_card__rating">
-                            <div class="ui_card__vcenter">
-                                <div class="ui_rating" data-ui="rating" data-value="5">
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <span>&nbsp;| 김연주</span>
-                                </div>
-                            </div>
-                            <input name="paging_param" type="hidden" value="1571719189000">
-                        </div>
-                    </div>
-                </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+            
+            
+            
+            
+              <a href="#"><img class="card-img-top" src="${contextPath}/resources/img/product_ex.PNG" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#"><font size="3">[할로윈]1일배송,마카롱,뚱카롱,선물</font></a>
+                </h4>
+                <h5></h5>
+                <p class="card-text"><font size="2">[할로윈]신데렐라롱9구 마카롱선물세트~!!<br></font></p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
             </div>
-        </li>
-       <li class="ui_grid__item">
-            <div class="ui_card--side">
-                <div class="ui_card__inner">
-                    <div class="ui_card__imgcover">
-                        <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" class="ui_card__img" aria-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" style="background-image: url(https://image.idus.com/image/files/7c7e4972cbdc49b0a43cdb03973786e4_512.png)">
-                        </a>
-                    </div>
-                    <div class="ui_card__txtarea">
-                        <div class="ui_card__info">
-                            <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" arial-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" class="ui_card__title">?? 할인 ?? ??수제마카롱 30여종??</a>
-                            <span class="ui_card__para">
-                                너무 이쁜데 맛까지 짱입니다
-꼬끄가 너무 촉촉하고 맛있어요
-필링도 정말 잘 어울려요
-냉동실에 넣었다가 바로 꺼내먹어도 맛있습니다                            </span>
-                        </div>
-                        <div class="ui_card__rating">
-                            <div class="ui_card__vcenter">
-                                <div class="ui_rating" data-ui="rating" data-value="5">
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <span>&nbsp;| 최주연 (Ellen)</span>
-                                </div>
-                            </div>
-                            <input name="paging_param" type="hidden" value="1571350654000">
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Item Two</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
             </div>
-        </li>
-        
-           <li class="ui_grid__item">
-            <div class="ui_card--side">
-                <div class="ui_card__inner">
-                    <div class="ui_card__imgcover">
-                        <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" class="ui_card__img" aria-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" style="background-image: url(https://image.idus.com/image/files/7c7e4972cbdc49b0a43cdb03973786e4_512.png)">
-                        </a>
-                    </div>
-                    <div class="ui_card__txtarea">
-                        <div class="ui_card__info">
-                            <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" arial-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" class="ui_card__title">?? 할인 ?? ??수제마카롱 30여종??</a>
-                            <span class="ui_card__para">
-                                잘받았습니다. 배송 빨랐어요~ 블루베리랑 요거트 맛보았는디 블루베리는 필링도 쨈도 맛있었어요. 그런데 요거트는 필링에 설탕 씹히는 식감이 많이 나고 요거트맛도 별로 안나서 별로였습니다ㅠㅠ 다음에 재구매의사는 있는데 요거트 한번더 먹어보야겠네요~                            </span>
-                        </div>
-                        <div class="ui_card__rating">
-                            <div class="ui_card__vcenter">
-                                <div class="ui_rating" data-ui="rating" data-value="4.5">
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-half-fill" data-state="active"></i>
-                                    <span>&nbsp;| 이진아</span>
-                                </div>
-                            </div>
-                            <input name="paging_param" type="hidden" value="1571314103000">
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Item Three</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
             </div>
-        </li>
-        </ul>
-       
-     </section>
-  
-</div>
+          </div>
+          
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Item Four</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Item Five</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Item Six</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <!-- /.col-lg-9 -->
-    </div>
     </div>
     </div>
     <!-- /.row -->
