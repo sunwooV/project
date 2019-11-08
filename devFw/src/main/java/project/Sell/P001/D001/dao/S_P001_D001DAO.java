@@ -18,4 +18,5 @@ public interface S_P001_D001DAO {
 	
 	
 	public void insertProduct(Map<String, Object> datahMap) throws DataAccessException;
+	public void insertTag(Map<String, Object> datahMap) throws DataAccessException;
 }

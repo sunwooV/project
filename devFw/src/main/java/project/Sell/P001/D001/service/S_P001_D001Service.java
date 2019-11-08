@@ -17,4 +17,5 @@ public interface S_P001_D001Service {
 
 	 
 	public void insertProduct(Map<String, Object> datahMap) throws Exception;
+	public void insertTag(Map<String, Object> datahMap) throws Exception;
 }

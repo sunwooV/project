@@ -30,7 +30,11 @@
 		<result property="auction_end_date" column="auction_end_date" />
 		<result property="detail" column="detail" />
 		<result property="represent_image" column="represent_image" />
-		<result property="tag_list" column="tag_list" />
+		<result property="tag1" column="tag1" />
+		<result property="tag2" column="tag2" />
+		<result property="tag3" column="tag3" />
+		<result property="tag4" column="tag4" />
+		<result property="tag5" column="tag5" />
 		<result property="prodViews" column="prodViews" />
 	</resultMap>
 	<resultMap id="S_P001_D002Result03" type="S_P001_D002VO">
@@ -63,7 +67,7 @@
 	
 	<select id="detailProduct" resultMap="S_P001_D002Result01" parameterType="java.util.Map">
          select *
-         from   product	
+         from   product
       <where>
       	prod_number = ${prod_number }
       </where>

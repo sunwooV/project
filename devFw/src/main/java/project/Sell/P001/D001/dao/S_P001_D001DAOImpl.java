@@ -43,6 +43,9 @@ public class S_P001_D001DAOImpl implements S_P001_D001DAO {
 		sqlSession.update("Sell.p001_d001.enrollProduct", datahMap);
 	}
 	
-	
+	@Override
+	public void insertTag(Map<String, Object> datahMap) throws DataAccessException {
+		sqlSession.update("Sell.p001_d001.enrollTag", datahMap);
+	}
 
 }

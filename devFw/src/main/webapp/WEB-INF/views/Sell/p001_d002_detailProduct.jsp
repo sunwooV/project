@@ -292,6 +292,7 @@ input[type="number"]::-webkit-inner-spin-button {
 					<P> 플리 </P>
 				</c:if>
 				<h1>${product.prod_title }</h1>
+				<!-- <h3>#${product.tag1 }, #${product.tag2 }, #${product.tag3 }, #${product.tag4 }, #${product.tag5 }</h3> -->
 				<h3 id="gray-text">${product.memberId }</h3>
 				<br>
 				<c:choose>

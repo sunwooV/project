@@ -45,6 +45,10 @@ public class S_P001_D001ServiceImpl implements S_P001_D001Service {
 		S_P001_D001DAO.insertProduct(datahMap);
 		
 	}
-	
+	@Override
+	public void insertTag(Map<String, Object> datahMap) throws Exception {
+		S_P001_D001DAO.insertTag(datahMap);
+		
+	}
 
 }

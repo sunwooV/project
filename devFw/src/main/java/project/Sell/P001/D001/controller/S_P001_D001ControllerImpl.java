@@ -87,6 +87,7 @@ public class S_P001_D001ControllerImpl implements S_P001_D001Controller {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		try {
 			S_P001_D001Service.insertProduct(dataMap);
+			S_P001_D001Service.insertTag(dataMap);
 			
 			response.sendRedirect("/devFw/main.do");
 			

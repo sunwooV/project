@@ -61,32 +61,51 @@
 	</select>
 	
 	<select id="detailProduct" resultMap="S_P001_D001Result02" parameterType="java.util.Map">
+	<![CDATA[
          select *
          from   product	
+       ]]>
       <where>
+      <![CDATA[
       	prod_number = ${prod_number }
+       ]]>
       </where>
 	</select>
 
 	<insert id="enrollProduct" parameterType="java.util.Map">
 		<selectKey keyProperty="prod_number" resultType="int" order="BEFORE">
+		<![CDATA[
 			SELECT nvl2((max(prod_number) + 1), (max(prod_number) + 1), 1)
 			FROM product
+		 ]]>
 		</selectKey>
 		<choose>
 			<when test="auction_date != null and auction_date != 10"> <!-- 경매 체크했을 때 -->
+			<![CDATA[
 				INSERT INTO product (prod_number, reused_yn, auction_yn, flea_yn, auction_price, auction_bid, auction_date, auction_start_date, auction_end_date, prod_category_code, memberId, prod_price, prod_amount, prod_title, send_way, post_date, sale_percent, buy_price, direct_area, editor, represent_image)
 				VALUES (#{prod_number}, #{reused_yn}, #{auction_yn}, #{flea_yn}, #{auction_price}, #{auction_price}, #{auction_date}, sysdate, sysdate+#{auction_date}, #{prod_category_code}, #{memberId}, #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{images})
+			 ]]>
 			</when>
 			<when test="auction_date == 10"> <!-- test -->
+			<![CDATA[
 				INSERT INTO product (prod_number, reused_yn, auction_yn, flea_yn, auction_price, auction_bid, auction_date, auction_start_date, auction_end_date, prod_category_code, memberId, prod_price, prod_amount, prod_title, send_way, post_date, sale_percent, buy_price, direct_area, editor, represent_image)
 				VALUES (#{prod_number}, #{reused_yn}, #{auction_yn}, #{flea_yn}, #{auction_price}, #{auction_bid}, #{auction_date}, sysdate, sysdate+10/60/24, #{prod_category_code}, #{memberId}, #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{images})
+			 ]]>
 			</when>
 			<otherwise> <!-- 경매 외 다른 메뉴 선택했을 때 -->
+			<![CDATA[
 				INSERT INTO product (prod_number, reused_yn, auction_yn, flea_yn, prod_category_code, memberId, prod_price, prod_amount, prod_title, send_way, post_date, sale_percent, buy_price, direct_area, editor, represent_image)
 				VALUES (#{prod_number}, #{reused_yn}, #{auction_yn}, #{flea_yn}, #{prod_category_code}, #{memberId}, #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{images})
+			 ]]>
 			</otherwise>
 		</choose>
+	</insert>
+	
+	<insert id="enrollTag" parameterType="java.util.Map">
+	<![CDATA[
+		INSERT INTO tag 
+		VALUES (#{prod_number}, #{tag1}, #{tag2}, #{tag3}, #{tag4}, #{tag5})
+	 ]]>			
 	</insert>
 
 </mapper>

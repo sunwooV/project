@@ -36,13 +36,13 @@
 				<li class="nav-item active"><a class="nav-link" href="./main.do">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/joinInit.do">Join</a></li>
+				<li class="nav-item"><a class="nav-link" href="./joinInit.do">Join</a></li>
 				<c:set var="member" value="${member }"/>
 							<c:if test ="${ member == null}">
-							      <li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/loginInit.do">Login</a></li>
+							      <li class="nav-item"><a class="nav-link" href="./loginInit.do">Login</a></li>
 							      </c:if>
 							    <c:if test ="${ member !=null}">
-							      <li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/logout.do">LOGOUT</a></li>
+							      <li class="nav-item"><a class="nav-link" href="./logout.do">LOGOUT</a></li>
 							      </c:if>
 				<li class="nav-item"><a class="nav-link" href="#">shopping list</a></li>
 				<li class="nav-item"><a class="nav-link" href="/devFw/fleaCreateStoreType.do">플리마켓 스토어 개설하기</a></li>
@@ -53,6 +53,7 @@
 				<button class="btn btn-secondary my-2 my-sm-0" id="btnsearch"
 					type="submit">Search</button>
 			</form>
+			<input type="button" onclick="location.href='./enroll.do'" value="상품 등록하기">
 		</div>
 	</nav>
 	<!--  -->

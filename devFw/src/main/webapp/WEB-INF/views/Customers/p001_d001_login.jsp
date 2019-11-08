@@ -45,7 +45,7 @@
 					 </p>
 					 <p class="w3-center">
 					 <a href="#"class="find_id_btn">Forgot ID?</a><br>
-					 <a href="http://localhost:8090/devFw/find_pw_form.do">Forgot Password?</a>
+					 <a href="./find_pw_form.do">Forgot Password?</a>
 					 </p>
 				</form>
 			</div>
