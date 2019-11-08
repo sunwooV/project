@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -7,6 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>금도끼은도끼</title>
+<style>
+#sale_price{
+	color:#BDBDBD;
+	font-size:medium;
+	text-decoration:line-through;
+}
+</style>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/main.css">
@@ -180,10 +188,16 @@
 										<h3>${newProduct.prod_title }</h3>
 										<c:choose>
 											<c:when test="${newProduct.auction_yn == 'y' }">
-												<p id="p">${newProduct.auction_bid }</p>
+												<p id="p"><fmt:formatNumber value="${newProduct.auction_bid }" type="number" />원</p>
 											</c:when>
 											<c:otherwise>
-												<p id="p">${newProduct.prod_price }</p>
+												<c:if test="${newProduct.sale_percent != null }">
+													<p id="p"><fmt:formatNumber value="${newProduct.prod_price * (1-(newProduct.sale_percent*0.01)) }" type="number" />원</p>
+													<span id="sale_price"><fmt:formatNumber value="${newProduct.prod_price }" type="number" />원</span>
+												</c:if>
+												<c:if test="${newProduct.sale_percent == null }">
+													<p id="p"><fmt:formatNumber value="${newProduct.prod_price }" type="number" />원</p>
+												</c:if>
 											</c:otherwise>
 										</c:choose>
 										
