@@ -95,7 +95,6 @@ hr {
 h1, h2, h3, h4, h5, h6 {
 	margin-top: 0;
 	margin-bottom: 0.5rem;
-	padding-left:5%;
 }
 
 #p {
@@ -586,19 +585,19 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	color: #1a1a1a;
 }
 
-h1, .h1 {
+.h1 {
 	font-size: 2rem;
-	padding-left:10%
+	
 }
 
-h2, .h2 {
+.h2 {
 	font-size: 1.75rem;
-	padding-left:10%
+	
 }
 
 h3 {
 	font-size: 1.5rem;
-	padding-left:10%
+	
 }
 
 h3.footer {
@@ -609,19 +608,18 @@ h3.footer {
 	    padding-left: 22px;
 }
 
-h4, .h4 {
+.h4 {
 	font-size: 1.25rem;
-	padding-left:10%
 }
 
-h5, .h5 {
+.h5 {
 	font-size: 1rem;
-	padding-left:10%
+
 }
 
-h6, .h6 {
+.h6 {
 	font-size: 0.75rem;
-	padding-left:10%
+	
 }
 
 .lead {
@@ -11043,7 +11041,6 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	text-transform: uppercase;
 	letter-spacing: 3px;
 }
 
