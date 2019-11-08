@@ -24,7 +24,7 @@
 	 -->
 	</div><p> 
 	
-	<a href="/devFw/FleaMarket/P002/D005/updateMember.do?&flea_code=1&flea_name=${map.flea_name }&intro_cotent=${map.intro_cotent }"> 마이스토어 가기 </a> </p>
+	<a href="/devFw/fleaProfileUpdate.do?&flea_code=1&flea_name=${map.flea_name }&intro_cotent=${map.intro_cotent }"> 마이스토어 가기 </a> </p>
 	
 </body>
 </html>

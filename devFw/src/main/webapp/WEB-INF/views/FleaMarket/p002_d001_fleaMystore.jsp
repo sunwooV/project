@@ -441,7 +441,7 @@ $(document).ready(function(){
 <!-- 프로필 수정 팝업창 -->
  <div class="messagepop pop">
  	<h2>프로필 설정</h2>
-    <form method="post" id="new_message" action="/devFw/FleaMarket/P002/D005/upload.do" enctype="multipart/form-data">
+    <form method="post" id="new_message" action="/devFw/fleaProfileEdit.do" enctype="multipart/form-data">
         <p><label for="flea_name">플리마켓 스토어명&nbsp;</label><input type="text" size="30" name="flea_name" id="flea_name" /></p>
         <p><label for="intro_cotent">소개글</label><br><textarea rows="6" name="intro_cotent" id="intro_cotent" cols="35"></textarea></p>
  		

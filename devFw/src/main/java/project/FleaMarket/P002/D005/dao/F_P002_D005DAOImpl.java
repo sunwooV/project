@@ -19,8 +19,7 @@ public class F_P002_D005DAOImpl implements F_P002_D005DAO {
 
 	@Override
 	public List<F_P002_D005VO> searchList(Map<String, Object> searchMap) throws DataAccessException {
-		List<F_P002_D005VO> list = sqlSession.selectList("hm.F_P002_D005.searchList", searchMap);
-		System.out.println("dao ������ Ȯ��");
+		List<F_P002_D005VO> list = sqlSession.selectList("FleaMarket.p002_d005.searchList", searchMap);
 		for(int i = 0; i < list.size(); i++)
 		{
 			System.out.println(list.get(i));
@@ -30,7 +29,7 @@ public class F_P002_D005DAOImpl implements F_P002_D005DAO {
 	
 	@Override
 	public List<F_P002_D005VO> searchMod(Map<String, Object> searchMap) throws DataAccessException {
-		List<F_P002_D005VO> list = sqlSession.selectList("hm.F_P002_D005.searchMod", searchMap);
+		List<F_P002_D005VO> list = sqlSession.selectList("FleaMarket.p002_d005.searchMod", searchMap);
 		return list;
 	}
 
@@ -42,7 +41,7 @@ public class F_P002_D005DAOImpl implements F_P002_D005DAO {
 
 	@Override
 	public void updateMember(Map<String, Object> datahMap) throws DataAccessException {
-		sqlSession.update("hm.F_P002_D005.updateMember", datahMap);
+		sqlSession.update("FleaMarket.p002_d005.updateMember", datahMap);
 	}
 
 	@Override

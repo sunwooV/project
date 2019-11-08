@@ -28,7 +28,7 @@ h1{
 				radio_bnt_value = radio_btn[i].value;
 				//alert(radio_bnt_value);
 				frmCheck.method = "post";
-				frmCheck.action = "${contextPath}/FleaMarket/P001/D001/JoinForm.do?type= " + radio_bnt_value;
+				frmCheck.action = "${contextPath}/fleaCreateStoreForm.do?type= " + radio_bnt_value;
 				frmCheck.submit();
 			}
 		}

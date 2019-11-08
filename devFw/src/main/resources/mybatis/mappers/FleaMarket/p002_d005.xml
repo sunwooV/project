@@ -3,8 +3,8 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="hm.F_P001_D003">
-	<resultMap id="p0001Result01" type="F_P002_D001VO"> 
+<mapper namespace="FleaMarket.p002_d005">
+	<resultMap id="p002_d005_Result01" type="F_P002_D005VO"> 
 		<result property="flea_code" column="flea_code" />
 		<result property="memberid" column="memberid" />
 		<result property="flea_name" column="flea_name" />
@@ -15,26 +15,23 @@
 		<result property="flea_group" column="flea_group" />
 	</resultMap>
 
-	<select id="searchList" resultMap="p0001Result01" parameterType="java.util.Map"> 
+	<insert id="insertMember" parameterType="java.util.Map"> 
+        insert into flea(flea_name, intro_cotent) values(#{flea_name}, #{intro_cotent})
+	</insert>
+
+	<select id="searchList" resultMap="p002_d005_Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         select flea_code, memberid, flea_name, intro_cotent, flea_like_count, utl_raw.cast_to_varchar2(profile_photo), utl_raw.cast_to_varchar2(main_photo), flea_group
-         from flea
+         select seller_memberid, review_group, review_number, prod_number, buyer_memberid, review_score, review_title, utl_raw.cast_to_varchar2(review_photo), review_content, review_date, flea_code      
+         from review
       ]]>
 		<where>
 			<if test=" p_id != ''  and  p_id != null">
-				flea_code = #{p_id}
+				review_number = #{p_id}
 			</if>
 		</where>
 	</select>
 
-	<insert id="insertMember" parameterType="java.util.Map"> 
-
-        insert into flea_code, memberid, flea_name, intro_cotent, flea_like_count, profile_photo, main_photo, flea_group
-        values(#{flea_code}, #{memberid}, #{flea_name}, #{intro_cotent}, #{flea_like_count}, #{profile_photo}, #{main_photo}, #{flea_group})
-
-	</insert>
-
-	<select id="searchMod" resultMap="p0001Result01" parameterType="java.util.Map"> 
+	<select id="searchMod" resultMap="p002_d005_Result01" parameterType="java.util.Map"> 
       <![CDATA[
          select id, pwd, name, email, joinDate
          from   t_member
@@ -47,13 +44,16 @@
 	</select>
 
 	<update id="updateMember" parameterType="java.util.Map">
-		update t_member
-		set  pwd = #{pwd}
-		   , name = #{name}
-		   , email = #{email}
-		where id = #{id}
+	<![CDATA[
+		update flea
+		set  flea_name = #{flea_name}
+		   , intro_cotent = #{intro_cotent}
+	]]>
+		<where>
+		<![CDATA[	
+			flea_code = #{flea_code}
+		]]>
+		</where>
 	</update>
-	
-	
 
 </mapper>

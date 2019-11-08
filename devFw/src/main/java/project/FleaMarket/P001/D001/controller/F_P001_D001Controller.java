@@ -11,13 +11,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 public interface F_P001_D001Controller {
-	//public ModelAndView searchList(String p_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	//public ModelAndView searchMod(String p_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView JoinStart(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView searchInsert(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView JoinForm(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	//public ModelAndView Join(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	//public ResponseEntity updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ResponseEntity insertMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ModelAndView fleaCreateStoreType(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView fleaCreateStoreForm(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ResponseEntity fleaCreateStoreInsert(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

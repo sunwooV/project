@@ -20,7 +20,7 @@ public class F_P001_D001VO {
 	private String join_status = "";
 	
 	public F_P001_D001VO() {
-		System.out.println("MemberVO »ı¼ºÀÚ È£Ãâ");
+		System.out.println("MemberVO ìƒì„±ì í˜¸ì¶œ");
 	}
 
 	public String getJoin_code() {

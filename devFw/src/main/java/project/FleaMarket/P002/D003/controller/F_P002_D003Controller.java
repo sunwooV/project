@@ -11,10 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 public interface F_P002_D003Controller {
-	public ModelAndView searchList(String p_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView searchMod(String p_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView searchInit(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView searchInsert(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	
-	public ResponseEntity updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView fleaStory(String p_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 }

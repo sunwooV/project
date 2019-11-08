@@ -11,13 +11,13 @@
 	function frm_add() {
 		var frmPro = document.frm;
 		frmPro.method = "post";
-		frmPro.action = "${contextPath}/FleaMarket/P001/D001/JoinStart.do"; 
+		frmPro.action = "${contextPath}/fleaCreateStoreType.do"; 
 		frmPro.submit();
 	}
    </script>
 </head> 
 <body>
-   <form name="frm" method="post" action="${contextPath}/FleaMarket/P002/D001/searchList.do">   
+   <form name="frm" method="post" action="${contextPath}/fleaMystore.do">   
 	   플리마켓 코드:<input type="text" name="p_id"><br>
 	   <input type ="submit" value="해당 플리마켓으로 이동"><br>
 	   <input type = "button" value = "플리마켓 개설" onclick = "frm_add()">

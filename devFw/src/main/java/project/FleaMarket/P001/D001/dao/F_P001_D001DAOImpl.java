@@ -19,8 +19,7 @@ public class F_P001_D001DAOImpl implements F_P001_D001DAO {
 
 	@Override
 	public List<F_P001_D001VO> searchList(Map<String, Object> searchMap) throws DataAccessException {
-		List<F_P001_D001VO> list = sqlSession.selectList("hm.F_P001_D001.searchList", searchMap);
-		System.out.println("dao 데이터 확인");
+		List<F_P001_D001VO> list = sqlSession.selectList("FleaMarket.p001_d001.searchList", searchMap);
 		for(int i = 0; i < list.size(); i++)
 		{
 			System.out.println(list.get(i));
