@@ -45,7 +45,7 @@
 							      <li class="nav-item"><a class="nav-link" href="http://localhost:8090/devFw/logout.do">LOGOUT</a></li>
 							      </c:if>
 				<li class="nav-item"><a class="nav-link" href="#">shopping list</a></li>
-				<li class="nav-item"><a class="nav-link" href="/devFw/FleaMarket/P001/D001/JoinStart.do">플리마켓 스토어 개설하기</a></li>
+				<li class="nav-item"><a class="nav-link" href="/devFw/fleaCreateStoreType.do">플리마켓 스토어 개설하기</a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="text" id="searchbar"
