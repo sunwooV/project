@@ -23,7 +23,7 @@ public class B_P001_D004DAOImpl implements B_P001_D004DAO {
 	public List<B_P001_D004VO> insertPaymentInfo(Map<String, Object> searchMap) throws DataAccessException {
 	
 		//sqlSession.selecList("mapping되는 xml.그xml의 id값",)
-		List<B_P001_D004VO> list = sqlSession.selectList("b_p001_d004.insertPaymentInfo", searchMap);
+		List<B_P001_D004VO> list = sqlSession.selectList("Buy.b_p001_d004.insertPaymentInfo", searchMap);
 		return list;
 	}
 

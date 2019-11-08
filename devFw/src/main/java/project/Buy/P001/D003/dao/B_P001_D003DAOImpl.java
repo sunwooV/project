@@ -23,7 +23,7 @@ public class B_P001_D003DAOImpl implements B_P001_D003DAO {
 	public List<B_P001_D003VO> selectCart(Map<String, Object> searchMap) throws DataAccessException {
 		System.out.println("Buy P001 D003 DAO 당");
 		//sqlSession.selecList("mapping되는 xml.그 xml의 id",)
-		List<B_P001_D003VO> list = sqlSession.selectList("b_p001_d003.selectCart", searchMap);
+		List<B_P001_D003VO> list = sqlSession.selectList("Buy.b_p001_d003.selectCart", searchMap);
 		return list;
 	}
 
