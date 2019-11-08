@@ -20,14 +20,14 @@
 	
 <!-- 회원 가입 -->
 	<insert id="join_member" parameterType="C_P001_D002_VO">
-		insert into member(MEMBERID, PW, EMAIL, NAME, BIRTH, ADDRESS, ROADADDRESS, JIBUNADDRESS, DETAILADDRESS, EXTRAADADDRESS ,NICKNAME, PHONENUMBER, REG_DATE, LOG_DATE,APPROVAL_STATUS, APPROVAL_KEY, MEMBER_GROUP)
-		values(#{memberid}, #{pw}, #{email}, #{name}, #{birth}, #{address}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, #{extraAddress}, #{nickname}, #{phonenumber}, sysdate, sysdate,'false', #{approval_key}, 1)
+		insert into member(MEMBERID, PW, EMAIL, NAME, BIRTH, ADDRESS, ROADADDRESS, JIBUNADDRESS, DETAILADDRESS, EXTRAADADDRESS ,NICKNAME, PHONENUMBER, REG_DATE, LOG_DATE,APPROVAL_STATUS, APPROVAL_KEY, MEMBER_GROUP, SELLER_GROUP, FLEA_SELLER_GROUP, BLACKLIST_YN)
+		values(#{memberid}, #{pw}, #{email}, #{name}, #{birth}, #{address}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, #{extraAddress}, #{nickname}, #{phonenumber}, sysdate, sysdate,'false', #{approval_key}, 'N', 'N','N', 'N')
 	</insert>
 	
 	<!-- 회원 가입 -->
 	<insert id="kakao_join_member" parameterType="C_P001_D002_VO">
-		insert into member(MEMBERID, EMAIL, NAME, BIRTH, ADDRESS, ROADADDRESS, JIBUNADDRESS, DETAILADDRESS, EXTRAADADDRESS ,NICKNAME, PHONENUMBER, REG_DATE, LOG_DATE, MEMBER_GROUP)
-		values(#{memberid}, #{email}, #{name}, #{birth}, #{address}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, #{extraAddress}, #{nickname}, #{phonenumber}, sysdate, sysdate,3)
+		insert into member(MEMBERID, EMAIL, NAME, BIRTH, ADDRESS, ROADADDRESS, JIBUNADDRESS, DETAILADDRESS, EXTRAADADDRESS ,NICKNAME, PHONENUMBER, REG_DATE, LOG_DATE, MEMBER_GROUP, SELLER_GROUP, FLEA_SELLER_GROUP, BLACKLIST_YN)
+		values(#{memberid}, #{email}, #{name}, #{birth}, #{address}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, #{extraAddress}, #{nickname}, #{phonenumber}, sysdate, sysdate,'Y','N','N', 'N')
 	</insert>
 
 
