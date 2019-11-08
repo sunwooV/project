@@ -9,7 +9,7 @@
 <title>금도끼은도끼</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="${contextPath }/resources/css/main.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/main.css">
 <!-- <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 <script
@@ -20,10 +20,7 @@
 	href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Do+Hyeon|Merriweather|Noto+Sans+KR&display=swap&subset=korean"
 	rel="stylesheet">
 </head>
-<body>
-	
-	
-	
+<body>	
 	<div class="jumbotron">
 		<h1 class="display-3" id="title">세상에 없던 3 in 1</h1>
 		<p id="p" style="padding-left: 851px;">경매 중고 플리마켓을 한번에</p>
@@ -56,7 +53,8 @@
 									<p id="p">7000원</p>
 
 									<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-									<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+									<input type="hidden" name="item_num" id="goToCart">
+									<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 
 								</div>
 							</div>
@@ -70,7 +68,7 @@
 									<p id="p">7000원</p>
 									<p id="p">
 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 									</p>
 								</div>
 							</div>
@@ -84,7 +82,7 @@
 									<p id="p">7000원</p>
 									<p id="p">
 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 									</p>
 								</div>
 							</div>
@@ -98,7 +96,7 @@
 									<p id="p">7000원</p>
 									<p id="p">
 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 									</p>
 								</div>
 							</div>
@@ -114,7 +112,7 @@
 									<p id="p">7000원</p>
 									<p id="p">
 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 									</p>
 								</div>
 							</div>
@@ -128,7 +126,7 @@
 									<p id="p">7000원</p>
 									<p id="p">
 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 									</p>
 								</div>
 							</div>
@@ -142,7 +140,7 @@
 									<p id="p">7000원</p>
 									<p id="p">
 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 									</p>
 								</div>
 							</div>
@@ -156,7 +154,7 @@
 									<p id="p">7000원</p>
 									<p id="p">
 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 									</p>
 								</div>
 							</div>
@@ -192,7 +190,7 @@
 										
 										<p id="p">
 											<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-											<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+											<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 										</p>
 									</div>
 								</div>
@@ -211,7 +209,7 @@
 									<p id="p">7000원</p>
 									<p id="p">
 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 									</p>
 								</div>
 							</div>
@@ -225,7 +223,7 @@
 									<p id="p">7000원</p>
 									<p id="p">
 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 									</p>
 								</div>
 							</div>
@@ -239,7 +237,7 @@
 									<p id="p">7000원</p>
 									<p id="p">
 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 									</p>
 								</div>
 							</div>
@@ -253,7 +251,7 @@
 									<p id="p">7000원</p>
 									<p id="p">
 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 									</p>
 								</div>
 							</div>
@@ -271,7 +269,7 @@
 									<p id="p">7000원</p>
 									<p id="p">
 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 									</p>
 								</div>
 							</div>
@@ -285,7 +283,7 @@
 									<p id="p">7000원</p>
 									<p id="p">
 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 									</p>
 								</div>
 							</div>
@@ -299,7 +297,7 @@
 									<p id="p">7000원</p>
 									<p id="p">
 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 									</p>
 								</div>
 							</div>
@@ -313,7 +311,7 @@
 									<p id="p">7000원</p>
 									<p id="p">
 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
+										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 									</p>
 								</div>
 							</div>

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import project.Buy.P001.D005.service.B_P001_D005Service;
 import project.Buy.P001.D005.vo.B_P001_D005VO;
+import project.Buy.P001.D005.vo.KakaoPayApprovalVO;
 
 
 @Controller("B_P001_D005Controller")
@@ -22,8 +23,7 @@ public class B_P001_D005ControllerImpl implements B_P001_D005Controller{
 	private static final Logger Logger = LoggerFactory.getLogger(B_P001_D005ControllerImpl.class);
 	@Autowired
 	B_P001_D005Service b_p001_d005Service;
-	@Autowired
-	B_P001_D005VO b_p001_d005VO;
+
 
 	@Override
 	@RequestMapping(value = "/kakaopay.do", method = { RequestMethod.GET, RequestMethod.POST })

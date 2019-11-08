@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class B_P001_D005VO {
 	
 	
-	//response
+	//response 받을 데이터!
     private String aid, tid, cid, sid;
     private String partner_order_id, partner_user_id, payment_method_type;
     private AmountVO amount;

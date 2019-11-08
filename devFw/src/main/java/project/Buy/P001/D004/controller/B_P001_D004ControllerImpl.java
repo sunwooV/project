@@ -29,7 +29,7 @@ public class B_P001_D004ControllerImpl implements B_P001_D004Controller{
 
 	public ModelAndView insertPaymentInfo(HttpSession session, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		ModelAndView mav = new ModelAndView("Buy/payInfo");
+		ModelAndView mav = new ModelAndView("Buy/p001_d001_payInfo");
 		return mav;
 	}
 	
