@@ -9,7 +9,7 @@
 		<result property="category_name" column="category_name" />
 		<result property="high_category" column="high_category" />
 	</resultMap>
-	<resultMap id="S_P001_D002Result01" type="S_P001_D002VO">
+	<resultMap id="S_P001_D001Result02" type="S_P001_D002VO">
 		<result property="prod_number" column="prod_number" />
 		<result property="prod_group" column="prod_group" />
 		<result property="prod_category_code" column="prod_category_code" />
@@ -53,14 +53,14 @@
 		
 	</select>
 	
-	<select id="searchProduct" resultMap="S_P001_D002Result01" parameterType="java.util.Map">
+	<select id="searchProduct" resultMap="S_P001_D001Result02" parameterType="java.util.Map">
 	 <![CDATA[
          select *
          from   product	
       ]]>
 	</select>
 	
-	<select id="detailProduct" resultMap="S_P001_D002Result01" parameterType="java.util.Map">
+	<select id="detailProduct" resultMap="S_P001_D001Result02" parameterType="java.util.Map">
          select *
          from   product	
       <where>

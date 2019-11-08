@@ -3,7 +3,7 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Sell.p001_d001">
+<mapper namespace="Sell.p001_d002">
 	<resultMap id="S_P001_D002Result02" type="S_P001_D001VO">
 		<result property="category_code" column="category_code" />
 		<result property="category_name" column="category_name" />
