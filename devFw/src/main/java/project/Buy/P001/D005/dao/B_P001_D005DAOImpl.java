@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 
-@Repository("B_P001_D0045DAO")
+@Repository("B_P001_D005DAO")
 public class B_P001_D005DAOImpl implements B_P001_D005DAO {
 	@Autowired
 	private SqlSession sqlSession;

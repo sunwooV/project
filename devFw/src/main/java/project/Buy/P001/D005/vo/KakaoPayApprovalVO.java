@@ -4,11 +4,11 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
-@Component("B_P001_D005VO")
-public class B_P001_D005VO {
+@Component("KakaoPayApprovalVO")
+public class KakaoPayApprovalVO {
 	
 	
-	//response 받을 데이터!
+	//response
     private String aid, tid, cid, sid;
     private String partner_order_id, partner_user_id, payment_method_type;
     private AmountVO amount;
@@ -19,8 +19,8 @@ public class B_P001_D005VO {
     
 	
 		
-	public B_P001_D005VO() {
-		System.out.println("B_P001_D005VO생성자호출!");
+	public KakaoPayApprovalVO() {
+		System.out.println("KakaoPayApprovalVO 생성자호출!");
 	}
 
 

@@ -19,25 +19,25 @@
    </select>
 	
 <!-- 회원 가입 -->
-	<insert id="join_member" parameterType="C_P001_D002_VO">
+	<insert id="join_member" parameterType="C_P001_D001VO">
 		insert into member(MEMBERID, PW, EMAIL, NAME, BIRTH, ADDRESS, ROADADDRESS, JIBUNADDRESS, DETAILADDRESS, EXTRAADADDRESS ,NICKNAME, PHONENUMBER, REG_DATE, LOG_DATE,APPROVAL_STATUS, APPROVAL_KEY, MEMBER_GROUP, SELLER_GROUP, FLEA_SELLER_GROUP, BLACKLIST_YN)
 		values(#{memberid}, #{pw}, #{email}, #{name}, #{birth}, #{address}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, #{extraAddress}, #{nickname}, #{phonenumber}, sysdate, sysdate,'false', #{approval_key}, 'N', 'N','N', 'N')
 	</insert>
 	
 	<!-- 회원 가입 -->
-	<insert id="kakao_join_member" parameterType="C_P001_D002_VO">
+	<insert id="kakao_join_member" parameterType="C_P001_D001VO">
 		insert into member(MEMBERID, EMAIL, NAME, BIRTH, ADDRESS, ROADADDRESS, JIBUNADDRESS, DETAILADDRESS, EXTRAADADDRESS ,NICKNAME, PHONENUMBER, REG_DATE, LOG_DATE, MEMBER_GROUP, SELLER_GROUP, FLEA_SELLER_GROUP, BLACKLIST_YN)
 		values(#{memberid}, #{email}, #{name}, #{birth}, #{address}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, #{extraAddress}, #{nickname}, #{phonenumber}, sysdate, sysdate,'Y','N','N', 'N')
 	</insert>
 
 
 <!-- 이메일 인증 -->
-<update id="approval_member" parameterType="C_P001_D002_VO">
+<update id="approval_member" parameterType="C_P001_D001VO">
 	update member set approval_status = 'true' where email = #{email} and approval_key = #{approval_key}
 </update>
 
 <!-- 로그인 -->
-	<select id="login" parameterType="String" resultType="C_P001_D002_VO">
+	<select id="login" parameterType="String" resultType="C_P001_D001VO">
 		select * from member where MEMBERID = #{MEMBERID}
 	</select>
 	
@@ -48,7 +48,7 @@
 	</update>
 	
 	<!-- 비밀번호 변경 -->
-	<update id="update_pw" parameterType="C_P001_D002_VO">
+	<update id="update_pw" parameterType="C_P001_D001VO">
 		update member set PW = #{pw} where MEMBERID = #{memberid}
 	</update>
 	

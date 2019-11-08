@@ -2,6 +2,13 @@ package project.Buy.P001.D005.vo;
 
 public class AmountVO {
 	 private Integer total, tax_free, vat, point, discount;
+	 
+	 
+
+	public AmountVO() {
+		System.out.println("B_P001_D005VO 시작");
+		System.out.println("AmountVO 생성자호출");
+	}
 
 	public Integer getTotal() {
 		return total;

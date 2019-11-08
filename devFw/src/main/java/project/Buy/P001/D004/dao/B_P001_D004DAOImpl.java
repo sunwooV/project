@@ -22,8 +22,8 @@ public class B_P001_D004DAOImpl implements B_P001_D004DAO {
 	@Override
 	public List<B_P001_D004VO> insertPaymentInfo(Map<String, Object> searchMap) throws DataAccessException {
 	
-		//sqlSession.selecList("mappingµÈ xml.±×xmlÀÇ id°ª",)
-		List<B_P001_D004VO> list = sqlSession.selectList("B_P001_D004.insertPaymentInfo", searchMap);
+		//sqlSession.selecList("mappingë˜ëŠ” xml.ê·¸xmlì˜ idê°’",)
+		List<B_P001_D004VO> list = sqlSession.selectList("Buy.b_p001_d004.insertPaymentInfo", searchMap);
 		return list;
 	}
 

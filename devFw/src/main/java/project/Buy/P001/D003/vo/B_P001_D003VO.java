@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 public class B_P001_D003VO {
 
 
-	private String photo1; // ªÛ«∞ ¿ÃπÃ¡ˆ - prodphotoø°º≠
-	private String prod_name;//ªÛ«∞ ¿ÃπÃ¡ˆ - ªÛ«∞ø°º≠ 
+	private String photo1; // prodphoto
+	private String prod_name;//
 	
-	// ¿Ã«œ ƒ´∆Æø°º≠
+	// cart Info
 	private String member_ID;
 	private String prod_number;
 	private int cart_count;
@@ -20,7 +20,7 @@ public class B_P001_D003VO {
 	
 	
 	public B_P001_D003VO() {
-		System.out.println("B_P001_D003VO »£√‚");
+		System.out.println("B_P001_D003VO Ìò∏Ï∂ú");
 	}
 	public String getPhoto1() {
 		return photo1;

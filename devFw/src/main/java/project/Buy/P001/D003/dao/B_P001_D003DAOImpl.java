@@ -21,9 +21,9 @@ public class B_P001_D003DAOImpl implements B_P001_D003DAO {
 
 	@Override
 	public List<B_P001_D003VO> selectCart(Map<String, Object> searchMap) throws DataAccessException {
-		System.out.println("Buy P001 D003 DAO ´ç");
-		//sqlSession.selecList("mappingµÈ xml.±×xmlÀÇ id°ª",)
-		List<B_P001_D003VO> list = sqlSession.selectList("B_P001_D003.selectCart", searchMap);
+		System.out.println("Buy P001 D003 DAO ë‹¹");
+		//sqlSession.selecList("mappingë˜ëŠ” xml.ê·¸ xmlì˜ id",)
+		List<B_P001_D003VO> list = sqlSession.selectList("Buy.b_p001_d003.selectCart", searchMap);
 		return list;
 	}
 

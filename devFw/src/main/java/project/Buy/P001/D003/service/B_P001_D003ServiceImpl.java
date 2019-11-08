@@ -20,7 +20,7 @@ public class B_P001_D003ServiceImpl implements B_P001_D003Service{
 
 	@Override
 	public List<B_P001_D003VO> selectCart(Map<String, Object> searchMap) throws DataAccessException {
-		System.out.println("Buy P001 D003 Service ´ç");
+		System.out.println("Buy P001 D003 Service ");
 		List<B_P001_D003VO> list = b_p001_d003DAO.selectCart(searchMap);
 		return list;
 	}

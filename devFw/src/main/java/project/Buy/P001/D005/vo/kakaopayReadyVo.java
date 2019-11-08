@@ -8,6 +8,12 @@ public class kakaopayReadyVo {
 	//response
     private String tid, next_redirect_pc_url;
     private Date created_at;
+    
+    
+	public kakaopayReadyVo() {
+		System.out.println("kakappayReadyVO 생성자 호출");
+		System.out.println("B_P001_D005VO 끝");
+	}
 	public String getTid() {
 		return tid;
 	}

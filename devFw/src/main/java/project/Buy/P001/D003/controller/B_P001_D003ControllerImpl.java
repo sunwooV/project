@@ -24,41 +24,41 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller{
 	@Autowired
 	B_P001_D003VO b_p001_d003VO;
 
-	//Àå¹Ù±¸´Ï Á¶È¸
+	//ì¥ë°”êµ¬ë‹ˆ ì¡°íšŒ
 	@Override
-	@RequestMapping(value = "/Buy/P001/D003/cart.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/cart.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView selectCart(HttpSession session, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		request.setCharacterEncoding("utf-8");
-//		System.out.println("buy P001 D003 ControlleImplÀÇ Á¶È¸ ¸Ş¼Òµå ¾È");
-//		//session ÀúÀåµÈ ¾ÆÀÌµğ 
+//		System.out.println("buy P001 D003 ControlleImplë‹¹");
+//		//sessionìœ¼ë¡œ ì•„ì´ë”” ë°›ì•„ì˜¤ê¸° 
 //		String userId = (String) session.getAttribute("userId");
-//		Map<String, Object> searchMap = new HashMap<String, Object>(); // °Ë»öÁ¶°ÇÀ» ´ãÀ» Map
-//		List<B_P001_D003VO> list = b_p001_d003Service.selectCart(searchMap); // Á¶È¸ ½Ã ¸ğµç °á°ú´Â List·Î ¹Ş´Â´Ù
-		ModelAndView mav = new ModelAndView("Buy/cart"); //view Àü´Ş
-		//mav.addObject("selectCart", list); // dataÀü´Ş
+//		Map<String, Object> searchMap = new HashMap<String, Object>(); // ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Map
+//		List<B_P001_D003VO> list = b_p001_d003Service.selectCart(searchMap); // ï¿½ï¿½È¸ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Listï¿½ï¿½ ï¿½Ş´Â´ï¿½
+		ModelAndView mav = new ModelAndView("Buy/cart"); //view ï¿½ï¿½ï¿½ï¿½
+		//mav.addObject("selectCart", list); // dataï¿½ï¿½ï¿½ï¿½
 		return mav;
 	}
 	
-	//Àå¹Ù±¸´Ï ¼öÁ¤(¿É¼Ç)
+	//ì¥ë°”êµ¬ë‹ˆ ì˜µì…˜ ìˆ˜ì •
 	@Override
-	@RequestMapping(value = "/Buy/P001/D003/editCart.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/editCart.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView editCart(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		ModelAndView mav = new ModelAndView("Buy/cart"); 
+		ModelAndView mav = new ModelAndView("Buy/p001_d003_cart"); 
 		return mav;
 	}
-	//Àå¹Ù±¸´Ï Ãß°¡
+	//ì¥ë°”êµ¬ë‹ˆ ì œí’ˆ ì¶”ê°€
 	@Override
-	@RequestMapping(value = "/Buy/P001/D003/addCart.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/addCart.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView addCart(HttpSession session,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		ModelAndView mav = new ModelAndView("Buy/cart"); 
+		ModelAndView mav = new ModelAndView("Buy/p001_d003_cart"); 
 		return mav;
 	}
-	//Àå¹Ù±¸´Ï »èÁ¦
+	//ì¥ë°”êµ¬ë‹ˆ ëª©ë¡ ì‚­ì œ
 	@Override
-	@RequestMapping(value = "/Buy/P001/D003/delCart.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/delCart.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView delCart(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		return null;
