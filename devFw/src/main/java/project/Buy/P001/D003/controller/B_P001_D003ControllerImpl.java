@@ -33,10 +33,10 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller{
 //		System.out.println("buy P001 D003 ControlleImpl당");
 //		//session으로 아이디 받아오기 
 //		String userId = (String) session.getAttribute("userId");
-//		Map<String, Object> searchMap = new HashMap<String, Object>(); // �˻������� ���� Map
-//		List<B_P001_D003VO> list = b_p001_d003Service.selectCart(searchMap); // ��ȸ �� ��� ����� List�� �޴´�
-		ModelAndView mav = new ModelAndView("Buy/cart"); //view ����
-		//mav.addObject("selectCart", list); // data����
+//		Map<String, Object> searchMap = new HashMap<String, Object>(); //  Map
+//		List<B_P001_D003VO> list = b_p001_d003Service.selectCart(searchMap); //List
+		ModelAndView mav = new ModelAndView("Buy/p001_d003_cart"); //view
+		//mav.addObject("selectCart", list); // data
 		return mav;
 	}
 	
