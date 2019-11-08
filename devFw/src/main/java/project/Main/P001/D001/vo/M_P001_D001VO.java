@@ -1,9 +1,9 @@
-package project.Sell.P001.D002.vo;
+package project.Main.P001.D001.vo;
 
 import org.springframework.stereotype.Component;
 
-@Component("S_P001_D002_VO")
-public class S_P001_D002_VO {
+@Component("M_P001_D001VO")
+public class M_P001_D001VO {
 	private String prod_number;
 	private String reused_yn;
 	private String auction_yn;
@@ -28,14 +28,9 @@ public class S_P001_D002_VO {
 	private String tag_list;
 	private String represent_image;
 	private String auction_price;
-	private String prodViews;
-	private String left_day;
-	private String left_hour;
-	private String left_min;
-	private String left_second;
 	
-	public S_P001_D002_VO(){
-		System.out.println("S_P001_D002_VO 호출");
+	public M_P001_D001VO(){
+		System.out.println("S_P001_D002_VO ȣ��");
 	}
 	public String getProd_number() {
 		return prod_number;
@@ -152,13 +147,13 @@ public class S_P001_D002_VO {
 	public void setAuction_end_date(String aution_end_date) {
 		this.auction_end_date = aution_end_date;
 	}
-	
 	public String getEditor() {
 		return editor;
 	}
 	public void setEditor(String editor) {
 		this.editor = editor;
 	}
+
 	public String getTag_list() {
 		return tag_list;
 	}
@@ -184,37 +179,5 @@ public class S_P001_D002_VO {
 	public void setAuction_price(String auction_price) {
 		this.auction_price = auction_price;
 	}
-	public String getProdViews() {
-		return prodViews;
-	}
-	public void setProdViews(String prodViews) {
-		this.prodViews = prodViews;
-	}
-	public String getLeft_day() {
-		return left_day;
-	}
-	public void setLeft_day(String left_day) {
-		this.left_day = left_day;
-	}
-	public String getLeft_hour() {
-		return left_hour;
-	}
-	public void setLeft_hour(String left_hour) {
-		this.left_hour = left_hour;
-	}
-	public String getLeft_min() {
-		return left_min;
-	}
-	public void setLeft_min(String left_min) {
-		this.left_min = left_min;
-	}
-	public String getLeft_second() {
-		return left_second;
-	}
-	public void setLeft_second(String left_second) {
-		this.left_second = left_second;
-	}
-	
-	
 	
 }

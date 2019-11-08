@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import project.Main.P001.D001.service.M_P001_D001_Service;
+import project.Main.P001.D001.service.M_P001_D001Service;
 
-@Controller("M_P001_D001_Controller")
-public class M_P001_D001_ControllerImpl implements M_P001_D001_Controller {
+@Controller("M_P001_D001Controller")
+public class M_P001_D001ControllerImpl implements M_P001_D001Controller {
 	@Autowired
-	M_P001_D001_Service M_P001_D001_Service;
+	M_P001_D001Service M_P001_D001Service;
 	
 	@Override
 	@RequestMapping(value = "/main.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -29,12 +29,11 @@ public class M_P001_D001_ControllerImpl implements M_P001_D001_Controller {
 		searchMap.put("command", command);	 
 		
 		
-		List newProduct = M_P001_D001_Service.newProduct(searchMap);
+		List newProduct = M_P001_D001Service.newProduct(searchMap);
 		
 
-		ModelAndView mav = new ModelAndView("main/main");
+		ModelAndView mav = new ModelAndView("Main/p001_d001_main");
 		mav.addObject("newProduct", newProduct);
-		System.out.println("list c√≥∏Æ \n " + newProduct);
 		return mav;
 	}
 	

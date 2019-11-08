@@ -2,8 +2,8 @@ package project.Sell.P001.D001.vo;
 
 import org.springframework.stereotype.Component;
 
-@Component("S_P001_D001_VO")
-public class S_P001_D001_VO {
+@Component("S_P001_D001VO")
+public class S_P001_D001VO {
 	private String category_code="";
 	private String category_name="";
 	private String high_category="";

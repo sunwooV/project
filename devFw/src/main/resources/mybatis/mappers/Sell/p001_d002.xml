@@ -3,13 +3,13 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Sell.detail">
-	<resultMap id="S_P001_D002Result02" type="S_P001_D001_VO">
+<mapper namespace="Sell.p001_d001">
+	<resultMap id="S_P001_D002Result02" type="S_P001_D001VO">
 		<result property="category_code" column="category_code" />
 		<result property="category_name" column="category_name" />
 		<result property="high_category" column="high_category" />
 	</resultMap>
-	<resultMap id="S_P001_D002Result01" type="S_P001_D002_VO">
+	<resultMap id="S_P001_D002Result01" type="S_P001_D002VO">
 		<result property="prod_number" column="prod_number" />
 		<result property="prod_group" column="prod_group" />
 		<result property="prod_category_code" column="prod_category_code" />
@@ -33,7 +33,7 @@
 		<result property="tag_list" column="tag_list" />
 		<result property="prodViews" column="prodViews" />
 	</resultMap>
-	<resultMap id="S_P001_D002Result03" type="S_P001_D002_VO">
+	<resultMap id="S_P001_D002Result03" type="S_P001_D002VO">
 		<result property="left_day" column="left_day" />
 		<result property="left_hour" column="left_hour" />
 		<result property="left_min" column="left_min" />

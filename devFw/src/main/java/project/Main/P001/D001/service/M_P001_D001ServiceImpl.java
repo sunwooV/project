@@ -9,18 +9,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import project.Main.P001.D001.vo.M_P001_D001_VO;
-import project.Main.P001.D001.dao.M_P001_D001_DAO;
+import project.Main.P001.D001.vo.M_P001_D001VO;
+import project.Main.P001.D001.dao.M_P001_D001DAO;
 
-@Service("M_P001_D001_Service")
+@Service("M_P001_D001Service")
 @Transactional(propagation = Propagation.REQUIRED)
-public class M_P001_D001_ServiceImpl implements M_P001_D001_Service {
+public class M_P001_D001ServiceImpl implements M_P001_D001Service {
 	@Autowired
-	private M_P001_D001_DAO M_P001_D001_DAO;
+	private M_P001_D001DAO M_P001_D001DAO;
 	
 	@Override
-	public List<M_P001_D001_VO> newProduct(Map<String, Object> searchMap) throws DataAccessException {
-		List<M_P001_D001_VO> list =  M_P001_D001_DAO.newProduct(searchMap); 
+	public List<M_P001_D001VO> newProduct(Map<String, Object> searchMap) throws DataAccessException {
+		List<M_P001_D001VO> list =  M_P001_D001DAO.newProduct(searchMap); 
 		return list;
 	}
 }

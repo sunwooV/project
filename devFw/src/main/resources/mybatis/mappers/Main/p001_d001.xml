@@ -3,13 +3,13 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Main.main">
-	<resultMap id="S_P001_D001Result01" type="S_P001_D001_VO">
+<mapper namespace="Main.p001_d001">
+	<resultMap id="S_P001_D001Result01" type="S_P001_D001VO">
 		<result property="category_code" column="category_code" />
 		<result property="category_name" column="category_name" />
 		<result property="high_category" column="high_category" />
 	</resultMap>
-	<resultMap id="M_P001_D001Result01" type="M_P001_D001_VO">
+	<resultMap id="M_P001_D001Result01" type="M_P001_D001VO">
 		<result property="prod_number" column="prod_number" />
 		<result property="reused_yn" column="reused_yn" />
 		<result property="auction_yn" column="auction_yn" />

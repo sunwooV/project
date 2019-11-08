@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.ModelAndView;
 
-public interface S_P001_D001_Controller {
+public interface S_P001_D001Controller {
 	
 	public ModelAndView high_category(String category_name, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView searchInsert(HttpServletRequest request, HttpServletResponse response) throws Exception;

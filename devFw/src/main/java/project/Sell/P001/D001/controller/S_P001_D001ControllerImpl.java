@@ -27,17 +27,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import project.Sell.P001.D001.vo.S_P001_D001_VO;
-import project.Sell.P001.D001.service.S_P001_D001_Service;
+import project.Sell.P001.D001.service.S_P001_D001Service;
 
 
-@Controller("S_P001_D001_Controller")
-public class S_P001_D001_ControllerImpl implements S_P001_D001_Controller {
-	private static final Logger logger = LoggerFactory.getLogger(S_P001_D001_ControllerImpl.class);
+@Controller("S_P001_D001Controller")
+public class S_P001_D001ControllerImpl implements S_P001_D001Controller {
+	private static final Logger logger = LoggerFactory.getLogger(S_P001_D001ControllerImpl.class);
 	@Autowired
-	S_P001_D001_Service S_P001_D001_Service;
-	@Autowired
-	S_P001_D001_VO S_P001_D001_VO;
+	S_P001_D001Service S_P001_D001Service;
 	
 	int cnt=0;
 	
@@ -49,11 +46,11 @@ public class S_P001_D001_ControllerImpl implements S_P001_D001_Controller {
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		searchMap.put("category_name", category_name);	 
 		
-		List high_category = S_P001_D001_Service.high_category(searchMap);
-		List middle_category = S_P001_D001_Service.middle_category(searchMap);
+		List high_category = S_P001_D001Service.high_category(searchMap);
+		List middle_category = S_P001_D001Service.middle_category(searchMap);
 
 	
-		ModelAndView mav = new ModelAndView("sell/enroll");
+		ModelAndView mav = new ModelAndView("Sell/p001_d001_enroll");
 		mav.addObject("high_category", high_category);
 		mav.addObject("middle_category", middle_category);
 		
@@ -66,7 +63,7 @@ public class S_P001_D001_ControllerImpl implements S_P001_D001_Controller {
 	public ModelAndView searchInsert(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		
-		ModelAndView mav = new ModelAndView("sell/enroll");
+		ModelAndView mav = new ModelAndView("Sell/p001_d001_enroll");
 		mav.addObject("command", "addSearch");
 		return mav;
 	}
@@ -89,7 +86,7 @@ public class S_P001_D001_ControllerImpl implements S_P001_D001_Controller {
 		HttpHeaders responseHeaders = new HttpHeaders(); // 헤더변경 시 사용
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		try {
-			S_P001_D001_Service.insertProduct(dataMap);
+			S_P001_D001Service.insertProduct(dataMap);
 			
 			response.sendRedirect("/devFw/main.do");
 			

@@ -16,15 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import project.Sell.P001.D001.vo.S_P001_D001_VO;
-import project.Sell.P001.D002.dao.S_P001_D002_DAO;
+import project.Sell.P001.D001.vo.S_P001_D001VO;
+import project.Sell.P001.D002.service.S_P001_D002Service;
 
-@Controller("S_P001_D002_Controller")
-public class S_P001_D002_ControllerImpl implements S_P001_D002_Controller {
+@Controller("S_P001_D002Controller")
+public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 	@Autowired
-	S_P001_D002_DAO S_P001_D002_Service;
-	@Autowired
-	S_P001_D001_VO S_P001_D001_VO;
+	S_P001_D002Service S_P001_D002Service;
 	
 	
 	@Override
@@ -37,16 +35,16 @@ public class S_P001_D002_ControllerImpl implements S_P001_D002_Controller {
 		searchMap.put("prod_number", prod_number);	 
 		searchMap2.put("prod_category_code", prod_category_code);	 
 		
-		List list = S_P001_D002_Service.detailProduct(searchMap);
-		List middle_category = S_P001_D002_Service.middle_category(searchMap2);
+		List list = S_P001_D002Service.detailProduct(searchMap);
+		List middle_category = S_P001_D002Service.middle_category(searchMap2);
 		
-		searchMap2.put("high_category", ((S_P001_D001_VO)middle_category.get(0)).getHigh_category());
-		List high_category = S_P001_D002_Service.high_category(searchMap2);
+		searchMap2.put("high_category", ((S_P001_D001VO)middle_category.get(0)).getHigh_category());
+		List high_category = S_P001_D002Service.high_category(searchMap2);
 		
-		List auction_left_date = S_P001_D002_Service.auction_left_date(searchMap);
+		List auction_left_date = S_P001_D002Service.auction_left_date(searchMap);
 		System.out.println(auction_left_date);
 		
-		ModelAndView mav = new ModelAndView("sell/detailProduct");
+		ModelAndView mav = new ModelAndView("Sell/p001_d002_detailProduct");
 		mav.addObject("detail", list);
 		mav.addObject("high_category", high_category);
 		mav.addObject("middle_category", middle_category);

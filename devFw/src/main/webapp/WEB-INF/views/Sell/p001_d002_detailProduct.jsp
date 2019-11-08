@@ -315,16 +315,25 @@ input[type="number"]::-webkit-inner-spin-button {
 				</c:choose>
 	
 				<br>
-				<h3 id="gray-text">지난 일주일간 ${product.prodViews }명의 회원이 관심을 보였어요!</h3>
+				<h3 id="gray-text">지난 일주일간 ${product.heart }명의 회원이 관심을 보였어요!</h3>
 				<br>
 				<button id="heart"><img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px;"> 관심 상품 추가 </button>
 				<br><br>
 				<div class="content">
-					max수량: ${product.prod_amount }
-					<br>
-					수량: <button id="minus" onclick="buttonClick('minus')">-</button><input type="number" id="prod_amount" min="1" max="${product.prod_amount }" style="width:4%; height:auto; text-align:right;"><button id="plus" onclick="buttonClick('plus')">+</button>
-					<br>
-					총 금액: <span id="total">0</span>원
+					<c:choose>
+						<c:when test="${product.auction_yn == 'y' }"><!-- 경매일 경우 수량은 한 상품 당 1개 -->
+							수량: <input type="number" id="prod_amount" style="width:4%; height:auto; text-align:right;" value="1" readonly>
+						</c:when>
+						<c:otherwise>
+							max수량: ${product.prod_amount }
+							<br>
+							수량: <button id="minus" onclick="buttonClick('minus')">-</button><input type="number" id="prod_amount" min="1" max="${product.prod_amount }" style="width:4%; height:auto; text-align:right;" value=""><button id="plus" onclick="buttonClick('plus')">+</button>
+							<br>
+							총 금액: <span id="total"></span>원
+						</c:otherwise>
+					</c:choose>
+					
+					
 					<input type="hidden" id="total_price" value="">
 					<br><br>
 					<div>
