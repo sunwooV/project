@@ -91,12 +91,12 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 		try {
 			d001Service.insertMember(dataMap);
 			
-			RequestDispatcher dispatch = request.getRequestDispatcher("/FleaMarket/P001/D001/JoinStart.do");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/FleaMarket/P002/D001/searchList.do");
 			dispatch.forward(request, response);
 		} catch (Exception e) {
 			message = " <script>";
-			message += " alert('������ �߻��߽��ϴ�. �ٽ� �õ��� �ּ���');";
-			message += " location.href='" + request.getContextPath() + "/FleaMarket/P001/D001/JoinStart.do'; ";
+			message += " alert('오류가 발생하였습니다.');";
+			message += " location.href='" + request.getContextPath() + "/FleaMarket/P002/D001/searchList.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
 			e.printStackTrace();

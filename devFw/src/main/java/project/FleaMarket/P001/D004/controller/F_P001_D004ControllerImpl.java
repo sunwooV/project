@@ -207,6 +207,8 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 			String value = request.getParameter(name);
 			dataMap.put(name, value);
 		}
+		
+		System.out.println("dataMap::::::::::" + dataMap);
 
 		String message;
 		ResponseEntity resEnt = null;
@@ -214,7 +216,42 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		try {
 			d004Service.updateMember(dataMap);
+			
+			List list = d004Service.searchList(dataMap);
+			System.out.println("list="+list);
+			for(int i = 0; i < list.size(); i++)
+			{
+				System.out.println(list.get(i));
+			}
+	/*
+			Map<String, Object> searchMap = new HashMap<String, Object>();
+			Enumeration enu_insert = request.getParameterNames();
+			while (enu_insert.hasMoreElements()) {
+				String name = (String) enu_insert.nextElement();
+				String value = request.getParameter(name);
+				searchMap.put(name, value);
+			}
+			
+			System.out.println("searchMap::::::::::" + searchMap);
+			responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+			try {
+				d004Service.insertMember(dataMap);
+				
+				//RequestDispatcher dispatch = request.getRequestDispatcher("/FleaMarket/P001/D003/JoinStart.do");
+				//dispatch.forward(request, response);
+			} catch (Exception e) {
+				message = " <script>";
+				message += " alert('������ �߻��߽��ϴ�. �ٽ� �õ��� �ּ���');";
+				message += " location.href='" + request.getContextPath() + "/FleaMarket/P001/D003/JoinStart.do'; ";
+				message += " </script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
+				e.printStackTrace();
+			}		
+			
+	*/		
+			
 			//d003Service.insertMember(dataMap);
+			
 			RequestDispatcher dispatch = request.getRequestDispatcher("/FleaMarket/P001/D004/approval.do");
 			dispatch.forward(request, response);
 			
