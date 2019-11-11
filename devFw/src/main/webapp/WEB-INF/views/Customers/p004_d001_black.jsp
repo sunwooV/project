@@ -99,9 +99,12 @@
 	  <a href="javascript:doAction('search')" class="f1_btn_white gray">조회</a>
 	  <a href="javascript:doAction('save')" class="f1_btn_white gray">저장</a>
 	</div>
-	
+	 <div class="clear hidden"></div>
 	<div class="ib_product"><script>createIBSheet("mySheet", "1100px", "100%");</script></div>
 	
   </div>
 </body>
 </html>
+
+
+
