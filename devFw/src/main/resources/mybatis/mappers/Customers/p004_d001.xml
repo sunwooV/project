@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Customers.black">
+	<resultMap id="c_p004_d001Result" type="C_P004_D001VO">
+		<result property="memberid" column="memberid" />
+		<result property="name" column="name" />
+		<result property="email" column="email" />
+		<result property="reg_date" column="reg_date" />
+		<result property="log_date" column="log_date" />
+		<result property="approval_status" column="approval_status" />
+		<result property="member_group" column="member_group" />
+		<result property="seller_group" column="seller_group" />
+		<result property="flea_seller_group" column="flea_seller_group" />
+		<result property="blacklist_yn" column="blacklist_yn" />
+	</resultMap>
+
+	<select id="searchList" resultMap="c_p004_d001Result" parameterType="java.util.Map"> 
+      <![CDATA[
+         select memberid, name, email, reg_date, log_date, approval_status, member_group, seller_group, flea_seller_group, blacklist_yn
+         from   member
+      ]]>
+		<where>
+			<if test=" memberid != ''  and  memberid != null">
+				memberid = #{memberid}
+			</if>
+		</where>
+	</select>
+	
+	
+	<update id="updateData" parameterType="java.util.Map">
+		update member
+		set  name = #{name}, seller_group = #{seller_group}, flea_seller_group = #{flea_seller_group}, blacklist_yn = #{blacklist_yn}
+		where memberid = #{memberid}
+	</update>	
+	
+	
+	<delete id="deleteData" parameterType="java.util.Map">
+		delete member
+		where memberid = #{memberid}
+	</delete>	
+</mapper>
