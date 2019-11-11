@@ -13,5 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public interface F_P001_D004Controller {
 	public ModelAndView fleaCreateStoreApproval(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
+	public ResponseEntity fleaApprovalStatusUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

@@ -68,7 +68,7 @@
 		if(result){
 			frmCheck.method ="post";
 			//frmCheck.action ="${contextPath}/FleaMarket/P001/D001/Join.do";
-			frmCheck.action ="${contextPath}/fleaMystore.do";
+			frmCheck.action ="${contextPath}/fleaCreateStoreInsert.do";
 			frmCheck.submit();
 		}
 		else

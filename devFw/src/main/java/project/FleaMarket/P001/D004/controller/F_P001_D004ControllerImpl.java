@@ -56,4 +56,45 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 		return mav;
 	}
 	
+	
+	
+	
+	@Override
+	@RequestMapping(value = "/fleaApprovalStatusUpdate.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@ResponseBody
+	public ResponseEntity fleaApprovalStatusUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		System.out.println("개설승인버튼 클릭시(fleaApprovalStatusUpdate.do)!!");
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		Enumeration enu = request.getParameterNames();
+		while (enu.hasMoreElements()) {
+			String name = (String) enu.nextElement();
+			String value = request.getParameter(name);
+			dataMap.put(name, value);
+		}
+		System.out.println("===============dataMap="+dataMap);
+		String message;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+		try {
+			d004Service.updateMember(dataMap);
+			response.sendRedirect("/devFw/fleaCreateStoreApproval.do");
+			//d003Service.insertMember(dataMap);
+			//RequestDispatcher dispatch = request.getRequestDispatcher("FleaMarket/fleaCreateStoreApproval.do");
+			//dispatch.forward(request, response);
+			
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('에러가 발생하였습니다.');";
+			message += " location.href='" + request.getContextPath() + "/devFw/fleaMystore.do'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			e.printStackTrace();
+		}		
+		return resEnt;
+	}
+
+	
+	
 }
