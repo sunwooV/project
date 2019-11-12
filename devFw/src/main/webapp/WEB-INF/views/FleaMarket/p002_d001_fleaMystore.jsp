@@ -517,6 +517,7 @@ $(document).ready(function(){
       <aside class="artist-area">
         <div class="user-info card-style-profile "> <!-- PROFILE (MIDDLE-CONTAINER) -->
    	<p><a href="/devFw/fleaCreateStoreApproval.do">플리마켓 관리자(임시)</a></p>
+   	<p><a href="/devFw/fleaSearchInit.do">플리마켓 마이페이지(임시)</a></p>
 		             <p class="addmember"><a target="_blank" href="#" id="participants_add"><i class="fas fa-user-plus pa-5x"></i></a></p>
 		                <c:forEach var="flea" items="${searchList}" > 
 		               		<c:out value="${flea.profile_photo}"/>
