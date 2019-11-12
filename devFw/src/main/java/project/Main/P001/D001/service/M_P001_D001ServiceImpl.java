@@ -23,4 +23,5 @@ public class M_P001_D001ServiceImpl implements M_P001_D001Service {
 		List<M_P001_D001VO> list =  M_P001_D001DAO.newProduct(searchMap); 
 		return list;
 	}
+	
 }

@@ -32,7 +32,6 @@
 			{Header:"참여자 YN",Type:"Text",SaveName:"together_yn",MinWidth:150},
 			{Header:"신청 날짜",Type:"Date",SaveName:"together_request_date",MinWidth:100},
 			{Header:"승인 날짜",Type:"Date",SaveName:"together_approve_date",MinWidth:100},
-			{Header:"승인 처리",Type:"Text",SaveName:"approval_status",MinWidth:60,Align:"Center"},
 			
 		];   
 		IBS_InitSheet( mySheet , initSheet);
@@ -47,7 +46,7 @@
 		switch(sAction) {
 			case "search": //조회
 			    var param = FormQueryStringEnc(document.frm);
-				mySheet.DoSearch("${contextPath}/fleaSearchList.do", param);
+				mySheet.DoSearch("${contextPath}/fleaSearchList.do",param);
 				//mySheet.DoSearch("transaction_data2.json");
 				break;
 			case "reload": //초기화
@@ -81,13 +80,12 @@
 <body onload="LoadPage()">
   <div class="page_title">
     <span><a class="closeDepth" href="#">closeDepth</a></span> 
-    <span class="title"><b>플리마켓 참여자 승인 처리</b></span>
+    <span class="title"><b>플리마켓 참여자 승인 처리</b></span><br><br>
   </div>
-  <div class="main_content">
-     
+
     <div class="exp_product">
       <form name='frm'>
-        플리코드: <input type='text' id="flea_code" name="flea_code" /> 
+       	 플리코드: <input type='text' id="flea_code" name="flea_code" /><br><br>
       </form>
     </div>
     <div class="ib_function float_right">
@@ -96,8 +94,11 @@
 	  <a href="javascript:doAction('save')" class="f1_btn_white gray">저장</a>
 	</div>
 	<!--   <div class="clear hidden"></div> -->
-	<div class="ib_product"><script>createIBSheet("mySheet", "1100px", "100%");</script></div>
-  </div>
+	<div class="ib_product">
+		<script>
+			createIBSheet("mySheet", "1100px", "100%");
+		</script>
+	</div>
 </body>
 </html>
 

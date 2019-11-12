@@ -17,7 +17,7 @@
 
 	<select id="searchList" resultMap="p0001Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         select flea_code, memberid, flea_name, intro_cotent, flea_like_count, utl_raw.cast_to_varchar2(profile_photo), utl_raw.cast_to_varchar2(main_photo), flea_group
+         select flea_code, memberid, flea_name, intro_cotent, flea_like_count, profile_photo, main_photo, flea_group
          from flea
       ]]>
 		<where>

@@ -41,6 +41,7 @@
 		IBS_InitSheet( mySheet , initSheet);
 		
 		mySheet.SetEditableColorDiff(1); // 편집불가능할 셀 표시구분
+		mySheet.SetSelectionMode(1); 
         //mySheet.ShowSubSum([{StdCol:"Release",SumCols:"price",Sort:"asc"}]);
 		//doAction('search');
 	}
@@ -86,7 +87,7 @@
     <span><a class="closeDepth" href="#">closeDepth</a></span> 
     <span class="title">관리 > <b>회원 관리</b></span>
   </div>
-  <div class="main_content">
+
     <div class="exp_product">각 행의 데이터를 수정하거나 입력,삭제시 상태컬럼의 변화를
 			확인하고,저장 버튼 클릭시 서버로 전송되는 데이터를 확인한다.</div>
     <div class="exp_product">
@@ -101,8 +102,9 @@
 	</div>
 	 <div class="clear hidden"></div>
 	<div class="ib_product"><script>createIBSheet("mySheet", "1100px", "100%");</script></div>
-	
-  </div>
+
+
+
 </body>
 </html>
 
