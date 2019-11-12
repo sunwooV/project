@@ -30,5 +30,6 @@
       	<typeAlias type="project.Buy.P001.D004.vo.B_P001_D004VO"  alias="B_P001_D004VO" />
       	
      	<typeAlias type="project.Customers.P001.D001.vo.C_P001_D001VO"  alias="C_P001_D001VO" />
+        <typeAlias type="project.Customers.P004.D001.vo.C_P004_D001VO"  alias="C_P004_D001VO" />
 	</typeAliases> 
 </configuration>
