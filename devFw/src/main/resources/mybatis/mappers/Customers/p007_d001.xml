@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Customers.point">
+	<resultMap id="c_p007_d001Result" type="C_P007_D001VO">
+	    <result property="point_number" column="point_number" />
+		<result property="point_code" column="point_code" />
+		<result property="point_content" column="point_content" />
+		<result property="point_score" column="point_score" />
+		<result property="point_group" column="point_group" />
+	</resultMap>
+
+	<select id="searchList" resultMap="c_p007_d001Result" parameterType="java.util.Map"> 
+      <![CDATA[
+         select point_code,point_content, point_score,point_group
+         from   point
+      ]]>
+		<where>
+			<if test=" point_content != ''  and  point_content != null">
+				point_content = #{point_content}
+			</if>
+		</where>
+	</select>
+	
+	   <insert id="insertData" parameterType="java.util.Map">
+      <selectKey keyProperty="point_number" resultType="int" order="BEFORE">
+      <![CDATA[
+         SELECT nvl2((max(point_number) + 1), (max(point_number) + 1), 1)
+         FROM point
+         WHERE point_code = #{point_code}
+       ]]>
+      </selectKey>
+      <![CDATA[
+         INSERT INTO point (point_number,point_code, point_content, point_score, point_group)
+         values(#{point_number},#{point_code}, #{point_content}, #{point_score}, #{point_group})
+
+       ]]>
+   </insert>
+	
+	
+	<update id="updateData" parameterType="java.util.Map">
+		update point
+		set  point_content = #{point_content}, point_score =#{point_score},point_group = #{point_group}
+		where point_code = #{point_code}
+	</update>	
+	
+	
+	<delete id="deleteData" parameterType="java.util.Map">
+		delete point
+		where point_code = #{point_code}
+	</delete>	
+</mapper>
