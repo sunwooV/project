@@ -19,8 +19,8 @@
          from togetherlist
       ]]>
 		<where>
-			<if test=" flea_code != ''  and  flea_code != null">
-				flea_code = '1'
+			<if test="flea_code != ''  and  flea_code != null">
+				flea_code = #{flea_code}
 			</if>
 		</where>
 	</select>

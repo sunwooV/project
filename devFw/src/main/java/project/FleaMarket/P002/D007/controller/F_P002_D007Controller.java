@@ -15,6 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public interface F_P002_D007Controller {
 	public ModelAndView fleaSearchInit(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public Map fleaSearchList(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	
+	public Map fleaSaveData(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	}

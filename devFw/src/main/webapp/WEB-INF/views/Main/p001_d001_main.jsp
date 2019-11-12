@@ -280,64 +280,29 @@
 				</div>
 				<div id="good_store" class="tab-pane fade">
 					<div class="row">
+					  <c:forEach var="bestStore" items="${bestStore}" >						
 						<div class="col-sm-3">
 							<div class="thumbnail">
-								<h4>중고상품</h4>
-								<img src="./img/케익.jpg" width=230, height=240 alt="...">
+								<h4>우수 스토어</h4>
+								<img src="${bestStore.profile_photo}" style="width:230px; height:240px;" alt="...">
+								
 								<div class="caption">
-									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
+									<h3>"${bestStore.flea_name }"</h3>
+									<!-- <h1>"${bestStore.intro_cotent }"</h1> -->
 									<p id="p">7000원</p>
 									<p id="p">
 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
 										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
 									</p>
 								</div>
+							
 							</div>
 						</div>
-						<div class="col-sm-3">
-							<div class="thumbnail">
-								<h4>중고상품</h4>
-								<img src="./img/케익.jpg" width=230, height=240 alt="...">
-								<div class="caption">
-									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-									<p id="p">7000원</p>
-									<p id="p">
-										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumbnail">
-								<h4>중고상품</h4>
-								<img src="./img/케익.jpg" width=230, height=240 alt="...">
-								<div class="caption">
-									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-									<p id="p">7000원</p>
-									<p id="p">
-										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumbnail">
-								<h4>중고상품</h4>
-								<img src="./img/케익.jpg" width=230, height=240 alt="...">
-								<div class="caption">
-									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-									<p id="p">7000원</p>
-									<p id="p">
-										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="${contextPath}/payInfo.do" class="btn btn-default" id="ttt4" role="button">구매하기</a>
-									</p>
-								</div>
-							</div>
-						</div>
+					  </c:forEach>
 					</div>
 				</div>
+				
+				
 			</div>
 		</div>
 	</div>
