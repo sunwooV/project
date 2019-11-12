@@ -50,11 +50,11 @@ public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 	
 	@Override
 	@RequestMapping(value = "/fleaMystore.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView fleaMystore(@RequestParam(value="p_id", required=false) String p_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView fleaMystore(@RequestParam(value="flea_code", required=false) String flea_code, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> searchMap = new HashMap<String, Object>();
-		searchMap.put("p_id", p_id);	 
-		System.out.println("p_id =" + p_id);
+		searchMap.put("flea_code", flea_code);	 
+		System.out.println("flea_code =" +flea_code);
 		
 		List list = d001Service.searchList(searchMap);
 		

@@ -73,6 +73,7 @@ public class F_P002_D005ControllerImpl implements F_P002_D005Controller {
 			  throws Exception{
 				System.out.println("업로드 확인");
 				multipartRequest.setCharacterEncoding("utf-8");
+				
 				Map map = new HashMap();
 				Enumeration enu=multipartRequest.getParameterNames();
 				while(enu.hasMoreElements()){
@@ -82,11 +83,34 @@ public class F_P002_D005ControllerImpl implements F_P002_D005Controller {
 					map.put(name,value);
 				}
 				
+				System.out.println("map::::::::::" + map);
+				
 				List fileList= fileProcess(multipartRequest);
+				System.out.println("fileList::::::::::" + fileList);
+				
 				map.put("fileList", fileList);
-				ModelAndView mav = new ModelAndView("FleaMarket/p002_d005_fleaProfileEdit");
+				
+			
+				ModelAndView mav = new ModelAndView("FleaMarket/p002_d001_fleaMystore");
 				mav.addObject("map", map);
 				//mav.setViewName("hm/result");
+				
+				String message;
+				try {
+					d005Service.updateMember(map);
+
+					response.sendRedirect("/devFw/fleaMystore.do");
+					/*RequestDispatcher dispatch = request.getRequestDispatcher("/FleaMarket/P002/D001/searchList.do");
+					dispatch.forward(request, response);*/
+				} catch (Exception e) {
+					message = " <script>";
+					message += " alert('오류가 발생하였습니다.');";
+					message += " location.href='" + multipartRequest.getContextPath() + "/fleaMystore.do'; ";
+					message += " </script>";
+					e.printStackTrace();
+				}		
+				
+				
 				return mav;
 		}
 	@Override
@@ -97,7 +121,8 @@ public class F_P002_D005ControllerImpl implements F_P002_D005Controller {
 		String flea_name = request.getParameter("flea_name");
 		String intro_cotent = request.getParameter("intro_cotent");
 		String flea_code = request.getParameter("flea_code");
-		System.out.println(flea_code + "," + flea_name + "," + intro_cotent);
+		String profile_photo = request.getParameter("profile_photo");
+		System.out.println(flea_code + "," + flea_name + "," + intro_cotent + "," + profile_photo);
 		
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		Enumeration enu = request.getParameterNames();
@@ -122,7 +147,7 @@ public class F_P002_D005ControllerImpl implements F_P002_D005Controller {
 		} catch (Exception e) {
 			message = " <script>";
 			message += " alert('오류가 발생하였습니다.');";
-			message += " location.href='" + request.getContextPath() + "/devFw/fleaMystore.do'; ";
+			message += " location.href='" + request.getContextPath() + "/fleaMystore.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
 			e.printStackTrace();
