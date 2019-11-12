@@ -309,6 +309,12 @@ a.selected {
   z-index:100;
 }
 
+a.selected2 {
+  background-color:#1F75CC;
+  color:white;
+  z-index:100;
+}
+
 .messagepop {
   background-color:#FFFFFF;
   border:1px solid #999999;
@@ -358,6 +364,12 @@ $(document).ready(function(){
 	    e.removeClass('selected');
 	  });    
 	}
+	
+	function deselect2(e) {
+		  $('.pop2').slideFadeToggle(function() {
+		    e.removeClass('selected2');
+		  });    
+		}
 
 	$(function() {
 	  $('#contact').on('click', function() {
@@ -375,6 +387,23 @@ $(document).ready(function(){
 	    return false;
 	  });
 	});
+	
+	$(function() {
+		  $('#participants_add').on('click', function() {
+		    if($(this).hasClass('selected2')) {
+		      deselect2($(this));               
+		    } else {
+		      $(this).addClass('selected2');
+		      $('.pop2').slideFadeToggle();
+		    }
+		    return false;
+		  });
+
+		  $('.close2').on('click', function() {
+		    deselect2($('#participants_add'));
+		    return false;
+		  });
+		});
 
 	$.fn.slideFadeToggle = function(easing, callback) {
 	  return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
@@ -468,13 +497,27 @@ $(document).ready(function(){
 
 </div>
 
+<!-- 프로필 수정 팝업창 -->
+ <div class="messagepop pop2">
+ 	<h2>참여자 추가</h2>
+    <form method="post" id="new_message" action="/devFw/participantsInsert.do" enctype="multipart/form-data">    
+        <p><label for="flea_name">회원 검색&nbsp;</label><input type="text" size="30" name="memberid" id="memberid" /></p>
+        <p><input type="submit" value="확인" name="commit" id="message_submit"/><a class="close" href="/">Cancel</a></p>
+        <c:forEach var="flea" items="${searchList}" > 
+        	<input type="hidden" name="flea_code" value="${flea.flea_code}">
+        </c:forEach>
+    </form>
+    
+
+</div>
+
   
  	<div class="center-flea">
      <div class="row-left">
       <aside class="artist-area">
         <div class="user-info card-style-profile "> <!-- PROFILE (MIDDLE-CONTAINER) -->
    	<p><a href="/devFw/fleaCreateStoreApproval.do">플리마켓 관리자(임시)</a></p>
-		             <p class="addmember"><a target="_blank" href="/devFw/FleaMarket/P001/D001/JoinForm.do?id=1"><i class="fas fa-user-plus pa-5x"></i></a></p>
+		             <p class="addmember"><a target="_blank" href="#" id="participants_add"><i class="fas fa-user-plus pa-5x"></i></a></p>
 		                <c:forEach var="flea" items="${searchList}" > 
 		               		<c:out value="${flea.profile_photo}"/>
 		              

@@ -88,7 +88,7 @@ public class F_P002_D006ControllerImpl implements F_P002_D006Controller {
 		} catch (Exception e) {
 			message = " <script>";
 			message += " alert('오류가 발생하였습니다.');";
-			message += " location.href='" + request.getContextPath() + "fleaMystore.do'; ";
+			message += " location.href='" + request.getContextPath() + "/fleaMystore.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
 			e.printStackTrace();
