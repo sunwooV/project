@@ -185,15 +185,21 @@
 									</c:if>
 									<img src="${newProduct.represent_image }" style="width:230px; height:240px;" alt="..." onclick="location.href='./detail.do?prod_number=${newProduct.prod_number }&prod_category_code=${newProduct.prod_category_code }'">
 									<div class="caption">
-										<h3>${newProduct.prod_title }</h3>
+										<h3>${newProduct.prod_title }
+										<c:if test="${newProduct.sale_percent != null }">
+											[${newProduct.sale_percent }%]
+										</c:if>
+										</h3>
 										<c:choose>
 											<c:when test="${newProduct.auction_yn == 'y' }">
 												<p id="p"><fmt:formatNumber value="${newProduct.auction_bid }" type="number" />원</p>
 											</c:when>
 											<c:otherwise>
 												<c:if test="${newProduct.sale_percent != null }">
-													<p id="p"><fmt:formatNumber value="${newProduct.prod_price * (1-(newProduct.sale_percent*0.01)) }" type="number" />원</p>
-													<span id="sale_price"><fmt:formatNumber value="${newProduct.prod_price }" type="number" />원</span>
+												<p>
+													<span id="p"><fmt:formatNumber value="${newProduct.prod_price * (1-(newProduct.sale_percent*0.01)) }" type="number" />원</span>
+													<span id="sale_price" style="margin-bottom: 1re;"><fmt:formatNumber value="${newProduct.prod_price }" type="number" />원</span>
+												</p>
 												</c:if>
 												<c:if test="${newProduct.sale_percent == null }">
 													<p id="p"><fmt:formatNumber value="${newProduct.prod_price }" type="number" />원</p>

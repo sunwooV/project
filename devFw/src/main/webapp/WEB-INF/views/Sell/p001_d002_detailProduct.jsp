@@ -14,10 +14,119 @@
 <script src="prettyPhoto_compressed_3.1.6/js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
 	$(document).ready(function(){
-	  $("a[rel^='prettyPhoto']").prettyPhoto();
-	  
+		var now = window.location.href;
+		var loginCheck = document.getElementById("memberId").value;
+		$("#prod_inquiry_text").click(function(){
+			if(loginCheck == null || loginCheck == "") {
+				if(confirm("로그인 후 글을 쓸 수 있습니다.\n로그인 하시겠습니까?")){
+					window.location.href="./loginInit.do?redirect=" + now;
+				} else{
+					return false;
+				}
+			} else {
+				return false;
+			}
+	  	});
+		
+		
+		
+		$(".enrollInquiry").click(function(){
+
+			var content = $("#prod_inquiry_text").val();
+			var product = $("#prod_number").val();
+			var memberId = $("#memberId").val();
+			var command = 'insert';
+			
+			//질문 사항 내용이 있는지 체크
+			if(content == ''){
+				alert("질문 사항을 입력해주세요.");
+				return false;
+			} else {
+				content = content.split(' ').join('&nbsp;'); //replaceAll() 함수 효과
+				content = content.replace(/(\r\n|\n|\n\n)/gi, '<br>');
+			}
+			
+			var qna = {
+					qna_content: content,
+					prod_number: product,
+					memberId: memberId,
+					command: command
+			}
+	
+			$.ajax({
+				type: "post",
+				async: false,
+				url: "/devFw/detail/qna.do",
+				data: qna,
+				dataType : 'text',
+				success: function(responseData){
+					document.getElementById("prod_inquiry_text").value = "";
+					
+					var data = JSON.parse(responseData);
+		            /* if(jsonInfo.error.error_yn == 'Y'){
+		        	   alert(jsonInfo.error.error_text);
+		        	   return;
+		            } */
+		            console.log(data.length);
+					var list = '';
+		            
+					for(var i=0;i<data.length;i++){
+					list += '<li><a href="javascript:void(0)" class="faq_open" id="' + i + '">'
+						 + '<div class="cate">답변 대기</div>'
+						 + '<div class="cont_box">'
+						 +	'<span class="inquiry_prod">${product.prod_title }</span>'
+						 + 	'<span class="inquiry_text">' + data[i].qna_content + '</span>'
+						+ '</div>'
+						+ '<div class="user">'
+						+	'<span class="ff">' + data[i].memberId + '</span>'
+						+ '</div>'
+						+ '<div class="date">'
+						+	'<span>' + data[i].qna_date + '</span>'
+						+ '</div>'
+					
+						+ '</a>'
+						+ '<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a' + i + '">'
+						+ '<div class="question">'+ data[i].qna_content+ '</div>'
+						+ '<div class="answer" style="display:none;">'
+						 +	'<span class="ico asw">답변</span>'
+						
+						+	'<span class="tit_asw">판매자'
+						+		'<span>2019-11-11 13:11</span>'
+						+ '답변 내용'
+							
+						 + '</div>'
+					+ '</div>' 
+				+ '</li>';
+					}
+					
+				$(".list_comment_inqury").html(list);
+		            console.log(list);
+				},
+				error: function(data, textStatus){
+					alert("다시 시도해주세요.");
+				},
+				complete : function (data, textstatus){
+				}
+			});
+			
+			$(".faq_open").click(function(){
+				var num = $(this).attr("id");
+				var target = document.getElementById("a" + num);
+				
+				if(target.style.display == 'none'){ //접혀있는데 눌렀을 경우
+					$('#a'+num).css("display", "block");
+				} else { //펴져있는데 눌렀을 경우
+					$('#a'+num).css("display", "none");
+				}
+			})
+			
+		});
+		
+		//대표 사진 확대 기능
+	  	$("a[rel^='prettyPhoto']").prettyPhoto();
 	});
 	
+	                                                                                                                                                    
 	$(window).load(function(){
 		var day = document.getElementById("left_day").value;
 		var hour = document.getElementById("left_hour").value;
@@ -25,9 +134,7 @@
 		var second = document.getElementById("left_second").value;
 		
 		setInterval(function(){
-			console.log("time");
-			
-			
+
 			if(second > 0){
 				second--;
 			} else{
@@ -48,6 +155,7 @@
 	  }, 1000);
 	})
 	
+	//경매 상품 시간 계산 해주기 -> 처음 화면 펼칠 때 남은 시간 select한 후 화면단에서 시간 줄여주기
 	function time_cal(){
 
 		location.reload();
@@ -62,7 +170,7 @@
 			if(min > 0){
 				second=59;
 				min--;
-			} else{
+			} else {
 				if(hour > 0){
 					min=59;
 					hour--;
@@ -73,7 +181,8 @@
 		}
 	}
 	
-	function buttonClick(pm){ //+, - 버튼 눌렀을 때 수량 변경
+	//+, - 버튼 눌렀을 때 수량 변경
+	function buttonClick(pm){ 
 		var price = document.getElementById("prod_price").value;
 		var amount = document.getElementById("prod_amount");
 		
@@ -116,6 +225,8 @@
 		document.getElementById("total").innerHTML = total.format(); //천단위 , 찍어서 표현
 		document.getElementById("total_price").value = total;
 	}
+	
+	//상세정보, Q&A, 상품후기 나누는 탭
 	function tab_menu(num){
 		 var f = $('.menu_tab').find('li');
 		 for ( var i = 0; i < f.length; i++ ) {
@@ -128,6 +239,10 @@
 			  }
 		}
 	}
+	
+
+	
+
 	 
 </script>
 <meta charset="UTF-8">
@@ -135,9 +250,12 @@
 <style>
 body{
   background:#f1f2f3;
-  font-size:62%;
+  font-size:13px;
   color:#262626;
   font-family:'Arial',sans-serif;
+}
+div{
+	display:block;
 }
 img{ 
   max-width:100%;
@@ -190,6 +308,10 @@ img{
     line-height: 56px;
     margin-left: 4px;
     width: 123px;
+}
+.tab-content{
+	width: 758px;
+    margin: 0px auto;
 }
 #panels {margin:10px 20px 10px 0px; font-size:1.2em; line-height:1.5em; }
 #cart{
@@ -261,13 +383,208 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
+/*Qna 작성*/
+.prod_inquiry_wrap{
+	width:99%;
+	background:#f9f9f9;
+	margin-top:2%;
+	border: 1px solid #ddd;
+	padding:30px 29px;
+}
+
+#prod_inquiry_text{
+	width:100%;
+	height:140px;
+}
+
+.text_area_wrap label {
+    position: absolute;
+    line-height: 16px;
+    color: #c3c3c3;
+}
+
+.btn_area{
+	text-align:center;
+}
+
+label{
+	padding:5px;
+}
+
+textarea{
+	-webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-appearance: textarea;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    flex-direction: column;
+    resize: auto;
+    cursor: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(169, 169, 169);
+    border-image: initial;
+    padding: 2px;
+}
+
+/*qna 리스트*/
+#QnA .list_comment_inqury {
+    border-style: solid;
+    border-color: #c3c3c3 transparent #ddd;
+    border-width: 1px 0;
+    padding:0;
+	margin:0;	
+}
+.list_comment_inqury li ~ li {
+    border-top: 1px solid #ededed;
+}
+.list_comment_inqury{
+    display: block;
+    list-style:none;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    
+}
+.list_comment_inqury li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    list-style:none;
+}
+#QnA .list_comment_inqury .faq_open {
+    display: block;
+    position: relative;
+    padding: 20px 120px 68px 22px;
+    background: url(//image.wemakeprice.com/images/resources_v2/front/deals/bg_inqury.gif) 0 0 repeat-y;
+    line-height: 22px;
+    color: #666;
+    text-align: center;
+}
+#QnA .list_comment_inqury .faq_open .cate {
+    width: 86px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -11px;
+}
+#QnA a{
+	text-decoration:none;
+	cursor:pointer;
+}
+#QnA .user{
+	width:124px;
+	padding-top: 2.5%;
+}
+#QnA .list_comment_inqury .cont_box {
+    position: relative;
+    padding: 0px 40px 0 75px;
+    text-align: left;
+}
+#QnA .list_comment_inqury .date {
+    width: 127px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -11px;
+}
+#QnA .list_comment_inqury .cont_box .inquiry_prod {
+    display: block;
+    width: 370px;
+    margin-bottom: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.list_comment_inqury div{
+	display: block;
+}
+.cate, .cont_box, .user, .date{
+	float:left;
+}
+
+/*qna 답변*/
+#QnA .list_comment_inqury .faq_cont {
+    position: relative;
+    background: #f9f9f9;
+    line-height: 16px;
+    display: none;
+}
+#QnA .list_comment_inqury .faq_cont div {
+    position: relative;
+    padding: 18px 45px 17px 20px;
+    border-top: 1px solid #ededed;
+}
+#QnA .list_comment_inqury .faq_cont .answer {
+    padding-bottom: 46px;
+    padding-left: 120px;
+}
+#QnA .list_comment_inqury .faq_cont div {
+    position: relative;
+    padding: 18px 45px 17px 20px;
+    border-top: 1px solid #ededed;
+}
+
+.ico {
+    display: inline-block;
+    overflow: hidden;
+    background: url(//image.wemakeprice.com/images/resources_v2/front/common/ico_spr.png) no-repeat 0 0;
+    text-indent: -9999px;
+    *font-size: 0;
+    *line-height: 0;
+    *height: 0;
+    *text-indent: 0;
+}
+
+#QnA .list_comment_inqury .faq_cont .answer .tit_asw {
+    display: block;
+    width: 50px;
+    height: 20px;
+    margin: 2px 0 -22px -80px;
+    background: #00a9d4;
+    font-size: 11px;
+    line-height: 22px;
+    color: #fff;
+    text-align: center;
+}
+#QnA .list_comment_inqury .faq_cont .answer .tit_asw span {
+    position: absolute;
+    bottom: 13px;
+    left: 120px;
+    font-size: 12px;
+    color: #999;
+}
+#QnA .list_comment_inqury .faq_cont .answer .ico.asw {
+    width: 9px;
+    height: 9px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    border-style: solid;
+    border-color: #999;
+    border-width: 0 0 1px 1px;
+    background: none;
+}
 </style>
 </head>
 <body>
 <div id="wrap">
 		
 	<c:forEach var="product" items="${detail }" varStatus="status" >
-
+		<input type="hidden" id="prod_number" value="${product.prod_number }">
 		<div class="category">
 			<c:forEach var="high_category" items="${high_category }">
 				${high_category.category_name }
@@ -378,21 +695,91 @@ input[type="number"]::-webkit-inner-spin-button {
 		</div>
 		<div class="down"> <!-- 상품 상세설명, Q&A, 후기 -->
 			<ul class="nav nav-tabs">
-			    <li class="active"><a data-toggle="tab" href="#detail">상품 상세</a></li>
-			    <li><a data-toggle="tab" href="#QnA">Q & A</a></li>
-			    <li><a data-toggle="tab" href="#review">상품 후기</a></li>
+			    <li class="active"><a data-toggle="tab" href="#detail">상세정보</a></li>
+			    <li><a data-toggle="tab" href="#QnA">상품 Q&A</a></li>
+			    <li><a data-toggle="tab" href="#review">상품후기</a></li>
 			<!--     <li><a data-toggle="tab" href="#menu3">Menu 3</a></li> -->
 			</ul>
 			<div class="tab-content">
 			    <div id="detail" class="tab-pane fade in active">
 			    	<br>
+			    	<h2>상세정보</h2>
+			    	<br>
 			    	${product.editor }
 			    </div>
 			    <div id="QnA" class="tab-pane fade">
-			      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+			    	<input type="hidden" id="memberId" value="${member.getMemberid() }" />
+			    	<br>
+			    	<h2>상품 Q&A</h2>
+			    	<br>
+			    	<ul>
+		    			<li>상품 Q&A 게시판을 통한 취소나 환불, 교환, 반품신청은 처리되지 않습니다.</li>
+						<li>본 상품과 관련되지 않은 내용이나 비방, 홍보글, 도배글, 개인정보가 포함된 글은 예고없이 삭제될 수 있습니다.</li>
+						<li>홈페이지 에러/장애 문의는 고객센터 또는1:1문의를 이용해주세요.</li>
+			    	</ul>
+					<div class="prod_inquiry_wrap">
+						<h4>상품 문의</h4>
+						<div class="text_area_wrap">
+							<c:choose>
+								<c:when test="${member.getMemberid() == null }"> <!-- 로그인 하지 않았을 경우 -->
+									<label for="prod_inquiry_text" style="" data-placeholder="로그인 후 글을 남길 수 있습니다." data-placeholder-for="textarea"></label>
+									<textarea name="prod_inquiry_text" id="prod_inquiry_text" style="resize: none;" placeholder="로그인 후 글을 남길 수 있습니다."></textarea>
+								</c:when>
+								<c:otherwise>
+									<label for="prod_inquiry_text" style="" data-placeholder="전화번호, 주소, 이메일, 계좌번호 등의 개인정보는 타인에 의해 도용된 위험이 있으니, &#13;&#10;문의 시 입력하지 않도록 주의해 주시기 바랍니다." data-placeholder-for="textarea"></label>
+									<textarea name="prod_inquiry_text" id="prod_inquiry_text" style="resize: none;" placeholder="전화번호, 주소, 이메일, 계좌번호 등의 개인정보는 타인에 의해 도용된 위험이 있으니, &#13;&#10;문의 시 입력하지 않도록 주의해 주시기 바랍니다."></textarea>
+								</c:otherwise>
+							</c:choose>
+						</div>
+						<br>
+						<div class="secretBox">
+							<label for="secretSelect"><input type="checkbox" name="secret">비밀글</label>
+						</div>
+						<div class="btn_area">
+							<input type="button" class="enrollInquiry" id="buy" value="등록">
+							<input type="button" class="cancelInquiry" id="cart" value="취소">
+						</div>
+					</div>
+					<br><br>
+					<div class="listWrapper">
+						<div class="iqry_comments_area">
+							<ul class="list_comment_inqury">
+								<li>
+									<a href="javascript:void(0)" class="faq_open" id="1">
+										<div class="cate">답변 대기</div>
+										<div class="cont_box">
+											<span class="inquiry_prod">${product.prod_title }</span>
+											<span class="inquiry_text">안녕하세요.</span>
+										</div>
+										<div class="user">
+											<span class="ff">qna</span> 
+										</div>
+										<div class="date">
+											<span>2019-11-11</span>
+										</div>
+									
+									</a>
+									<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a1">
+										<div class="question">안녕안녕</div>
+										<div class="answer" style="display:none;">
+											<span class="ico asw">답변</span>
+										
+											<span class="tit_asw">판매자
+												<span>2019-11-11 13:11</span>
+											</span>
+										</div>
+									</div> 
+								</li>
+							
+							</ul>
+						</div>
+						<div class="paging_comm">
+						
+						</div>
+					</div>
 			    </div>
 			    <div id="review" class="tab-pane fade">
-			      <h3>Menu 2</h3>
+			      <h2>상품후기</h2>
 			      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
 			    </div>
 			    <!-- <div id="menu3" class="tab-pane fade">

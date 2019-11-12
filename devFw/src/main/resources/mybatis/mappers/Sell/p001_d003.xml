@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Sell.p001_d003">
+	<resultMap id="S_P001_D003Result01" type="S_P001_D003VO">
+		<result property="prod_number" column="prod_number" />
+		<result property="qna_number" column="qna_number" />
+		<result property="qna_content" column="qna_content" />
+		<result property="qna_date" column="qna_date" />
+		<result property="memberId" column="memberId" />
+		<result property="answer_yn" column="answer_yn" />
+		<result property="answer_date" column="answer_date" />
+		<result property="answer_content" column="answer_content" />
+	</resultMap>
+	<resultMap id="S_P001_D003Result02" type="S_P001_D003VO">
+		<result property="prod_number" column="prod_number" />
+		<result property="qna_number" column="qna_number" />
+		<result property="qna_content" column="qna_content" />
+		<result property="memberId" column="memberId" />
+	</resultMap>
+
+	<insert id="insertQnA" parameterType="java.util.Map">
+		<selectKey keyProperty="qna_number" resultType="int" order="BEFORE">
+		<![CDATA[
+			SELECT nvl2((max(qna_number) + 1), (max(qna_number) + 1), 1)
+			FROM prodQnA
+			WHERE prod_number = #{prod_number}
+		 ]]>
+		</selectKey>
+		<![CDATA[
+			INSERT INTO prodQnA (prod_number, qna_number, qna_content, qna_date, memberId, answer_yn)
+			VALUES(#{prod_number}, #{qna_number}, #{qna_content}, sysdate, #{memberId}, 'n')
+		 ]]>
+	</insert>
+	
+	<select id="selectQnA" resultMap="S_P001_D003Result01" parameterType="java.util.Map"> 
+      <![CDATA[
+         SELECT *
+         FROM   prodQnA
+      ]]>
+		<where>
+		<![CDATA[
+			prod_number = #{prod_number}
+		]]>
+		</where>
+	</select>
+
+
+
+</mapper>
