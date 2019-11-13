@@ -46,7 +46,7 @@ public class F_P002_D001DAOImpl implements F_P002_D001DAO {
 
 	@Override
 	public void insertMember(Map<String, Object> datahMap) throws DataAccessException {
-		sqlSession.update("hm.p0001.insertMember", datahMap);
+		sqlSession.update("FleaMarket.p002_d001.insertMember", datahMap);
 	}
 
 	@Override

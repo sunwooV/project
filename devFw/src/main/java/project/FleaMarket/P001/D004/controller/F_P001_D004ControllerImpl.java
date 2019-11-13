@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import project.FleaMarket.P001.D003.service.F_P001_D003Service;
+import project.FleaMarket.P002.D001.service.F_P002_D001Service;
 import project.FleaMarket.P001.D004.service.F_P001_D004Service;
 import project.FleaMarket.P001.D004.vo.F_P001_D004VO;
 
@@ -36,9 +36,9 @@ import project.FleaMarket.P001.D004.vo.F_P001_D004VO;
 public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 	private static final Logger logger = LoggerFactory.getLogger(F_P001_D004ControllerImpl.class);
 	@Autowired
-	F_P001_D004Service d004Service;
+	F_P001_D004Service f_p001_d004Service;
 	@Autowired
-	F_P001_D003Service d003Service;
+	F_P002_D001Service f_p002_d001Service;
 	@Autowired
 	F_P001_D004VO d004VO;
 
@@ -47,7 +47,7 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 	public ModelAndView fleaCreateStoreApproval(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> searchMap = new HashMap<String, Object>(); 
-		List list = d004Service.searchList(searchMap);
+		List list = f_p001_d004Service.searchList(searchMap);
 		
 		System.out.println("dataMap::::::::::" + list);
 
@@ -56,15 +56,15 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 		return mav;
 	}
 	
-	
-	
-	
 	@Override
 	@RequestMapping(value = "/fleaApprovalStatusUpdate.do", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
 	public ResponseEntity fleaApprovalStatusUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		System.out.println("개설승인버튼 클릭시(fleaApprovalStatusUpdate.do)!!");
+		String memberid = request.getParameter("memberid");
+		System.out.println("memberid:::" + memberid);
+		
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		Enumeration enu = request.getParameterNames();
 		while (enu.hasMoreElements()) {
@@ -78,10 +78,10 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		try {
-			d004Service.updateMember(dataMap);
+			f_p001_d004Service.updateMember(dataMap);
 			response.sendRedirect("/devFw/fleaCreateStoreApproval.do");
 			
-			d003Service.insertMember(dataMap);
+			f_p002_d001Service.insertMember(dataMap);
 			//RequestDispatcher dispatch = request.getRequestDispatcher("FleaMarket/fleaCreateStoreApproval.do");
 			//dispatch.forward(request, response);
 			

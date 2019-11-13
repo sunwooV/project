@@ -86,6 +86,7 @@
   <div class="page_title">
     <span><a class="closeDepth" href="#">closeDepth</a></span> 
     <span class="title"><b>플리마켓 참여자 승인 처리</b></span><br><br>
+    <input type="hidden" name="memberId" value="${member.getMemberid() }" />
   </div>
 <!--  
     <div class="exp_product">
@@ -99,6 +100,7 @@
 	  <!--  <a href="javascript:doAction('search')" class="f1_btn_white gray">조회</a> -->
 	  <a href="javascript:doAction('save')" class="f1_btn_white gray">저장</a>
 	</div>
+	
 	<!--   <div class="clear hidden"></div> -->
 	<div class="ib_product">
 		<script>

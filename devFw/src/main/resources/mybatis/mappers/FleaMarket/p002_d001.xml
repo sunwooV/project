@@ -28,7 +28,7 @@
 	</select>
 	
 	<insert id="insertMember" parameterType="java.util.Map"> 
-        insert into flea(flea_code, memberid, ) values(#{memberid}, #{flea_code})
+        insert into flea(flea_code, memberid, flea_group) values(#{memberid}, #{flea_code}, #{flea_group})
 	</insert>
 
 	<select id="searchMod" resultMap="p0001Result01" parameterType="java.util.Map"> 

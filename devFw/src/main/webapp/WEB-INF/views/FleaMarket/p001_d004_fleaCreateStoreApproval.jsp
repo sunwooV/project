@@ -53,7 +53,7 @@
                <td>${member.join_name}</td>
                <td>${member.join_date}</td>
                <td>${member.join_status}</td>
-               <td><input type="button" value="개설 승인" id="approval_Y" onClick="location.href='${contextPath}/fleaApprovalStatusUpdate.do?flea_code=${member.flea_code}'" />
+               <td><input type="button" value="개설 승인" id="approval_Y" onClick="location.href='${contextPath}/fleaApprovalStatusUpdate.do?flea_code=${member.flea_code}&flea_group=${member.flea_group}'" />
                    <input type="hidden" id="join_status" value="${member.join_status}">
                    <input type="button" value="개설 불가" id="approval_N" /></td>
             </tr>
