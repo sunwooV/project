@@ -163,7 +163,7 @@
 			<div class="row" style="padding-top: 8%">
 				<h2 style="padding: 0% 71% 2% 1%;">나의 문의/답변내역</h2>
 
-				<div class="jumbotron" style="width: 100%;">문의내역 없</div>
+				<div class="jumbotron" style="width: 100%;  margin-left: 1%;">문의내역 없</div>
 
 				<p>
 					<button type="button" class="btn btn-warning"
