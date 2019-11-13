@@ -41,7 +41,7 @@ public class S_P001_D001ControllerImpl implements S_P001_D001Controller {
 	@Override
 	@RequestMapping(value = "/enroll.do", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
-	public ModelAndView high_category(@RequestParam(value="category_name", required=false) String category_name, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView enroll(@RequestParam(value="category_name", required=false) String category_name, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		searchMap.put("category_name", category_name);	 
@@ -49,7 +49,6 @@ public class S_P001_D001ControllerImpl implements S_P001_D001Controller {
 		List high_category = S_P001_D001Service.high_category(searchMap);
 		List middle_category = S_P001_D001Service.middle_category(searchMap);
 
-	
 		ModelAndView mav = new ModelAndView("Sell/p001_d001_enroll");
 		mav.addObject("high_category", high_category);
 		mav.addObject("middle_category", middle_category);
