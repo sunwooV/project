@@ -21,7 +21,7 @@
 	rel="stylesheet">
 </head>
 <body>
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbartop">
 		<!-- 상단바 -->
 		<a class="navbar-brand" href="./main.do"><img src="${contextPath }/resources/img/logo.jpg"
 			width=180px; height=50px; /></a>
@@ -47,13 +47,13 @@
 				<li class="nav-item"><a class="nav-link" href="#">shopping list</a></li>
 				<li class="nav-item"><a class="nav-link" href="/devFw/fleaCreateStoreType.do">플리마켓 스토어 개설하기</a></li>
 			</ul>
-			<form class="form-inline my-2 my-lg-0">
+			<form class="form-inline my-2 my-lg-0" id="searchform">
 				<input class="form-control mr-sm-2" type="text" id="searchbar"
 					placeholder="Search">
 				<button class="btn btn-secondary my-2 my-sm-0" id="btnsearch"
 					type="submit">Search</button>
 			</form>
-			<input type="button" onclick="location.href='./enroll.do'" value="상품 등록하기">
+			<button type="submit" class="btn btn-outline-warning"  onclick="location.href='./enroll.do'" id="register">상품 등록</button>
 		</div>
 	</nav>
 	<!--  -->

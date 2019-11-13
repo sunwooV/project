@@ -56,4 +56,18 @@
       <put-attribute name="title" value="회원상세창" />
       <put-attribute name="body" value="/WEB-INF/views/member/viewDetail.jsp" />
    </definition> -->
+
+
+   <!--  
+   <definition name="CS" extends="baseLayout">
+      <put-attribute name="title" value="고객센터" />
+      <put-attribute name="body" value="/WEB-INF/views/CS.jsp" />
+   </definition>
+-->
+<!--  
+   <definition name="Mypage" extends="baseLayout">
+      <put-attribute name="title" value="마이페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/Mypage.jsp" />
+   </definition>
+-->
 </tiles-definitions>

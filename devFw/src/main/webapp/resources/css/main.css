@@ -74,7 +74,6 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav,
 body {
 	margin: 0;
 	font-family: 'Noto Sans KR', sans-serif;
-	
 	font-weight: 400;
 	line-height: 1.5;
 	text-align: left;
@@ -183,11 +182,19 @@ a
 
 
 
+
+
+
+
 :not
 
 
 
+
+
  
+
+
 
 
 
@@ -198,7 +205,11 @@ href
 
 
 
+
+
  
+
+
 
 
 
@@ -207,7 +218,11 @@ href
 
 
 
+
+
  
+
+
 
 
 
@@ -218,7 +233,11 @@ tabindex
 
 
 
+
+
  
+
+
 
 
 
@@ -231,7 +250,13 @@ color
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -239,7 +264,13 @@ color
 
 
 
+
+
 inherit
+
+
+
+
 
 
 
@@ -254,7 +285,13 @@ text-decoration
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -262,7 +299,13 @@ text-decoration
 
 
 
+
+
 none
+
+
+
+
 
 
 
@@ -366,11 +409,19 @@ button
 
 
 
+
+
+
+
 :not
 
 
 
+
+
  
+
+
 
 
 
@@ -379,7 +430,11 @@ button
 
 
 
+
+
  
+
+
 
 
 
@@ -395,11 +450,19 @@ type
 
 
 
+
+
+
+
 :not
 
 
 
+
+
  
+
+
 
 
 
@@ -408,7 +471,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -424,7 +491,13 @@ type
 
 
 
+
+
+
+
 :not
+
+
 
 
 
@@ -433,12 +506,18 @@ type
 
 
 
+
+
 (
 :disabled
 
 
 
+
+
  
+
+
 
 
 
@@ -454,11 +533,19 @@ type
 
 
 
+
+
+
+
 :not
 
 
 
+
+
  
+
+
 
 
 
@@ -467,7 +554,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -480,7 +571,13 @@ cursor
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -488,7 +585,13 @@ cursor
 
 
 
+
+
 pointer
+
+
+
+
 
 
 
@@ -587,17 +690,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .h1 {
 	font-size: 2rem;
-	
 }
 
 .h2 {
 	font-size: 1.75rem;
-	
 }
 
 h3 {
 	font-size: 1.5rem;
-	
 }
 
 h3.footer {
@@ -605,7 +705,7 @@ h3.footer {
 	color: white;
 	margin-top: 30px;
 	margin-bottom: 18px;
-	    padding-left: 22px;
+	padding-left: 22px;
 }
 
 .h4 {
@@ -614,12 +714,10 @@ h3.footer {
 
 .h5 {
 	font-size: 1rem;
-
 }
 
 .h6 {
 	font-size: 0.75rem;
-	
 }
 
 .lead {
@@ -648,10 +746,11 @@ h3.footer {
 	line-height: 1.2;
 	color: black;
 }
-#title{
+
+#title {
 	float: right;
-    padding-right: 163px;
-    color: black;
+	padding-right: 163px;
+	color: black;
 }
 
 .display-4 {
@@ -698,11 +797,19 @@ mark, .mark {
 
 
 
+
+
+
+
 :not
 
 
 
+
+
  
+
+
 
 
 
@@ -711,7 +818,11 @@ mark, .mark {
 
 
 
+
+
  
+
+
 
 
 
@@ -724,7 +835,13 @@ margin-right
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -732,8 +849,14 @@ margin-right
 
 
 
+
+
 0
 .5rem
+
+
+
+
 
 
 
@@ -3559,11 +3682,19 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 
 
+
+
+
+
 :not
 
 
 
+
+
  
+
+
 
 
 
@@ -3572,7 +3703,11 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 
 
+
+
  
+
+
 
 
 
@@ -3585,11 +3720,19 @@ opacity
 
 
 
+
+
+
+
 :
 
 
 
+
+
  
+
+
 
 
 
@@ -3602,11 +3745,19 @@ opacity
 
 
 
+
+
+
+
 :not
 
 
 
+
+
  
+
+
 
 
 
@@ -3615,7 +3766,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -3628,7 +3783,13 @@ display
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -3636,7 +3797,13 @@ display
 
 
 
+
+
 none
+
+
+
+
 
 
 
@@ -3955,11 +4122,19 @@ none
 
 
 
+
+
+
+
 :not
 
 
 
+
+
  
+
+
 
 
 
@@ -3968,7 +4143,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -3982,11 +4161,19 @@ none
 
 
 
+
+
+
+
 :not
 
 
 
+
+
  
+
+
 
 
 
@@ -3996,7 +4183,11 @@ none
 
 
 
+
+
 	
+
+
 
 
 
@@ -4009,7 +4200,13 @@ margin-left
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -4017,8 +4214,14 @@ margin-left
 
 
 
+
+
 0
 px
+
+
+
+
 
 
 
@@ -4079,11 +4282,19 @@ px
 
 
 
+
+
+
+
 :not
 
 
 
+
+
  
+
+
 
 
 
@@ -4092,7 +4303,11 @@ px
 
 
 
+
+
  
+
+
 
 
 
@@ -4106,7 +4321,13 @@ px
 
 
 
+
+
+
+
 :not
+
+
 
 
 
@@ -4115,12 +4336,18 @@ px
 
 
 
+
+
 (
 :first-child
 
 
 
+
+
  
+
+
 
 
 
@@ -4133,7 +4360,13 @@ margin-top
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -4141,8 +4374,14 @@ margin-top
 
 
 
+
+
 0
 px
+
+
+
+
 
 
 
@@ -4518,11 +4757,19 @@ px
 
 
 
+
+
+
+
 [
 multiple
 ]
 ,
 .custom-select
+
+
+
+
 
 
 
@@ -4538,11 +4785,19 @@ size
 
 
 
+
+
+
+
 :not
 
 
 
+
+
  
+
+
 
 
 
@@ -4555,7 +4810,11 @@ size
 
 
 
+
+
  
+
+
 
 
 
@@ -4568,7 +4827,13 @@ height
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -4576,7 +4841,13 @@ height
 
 
 
+
+
 auto
+
+
+
+
 
 
 
@@ -4591,7 +4862,13 @@ padding-right
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -4599,8 +4876,14 @@ padding-right
 
 
 
+
+
 1
 .5rem
+
+
+
+
 
 
 
@@ -4615,7 +4898,13 @@ background-image
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -4623,7 +4912,13 @@ background-image
 
 
 
+
+
 none
+
+
+
+
 
 
 
@@ -5664,11 +5959,19 @@ none
 
 
 
+
+
+
+
 :not
 
 
 
+
+
  
+
+
 
 
 
@@ -5677,7 +5980,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -5686,7 +5993,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -5695,7 +6006,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -5708,11 +6023,19 @@ border-bottom
 
 
 
+
+
+
+
 :
 
 
 
+
+
  
+
+
 
 
 
@@ -6002,10 +6325,10 @@ a.badge-dark:focus, a.badge-dark.focus {
 
 .jumbotron {
 	padding-bottom: 4%;
-    margin-bottom: 4%;
-    padding-left: 3%;
+	margin-bottom: 4%;
+	padding-left: 3%;
 	background-color: #f7f7f9;
-	width:100%
+	width: 100%
 }
 
 @media ( min-width : 576px) {
@@ -6594,11 +6917,19 @@ a.close.disabled {
 
 
 
+
+
+
+
 :not
 
 
 
+
+
  
+
+
 
 
 
@@ -6607,7 +6938,11 @@ a.close.disabled {
 
 
 
+
+
  
+
+
 
 
 
@@ -6620,7 +6955,13 @@ margin-bottom
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -6628,8 +6969,14 @@ margin-bottom
 
 
 
+
+
 0
 .75rem
+
+
+
+
 
 
 
@@ -6862,7 +7209,11 @@ margin-bottom
 
 
 
+
+
  
+
+
 
 
 
@@ -6871,7 +7222,11 @@ margin-bottom
 
 
 
+
+
  
+
+
 
 
 
@@ -6884,7 +7239,13 @@ margin-left
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -6892,7 +7253,13 @@ margin-left
 
 
 
+
+
 .25rem
+
+
+
+
 
 
 
@@ -6907,7 +7274,11 @@ margin-left
 
 
 
+
+
  
+
+
 
 
 
@@ -6916,7 +7287,11 @@ margin-left
 
 
 
+
+
  
+
+
 
 
 
@@ -6929,7 +7304,13 @@ margin-right
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -6937,7 +7318,13 @@ margin-right
 
 
 
+
+
 .25rem
+
+
+
+
 
 
 
@@ -7544,12 +7931,20 @@ opacity
 
 
 
+
+
+
+
 :
 
 
 
 
+
+
  
+
+
 
 
 
@@ -7574,12 +7969,20 @@ opacity
 
 
 
+
+
+
+
 :
 
 
 
 
+
+
  
+
+
 
 
 
@@ -10839,11 +11242,19 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
 	:not
 	
 	
 	
+	
+	
 	 
+	
+	
 	
 	
 	
@@ -10852,7 +11263,11 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
 	 
+	
+	
 	
 	
 	
@@ -10865,7 +11280,13 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
 	:
+	
+	
 	
 	
 	
@@ -10873,7 +11294,13 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
 	underline
+	
+	
+	
+	
 	
 	
 	
@@ -11122,11 +11549,11 @@ th {
 }
 
 #btnsearch {
-	font-size: 14px;
+	font-size: 11px;
 }
 
 #searchbar {
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .menubar {
@@ -11147,10 +11574,10 @@ th {
 }
 
 .menubar li {
-    margin-left: 11%;
-    float: left;
-    padding: 0% 7% 0% 8.67%;
-    margin-right: -8%;
+	margin-left: 11%;
+	float: left;
+	padding: 0% 7% 0% 8.67%;
+	margin-right: -8%;
 }
 
 .menubar li a {
@@ -11228,6 +11655,18 @@ th {
 #foot {
 	padding-left: 265px;
 }
-#ftlist{
-	color:white;
+
+#ftlist {
+	color: white;
+}
+
+#searchform {
+	margin-left: -14%;
+}
+#navbartop{
+    padding-left: 10%;
+    padding-right: 11%;
+}
+#register{
+	font-size:13px;
 }
