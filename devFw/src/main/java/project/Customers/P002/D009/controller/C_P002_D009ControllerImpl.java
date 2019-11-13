@@ -41,7 +41,7 @@ public class C_P002_D009ControllerImpl implements C_P002_D009Controller {
 	public String update(@ModelAttribute C_P002_D009VO member, HttpSession session, RedirectAttributes rttr) throws Exception{
 		session.setAttribute("member", c_p002_d009_Service.update(member));
 		rttr.addFlashAttribute("msg", "회원정보 수정 완료");
-		return "redirect: /InfoInit.do";
+		return "redirect: ./InfoInit.do";
 	}
 	
 	// 비밀번호 변경
@@ -49,6 +49,6 @@ public class C_P002_D009ControllerImpl implements C_P002_D009Controller {
 	public String modify(@ModelAttribute C_P002_D009VO member, @RequestParam("old_pw") String old_pw, HttpSession session, HttpServletResponse response, RedirectAttributes rttr) throws Exception{
 		session.setAttribute("member", c_p002_d009_Service.modify(member, old_pw, response));
 		rttr.addFlashAttribute("msg", "비밀번호 수정 완료");
-		return "redirect: /InfoInit.do";
+		return "redirect: ./InfoInit.do";
 	}
 }
