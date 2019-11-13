@@ -15,12 +15,11 @@
 		<result property="answer_content" column="answer_content" />
 	</resultMap>
 	<resultMap id="S_P001_D003Result02" type="S_P001_D003VO">
-		<result property="prod_number" column="prod_number" />
-		<result property="qna_number" column="qna_number" />
-		<result property="qna_content" column="qna_content" />
-		<result property="memberId" column="memberId" />
+		<result property="answer_content" column="answer_content" />
+		<result property="answer_date" column="answer_date" />
 	</resultMap>
 
+	<!-- Q&A -->
 	<insert id="insertQnA" parameterType="java.util.Map">
 		<selectKey keyProperty="qna_number" resultType="int" order="BEFORE">
 		<![CDATA[
@@ -37,7 +36,7 @@
 	
 	<select id="selectQnA" resultMap="S_P001_D003Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         SELECT *
+         SELECT prod_number, qna_number, qna_content, TO_CHAR(qna_date, 'yyyy-mm-dd HH24:MI') as qna_date, memberId, answer_yn, TO_CHAR(answer_date, 'yyyy-mm-dd HH24:MI') as answer_date, answer_content
          FROM   prodQnA
       ]]>
 		<where>
@@ -45,8 +44,36 @@
 			prod_number = #{prod_number}
 		]]>
 		</where>
+		<![CDATA[
+			ORDER BY qna_number DESC
+		]]>
 	</select>
 
-
+	<!-- Q&A answer -->
+	<update id="insertAnswer" parameterType="java.util.Map">
+		<![CDATA[
+			UPDATE prodQnA
+			SET answer_yn='y', answer_content=#{answer_content}, answer_date=sysdate
+		 ]]>
+		 <where>
+	 	<![CDATA[
+	 		prod_number=#{prod_number}
+			AND qna_number=#{qna_number}
+	 	]]>
+		 </where>
+	</update>
+	
+	<select id="selectAnswer" resultMap="S_P001_D003Result02" parameterType="java.util.Map"> 
+      <![CDATA[
+         SELECT qna_number, answer_content, TO_CHAR(answer_date, 'yyyy-mm-dd HH24:MI') as answer_date
+         FROM   prodQnA
+      ]]>
+		<where>
+		<![CDATA[
+			prod_number = #{prod_number}
+			AND qna_number = #{qna_number}
+		]]>
+		</where>
+	</select>
 
 </mapper>

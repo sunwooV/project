@@ -19,12 +19,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import project.Sell.P001.D001.vo.S_P001_D001VO;
 import project.Sell.P001.D002.service.S_P001_D002Service;
+import project.Sell.P001.D003.service.S_P001_D003Service;
 
 @Controller("S_P001_D002Controller")
 public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 	@Autowired
 	S_P001_D002Service S_P001_D002Service;
-	
+	@Autowired
+	S_P001_D003Service S_P001_D003Service;
 	
 	@Override
 	@RequestMapping(value = "/detail.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -43,12 +45,16 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		List high_category = S_P001_D002Service.high_category(searchMap2);
 		
 		List auction_left_date = S_P001_D002Service.auction_left_date(searchMap);
-		System.out.println(auction_left_date);
+
+		List prodQnA = S_P001_D003Service.selectQnA(searchMap); //Q&A List
+		int listSize = prodQnA.size();
 		
 		ModelAndView mav = new ModelAndView("Sell/p001_d002_detailProduct");
 		mav.addObject("detail", list);
 		mav.addObject("high_category", high_category);
 		mav.addObject("middle_category", middle_category);
+		mav.addObject("prodQnA", prodQnA);
+		mav.addObject("listSize", listSize);
 		if(auction_left_date != null) {
 			mav.addObject("auction_left_date", auction_left_date);
 		}

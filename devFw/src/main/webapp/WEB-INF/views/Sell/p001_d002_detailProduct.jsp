@@ -16,6 +16,8 @@
 	$(document).ready(function(){
 		var now = window.location.href;
 		var loginCheck = document.getElementById("memberId").value;
+		var num = 0;
+		
 		$("#prod_inquiry_text").click(function(){
 			if(loginCheck == null || loginCheck == "") {
 				if(confirm("로그인 후 글을 쓸 수 있습니다.\n로그인 하시겠습니까?")){
@@ -28,7 +30,17 @@
 			}
 	  	});
 		
-		
+		$(".faq_open").click(function(){
+			num = $(this).attr("id");
+			alert('button 밖' + num);
+			var target = document.getElementById("a" + num);
+			
+			if(target.style.display == 'none'){ //접혀있는데 눌렀을 경우
+				$('#a'+num).css("display", "block");
+			} else { //펴져있는데 눌렀을 경우
+				$('#a'+num).css("display", "none");
+			}
+		})
 		
 		$(".enrollInquiry").click(function(){
 
@@ -36,6 +48,11 @@
 			var product = $("#prod_number").val();
 			var memberId = $("#memberId").val();
 			var command = 'insert';
+			var prod_title = $("#prod_title").val();
+			//prod_title = prod_title.split(' ').join('&nbsp;'); 
+			//alert(prod_title);
+			
+			//alert("<c:out value='${product.prod_title}'/>");
 			
 			//질문 사항 내용이 있는지 체크
 			if(content == ''){
@@ -72,10 +89,11 @@
 		            
 					for(var i=0;i<data.length;i++){
 					list += '<li><a href="javascript:void(0)" class="faq_open" id="' + i + '">'
-						 + '<div class="cate">답변 대기</div>'
+						 + '<div class="cate">답변 대기'
+						 +  '</div>'
 						 + '<div class="cont_box">'
-						 +	'<span class="inquiry_prod">${product.prod_title }</span>'
-						 + 	'<span class="inquiry_text">' + data[i].qna_content + '</span>'
+						 +	'<span class="inquiry_prod">'+ prod_title + '</span>'
+						 + 	'<span class="inquiry_text" style="font-weight:bold;">' + data[i].qna_content + '</span>'
 						+ '</div>'
 						+ '<div class="user">'
 						+	'<span class="ff">' + data[i].memberId + '</span>'
@@ -87,15 +105,16 @@
 						+ '</a>'
 						+ '<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a' + i + '">'
 						+ '<div class="question">'+ data[i].qna_content+ '</div>'
+						+ '<c:if test="'+data[i].answer_yn' == \'y\' ">'
 						+ '<div class="answer" style="display:none;">'
-						 +	'<span class="ico asw">답변</span>'
+						+	'<span class="ico asw">답변</span>'
 						
 						+	'<span class="tit_asw">판매자'
-						+		'<span>2019-11-11 13:11</span>'
-						+ '답변 내용'
+						+		'<span>'+data[i].answer_date+'</span>'
+						+  data[i].answer_content
 							
 						 + '</div>'
-					+ '</div>' 
+					+ '</c:if></div>' 
 				+ '</li>';
 					}
 					
@@ -110,7 +129,8 @@
 			});
 			
 			$(".faq_open").click(function(){
-				var num = $(this).attr("id");
+				num = $(this).attr("id");
+				alert('button 밖' + num);
 				var target = document.getElementById("a" + num);
 				
 				if(target.style.display == 'none'){ //접혀있는데 눌렀을 경우
@@ -119,6 +139,66 @@
 					$('#a'+num).css("display", "none");
 				}
 			})
+			
+
+
+		});
+		
+		
+		//Q&A 답변 달기 버튼
+		$(".answer_enroll").click(function(){
+			alert('눌렀당');
+			var product = $("#prod_number").val();
+			var answer_content = $("#answer_write").val();
+			var command = 'insert';
+
+			//답변 유효성 검사
+			if(answer_content == ''){
+				alert("답변을 입력해주세요.");
+				return false;
+			} else {
+				answer_content = answer_content.split(' ').join('&nbsp;'); //replaceAll() 함수 효과
+				answer_content = answer_content.replace(/(\r\n|\n|\n\n)/gi, '<br>');
+			}
+			
+			var answer = {
+					answer_content: answer_content,
+					prod_number: product,
+					qna_number: num, //Q&A number -> 질문 펼칠 때 받아옴
+					command: command		
+			}
+			alert(answer);
+			$.ajax({
+				type: "post",
+				async: false,
+				url: "/devFw/detail/answer.do",
+				data: answer,
+				dataType : 'text',
+				success: function(responseData){
+					document.getElementById("answer_write").value = "";
+					
+					var data = JSON.parse(responseData);
+		            /* if(jsonInfo.error.error_yn == 'Y'){
+		        	   alert(jsonInfo.error.error_text);
+		        	   return;
+		            } */
+		           console.log(data);
+		           var answerString = '<span class="ico asw">답변</span>'
+					+ '<span class="tit_asw">판매자'
+					+ '<span>'+data.answer_date+'</span>'
+					+ '</span>' + data.answer_content;
+				
+		            var answer_number = data.qna_number;
+		            alert(answer_number);
+		        	$("#answer"+answer_number).html(answerString);
+		        	$("#cate"+answer_number).html('답변 완료');
+				},
+				error: function(data, textStatus){
+					alert("다시 시도해주세요.");
+				},
+				complete : function (data, textstatus){
+				}
+			});
 			
 		});
 		
@@ -578,6 +658,25 @@ textarea{
     border-width: 0 0 1px 1px;
     background: none;
 }
+
+/*qna 답변*/
+#answer_write {
+    position: absolute;
+    bottom: 7px;
+    left: 120px;
+    font-size: 12px;
+    color: #999;
+    width:50%;
+}
+
+#answer_enroll{
+	margin-top: 6px;
+    margin-left: 434px;
+    position: absolute;
+    color: #00a9d4;
+    background: white;
+    border: 1px solid #00a9d4;
+}
 </style>
 </head>
 <body>
@@ -608,7 +707,8 @@ textarea{
 				<c:if test="${product.flea_yn == 'y' }">
 					<P> 플리 </P>
 				</c:if>
-				<h1>${product.prod_title }</h1>
+				<h1>${product.prod_title}</h1>
+				<input type="hidden" id="prod_title" value="${product.prod_title }">
 				<!-- <h3>#${product.tag1 }, #${product.tag2 }, #${product.tag3 }, #${product.tag4 }, #${product.tag5 }</h3> -->
 				<h3 id="gray-text">${product.memberId }</h3>
 				<br>
@@ -725,7 +825,11 @@ textarea{
 									<label for="prod_inquiry_text" style="" data-placeholder="로그인 후 글을 남길 수 있습니다." data-placeholder-for="textarea"></label>
 									<textarea name="prod_inquiry_text" id="prod_inquiry_text" style="resize: none;" placeholder="로그인 후 글을 남길 수 있습니다."></textarea>
 								</c:when>
-								<c:otherwise>
+								<c:when test="${member.getMemberid() == product.memberId }"><!-- 상품을 올린 당사자일 경우 -->
+									<label for="prod_inquiry_text" style="" data-placeholder="판매자는 문의글을 쓸 수 없습니다." data-placeholder-for="textarea"></label>
+									<textarea name="prod_inquiry_text" id="prod_inquiry_text" style="resize: none;" placeholder="판매자는 문의글을 쓸 수 없습니다." disabled ></textarea>
+								</c:when>
+								<c:otherwise> <!-- 로그인했을 경우 -->
 									<label for="prod_inquiry_text" style="" data-placeholder="전화번호, 주소, 이메일, 계좌번호 등의 개인정보는 타인에 의해 도용된 위험이 있으니, &#13;&#10;문의 시 입력하지 않도록 주의해 주시기 바랍니다." data-placeholder-for="textarea"></label>
 									<textarea name="prod_inquiry_text" id="prod_inquiry_text" style="resize: none;" placeholder="전화번호, 주소, 이메일, 계좌번호 등의 개인정보는 타인에 의해 도용된 위험이 있으니, &#13;&#10;문의 시 입력하지 않도록 주의해 주시기 바랍니다."></textarea>
 								</c:otherwise>
@@ -744,33 +848,81 @@ textarea{
 					<div class="listWrapper">
 						<div class="iqry_comments_area">
 							<ul class="list_comment_inqury">
-								<li>
-									<a href="javascript:void(0)" class="faq_open" id="1">
-										<div class="cate">답변 대기</div>
-										<div class="cont_box">
-											<span class="inquiry_prod">${product.prod_title }</span>
-											<span class="inquiry_text">안녕하세요.</span>
-										</div>
-										<div class="user">
-											<span class="ff">qna</span> 
-										</div>
-										<div class="date">
-											<span>2019-11-11</span>
-										</div>
-									
-									</a>
-									<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a1">
-										<div class="question">안녕안녕</div>
-										<div class="answer" style="display:none;">
-											<span class="ico asw">답변</span>
+								<c:forEach var="prodQnA" items="${prodQnA }">
+									<li>
+										<a href="javascript:void(0)" class="faq_open" id="${prodQnA.qna_number }">
+											<div class="cate" id="cate${prodQnA.qna_number }">
+												<c:if test="${prodQnA.answer_yn == 'y' }"><!-- 답변이 있으면 -->
+													답변 완료
+												</c:if>
+												<c:if test="${prodQnA.answer_yn == 'n' }"><!-- 답변이 있으면 -->
+													답변 대기
+												</c:if>
+											</div>
+											<div class="cont_box">
+												<span class="inquiry_prod">${product.prod_title }</span>
+												<span class="inquiry_text" style="font-weight:bold;">${prodQnA.qna_content }</span>
+												
+											</div>
+											<div class="user">
+												<span class="ff">${prodQnA.memberId }</span> 
+											</div>
+											<div class="date">
+												<span>${prodQnA.qna_date }</span>
+											</div>
 										
-											<span class="tit_asw">판매자
-												<span>2019-11-11 13:11</span>
-											</span>
-										</div>
-									</div> 
-								</li>
-							
+										</a>
+										
+										<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a${prodQnA.qna_number }">
+											<div class="question">${prodQnA.qna_content }</div>
+											<c:choose>
+												<c:when test="${product.memberId == member.getMemberid() }"> <!-- 글작성자일 경우 -->
+													<c:if test="${prodQnA.answer_yn == 'n' }">
+														<div class="answer" id="answer${prodQnA.qna_number }" style="display:block;">
+															<span class="ico asw">답변</span>
+																<span class="tit_asw">판매자
+																	<textarea id="answer_write" style="resize: none;"></textarea>
+																	<button id="answer_enroll" class="answer_enroll">답변달기</button>
+																</span>
+														</div>
+													</c:if>
+													<c:if test="${prodQnA.answer_yn == 'y' }">
+														<div class="answer" id="answer${prodQnA.qna_number }" style="display:block;">
+															<span class="ico asw">답변</span>
+															<span class="tit_asw">판매자
+																<span>${prodQnA.answer_date }</span>
+															</span>
+															${prodQnA.answer_content }
+														</div>
+													</c:if>
+												</c:when>
+												<c:otherwise> <!-- 글작성자가 아닐 경우 -->
+													<c:if test="${prodQnA.answer_yn == 'n' }">
+														<div class="answer" id="answer${prodQnA.qna_number }" style="display:none;">
+															<span class="ico asw">${prodQnA.answer_content }</span>
+														
+															<span class="tit_asw">판매자
+																<span>${prodQnA.answer_date }</span>
+															</span>
+														</div>
+													</c:if>
+													<c:if test="${prodQnA.answer_yn == 'y' }">
+														<div class="answer" id="answer${prodQnA.qna_number }" style="display:block;">
+															<span class="ico asw">답변</span>
+														
+															<span class="tit_asw">판매자
+																<span>${prodQnA.answer_date }</span>
+															</span>
+															${prodQnA.answer_content }
+														</div>
+													</c:if>
+												</c:otherwise>
+											</c:choose>
+											
+										</div> 
+										
+									</li>
+								</c:forEach>
 							</ul>
 						</div>
 						<div class="paging_comm">
