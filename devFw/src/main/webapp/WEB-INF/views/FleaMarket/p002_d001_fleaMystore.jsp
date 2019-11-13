@@ -520,10 +520,8 @@ $(document).ready(function(){
    	<p><a href="/devFw/fleaSearchInit.do">플리마켓 마이페이지(임시)</a></p>
 		             <p class="addmember"><a target="_blank" href="#" id="participants_add"><i class="fas fa-user-plus pa-5x"></i></a></p>
 		                <c:forEach var="flea" items="${searchList}" > 
-		               		<c:out value="${flea.profile_photo}"/>
-		              
 				             <div class="profile-picture big-profile-picture clear">
-				                 <img width="120px" height="120px" alt="Anne Hathaway picture" src= "${contextPath}/resources/img/profile_ex.jpg" >
+				                 <img width="120px" height="120px" alt="no picture" src="${flea.profile_photo}" >
 				             <!-- 
 				              <img width="120px" height="120px" alt="Anne Hathaway picture" src= "<c:url value="/img/${file.profile_photo }" />" >
 				             -->

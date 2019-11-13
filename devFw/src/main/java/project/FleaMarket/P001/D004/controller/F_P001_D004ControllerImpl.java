@@ -80,7 +80,8 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 		try {
 			d004Service.updateMember(dataMap);
 			response.sendRedirect("/devFw/fleaCreateStoreApproval.do");
-			//d003Service.insertMember(dataMap);
+			
+			d003Service.insertMember(dataMap);
 			//RequestDispatcher dispatch = request.getRequestDispatcher("FleaMarket/fleaCreateStoreApproval.do");
 			//dispatch.forward(request, response);
 			

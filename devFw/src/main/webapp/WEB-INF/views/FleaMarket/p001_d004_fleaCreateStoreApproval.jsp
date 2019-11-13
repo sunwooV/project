@@ -38,8 +38,8 @@
          <thead>
             <tr class="table-dark" id="table">
                <th scope="col">플리코드</th>
-               <th scope="col">플리마켓명</th>
-               <th scope="col">플리마켓 운영자 ID</th>
+               <th scope="col">참여 타입(참여/개인)</th>
+               <th scope="col">신청자 이름</th>
                <th scope="col">신청 일자</th>
                <th scope="col">심사 상태</th>
                <th scope="col">처리</th>
@@ -48,12 +48,12 @@
          <tbody>
           <c:forEach var="member" items="${searchList}" >
             <tr class="table-light" id="table">
-               <td>${member.join_code}</td>
-               <td>${member.join_group}</td>
+               <td>${member.flea_code}</td>
+               <td>${member.flea_group}</td>
                <td>${member.join_name}</td>
                <td>${member.join_date}</td>
                <td>${member.join_status}</td>
-               <td><input type="button" value="개설 승인" id="approval_Y" onClick="location.href='${contextPath}/fleaApprovalStatusUpdate.do?join_code=${member.join_code}'" />
+               <td><input type="button" value="개설 승인" id="approval_Y" onClick="location.href='${contextPath}/fleaApprovalStatusUpdate.do?flea_code=${member.flea_code}'" />
                    <input type="hidden" id="join_status" value="${member.join_status}">
                    <input type="button" value="개설 불가" id="approval_N" /></td>
             </tr>

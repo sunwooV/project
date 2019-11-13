@@ -21,11 +21,15 @@
          from flea
       ]]>
 		<where>
-			<if test=" p_id != ''  and  p_id != null">
-				flea_code = #{p_id}
+			<if test=" flea_code != ''  and  flea_code != null">
+				flea_code = #{flea_code}
 			</if>
 		</where>
 	</select>
+	
+	<insert id="insertMember" parameterType="java.util.Map"> 
+        insert into flea(flea_code, memberid, ) values(#{memberid}, #{flea_code})
+	</insert>
 
 	<select id="searchMod" resultMap="p0001Result01" parameterType="java.util.Map"> 
       <![CDATA[

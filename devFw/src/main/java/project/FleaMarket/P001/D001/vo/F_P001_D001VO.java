@@ -7,8 +7,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Component("F_P001_D001VO")
 public class F_P001_D001VO {
-	private String join_code = "";
-	private String join_group = "";
+	private String flea_code = "";
+	private String flea_group = "";
 	private String join_name = "";
 	private String join_phonenumber = "";
 	private String join_email = "";
@@ -21,14 +21,6 @@ public class F_P001_D001VO {
 	
 	public F_P001_D001VO() {
 		System.out.println("MemberVO 생성자 호출");
-	}
-
-	public String getJoin_code() {
-		return join_code;
-	}
-
-	public void setJoin_code(String join_code) {
-		this.join_code = join_code;
 	}
 
 	public String getJoin_name() {
@@ -87,13 +79,6 @@ public class F_P001_D001VO {
 		this.join_etc = join_etc;
 	}
 
-	public String getJoin_group() {
-		return join_group;
-	}
-
-	public void setJoin_group(String join_group) {
-		this.join_group = join_group;
-	}
 
 	public Date getJoin_date() {
 		return join_date;
@@ -111,10 +96,21 @@ public class F_P001_D001VO {
 		this.join_status = join_status;
 	}
 
-	
+	public String getFlea_code() {
+		return flea_code;
+	}
 
-	
-	
+	public void setFlea_code(String flea_code) {
+		this.flea_code = flea_code;
+	}
 
-	
+	public String getFlea_group() {
+		return flea_group;
+	}
+
+	public void setFlea_group(String flea_group) {
+		this.flea_group = flea_group;
+	}
+
+
 }

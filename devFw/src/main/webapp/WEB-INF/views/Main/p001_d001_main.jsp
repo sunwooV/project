@@ -30,10 +30,10 @@
 </head>
 <body>
 	<div class="jumbotron">
-		<h1 class="display-3" id="title" style="padding-right: 3%;">세상에
+		<h1 class="display-3" style="padding-left: 45%;">세상에
 			없던 3 in 1</h1>
-		<p id="p" style="padding-left: 77%;">경매 중고 플리마켓을 한번에</p>
-		<p id="p" class="lead">
+		<p style="padding-left: 69%;">경매 중고 플리마켓을 한번에</p>
+		<p>
 			<a class="btn btn-primary btn-lg" href="#" role="button"
 				style="font-size: 20px; margin-left: 83%;">더 알아보기</a>
 		</p>

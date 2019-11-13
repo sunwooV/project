@@ -61,8 +61,8 @@
 		
 		//alert("입점 신청이 완료되었습니다♥ 입점 승인 시 개별 연락 드리겠습니다.");
 		type = <%=response_type%>;
-		var join_group = document.getElementsByName("join_group");
-		join_group[0].value = type;
+		var flea_group = document.getElementsByName("flea_group");
+		flea_group[0].value = type;
 		
 		var result = confirm("입점 신청이 완료되었습니다♥ 입점 승인 시 개별 연락 드리겠습니다.");
 		if(result){
@@ -293,7 +293,7 @@ textarea:focus {
       <textarea id="join_etc" name="join_etc" spellcheck="true" rows="10" cols="50" tabindex="10"></textarea>
     </div>
   </div>
-  <input type="hidden" value="" name="join_group" />
+  <input type="hidden" value="" name="flea_group" />
   	<div>
 		<div>
 	  		<input type="button" id="saveForm" name="saveForm" value="등록" onclick="frm_check()"/>
