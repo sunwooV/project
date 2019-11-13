@@ -96,14 +96,6 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 0.5rem;
 }
 
-#p {
-	font-family: 'Noto Sans KR', sans-serif;
-	margin-top: 0;
-	margin-bottom: 1rem;
-	margin-left: 0px;
-	font-size: 16px;
-}
-
 abbr[title], abbr[data-original-title] {
 	text-decoration: underline;
 	-webkit-text-decoration: underline dotted;
@@ -186,13 +178,29 @@ a
 
 
 
+
+
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -207,7 +215,15 @@ href
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -220,7 +236,15 @@ href
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -235,7 +259,15 @@ tabindex
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -254,7 +286,19 @@ color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -266,7 +310,19 @@ color
 
 
 
+
+
+
+
 inherit
+
+
+
+
+
+
+
+
 
 
 
@@ -289,7 +345,19 @@ text-decoration
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -301,7 +369,19 @@ text-decoration
 
 
 
+
+
+
+
 none
+
+
+
+
+
+
+
+
 
 
 
@@ -413,13 +493,29 @@ button
 
 
 
+
+
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -432,7 +528,15 @@ button
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -454,13 +558,29 @@ type
 
 
 
+
+
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -473,7 +593,15 @@ type
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -495,7 +623,19 @@ type
 
 
 
+
+
+
+
+
+
+
+
 :not
+
+
+
+
 
 
 
@@ -508,6 +648,10 @@ type
 
 
 
+
+
+
+
 (
 :disabled
 
@@ -515,7 +659,15 @@ type
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -537,13 +689,29 @@ type
 
 
 
+
+
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -556,7 +724,15 @@ type
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -575,7 +751,19 @@ cursor
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -587,7 +775,19 @@ cursor
 
 
 
+
+
+
+
 pointer
+
+
+
+
+
+
+
+
 
 
 
@@ -702,7 +902,7 @@ h3 {
 
 h3.footer {
 	font-size: 30px;
-	color: white;
+	color: darkgray;
 	margin-top: 30px;
 	margin-bottom: 18px;
 	padding-left: 22px;
@@ -718,12 +918,6 @@ h3.footer {
 
 .h6 {
 	font-size: 0.75rem;
-}
-
-.lead {
-	font-size: 1.09375rem;
-	font-weight: 300;
-	margin-left: 30px;
 }
 
 .display-1 {
@@ -801,13 +995,29 @@ mark, .mark {
 
 
 
+
+
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -820,7 +1030,15 @@ mark, .mark {
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -839,7 +1057,19 @@ margin-right
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -851,8 +1081,20 @@ margin-right
 
 
 
+
+
+
+
 0
 .5rem
+
+
+
+
+
+
+
+
 
 
 
@@ -980,7 +1222,7 @@ pre code {
 
 @media ( min-width : 1200px) {
 	.container {
-		max-width: 1046px;
+		max-width: 70%;
 	}
 }
 
@@ -3686,13 +3928,29 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 
 
+
+
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -3705,7 +3963,15 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -3724,13 +3990,29 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
 :
 
 
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -3749,13 +4031,29 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -3768,7 +4066,15 @@ opacity
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -3787,7 +4093,19 @@ display
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -3799,7 +4117,19 @@ display
 
 
 
+
+
+
+
 none
+
+
+
+
+
+
+
+
 
 
 
@@ -4126,13 +4456,29 @@ none
 
 
 
+
+
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -4145,7 +4491,15 @@ none
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -4165,13 +4519,29 @@ none
 
 
 
+
+
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -4185,7 +4555,15 @@ none
 
 
 
+
+
+
+
 	
+
+
+
+
 
 
 
@@ -4204,7 +4582,19 @@ margin-left
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -4216,8 +4606,20 @@ margin-left
 
 
 
+
+
+
+
 0
 px
+
+
+
+
+
+
+
+
 
 
 
@@ -4286,13 +4688,29 @@ px
 
 
 
+
+
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -4305,7 +4723,15 @@ px
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -4325,7 +4751,19 @@ px
 
 
 
+
+
+
+
+
+
+
+
 :not
+
+
+
+
 
 
 
@@ -4338,6 +4776,10 @@ px
 
 
 
+
+
+
+
 (
 :first-child
 
@@ -4345,7 +4787,15 @@ px
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -4364,7 +4814,19 @@ margin-top
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -4376,8 +4838,20 @@ margin-top
 
 
 
+
+
+
+
 0
 px
+
+
+
+
+
+
+
+
 
 
 
@@ -4761,6 +5235,14 @@ px
 
 
 
+
+
+
+
+
+
+
+
 [
 multiple
 ]
@@ -4776,9 +5258,25 @@ multiple
 
 
 
+
+
+
+
+
+
+
+
 [
 size
 ]
+
+
+
+
+
+
+
+
 
 
 
@@ -4795,7 +5293,15 @@ size
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -4812,7 +5318,15 @@ size
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -4831,7 +5345,19 @@ height
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -4843,7 +5369,19 @@ height
 
 
 
+
+
+
+
 auto
+
+
+
+
+
+
+
+
 
 
 
@@ -4866,7 +5404,19 @@ padding-right
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -4878,8 +5428,20 @@ padding-right
 
 
 
+
+
+
+
 1
 .5rem
+
+
+
+
+
+
+
+
 
 
 
@@ -4902,7 +5464,19 @@ background-image
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -4914,7 +5488,19 @@ background-image
 
 
 
+
+
+
+
 none
+
+
+
+
+
+
+
+
 
 
 
@@ -5963,13 +6549,29 @@ none
 
 
 
+
+
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -5982,7 +6584,15 @@ none
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -5995,7 +6605,15 @@ none
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -6008,7 +6626,15 @@ none
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -6027,13 +6653,29 @@ border-bottom
 
 
 
+
+
+
+
+
+
+
+
 :
 
 
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -6324,16 +6966,14 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .jumbotron {
-	padding-bottom: 4%;
-	margin-bottom: 4%;
-	padding-left: 3%;
+	margin-left: 11%;
 	background-color: #f7f7f9;
-	width: 100%
+	width: 76%;
 }
 
 @media ( min-width : 576px) {
 	.jumbotron {
-		padding: 6% 13% 8% 19%;
+		padding: 3% 13% 5% 17%;
 		font-family: 'Noto Sans KR', sans-serif;
 	}
 }
@@ -6921,13 +7561,29 @@ a.close.disabled {
 
 
 
+
+
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -6940,7 +7596,15 @@ a.close.disabled {
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -6959,7 +7623,19 @@ margin-bottom
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -6971,8 +7647,20 @@ margin-bottom
 
 
 
+
+
+
+
 0
 .75rem
+
+
+
+
+
+
+
+
 
 
 
@@ -7211,7 +7899,15 @@ margin-bottom
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -7224,7 +7920,15 @@ margin-bottom
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -7243,7 +7947,19 @@ margin-left
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -7255,7 +7971,19 @@ margin-left
 
 
 
+
+
+
+
 .25rem
+
+
+
+
+
+
+
+
 
 
 
@@ -7276,7 +8004,15 @@ margin-left
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -7289,7 +8025,15 @@ margin-left
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -7308,7 +8052,19 @@ margin-right
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -7320,7 +8076,19 @@ margin-right
 
 
 
+
+
+
+
 .25rem
+
+
+
+
+
+
+
+
 
 
 
@@ -7935,6 +8703,14 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
 :
 
 
@@ -7942,7 +8718,15 @@ opacity
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -7973,6 +8757,14 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
 :
 
 
@@ -7980,7 +8772,15 @@ opacity
 
 
 
+
+
+
+
  
+
+
+
+
 
 
 
@@ -11246,13 +12046,29 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	:not
 	
 	
 	
 	
 	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
 	
 	
 	
@@ -11265,7 +12081,15 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
 	
 	
 	
@@ -11284,7 +12108,19 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	:
+	
+	
+	
+	
 	
 	
 	
@@ -11296,7 +12132,19 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
 	underline
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -11521,7 +12369,7 @@ th {
 }
 
 .footer {
-	background-color: black;
+	background-color: white;
 	margin-top: 50px;
 }
 
@@ -11535,7 +12383,7 @@ th {
 }
 
 #con1 {
-	margin-left: 126px;
+	width:100%
 }
 
 #ttt3 {
@@ -11557,10 +12405,8 @@ th {
 }
 
 .menubar {
-	border: none;
-	border: 0px;
-	margin: 0px;
-	padding: 0px;
+	padding-right: 13%;
+	padding-left: 11%;
 	font-size: 14px;
 	font-weight: bold;
 }
@@ -11574,7 +12420,7 @@ th {
 }
 
 .menubar li {
-	margin-left: 11%;
+	margin-left: 9%;
 	float: left;
 	padding: 0% 7% 0% 8.67%;
 	margin-right: -8%;
@@ -11653,20 +12499,23 @@ th {
 }
 
 #foot {
-	padding-left: 265px;
+	padding-left: 2%;
+	margin-right: -9%;
 }
 
 #ftlist {
-	color: white;
+	color: darkgray;
 }
 
 #searchform {
 	margin-left: -14%;
 }
-#navbartop{
-    padding-left: 10%;
-    padding-right: 11%;
+
+#navbartop {
+	padding-left: 12%;
+	padding-right: 14%;
 }
-#register{
-	font-size:13px;
+
+#register {
+	font-size: 13px;
 }

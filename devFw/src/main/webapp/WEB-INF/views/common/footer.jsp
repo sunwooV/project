@@ -21,17 +21,17 @@
 	rel="stylesheet">
 </head>
 <body>
-<!-- 풋터 -->
-	<div class="footer">
+	<!-- 풋터 -->
+	<div class="footer" style="width: 78%; margin-left: 12%;">
 		<footer class="footer-inner">
 			<div class="container" id="con1">
 				<div class="row" id="foot">
 					<div class="col-md-4" id="kkk1">
 						<h3 class="footer">회사소개</h3>
-						<ul class="footer-list" style="font-size: 14px;">
-							<li><a href="#" id="ftlist">Our story</a></li>
-							<li><a href="#" id="ftlist">Venue</a></li>
-							<li><a href="#" id="ftlist">Other</a></li>
+						<ul class="footer-list" id="ftlist" style="font-size: 14px;">
+							<li><a href="#" id="ftlist">IKEA</a></li>
+							<li><a href="#" id="ftlist">MIO</a></li>
+							<li><a href="#" id="ftlist">BAUHAUS</a></li>
 						</ul>
 					</div>
 					<div class="col-md-4" id="kkk1">
