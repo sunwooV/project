@@ -25,29 +25,15 @@
 		</where>
 	</select>
 
-	<select id="searchMod" resultMap="p002_d007_Result01" parameterType="java.util.Map"> 
-      <![CDATA[
-         select id, pwd, name, email, joinDate
-         from   t_member
-      ]]>
-		<where>
-			<if test=" p_id != ''  and  p_id != null">
-				id = #{p_id}
-			</if>
-		</where>
-	</select>
-
-	<update id="updateMember" parameterType="java.util.Map">
-	<![CDATA[
-		update flea
-		set  flea_name = #{flea_name}
-		   , intro_cotent = #{intro_cotent}
-	]]>
-		<where>
-		<![CDATA[	
-			flea_code = #{flea_code}
-		]]>
-		</where>
-	</update>
-
+	<update id="updateData" parameterType="java.util.Map">
+		update togetherlist
+		set  together_yn = #{together_yn}
+		where memberid = #{memberid}
+	</update>	
+	
+	
+	<delete id="deleteData" parameterType="java.util.Map">
+		delete togetherlist
+		where memberid = #{memberid}
+	</delete>	
 </mapper>

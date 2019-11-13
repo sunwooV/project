@@ -25,13 +25,13 @@ public class F_P002_D007DAOImpl implements F_P002_D007DAO {
 
 	@Override
 	public void updateData(Map<String, String> row) throws DataAccessException {
-		sqlSession.update("Customers.black.updateData",row);
+		sqlSession.update("FleaMarket.p002_d007.updateData",row);
 		
 	}
 
 	@Override
 	public void deleteData(Map<String, String> row) throws DataAccessException {
-		sqlSession.update("Customers.black.deleteData",row);
+		sqlSession.update("FleaMarket.p002_d007.deleteData",row);
 	}
 	
 	

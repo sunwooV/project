@@ -33,6 +33,7 @@ public class F_P002_D007ServiceImpl implements F_P002_D007Service{
 			Map<String, String> row = getRow(dataMap, length, i); // 현재 Index의 RowMap
 			if("U".equals(str)) { // 수정
 				F_P002_d007dao.updateData(row);
+				System.out.println("row:::"+ row);
 			}else if("D".equals(str)) { // 삭제
 				F_P002_d007dao.deleteData(row);
 			}
