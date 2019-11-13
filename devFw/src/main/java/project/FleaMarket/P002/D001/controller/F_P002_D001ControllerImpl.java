@@ -56,12 +56,6 @@ public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 	@RequestMapping(value = "/fleaMystore.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView fleaMystore(@RequestParam(value="flea_code", required=false) String flea_code, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		
-		PrintWriter writer = response.getWriter();
-
-		String memberid = (String) request.getParameter("memberid");
-		System.out.println("memberid = " + memberid);
-		
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		searchMap.put("flea_code", flea_code);	 
 		System.out.println("flea_code =" +flea_code);
