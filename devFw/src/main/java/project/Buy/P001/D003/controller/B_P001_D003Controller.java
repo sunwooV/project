@@ -4,16 +4,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
+
+import project.Customers.P001.D001.vo.C_P001_D001VO;
+import project.Sell.P001.D002.vo.S_P001_D002VO;
 
 public interface B_P001_D003Controller {
 
-		//Àå¹Ù±¸´Ï Á¶È¸
-		public ModelAndView selectCart(HttpSession session,HttpServletRequest request, HttpServletResponse response) throws Exception;
-		//Àå¹Ù±¸´Ï ¼öÁ¤ 
-		public ModelAndView editCart(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception;
-		//Àå¹Ù±¸´Ï Ãß°¡
-		public ModelAndView addCart(HttpSession session,HttpServletRequest request, HttpServletResponse response) throws Exception;
-		//Àå¹Ù±¸´Ï »èÁ¦
-		public ModelAndView delCart(HttpServletRequest request, HttpServletResponse response) throws Exception;
+		//ì¥ë°”êµ¬ë‹ˆ ìƒí’ˆ ì¡°íšŒ
+		public ModelAndView selectCart(@ModelAttribute C_P001_D001VO member,HttpServletRequest request, HttpServletResponse response) throws Exception;
+		//ì¥ë°”êµ¬ë‹ˆ ìƒí’ˆì˜ ì˜µì…˜ ìˆ˜ì •
+		public ModelAndView editCart(@ModelAttribute C_P001_D001VO member,HttpServletRequest request, HttpServletResponse response) throws Exception;
+		//ì¥ë°”êµ¬ë‹ˆ ìƒí’ˆì¶”ê°€
+		public ModelAndView addCart(@ModelAttribute S_P001_D002VO product,@ModelAttribute C_P001_D001VO member,HttpServletRequest request, HttpServletResponse response) throws Exception;
+		//ì¥ë°”êµ¬ë‹ˆ ìƒí’ˆì‚­ì œ
+		public ModelAndView delCart(@ModelAttribute C_P001_D001VO member,HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
