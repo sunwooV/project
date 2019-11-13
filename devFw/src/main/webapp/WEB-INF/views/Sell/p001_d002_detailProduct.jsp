@@ -130,7 +130,6 @@
 			
 			$(".faq_open").click(function(){
 				num = $(this).attr("id");
-				alert('button 밖' + num);
 				var target = document.getElementById("a" + num);
 				
 				if(target.style.display == 'none'){ //접혀있는데 눌렀을 경우
@@ -140,14 +139,11 @@
 				}
 			})
 			
-
-
 		});
 		
 		
 		//Q&A 답변 달기 버튼
 		$(".answer_enroll").click(function(){
-			alert('눌렀당');
 			var product = $("#prod_number").val();
 			var answer_content = $("#answer_write").val();
 			var command = 'insert';
@@ -189,7 +185,7 @@
 					+ '</span>' + data.answer_content;
 				
 		            var answer_number = data.qna_number;
-		            alert(answer_number);
+
 		        	$("#answer"+answer_number).html(answerString);
 		        	$("#cate"+answer_number).html('답변 완료');
 				},
@@ -201,6 +197,21 @@
 			});
 			
 		});
+		
+		$("#modify").click(function(){
+			var frm = document.detail;
+
+			frm.method="post";
+			frm.action="./modifyProduct.do";
+			frm.submit();
+		})
+		$("#delete").click(function(){
+			var frm = document.detail;
+
+			frm.method="post";
+			frm.action="./deleteProduct.do";
+			frm.submit();
+		})
 		
 		//대표 사진 확대 기능
 	  	$("a[rel^='prettyPhoto']").prettyPhoto();
@@ -677,9 +688,23 @@ textarea{
     background: white;
     border: 1px solid #00a9d4;
 }
+
+/*수정 삭제*/
+#modify, #delete{
+	background: black;
+    color: white;
+    border: 2px solid black;
+}
+#modify:hover, #delete:hover{
+	background:lightgray;
+	color:black;
+	border: 2px solid lightgray;
+}
+
 </style>
 </head>
 <body>
+<form name="detail">
 <div id="wrap">
 		
 	<c:forEach var="product" items="${detail }" varStatus="status" >
@@ -697,6 +722,7 @@ textarea{
 			<div class="mainImg"> <!-- 상품 대표 이미지 -->
 				<a href="${product.represent_image }" rel="prettyPhoto" title="This is the description"><img src="${product.represent_image }" alt="This is the title" /></a>	
 			</div>
+			
 			<div class="description"> <!-- 상품 설명 -->
 				<c:if test="${product.reused_yn == 'y' }"> <!-- 상품 판매 카테고리 -->
 					<P> 중고 </P>
@@ -707,6 +733,10 @@ textarea{
 				<c:if test="${product.flea_yn == 'y' }">
 					<P> 플리 </P>
 				</c:if>
+				<div class="writer_option" style="float:right; margin-top: -30px;">
+					<input type="button" id="modify" value="수정">
+					<input type="button" id="delete" value="삭제">
+				</div>
 				<h1>${product.prod_title}</h1>
 				<input type="hidden" id="prod_title" value="${product.prod_title }">
 				<!-- <h3>#${product.tag1 }, #${product.tag2 }, #${product.tag3 }, #${product.tag4 }, #${product.tag5 }</h3> -->
@@ -942,5 +972,6 @@ textarea{
 		</div>
 	</c:forEach>
 </div>
+</form>
 </body>
 </html>

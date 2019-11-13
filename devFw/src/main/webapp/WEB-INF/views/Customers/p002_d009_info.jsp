@@ -21,7 +21,7 @@
 <script>
 
 $(function(){
-	if(${msg ne null}){
+	if(${msg != null}){
 		alert('${msg}');
 	};
 	
@@ -41,16 +41,22 @@ $(function(){
 		}
 	}));
 })
+
+function buttonClick(pm){
+	if(pm == 'update'){
+		return "redirect: ./update.do";
+	}else if(pm == 'modify'){
+		return "redirect: ./modify.do";
+	}
+}
+
+
+
 </script>
 
 <style type="text/css">
 /*  Process Section 
 ___________________________________*/
-
-
-
-
-
 #home-process-section .w-col {
 
     float: none;
@@ -155,6 +161,7 @@ input[type=text]#id,#email,#name,#approval_status {
 }
 </style>
 <body>
+<form id="myForm" action="./update.do" method="post">
 <!--  Process  -->
 <div id="home-process-section">
    
@@ -175,10 +182,13 @@ input[type=text]#id,#email,#name,#approval_status {
                         <div>Service Agreement</div>
                     </a>
                 </div>
+                
                 <div class="gray tabs-content w-tab-content" style ="width: 1200px; background-color: white;">
                     <div class="w-tab-pane w--tab-active" data-w-tab="Tab 1">
                         <p>
+                         
                         <table class="type05">
+
     <tr>
         <th scope="row" id="id">아이디</th>
         <td><input type="text" id="memberid" name="memberid" readonly value="${ member.memberid }"></td>
@@ -290,8 +300,8 @@ input[type=text]#id,#email,#name,#approval_status {
         <td><input type="text" id="birth" name="birth"  value="${ member.birth }"></td>
     </tr>
 </table>
-  <button type="submit">변경하기</button>&emsp;&emsp;
-    <button type="submit">탈퇴하기</button>
+  <button id="update" onclick="buttonClick('update')">변경하기</button>&emsp;&emsp;
+  <button id="modify" onclick="buttonClick('modify')">변경하기</button>
                         </p>
                     </div>
                     <div class="w-tab-pane" data-w-tab="Tab 2" style="">
@@ -307,6 +317,6 @@ input[type=text]#id,#email,#name,#approval_status {
             </div>
         </div>
     </div>
-
+</form>
 </body>
 </html>
