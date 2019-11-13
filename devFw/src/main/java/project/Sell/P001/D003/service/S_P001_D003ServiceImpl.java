@@ -23,10 +23,20 @@ public class S_P001_D003ServiceImpl implements S_P001_D003Service {
 		S_P001_D003DAO.insertQnA(datahMap);
 	}
 	
+	@Override
+	public void insertAnswer(Map<String, Object> datahMap) throws Exception {
+		S_P001_D003DAO.insertAnswer(datahMap);
+	}
 	
 	@Override
 	public List<S_P001_D003VO> selectQnA(Map<String, Object> searchMap) throws DataAccessException {
 		List<S_P001_D003VO> list =  S_P001_D003DAO.selectQnA(searchMap); 
+		return list;
+	}
+	
+	@Override
+	public List<S_P001_D003VO> selectAnswer(Map<String, Object> searchMap) throws DataAccessException {
+		List<S_P001_D003VO> list =  S_P001_D003DAO.selectAnswer(searchMap); 
 		return list;
 	}
 }

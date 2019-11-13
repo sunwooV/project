@@ -13,4 +13,5 @@ import project.Sell.P001.D003.vo.S_P001_D003VO;
 
 public interface S_P001_D003Controller {
 	public void manageQnA(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public void manageAnswer(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

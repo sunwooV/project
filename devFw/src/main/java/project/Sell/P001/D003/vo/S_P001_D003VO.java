@@ -10,8 +10,8 @@ public class S_P001_D003VO {
 	private String qna_date;
 	private String memberId;
 	private String answer_yn;
-	private String anwer_date;
-	private String anwer_content;
+	private String answer_date;
+	private String answer_content;
 	
 	
 	public String getProd_number() {
@@ -50,17 +50,17 @@ public class S_P001_D003VO {
 	public void setAnswer_yn(String answer_yn) {
 		this.answer_yn = answer_yn;
 	}
-	public String getAnwer_date() {
-		return anwer_date;
+	public String getAnswer_date() {
+		return answer_date;
 	}
-	public void setAnwer_date(String anwer_date) {
-		this.anwer_date = anwer_date;
+	public void setAnswer_date(String anwer_date) {
+		this.answer_date = anwer_date;
 	}
-	public String getAnwer_content() {
-		return anwer_content;
+	public String getAnswer_content() {
+		return answer_content;
 	}
-	public void setAnwer_content(String anwer_content) {
-		this.anwer_content = anwer_content;
+	public void setAnswer_content(String anwer_content) {
+		this.answer_content = anwer_content;
 	}
 	
 	

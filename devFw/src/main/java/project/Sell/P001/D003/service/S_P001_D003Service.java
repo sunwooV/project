@@ -9,5 +9,8 @@ import project.Sell.P001.D003.vo.S_P001_D003VO;
 
 public interface S_P001_D003Service {
 	public void insertQnA(Map<String, Object> datahMap) throws Exception;
+	public void insertAnswer(Map<String, Object> datahMap) throws Exception;
+	
 	public List<S_P001_D003VO> selectQnA(Map<String, Object> searchMap) throws DataAccessException;
+	public List<S_P001_D003VO> selectAnswer(Map<String, Object> searchMap) throws DataAccessException;
 }
