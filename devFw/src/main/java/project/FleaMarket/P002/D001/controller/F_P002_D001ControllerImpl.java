@@ -1,6 +1,7 @@
 package project.FleaMarket.P002.D001.controller;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -39,6 +40,9 @@ public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 	F_P002_D001Service d001Service;
 	@Autowired
 	F_P002_D001VO d001VO;
+	@Autowired
+	F_P002_D001DAO d001DAO;
+	
 
 	@Override
 	@RequestMapping(value = "/fleaMain.do", method = { RequestMethod.GET, RequestMethod.POST })

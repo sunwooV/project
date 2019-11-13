@@ -18,7 +18,7 @@
 </head> 
 <body>
    <form name="frm" method="post" action="${contextPath}/fleaMystore.do">   
-	   플리마켓 코드:<input type="text" name="p_id"><br>
+	   플리마켓 코드:<input type="text" name="flea_code"><br>
 	   <input type ="submit" value="해당 플리마켓으로 이동"><br>
 	   <input type = "button" value = "플리마켓 개설" onclick = "frm_add()">
    </form>

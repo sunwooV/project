@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>금도끼은도끼|결제취소창</title>
+<title>Insert title here</title>
 </head>
 <body>
-결제 취소
+
 </body>
 </html>

@@ -20,7 +20,7 @@
 
 	<select id="searchList" resultMap="p0001Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         select * from joinflea order by join_date desc
+         select * from joinflea order by join_code
       ]]>
 	</select>
 	

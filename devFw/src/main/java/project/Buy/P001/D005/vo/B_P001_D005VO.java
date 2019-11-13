@@ -9,7 +9,7 @@ public class B_P001_D005VO {
 	
 	
 	//response 받을 데이터!
-    private String aid, tid, cid, sid;
+    private String aid, tid, cid;
     private String partner_order_id, partner_user_id, payment_method_type;
     private AmountVO amount;
     private CardVO card_info;
@@ -59,24 +59,9 @@ public class B_P001_D005VO {
 		this.cid = cid;
 	}
 
-
-
-	public String getSid() {
-		return sid;
-	}
-
-
-
-	public void setSid(String sid) {
-		this.sid = sid;
-	}
-
-
-
 	public String getPartner_order_id() {
 		return partner_order_id;
 	}
-
 
 
 	public void setPartner_order_id(String partner_order_id) {

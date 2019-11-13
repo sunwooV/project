@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -32,9 +33,17 @@ public class F_P002_D007ControllerImpl implements F_P002_D007Controller{
 	//화먼 찾기
 	@Override
 	@RequestMapping(value = "/fleaSearchInit.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView fleaSearchInit(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView fleaSearchInit(@RequestParam(value="flea_code", required=false) String flea_code, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
+		Map<String, Object> searchMap = new HashMap<String, Object>();
+		searchMap.put("flea_code", flea_code);	 
+		System.out.println("===fleaSearchInit.do:::flea_code=" + flea_code);
+		
+		List list = f_p002_d007service.searchList(searchMap);
+		System.out.println("list="+list);
+		
 		ModelAndView mav = new ModelAndView("FleaMarket/p002_d007_fleaParticipantsList");
+		mav.addObject("searchList", list);
 		return mav;
 	}
 	
@@ -49,7 +58,7 @@ public class F_P002_D007ControllerImpl implements F_P002_D007Controller{
 		// 검색조건설정
 		searchMap.put("flea_code", request.getParameter("flea_code"));
 		
-		//�ㄷ데이터 조회
+		//데이터 조회
 		List<F_P002_D007VO> data = f_p002_d007service.searchList(searchMap);
         resultMap.put("Data", data);
         

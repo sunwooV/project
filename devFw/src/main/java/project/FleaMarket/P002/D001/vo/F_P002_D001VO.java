@@ -17,7 +17,7 @@ public class F_P002_D001VO {
 	private String flea_group = "";
 	
 	public F_P002_D001VO() {
-		System.out.println("MemberVO »ı¼ºÀÚ È£Ãâ");
+		System.out.println("MemberVO ìƒì„±ì í˜¸ì¶œ");
 	}
 	
 	public String getProfile_photo() {

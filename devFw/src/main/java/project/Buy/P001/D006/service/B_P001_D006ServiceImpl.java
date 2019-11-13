@@ -1,4 +1,4 @@
-package project.Buy.P001.D005.service;
+package project.Buy.P001.D006.service;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -27,9 +27,9 @@ import project.Buy.P001.D005.vo.kakaopayReadyVo;
 
 
 
-@Service("B_P001_D005Service")
+@Service("B_P001_D006Service")
 @Transactional(propagation = Propagation.REQUIRED)
-public class B_P001_D005ServiceImpl implements B_P001_D005Service{
+public class B_P001_D006ServiceImpl implements B_P001_D006Service{
 	
 	private static final String HOST ="https://kapi.kakao.com";
 	
