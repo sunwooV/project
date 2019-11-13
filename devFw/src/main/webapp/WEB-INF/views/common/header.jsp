@@ -42,6 +42,7 @@
 							      <li class="nav-item"><a class="nav-link" href="./loginInit.do">Login</a></li>
 							      </c:if>
 							    <c:if test ="${ member !=null}">
+							   <li><a href = "./InfoInit.do">마이페이지(${ member.memberid})</a></li>
 							      <li class="nav-item"><a class="nav-link" href="./logout.do">LOGOUT</a></li>
 							      </c:if>
 				<li class="nav-item"><a class="nav-link" href="${contextPath}/cart.do">shopping list</a></li>
