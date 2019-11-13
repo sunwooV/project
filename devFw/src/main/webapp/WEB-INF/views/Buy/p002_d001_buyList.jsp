@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>금도끼은도끼|구매목록</title>
 </head>
 <body>
 

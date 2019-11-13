@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CS.P001.D001">
+	<resultMap id="CS_P001_D001Result01" type="CS_P001_D001VO">
+	</resultMap>
+
+	<select id="CS" resultMap="CS_P001_D001Result01" parameterType="java.util.Map"> 
+      <![CDATA[
+        
+	  ]]>	
+	</select>
+</mapper>
