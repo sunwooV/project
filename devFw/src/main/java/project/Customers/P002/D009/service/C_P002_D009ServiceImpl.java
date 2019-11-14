@@ -18,32 +18,37 @@ import project.Customers.P002.D009.vo.C_P002_D009VO;
 @Service("C_P002_D009Service")
 @Transactional(propagation = Propagation.REQUIRED)
 public class C_P002_D009ServiceImpl implements C_P002_D009Service{
-	
-	@Inject
-	private C_P002_D009DAO c_p002_d009_DAO;
-	
-	@Override
-	public C_P002_D009VO update(C_P002_D009VO member) throws Exception {
-		c_p002_d009_DAO.update(member);
-		return c_p002_d009_DAO.check(member.getMemberid());
-	}
-	
-	// 비밀번호 변경
-	@Override
-	public C_P002_D009VO modify(C_P002_D009VO member, String old_pw, HttpServletResponse response) throws Exception {
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		if(!old_pw.equals(c_p002_d009_DAO.check(member.getMemberid()).getPw())) {
-			out.println("<script>");
-			out.println("alert('기존 비밀번호가 다릅니다.');");
-			out.println("history.go(-1);");
-			out.println("</script>");
-			out.close();
-			return null;
-		}else {
-			c_p002_d009_DAO.modify(member);
-			return c_p002_d009_DAO.check(member.getMemberid());
-		}
-	}
+   
+   @Inject
+   private C_P002_D009DAO c_p002_d009_DAO;
+   
+   @Override
+   public C_P002_D009VO update(C_P002_D009VO member) throws Exception {
+      c_p002_d009_DAO.update(member);
+      return c_p002_d009_DAO.check(member.getMemberid());
+   }
+   
+   // 비밀번호 변경
+   @Override
+   public C_P002_D009VO modify(C_P002_D009VO member, String old_pw, HttpServletResponse response) throws Exception {
+      response.setContentType("text/html;charset=utf-8");
+      PrintWriter out = response.getWriter();
+      if(!old_pw.equals(c_p002_d009_DAO.check(member.getMemberid()).getPw())) {
+         out.println("<script>");
+         out.println("alert('기존 비밀번호가 다릅니다.');");
+         out.println("history.go(-1);");
+         out.println("</script>");
+         out.close();
+         return null;
+      }else {
+         c_p002_d009_DAO.modify(member);
+         out.println("<script>");
+         out.println("alert('비밀번호 수정 완료.');");
+         out.println("history.go(-1);");
+         out.println("</script>");
+         out.close();
+         return c_p002_d009_DAO.check(member.getMemberid());
+      }
+   }
 
 }

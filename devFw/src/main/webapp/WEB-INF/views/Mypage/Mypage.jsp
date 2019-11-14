@@ -40,10 +40,10 @@
 			<div class="myshopMain_sub2">
 				<div id="list">
 					<h3>
-						<a href="/member/modify.html"><strong>my info</strong></a>
+						<a href="${contextPath}/InfoInit.do"><strong>my info</strong></a>
 					</h3>
 					<p style="font-size: 11px;">
-						<a href="/member/modify.html">회원이신 고객님의 개인정보를 관리하는 공간입니다.<br>개인정보를
+						<a href="${contextPath}/InfoInit.do">회원이신 고객님의 개인정보를 관리하는 공간입니다.<br>개인정보를
 							최신 정보로 유지하시면 보다 간편히 쇼핑을 즐기실 수 있습니다.
 						</a>
 					</p>
