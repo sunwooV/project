@@ -68,7 +68,7 @@ public class S_P001_D001ControllerImpl implements S_P001_D001Controller {
 	}
 	
 	@Override
-	@RequestMapping(value = "/insertMember.do", method = { RequestMethod.POST, RequestMethod.POST })
+	@RequestMapping(value = "/insertProduct.do", method = { RequestMethod.POST, RequestMethod.POST })
 	@ResponseBody
 	public ResponseEntity insertProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");

@@ -43,4 +43,10 @@ public class S_P001_D002ServiceImpl implements S_P001_D002Service {
 		List<S_P001_D002VO> list =  S_P001_D002DAO.auction_left_date(searchMap); 
 		return list;
 	}
+	
+	@Override
+	public List<S_P001_D002VO> tagList(Map<String, Object> searchMap) throws DataAccessException {
+		List<S_P001_D002VO> list =  S_P001_D002DAO.tagList(searchMap); 
+		return list;
+	}
 }

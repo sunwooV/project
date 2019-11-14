@@ -14,4 +14,5 @@ public interface S_P001_D002DAO {
 	public List<S_P001_D001VO> middle_category(Map<String, Object> searchMap2) throws DataAccessException;
 	public List<S_P001_D002VO> detailProduct(Map<String, Object> searchMap) throws DataAccessException;
 	public List<S_P001_D002VO> auction_left_date(Map<String, Object> searchMap) throws DataAccessException;
+	public List<S_P001_D002VO> tagList(Map<String, Object> searchMap) throws DataAccessException;
 }

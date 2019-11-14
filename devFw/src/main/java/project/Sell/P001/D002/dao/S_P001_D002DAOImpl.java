@@ -40,4 +40,10 @@ public class S_P001_D002DAOImpl implements S_P001_D002DAO {
 		List<S_P001_D002VO> auction_date = sqlSession.selectList("Sell.p001_d002.auction_left_date", searchMap);
 		return auction_date;
 	}
+	
+	@Override
+	public List<S_P001_D002VO> tagList(Map<String, Object> searchMap) throws DataAccessException {
+		List<S_P001_D002VO> auction_date = sqlSession.selectList("Sell.p001_d002.tagList", searchMap);
+		return auction_date;
+	}
 }

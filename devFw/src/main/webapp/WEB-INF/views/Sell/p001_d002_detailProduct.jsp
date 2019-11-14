@@ -201,17 +201,21 @@
 		$("#modify").click(function(){
 			var frm = document.detail;
 
+			
+			
 			frm.method="post";
 			frm.action="./modifyProduct.do";
 			frm.submit();
-		})
-		$("#delete").click(function(){
+		});
+/* 		$("#delete").click(function(){
 			var frm = document.detail;
 
+			
+			
 			frm.method="post";
 			frm.action="./deleteProduct.do";
 			frm.submit();
-		})
+		}); */
 		
 		//대표 사진 확대 기능
 	  	$("a[rel^='prettyPhoto']").prettyPhoto();
@@ -274,9 +278,10 @@
 	
 	//+, - 버튼 눌렀을 때 수량 변경
 	function buttonClick(pm){ 
+		
 		var price = document.getElementById("prod_price").value;
 		var amount = document.getElementById("prod_amount");
-		
+	
 		if(pm == 'minus'){
 			if(amount.value == amount.min){ 
 				return false;
@@ -303,6 +308,7 @@
 		    return n;
 		};
 		 
+		alert('dd');
 		// 문자열 타입에서 쓸 수 있도록 format() 함수 추가
 		String.prototype.format = function(){
 		    var num = parseFloat(this);
@@ -706,16 +712,17 @@ textarea{
 <body>
 <form name="detail">
 <div id="wrap">
-		
 	<c:forEach var="product" items="${detail }" varStatus="status" >
-		<input type="hidden" id="prod_number" value="${product.prod_number }">
+		<input type="hidden" id="prod_number" name="prod_number" value="${product.prod_number }">
 		<div class="category">
 			<c:forEach var="high_category" items="${high_category }">
 				${high_category.category_name }
+				<input type="hidden" name="high_category" value="${high_category.category_code }">
 			</c:forEach>
 			>
 			<c:forEach var="middle_category" items="${middle_category }">
 				${middle_category.category_name }
+				<input type="hidden" name="middle_category" value="${middle_category.category_code }">
 			</c:forEach>
 		</div>
 		<div class="up">
@@ -726,19 +733,22 @@ textarea{
 			<div class="description"> <!-- 상품 설명 -->
 				<c:if test="${product.reused_yn == 'y' }"> <!-- 상품 판매 카테고리 -->
 					<P> 중고 </P>
+					<input type="hidden" name="reused_yn" value="y">
 				</c:if>
 				<c:if test="${product.auction_yn == 'y' }">
 					<P> 경매 </P>
+					<input type="hidden" name="auction_yn" value="y">
 				</c:if>
 				<c:if test="${product.flea_yn == 'y' }">
 					<P> 플리 </P>
+					<input type="hidden" name="flea_yn" value="y">
 				</c:if>
 				<div class="writer_option" style="float:right; margin-top: -30px;">
 					<input type="button" id="modify" value="수정">
 					<input type="button" id="delete" value="삭제">
 				</div>
 				<h1>${product.prod_title}</h1>
-				<input type="hidden" id="prod_title" value="${product.prod_title }">
+				<input type="hidden" id="prod_title" name="prod_title" value="${product.prod_title }">
 				<!-- <h3>#${product.tag1 }, #${product.tag2 }, #${product.tag3 }, #${product.tag4 }, #${product.tag5 }</h3> -->
 				<h3 id="gray-text">${product.memberId }</h3>
 				<br>

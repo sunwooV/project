@@ -29,6 +29,7 @@
 		<typeAlias type="project.Sell.P001.D001.vo.S_P001_D001VO" alias="S_P001_D001VO"/>
 		<typeAlias type="project.Sell.P001.D002.vo.S_P001_D002VO" alias="S_P001_D002VO"/>
 		<typeAlias type="project.Sell.P001.D003.vo.S_P001_D003VO" alias="S_P001_D003VO"/>
+		<typeAlias type="project.Sell.P001.D005.vo.S_P001_D005VO" alias="S_P001_D005VO"/>
 
 		<typeAlias type="project.Buy.P001.D003.vo.B_P001_D003VO"  alias="B_P001_D003VO" />
       	<typeAlias type="project.Buy.P001.D004.vo.B_P001_D004VO"  alias="B_P001_D004VO" />
