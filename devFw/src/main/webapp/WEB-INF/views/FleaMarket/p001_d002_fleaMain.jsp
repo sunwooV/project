@@ -258,7 +258,7 @@
 			<div class="col-sm-3">
 				<div class="thumbnail">
 					<h4>중고상품</h4>
-					<img src="./img/케익.jpg" width=230, height=240 alt="...">
+					<img src="./img/케익.jpg" width=230, height=240 alt="..." onClick="location.href='./fleaMystore.do'">
 					<div class="caption">
 						<h3>입점할인❤️생일케이크 캔들[10%]</h3>
 						<p>7000원</p>

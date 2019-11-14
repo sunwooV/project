@@ -43,15 +43,6 @@ public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 	@Autowired
 	F_P002_D001DAO d001DAO;
 	
-
-	@Override
-	@RequestMapping(value = "/fleaMain.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView fleaMain(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		ModelAndView mav = new ModelAndView("FleaMarket/p002_d001_fleaMain");
-		return mav;
-	}
-	
 	@Override
 	@RequestMapping(value = "/fleaMystore.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView fleaMystore(@RequestParam(value="flea_code", required=false) String flea_code, HttpServletRequest request, HttpServletResponse response) throws Exception {

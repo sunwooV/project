@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="FleaMarket.p001_d002">
+	<resultMap id="p0001Result01" type="F_P001_D002VO"> 
+		<result property="flea_code" column="flea_code" />
+		<result property="memberid" column="memberid" />
+		<result property="flea_name" column="flea_name" />
+		<result property="intro_cotent" column="intro_cotent" />
+		<result property="flea_like_count" column="flea_like_count" />
+		<result property="profile_photo" column="profile_photo" />
+		<result property="main_photo" column="main_photo" />
+		<result property="flea_group" column="flea_group" />
+	</resultMap>
+
+	<select id="searchList" resultMap="p0001Result01" parameterType="java.util.Map"> 
+      <![CDATA[
+         select flea_code, memberid, flea_name, intro_cotent, flea_like_count, profile_photo, main_photo, flea_group
+         from flea
+      ]]>
+		<where>
+			<if test=" flea_code != ''  and  flea_code != null">
+				flea_code = #{flea_code}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insertMember" parameterType="java.util.Map"> 
+        insert into flea(flea_code, memberid, flea_group) values(#{memberid}, #{flea_code}, #{flea_group})
+	</insert>
+
+	<select id="searchMod" resultMap="p0001Result01" parameterType="java.util.Map"> 
+      <![CDATA[
+         select id, pwd, name, email, joinDate
+         from   t_member
+      ]]>
+		<where>
+			<if test=" p_id != ''  and  p_id != null">
+				id = #{p_id}
+			</if>
+		</where>
+	</select>
+
+	<update id="updateMember" parameterType="java.util.Map">
+		update t_member
+		set  pwd = #{pwd}
+		   , name = #{name}
+		   , email = #{email}
+		where id = #{id}
+	</update>
+
+</mapper>
