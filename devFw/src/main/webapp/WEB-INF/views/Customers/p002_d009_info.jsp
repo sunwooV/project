@@ -16,14 +16,11 @@
 <script src="https://www.seedlogix.com/hubs/themes/clients/powerleads/enterprise/assets/js/webfont.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://www.seedlogix.com/hubs/themes/clients/powerleads/enterprise/assets/js/main.js" type="text/javascript" charset="utf-8"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <head>
 
 <script>
-
 $(function(){
-	if(${msg != null}){
-		alert('${msg}');
-	};
 	
 	if($("#pwForm").submit(function(){
 		if($("#pw").val() !== $("#pw2").val()){
@@ -41,16 +38,6 @@ $(function(){
 		}
 	}));
 })
-
-function buttonClick(pm){
-	if(pm == 'update'){
-		return "redirect: ./update.do";
-	}else if(pm == 'modify'){
-		return "redirect: ./modify.do";
-	}
-}
-
-
 
 </script>
 
@@ -161,7 +148,6 @@ input[type=text]#id,#email,#name,#approval_status {
 }
 </style>
 <body>
-<form id="myForm" action="./update.do" method="post">
 <!--  Process  -->
 <div id="home-process-section">
    
@@ -186,8 +172,9 @@ input[type=text]#id,#email,#name,#approval_status {
                 <div class="gray tabs-content w-tab-content" style ="width: 1200px; background-color: white;">
                     <div class="w-tab-pane w--tab-active" data-w-tab="Tab 1">
                         <p>
-                         
+                         <form id="pwForm" action="./modify.do" method="post">
                         <table class="type05">
+                        
 
     <tr>
         <th scope="row" id="id">아이디</th>
@@ -196,14 +183,16 @@ input[type=text]#id,#email,#name,#approval_status {
      <tr>
         <th scope="row">비민번호</th>
         <td>
-						<label>현재 비밀번호</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input id="old_pw" name="old_pw" type="password" required><br><br>
-						<label>신규 비밀번호</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input  id="pw" name="pw" type="password" required><br><br>
-						<label>신규 비밀번호 다시 입력</label>&nbsp;
-						<input type="password" id="pw2" type="password" required><br><br>
-						<button type="submit" id="joinBtn" >비밀번호 변경</button>
-	</td>
+                  <label>현재 비밀번호</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input id="old_pw" name="old_pw" type="password" required><br><br>
+                  <label>신규 비밀번호</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input  id="pw" name="pw" type="password" required><br><br>
+                  <label>신규 비밀번호 다시 입력</label>&nbsp;
+                  <input type="password" id="pw2" type="password" required><br><br>
+                  <button type="submit">비밀번호 변경</button>
+                    
+               
+   </td>
     </tr>
     <tr>
         <th scope="row">이메일</th>
@@ -216,17 +205,18 @@ input[type=text]#id,#email,#name,#approval_status {
     <tr>
         <th scope="row">이름</th>
         <td><input type="text" id="name" name="name" readonly value="${ member.name }"></td>
+        
     </tr>
     <tr>
         <th scope="row">배송지 관리</th>
         <td>
-						<input type="text" id="address" name ="address" placeholder="${ member.address }">
+                  <input type="text" id="address" name ="address" value="${ member.address }">
                         <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br><br>
-                        <input type="text" id="roadAddress" name ="roadAddress" placeholder="${ member.roadAddress }">
-                        <input type="text" id="jibunAddress"  name ="jibunAddress" placeholder="${ member.jibunAddress }"><br><br>
+                        <input type="text" id="roadAddress" name ="roadAddress" value="${ member.roadAddress }">
+                        <input type="text" id="jibunAddress"  name ="jibunAddress" value="${ member.jibunAddress }"><br><br>
                         <span id="guide" style="color:#999;display:none"></span>
-                        <input type="text" id="detailAddress" name ="detailAddress" placeholder="${ member.detailAddress }">
-                        <input type="text" id="extraAddress" name ="extraAddress" placeholder="${ member.extraAddress }">
+                        <input type="text" id="detailAddress" name ="detailAddress" value="${ member.detailAddress }">
+                        <input type="text" id="extraAddress" name ="extraAddress" value="${ member.extraAddress }">
 
                         <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -300,8 +290,9 @@ input[type=text]#id,#email,#name,#approval_status {
         <td><input type="text" id="birth" name="birth"  value="${ member.birth }"></td>
     </tr>
 </table>
-  <button id="update" onclick="buttonClick('update')">변경하기</button>&emsp;&emsp;
-  <button id="modify" onclick="buttonClick('modify')">변경하기</button>
+  <input type = "button" id="update" value="변경하기" onclick="location.href='${contextPath}/update.do'">&emsp;&emsp;
+  <input type = "button" id="out" onclick="location.href='${contextPath}/out.do'"value="탈퇴하기">
+                      </form>
                         </p>
                     </div>
                     <div class="w-tab-pane" data-w-tab="Tab 2" style="">
@@ -316,7 +307,6 @@ input[type=text]#id,#email,#name,#approval_status {
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </div>z
 </body>
 </html>
