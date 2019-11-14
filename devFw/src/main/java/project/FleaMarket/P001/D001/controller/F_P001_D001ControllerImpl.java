@@ -77,12 +77,12 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 		try {
 			d001Service.insertMember(dataMap);
 			
-			RequestDispatcher dispatch = request.getRequestDispatcher("fleaMystore.do");
+			RequestDispatcher dispatch = request.getRequestDispatcher("fleaMain.do");
 			dispatch.forward(request, response);
 		} catch (Exception e) {
 			message = " <script>";
 			message += " alert('오류가 발생하였습니다.');";
-			message += " location.href='" + request.getContextPath() + "fleaMystore.do'; ";
+			message += " location.href='" + request.getContextPath() + "/fleaMain.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
 			e.printStackTrace();

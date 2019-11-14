@@ -37,8 +37,8 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 	private static final Logger logger = LoggerFactory.getLogger(F_P001_D004ControllerImpl.class);
 	@Autowired
 	F_P001_D004Service f_p001_d004Service;
-	@Autowired
-	F_P002_D001Service f_p002_d001Service;
+	//@Autowired
+    //F_P002_D001Service f_p002_d001Service;
 	@Autowired
 	F_P001_D004VO d004VO;
 
@@ -80,8 +80,11 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 		try {
 			f_p001_d004Service.updateMember(dataMap);
 			response.sendRedirect("/devFw/fleaCreateStoreApproval.do");
+			System.out.println("update 완료");
 			
-			f_p002_d001Service.insertMember(dataMap);
+			
+			f_p001_d004Service.insertMember(dataMap);
+			System.out.println("insert 완료");
 			//RequestDispatcher dispatch = request.getRequestDispatcher("FleaMarket/fleaCreateStoreApproval.do");
 			//dispatch.forward(request, response);
 			

@@ -5,12 +5,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>    
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  /> 
 <%
- request.setCharacterEncoding("utf-8");
- List list = (List)request.getAttribute("searchList");
- String flea_id = request.getParameter("flea_name");
- String intro_content = request.getParameter("intro_content");
- System.out.println("플리마켓 아이디="+flea_id);
- System.out.println("플리마켓 소개글=" + intro_content);
+request.setCharacterEncoding("utf-8");
+String flea_code = request.getParameter("flea_code");
+System.out.println(":::::flea_code" + flea_code);
 %>
 <!DOCTYPE html>
 <html>
@@ -492,7 +489,8 @@ $(document).ready(function(){
         	</div>
         	
         <p><input type="submit" value="확인" name="commit" id="message_submit"/><a class="close" href="/">Cancel</a></p>
-    </form>
+        <input type="hidden" id="flea_code" name="flea_code" value="<%=flea_code %>">
+    </form> 
     
 
 </div>
@@ -608,7 +606,9 @@ $(document).ready(function(){
             </dd>
         </dl>
     </div>
-      </aside>
+    <br><br><br><br>
+  </aside>
+      
       <!-- /.col-lg-3 -->
      <div class="col-lg-9">
         <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
@@ -644,10 +644,6 @@ $(document).ready(function(){
         <div class="row">
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-            
-            
-            
-            
               <a href="#"><img class="card-img-top" src="${contextPath}/resources/img/product_ex.PNG" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">

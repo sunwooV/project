@@ -3,31 +3,21 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="FleaMarket.p001_d001">
-	<resultMap id="p0001Result01" type="F_P001_D001VO"> 
+<mapper namespace="FleaMarket.p003_d001">
+	<resultMap id="p0001Result01" type="F_P003_D001VO"> 
 		<result property="flea_code" column="flea_code" />
-		<result property="flea_group" column="flea_group" />
-		<result property="join_name" column="join_name" />
-		<result property="join_phonenumber" column="join_phonenumber" />
-		<result property="join_email" column="join_email" />
-		<result property="join_companynumber" column="join_companynumber" />
-		<result property="join_product" column="join_product" />
-		<result property="join_sns" column="join_sns" />
-		<result property="join_etc" column="join_etc" />
-		<result property="join_date" column="join_date" />
-		<result property="join_status" column="join_status" />
+		<result property="offline_name" column="offline_name" />
+		<result property="offline_date" column="offline_date" />
+		<result property="offline_location" column="offline_location" />
+		<result property="offline_time" column="offline_time" />
+		<result property="map_code" column="map_code" />
 	</resultMap>
 
 	<select id="searchList" resultMap="p0001Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         select flea_code, memberid, flea_name, intro_cotent, flea_like_count, utl_raw.cast_to_varchar2(profile_photo), utl_raw.cast_to_varchar2(main_photo), flea_group
-         from flea
+         select flea_code, offline_name, offline_date, offline_location, offline_time, map_code
+         from offlineflea
       ]]>
-		<where>
-			<if test=" p_id != ''  and  p_id != null">
-				flea_code = #{p_id}
-			</if>
-		</where>
 	</select>
 
 	<insert id="insertMember" parameterType="java.util.Map"> 

@@ -48,11 +48,10 @@
 		update flea
 		set  flea_name = #{flea_name}
 		   , intro_cotent = #{intro_cotent}
-		   , profile_photo = #{profile_photo}
 	]]>
 		<where>
 		<![CDATA[	
-			flea_code = '1'
+			flea_code = #{flea_code}
 		]]>
 		</where>
 	</update>

@@ -298,6 +298,7 @@ textarea:focus {
 		<div>
 	  		<input type="button" id="saveForm" name="saveForm" value="등록" onclick="frm_check()"/>
 	  		<input type="hidden" name="command" value="insertMember">
+	  	    <input type="hidden" name="memberid" value="${member.getMemberid() }" />
 	    </div>
 	</div>
   

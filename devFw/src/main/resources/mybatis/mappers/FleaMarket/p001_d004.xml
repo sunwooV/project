@@ -29,10 +29,8 @@
 	<selectKey order="BEFORE" resultType="int" keyProperty="flea_code">
 		SELECT nvl2((max(flea_code) + 1), (max(flea_code) + 1), 1) FROM joinflea
 	</selectKey>
-
-         insert into joinflea(flea_code, flea_group, join_name, join_phonenumber, join_email, join_companynumber, join_product, join_sns, join_etc)
-         values(#{flea_code}, #{flea_group}, #{join_name}, #{join_phonenumber}, #{join_email}, #{join_companynumber}, #{join_product}, #{join_sns}, #{join_etc})
-
+         insert into flea(flea_code, flea_group)
+         values(#{flea_code}, #{flea_group})
 	</insert>
 
 	<select id="searchMod" resultMap="p0001Result01" parameterType="java.util.Map"> 

@@ -87,12 +87,11 @@ public class F_P002_D005ControllerImpl implements F_P002_D005Controller {
 				
 				List fileList= fileProcess(multipartRequest);
 				System.out.println("fileList::::::::::" + fileList);
-				
 				map.put("fileList", fileList);
 				
-			
 				ModelAndView mav = new ModelAndView("FleaMarket/p002_d001_fleaMystore");
 				mav.addObject("map", map);
+				
 				//mav.setViewName("hm/result");
 				
 				String message;

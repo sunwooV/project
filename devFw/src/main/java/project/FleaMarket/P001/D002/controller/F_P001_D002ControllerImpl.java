@@ -43,8 +43,19 @@ public class F_P001_D002ControllerImpl implements F_P001_D002Controller {
 	@RequestMapping(value = "/fleaMain.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView fleaMain(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
+		Map<String, Object> searchMap = new HashMap<String, Object>();
 		System.out.println("요기이ㅣ이");
+	
+		List list = d002Service.searchList(searchMap);
+		
+		System.out.println("list="+list);
+		for(int i = 0; i < list.size(); i++)
+		{
+			System.out.println(list.get(i));
+		}
+		
 		ModelAndView mav = new ModelAndView("FleaMarket/p001_d002_fleaMain");
+		mav.addObject("searchList", list);
 		return mav;
 	}
 	

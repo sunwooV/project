@@ -16,6 +16,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/af7787acb6.js" crossorigin="anonymous"></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Do+Hyeon|Merriweather|Noto+Sans+KR&display=swap&subset=korean"
 	rel="stylesheet">
@@ -254,21 +255,35 @@
 				style="padding-top: 3%; padding-left: 3%; padding-bottom: 0%; font-size: 23px;">인기
 				스토어</h1>
 		</div>
+		<!-- 플리마켓 맵-->
+        <div class="fleaMap">
+        	<a href="/devFw/fleaMap.do" id="fleaMap">
+           	   <i class="fas fa-map-marked-alt pa-5x">오프라인 맵</i>
+            </a>
+        </div>
+        
 		<div class="row">
-			<div class="col-sm-3">
-				<div class="thumbnail">
-					<h4>중고상품</h4>
-					<img src="./img/케익.jpg" width=230, height=240 alt="..." onClick="location.href='./fleaMystore.do'">
-					<div class="caption">
-						<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-						<p>7000원</p>
-						<p>
-							<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-							<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
-						</p>
+		  <c:forEach var="bestStore" items="${searchList}">
+				<div class="col-sm-3">
+					<div class="thumbnail">
+						<h4>우수 스토어</h4>
+						<img src="${bestStore.profile_photo}"
+							style="width: 230px; height: 240px;" alt="..." onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code }'">
+
+						<div class="caption">
+							<h3>"${bestStore.flea_name }"</h3>
+							<!-- <h1>"${bestStore.intro_cotent }"</h1> -->
+							<p id="p">7000원</p>
+							<p id="p">
+								<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
+								<a href="${contextPath}/payInfo.do" class="btn btn-default"
+									id="ttt4" role="button">구매하기</a>
+							</p>
+						</div>
+
 					</div>
 				</div>
-			</div>
+			</c:forEach>
 			<div class="col-sm-3">
 				<div class="thumbnail">
 					<h4>중고상품</h4>
