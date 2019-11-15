@@ -49,7 +49,5 @@
 		   , email = #{email}
 		where id = #{id}
 	</update>
-	
-	
 
 </mapper>

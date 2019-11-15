@@ -7,16 +7,13 @@
 <head>
   <meta charset="UTF-8">
   <title>플리마켓 맵 테스트</title>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca839997c3bd98863fdc033319b76889"></script>
- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca839997c3bd98863fdc033319b76889&libraries=services,clusterer,drawing"></script>
 </head> 
 <body>
      <h1>플리마켓 일정 MAP</h1>
     <div id="map" style="width:500px;height:400px;"></div>
-   
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 APP KEY를 넣으시면 됩니다."></script>
-	
-	<script>
+    
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca839997c3bd98863fdc033319b76889&libraries=services"></script>
+<script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -24,7 +21,56 @@
     };
 
 	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-	 
+	// 주소-좌표 변환 객체를 생성합니다
+	
+	var geocoder = new kakao.maps.services.Geocoder();
+	var addressArray = [];
+
+	//var wishList = "${searchList}";	
+	<c:forEach var="addressList" items="${searchList}">
+		//alert("${addressList.offline_location }");
+		addressArray.push("${addressList.offline_location}");
+	</c:forEach>
+	
+	console.log(addressArray);
+	
+	// 주소로 좌표를 검색합니다
+	for(var i = 0; i < addressArray.length; i++)
+	{
+		geocoder.addressSearch(addressArray[i], function(result, status) {
+		
+			geocoder.addressSearch(addressArray[i], function(result, status, data){
+				
+				
+		     // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+	
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+		        
+		        //마커를 지도에 표시합니다.
+		        market.setMap(map);
+	
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+		        });
+		        infowindow.open(map, marker);
+	
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+			    } 
+			})
+		})
+	}
+		
+
+	/*
 	// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
 	var positions = [
 	    {
@@ -77,6 +123,7 @@
 	        infowindow.close();
 	    };
 }
-	</script>
+	*/
+</script>
 </body>
 </html>

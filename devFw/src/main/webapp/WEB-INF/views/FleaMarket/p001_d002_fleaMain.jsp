@@ -12,10 +12,8 @@
 <link rel="stylesheet" href="${contextPath }/resources/css/플리메인.css">
 <!-- <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/af7787acb6.js" crossorigin="anonymous"></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Do+Hyeon|Merriweather|Noto+Sans+KR&display=swap&subset=korean"
@@ -449,6 +447,7 @@
 		</div>
 	</div>
 </body>
+<!-- 
 <script>
 	$('.tree-toggle').click(function() {
 		$(this).parent().children('ul.tree').toggle(200);
@@ -457,4 +456,5 @@
 		$('.tree-toggle').parent().children('ul.tree').toggle(200);
 	})
 </script>
+ -->
 </html>
