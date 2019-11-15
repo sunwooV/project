@@ -14,8 +14,8 @@ public class E_P001_D001ControllerImpl implements E_P001_D001Controller{
 	private static final Logger Logger = LoggerFactory.getLogger(E_P001_D001ControllerImpl.class);
 	
 	@Override
-	@RequestMapping(value = "/detail.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView detail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/detaildesc.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView detaildesc(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView("Etc/p001_d001_detail");
 		return mav;
