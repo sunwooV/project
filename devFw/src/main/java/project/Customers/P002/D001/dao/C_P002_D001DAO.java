@@ -1,4 +1,4 @@
-package project.Mypage.P001.D001.dao;
+package project.Customers.P002.D001.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -7,6 +7,6 @@ import org.springframework.dao.DataAccessException;
 
 import project.Buy.P001.D003.vo.B_P001_D003VO;
 
-public interface E_P001_D001DAO {
+public interface C_P002_D001DAO {
 
 }

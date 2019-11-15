@@ -1,16 +1,6 @@
 package project.Etc.P001.D001.dao;
 
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
-
-import project.CS.P001.D001.dao.CS_P001_D001DAO;
-import project.FleaMarket.P001.D001.vo.F_P001_D001VO;
 
 
 @Repository("E_P001_D001DAO")
