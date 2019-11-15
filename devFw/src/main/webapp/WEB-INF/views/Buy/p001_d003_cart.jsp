@@ -135,7 +135,7 @@
 	
 }
 
-.contentCart, .cost{
+.contentCart{
 	text-align: center;
 	padding :3%;
 }
@@ -150,6 +150,10 @@ width:200px;
 margin:1%;
 }
 
+.pricing{
+	text-align: center;
+	padding :3%;
+}
 </style>
 </head>
 <body>
@@ -245,7 +249,7 @@ margin:1%;
 
 		<div class="cost">
 			<h2>예상 결제 내역</h2>
-
+</div>
 			<table class="pricing">
 				<tbody>
 					<tr>
@@ -268,7 +272,7 @@ margin:1%;
 			</table>
 			<button class="cta" onClick="location.href='#'">결제하기 &raquo;</button>
 		</div>
-	</div>
+	
 	<!-- End Content -->
 </body>
 </html>
