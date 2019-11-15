@@ -7,11 +7,11 @@
 <html>
 <head>
 <script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="prettyPhoto_compressed_3.1.6/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
+<!-- <script src="prettyPhoto_compressed_3.1.6/js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <link rel="stylesheet" href="prettyPhoto_compressed_3.1.6/css/prettyPhoto.css" type="text/css" media="screen" charset="utf-8" />
-<script src="prettyPhoto_compressed_3.1.6/js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+<script src="prettyPhoto_compressed_3.1.6/js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script> -->
 <script type="text/javascript" charset="utf-8">
 	$(document).ready(function(){
 		var now = window.location.href;
@@ -31,8 +31,8 @@
 	  	});
 		
 		$(".faq_open").click(function(){
+
 			num = $(this).attr("id");
-			alert('button 밖' + num);
 			var target = document.getElementById("a" + num);
 			
 			if(target.style.display == 'none'){ //접혀있는데 눌렀을 경우
@@ -42,18 +42,16 @@
 			}
 		})
 		
+		
+		//질문 등록
 		$(".enrollInquiry").click(function(){
-
+			
 			var content = $("#prod_inquiry_text").val();
 			var product = $("#prod_number").val();
 			var memberId = $("#memberId").val();
-			var command = 'insert';
+			var command = "insert";
 			var prod_title = $("#prod_title").val();
-			//prod_title = prod_title.split(' ').join('&nbsp;'); 
-			//alert(prod_title);
-			
-			//alert("<c:out value='${product.prod_title}'/>");
-			
+
 			//질문 사항 내용이 있는지 체크
 			if(content == ''){
 				alert("질문 사항을 입력해주세요.");
@@ -86,12 +84,21 @@
 		            } */
 		            console.log(data.length);
 					var list = '';
-		            
+					
+					var test = '';
+					
+
 					for(var i=0;i<data.length;i++){
-					list += '<li><a href="javascript:void(0)" class="faq_open" id="' + i + '">'
-						 + '<div class="cate">답변 대기'
-						 +  '</div>'
-						 + '<div class="cont_box">'
+					list += '<li><a href="javascript:void(0)" class="faq_open" id="' + i + '">';
+					
+						if(data[i].answer_yn == 'y'){
+							list += '<div class="cate">답변 완료</div>';
+						}
+						else {
+							list += '<div class="cate"><p id="waitAnswer">답변 대기</p></div>';
+						}
+						
+						list += '<div class="cont_box">'
 						 +	'<span class="inquiry_prod">'+ prod_title + '</span>'
 						 + 	'<span class="inquiry_text" style="font-weight:bold;">' + data[i].qna_content + '</span>'
 						+ '</div>'
@@ -101,25 +108,35 @@
 						+ '<div class="date">'
 						+	'<span>' + data[i].qna_date + '</span>'
 						+ '</div>'
-					
 						+ '</a>'
 						+ '<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a' + i + '">'
-						+ '<div class="question">'+ data[i].qna_content+ '</div>'
-						+ '<c:if test="'+data[i].answer_yn' == \'y\' ">'
-						+ '<div class="answer" style="display:none;">'
-						+	'<span class="ico asw">답변</span>'
-						
-						+	'<span class="tit_asw">판매자'
-						+		'<span>'+data[i].answer_date+'</span>'
-						+  data[i].answer_content
+						+ '<div class="question">'+ data[i].qna_content + '</div>';
+
+						if(data[i].memberId == memberId){
+							list += '<p class="delete_qna" id="deleteQuestion"><u>삭제</u></p>';
 							
-						 + '</div>'
-					+ '</c:if></div>' 
-				+ '</li>';
+						}
+						if(data[i].answer_yn == 'y'){
+							list += '<div class="answer" style="display:block;">'
+								+	'<span class="ico asw">답변</span>'
+								
+								+	'<span class="tit_asw">판매자'
+								+		'<span>'+data[i].answer_date+'</span></span>'
+								+  data[i].answer_content
+								 + '</div>';
+						} else {
+							list += '<div class="answer" style="display:none;">'
+								+	'<span class="ico asw">답변</span>'
+								
+								+	'<span class="tit_asw">판매자'
+								+		'<span>'+data[i].answer_date+'</span></span>'
+								+  data[i].answer_content
+								 + '</div>';
+						}
+						list += '</div>' 
+							+ '</li>';
 					}
-					
 				$(".list_comment_inqury").html(list);
-		            console.log(list);
 				},
 				error: function(data, textStatus){
 					alert("다시 시도해주세요.");
@@ -137,7 +154,124 @@
 				} else { //펴져있는데 눌렀을 경우
 					$('#a'+num).css("display", "none");
 				}
-			})
+			});
+			
+			//Q&A 삭제(구매자 입장에서 Q&A 작성한 게시글 삭제)
+			$("#deleteQuestion").click(function(){
+
+				//삭제 확인
+				if(confirm("해당 답변을 삭제하시겠습니까?\n")){ //네 선택
+					var product = $("#prod_number").val();
+					var prod_title = $("#prod_title").val();
+					
+					var command = 'delete';
+
+					var deleteInfo = {
+							prod_number:product,
+							qna_number:num,
+							command:command
+					}
+					
+					$.ajax({
+						type: "post",
+						async: false,
+						url: "/devFw/detail/qna.do",
+						data: deleteInfo,
+						dataType : 'text',
+						success: function(responseData){
+
+							
+							var data = JSON.parse(responseData);
+				            /* if(jsonInfo.error.error_yn == 'Y'){
+				        	   alert(jsonInfo.error.error_text);
+				        	   return;
+				            } */
+				            console.log(data.length);
+							var list = '';
+							
+
+							for(var i=0;i<data.length;i++){
+							list += '<li><a href="javascript:void(0)" class="faq_open" id="' + i + '">';
+							
+								if(data[i].answer_yn == 'y'){
+									list += '<div class="cate">답변 완료</div>';
+								}
+								else {
+									list += '<div class="cate"><p id="waitAnswer">답변 대기</p></div>';
+								}
+								
+								list += '<div class="cont_box">'
+								 +	'<span class="inquiry_prod">'+ prod_title + '</span>'
+								 + 	'<span class="inquiry_text" style="font-weight:bold;">' + data[i].qna_content + '</span>'
+								+ '</div>'
+								+ '<div class="user">'
+								+	'<span class="ff">' + data[i].memberId + '</span>'
+								+ '</div>'
+								+ '<div class="date">'
+								+	'<span>' + data[i].qna_date + '</span>'
+								+ '</div>'
+							
+								+ '</a>'
+								+ '<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a' + i + '">'
+								+ '<div class="question">'+ data[i].qna_content+ '</div>';
+								if(data[i].memberId == memberId){
+									list += '<p class="delete_qna" id="deleteQuestion"><u>삭제</u></p>';
+									
+								}
+								if(data[i].answer_yn == 'y'){
+									list += '<div class="answer" style="display:block;">'
+										+	'<span class="ico asw">답변</span>'
+										
+										+	'<span class="tit_asw">판매자'
+										+		'<span>'+data[i].answer_date+'</span></span>'
+										+  data[i].answer_content
+										 + '</div>';
+								} else {
+									list += '<div class="answer" style="display:none;">'
+										+	'<span class="ico asw">답변</span>'
+										
+										+	'<span class="tit_asw">판매자'
+										+		'<span>'+data[i].answer_date+'</span></span>'
+										+  data[i].answer_content
+										 + '</div>';
+								}
+								
+								
+								list+= '</div>' 
+						+ '</li>';
+						console.log(list);
+							}
+						$(".list_comment_inqury").html(list);
+
+						},
+						error: function(data, textStatus){
+							alert("다시 시도해주세요.");
+						},
+						complete : function (data, textstatus){
+						}
+					});
+				
+					
+					
+
+				} else{ //아니오 선택
+					return false;
+				}
+				
+				$(".faq_open").click(function(){
+					num = $(this).attr("id");
+					var target = document.getElementById("a" + num);
+					
+					if(target.style.display == 'none'){ //접혀있는데 눌렀을 경우
+						$('#a'+num).css("display", "block");
+					} else { //펴져있는데 눌렀을 경우
+						$('#a'+num).css("display", "none");
+					}
+				});
+		
+			});
+			
+			
 			
 		});
 		
@@ -163,7 +297,7 @@
 					qna_number: num, //Q&A number -> 질문 펼칠 때 받아옴
 					command: command		
 			}
-			alert(answer);
+
 			$.ajax({
 				type: "post",
 				async: false,
@@ -171,7 +305,7 @@
 				data: answer,
 				dataType : 'text',
 				success: function(responseData){
-					document.getElementById("answer_write").value = "";
+
 					
 					var data = JSON.parse(responseData);
 		            /* if(jsonInfo.error.error_yn == 'Y'){
@@ -181,13 +315,16 @@
 		           console.log(data);
 		           var answerString = '<span class="ico asw">답변</span>'
 					+ '<span class="tit_asw">판매자'
-					+ '<span>'+data.answer_date+'</span>'
-					+ '</span>' + data.answer_content;
+					+ '<span>'+ data.answer_date +'</span>'
+					+ '</span>' + data.answer_content
+					+ '<p class="delete" id="deleteAnswer"><u>삭제</u></p>';
+					
 				
 		            var answer_number = data.qna_number;
 
 		        	$("#answer"+answer_number).html(answerString);
 		        	$("#cate"+answer_number).html('답변 완료');
+					document.getElementById("answer_write").value = "";
 				},
 				error: function(data, textStatus){
 					alert("다시 시도해주세요.");
@@ -196,63 +333,254 @@
 				}
 			});
 			
+			
+			
 		});
 		
-		$("#modify").click(function(){
+		//Q&A 삭제(구매자 입장에서 Q&A 작성한 게시글 삭제)
+		$("#deleteQuestion").click(function(){
+
+			//삭제 확인
+			if(confirm("해당 답변을 삭제하시겠습니까?\n")){ //네 선택
+				var product = $("#prod_number").val();
+				var prod_title = $("#prod_title").val();
+				var memberId = $("#memberId").val();
+				
+				var command = 'delete';
+
+				var deleteInfo = {
+						prod_number:product,
+						qna_number:num,
+						command:command
+				}
+				
+				$.ajax({
+					type: "post",
+					async: false,
+					url: "/devFw/detail/qna.do",
+					data: deleteInfo,
+					dataType : 'text',
+					success: function(responseData){
+
+						
+						var data = JSON.parse(responseData);
+			            /* if(jsonInfo.error.error_yn == 'Y'){
+			        	   alert(jsonInfo.error.error_text);
+			        	   return;
+			            } */
+			            console.log(data.length);
+						var list = '';
+						
+
+						for(var i=0;i<data.length;i++){
+						list += '<li><a href="javascript:void(0)" class="faq_open" id="' + i + '">';
+						
+							if(data[i].answer_yn == 'y'){
+								list += '<div class="cate">답변 완료</div>';
+							}
+							else {
+								list += '<div class="cate"><p id="waitAnswer">답변 대기</p></div>';
+							}
+							
+							list += '<div class="cont_box">'
+							 +	'<span class="inquiry_prod">'+ prod_title + '</span>'
+							 + 	'<span class="inquiry_text" style="font-weight:bold;">' + data[i].qna_content + '</span>'
+							+ '</div>'
+							+ '<div class="user">'
+							+	'<span class="ff">' + data[i].memberId + '</span>'
+							+ '</div>'
+							+ '<div class="date">'
+							+	'<span>' + data[i].qna_date + '</span>'
+							+ '</div>'
+						
+							+ '</a>'
+							+ '<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a' + i + '">'
+							+ '<div class="question">'+ data[i].qna_content+ '</div>';
+							if(data[i].memberId == memberId){
+								list += '<p class="delete_qna" id="deleteQuestion"><u>삭제</u></p>';
+								
+							}
+							if(data[i].answer_yn == 'y'){
+								list += '<div class="answer" style="display:block;">'
+									+	'<span class="ico asw">답변</span>'
+									
+									+	'<span class="tit_asw">판매자'
+									+		'<span>'+data[i].answer_date+'</span></span>'
+									+  data[i].answer_content
+									 + '</div>';
+							} else {
+								list += '<div class="answer" style="display:none;">'
+									+	'<span class="ico asw">답변</span>'
+									
+									+	'<span class="tit_asw">판매자'
+									+		'<span>'+data[i].answer_date+'</span></span>'
+									+  data[i].answer_content
+									 + '</div>';
+							}
+							
+							
+							list+= '</div>' 
+					+ '</li>';
+					console.log(list);
+						}
+					$(".list_comment_inqury").html(list);
+
+					},
+					error: function(data, textStatus){
+						alert("다시 시도해주세요.");
+					},
+					complete : function (data, textstatus){
+					}
+				});
+			
+				
+				
+
+			} else{ //아니오 선택
+				return false;
+			}
+			
+			$(".faq_open").click(function(){
+				num = $(this).attr("id");
+				var target = document.getElementById("a" + num);
+				
+				if(target.style.display == 'none'){ //접혀있는데 눌렀을 경우
+					$('#a'+num).css("display", "block");
+				} else { //펴져있는데 눌렀을 경우
+					$('#a'+num).css("display", "none");
+				}
+			});
+	
+		});
+		
+		
+		//Q&A 답변 삭제(상품 게시자)
+		$("#deleteAnswer").click(function(){
+			var product = $("#prod_number").val();
+
+			var command = 'delete';
+
+			var deleteInfo = {
+					prod_number:product,
+					qna_number:num,
+					command:command
+			}
+			
+			//삭제 확인
+			if(confirm("해당 답변을 삭제하시겠습니까?\n")){ //네 선택
+				
+				$.ajax({
+					type: "post",
+					async: false,
+					url: "/devFw/detail/answer.do",
+					data: deleteInfo,
+					dataType : 'text',
+					success: function(responseData){
+
+						
+						var data = JSON.parse(responseData);
+			            /* if(jsonInfo.error.error_yn == 'Y'){
+			        	   alert(jsonInfo.error.error_text);
+			        	   return;
+			            } */
+			           console.log(data);
+			           var answerString = '<span class="ico asw">답변</span>'
+						+ '<span class="tit_asw">판매자'
+						+	'<textarea id="answer_write" style="resize: none;"></textarea>'
+						+	'<button id="answer_enroll" class="answer_enroll">답변달기</button>'
+						+ '</span>';
+				
+					
+			            var answer_number = data.qna_number;
+
+			        	$("#answer"+answer_number).html(answerString);
+			        	$("#cate"+answer_number).html('답변 대기');
+			        	$("#cate"+answer_number).css("color", "#BDBDBD");
+					},
+					error: function(data, textStatus){
+						alert("다시 시도해주세요.");
+					},
+					complete : function (data, textstatus){
+					}
+				});
+				
+
+			} else{ //아니오 선택
+				return false;
+			}
+	
+		});
+		
+		
+		//상품 게시글 수정
+ 	 	$("#modify").click(function(){
 			var frm = document.detail;
 
-			
-			
 			frm.method="post";
 			frm.action="./modifyProduct.do";
 			frm.submit();
 		});
-/* 		$("#delete").click(function(){
+ 	 	
+		//상품 게시글 삭제
+ 		$("#delete").click(function(){
 			var frm = document.detail;
 
-			
-			
-			frm.method="post";
-			frm.action="./deleteProduct.do";
-			frm.submit();
-		}); */
+			if(confirm("해당 상품을 삭제하시겠습니까?\n")){
+				frm.method="post";
+				frm.action="./deleteProduct.do";
+				frm.submit();
+			} else{
+				return false;
+			}
+
+		});
+		
 		
 		//대표 사진 확대 기능
-	  	$("a[rel^='prettyPhoto']").prettyPhoto();
+	  //	$("a[rel^='prettyPhoto']").prettyPhoto();
+		
+		
+		
 	});
 	
 	                                                                                                                                                    
 	$(window).load(function(){
-		var day = document.getElementById("left_day").value;
-		var hour = document.getElementById("left_hour").value;
-		var min = document.getElementById("left_min").value;
-		var second = document.getElementById("left_second").value;
+		var auction_yn = document.getElementsByName("auction_yn").value;
 		
-		setInterval(function(){
-
-			if(second > 0){
-				second--;
-			} else{
-				if(min > 0){
-					second=59;
-					min--;
+		if(auction_yn == 'y'){
+		
+			var day = document.getElementById("left_day").value;
+			var hour = document.getElementById("left_hour").value;
+			var min = document.getElementById("left_min").value;
+			var second = document.getElementById("left_second").value;
+			
+			setInterval(function(){
+	
+				if(second > 0){
+					second--;
 				} else{
-					if(hour > 0){
-						min=59;
-						hour--;
+					if(min > 0){
+						second=59;
+						min--;
 					} else{
-						min=59;
+						if(hour > 0){
+							min=59;
+							hour--;
+						} else{
+							min=59;
+						}
 					}
 				}
-			}
-			var tt = day + ' 일 ' + hour + ' 시간 ' + min + " 분 " + second + " 초 ";
-			document.getElementById("auction_date_cal").innerHTML = tt;
-	  }, 1000);
+				var tt = day + ' 일 ' + hour + ' 시간 ' + min + " 분 " + second + " 초 ";
+				document.getElementById("auction_date_cal").innerHTML = tt;
+		  }, 1000);
+		}
 	})
-	
-	//경매 상품 시간 계산 해주기 -> 처음 화면 펼칠 때 남은 시간 select한 후 화면단에서 시간 줄여주기
-	function time_cal(){
 
+	
+
+ 	//경매 상품 시간 계산 해주기 -> 처음 화면 펼칠 때 남은 시간 select한 후 화면단에서 시간 줄여주기
+	function time_cal(){
 		location.reload();
 		var day = document.getElementById("left_day").value;
 		var hour = document.getElementById("left_hour").value;
@@ -277,7 +605,7 @@
 	}
 	
 	//+, - 버튼 눌렀을 때 수량 변경
-	function buttonClick(pm){ 
+	function abuttonClick(pm){ 
 		
 		var price = document.getElementById("prod_price").value;
 		var amount = document.getElementById("prod_amount");
@@ -307,8 +635,7 @@
 		 
 		    return n;
 		};
-		 
-		alert('dd');
+
 		// 문자열 타입에서 쓸 수 있도록 format() 함수 추가
 		String.prototype.format = function(){
 		    var num = parseFloat(this);
@@ -319,9 +646,13 @@
 
 		var total = amount.value * price;
 
+
 		document.getElementById("total").innerHTML = total.format(); //천단위 , 찍어서 표현
 		document.getElementById("total_price").value = total;
+
+		
 	}
+	 
 	
 	//상세정보, Q&A, 상품후기 나누는 탭
 	function tab_menu(num){
@@ -337,7 +668,7 @@
 		}
 	}
 	
-
+	
 	
 
 	 
@@ -612,6 +943,9 @@ textarea{
 .cate, .cont_box, .user, .date{
 	float:left;
 }
+#waitAnswer{
+	color:#BDBDBD;
+}
 
 /*qna 답변*/
 #QnA .list_comment_inqury .faq_cont {
@@ -695,6 +1029,17 @@ textarea{
     border: 1px solid #00a9d4;
 }
 
+/*Q&A 삭제*/
+.delete_qna{
+	float:right;
+	cursor:pointer;
+}
+#deleteQuestion{
+    margin-top: -22px;
+    margin-right: 10px;
+	position: relative;
+}
+
 /*수정 삭제*/
 #modify, #delete{
 	background: black;
@@ -712,6 +1057,7 @@ textarea{
 <body>
 <form name="detail">
 <div id="wrap">
+	<input type="hidden" id="command" name="command" value="">
 	<c:forEach var="product" items="${detail }" varStatus="status" >
 		<input type="hidden" id="prod_number" name="prod_number" value="${product.prod_number }">
 		<div class="category">
@@ -723,6 +1069,7 @@ textarea{
 			<c:forEach var="middle_category" items="${middle_category }">
 				${middle_category.category_name }
 				<input type="hidden" name="middle_category" value="${middle_category.category_code }">
+				<input type="hidden" name="prod_category_code" value="${middle_category.category_code }"/>
 			</c:forEach>
 		</div>
 		<div class="up">
@@ -735,20 +1082,32 @@ textarea{
 					<P> 중고 </P>
 					<input type="hidden" name="reused_yn" value="y">
 				</c:if>
+				<c:if test="${product.reused_yn == 'n' }"> <!-- 상품 판매 카테고리 -->
+					
+					<input type="hidden" name="reused_yn" value="n">
+				</c:if>
 				<c:if test="${product.auction_yn == 'y' }">
 					<P> 경매 </P>
 					<input type="hidden" name="auction_yn" value="y">
 				</c:if>
+				<c:if test="${product.auction_yn == 'n' }">
+				
+					<input type="hidden" name="auction_yn" value="n">
+				</c:if>
 				<c:if test="${product.flea_yn == 'y' }">
 					<P> 플리 </P>
 					<input type="hidden" name="flea_yn" value="y">
+				</c:if>
+				<c:if test="${product.flea_yn == 'n' }">
+			
+					<input type="hidden" name="flea_yn" value="n">
 				</c:if>
 				<div class="writer_option" style="float:right; margin-top: -30px;">
 					<input type="button" id="modify" value="수정">
 					<input type="button" id="delete" value="삭제">
 				</div>
 				<h1>${product.prod_title}</h1>
-				<input type="hidden" id="prod_title" name="prod_title" value="${product.prod_title }">
+				<input type="hidden" id="prod_title" value="${product.prod_title }">
 				<!-- <h3>#${product.tag1 }, #${product.tag2 }, #${product.tag3 }, #${product.tag4 }, #${product.tag5 }</h3> -->
 				<h3 id="gray-text">${product.memberId }</h3>
 				<br>
@@ -785,7 +1144,8 @@ textarea{
 						<c:otherwise>
 							max수량: ${product.prod_amount }
 							<br>
-							수량: <button id="minus" onclick="buttonClick('minus')">-</button><input type="number" id="prod_amount" min="1" max="${product.prod_amount }" style="width:4%; height:auto; text-align:right;" value=""><button id="plus" onclick="buttonClick('plus')">+</button>
+							수량: 
+							<input type="button" onclick="abuttonClick('minus');" value="-"><input type="number" id="prod_amount" min="1" max="${product.prod_amount }" style="width:4%; height:auto; text-align:right;" value=""><input type="button" onclick="abuttonClick('plus');" value="+">
 							<br>
 							총 금액: <span id="total"></span>원
 						</c:otherwise>
@@ -896,7 +1256,7 @@ textarea{
 													답변 완료
 												</c:if>
 												<c:if test="${prodQnA.answer_yn == 'n' }"><!-- 답변이 있으면 -->
-													답변 대기
+													<p id="waitAnswer">답변 대기</p>
 												</c:if>
 											</div>
 											<div class="cont_box">
@@ -915,6 +1275,9 @@ textarea{
 										
 										<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a${prodQnA.qna_number }">
 											<div class="question">${prodQnA.qna_content }</div>
+											<c:if test="${prodQnA.memberId == member.getMemberid() }"><!-- 자신이 쓴 q&a 내용 삭제할 수 있음 -->
+												<p class="delete_qna" id="deleteQuestion"><u>삭제</u></p>
+											</c:if>
 											<c:choose>
 												<c:when test="${product.memberId == member.getMemberid() }"> <!-- 글작성자일 경우 -->
 													<c:if test="${prodQnA.answer_yn == 'n' }">
@@ -933,11 +1296,12 @@ textarea{
 																<span>${prodQnA.answer_date }</span>
 															</span>
 															${prodQnA.answer_content }
+															<p class="delete_qna" id="deleteAnswer"><u>삭제</u></p>
 														</div>
 													</c:if>
 												</c:when>
 												<c:otherwise> <!-- 글작성자가 아닐 경우 -->
-													<c:if test="${prodQnA.answer_yn == 'n' }">
+													<c:if test="${prodQnA.answer_yn == 'n' }"> <!-- 답변이 달린 경우 -->
 														<div class="answer" id="answer${prodQnA.qna_number }" style="display:none;">
 															<span class="ico asw">${prodQnA.answer_content }</span>
 														
@@ -946,7 +1310,7 @@ textarea{
 															</span>
 														</div>
 													</c:if>
-													<c:if test="${prodQnA.answer_yn == 'y' }">
+													<c:if test="${prodQnA.answer_yn == 'y' }"> <!-- 답변이 달리지 않은 경우 -->
 														<div class="answer" id="answer${prodQnA.qna_number }" style="display:block;">
 															<span class="ico asw">답변</span>
 														
@@ -954,6 +1318,7 @@ textarea{
 																<span>${prodQnA.answer_date }</span>
 															</span>
 															${prodQnA.answer_content }
+													
 														</div>
 													</c:if>
 												</c:otherwise>

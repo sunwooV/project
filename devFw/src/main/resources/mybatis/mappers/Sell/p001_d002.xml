@@ -50,17 +50,17 @@
          from   category	
       ]]>
 		<where>
-			category_code='${high_category }'
+			category_code=#{high_category }
 		</where>
 	</select>
 	
 	<select id="middle_category" resultMap="S_P001_D002Result02" parameterType="java.util.Map"> 
       <![CDATA[
-         select category_code, category_name, high_category
-         from   category
+         SELECT category_code, category_name, high_category
+         FROM   category
       ]]>
 		<where>
-			category_code = '${prod_category_code }'
+			category_code = #{prod_category_code }
 		</where>
 	</select>
 
@@ -69,7 +69,7 @@
          select *
          from   product
       <where>
-      	prod_number = ${prod_number }
+      	prod_number = #{prod_number }
       </where>
 	</select>
 	
@@ -80,7 +80,7 @@
 				trunc(round(mod((auction_end_date-sysdate)*24*60,1)*60)) as left_second
 		FROM product
 		<where>
-			prod_number = ${prod_number}
+			prod_number = #{prod_number}
 		</where>
 	</select>
 	
@@ -88,7 +88,7 @@
 		SELECT  tag1, tag2, tag3, tag4, tag5
 		FROM tag
 		<where>
-			prod_number = ${prod_number}
+			prod_number = #{prod_number}
 		</where>
 	</select>
 

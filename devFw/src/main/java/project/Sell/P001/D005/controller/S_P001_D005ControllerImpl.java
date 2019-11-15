@@ -109,5 +109,40 @@ public class S_P001_D005ControllerImpl implements S_P001_D005Controller {
 		return resEnt;
 	}
 	
+	@Override
+	@RequestMapping(value = "/deleteProduct.do", method = { RequestMethod.POST, RequestMethod.POST })
+	@ResponseBody
+	public ResponseEntity deleteProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		System.out.println("update 들어옴");
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		Enumeration enu = request.getParameterNames();
+		while (enu.hasMoreElements()) {
+			String name = (String)enu.nextElement();
+			String value = request.getParameter(name);
+			dataMap.put(name, value);
+			System.out.println(dataMap);
+		}
+		String message;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders(); // 헤더변경 시 사용
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+		try {
+			S_P001_D005Service.deleteProduct(dataMap);
+			
+			response.sendRedirect("/devFw/main.do");
+//			RequestDispatcher dispatch = request.getRequestDispatcher("/Sell/P001/D001/searchList.do");
+//			dispatch.forward(request, response);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해 주세요');";
+			message += " location.href='" + request.getRequestURI();
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
+			e.printStackTrace();
+		}		
+		return resEnt;
+	}
+	
 	
 }

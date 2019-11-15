@@ -21,9 +21,20 @@ public class S_P001_D003DAOImpl implements S_P001_D003DAO {
 	}
 	
 	@Override
+	public void deleteQnA(Map<String, Object> datahMap) throws DataAccessException {
+		sqlSession.update("Sell.p001_d003.deleteQnA", datahMap);
+	}
+	
+	@Override
 	public void insertAnswer(Map<String, Object> datahMap) throws DataAccessException {
 		sqlSession.update("Sell.p001_d003.insertAnswer", datahMap);
 	}
+	
+	@Override
+	public void deleteAnswer(Map<String, Object> datahMap) throws DataAccessException {
+		sqlSession.update("Sell.p001_d003.deleteAnswer", datahMap);
+	}
+	
 	
 	@Override
 	public List<S_P001_D003VO> selectQnA(Map<String, Object> searchMap) throws DataAccessException {

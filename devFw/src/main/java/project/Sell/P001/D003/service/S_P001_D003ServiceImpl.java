@@ -24,9 +24,20 @@ public class S_P001_D003ServiceImpl implements S_P001_D003Service {
 	}
 	
 	@Override
+	public void deleteQnA(Map<String, Object> datahMap) throws Exception {
+		S_P001_D003DAO.deleteQnA(datahMap);
+	}
+	
+	@Override
 	public void insertAnswer(Map<String, Object> datahMap) throws Exception {
 		S_P001_D003DAO.insertAnswer(datahMap);
 	}
+	
+	@Override
+	public void deleteAnswer(Map<String, Object> datahMap) throws Exception {
+		S_P001_D003DAO.deleteAnswer(datahMap);
+	}
+	
 	
 	@Override
 	public List<S_P001_D003VO> selectQnA(Map<String, Object> searchMap) throws DataAccessException {
