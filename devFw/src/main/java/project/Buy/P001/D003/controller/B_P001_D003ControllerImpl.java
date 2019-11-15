@@ -35,8 +35,8 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 	public ModelAndView selectCart(@ModelAttribute C_P001_D001VO member, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		Map<String, Object> searchMap = new HashMap<String, Object>(); //  Map
-		List<B_P001_D003VO> list = b_p001_d003Service.selectCart(searchMap); //List
+//		Map<String, Object> searchMap = new HashMap<String, Object>(); //  Map
+//		List<B_P001_D003VO> list = b_p001_d003Service.selectCart(searchMap); //List
 		
 		
 		ModelAndView mav = new ModelAndView("Buy/p001_d003_cart"); // view
