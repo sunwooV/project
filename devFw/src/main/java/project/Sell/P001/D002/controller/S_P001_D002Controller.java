@@ -6,5 +6,5 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 
 public interface S_P001_D002Controller {
-	public ModelAndView detailProduct(String prod_number, String category, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView detailProduct(String command, String prod_number, String category, HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

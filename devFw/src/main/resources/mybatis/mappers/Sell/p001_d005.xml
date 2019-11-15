@@ -5,7 +5,19 @@
 
 <mapper namespace="Sell.p001_d005">
 
-	<!-- Q&A answer -->
+	<!-- 상품 수정 -->	
+	<update id="updateTag" parameterType="java.util.Map">
+		<![CDATA[
+			UPDATE tag
+			SET tag1=#{tag1}, tag2=#{tag2}, tag3=#{tag3}, tag4=#{tag4}, tag5=#{tag5}
+		]]>
+		<where>
+		<![CDATA[
+			prod_number=#{prod_number}
+		]]>
+		</where>
+	</update>
+	
 	<update id="updateProduct" parameterType="java.util.Map">
 		<choose>
 			<when test="auction_date != null"> <!-- 경매 체크했을 때 -->
@@ -106,17 +118,29 @@
 	 	]]>
 		 </where>
 	</update>
+
 	
-	<update id="updateTag" parameterType="java.util.Map">
+	<!-- 상품 삭제 -->
+	<delete id="deleteTag" parameterType="java.util.Map">
 		<![CDATA[
-			UPDATE tag
-			SET tag1=#{tag1}, tag2=#{tag2}, tag3=#{tag3}, tag4=#{tag4}, tag5=#{tag5}
+			DELETE FROM tag
 		]]>
 		<where>
 		<![CDATA[
-			prod_number=#{prod_number}
+			prod_number = #{prod_number}
 		]]>
 		</where>
-	</update>
+	</delete>
+	
+	<delete id="deleteProduct" parameterType="java.util.Map">
+		<![CDATA[
+			DELETE FROM product
+		]]>
+		<where>
+		<![CDATA[
+			prod_number = #{prod_number}
+		]]>
+		</where>
+	</delete>
 
 </mapper>

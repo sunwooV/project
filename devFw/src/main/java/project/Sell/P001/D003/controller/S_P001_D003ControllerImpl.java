@@ -56,10 +56,12 @@ public class S_P001_D003ControllerImpl implements S_P001_D003Controller {
 		
 		if(command.equals("insert")) { //질문사항 등록일 경우
 			S_P001_D003Service.insertQnA(dataMap);
-			
-			prodQnA = S_P001_D003Service.selectQnA(searchMap);
-			System.out.println(prodQnA);
+		} else { //질문사항 삭제일 경우
+			S_P001_D003Service.deleteQnA(dataMap);
 		}
+		
+		prodQnA = S_P001_D003Service.selectQnA(searchMap);
+		System.out.println(prodQnA);
 		
 		result += "[";
 		for(int i=0;i<prodQnA.size();i++) {
@@ -117,37 +119,24 @@ public class S_P001_D003ControllerImpl implements S_P001_D003Controller {
 		searchMap.put("prod_number", prod_number);
 		searchMap.put("qna_number", qna_number);
 		
-		if(command.equals("insert")) { //질문사항 등록일 경우
-			S_P001_D003Service.insertAnswer(dataMap);
-			
-			QnAanswer = S_P001_D003Service.selectAnswer(searchMap);
-			
-			System.out.println(QnAanswer);
+		if(command.equals("insert")) { //답변 등록일 경우
+			S_P001_D003Service.insertAnswer(dataMap);	
+		}else { //답변 삭제일 경우
+			System.out.println("prod_number" + prod_number + ", qna_number:" + qna_number);
+			S_P001_D003Service.deleteAnswer(dataMap);
 		}
+		
+		QnAanswer = S_P001_D003Service.selectAnswer(searchMap);
+		
+		
 		
 		result += "{";
 		result += "\"answer_content\":\"" + ((S_P001_D003VO)QnAanswer.get(0)).getAnswer_content() + "\",";
 		result += "\"answer_date\":\"" + ((S_P001_D003VO)QnAanswer.get(0)).getAnswer_date() + "\",";
 		result += "\"qna_number\":\"" + ((S_P001_D003VO)QnAanswer.get(0)).getQna_number() + "\"";
-		
 		result += "}";
 		
-		/*result += "[";
-		for(int i=0;i<QnAanswer.size();i++) {
-			result += "{";
-			result += "\"answer_content\":\"" + ((S_P001_D003VO)QnAanswer.get(i)).getAnswer_content() + "\",";
-			result += "\"answer_date\":\"" + ((S_P001_D003VO)QnAanswer.get(i)).getAnswer_date() + "\"";
-			
-			
-			result += "}";
-			if(i != QnAanswer.size() -1) {
-				result += ", ";
-			}
-		}
-		result += "]";*/
 		System.out.println("result ::::: " + result);
-		//String personJson = "[{\"id\":\""+"0" +"\",\"name\":\""+"dd" +"\",\"password\":\""+"bb" +"\",\"email\":\""+"pp"+"\"}, {\"id\":\""+"123" +"\",\"name\":\""+"dd" +"\",\"password\":\""+"bb" +"\",\"email\":\""+"pp"+"\"}]";
-		//System.out.println(personJson);
 		
 		try {	
 			response.getWriter().print(result);
