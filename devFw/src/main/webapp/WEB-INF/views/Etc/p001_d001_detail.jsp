@@ -24,6 +24,7 @@
 		<div class="col-sm-3">
 			<div class="toc">
 				<ul>
+				
 					<li><a href="#intro">Intro</a></li>
 					<li><a href="#dev">Developer Mode</a>
 						<ul>
