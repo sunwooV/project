@@ -23,7 +23,7 @@ public class B_P002_D001ControllerImpl implements B_P002_D001Controller {
 		ModelAndView mav = new ModelAndView("Buy/p002_d001_confirmBuy");
 		return mav;
 	}
-
+	
 	
 	
 }
