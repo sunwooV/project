@@ -1,4 +1,4 @@
-package project.Etc.P001.D001.controller;
+package project.Etc.P002.D001.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,8 +10,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-public interface E_P001_D001Controller {
+public interface E_P002_D001Controller {
 	
-	ModelAndView detail1(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	ModelAndView admin(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

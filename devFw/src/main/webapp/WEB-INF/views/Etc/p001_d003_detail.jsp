@@ -19,9 +19,9 @@
 	rel="stylesheet">
 </head>
 <body>
-	<div class="container" style="padding-top: 4%;">
+	<div class="container-fulid" style="padding-top: 4%;">
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->
-		<h1 style="font-size: 35px;">회사 소개</h1>
+		<h1 style="font-size: 35px;">경매 절차</h1>
 		<div class="row" style="margin-top: -1%;">
 			<div class="table" id="cs">
 				<img src="${contextPath }/resources/img/logo.jpg" width=100%;

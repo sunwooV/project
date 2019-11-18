@@ -26,7 +26,7 @@ public class C_P002_D001ControllerImpl implements C_P002_D001Controller{
 	@RequestMapping(value = "/mypage.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView mypage(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		ModelAndView mav = new ModelAndView("Customers/c_p002_d001");
+		ModelAndView mav = new ModelAndView("Customers/p002_d001_mypage");
 		return mav;
 	}
 }

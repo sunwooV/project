@@ -21,23 +21,24 @@
 <body>
 	<div class="container" style="padding-top: 4%;">
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->
-		<h1 style="font-size: 35px;">회사 소개</h1>
+		<h1 style="font-size: 35px;">플리 마켓</h1>
 		<div class="row" style="margin-top: -1%;">
 			<div class="table" id="cs">
-				<img src="${contextPath }/resources/img/logo.jpg" width=100%;
-					height=100%; />
-			</div>
-			<div class="table" id="cs_view">
-				<div class="list-group">
-					<a href="#" class="list-group-item list-group-item-action">중고거래
-					</a> <a href="#" class="list-group-item list-group-item-action">경매절차</a>
-					<a href="#" class="list-group-item list-group-item-action">플리마켓
-						유형 및 참여방법</a> <a href="#"
-						class="list-group-item list-group-item-action">판매자 입금절차 안내</a> <a
-						href="#" class="list-group-item list-group-item-action">중고거래방법</a>
-				</div>
+				<img src=https://newsimg.sedaily.com/2019/10/04/1VPE3UJMKV_1.jpg
+					width=100%; height=100%; />
 			</div>
 		</div>
+		<div class="table" id="cs_view">
+			<div class="list-group">
+				<a href="#" class="list-group-item list-group-item-action">중고거래
+				</a> <a href="#" class="list-group-item list-group-item-action">경매절차</a>
+				<a href="#" class="list-group-item list-group-item-action">플리마켓
+					유형 및 참여방법</a> <a href="#"
+					class="list-group-item list-group-item-action">판매자 입금절차 안내</a> <a
+					href="#" class="list-group-item list-group-item-action">중고거래방법</a>
+			</div>
+		</div>
+
 		<div class="row">
 			<img
 				src=https://dimg.donga.com/ugc/CDB/SHINDONGA/Article/5c/eb/73/61/5ceb73611a8ad2738de6.jpg
