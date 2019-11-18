@@ -262,7 +262,6 @@
 	
 		//수정버튼
 		$("#modify").click(function() {
-			alert(';;');
 			var frm2 = document.productModify;
 			var prod_group ="";
 			var auction_date = "";
@@ -294,7 +293,6 @@
 					}
 				}
 			}
-			alert('dd');
 			
 			if(tagList.length != 0){ //tag 넘겨주기 ,로 tag 구분
 				for(i=0;i<tagList.length;i++){
@@ -422,7 +420,7 @@
 						$("#direct").attr("disabled", false);
 						$("#way_caution").html("※중고와 경매에 대한 직거래입니다.※");
 						$("#price").css("display", "block"); //상품 가격란 표시
-						document.getElementsByName("reused_yn")[0].value = 'y';
+						document.getElementsByName("")[0].value = 'y';
 					} else {
 						$("#buyPrice").css("display", "none"); //구매 금액 입력할 수 있게 한다.
 						$("#price").css("display", "none"); //상품 가격란 미표시
@@ -855,7 +853,7 @@
 					<c:if test="${modifyProd.reused_yn == 'y' }">
 						<input type="checkbox" name="prod_group" value="중고" class="checkSelect1" id="reused" checked="checked"/>
 						<label for="reused">중고</label>
-						<input type="hidden" name="reused_yn" id="reuesd_yn" value="${modifyProd.reused_yn }"/>
+						<input type="hidden" name="reused_yn" id="reused_yn" value="${modifyProd.reused_yn }"/>
 					</c:if>
 					<c:if test="${modifyProd.reused_yn == 'n' }">
 						<input type="checkbox" name="prod_group" value="중고" class="checkSelect1" id="reused" />

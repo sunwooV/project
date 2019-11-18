@@ -18,7 +18,13 @@
 		var loginCheck = document.getElementById("memberId").value;
 		var num = 0;
 		
-		$("#prod_inquiry_text").click(function(){
+// 		//경매 입찰하기
+// 		$(document).on('click', '#bidding', function(){
+			
+// 		}
+		
+		//질문 적기
+		$(document).on('click', '#prod_inquiry_text', function(){
 			if(loginCheck == null || loginCheck == "") {
 				if(confirm("로그인 후 글을 쓸 수 있습니다.\n로그인 하시겠습니까?")){
 					window.location.href="./loginInit.do?redirect=" + now;
@@ -30,9 +36,11 @@
 			}
 	  	});
 		
-		$(".faq_open").click(function(){
+		//질문 리스트 열기
+		$(document).on('click', '.faq_open', function(){
 
 			num = $(this).attr("id");
+
 			var target = document.getElementById("a" + num);
 			
 			if(target.style.display == 'none'){ //접혀있는데 눌렀을 경우
@@ -44,7 +52,7 @@
 		
 		
 		//질문 등록
-		$(".enrollInquiry").click(function(){
+		$(document).on('click', '.enrollInquiry', function(){
 			
 			var content = $("#prod_inquiry_text").val();
 			var product = $("#prod_number").val();
@@ -89,7 +97,7 @@
 					
 
 					for(var i=0;i<data.length;i++){
-					list += '<li><a href="javascript:void(0)" class="faq_open" id="' + i + '">';
+					list += '<li><a href="javascript:void(0)" class="faq_open" id="' + data[i].qna_number + '">';
 					
 						if(data[i].answer_yn == 'y'){
 							list += '<div class="cate">답변 완료</div>';
@@ -109,7 +117,7 @@
 						+	'<span>' + data[i].qna_date + '</span>'
 						+ '</div>'
 						+ '</a>'
-						+ '<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a' + i + '">'
+						+ '<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a' + data[i].qna_number + '">'
 						+ '<div class="question">'+ data[i].qna_content + '</div>';
 
 						if(data[i].memberId == memberId){
@@ -144,132 +152,7 @@
 				complete : function (data, textstatus){
 				}
 			});
-			
-			$(".faq_open").click(function(){
-				num = $(this).attr("id");
-				var target = document.getElementById("a" + num);
-				
-				if(target.style.display == 'none'){ //접혀있는데 눌렀을 경우
-					$('#a'+num).css("display", "block");
-				} else { //펴져있는데 눌렀을 경우
-					$('#a'+num).css("display", "none");
-				}
-			});
-			
-			//Q&A 삭제(구매자 입장에서 Q&A 작성한 게시글 삭제)
-			$("#deleteQuestion").click(function(){
 
-				//삭제 확인
-				if(confirm("해당 답변을 삭제하시겠습니까?\n")){ //네 선택
-					var product = $("#prod_number").val();
-					var prod_title = $("#prod_title").val();
-					
-					var command = 'delete';
-
-					var deleteInfo = {
-							prod_number:product,
-							qna_number:num,
-							command:command
-					}
-					
-					$.ajax({
-						type: "post",
-						async: false,
-						url: "/devFw/detail/qna.do",
-						data: deleteInfo,
-						dataType : 'text',
-						success: function(responseData){
-
-							
-							var data = JSON.parse(responseData);
-				            /* if(jsonInfo.error.error_yn == 'Y'){
-				        	   alert(jsonInfo.error.error_text);
-				        	   return;
-				            } */
-				            console.log(data.length);
-							var list = '';
-							
-
-							for(var i=0;i<data.length;i++){
-							list += '<li><a href="javascript:void(0)" class="faq_open" id="' + i + '">';
-							
-								if(data[i].answer_yn == 'y'){
-									list += '<div class="cate">답변 완료</div>';
-								}
-								else {
-									list += '<div class="cate"><p id="waitAnswer">답변 대기</p></div>';
-								}
-								
-								list += '<div class="cont_box">'
-								 +	'<span class="inquiry_prod">'+ prod_title + '</span>'
-								 + 	'<span class="inquiry_text" style="font-weight:bold;">' + data[i].qna_content + '</span>'
-								+ '</div>'
-								+ '<div class="user">'
-								+	'<span class="ff">' + data[i].memberId + '</span>'
-								+ '</div>'
-								+ '<div class="date">'
-								+	'<span>' + data[i].qna_date + '</span>'
-								+ '</div>'
-							
-								+ '</a>'
-								+ '<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a' + i + '">'
-								+ '<div class="question">'+ data[i].qna_content+ '</div>';
-								if(data[i].memberId == memberId){
-									list += '<p class="delete_qna" id="deleteQuestion"><u>삭제</u></p>';
-									
-								}
-								if(data[i].answer_yn == 'y'){
-									list += '<div class="answer" style="display:block;">'
-										+	'<span class="ico asw">답변</span>'
-										
-										+	'<span class="tit_asw">판매자'
-										+		'<span>'+data[i].answer_date+'</span></span>'
-										+  data[i].answer_content
-										 + '</div>';
-								} else {
-									list += '<div class="answer" style="display:none;">'
-										+	'<span class="ico asw">답변</span>'
-										
-										+	'<span class="tit_asw">판매자'
-										+		'<span>'+data[i].answer_date+'</span></span>'
-										+  data[i].answer_content
-										 + '</div>';
-								}
-								
-								
-								list+= '</div>' 
-						+ '</li>';
-						console.log(list);
-							}
-						$(".list_comment_inqury").html(list);
-
-						},
-						error: function(data, textStatus){
-							alert("다시 시도해주세요.");
-						},
-						complete : function (data, textstatus){
-						}
-					});
-				
-					
-					
-
-				} else{ //아니오 선택
-					return false;
-				}
-				
-				$(".faq_open").click(function(){
-					num = $(this).attr("id");
-					var target = document.getElementById("a" + num);
-					
-					if(target.style.display == 'none'){ //접혀있는데 눌렀을 경우
-						$('#a'+num).css("display", "block");
-					} else { //펴져있는데 눌렀을 경우
-						$('#a'+num).css("display", "none");
-					}
-				});
-		
-			});
 			
 			
 			
@@ -277,11 +160,13 @@
 		
 		
 		//Q&A 답변 달기 버튼
-		$(".answer_enroll").click(function(){
+		$(document).on('click', '.answer_enroll', function(){
 			var product = $("#prod_number").val();
 			var answer_content = $("#answer_write").val();
 			var command = 'insert';
 
+			alert(answer_content);
+			alert(document.getElementById("answer_write").value);
 			//답변 유효성 검사
 			if(answer_content == ''){
 				alert("답변을 입력해주세요.");
@@ -317,14 +202,14 @@
 					+ '<span class="tit_asw">판매자'
 					+ '<span>'+ data.answer_date +'</span>'
 					+ '</span>' + data.answer_content
-					+ '<p class="delete" id="deleteAnswer"><u>삭제</u></p>';
+					+ '<p class="delete_qna" id="deleteAnswer"><u>삭제</u></p>';
 					
 				
 		            var answer_number = data.qna_number;
 
 		        	$("#answer"+answer_number).html(answerString);
 		        	$("#cate"+answer_number).html('답변 완료');
-					document.getElementById("answer_write").value = "";
+		        	$("#cate"+answer_number).css('color', 'black');
 				},
 				error: function(data, textStatus){
 					alert("다시 시도해주세요.");
@@ -338,7 +223,7 @@
 		});
 		
 		//Q&A 삭제(구매자 입장에서 Q&A 작성한 게시글 삭제)
-		$("#deleteQuestion").click(function(){
+		$(document).on('click', '#deleteQuestion', function(){
 
 			//삭제 확인
 			if(confirm("해당 답변을 삭제하시겠습니까?\n")){ //네 선택
@@ -373,7 +258,7 @@
 						
 
 						for(var i=0;i<data.length;i++){
-						list += '<li><a href="javascript:void(0)" class="faq_open" id="' + i + '">';
+						list += '<li><a href="javascript:void(0)" class="faq_open" id="' + data[i].qna_number + '">';
 						
 							if(data[i].answer_yn == 'y'){
 								list += '<div class="cate">답변 완료</div>';
@@ -394,7 +279,7 @@
 							+ '</div>'
 						
 							+ '</a>'
-							+ '<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a' + i + '">'
+							+ '<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a' + data[i].qna_number + '">'
 							+ '<div class="question">'+ data[i].qna_content+ '</div>';
 							if(data[i].memberId == memberId){
 								list += '<p class="delete_qna" id="deleteQuestion"><u>삭제</u></p>';
@@ -440,22 +325,11 @@
 				return false;
 			}
 			
-			$(".faq_open").click(function(){
-				num = $(this).attr("id");
-				var target = document.getElementById("a" + num);
-				
-				if(target.style.display == 'none'){ //접혀있는데 눌렀을 경우
-					$('#a'+num).css("display", "block");
-				} else { //펴져있는데 눌렀을 경우
-					$('#a'+num).css("display", "none");
-				}
-			});
-	
 		});
 		
 		
 		//Q&A 답변 삭제(상품 게시자)
-		$("#deleteAnswer").click(function(){
+		$(document).on('click', '#deleteAnswer', function(){
 			var product = $("#prod_number").val();
 
 			var command = 'delete';
@@ -513,16 +387,18 @@
 		
 		
 		//상품 게시글 수정
- 	 	$("#modify").click(function(){
-			var frm = document.detail;
-
+ 	 	$(document).on('click', '#modify', function(){
+		
+ 	 		var frm = document.detail;
+			
+			
 			frm.method="post";
 			frm.action="./modifyProduct.do";
 			frm.submit();
 		});
  	 	
 		//상품 게시글 삭제
- 		$("#delete").click(function(){
+ 		$(document).on('click', '#delete', function(){
 			var frm = document.detail;
 
 			if(confirm("해당 상품을 삭제하시겠습니까?\n")){
@@ -538,14 +414,12 @@
 		
 		//대표 사진 확대 기능
 	  //	$("a[rel^='prettyPhoto']").prettyPhoto();
-		
-		
-		
+
 	});
 	
 	                                                                                                                                                    
 	$(window).load(function(){
-		var auction_yn = document.getElementsByName("auction_yn").value;
+		var auction_yn = document.getElementsByName("auction_yn")[0].value;
 		
 		if(auction_yn == 'y'){
 		
@@ -750,7 +624,7 @@ img{
     background: #fff;
     color: #dd5850;
 }
-#buy{
+#buy, #bidding{
 	font-size: 16px;
     padding: 0 24px;
     line-height: 46px;
@@ -1102,10 +976,12 @@ textarea{
 			
 					<input type="hidden" name="flea_yn" value="n">
 				</c:if>
-				<div class="writer_option" style="float:right; margin-top: -30px;">
-					<input type="button" id="modify" value="수정">
-					<input type="button" id="delete" value="삭제">
-				</div>
+				<c:if test="${product.memberId == member.getMemberid() }">
+					<div class="writer_option" style="float:right; margin-top: -30px;">
+						<input type="button" id="modify" value="수정">
+						<input type="button" id="delete" value="삭제">
+					</div>
+				</c:if>
 				<h1>${product.prod_title}</h1>
 				<input type="hidden" id="prod_title" value="${product.prod_title }">
 				<!-- <h3>#${product.tag1 }, #${product.tag2 }, #${product.tag3 }, #${product.tag4 }, #${product.tag5 }</h3> -->
@@ -1186,7 +1062,7 @@ textarea{
 							</c:forEach>
 								<span id="auction_left_date">남음 (종료 : ${product.auction_end_date })</span>
 							<br><br>
-							<input type="button" class="pay" id="buy" value="입찰하기" />
+							<input type="button" class="pay" id="bidding" value="입찰하기" onclick="window.open('./bidProduct.do?prod_number=${product.prod_number}', 'window팝업', 'width=520, height=620, menubar=no, status=no, toolbar=no')"/>
 							<input type="button" class="pay" id="message" value="메시지로 문의" />
 						</c:if>
 					</div>
@@ -1283,10 +1159,10 @@ textarea{
 													<c:if test="${prodQnA.answer_yn == 'n' }">
 														<div class="answer" id="answer${prodQnA.qna_number }" style="display:block;">
 															<span class="ico asw">답변</span>
-																<span class="tit_asw">판매자
-																	<textarea id="answer_write" style="resize: none;"></textarea>
-																	<button id="answer_enroll" class="answer_enroll">답변달기</button>
-																</span>
+															<span class="tit_asw">판매자
+																<textarea id="answer_write" style="resize: none;"></textarea>
+																<button id="answer_enroll" class="answer_enroll">답변달기</button>
+															</span>
 														</div>
 													</c:if>
 													<c:if test="${prodQnA.answer_yn == 'y' }">

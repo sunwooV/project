@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.Sell.P001.D001.vo.S_P001_D001VO;
+import project.Sell.P001.D002.vo.S_P001_D002VO;
+import project.Sell.P001.D003.vo.S_P001_D003VO;
 import project.Sell.P001.D002.service.S_P001_D002Service;
 import project.Sell.P001.D003.service.S_P001_D003Service;
-import project.Sell.P001.D003.vo.S_P001_D003VO;
+
 
 @Controller("S_P001_D002Controller")
 public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
@@ -32,17 +34,19 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 	
 	@Override
 	@RequestMapping(value = "/detail.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView detailProduct(@RequestParam(value="command", required=false) String command, @RequestParam(value="prod_number", required=false) String prod_number, @RequestParam(value="prod_category_code", required=false) String prod_category_code,HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView detailProduct(@RequestParam(value="prod_number", required=false) String prod_number, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		Map<String, Object> searchMap2 = new HashMap<String, Object>();
 
 		searchMap.put("prod_number", prod_number);	 
-		searchMap2.put("prod_category_code", prod_category_code);	 
-		
-		System.out.println("prod_category_code:::" + prod_category_code);
-		
 		List list = S_P001_D002Service.detailProduct(searchMap);
+				
+		searchMap2.put("prod_category_code", ((S_P001_D002VO)list.get(0)).getProd_category_code());	 
+		
+		System.out.println("prod_category_code:::" + ((S_P001_D002VO)list.get(0)).getProd_category_code());
+		
+		
 		List middle_category = S_P001_D002Service.middle_category(searchMap2);
 		
 		searchMap2.put("high_category", ((S_P001_D001VO)middle_category.get(0)).getHigh_category());

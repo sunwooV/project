@@ -13,7 +13,7 @@ import project.hm.s0002.vo.S0002VO;
 public interface S_P001_D001Service {
 	public List<S_P001_D001VO> high_category(Map<String, Object> searchMap) throws DataAccessException;
 	public List<S_P001_D001VO> middle_category(Map<String, Object> searchMap) throws DataAccessException;
-	public List<S_P001_D002VO> searchAdd() throws DataAccessException;
+	public String selectProdNumber() throws DataAccessException;
 
 	 
 	public void insertProduct(Map<String, Object> datahMap) throws Exception;

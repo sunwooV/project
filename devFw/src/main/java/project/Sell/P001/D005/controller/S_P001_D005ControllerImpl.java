@@ -87,6 +87,8 @@ public class S_P001_D005ControllerImpl implements S_P001_D005Controller {
 			dataMap.put(name, value);
 			System.out.println(dataMap);
 		}
+		
+		String prod_number = (String)dataMap.get("prod_number"); 
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders(); // 헤더변경 시 사용
@@ -95,7 +97,7 @@ public class S_P001_D005ControllerImpl implements S_P001_D005Controller {
 			S_P001_D005Service.updateProduct(dataMap);
 			S_P001_D005Service.updateTag(dataMap);
 			
-			response.sendRedirect("/devFw/main.do");
+			response.sendRedirect("/devFw/detail.do?prod_number=" + prod_number);
 //			RequestDispatcher dispatch = request.getRequestDispatcher("/Sell/P001/D001/searchList.do");
 //			dispatch.forward(request, response);
 		} catch (Exception e) {

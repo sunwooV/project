@@ -35,9 +35,9 @@ public class S_P001_D001ServiceImpl implements S_P001_D001Service {
 	}
 	
 	@Override
-	public List<S_P001_D002VO> searchAdd() throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+	public String selectProdNumber() throws DataAccessException {
+		String selectProdNumber =  S_P001_D001DAO.selectProdNumber(); 
+		return selectProdNumber;
 	}
 	
 	@Override
