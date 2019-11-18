@@ -1,13 +1,11 @@
 @charset "UTF-8";
-
 .toc {
 	position: fixed;
-	left: 12%;
-	top: 52%;
-	padding-right: 10%;
-	width: 12%;
+	left: 3em;
+	top: 5em;
+	padding: 1em;
+	width: 14em;
 	line-height: 2;
-	font-size: 14px;
 }
 
 .toc ul {
@@ -47,9 +45,13 @@
 }
 
 .contents {
+	padding: 1em;
+	max-width: 800px;
 	font-size: 1.2em;
 	font-family: 'Frank Ruhl Libre', sans-serif;
-	padding-left: 26%;
+}
+
+.contents img {
 	max-width: 100%;
 }
 
@@ -72,4 +74,10 @@
 
 .contents h2, .contents h3 {
 	padding-top: 1em;
+}
+
+@media screen and (max-width: 1200px) {
+	body {
+		font-size: 14px;
+	}
 }

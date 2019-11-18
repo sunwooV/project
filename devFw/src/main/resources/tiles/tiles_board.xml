@@ -15,8 +15,20 @@
       <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
    </definition>
 -->
+	<!-- tiles 예외 -->
+	<definition name="empty" template="/WEB-INF/views/common/empty.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="content" value=""/>
+	</definition>
+	
+	<definition name="Popup/*" extends="empty">
+	 	<put-attribute name="title" value="금도끼은도끼" />
+		<put-attribute name="content" value="/WEB-INF/views/Popup/{1}.jsp" />
+	</definition>
+	
+	
    <definition name="*/*" extends="baseLayout">
-      <put-attribute name="title" value="금도끼은도끼|플리마켓" />
+      <put-attribute name="title" value="금도끼은도끼" />
       <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
    </definition>  
  <!--  
@@ -57,17 +69,4 @@
       <put-attribute name="body" value="/WEB-INF/views/member/viewDetail.jsp" />
    </definition> -->
 
-
-   <!--  
-   <definition name="CS" extends="baseLayout">
-      <put-attribute name="title" value="고객센터" />
-      <put-attribute name="body" value="/WEB-INF/views/CS.jsp" />
-   </definition>
--->
-<!--  
-   <definition name="Mypage" extends="baseLayout">
-      <put-attribute name="title" value="마이페이지" />
-      <put-attribute name="body" value="/WEB-INF/views/Mypage.jsp" />
-   </definition>
--->
 </tiles-definitions>

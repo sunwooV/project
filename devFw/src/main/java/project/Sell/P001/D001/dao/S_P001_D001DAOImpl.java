@@ -33,9 +33,9 @@ public class S_P001_D001DAOImpl implements S_P001_D001DAO {
 	}
 	
 	@Override
-	public List<S_P001_D001VO> searchAdd() throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+	public String selectProdNumber() throws DataAccessException {
+		String selectProdNumber = sqlSession.selectOne("Sell.p001_d001.selectProdNumber");
+		return selectProdNumber;
 	}
 	
 	@Override

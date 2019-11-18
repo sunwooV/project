@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="Customers.chat">
+	<resultMap id="messagesResult" type="C_P002_D005VO">
+		<result property="chat_no" column="chat_no" />
+		<result property="sender" column="sender" />
+		<result property="receiver" column="receiver" />
+		<result property="contents" column="contents" />
+		<result property="send_date" column="send_date" />
+		<result property="me_at" column="me_at" />		
+	</resultMap>
+	<resultMap id="membersResult" type="C_P001_D001VO">
+		<result property="memberid" column="memberid" />
+		<result property="nickname" column="nickname" />
+	</resultMap>
+	
+	<select id="selectMemberList" parameterType="string" resultMap="membersResult">
+	    <![CDATA[
+			SELECT  memberid, name, nickname
+			FROM b_member b1,
+			(
+			    SELECT other_id,MAX(item_no) max_no
+			    FROM
+			    (
+			        SELECT sender other_id, item_no
+			        FROM chat_list
+			        WHERE receiver=#{memberid}
+			        UNION ALL
+			        SELECT receiver other_id, item_no
+			        FROM chat_list
+			        WHERE sender=#{memberid}
+			    )
+			    GROUP BY other_id
+			)  b2
+			WHERE b1.memberid=b2.other_id
+			ORDER BY max_no DESC
+	    ]]>
+	</select>
+
+	<select id="selectMessageList" parameterType="C_P002_D005VO" resultMap="messagesResult">
+	    <![CDATA[
+			SELECT t.*
+			FROM
+			(
+			    SELECT item_no,sender,receiver,contents,send_date,'true' me_at
+			    FROM chat_list
+			    WHERE sender=#{sender}
+			    AND receiver=#{receiver}
+			    UNION ALL
+			    SELECT item_no,sender,receiver,contents,send_date,'false' me_at
+			    FROM chat_list
+			    WHERE sender=#{receiver}
+			    AND receiver=#{sender}
+			) t
+			ORDER BY item_no
+	    ]]>
+	</select>
+	
+	<insert id="insertMessage" parameterType="C_P002_D005VO">
+	    <![CDATA[
+		INSERT INTO chat_list (CONTENTS, RECEIVER, SENDER, send_date, ITEM_NO) 
+		VALUES (#{contents}, #{receiver}, #{sender}, #{writing_date}, chat_list_seq.nextval)
+	    ]]>
+	</insert>
+	
+	<select id="selectSearchList" parameterType="map" resultMap="membersResult">
+	    <![CDATA[
+	    	SELECT memberid,nickname
+			FROM b_member
+			WHERE memberid != #{memberid}
+			AND ( memberid LIKE '%'||#{keyword}||'%' OR nickname LIKE '%'||#{keyword}||'%' )
+	    ]]>
+	</select>
+</mapper>

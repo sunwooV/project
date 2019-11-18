@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.Sell.P001.D001.service.S_P001_D001Service;
+import project.Sell.P001.D002.vo.S_P001_D002VO;
 
 
 @Controller("S_P001_D001Controller")
@@ -73,6 +74,7 @@ public class S_P001_D001ControllerImpl implements S_P001_D001Controller {
 	public ResponseEntity insertProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> dataMap = new HashMap<String, Object>();
+		Map<String, Object> searchMap = new HashMap<String, Object>();
 		Enumeration enu = request.getParameterNames();
 		while (enu.hasMoreElements()) {
 			String name = (String)enu.nextElement();
@@ -88,7 +90,11 @@ public class S_P001_D001ControllerImpl implements S_P001_D001Controller {
 			S_P001_D001Service.insertProduct(dataMap);
 			S_P001_D001Service.insertTag(dataMap);
 			
-			response.sendRedirect("/devFw/main.do");
+			String prodNumber = S_P001_D001Service.selectProdNumber();
+			
+			System.out.println("prodNumber+++++++++++++++" + prodNumber);
+			
+			response.sendRedirect("/devFw/detail.do?prod_number="+ prodNumber);
 			
 //			RequestDispatcher dispatch = request.getRequestDispatcher("/Sell/P001/D001/searchList.do");
 //			dispatch.forward(request, response);

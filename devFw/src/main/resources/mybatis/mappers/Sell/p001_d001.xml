@@ -32,6 +32,9 @@
 		<result property="represent_image" column="represent_image" />
 		<result property="tag_list" column="tag_list" />
 	</resultMap>
+	<resultMap id="S_P001_D001Result03" type="S_P001_D002VO">
+		<result property="prod_number" column="prod_number" />
+	</resultMap>
 
 	<select id="high_category" resultMap="S_P001_D001Result01" parameterType="java.util.Map"> 
       <![CDATA[
@@ -67,7 +70,7 @@
        ]]>
       <where>
       <![CDATA[
-      	prod_number = ${prod_number }
+      	prod_number = #{prod_number }
        ]]>
       </where>
 	</select>
@@ -107,5 +110,12 @@
 		VALUES (#{prod_number}, #{tag1}, #{tag2}, #{tag3}, #{tag4}, #{tag5})
 	 ]]>			
 	</insert>
+	
+	<select id="selectProdNumber" resultType="String">
+	 <![CDATA[
+         select max(prod_number) as prod_number
+         from   product	
+      ]]>
+	</select>
 
 </mapper>

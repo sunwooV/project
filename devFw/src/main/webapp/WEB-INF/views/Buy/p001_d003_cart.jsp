@@ -42,7 +42,9 @@
 				sum = 0;
 
 				// get the price for the item
-				pricePer = $(this).parents("td").prev("td").text();
+				//pricePer = $(this).parents("td").prev("td").text();
+				pricePer = $(this).val(); //this가 이벤트 호출한 객체 - quantity 달린 거 호출함
+				
 				// set the pricePer to a nice, digestable number
 				pricePer = formatNum(pricePer);
 				// calculate the new total
@@ -50,6 +52,8 @@
 				// set the total cell to the new price
 				$(this).parents("td").siblings(".itemTotal").text(total+"원");
 
+				
+				
 				// recalculate prices for all items
 				calculatePrices();
 			}
@@ -135,7 +139,7 @@
 	
 }
 
-.contentCart, .cost{
+.contentCart{
 	text-align: center;
 	padding :3%;
 }
@@ -150,10 +154,13 @@ width:200px;
 margin:1%;
 }
 
+.pricing{
+	text-align: center;
+	padding :3%;
+}
 </style>
 </head>
 <body>
-
 	<div class="contentCart">
 		<h1>
 		 장바구니
@@ -245,6 +252,7 @@ margin:1%;
 
 		<div class="cost">
 			<h2>예상 결제 내역</h2>
+</div>
 
 			<table class="pricing">
 				<tbody>
@@ -268,7 +276,7 @@ margin:1%;
 			</table>
 			<button class="cta" onClick="location.href='#'">결제하기 &raquo;</button>
 		</div>
-	</div>
+	
 	<!-- End Content -->
 </body>
 </html>

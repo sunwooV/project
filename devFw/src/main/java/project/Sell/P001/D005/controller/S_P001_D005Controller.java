@@ -9,5 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 public interface S_P001_D005Controller {
 	public ModelAndView modifyProduct(String prod_number, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity updateProduct(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ResponseEntity deleteProduct(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 }

@@ -34,6 +34,18 @@
 		 ]]>
 	</insert>
 	
+	<delete id="deleteQnA" parameterType="java.util.Map">
+		<![CDATA[
+			DELETE FROM prodQnA
+		 ]]>
+		 <where>
+		 <![CDATA[
+		 	prod_number = #{prod_number}
+		 	AND qna_number = #{qna_number}
+		 ]]>
+		 </where>
+	</delete>
+	
 	<select id="selectQnA" resultMap="S_P001_D003Result01" parameterType="java.util.Map"> 
       <![CDATA[
          SELECT prod_number, qna_number, qna_content, TO_CHAR(qna_date, 'yyyy-mm-dd HH24:MI') as qna_date, memberId, answer_yn, TO_CHAR(answer_date, 'yyyy-mm-dd HH24:MI') as answer_date, answer_content
@@ -54,6 +66,19 @@
 		<![CDATA[
 			UPDATE prodQnA
 			SET answer_yn='y', answer_content=#{answer_content}, answer_date=sysdate
+		 ]]>
+		 <where>
+	 	<![CDATA[
+	 		prod_number=#{prod_number}
+			AND qna_number=#{qna_number}
+	 	]]>
+		 </where>
+	</update>
+	
+	<update id="deleteAnswer" parameterType="java.util.Map">
+		<![CDATA[
+			UPDATE prodQnA
+			SET answer_yn = 'n', answer_content = null, answer_date = null
 		 ]]>
 		 <where>
 	 	<![CDATA[
