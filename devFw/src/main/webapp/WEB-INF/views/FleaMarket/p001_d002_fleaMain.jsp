@@ -22,11 +22,11 @@
 <body>
 
 	<!-- 메뉴사이드바랑 컨텐츠 ------------------------------------------------------------------------------------------------------------------------------------------>
-	<div class="container" style="padding-top: 3%;">
+	<div class="container" style="padding-top: 3%; max-width: 60%;">
 		<h1 style="padding-bottom: 27px; font-size: 32px;">
 			<span class="glyphicon glyphicon-tree-deciduous"></span>플리마켓
 		</h1>
-		<div class="container" style="border: 2px solid lightgray;">
+		<div class="container" style="border: 2px solid lightgray; max-width: 100%;">
 			<div class="row"
 				style="margin-right: -9%; padding-left: 16%; margin-bottom: 1%; margin-left: -3%;">
 				<div class="btn-group" role="group"
@@ -264,18 +264,18 @@
 		  <c:forEach var="bestStore" items="${searchList}">
 				<div class="col-sm-3">
 					<div class="thumbnail">
-						<h4>우수 스토어</h4>
+						<!--  <h4>우수 스토어</h4> -->
+					  
 						<img src="${bestStore.profile_photo}"
-							style="width: 230px; height: 240px;" alt="..." onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code }'">
+							style="width: 230; height: 240; " alt="..." onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code }'">
 
 						<div class="caption">
-							<h3>"${bestStore.flea_name }"</h3>
-							<!-- <h1>"${bestStore.intro_cotent }"</h1> -->
-							<p id="p">7000원</p>
+							<h3>${bestStore.flea_name }</h3>
+							<p id="p">${bestStore.intro_cotent }</p>
 							<p id="p">
-								<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
+								<a href="#" class="btn btn-primary" id="ttt3" role="button">메세지 보내기</a>
 								<a href="${contextPath}/payInfo.do" class="btn btn-default"
-									id="ttt4" role="button">구매하기</a>
+									id="ttt4" role="button">작가홈</a>
 							</p>
 						</div>
 

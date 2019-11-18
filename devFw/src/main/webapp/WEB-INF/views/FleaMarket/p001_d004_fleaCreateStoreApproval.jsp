@@ -37,9 +37,13 @@
       <table class="table table-hover">
          <thead>
             <tr class="table-dark" id="table">
-               <th scope="col">플리코드</th>
+               <th scope="col">플리마켓 코드</th>
+               <th scope="col">회원 아이디</th>
                <th scope="col">참여 타입(참여/개인)</th>
                <th scope="col">신청자 이름</th>
+               <th scope="col">신청자 전화번호</th>
+               <th scope="col">신청자 이메일</th>
+               <th scope="col">신청자 사업자번호</th>
                <th scope="col">신청 일자</th>
                <th scope="col">심사 상태</th>
                <th scope="col">처리</th>
@@ -49,11 +53,15 @@
           <c:forEach var="member" items="${searchList}" >
             <tr class="table-light" id="table">
                <td>${member.flea_code}</td>
+               <td>${member.memberid}</td>
                <td>${member.flea_group}</td>
                <td>${member.join_name}</td>
+               <td>${member.join_phonenumber}</td>
+               <td>${member.join_email}</td>
+               <td>${member.join_companynumber}</td>
                <td>${member.join_date}</td>
                <td>${member.join_status}</td>
-               <td><input type="button" value="개설 승인" id="approval_Y" onClick="location.href='${contextPath}/fleaApprovalStatusUpdate.do?flea_code=${member.flea_code}&flea_group=${member.flea_group}'" />
+               <td><input type="button" value="개설 승인" id="approval_Y" onClick="location.href='${contextPath}/fleaApprovalStatusUpdate.do?flea_code=${member.flea_code}&memberid=${member.memberid}&flea_group=${member.flea_group}'" />
                    <input type="hidden" id="join_status" value="${member.join_status}">
                    <input type="button" value="개설 불가" id="approval_N" /></td>
             </tr>

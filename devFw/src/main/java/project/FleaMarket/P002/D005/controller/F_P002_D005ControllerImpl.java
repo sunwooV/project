@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.omg.CORBA.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,8 @@ public class F_P002_D005ControllerImpl implements F_P002_D005Controller {
 			  throws Exception{
 				System.out.println("업로드 확인");
 				multipartRequest.setCharacterEncoding("utf-8");
+				String flea_code = multipartRequest.getParameter("flea_code");
+				System.out.println("플리코드=" + flea_code);
 				
 				Map map = new HashMap();
 				Enumeration enu=multipartRequest.getParameterNames();
@@ -96,9 +99,10 @@ public class F_P002_D005ControllerImpl implements F_P002_D005Controller {
 				
 				String message;
 				try {
+					//데이터 입력안했을때 오류 처리해야함!
 					d005Service.updateMember(map);
-
-					response.sendRedirect("/devFw/fleaMystore.do");
+					System.out.println("============================");
+					response.sendRedirect("/devFw/fleaMystore.do?flea_code="+flea_code+"'");
 					/*RequestDispatcher dispatch = request.getRequestDispatcher("/FleaMarket/P002/D001/searchList.do");
 					dispatch.forward(request, response);*/
 				} catch (Exception e) {

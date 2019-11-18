@@ -46,12 +46,22 @@ h1{
 <title>금도끼은도끼|플리마켓 스토어 등록</title>
 </head>
 <body>
- <div class="container"
-      style="padding-bottom: 92px; padding-left: 75px;">
-	 <h1>플리마켓 등록</h1>
-	 <form name="frmJoinForm" method="post" action="${contextPath}/FleaMarket/P001/D001/Join.do">   
-	 	<input type="radio" name="join_group" value="1" /><i class="fa fa-user fa-5x">개인형 등록</i>
-	 	<input type="radio" name="join_group" value="2" /><i class="fa fa-users fa-5x">참여형 등록</i>
+ <div class="container" style="padding-top: 3%;">
+      <h1 style="padding-bottom: 27px; font-size: 32px;">
+		  <span class="glyphicon glyphicon-tree-deciduous"></span>플리마켓 스토어 개설
+	  </h1>
+
+	 <form name="frmJoinForm" method="post" action="${contextPath}/FleaMarket/P001/D001/Join.do">	 
+		<input type="radio" name="join_group" value="1" />
+	 		<img src="./resources/image/개인형.PNG" width=230, height=240 alt="..." style="margin-left: 20%;">
+	 		<img src="./resources/image/참여형.PNG" width=230, height=240 alt="..." style="margin-left: 5%;">
+	 		<!--  <span class="fa-stack fa-lg"> 
+	 			<i class="fa fa-circle fa-stack-2x"></i> 
+	 			<i class="fa fa-user fa-stack-1x fa-inverse"></i> 
+	 		</span>
+	 		개인형 등록
+	 		 	-->
+	 	<input type="radio" name="join_group" value="2" />
 	   	<br><br>
 		<input type="button" value="다음" onClick="radio_ch();" /><br>
     </form>

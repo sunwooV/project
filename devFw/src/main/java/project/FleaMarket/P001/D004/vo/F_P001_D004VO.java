@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Component("F_P001_D004VO")
 public class F_P001_D004VO {
 	private String flea_code = "";
+	private String memberid = "";
 	private String flea_group = "";
 	private String join_name = "";
 	private String join_phonenumber = "";
@@ -111,10 +112,12 @@ public class F_P001_D004VO {
 		this.flea_group = flea_group;
 	}
 
-	
+	public String getMemberid() {
+		return memberid;
+	}
 
-	
-	
+	public void setMemberid(String memberid) {
+		this.memberid = memberid;
+	}
 
-	
 }

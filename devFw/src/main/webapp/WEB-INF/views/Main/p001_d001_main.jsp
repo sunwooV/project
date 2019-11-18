@@ -196,7 +196,7 @@
 									</c:if>
 									<img src="${newProduct.represent_image }"
 										style="width: 230px; height: 240px;" alt="..."
-										onclick="location.href='./detail.do?prod_number=${newProduct.prod_number }&prod_category_code=${newProduct.prod_category_code }'">
+										onclick="location.href='./detail.do?prod_number=${newProduct.prod_number }'">
 									<div class="caption">
 										<h3>${newProduct.prod_title }
 											<c:if test="${newProduct.sale_percent != null }">

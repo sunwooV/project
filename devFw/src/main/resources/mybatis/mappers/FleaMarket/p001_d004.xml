@@ -26,11 +26,8 @@
 	
 
 	<insert id="insertMember" parameterType="java.util.Map"> 
-	<selectKey order="BEFORE" resultType="int" keyProperty="flea_code">
-		SELECT nvl2((max(flea_code) + 1), (max(flea_code) + 1), 1) FROM joinflea
-	</selectKey>
-         insert into flea(flea_code, flea_group)
-         values(#{flea_code}, #{flea_group})
+         insert into flea(flea_code, memberid, flea_group)
+         values(#{flea_code}, #{memberid}, #{flea_group})
 	</insert>
 
 	<select id="searchMod" resultMap="p0001Result01" parameterType="java.util.Map"> 

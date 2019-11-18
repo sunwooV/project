@@ -205,11 +205,15 @@ textarea:focus {
 	if(id != null && id.length() != 0)
 	{
 %>
- 	<h2>플리마켓 참여자 신청</h2>
+ 	<h1 style="padding-bottom: 27px; font-size: 32px;">
+		  <span class="glyphicon glyphicon-tree-deciduous"></span>플리마켓 참여자 신청
+	</h1>
 <%	
 	}else{
 %>
-	<h2>플리마켓 입점 신청</h2>
+	  <h1 style="padding-bottom: 27px; font-size: 32px;">
+		  <span class="glyphicon glyphicon-tree-deciduous"></span>플리마켓 입점 신청
+	  </h1>
 <%
 	}
 %>
