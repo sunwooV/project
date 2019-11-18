@@ -66,7 +66,7 @@
 		</div>
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->
 		<div class="col-sm-10">
-			<h1 style="font-size: 32px;">고객센터</h1>
+			<h1 style="font-size: 37px;">고객센터</h1>
 			<div class="row" style="margin-top: -1%;">
 				<div class="table" id="cs">
 					<h1 style="font-size: 25px;">무엇이든 물어보세요</h1>
@@ -78,19 +78,18 @@
 				</div>
 				<div class="table" id="cs_view">
 					<div class="list-group">
-						<a href="#" class="list-group-item list-group-item-action active">가용적립금
-						</a> <a href="#" class="list-group-item list-group-item-action">사용적립금
-						</a> <a href="#" class="list-group-item list-group-item-action">쿠폰</a>
-						<a href="#" class="list-group-item list-group-item-action">등급</a>
-						<a href="#" class="list-group-item list-group-item-action">총
-							주문</a>
+						<a href="#" class="list-group-item list-group-item-action">중고거래 </a>
+						<a href="#" class="list-group-item list-group-item-action">경매절차</a>
+						<a href="#" class="list-group-item list-group-item-action">플리마켓 유형 및 참여방법</a>
+						<a href="#" class="list-group-item list-group-item-action">판매자 입금절차 안내</a>
+						<a href="#" class="list-group-item list-group-item-action">중고거래방법</a>
 					</div>
 					<!-- .my_point_list -->
 
 				</div>
 			</div>
 			<div class="row" style="padding-left: 1%;">
-				<ul class="nav nav-tabs" style="width: 98%;">
+				<ul class="nav nav-tabs" style="width: 90%;">
 					<li class="active"><a data-toggle="tab" href="#FAQ1">자주 묻는
 							질문</a></li>
 					<li><a data-toggle="tab" href="#FAQ2">교환/환불</a></li>
@@ -163,12 +162,12 @@
 			<div class="row" style="padding-top: 8%">
 				<h2 style="padding: 0% 71% 2% 1%;">나의 문의/답변내역</h2>
 
-				<div class="jumbotron" style="width: 100%; margin-left: 1%;">문의내역
+				<div class="jumbotron" style="width: 93%; margin-left: 1%;">문의내역
 					없</div>
 
 				<p>
 					<button type="button" class="btn btn-warning"
-						style="margin-left: 425%; font-size: 17px;">1:1 문의하기</button>
+						style="margin-left: 754%; font-size: 17px;">1:1 문의하기</button>
 				</p>
 
 

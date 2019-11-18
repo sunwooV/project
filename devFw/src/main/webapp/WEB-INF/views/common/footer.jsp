@@ -22,32 +22,32 @@
 </head>
 <body>
 	<!-- 풋터 -->
-	<div class="footer" style="width: 78%; margin-left: 12%;">
+	<div class="footer" style="width: 77%;margin-left: 11%;">
 		<footer class="footer-inner">
 			<div class="container" id="con1">
 				<div class="row" id="foot">
 					<div class="col-md-4" id="kkk1">
-						<h3 class="footer">회사소개</h3>
+						<h3 class="footer">COMPANY</h3>
 						<ul class="footer-list" id="ftlist" style="font-size: 14px;">
-							<li><a href="#" id="ftlist">IKEA</a></li>
-							<li><a href="#" id="ftlist">MIO</a></li>
-							<li><a href="#" id="ftlist">BAUHAUS</a></li>
+							<li><a href="#" id="ftlist">서울특별시 강남구 서초</a></li>
+							<li><a href="#" id="ftlist">사업자등록번호 : 223-233-1233</a></li>
+							<li><a href="#" id="ftlist">대표이사: OOO</a></li>
 						</ul>
 					</div>
 					<div class="col-md-4" id="kkk1">
-						<h3 class="footer">고객센터</h3>
+						<h3 class="footer">CUSTOMER CENTER</h3>
 						<ul class="footer-list" id="ftlist" style="font-size: 14px;">
-							<li><a href="#" id="ftlist">IKEA</a></li>
-							<li><a href="#" id="ftlist">MIO</a></li>
-							<li><a href="#" id="ftlist">BAUHAUS</a></li>
+							<li><a href="#" id="ftlist">T.02-5678-1234</a></li>
+							<li><a href="#" id="ftlist">OPENING HOURS : AM11:00- PM06:00</a></li>
+							<li><a href="#" id="ftlist">SAT, SUN, HOLIDAY OFF</a></li>
 						</ul>
 					</div>
 					<div class="col-md-4" id="kkk1">
-						<h3 class="footer">메일문의</h3>
+						<h3 class="footer">WITH US</h3>
 						<ul class="footer-list" id="ftlist" style="font-size: 14px;">
-							<li><a href="#" id="ftlist">Chat with us</a></li>
-							<li><a href="#" id="ftlist">+46(0)2453 352</a></li>
-							<li><a href="#" id="ftlist">E-mail us</a></li>
+							<li><a href="#" id="ftlist">AGREEMENTㅣ이용약관</a></li>
+							<li><a href="#" id="ftlist">GUIDEㅣ이용안내</a></li>
+							<li><a href="#" id="ftlist">PRIVACY POLICYㅣ개인정보처리방침</a></li>
 						</ul>
 					</div>
 				</div>

@@ -902,7 +902,7 @@ h3 {
 
 h3.footer {
 	font-size: 30px;
-	color: darkgray;
+	color: white;
 	margin-top: 30px;
 	margin-bottom: 18px;
 	padding-left: 22px;
@@ -12365,7 +12365,7 @@ th {
 }
 
 .footer {
-	background-color: white;
+	background-color:black;
 	margin-top: 50px;
 }
 
@@ -12495,8 +12495,8 @@ th {
 }
 
 #foot {
-    padding-left: 20%;
-    margin-right: -16%;
+    padding-left: 0%;
+    margin-right: -17%;
 }
 
 #ftlist {
