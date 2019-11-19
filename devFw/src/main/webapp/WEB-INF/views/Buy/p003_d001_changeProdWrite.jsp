@@ -28,7 +28,7 @@
 }
 
 .changeReason {
-	width: 300px;
+	width: 700px;
 	height: 400px;
 }
 
@@ -48,6 +48,15 @@
 	background-color: darkgray;
 	color: white;
 }
+.optionForbuyProd, .changeProdTitle {
+	text-align: left;
+	margin-left: 32%;
+	padding-bottom: 1%;
+}
+
+.selectBuyProd, .input_changeProdTitle {
+	width: 500px;
+}
 
 </style>
 </head>
@@ -55,18 +64,31 @@
 	<div id="changeProdHeader" class="changeProdHeader">
 		<h2>제품 교환 사유 작성</h2>
 	</div>
-		<div id="optionForbuyProd"></div>
-
-		<div id="changeProdWrite" class="changeProdWrite">
-			<textarea id="changeReason" class="changeReason"
-				placeholder="반품하시는 사유를 작성해주세요.">
-</textarea>
-		</div>
-		<div class="changeProdButton" id="changeProdButton">
-			<button onClick="submitChangeProdReason()">작성 완료</button>
-			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<button onClick="cancelChangeProd()">교환 취소하기</button>
-		</div>
+	<div class="changeProdTitle">
+		글 제목 : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input type="text" id="input_changeProdTitle" class="input_changeProdTitle">
+	</div>
 	
+	<div id="optionForbuyProd" class="optionForbuyProd">
+		해당 상품 선택 : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<select name="selectBuyProd" class="selectBuyProd" id="selectBuyProd">
+			<option value="prodHistory"></option>
+			<option value="prodHistory"></option>
+			<option value="prodHistory"></option>
+			<option value="prodHistory"></option>
+		</select>
+	</div>
+
+	<div id="changeProdWrite" class="changeProdWrite">
+		<textarea id="changeReason" class="changeReason"
+			placeholder="반품하시는 사유를 작성해주세요.">
+</textarea>
+	</div>
+	<div class="changeProdButton" id="changeProdButton">
+		<button onClick="submitChangeProdReason()">작성 완료</button>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<button onClick="cancelChangeProd()">교환 취소하기</button>
+	</div>
+
 </body>
 </html>

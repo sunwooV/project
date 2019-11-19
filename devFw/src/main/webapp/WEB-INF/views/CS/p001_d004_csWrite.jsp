@@ -73,7 +73,7 @@ width:500px;
 	</div>
 	<div id="csWrite" class="csWrite">
 		<textarea id="csWriteDetail" class="csWriteDetail"
-			placeholder="반품하시는 사유를 작성해주세요.">
+			placeholder="문의 내용을 자세하게 작성해주세요.">
 </textarea>
 	</div>
 	<div class="csWriteSubmitButton" id="csWriteSubmitButton">
