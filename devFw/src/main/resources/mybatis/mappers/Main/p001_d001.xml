@@ -45,12 +45,17 @@
 	
 	<select id="newProduct" resultMap="M_P001_D001Result01" parameterType="java.util.Map">
 	 <![CDATA[
-        select P.*
+		select P.*
 		FROM (SELECT * 
 		    FROM product 
-		    ORDER BY prod_number)P
-		WHERE ROWNUM <= 8
+		    ORDER BY prod_number desc)P
       ]]>
+      <where>
+       <![CDATA[
+       	ROWNUM <= 8
+       ]]>
+      </where>
+      order by prod_number desc
 	</select>
 
 
