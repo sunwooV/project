@@ -21,6 +21,6 @@
       </websocket:handshake-interceptors>   
    </websocket:handlers>
 
-   <bean id="chatHandler" class="devFw.Customer.P002.D005.controller.ChatWebSocketHandler" />
+   <bean id="chatHandler" class="project.Customers.P002.D005.controller.ChatWebSocketHandler" />
 
 </beans>

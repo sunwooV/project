@@ -34,10 +34,14 @@ public class C_P002_D005ControllerImpl implements C_P002_D005Controller{
 		public ModelAndView chatInit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			C_P001_D001VO memberInfo = (C_P001_D001VO) request.getSession().getAttribute("memberInfo");
 			String memberid = memberInfo.getMemberid();
-			List<C_P001_D001VO> initList = new ArrayList<C_P001_D001VO>();
-			initList = c_p002_d005_Service.selectMemberList(memberid);		
+			System.out.println("memberId ::::::::::::::: " + memberid);
+//			List<C_P001_D001VO> initList = new ArrayList<C_P001_D001VO>();
+//			initList = c_p002_d005_Service.selectMemberList(memberid);	
+			
+			List initList = c_p002_d005_Service.selectMemberList(memberid);
+			
 			ModelAndView mav = new ModelAndView("Customers/p002_d005_chat");
-			mav.addObject("memberList",initList);
+			mav.addObject("memberList", initList);
 			
 			return mav;
 		

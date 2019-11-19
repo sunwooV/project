@@ -20,16 +20,16 @@
 	<select id="selectMemberList" parameterType="string" resultMap="membersResult">
 	    <![CDATA[
 			SELECT  memberid, name, nickname
-			FROM b_member b1,
+			FROM member b1,
 			(
-			    SELECT other_id,MAX(item_no) max_no
+			    SELECT other_id,MAX(chat_no) max_no
 			    FROM
 			    (
-			        SELECT sender other_id, item_no
+			        SELECT sender other_id, chat_no
 			        FROM chat_list
 			        WHERE receiver=#{memberid}
 			        UNION ALL
-			        SELECT receiver other_id, item_no
+			        SELECT receiver other_id, chat_no
 			        FROM chat_list
 			        WHERE sender=#{memberid}
 			    )
@@ -45,31 +45,35 @@
 			SELECT t.*
 			FROM
 			(
-			    SELECT item_no,sender,receiver,contents,send_date,'true' me_at
+			    SELECT chat_no,sender,receiver,contents,send_date,'true' me_at
 			    FROM chat_list
 			    WHERE sender=#{sender}
 			    AND receiver=#{receiver}
 			    UNION ALL
-			    SELECT item_no,sender,receiver,contents,send_date,'false' me_at
+			    SELECT chat_no,sender,receiver,contents,send_date,'false' me_at
 			    FROM chat_list
 			    WHERE sender=#{receiver}
 			    AND receiver=#{sender}
 			) t
-			ORDER BY item_no
+			ORDER BY chat_no
 	    ]]>
 	</select>
 	
 	<insert id="insertMessage" parameterType="C_P002_D005VO">
-	    <![CDATA[
-		INSERT INTO chat_list (CONTENTS, RECEIVER, SENDER, send_date, ITEM_NO) 
-		VALUES (#{contents}, #{receiver}, #{sender}, #{writing_date}, chat_list_seq.nextval)
-	    ]]>
-	</insert>
-	
+	  <![CDATA[
+           
+      INSERT INTO chat_list (CONTENTS, RECEIVER, SENDER, send_date, chat_no) 
+      VALUES (#{contents}, #{receiver}, #{sender}, sysdate, chat_list_seq.nextval)
+       ]]>
+   </insert>
+   
+
+
+
 	<select id="selectSearchList" parameterType="map" resultMap="membersResult">
 	    <![CDATA[
-	    	SELECT memberid,nickname
-			FROM b_member
+	    	SELECT memberid, nickname
+			FROM member
 			WHERE memberid != #{memberid}
 			AND ( memberid LIKE '%'||#{keyword}||'%' OR nickname LIKE '%'||#{keyword}||'%' )
 	    ]]>

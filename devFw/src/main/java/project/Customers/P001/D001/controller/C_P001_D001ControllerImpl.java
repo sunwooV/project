@@ -111,6 +111,7 @@ public class C_P001_D001ControllerImpl implements C_P001_D001Controller{
 		public String login(@ModelAttribute C_P001_D001VO member, HttpSession session, HttpServletResponse response) throws Exception{
 			member = c_p001_d001_Service.login(member, response);
 			session.setAttribute("member", member);
+			session.setAttribute("memberInfo", member);
 			return "redirect:/main.do";
 		}
 		

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class C_P002_D005VO {
 	
-	private String chat_no;
+	private int chat_no;
 	private String sender;
 	private String receiver;
 	private String contents;
@@ -17,10 +17,11 @@ public class C_P002_D005VO {
 	private String me_at;
 	
 	
-	public String getChat_no() {
+
+	public int getChat_no() {
 		return chat_no;
 	}
-	public void setChat_no(String chat_no) {
+	public void setChat_no(int chat_no) {
 		this.chat_no = chat_no;
 	}
 	public String getSender() {

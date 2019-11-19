@@ -77,6 +77,8 @@ private static final Map<WebSocketSession, C_P001_D001VO> sessionList = new Hash
 	private void showChatList(C_P002_D005FormVO C_P002_D005FormVO,WebSocketSession session,C_P001_D001VO c_p001_d001vo,ObjectMapper mapper) throws Exception {
 		HashMap<String,Object> body = C_P002_D005FormVO.getBody();
 		String memberid= (String) body.get("memberid");
+		
+		System.out.println("handler memberId :: ++++ " + memberid + ", sender :: " + c_p001_d001vo.getMemberid());
 
 		C_P002_D005VO c_p002_d005vo = c_p002_d005Provider.get();
 		c_p002_d005vo.setSender(c_p001_d001vo.getMemberid());
@@ -129,10 +131,13 @@ private static final Map<WebSocketSession, C_P001_D001VO> sessionList = new Hash
 		Map<String,String> searchMap = new HashMap<String, String>();
 		searchMap.put("keyword", keyword);
 		searchMap.put("memberid", c_p001_s001VO.getMemberid());
-		List<C_P001_D001VO> searchResult = c_p002_d005service.selectSearchList(searchMap);
+		List<C_P001_D001VO> searchResult = c_p002_d005service.selectSearchList(searchMap); //id, nickname
+		
+		
 		body.clear();
 		body.put("result",searchResult);
 		String result=mapper.writeValueAsString(C_P002_D005FormVO);
+		System.out.println("result!!!!!!!!!="+result);
 		session.sendMessage(new TextMessage(result));
 	}
 

@@ -59,7 +59,7 @@ $(document).ready(function(){
 				}
 			}else if(recData.header=="send_message"){
 				updateChat(recData);
-				var nowId=$('#chat-header .member-id').text();
+				var nowId=$('#chat-header .memberid').text();
 				if(nowId==recMessage.sender || nowId==recMessage.receiver){					
 					messageAdd(recMessage.contents,new Date(recMessage.writing_date),recMessage.me_at);					
 				}
@@ -70,7 +70,7 @@ $(document).ready(function(){
 		}
 		
 		//Add Event
-		//유저 선택전 전송 막기
+		//유저 선택전  막기
 	    $("#chat-footer>input[type=button]").prop('disabled',true);
 	    
 		//유저목록 클릭이벤트
@@ -89,9 +89,9 @@ $(document).ready(function(){
 				$(this).addClass('clicked');//클래스 붙이기
 
 				if($(this).parent().is('#search-list')){//search의 discuss일경우 people-list에서도 변경
-					var people=$('#people-list>.discussion .member-id').toArray();
+					var people=$('#people-list>.discussion .memberid').toArray();
 					for(var i in people){						
-						if($(people[i]).text()===$(this).find('div.member-id').text()){
+						if($(people[i]).text()===$(this).find('div.memberid').text()){
 							$(people[i]).parent().parent().addClass('clicked');
 							break;
 						}				
@@ -99,7 +99,7 @@ $(document).ready(function(){
 				}//end inner if
 				
 				var contents = {
-					member_id:$(this).find('div.member-id').text()
+					memberid:$(this).find('div.memberid').text()
 				}
 				sendText(ws,"chat_list",contents);
 			}//end if
@@ -111,7 +111,7 @@ $(document).ready(function(){
 		//메시지 전송
 	    $("#chat-footer>input[type=button]").on("click",function(){
 	    	var textMessage = $('#chat-footer>textarea').val();
-	    	var other = $('#chat-header .member-id').text();
+	    	var other = $('#chat-header .memberid').text();
 	    	if(textMessage!==''){
 	    		var contents={
 	    			message : textMessage,
@@ -147,7 +147,9 @@ $(document).ready(function(){
 			var selectedNick=$(selected).find('.nickname').text();
 			var selectedid=$(selected).find('.memberid').text();
 			
-			var divForm = new memberDivForm('discussion',selectedSrc,selectedNick,selectedid);
+			console.log(selectedNick + "," + selectedid)
+			
+			var divForm = new memberDivForm('discussion',selectedNick,selectedid);
 			prependMember(divForm);
 			
 			closePopup();
@@ -161,6 +163,7 @@ $(document).ready(function(){
 			"nickname" : nickname,
 			"memberid" : memberid
 		}
+		console.log(result.memberid);
 		return result;
 	}
 	
@@ -175,8 +178,8 @@ $(document).ready(function(){
 		$(nickDiv).addClass('nickname');
 		$(idDiv).addClass('memberid');
 		$(nickDiv).text(data.nickname);
-		$(idDiv).text(data.memeberid);
-		
+		$(idDiv).text(data.memberid);
+
 
 		container.append(infoDiv);
 		infoDiv.append(nickDiv);
@@ -205,7 +208,7 @@ $(document).ready(function(){
 		if(res.me_at=='true'){//보낸사람이 나면
 			divData = new memberDivForm('discussion',null,null,res.receiver);
 		}else{
-			divData = new memberDivForm('discussion',recData.body.sender_info.nickname,res.sender);
+			divData = new memberDivForm('discussion',recData.body.sender_info.memberid,recData.body.sender_info.nickname,res.sender);
 		}
 		
 		prependMember(divData);
@@ -250,9 +253,13 @@ $(document).ready(function(){
 		}else{
 			for(var k in members){
 				var	mem = members[k];
-
+				console.log(mem);
 				var divData = new memberDivForm('pop-member',mem.nickname,mem.memberid);
+				console.log("divData ")
+				console.log(divData);
 				var popContainer = makeMemberDiv(divData);
+				console.log("popContainer ")
+				console.log(popContainer);
 				$('#pop-list').append(popContainer);
 			}
 		}
@@ -312,7 +319,6 @@ $(document).ready(function(){
 @charset "UTF-8";
 
 @font-face{
-	src:url("/bts/resources/fonts/Nanum/NanumSquareRoundEB.ttf");
 	font-family:"nanumEB";	
 }
 	
@@ -407,17 +413,11 @@ $(document).ready(function(){
 		color:#1f1f1f;
 	}
 	
-	.member-id{
+	.memberid{
 		font-size:small;
 		color:#6e6e6e;
 	}
 	
-	.discussion>img,#user-info>img,.pop-member>img{
-		width:45px;
-		height:45px;
-		background:#E6E7ED;
-		border-radius:50px;
-	}
 
    .info{
       margin-left:10px;
@@ -673,14 +673,7 @@ $(document).ready(function(){
          <div id="people-list">
          	<c:forEach var="memberVO" items="${memberList}">
 	         	<div class="discussion">
-	         	<!-- 	<c:choose>
-	         			<c:when test="${memberVO.profile_image ==null }">
-	         				<img src="${contextPath}/resources/image/no_img.jpg">
-	         			</c:when>
-	         			<c:otherwise>
-			         		<img src="${memberVO.profile_image}">	         			
-	         			</c:otherwise> 
-	         		</c:choose>-->
+	
 	         		<div class="info">
 	         			<div class="nickname">${memberVO.nickname}</div>
 	        			<div class="memberid">${memberVO.memberid}</div>

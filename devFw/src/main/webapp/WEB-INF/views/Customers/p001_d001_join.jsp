@@ -42,7 +42,7 @@
 				url : "./check_id.do",
 				type : "POST",
 				data : {
-					id : $("#memberid").val()
+					memberid : $("#memberid").val()
 				},
 				success : function(result) {
 					if (result == 1) {

@@ -51,9 +51,7 @@
                            <li class="nav-item"><a class="nav-link" href="./logout.do">LOGOUT</a></li>
                            </c:if>
 				<li class="nav-item"><a class="nav-link" href="${contextPath}/cart.do">shopping list</a></li>
-				<c:if test ="${ member != null}">
-					<li class="nav-item"><a class="nav-link" href="/devFw/fleaCreateStoreType.do">플리마켓 스토어 개설하기</a></li>
-				</c:if>
+				<li class="nav-item"><a class="nav-link" href="/devFw/fleaCreateStoreType.do">플리마켓 스토어 개설하기</a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0" id="searchform">
 				<input class="form-control mr-sm-2" type="text" id="searchbar"
@@ -62,6 +60,7 @@
 					type="submit">Search</button>
 			</form>
 			<button type="submit" class="btn btn-outline-warning"  onclick="location.href='./enroll.do'" id="register">상품 등록</button>
+			<button type="submit" class="btn btn-outline-warning"  onclick="location.href='./chatInit.do'" id="register">채팅</button>
 		</div>
 	</nav>
 	<!--  -->
