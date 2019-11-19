@@ -14,49 +14,71 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Do+Hyeon|Merriweather|Noto+Sans+KR&display=swap&subset=korean"
 	rel="stylesheet">
 </head>
 <body>
-	<div class="container" style="padding-top: 4%;">
+	<!-- 메뉴사이드바랑 컨텐츠 ------------------------------------------------------------------------------------------------------------------------------------------>
+	<div class="container-fluid"
+		style="padding-left: 16%; padding-top: 3%; margin-right: -4%;">
+		<div class="col-sm-2" id="col">
+
+			<div class="table" id="sidebar1"
+				style="font-size: 13px; border: 1px solid black;">
+				<h1 style="font-size: 21px;">✔이용 안내</h1>
+				<li><a href="#">중고거래</a></li>
+				<li><a href="#">경매</a></li>
+				<li><a href="#">플리마켓</a></li>
+			</div>
+		</div>
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->
-		<h1 style="font-size: 35px;">플리 마켓</h1>
-		<div class="row" style="margin-top: -1%;">
-			<div class="table" id="cs">
-				<img src=https://newsimg.sedaily.com/2019/10/04/1VPE3UJMKV_1.jpg
-					width=100%; height=100%; />
-			</div>
-		</div>
-		<div class="table" id="cs_view">
-			<div class="list-group">
-				<a href="#" class="list-group-item list-group-item-action">중고거래
-				</a> <a href="#" class="list-group-item list-group-item-action">경매절차</a>
-				<a href="#" class="list-group-item list-group-item-action">플리마켓
-					유형 및 참여방법</a> <a href="#"
-					class="list-group-item list-group-item-action">판매자 입금절차 안내</a> <a
-					href="#" class="list-group-item list-group-item-action">중고거래방법</a>
-			</div>
-		</div>
-
-		<div class="row">
-			<img
-				src=https://dimg.donga.com/ugc/CDB/SHINDONGA/Article/5c/eb/73/61/5ceb73611a8ad2738de6.jpg
-				width=50%; height=50%; />
+		<div class="col-sm-10" style="padding-left: 3%; font-size: 37px;">
+			<h1 style="padding-bottom: 2%;">
+				<span class="glyphicon glyphicon-map-marker"></span>플리마켓
+			</h1>
 
 
-			<div class="card border-secondary mb-3" style="width: 48%;">
-				<div class="card-body">
-					<h4 class="card-title">단 ☝번의 등록으로 경매,중고,플리마켓을 이용하세요!</h4>
+			<div class="row">
+				<div class="jumbotron"
+					style="margin-left: 3%; background-color: #ffe0d9a6; width: 86%;">
+					<h2>#유형</h2>
+					<p>☝ 참여형</p>
+					<h6>1</h6>
+					<h6>1</h6>
+					<h6>1</h6>
+
+					<p>✌ 참여형</p>
+					<h6>1</h6>
+					<h6>1</h6>
+					<h6>1</h6>
+
 
 				</div>
-
-
-
-
-
 			</div>
+
+			<div class="row">
+				<div class="jumbotron"
+					style="margin-left: 3%; background-color: #ffe0d9a6; width: 86%;">
+					<h2>#유형</h2>
+					<p>☝ 참여형</p>
+					<h6>1</h6>
+					<h6>1</h6>
+					<h6>1</h6>
+
+					<p>✌ 참여형</p>
+					<h6>1</h6>
+					<h6>1</h6>
+					<h6>1</h6>
+
+
+				</div>
+			</div>
+
 		</div>
+	</div>
 	</div>
 </body>
 </html>
