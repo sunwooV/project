@@ -86,11 +86,20 @@ public class F_P002_D005ControllerImpl implements F_P002_D005Controller {
 					map.put(name,value);
 				}
 				
-				System.out.println("map::::::::::" + map);
+				
 				
 				List fileList= fileProcess(multipartRequest);
 				System.out.println("fileList::::::::::" + fileList);
-				map.put("fileList", fileList);
+				String strProfilePhoto = "/devFw/resources/photoUpload/" + fileList.get(0); 
+				String strMainPhoto = "/devFw/resources/photoUpload/" + fileList.get(1);
+				System.out.println("profile포토 확인" + strProfilePhoto);
+				System.out.println("main포토 확인" + strMainPhoto);
+				
+				map.put("profile_photo", strProfilePhoto);
+				map.put("main_photo", strMainPhoto);
+				
+				System.out.println("map::::::::::" + map);
+				
 				
 				ModelAndView mav = new ModelAndView("FleaMarket/p002_d001_fleaMystore");
 				mav.addObject("map", map);
@@ -101,8 +110,9 @@ public class F_P002_D005ControllerImpl implements F_P002_D005Controller {
 				try {
 					//데이터 입력안했을때 오류 처리해야함!
 					d005Service.updateMember(map);
-					System.out.println("============================");
-					response.sendRedirect("/devFw/fleaMystore.do?flea_code="+flea_code+"'");
+					System.out.println("==========================flea_code="+flea_code);
+					response.sendRedirect("/devFw/fleaMystore.do?flea_code="+flea_code);
+				
 					/*RequestDispatcher dispatch = request.getRequestDispatcher("/FleaMarket/P002/D001/searchList.do");
 					dispatch.forward(request, response);*/
 				} catch (Exception e) {

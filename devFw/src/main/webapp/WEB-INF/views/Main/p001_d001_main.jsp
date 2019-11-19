@@ -312,18 +312,17 @@
 						<c:forEach var="bestStore" items="${bestStore}">
 							<div class="col-sm-3">
 								<div class="thumbnail">
-									<h4>우수 스토어</h4>
-									<img src="${bestStore.profile_photo}"
+									<img src=${bestStore.profile_photo}
 										style="width: 230px; height: 240px;" alt="...">
 
 									<div class="caption">
-										<h3>"${bestStore.flea_name }"</h3>
+										<h3>${bestStore.flea_name }</h3>
 										<!-- <h1>"${bestStore.intro_cotent }"</h1> -->
-										<p id="p">7000원</p>
+										<p id="p">${bestStore.intro_cotent }</p>
 										<p id="p">
-											<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
+											<a href="#" class="btn btn-primary" id="ttt3" role="button">작가홈</a>
 											<a href="${contextPath}/payInfo.do" class="btn btn-default"
-												id="ttt4" role="button">구매하기</a>
+												id="ttt4" role="button">메세지보내기</a>
 										</p>
 									</div>
 

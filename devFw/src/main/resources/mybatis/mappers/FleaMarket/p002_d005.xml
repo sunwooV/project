@@ -48,6 +48,8 @@
 		update flea
 		set  flea_name = #{flea_name}
 		   , intro_cotent = #{intro_cotent}
+		   , profile_photo = #{profile_photo}
+		   , main_photo = #{main_photo}
 	]]>
 		<where>
 		<![CDATA[	

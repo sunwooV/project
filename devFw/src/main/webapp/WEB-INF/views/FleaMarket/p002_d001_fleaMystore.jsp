@@ -296,7 +296,8 @@ layout-split:after {
 }
 
 #img-full{
-	width:100%;
+	width: 1000px;
+	height: 200px;
 }
 
 <%--프로필 수정 팝업--%>
@@ -412,12 +413,12 @@ $(document).ready(function(){
 	var cnt=1;
 	function fn_addFile(){
 		$("#d_file").append("<br>"+"<input  type='file' name='file"+cnt+"' />");
-		cnt++;
+		//cnt++;
 	}
 	var m_cnt=1;
 	function fn_m_addFile(){
 		$("#m_file").append("<br>"+"<input  type='file' name='m_file"+cnt+"' />");
-		m_cnt++;
+		//m_cnt++;
 	}
 </script>
 <head>
@@ -612,15 +613,19 @@ $(document).ready(function(){
       <!-- /.col-lg-3 -->
      <div class="col-lg-9">
         <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+        <!-- 
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
           </ol>
+           -->
           <div class="carousel-inner" role="listbox">
+           <c:forEach var="flea" items="${searchList}" > 
             <div class="carousel-item active">
-              <img class="d-block img-fluid" id="img-full" src="${contextPath}/resources/img/mystore_main.jpg" alt="First slide">
+              <img class="d-block img-fluid" id="img-full" src="${flea.main_photo}" alt="First slide">
             </div>
+           </c:forEach>
             <div class="carousel-item">
               <img class="d-block img-fluid" id="img-full" src="http://placehold.it/900x350" alt="Second slide">
             </div>
@@ -628,14 +633,17 @@ $(document).ready(function(){
               <img class="d-block img-fluid" id="img-full" src="http://placehold.it/900x350" alt="Third slide">
             </div>
           </div>
+          <!--  
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
+          
           <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
+          -->
         </div>
         
         <br>
