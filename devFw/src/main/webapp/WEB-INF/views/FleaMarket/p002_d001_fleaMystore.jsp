@@ -3,7 +3,10 @@
     import= "java.util.*, project.FleaMarket.*"
     isELIgnored="false"  %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>    
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  /> 
+
 <%
 request.setCharacterEncoding("utf-8");
 String flea_code = request.getParameter("flea_code");
@@ -288,7 +291,8 @@ layout-split:after {
 	color: #7F593C;
 } 
 .center-flea{
-	margin:0 300px;
+	margin:0 500px;
+	max-width: 60%;
 }
 .profile-setting{
 	margin-top: -5%;
@@ -347,7 +351,12 @@ label {
 .img_wrap img{
 	max-width: 100%;
 }
- 
+#sale_price {
+    color: #BDBDBD;
+    font-size: medium;
+    text-decoration: line-through;
+}
+
 </style>
 <head>
 <meta charset="UTF-8">
@@ -648,23 +657,50 @@ $(document).ready(function(){
         
         <br>
   <div class="ui_title__txt"><font size="2"><a href="/devFw/fleaProduct.do">판매 상품</a></font></div>
-         
         <div class="row">
+         <c:forEach var="newProduct" items="${newProduct}">
+          <c:if test="${newProduct.flea_yn == 'y' }">
           <div class="col-lg-4 col-md-6 mb-4">
+          
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="${contextPath}/resources/img/product_ex.PNG" alt=""></a>
+              <a href="#"><img class="card-img-top" src="${newProduct.represent_image }" alt="..." onclick="location.href='./detail.do?prod_number=${newProduct.prod_number }'"></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#"><font size="3">[할로윈]1일배송,마카롱,뚱카롱,선물</font></a>
+                  <a href="#"><font size="3">${newProduct.prod_title }
+	                  <c:if test="${newProduct.sale_percent != null }">
+						[${newProduct.sale_percent }%]
+				 	  </c:if>
+                  </font></a>
                 </h4>
-                <h5></h5>
-                <p class="card-text"><font size="2">[할로윈]신데렐라롱9구 마카롱선물세트~!!<br></font></p>
+                <h5>
+                	<c:if test="${newProduct.sale_percent != null }">
+						<p>
+							<span id="p"><fmt:formatNumber
+									value="${newProduct.prod_price * (1-(newProduct.sale_percent*0.01)) }"
+									type="number" />원</span> <span id="sale_price"
+								style="margin-bottom: 1re;"><fmt:formatNumber
+									value="${newProduct.prod_price }" type="number" />원</span>
+						</p>
+					</c:if>
+					<c:if test="${newProduct.sale_percent == null }">
+						<p id="p">
+							<fmt:formatNumber value="${newProduct.prod_price }"
+								type="number" />
+							원
+						</p>
+					</c:if>
+                </h5>
+                <!-- 상품 간략 설명 -->
+                <p class="card-text"><font size="2"><br></font></p>
               </div>
               <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
               </div>
             </div>
           </div>
+          </c:if>
+         </c:forEach>
+          <!--  
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
@@ -680,6 +716,8 @@ $(document).ready(function(){
               </div>
             </div>
           </div>
+          -->
+          <!--  
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
@@ -695,7 +733,8 @@ $(document).ready(function(){
               </div>
             </div>
           </div>
-          
+          -->
+          <!--  
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
@@ -741,7 +780,9 @@ $(document).ready(function(){
               </div>
             </div>
           </div>
+        -->
         </div>
+        
         <!-- /.row -->
         
         

@@ -313,7 +313,7 @@
 							<div class="col-sm-3">
 								<div class="thumbnail">
 									<img src=${bestStore.profile_photo}
-										style="width: 230px; height: 240px;" alt="...">
+										style="width: 230px; height: 240px;" alt="..."  onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code }'">
 
 									<div class="caption">
 										<h3>${bestStore.flea_name }</h3>

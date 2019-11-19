@@ -249,14 +249,17 @@
 
 		<!-- 컨텐츠 -->
 		<div class="row">
-			<h1
-				style="padding-top: 3%; padding-left: 3%; padding-bottom: 0%; font-size: 23px;">인기
-				스토어</h1>
+			<h1 style="padding-top: 3%; padding-left: 3%; padding-bottom: 0%; font-size: 23px;">인기 스토어-많은 사람들에게 인기있는 플리마켓 스토어를 소개합니다. 
+			</h1>
 		</div>
 		<!-- 플리마켓 맵-->
         <div class="fleaMap">
         	<a href="/devFw/fleaMap.do" id="fleaMap">
            	   <i class="fas fa-map-marked-alt pa-5x">오프라인 맵</i>
+            </a>
+            &nbsp;
+            <a href="/devFw/fleaAddMap.do" id="addMap">
+           	   <i class="fas fa-map-marked-alt pa-5x">맵 등록 </i>
             </a>
         </div>
         
@@ -282,34 +285,7 @@
 					</div>
 				</div>
 			</c:forEach>
-			<div class="col-sm-3">
-				<div class="thumbnail">
-					<h4>중고상품</h4>
-					<img src="./img/케익.jpg" width=230, height=240 alt="...">
-					<div class="caption">
-						<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-						<p>7000원</p>
-						<p>
-							<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-							<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<div class="thumbnail">
-					<h4>중고상품</h4>
-					<img src="./img/케익.jpg" width=230, height=240 alt="...">
-					<div class="caption">
-						<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-						<p>7000원</p>
-						<p>
-							<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-							<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
-						</p>
-					</div>
-				</div>
-			</div>
+			<!-- 상품 예시 
 			<div class="col-sm-3">
 				<div class="thumbnail">
 					<h4>중고상품</h4>
@@ -325,125 +301,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm-3">
-				<div class="thumbnail">
-					<h4>중고상품</h4>
-					<img src="./img/케익.jpg" width=230, height=240 alt="...">
-					<div class="caption">
-						<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-						<p>7000원</p>
-						<p>
-							<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-							<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<div class="thumbnail">
-					<h4>중고상품</h4>
-					<img src="./img/케익.jpg" width=230, height=240 alt="...">
-					<div class="caption">
-						<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-						<p>7000원</p>
-						<p>
-							<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-							<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<div class="thumbnail">
-					<h4>중고상품</h4>
-					<img src="./img/케익.jpg" width=230, height=240 alt="...">
-					<div class="caption">
-						<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-						<p>7000원</p>
-						<p>
-							<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-							<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<div class="thumbnail">
-					<h4>중고상품</h4>
-					<img src="./img/케익.jpg" width=230, height=240 alt="...">
-					<div class="caption">
-						<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-						<p>7000원</p>
-						<p>
-							<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-							<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-		<div id="profile" class="tab-pane fade">
-			<div class="row">
-				<div class="col-sm-3">
-					<div class="thumbnail">
-						<h4>중고상품</h4>
-						<img src="./img/케익.jpg" width=230, height=240 alt="...">
-						<div class="caption">
-							<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-							<p>7000원</p>
-							<p>
-								<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-								<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="thumbnail">
-						<h4>중고상품</h4>
-						<img src="./img/케익.jpg" width=230, height=240 alt="...">
-						<div class="caption">
-							<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-							<p>7000원</p>
-							<p>
-								<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-								<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="thumbnail">
-						<h4>중고상품</h4>
-						<img src="./img/케익.jpg" width=230, height=240 alt="...">
-						<div class="caption">
-							<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-							<p>7000원</p>
-							<p>
-								<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-								<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="thumbnail">
-						<h4>중고상품</h4>
-						<img src="./img/케익.jpg" width=230, height=240 alt="...">
-						<div class="caption">
-							<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-							<p>7000원</p>
-							<p>
-								<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-								<a href="#" class="btn btn-default" id="ttt4" role="button">구매하기</a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
+		-->
 		</div>
 	</div>
 </body>

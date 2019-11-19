@@ -1,4 +1,4 @@
-package project.FleaMarket.P002.D001.controller;
+package project.FleaMarket.P003.D002.controller;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -29,53 +29,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import project.Main.P001.D001.service.M_P001_D001Service;
-import project.FleaMarket.P002.D001.dao.F_P002_D001DAO;
-import project.FleaMarket.P002.D001.service.F_P002_D001Service;
-import project.FleaMarket.P002.D001.vo.F_P002_D001VO;
+import project.FleaMarket.P003.D001.dao.F_P003_D001DAO;
+import project.FleaMarket.P003.D001.service.F_P003_D001Service;
+import project.FleaMarket.P003.D001.vo.F_P003_D001VO;
 
-@Controller("F_P002_D001Controller")
-public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
-	private static final Logger logger = LoggerFactory.getLogger(F_P002_D001ControllerImpl.class);
+@Controller("F_P003_D001Controller")
+public class F_P003_D002ControllerImpl implements F_P003_D002Controller {
+	private static final Logger logger = LoggerFactory.getLogger(F_P003_D002ControllerImpl.class);
 	@Autowired
-	M_P001_D001Service M_P001_D001Service;
+	F_P003_D001Service d001Service;
 	@Autowired
-	F_P002_D001Service d001Service;
+	F_P003_D001VO d001VO;
 	@Autowired
-	F_P002_D001VO d001VO;
-	@Autowired
-	F_P002_D001DAO d001DAO;
-	
+	F_P003_D001DAO d001DAO;
+
 	@Override
-	@RequestMapping(value = "/fleaMystore.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView fleaMystore(@RequestParam(value="flea_code", required=false) String flea_code, @RequestParam(value="memberid", required=false) String memberid, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/fleaMap.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView fleaMap(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		
-		System.out.println("::::확인:::::");
-		
+		System.out.println("플리 맵 시작!!!!");
 		Map<String, Object> searchMap = new HashMap<String, Object>();
-		searchMap.put("flea_code", flea_code);	 
-		System.out.println("flea_code =" +flea_code);
-		
-		searchMap.put("memberid", memberid);	 
-		System.out.println("memberid =" +memberid);
 		
 		List list = d001Service.searchList(searchMap);
-		List newProduct = M_P001_D001Service.newProduct(searchMap);
-		
 		System.out.println("list="+list);
 		for(int i = 0; i < list.size(); i++)
 		{
 			System.out.println(list.get(i));
 		}
-		
-		ModelAndView mav = new ModelAndView("FleaMarket/p002_d001_fleaMystore");
-		mav.addObject("newProduct", newProduct);
+		ModelAndView mav = new ModelAndView("FleaMarket/p003_d001_fleaMap");
 		mav.addObject("searchList", list);
 		
-		System.out.println("===마지막===");
 		return mav;
 	}
-
 
 }
