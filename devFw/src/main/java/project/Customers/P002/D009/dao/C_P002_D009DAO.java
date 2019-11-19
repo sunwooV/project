@@ -16,4 +16,6 @@ public interface C_P002_D009DAO {
 
 	public int modify(C_P002_D009VO member) throws Exception;
 
+	
+	public int out(C_P002_D009VO member) throws Exception;
 }

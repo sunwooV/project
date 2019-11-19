@@ -55,13 +55,13 @@ $(document).ready(function(){
 			
 			if(recData.header=="chat_list"){
 				for(var i in recMessage){
-					messageAdd(recMessage[i].contents,new Date(recMessage[i].writing_date),recMessage[i].me_at);					
+					messageAdd(recMessage[i].contents,new Date(recMessage[i].send_date),recMessage[i].me_at);					
 				}
 			}else if(recData.header=="send_message"){
 				updateChat(recData);
 				var nowId=$('#chat-header .memberid').text();
 				if(nowId==recMessage.sender || nowId==recMessage.receiver){					
-					messageAdd(recMessage.contents,new Date(recMessage.writing_date),recMessage.me_at);					
+					messageAdd(recMessage.contents,new Date(recMessage.send_date),recMessage.me_at);					
 				}
 			}else if(recData.header=='search_member'){
 				popSearchMember(recMessage);
@@ -291,6 +291,7 @@ $(document).ready(function(){
         var msgBox = document.createElement("div");
         var msgPre = document.createElement("pre"); 
         var msgDate = document.createElement("div");
+        
         
         if(meCheck=="true"){
 			$(msgBox).addClass("message-right");        	

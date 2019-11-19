@@ -63,7 +63,7 @@
 	  <![CDATA[
            
       INSERT INTO chat_list (CONTENTS, RECEIVER, SENDER, send_date, chat_no) 
-      VALUES (#{contents}, #{receiver}, #{sender}, sysdate, chat_list_seq.nextval)
+      VALUES (#{contents}, #{receiver}, #{sender},#{send_date}, chat_list_seq.nextval)
        ]]>
    </insert>
    

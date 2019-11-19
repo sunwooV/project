@@ -27,4 +27,6 @@ public interface C_P001_D001DAO {
 		public C_P001_D001VO login(String memberid) throws Exception;
 		public int update_log(String memberid) throws Exception;
 		public int update_pw(C_P001_D001VO member) throws Exception;
+		public String find_id(C_P001_D001VO member) throws Exception;
+		public int black_check(String email)throws Exception;
 }

@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -75,9 +76,22 @@ public class C_P001_D001ControllerImpl implements C_P001_D001Controller{
 		return mav1;
 	}
 	
+	@Override
+	@RequestMapping(value = "/findIdInit.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView findIdInit(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		ModelAndView mav1 = new ModelAndView("Customers/p001_d001_findIdForm");
+		return mav1;
+	}
+	
 	@RequestMapping(value = "/check_id.do", method =  { RequestMethod.GET, RequestMethod.POST })
 	public void check_id(@RequestParam("memberid") String memberid, HttpServletResponse response) throws Exception{
 		c_p001_d001_Service.check_id(memberid, response);
+		
+	}
+	@RequestMapping(value = "/black_check.do", method =  { RequestMethod.GET, RequestMethod.POST })
+	public void black_check(@RequestParam("email") String email, HttpServletResponse response) throws Exception{
+		c_p001_d001_Service.black_check(email, response);
 		
 	}
 	
@@ -112,6 +126,19 @@ public class C_P001_D001ControllerImpl implements C_P001_D001Controller{
 			member = c_p001_d001_Service.login(member, response);
 			session.setAttribute("member", member);
 			session.setAttribute("memberInfo", member);
+			session.setAttribute("memberid", member.getMemberid());
+			session.setAttribute("address", member.getAddress());
+			session.setAttribute("detailAddress", member.getDetailAddress());
+			session.setAttribute("extraAddress", member.getExtraAddress());
+			session.setAttribute("roadAddress", member.getRoadAddress());
+			session.setAttribute("jibunAddress", member.getJibunAddress());
+			session.setAttribute("nickname", member.getNickname());
+			session.setAttribute("birth", member.getBirth());
+			session.setAttribute("email", member.getEmail());
+			session.setAttribute("name", member.getName());
+			session.setAttribute("phonenumber", member.getPhonenumber());
+			session.setAttribute("approval_status", member.getApproval_status());
+			System.out.println("와우우우우우유우"+member.getExtraAddress());
 			return "redirect:/main.do";
 		}
 		
@@ -255,6 +282,7 @@ public class C_P001_D001ControllerImpl implements C_P001_D001Controller{
 				return "Customers/p001_d001_findPwForm";
 			}
 			
+			
 			//비밀번호 찾기
 			@RequestMapping(value = "/find_pw.do", method = { RequestMethod.GET, RequestMethod.POST } )
 			public void find_pw(@ModelAttribute C_P001_D001VO member, HttpServletResponse response) throws Exception{
@@ -267,6 +295,15 @@ public class C_P001_D001ControllerImpl implements C_P001_D001Controller{
 				String userId = (String)session.getAttribute("userId");
 				c_p001_d001_Service.check_join(userId, response);
 			}
+			
+			// 아이디 찾기
+			@RequestMapping(value = "/find_id.do", method = RequestMethod.POST)
+			public String find_id(@ModelAttribute C_P001_D001VO member, RedirectAttributes rttr, HttpServletResponse response, Model md, HttpSession session) throws Exception{
+				md.addAttribute("memberid", c_p001_d001_Service.find_id(response, member));
+				session.setAttribute("name", member.getName());
+				return "Customers/p001_d001_findId";
+			}
+
 }
 
 

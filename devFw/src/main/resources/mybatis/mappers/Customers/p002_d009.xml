@@ -23,9 +23,19 @@
 	<!-- 회원정보 수정 -->
 	<update id="update" parameterType="C_P002_D009VO">
 		<![CDATA[
-		update member set name = #{name},ADDRESS = #{address},ROADADDRESS = #{roadAddress},JIBUNADDRESS = #{jibunAddress},DETAILADDRESS = #{detailAddress},EXTRAADADDRESS = #{extraAddress}, NICKNAME = #{nickname},PHONENUMBER = #{phonenumber},BIRTH = #{birth}
+		update member set ADDRESS = #{address}, ROADADDRESS = #{roadAddress} , JIBUNADDRESS = #{jibunAddress} , DETAILADDRESS = #{detailAddress} , EXTRAADADDRESS = #{extraAddress} , NICKNAME = #{nickname} , PHONENUMBER = #{phonenumber} , BIRTH = #{birth}
 		 where MEMBERID = #{memberid}
 		  ]]>
 	</update>
+	
+	<delete id="out" parameterType="C_P002_D009VO">
+	<![CDATA[
+		delete from member where memberid = #{memberid} and pw = #{pw}
+		 ]]>
+		  <if test="memberid = #{memberid}">
+		  insert into out_member(MEMBERID, PW, EMAIL, NAME, BIRTH, PHONENUMBER, BLACKLIST_YN)
+		 values(#{memberid}, #{pw}, #{email}, #{name}, #{birth}, #{phonenumber}, #{BLACKLIST_YN})
+  </if>
+	</delete>
 	
 	</mapper>

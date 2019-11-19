@@ -1,5 +1,7 @@
 package project.Customers.P002.D009.controller;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -36,12 +38,21 @@ public class C_P002_D009ControllerImpl implements C_P002_D009Controller {
       ModelAndView mav = new ModelAndView("Customers/p002_d009_info");
       return mav;
    }
+   
+   @Override
+   @RequestMapping(value ="/out_pw_check.do", method = { RequestMethod.GET, RequestMethod.POST })
+   public ModelAndView out_pw_check(HttpServletRequest request, HttpServletResponse response) throws Exception {
+      request.setCharacterEncoding("utf-8");
+      ModelAndView mav = new ModelAndView("Customers/p002_d009_out_pw_check");
+      return mav;
+   }
 
    @RequestMapping(value = "/update.do",  method = { RequestMethod.GET, RequestMethod.POST })
-   public String update(@ModelAttribute C_P002_D009VO member, HttpSession session, RedirectAttributes rttr) throws Exception{
-      session.setAttribute("member", c_p002_d009_Service.update(member));
-      System.out.println("12313333333333333333333333333333333333333333333333333312"+member.getAddress());
-      return "redirect: ./InfoInit.do";
+   public String update(@ModelAttribute C_P002_D009VO member, HttpSession session, RedirectAttributes rttr,HttpServletResponse response) throws Exception{
+        session.setAttribute("member", c_p002_d009_Service.update(member,response));
+      //rttr.addFlashAttribute("member",c_p002_d009_Service.update(member,response));
+      System.out.println("12313333333333333333333333333333333333333333333333333312="+member.getNickname());
+      return "redirect: ./mypage.do";
    }
    
    // 비밀번호 변경
@@ -50,4 +61,15 @@ public class C_P002_D009ControllerImpl implements C_P002_D009Controller {
       session.setAttribute("member", c_p002_d009_Service.modify(member, old_pw, response));
       return "redirect: ./InfoInit.do";
    }
+   
+   
+   @RequestMapping(value = "/out.do", method = RequestMethod.POST)
+	public String withdrawal_form(@ModelAttribute C_P002_D009VO member, HttpSession session, HttpServletResponse response) throws Exception{
+		if(c_p002_d009_Service.out(member, response)) {
+			session.invalidate();
+		}
+		return "redirect:./main.do";
+	}
+
+
 }

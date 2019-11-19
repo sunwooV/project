@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+session.removeAttribute("member");
+%>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 
@@ -20,6 +24,9 @@
 <head>
 
 <script>
+
+function showPopup() { window.open("${contextPath}/out_pw_check.do", "a", "width=400, height=300, left=100, top=50"); }
+	
 $(function(){
 	
 	if($("#pwForm").submit(function(){
@@ -39,6 +46,14 @@ $(function(){
 	}));
 })
 
+function update_info(){
+	var frm = document.update;
+	
+	frm.method = "POST";
+	frm.action = "./update.do";
+	alert("수정 완료.");
+	frm.submit();
+}
 </script>
 
 <style type="text/css">
@@ -148,6 +163,7 @@ input[type=text]#id,#email,#name,#approval_status {
 }
 </style>
 <body>
+<form name="update">
 <!--  Process  -->
 <div id="home-process-section">
    
@@ -178,7 +194,7 @@ input[type=text]#id,#email,#name,#approval_status {
 
     <tr>
         <th scope="row" id="id">아이디</th>
-        <td><input type="text" id="memberid" name="memberid" readonly value="${ member.memberid }"></td>
+        <td><input type="text" id="memberid" name="memberid"  readonly value="<%= session.getAttribute("memberid") %>" required></td>
     </tr>
      <tr>
         <th scope="row">비민번호</th>
@@ -196,28 +212,27 @@ input[type=text]#id,#email,#name,#approval_status {
     </tr>
     <tr>
         <th scope="row">이메일</th>
-       <td><input type="text" id="email" name="email" readonly value="${ member.email }"></td>
+       <td><input type="text" id="email" name="email" readonly value="<%= session.getAttribute("email") %>" required></td>
     </tr>
       <tr>
         <th scope="row">이메일 승인여부</th>
-        <td><input type="text" id="approval_status" name="approval_status" readonly value="${ member.approval_status }"></td>
+        <td><input type="text" id="approval_status" name="approval_status" readonly value="<%= session.getAttribute("approval_status") %>"  required></td>
     </tr>
     <tr>
         <th scope="row">이름</th>
-        <td><input type="text" id="name" name="name" readonly value="${ member.name }"></td>
+        <td><input type="text" id="name" name="name" readonly value="<%= session.getAttribute("name") %>"  required></td>
         
     </tr>
     <tr>
         <th scope="row">배송지 관리</th>
         <td>
-                  <input type="text" id="address" name ="address" value="${ member.address }">
+                  <input type="text" id="address" name ="address" value="<%= session.getAttribute("address") %>"  required>
                         <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br><br>
-                        <input type="text" id="roadAddress" name ="roadAddress" value="${ member.roadAddress }">
-                        <input type="text" id="jibunAddress"  name ="jibunAddress" value="${ member.jibunAddress }"><br><br>
+                        <input type="text" id="roadAddress" name ="roadAddress" value="<%= session.getAttribute("roadAddress") %>"  required>
+                        <input type="text" id="jibunAddress"  name ="jibunAddress" value="<%= session.getAttribute("jibunAddress") %>"  required><br><br>
                         <span id="guide" style="color:#999;display:none"></span>
-                        <input type="text" id="detailAddress" name ="detailAddress" value="${ member.detailAddress }">
-                        <input type="text" id="extraAddress" name ="extraAddress" value="${ member.extraAddress }">
-
+                        <input type="text" id="detailAddress" name ="detailAddress" value="<%= session.getAttribute("detailAddress") %>"  required>
+                        <input type="text" id="extraAddress" name ="extraAddress" value="<%= session.getAttribute("extraAddress") %>"  required>
                         <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -279,19 +294,20 @@ input[type=text]#id,#email,#name,#approval_status {
     </tr>
     <tr>
         <th scope="row">닉네임</th>
-        <td><input type="text" id="nickname" name="nickname"  value="${ member.nickname }"></td>
+        <td><input type="text" id="nickname" name="nickname"  value="<%= session.getAttribute("nickname") %>" required></td>
     </tr>
      <tr>
         <th scope="row">핸드폰</th>
-        <td><input type="text" id="phonenumber" name="phonenumber"  value="${ member.phonenumber }"></td>
+        <td><input type="text" id="phonenumber" name="phonenumber"  value="<%= session.getAttribute("phonenumber") %>" placeholder="-없이 입력해주세요." required></td>
     </tr>
      <tr>
         <th scope="row">생일</th>
-        <td><input type="text" id="birth" name="birth"  value="${ member.birth }"></td>
+        <td><input type="text" id="birth" name="birth"  value="<%= session.getAttribute("birth") %>" placeholder="990101형식으로 입력해주세요."  required></td>
     </tr>
 </table>
-  <input type = "button" id="update" value="변경하기" onclick="location.href='${contextPath}/update.do'">&emsp;&emsp;
-  <input type = "button" id="out" onclick="location.href='${contextPath}/out.do'"value="탈퇴하기">
+  <input type = "button" id="update" value="변경하기" onclick="update_info()">&emsp;&emsp;
+  <input type = "button" id="out" onclick="showPopup();" value="탈퇴하기">
+
                       </form>
                         </p>
                     </div>
@@ -307,6 +323,7 @@ input[type=text]#id,#email,#name,#approval_status {
                 </div>
             </div>
         </div>
-    </div>z
+    </div>
+</form>
 </body>
 </html>

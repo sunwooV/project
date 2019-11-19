@@ -9,6 +9,9 @@ import java.util.Map.Entry;
 
 import javax.inject.Provider;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -18,12 +21,14 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import project.Customers.P001.D001.vo.C_P001_D001VO;
+import project.Customers.P002.D005.dao.C_P002_D005DAO;
 import project.Customers.P002.D005.service.C_P002_D005Service;
 import project.Customers.P002.D005.vo.C_P002_D005FormVO;
 import project.Customers.P002.D005.vo.C_P002_D005VO;
 
 
 public class ChatWebSocketHandler extends TextWebSocketHandler {
+
 	@Autowired
 	Provider<C_P002_D005VO> c_p002_d005Provider;
 	
@@ -35,6 +40,10 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 	
 	@Autowired
 	C_P002_D005Service c_p002_d005service;
+	
+//	 @Autowired
+//		SqlSession sqlsession;
+//	 private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 private static final Map<WebSocketSession, C_P001_D001VO> sessionList = new HashMap<WebSocketSession, C_P001_D001VO>();
 	
@@ -67,6 +76,12 @@ private static final Map<WebSocketSession, C_P001_D001VO> sessionList = new Hash
 		}else if(header.equals("search_member")) {
 			searchMember(c_p002_d005FormVO,session,c_p001_d001vo,mapper);
 		}
+		
+//		C_P002_D005DAO dao = sqlsession.getMapper(C_P002_D005DAO.class);
+//
+//		this.logger.info(message.getPayload());
+//
+//		session.sendMessage(new TextMessage(dao.count_receive_note(message.getPayload()))); 
 	}
 	
 	@Override
