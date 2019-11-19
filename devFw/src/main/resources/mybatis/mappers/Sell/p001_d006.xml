@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Sell.p001_d006">
+
+	<insert id="insertBid" parameterType="java.util.Map">
+		<selectKey keyProperty="bid_number" resultType="int" order="BEFORE">
+		<![CDATA[
+			SELECT nvl2((max(bid_number) + 1), (max(bid_number) + 1), 1)
+			FROM auction_bid
+		 ]]>
+		</selectKey>
+		<![CDATA[
+			INSERT INTO auction_bid (prod_number, bid_number, bid_amount, bid_price, bid_date, memberId)
+			VALUES (#{prod_number}, #{bid_number}, #{bid_amount}, #{bid_price}, sysdate, #{memberId})
+		 ]]>
+	</insert>
+	
+	<!-- 상품 테이블에서 최고 입찰가를 수정한다. -->
+	<update id="updateProduct" parameterType="java.util.Map">
+		<![CDATA[
+			UPDATE product
+			SET auction_bid=#{bid_price}
+		 ]]>
+		 <where>
+	 	<![CDATA[
+	 		prod_number=#{prod_number}
+	 	]]>
+		 </where>
+	</update>
+
+</mapper>

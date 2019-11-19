@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Sell.p001_d007">
+
+	<resultMap id="S_P001_D007Result01" type="S_P001_D007VO">
+		<result property="prod_number" column="prod_number" />
+		<result property="bid_number" column="bid_number" />
+		<result property="memberid" column="memberid" />
+		<result property="secretMember" column="secretMember" />
+		<result property="bid_date" column="bid_date" />
+		<result property="bid_price" column="bid_price" />
+		<result property="bid_amount" column="bid_amount" />
+	</resultMap>
+
+	<select id="bidRecord" resultMap="S_P001_D007Result01" parameterType="java.util.Map"> 
+      <![CDATA[
+        SELECT p.prod_number, a.bid_number, a.memberid, replace(a.memberid, substr(a.memberid,-3), '***') as secretMember, TO_CHAR(a.bid_date, 'yyyy-mm-dd HH24:MI:SS') as bid_date, a.bid_price, a.bid_amount
+		FROM product p, auction_bid a
+      ]]>
+		<where>
+			p.prod_number = a.prod_number
+			AND p.prod_number = ${prod_number}
+		</where>
+		ORDER BY a.bid_number desc
+	</select>
+
+</mapper>

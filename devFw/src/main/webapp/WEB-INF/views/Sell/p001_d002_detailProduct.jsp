@@ -989,9 +989,9 @@ textarea{
 				<br>
 				<c:choose>
 					<c:when test="${product.auction_yn == 'y' }"> <!-- 경매 상품이면 시작가와 현재가를 표시해준다. -->
-						<span class="price" id="sold_price"><fmt:formatNumber value="${product.auction_price }" type="number" />원</span><!-- 현재가 -->
+						<span class="price" id="sold_price"><fmt:formatNumber value="${product.auction_bid }" type="number" />원</span><!-- 현재가 -->
 						<span id="auction_price">시작가: <fmt:formatNumber value="${product.auction_price }" type="number" />원</span><!-- 시작가 -->
-						<a href="#" style="font-size:medium; padding:5px;"><u>경매기록</u></a>
+						<a href="./bidRecord.do?prod_number=${product.prod_number }" style="font-size:medium; padding:5px;"><u>경매기록</u></a>
 					</c:when>
 					<c:otherwise> <!-- 경매가 아닌 상품들 -->
 						<c:if test="${product.sale_percent != null }"> <!-- 세일 퍼센트가 존재한다면 -->
