@@ -20,7 +20,7 @@ public class B_P002_D003ControllerImpl implements B_P002_D003Controller {
 	@RequestMapping(value="/reviewComplete.do", method= {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView review(HttpServletRequest request) throws IOException {
 		request.setCharacterEncoding("utf-8");
-		ModelAndView mav = new ModelAndView("Buy/p002_d004_reviewWriteComplete");
+		ModelAndView mav = new ModelAndView("Buy/p002_d003_reviewWriteComplete");
 		return mav;
 	}
 

@@ -43,15 +43,16 @@
 	background-color: darkgray;
 	color: white;
 }
-.selectOption, .csWriteTitle{
-text-align:left;
-margin-left:32%;
-padding-bottom:1%;
-}
-.selectQuestionType,.input_csWriteTitle{
-width:500px;
+
+.selectOption, .csWriteTitle {
+	text-align: left;
+	margin-left: 32%;
+	padding-bottom: 1%;
 }
 
+.selectQuestionType, .input_csWriteTitle {
+	width: 500px;
+}
 </style>
 </head>
 <body>
@@ -59,12 +60,13 @@ width:500px;
 		<h2>문의 상세내역 작성</h2>
 	</div>
 	<div class="csWriteTitle">
-	글 제목 :  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-	<input type="text" id="input_csWriteTitle" class="input_csWriteTitle">
+		글 제목 :
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input type="text" id="input_csWriteTitle" class="input_csWriteTitle">
 	</div>
 	<div class="selectOption" id="selectOption">
-	문의 유형을 선택하세요: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-		<select name="QType" class="selectQuestionType" id="selectQuestionType">
+		문의 유형을 선택하세요: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <select name="QType"
+			class="selectQuestionType" id="selectQuestionType">
 			<option value="OneToOne">1:1문의</option>
 			<option value="changeAndRefund">교환 및 환불</option>
 			<option value="shipping">배송문의</option>

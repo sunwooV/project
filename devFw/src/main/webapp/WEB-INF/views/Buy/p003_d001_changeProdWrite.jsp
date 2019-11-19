@@ -10,7 +10,9 @@
 <script type="text/javascript">
 	//작성완료된 교환사유를 넘기는 함수
 	function submitChangeProdReason() {
+		window.location.href="${Path}/changeProductComplete.do";
 
+		//출처: https://jdkblog.tistory.com/58 [JDK's blog]
 	}
 	//작성취소 후 이전화면으로 가기
 	function cancelChangeProd() {

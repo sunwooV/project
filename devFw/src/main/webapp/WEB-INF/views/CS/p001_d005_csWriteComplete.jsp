@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="Path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>금도끼은도끼|리뷰작성완료</title>
+<title>금도끼 은도끼|글 등록 완료!</title>
 <style type="text/css">
 .contentText {
 	padding-top: 5%;
@@ -41,21 +43,21 @@
 	width: 250px;
 }
 
-#ttl_content_payComplete {
+#ttl_content_csWriteComplete {
 	padding:10%;
 }
 </style>
 </head>
 <body>
-<div id="ttl_content_changeProdComplete">
+<div id="ttl_content_csWriteComplete">
 		<div class="contentText">
-			리뷰작성이 완료되었습니다.<br> <br>
+			문의 접수가 완료되었습니다.<br> <br>
 		</div>
 		<div id="button_ToOtherPage">
 			<input type="button" id="StyleOfButton" value="메인화면"
 				onClick="location.href='${Path}/main.do'">
 			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="button"
-				id="StyleOfButton" value="내가 쓴 리뷰보기" onClick="location.href='#'">
+				id="StyleOfButton" value="내가 쓴 글 보기" onClick="location.href='#'">
 		</div>
 	</div>
 </body>
