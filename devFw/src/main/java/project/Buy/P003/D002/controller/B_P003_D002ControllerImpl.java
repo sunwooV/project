@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import project.Buy.P002.D003.service.B_P002_D003Service;
-import project.Buy.P002.D003.vo.B_P002_D003VO;
+import project.Buy.P002.D002.service.B_P002_D002Service;
+import project.Buy.P002.D002.vo.B_P002_D002VO;
 
 @Controller("B_P003_D002Controller")
 public class B_P003_D002ControllerImpl implements B_P003_D002Controller {

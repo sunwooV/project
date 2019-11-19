@@ -1,4 +1,4 @@
-package project.Buy.P003.D001.controller;
+package project.Buy.P002.D002.controller;
 
 import java.io.IOException;
 
@@ -15,16 +15,19 @@ import org.springframework.web.servlet.ModelAndView;
 import project.Buy.P002.D002.service.B_P002_D002Service;
 import project.Buy.P002.D002.vo.B_P002_D002VO;
 
-@Controller("B_P003_D001Controller")
-public class B_P003_D001ControllerImpl implements B_P003_D001Controller {
-	private static final Logger Logger = LoggerFactory.getLogger(B_P003_D001ControllerImpl.class);
-
+@Controller("B_P002_D002Controller")
+public class B_P002_D002ControllerImpl implements B_P002_D002Controller {
+	private static final Logger Logger = LoggerFactory.getLogger(B_P002_D002ControllerImpl.class);
+	@Autowired
+	B_P002_D002Service b_p002_d003Service;
+	@Autowired
+	B_P002_D002VO b_p002_d003VO;
 	
 	@Override
-	@RequestMapping(value="/changeProduct.do", method= {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView changeProd(HttpServletRequest request) throws IOException {
+	@RequestMapping(value="/review.do", method= {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView review(HttpServletRequest request) throws IOException {
 		request.setCharacterEncoding("utf-8");
-		ModelAndView mav = new ModelAndView("Buy/p003_d001_changeProdWrite");
+		ModelAndView mav = new ModelAndView("Buy/p002_d003_reviewWrite");
 		return mav;
 	}
 

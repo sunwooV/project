@@ -1,4 +1,4 @@
-package project.Buy.P002.D004.dao;
+package project.Buy.P002.D002.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -14,8 +14,8 @@ import project.Buy.P001.D003.vo.B_P001_D003VO;
 
 
 
-@Repository("B_P002_D004DAO")
-public class B_P002_D004DAOImpl implements B_P002_D004DAO {
+@Repository("B_P002_D002DAO")
+public class B_P002_D002DAOImpl implements B_P002_D002DAO {
 	@Autowired
 	private SqlSession sqlSession;
 
