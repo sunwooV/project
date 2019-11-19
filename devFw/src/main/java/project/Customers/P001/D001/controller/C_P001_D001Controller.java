@@ -17,6 +17,7 @@ public interface C_P001_D001Controller {
 	public ModelAndView loginInit(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView joinInit(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView kakao_joinInit(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception;
+	public ModelAndView findIdInit(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public void check_id(@RequestParam("memberid") String memberid, HttpServletResponse response) throws Exception;
 	public void check_email(@RequestParam("email") String email, HttpServletResponse response) throws Exception;
 	public String join_member(@ModelAttribute C_P001_D001VO member, RedirectAttributes rttr, HttpServletResponse response) throws Exception;
@@ -25,4 +26,5 @@ public interface C_P001_D001Controller {
 	public void logout(HttpSession session, HttpServletResponse response) throws Exception;
 	public String kakao_join_member(@ModelAttribute C_P001_D001VO member, RedirectAttributes rttr, HttpServletResponse response, HttpSession session) throws Exception;
 	public void check_join(HttpServletResponse response, HttpSession session) throws Exception;
+	public void black_check(@RequestParam("email") String email, HttpServletResponse response) throws Exception;
 }

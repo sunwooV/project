@@ -29,6 +29,13 @@ public class C_P001_D001DAOImpl implements C_P001_D001DAO {
 	public int check_email(String email) throws Exception{
 		return sqlsession.selectOne("Customers.join.check_email", email);
 	}
+	
+	@Override
+	public int black_check(String email) throws Exception{
+		return sqlsession.selectOne("Customers.join.black_check", email);
+	}
+
+	
 	public String check_join(String userId) throws Exception{
 		System.out.println("33333333333333333333333333333333333333333333"+userId);
 		return sqlsession.selectOne("Customers.join.check_join", userId);
@@ -48,6 +55,7 @@ public class C_P001_D001DAOImpl implements C_P001_D001DAO {
 	// 이메일 인증
 		@Transactional
 		public int approval_member(C_P001_D001VO member) throws Exception{
+		
 			return sqlsession.update("Customers.join.approval_member", member);
 		}
 		
@@ -67,6 +75,13 @@ public class C_P001_D001DAOImpl implements C_P001_D001DAO {
 		public int update_pw(C_P001_D001VO member) throws Exception{
 			return sqlsession.update("Customers.join.update_pw", member);
 		}
+		
+		// 아이디 찾기
+		@Transactional
+		public String find_id(C_P001_D001VO member) throws Exception{
+			return sqlsession.selectOne("Customers.join.find_id", member);
+		}
+		
 	}
 
 

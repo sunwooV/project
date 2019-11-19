@@ -118,7 +118,7 @@
 					</p>
 						<p>
 						<label>birth</label>
-						<input type="text" id="birth" name="birth" class="w3-input" >
+						<input type="text" id="birth" name="birth" class="w3-input" placeholder="990101형식으로 입력해주세요." >
 					</p>
 						<p>
 						<label>address</label><br>
@@ -196,7 +196,7 @@
 					</p>
 						<p>
 						<label>phonenumber</label>
-						<input type="text" id="phonenumber" name="phonenumber" class="w3-input" >
+						<input type="text" id="phonenumber" name="phonenumber" class="w3-input" placeholder=" - 없이 입력해주세요.">
 					</p>
 					<p class="w3-center">
 						<button type="submit" id="joinBtn" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">Join</button>

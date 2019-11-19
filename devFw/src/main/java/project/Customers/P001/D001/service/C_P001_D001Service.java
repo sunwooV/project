@@ -25,5 +25,8 @@ public interface C_P001_D001Service {
 	public void find_pw(HttpServletResponse response, C_P001_D001VO member) throws Exception;
 	public int kakao_join_member(C_P001_D001VO member, HttpServletResponse response) throws Exception;
 	public void check_join(String userId, HttpServletResponse response) throws Exception;
+	public void black_check(String email, HttpServletResponse response) throws Exception;
+	
+	public String find_id(HttpServletResponse response, C_P001_D001VO member) throws Exception;
 
 }

@@ -22,6 +22,8 @@ public class C_P002_D009DAOImpl implements C_P002_D009DAO {
          // 마이페이지
          @Transactional
          public int update(C_P002_D009VO member) throws Exception{
+        	 System.out.println("12313333333333333333333333333333333333333333333333333312=="+member.getNickname());
+        	 System.out.println("12313333333333333333333333333333333333333333333333333312=77="+member.getMemberid());
             return sqlsession.update("Customers.modify.update", member);
          }
          
@@ -30,7 +32,11 @@ public class C_P002_D009DAOImpl implements C_P002_D009DAO {
          public int modify(C_P002_D009VO member) throws Exception{
             return sqlsession.update("Customers.modify.modify", member);
          }
-
+         
+         @Transactional
+     	public int out(C_P002_D009VO member) throws Exception{
+     		return sqlsession.delete("Customers.modify.out", member);
+     	}
          
 }
 

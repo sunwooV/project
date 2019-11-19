@@ -33,9 +33,15 @@ public class C_P001_D001ServiceImpl implements C_P001_D001Service {
 		PrintWriter out = response.getWriter();
 		out.println(c_p001_d001_DAO.check_id(memberid));
 		out.close();
-				
-		
 	}
+	
+	@Override
+	public void black_check(String email, HttpServletResponse response) throws Exception {
+		PrintWriter out = response.getWriter();
+		out.println(c_p001_d001_DAO.black_check(email));
+		out.close();
+	}
+	
 
 	@Override
 	public void check_email(String email, HttpServletResponse response) throws Exception {
@@ -43,7 +49,7 @@ public class C_P001_D001ServiceImpl implements C_P001_D001Service {
 		out.println(c_p001_d001_DAO.check_email(email));
 		out.close();
 	}
-	//
+	
 	@Override
 	public void check_join(String userId, HttpServletResponse response) throws Exception{
 		PrintWriter out = response.getWriter();
@@ -96,6 +102,13 @@ public class C_P001_D001ServiceImpl implements C_P001_D001Service {
 			out.println("<script>");
 			out.println("alert('동일한 이메일이 있습니다.');");
 			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return 0;
+		}else if (c_p001_d001_DAO.black_check(member.getEmail()) == 1) {
+			out.println("<script>");
+			out.println("alert('블랙리스트 회원입니다. 가입하실수 없습니다.');");
+			out.println("location.href='http://localhost:8090/devFw/main.do'");
 			out.println("</script>");
 			out.close();
 			return 0;
@@ -295,8 +308,28 @@ public class C_P001_D001ServiceImpl implements C_P001_D001Service {
 				out.println("</script>");
 				out.close();
 			}
+		}
+
+		@Override
+		public String find_id(HttpServletResponse response, C_P001_D001VO member) throws Exception {
+
+				response.setContentType("text/html;charset=utf-8");
+				PrintWriter out = response.getWriter();
+				String memberid = c_p001_d001_DAO.find_id(member);
+				System.out.println("아이디다다다다다다다="+memberid);
+				if (memberid == null) {
+					out.println("<script>");
+					out.println("alert('가입된 아이디가 없습니다.');");
+					out.println("history.go(-1);");
+					out.println("</script>");
+					out.close();
+					return null;
+				} else {
+					return memberid;
+				}
+			}
 		}                                                                                                                                                                                                                                    
-}
+
 
 
 
