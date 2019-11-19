@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>금도끼 은도끼|회원구매목록</title>
 </head>
 <body>
+<!-- 구매내역 상단 -->
+<div id="buyList" class="buyList">
 
+
+</div>
 </body>
 </html>

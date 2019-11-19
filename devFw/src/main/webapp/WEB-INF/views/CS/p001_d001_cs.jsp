@@ -167,7 +167,7 @@
 
 				<p>
 					<button type="button" class="btn btn-warning"
-						style="margin-left: 754%; font-size: 17px;">1:1 문의하기</button>
+						style="margin-left: 754%; font-size: 17px;" onClick="location.href='${contextPath}/csWrite.do'">1:1 문의하기</button>
 				</p>
 
 
