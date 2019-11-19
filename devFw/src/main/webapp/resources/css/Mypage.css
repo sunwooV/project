@@ -184,12 +184,20 @@ a
 
 
 
+
+
+
+
 :not
 
 
 
 
+
+
  
+
+
 
 
 
@@ -202,7 +210,11 @@ href
 
 
 
+
+
  
+
+
 
 
 
@@ -213,7 +225,11 @@ href
 
 
 
+
+
  
+
+
 
 
 
@@ -226,7 +242,11 @@ tabindex
 
 
 
+
+
  
+
+
 
 
 
@@ -242,7 +262,13 @@ color
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -252,7 +278,13 @@ color
 
 
 
+
+
 inherit
+
+
+
+
 
 
 
@@ -271,7 +303,13 @@ text-decoration
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -281,7 +319,13 @@ text-decoration
 
 
 
+
+
 none
+
+
+
+
 
 
 
@@ -389,12 +433,20 @@ button
 
 
 
+
+
+
+
 :not
 
 
 
 
+
+
  
+
+
 
 
 
@@ -405,7 +457,11 @@ button
 
 
 
+
+
  
+
+
 
 
 
@@ -424,12 +480,20 @@ type
 
 
 
+
+
+
+
 :not
 
 
 
 
+
+
  
+
+
 
 
 
@@ -440,7 +504,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -459,7 +527,13 @@ type
 
 
 
+
+
+
+
 :not
+
+
 
 
 
@@ -470,13 +544,19 @@ type
 
 
 
+
+
 (
 :disabled
 
 
 
 
+
+
  
+
+
 
 
 
@@ -495,12 +575,20 @@ type
 
 
 
+
+
+
+
 :not
 
 
 
 
+
+
  
+
+
 
 
 
@@ -511,7 +599,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -527,7 +619,13 @@ cursor
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -537,7 +635,13 @@ cursor
 
 
 
+
+
 pointer
+
+
+
+
 
 
 
@@ -747,12 +851,20 @@ mark, .mark {
 
 
 
+
+
+
+
 :not
 
 
 
 
+
+
  
+
+
 
 
 
@@ -763,7 +875,11 @@ mark, .mark {
 
 
 
+
+
  
+
+
 
 
 
@@ -779,7 +895,13 @@ margin-right
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -789,8 +911,14 @@ margin-right
 
 
 
+
+
 0
 .5rem
+
+
+
+
 
 
 
@@ -3620,12 +3748,20 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 
 
+
+
+
+
 :not
 
 
 
 
+
+
  
+
+
 
 
 
@@ -3636,7 +3772,11 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 
 
+
+
  
+
+
 
 
 
@@ -3652,12 +3792,20 @@ opacity
 
 
 
+
+
+
+
 :
 
 
 
 
+
+
  
+
+
 
 
 
@@ -3673,12 +3821,20 @@ opacity
 
 
 
+
+
+
+
 :not
 
 
 
 
+
+
  
+
+
 
 
 
@@ -3689,7 +3845,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -3705,7 +3865,13 @@ display
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -3715,7 +3881,13 @@ display
 
 
 
+
+
 none
+
+
+
+
 
 
 
@@ -4038,12 +4210,20 @@ none
 
 
 
+
+
+
+
 :not
 
 
 
 
+
+
  
+
+
 
 
 
@@ -4054,7 +4234,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -4071,12 +4255,20 @@ none
 
 
 
+
+
+
+
 :not
 
 
 
 
+
+
  
+
+
 
 
 
@@ -4088,7 +4280,11 @@ none
 
 
 
+
+
 	
+
+
 
 
 
@@ -4104,7 +4300,13 @@ margin-left
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -4114,8 +4316,14 @@ margin-left
 
 
 
+
+
 0
 px
+
+
+
+
 
 
 
@@ -4180,12 +4388,20 @@ px
 
 
 
+
+
+
+
 :not
 
 
 
 
+
+
  
+
+
 
 
 
@@ -4196,7 +4412,11 @@ px
 
 
 
+
+
  
+
+
 
 
 
@@ -4213,7 +4433,13 @@ px
 
 
 
+
+
+
+
 :not
+
+
 
 
 
@@ -4224,13 +4450,19 @@ px
 
 
 
+
+
 (
 :first-child
 
 
 
 
+
+
  
+
+
 
 
 
@@ -4246,7 +4478,13 @@ margin-top
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -4256,8 +4494,14 @@ margin-top
 
 
 
+
+
 0
 px
+
+
+
+
 
 
 
@@ -4637,11 +4881,19 @@ px
 
 
 
+
+
+
+
 [
 multiple
 ]
 ,
 .custom-select
+
+
+
+
 
 
 
@@ -4661,12 +4913,20 @@ size
 
 
 
+
+
+
+
 :not
 
 
 
 
+
+
  
+
+
 
 
 
@@ -4681,7 +4941,11 @@ size
 
 
 
+
+
  
+
+
 
 
 
@@ -4697,7 +4961,13 @@ height
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -4707,7 +4977,13 @@ height
 
 
 
+
+
 auto
+
+
+
+
 
 
 
@@ -4726,7 +5002,13 @@ padding-right
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -4736,8 +5018,14 @@ padding-right
 
 
 
+
+
 1
 .5rem
+
+
+
+
 
 
 
@@ -4756,7 +5044,13 @@ background-image
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -4766,7 +5060,13 @@ background-image
 
 
 
+
+
 none
+
+
+
+
 
 
 
@@ -5811,12 +6111,20 @@ none
 
 
 
+
+
+
+
 :not
 
 
 
 
+
+
  
+
+
 
 
 
@@ -5827,7 +6135,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -5838,7 +6150,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -5849,7 +6165,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -5865,12 +6185,20 @@ border-bottom
 
 
 
+
+
+
+
 :
 
 
 
 
+
+
  
+
+
 
 
 
@@ -6753,12 +7081,20 @@ a.close.disabled {
 
 
 
+
+
+
+
 :not
 
 
 
 
+
+
  
+
+
 
 
 
@@ -6769,7 +7105,11 @@ a.close.disabled {
 
 
 
+
+
  
+
+
 
 
 
@@ -6785,7 +7125,13 @@ margin-bottom
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -6795,8 +7141,14 @@ margin-bottom
 
 
 
+
+
 0
 .75rem
+
+
+
+
 
 
 
@@ -7032,7 +7384,11 @@ margin-bottom
 
 
 
+
+
  
+
+
 
 
 
@@ -7043,7 +7399,11 @@ margin-bottom
 
 
 
+
+
  
+
+
 
 
 
@@ -7059,7 +7419,13 @@ margin-left
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -7069,7 +7435,13 @@ margin-left
 
 
 
+
+
 .25rem
+
+
+
+
 
 
 
@@ -7087,7 +7459,11 @@ margin-left
 
 
 
+
+
  
+
+
 
 
 
@@ -7098,7 +7474,11 @@ margin-left
 
 
 
+
+
  
+
+
 
 
 
@@ -7114,7 +7494,13 @@ margin-right
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -7124,7 +7510,13 @@ margin-right
 
 
 
+
+
 .25rem
+
+
+
+
 
 
 
@@ -7735,13 +8127,21 @@ opacity
 
 
 
+
+
+
+
 :
 
 
 
 
 
+
+
  
+
+
 
 
 
@@ -7769,13 +8169,21 @@ opacity
 
 
 
+
+
+
+
 :
 
 
 
 
 
+
+
  
+
+
 
 
 
@@ -11038,12 +11446,20 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
 	:not
 	
 	
 	
 	
+	
+	
 	 
+	
+	
 	
 	
 	
@@ -11054,7 +11470,11 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
 	 
+	
+	
 	
 	
 	
@@ -11070,7 +11490,13 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
 	:
+	
+	
 	
 	
 	
@@ -11080,7 +11506,13 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
 	underline
+	
+	
+	
+	
 	
 	
 	
@@ -11448,8 +11880,8 @@ th {
 
 #myshopMain .myshopMain_sub1 {
 	width: 427px;
-    padding: 79px 0px 31px 32px;
-    height: 60px;
+	padding: 79px 0px 31px 32px;
+	height: 60px;
 	border: 1px solid #ccc;
 	float: left;
 	border-right: 0;
@@ -11458,8 +11890,8 @@ th {
 
 #myshopMain .myshopMain_sub2 {
 	width: 427px;
-    padding: 79px 0px 31px 32px;
-    height: 60px;
+	padding: 79px 0px 31px 32px;
+	height: 60px;
 	border: 1px solid #ccc;
 	float: left;
 	border-bottom: 0;
@@ -11468,8 +11900,8 @@ th {
 #myshopMain .myshopMain_sub3 {
 	clear: both;
 	width: 427px;
-    padding: 79px 0px 31px 32px;
-    height: 60px;
+	padding: 79px 0px 31px 32px;
+	height: 60px;
 	border: 1px solid #ccc;
 	float: left;
 	border-right: 0;
@@ -11478,8 +11910,8 @@ th {
 
 #myshopMain .myshopMain_sub4 {
 	width: 427px;
-    padding: 79px 0px 31px 32px;
-    height: 60px;
+	padding: 79px 0px 31px 32px;
+	height: 60px;
 	border: 1px solid #ccc;
 	float: left;
 	border-bottom: 0;
@@ -11488,8 +11920,8 @@ th {
 #myshopMain .myshopMain_sub5 {
 	clear: both;
 	width: 427px;
-    padding: 79px 0px 31px 32px;
-    height: 60px;
+	padding: 79px 0px 31px 32px;
+	height: 60px;
 	border: 1px solid #ccc;
 	float: left;
 	border-right: 0;
@@ -11497,11 +11929,27 @@ th {
 
 #myshopMain .myshopMain_sub6 {
 	width: 427px;
-    padding: 79px 0px 31px 32px;
-    height: 60px;
+	padding: 79px 0px 31px 32px;
+	height: 60px;
 	border: 1px solid #ccc;
 	float: left;
 }
-#list{
+
+#list {
 	margin-top: -58px;
+}
+
+.event {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#evnet_td {
+	width: 100%;
+}
+
+#sidebar {
+	padding: 8% 8% 7% 8%;
+	border: 1px solid black;
 }

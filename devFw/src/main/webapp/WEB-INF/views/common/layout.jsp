@@ -8,17 +8,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <style>
-		<%--
-      #container {
-        width: 100%;
-        margin: 0px auto;
-          text-align:center;
-        border: 0px solid #bcbcbc;
-      }
-      
-      --%>
-  
+    <style>  
       #header {
         padding: 0px;
         margin-bottom: 0px;

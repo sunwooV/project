@@ -78,11 +78,14 @@
 				</div>
 				<div class="table" id="cs_view">
 					<div class="list-group">
-						<a href="#" class="list-group-item list-group-item-action">중고거래 </a>
-						<a href="#" class="list-group-item list-group-item-action">경매절차</a>
-						<a href="#" class="list-group-item list-group-item-action">플리마켓 유형 및 참여방법</a>
-						<a href="#" class="list-group-item list-group-item-action">판매자 입금절차 안내</a>
-						<a href="#" class="list-group-item list-group-item-action">중고거래방법</a>
+						<a href="${contextPath}/detail2.do"
+							class="list-group-item list-group-item-action">중고거래 </a> <a
+							href="${contextPath}/detail3.do"
+							class="list-group-item list-group-item-action">경매절차</a> <a
+							href="${contextPath}/detail4.do"
+							class="list-group-item list-group-item-action">플리마켓 유형 및 참여방법</a>
+						<a href="${contextPath}/detail1.do"
+							class="list-group-item list-group-item-action">판매자 입금절차 안내</a>
 					</div>
 					<!-- .my_point_list -->
 
@@ -167,7 +170,9 @@
 
 				<p>
 					<button type="button" class="btn btn-warning"
-						style="margin-left: 754%; font-size: 17px;" onClick="location.href='${contextPath}/csWrite.do'">1:1 문의하기</button>
+						style="margin-left: 754%; font-size: 17px;"
+						onClick="location.href='${contextPath}/csWrite.do'">1:1
+						문의하기</button>
 				</p>
 
 

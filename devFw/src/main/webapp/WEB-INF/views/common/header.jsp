@@ -66,7 +66,7 @@
 	<!--  -->
 	<div class="menubar">
 		<ul>
-			<li><a href="./중고메인.jsp" id="current"
+			<li><a href="${contextPath}/cart.do" id="current"
 				style="font-family: 'Nanum Gothic Coding', monospace;">중고 거래</a>
 				<ul>
 					<li><a href="#">패션의류</a></li>

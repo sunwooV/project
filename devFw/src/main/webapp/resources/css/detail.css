@@ -226,6 +226,10 @@ a
 
 
 
+
+
+
+
 :not
 
 
@@ -252,7 +256,11 @@ a
 
 
 
+
+
  
+
+
 
 
 
@@ -307,7 +315,11 @@ href
 
 
 
+
+
  
+
+
 
 
 
@@ -360,7 +372,11 @@ href
 
 
 
+
+
  
+
+
 
 
 
@@ -415,7 +431,11 @@ tabindex
 
 
 
+
+
  
+
+
 
 
 
@@ -494,7 +514,13 @@ color
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -546,7 +572,13 @@ color
 
 
 
+
+
 inherit
+
+
+
+
 
 
 
@@ -649,7 +681,13 @@ text-decoration
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -701,7 +739,13 @@ text-decoration
 
 
 
+
+
 none
+
+
+
+
 
 
 
@@ -893,6 +937,10 @@ button
 
 
 
+
+
+
+
 :not
 
 
@@ -919,7 +967,11 @@ button
 
 
 
+
+
  
+
+
 
 
 
@@ -972,7 +1024,11 @@ button
 
 
 
+
+
  
+
+
 
 
 
@@ -1054,6 +1110,10 @@ type
 
 
 
+
+
+
+
 :not
 
 
@@ -1080,7 +1140,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -1133,7 +1197,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -1215,7 +1283,13 @@ type
 
 
 
+
+
+
+
 :not
+
+
 
 
 
@@ -1268,6 +1342,8 @@ type
 
 
 
+
+
 (
 :disabled
 
@@ -1295,7 +1371,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -1377,6 +1457,10 @@ type
 
 
 
+
+
+
+
 :not
 
 
@@ -1403,7 +1487,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -1456,7 +1544,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -1535,7 +1627,13 @@ cursor
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -1587,7 +1685,13 @@ cursor
 
 
 
+
+
 pointer
+
+
+
+
 
 
 
@@ -1881,6 +1985,10 @@ mark, .mark {
 
 
 
+
+
+
+
 :not
 
 
@@ -1907,7 +2015,11 @@ mark, .mark {
 
 
 
+
+
  
+
+
 
 
 
@@ -1960,7 +2072,11 @@ mark, .mark {
 
 
 
+
+
  
+
+
 
 
 
@@ -2039,6 +2155,10 @@ margin-right
 
 
 
+
+
+
+
 :
 
 
@@ -2065,7 +2185,11 @@ margin-right
 
 
 
+
+
  
+
+
 
 
 
@@ -2143,6 +2267,10 @@ margin-right
 
 
 
+
+
+
+
 ;
 }
 .initialism {
@@ -2163,19 +2291,6 @@ margin-right
 
 .blockquote-footer::before {
 	content: "\2014\00A0";
-}
-
-.img-fluid {
-	max-width: 100%;
-	height: auto;
-}
-
-.img-thumbnail {
-	padding: 0.25rem;
-	background-color: #fff;
-	border: 1px solid #eceeef;
-	max-width: 100%;
-	height: auto;
 }
 
 .figure {
@@ -4997,6 +5112,10 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 
 
+
+
+
+
 :not
 
 
@@ -5023,7 +5142,11 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 
 
+
+
  
+
+
 
 
 
@@ -5076,7 +5199,11 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 
 
+
+
  
+
+
 
 
 
@@ -5155,6 +5282,10 @@ opacity
 
 
 
+
+
+
+
 :
 
 
@@ -5181,7 +5312,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -5260,6 +5395,10 @@ opacity
 
 
 
+
+
+
+
 :not
 
 
@@ -5286,7 +5425,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -5339,7 +5482,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -5418,7 +5565,13 @@ display
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -5470,7 +5623,13 @@ display
 
 
 
+
+
 none
+
+
+
+
 
 
 
@@ -5877,6 +6036,10 @@ none
 
 
 
+
+
+
+
 :not
 
 
@@ -5903,7 +6066,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -5956,7 +6123,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -6036,6 +6207,10 @@ none
 
 
 
+
+
+
+
 :not
 
 
@@ -6062,7 +6237,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -6116,7 +6295,11 @@ none
 
 
 
+
+
 	
+
+
 
 
 
@@ -6195,7 +6378,13 @@ margin-left
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -6247,8 +6436,14 @@ margin-left
 
 
 
+
+
 0
 px
+
+
+
+
 
 
 
@@ -6397,6 +6592,10 @@ px
 
 
 
+
+
+
+
 :not
 
 
@@ -6423,7 +6622,11 @@ px
 
 
 
+
+
  
+
+
 
 
 
@@ -6476,7 +6679,11 @@ px
 
 
 
+
+
  
+
+
 
 
 
@@ -6556,7 +6763,13 @@ px
 
 
 
+
+
+
+
 :not
+
+
 
 
 
@@ -6609,6 +6822,8 @@ px
 
 
 
+
+
 (
 :first-child
 
@@ -6636,7 +6851,11 @@ px
 
 
 
+
+
  
+
+
 
 
 
@@ -6715,7 +6934,13 @@ margin-top
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -6767,8 +6992,14 @@ margin-top
 
 
 
+
+
 0
 px
+
+
+
+
 
 
 
@@ -7232,6 +7463,10 @@ px
 
 
 
+
+
+
+
 [
 multiple
 ]
@@ -7287,9 +7522,17 @@ multiple
 
 
 
+
+
+
+
 [
 size
 ]
+
+
+
+
 
 
 
@@ -7366,7 +7609,11 @@ size
 
 
 
+
+
  
+
+
 
 
 
@@ -7423,7 +7670,11 @@ size
 
 
 
+
+
  
+
+
 
 
 
@@ -7502,7 +7753,13 @@ height
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -7554,7 +7811,13 @@ height
 
 
 
+
+
 auto
+
+
+
+
 
 
 
@@ -7657,7 +7920,13 @@ padding-right
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -7709,8 +7978,14 @@ padding-right
 
 
 
+
+
 1
 .5rem
+
+
+
+
 
 
 
@@ -7813,7 +8088,13 @@ background-image
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -7865,7 +8146,13 @@ background-image
 
 
 
+
+
 none
+
+
+
+
 
 
 
@@ -9004,6 +9291,10 @@ none
 
 
 
+
+
+
+
 :not
 
 
@@ -9030,7 +9321,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -9083,7 +9378,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -9136,7 +9435,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -9189,7 +9492,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -9268,6 +9575,10 @@ border-bottom
 
 
 
+
+
+
+
 :
 
 
@@ -9294,7 +9605,11 @@ border-bottom
 
 
 
+
+
  
+
+
 
 
 
@@ -10233,6 +10548,10 @@ a.close.disabled {
 
 
 
+
+
+
+
 :not
 
 
@@ -10259,7 +10578,11 @@ a.close.disabled {
 
 
 
+
+
  
+
+
 
 
 
@@ -10312,7 +10635,11 @@ a.close.disabled {
 
 
 
+
+
  
+
+
 
 
 
@@ -10391,7 +10718,13 @@ margin-bottom
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -10443,8 +10776,14 @@ margin-bottom
 
 
 
+
+
 0
 .75rem
+
+
+
+
 
 
 
@@ -10743,7 +11082,11 @@ margin-bottom
 
 
 
+
+
  
+
+
 
 
 
@@ -10796,7 +11139,11 @@ margin-bottom
 
 
 
+
+
  
+
+
 
 
 
@@ -10875,7 +11222,13 @@ margin-left
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -10927,7 +11280,13 @@ margin-left
 
 
 
+
+
 .25rem
+
+
+
+
 
 
 
@@ -11008,7 +11367,11 @@ margin-left
 
 
 
+
+
  
+
+
 
 
 
@@ -11061,7 +11424,11 @@ margin-left
 
 
 
+
+
  
+
+
 
 
 
@@ -11140,7 +11507,13 @@ margin-right
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -11192,7 +11565,13 @@ margin-right
 
 
 
+
+
 .25rem
+
+
+
+
 
 
 
@@ -11887,6 +12266,10 @@ opacity
 
 
 
+
+
+
+
 :
 
 
@@ -11914,7 +12297,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -12005,6 +12392,10 @@ opacity
 
 
 
+
+
+
+
 :
 
 
@@ -12032,7 +12423,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -15358,6 +15753,10 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
 	:not
 	
 	
@@ -15384,7 +15783,11 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
 	 
+	
+	
 	
 	
 	
@@ -15437,7 +15840,11 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
 	 
+	
+	
 	
 	
 	
@@ -15516,7 +15923,13 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
 	:
+	
+	
 	
 	
 	
@@ -15568,7 +15981,13 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
 	underline
+	
+	
+	
+	
 	
 	
 	
@@ -16073,5 +16492,15 @@ th {
 }
 
 #col {
-	padding-left: 4%;
+	margin-right: 0%;
+	position: relative;
+	width: 100%;
+	margin-left: -10%;
+	padding-right: 1%;
+}
+
+#img {
+	padding-left:25%;
+	padding-bottom:5%;
+	
 }
