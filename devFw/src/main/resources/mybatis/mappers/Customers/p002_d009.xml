@@ -32,10 +32,21 @@
 	<![CDATA[
 		delete from member where memberid = #{memberid} and pw = #{pw}
 		 ]]>
-		  <if test="memberid = #{memberid}">
-		  insert into out_member(MEMBERID, PW, EMAIL, NAME, BIRTH, PHONENUMBER, BLACKLIST_YN)
-		 values(#{memberid}, #{pw}, #{email}, #{name}, #{birth}, #{phonenumber}, #{BLACKLIST_YN})
-  </if>
 	</delete>
 	
+	<!-- 회원추가 -->
+		<insert id="out_insert" parameterType="C_P002_D009VO">
+	 <![CDATA[
+insert into out_member (MEMBERID, PW, EMAIL, NAME, BIRTH, PHONENUMBER, BLACKLIST_YN, OUT_MEMBER_DATE)
+values((select MEMBERID from member where memberid=#{memberid}),(select PW from member where memberid=#{memberid}),(select EMAIL from member where memberid=#{memberid}),(select NAME from member where memberid=#{memberid}),(select BIRTH from member where memberid=#{memberid}),(select PHONENUMBER from member where memberid=#{memberid}),(select BLACKLIST_YN from member where memberid=#{memberid}),sysdate)
+	]]>
+	</insert>
+	
+	<!-- 비밀번호 확인 -->
+		<select id="check_pw" parameterType="C_P002_D009VO" resultType="int">
+	 <![CDATA[
+		select count(*) from member where MEMBERID = #{memberid} and pw = #{pw}
+	]]>
+	</select>
+
 	</mapper>

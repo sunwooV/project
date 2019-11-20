@@ -2,6 +2,8 @@ package project.Customers.P002.D009.dao;
 
 
 
+import org.springframework.transaction.annotation.Transactional;
+
 import project.Customers.P002.D009.vo.C_P002_D009VO;
 
 public interface C_P002_D009DAO {
@@ -18,4 +20,8 @@ public interface C_P002_D009DAO {
 
 	
 	public int out(C_P002_D009VO member) throws Exception;
+	
+ 	public int out_insert(C_P002_D009VO member) throws Exception;
+
+     public int check_pw(C_P002_D009VO member) throws Exception;
 }

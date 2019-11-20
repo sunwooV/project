@@ -22,20 +22,22 @@ public class C_P001_D001DAOImpl implements C_P001_D001DAO {
 	SqlSession sqlsession = null;
 	
 	// 아이디 중복 검사
+	@Transactional
 	public int check_id(String memberid) throws Exception{
 		return sqlsession.selectOne("Customers.join.check_id", memberid);
 	}
 	//이메일중복검사
+	@Transactional
 	public int check_email(String email) throws Exception{
 		return sqlsession.selectOne("Customers.join.check_email", email);
 	}
 	
-	@Override
+	@Transactional
 	public int black_check(String email) throws Exception{
 		return sqlsession.selectOne("Customers.join.black_check", email);
 	}
 
-	
+	@Transactional
 	public String check_join(String userId) throws Exception{
 		System.out.println("33333333333333333333333333333333333333333333"+userId);
 		return sqlsession.selectOne("Customers.join.check_join", userId);
@@ -60,6 +62,7 @@ public class C_P001_D001DAOImpl implements C_P001_D001DAO {
 		}
 		
 		// 로그인 검사
+		@Transactional
 		public C_P001_D001VO login(String memberid) throws Exception{
 			return sqlsession.selectOne("Customers.join.login", memberid);
 		}
