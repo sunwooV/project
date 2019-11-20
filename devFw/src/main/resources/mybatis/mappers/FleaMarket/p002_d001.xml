@@ -27,7 +27,28 @@
 		</where>
 	</select>
 	
-	
-	
+	<insert id="insertMember" parameterType="java.util.Map"> 
+        insert into flea(flea_code, memberid, flea_group) values(#{memberid}, #{flea_code}, #{flea_group})
+	</insert>
+
+	<select id="searchMod" resultMap="p0001Result01" parameterType="java.util.Map"> 
+      <![CDATA[
+         select id, pwd, name, email, joinDate
+         from   t_member
+      ]]>
+		<where>
+			<if test=" p_id != ''  and  p_id != null">
+				id = #{p_id}
+			</if>
+		</where>
+	</select>
+
+	<update id="updateMember" parameterType="java.util.Map">
+		update t_member
+		set  pwd = #{pwd}
+		   , name = #{name}
+		   , email = #{email}
+		where id = #{id}
+	</update>
 
 </mapper>
