@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>금도끼은도끼</title>
 <style>
@@ -14,7 +15,65 @@
 	font-size: medium;
 	text-decoration: line-through;
 }
+
+.like_btn_i {
+  cursor:pointer;
+  background:#fff;
+  border-radius:50%;
+  display:inline-block;
+  color:#aaa;
+  transition:.2s;
+}
+
+.like_btn_i:hover {
+  color:#666;
+}
+
+.like_btn_i:before {
+  font-family:fontawesome;
+  content:'\f004';
+  font-style:normal;
+}
+
+.like_btn_span {
+  position: absolute;
+  bottom:70px;
+  left:0;
+  right:0;
+  visibility: hidden;
+  transition:.6s;
+  z-index:-2;
+  font-size:2px;
+  color:transparent;
+  font-weight:400;
+}
+
+.like_btn_i.press {
+  animation: size .4s;
+  color:#e23b3b;
+}
+
+@keyframes fade {
+  0% {color:#transparent;}
+  50% {color:#e23b3b;}
+  100% {color:#transparent;}
+}
+
+@keyframes size {
+  0% {padding:10px 12px 8px;}
+  50% {padding:14px 16px 12px;  
+    margin-top:-4px;}
+  100% {padding:10px 12px 8px;}
+}
 </style>
+<script>
+$(function() {
+	$(".like_btn_i").click(function() {
+	  $(".like_btn_i, .like_btn_span").toggleClass( "press", 1000 );
+	});
+});
+</script>
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/main.css">
@@ -24,6 +83,51 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/af7787acb6.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script>
+var check_status = false;
+var like_cnt = $("#like-cnt");
+var like_parent = $(".like-container");
+
+var burst = new mojs.Burst({
+  parent: like_parent,
+  radius:   { 20: 60 },
+  count: 15,
+  angle:{0:30},
+  children: {
+    delay: 250,
+    duration: 700,
+    radius:{10: 0},
+    fill:   [ '#ddca7e' ],
+    easing: 		mojs.easing.bezier(.08,.69,.39,.97)
+  }
+});
+
+$("#like-cnt").click(function(){
+  var t1 = new TimelineLite();
+  var t2 = new TimelineLite();
+  if(!check_status){
+    t1.set(like_cnt, {scale:0});
+    t1.set('.like-btn', {scale: 0});
+    t1.to(like_cnt, 0.6, {scale:1, background: '#ddca7e',ease: Expo.easeOut});
+    t2.to('.like-btn', 0.65, {scale: 1, ease: Elastic.easeOut.config(1, 0.3)}, '+=0.2');
+//    t1.timeScale(5);
+    check_status=true;
+    //circleShape.replay();
+    burst.replay();
+  }
+  else{
+    t1.to(like_cnt, 1, {scale:1})
+      .to(like_cnt, 1, {scale:1, background: 'rgba(255,255,255,0.3)', ease: Power4.easeOut});
+    t1.timeScale(7);
+    check_status=false;
+  }
+  
+  
+})
+</script>
 <link
 	href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Do+Hyeon|Merriweather|Noto+Sans+KR&display=swap&subset=korean"
 	rel="stylesheet">
@@ -312,9 +416,15 @@
 						<c:forEach var="bestStore" items="${bestStore}">
 							<div class="col-sm-3">
 								<div class="thumbnail">
+										<!-- 좋아요 버튼 추가 -->
+									    <div>
+										  <i class="like_btn_i"></i>
+										  <span class="like_btn_span">liked!</span>
+										</div>
+									    
 									<img src=${bestStore.profile_photo}
 										style="width: 230px; height: 240px;" alt="..."  onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code }'">
-
+									
 									<div class="caption">
 										<h3>${bestStore.flea_name }</h3>
 										<!-- <h1>"${bestStore.intro_cotent }"</h1> -->

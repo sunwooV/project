@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="${contextPath }/resources/css/플리메인.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/플리메인.css">
 <!-- <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
@@ -249,7 +249,7 @@
 
 		<!-- 컨텐츠 -->
 		<div class="row">
-			<h1 style="padding-top: 3%; padding-left: 3%; padding-bottom: 0%; font-size: 23px;">인기 스토어-많은 사람들에게 인기있는 플리마켓 스토어를 소개합니다. 
+			<h1 style="padding-top: 3%; padding-left: 3%; padding-bottom: 0%; font-size: 23px;">인기 스토어
 			</h1>
 		</div>
 		<!-- 플리마켓 맵-->
@@ -270,11 +270,11 @@
 						<!--  <h4>우수 스토어</h4> -->
 					  
 						<img src="${bestStore.profile_photo}"
-							style="width: 230; height: 240; " alt="..." onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code }'">
+							style="width: 230; height: 240; " alt="..." onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code}'">
 
 						<div class="caption">
-							<h3>${bestStore.flea_name }</h3>
-							<p id="p">${bestStore.intro_cotent }</p>
+							<h3>${bestStore.flea_name}</h3>
+							<p id="p">${bestStore.intro_cotent}</p>
 							<p id="p">
 								<a href="#" class="btn btn-primary" id="ttt3" role="button">메세지 보내기</a>
 								<a href="${contextPath}/payInfo.do" class="btn btn-default"

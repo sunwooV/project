@@ -121,7 +121,5 @@ public class C_P001_D001VO {
 	public void setExtraAddress(String extraAddress) {
 		this.extraAddress = extraAddress;
 	}
-	
-	
-	
+
 }

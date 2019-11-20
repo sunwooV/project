@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.Main.P001.D001.service.M_P001_D001Service;
+import project.Customers.P001.D001.vo.C_P001_D001VO;
 import project.FleaMarket.P002.D001.dao.F_P002_D001DAO;
 import project.FleaMarket.P002.D001.service.F_P002_D001Service;
 import project.FleaMarket.P002.D001.vo.F_P002_D001VO;
@@ -48,7 +49,8 @@ public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 	
 	@Override
 	@RequestMapping(value = "/fleaMystore.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView fleaMystore(@RequestParam(value="flea_code", required=false) String flea_code, @RequestParam(value="memberid", required=false) String memberid, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView fleaMystore(@RequestParam(value="flea_code", required=false) String flea_code, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String memberid = "";	
 		request.setCharacterEncoding("utf-8");
 		
 		System.out.println("::::확인:::::");
@@ -57,8 +59,12 @@ public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 		searchMap.put("flea_code", flea_code);	 
 		System.out.println("flea_code =" +flea_code);
 		
-		searchMap.put("memberid", memberid);	 
-		System.out.println("memberid =" +memberid);
+		HttpSession session = request.getSession();
+		if(session != null) {
+			memberid = (String) session.getAttribute("memberid");
+			searchMap.put("memberid", memberid);	 
+		}
+		System.out.println(":::::memberid=" + memberid);
 		
 		List list = d001Service.searchList(searchMap);
 		List newProduct = M_P001_D001Service.newProduct(searchMap);

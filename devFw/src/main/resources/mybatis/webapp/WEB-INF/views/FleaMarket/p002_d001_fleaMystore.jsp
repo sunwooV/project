@@ -565,15 +565,15 @@ $(document).ready(function(){
                 <span class="sp-icon icon-heart"></span>
                 <span class="sp-icon icon-heart active"></span>
             </i>
-            <em class="txt"><i class="ui_icon--heart"></i>스토어 찜하기</em>
+            <em class="txt"><i class="fa fa-heart"></i>&nbsp;스토어 찜하기</em>
         </button>
    <br>
         <a href="/w/message/b20eee2f-b3eb-4fee-bc81-735f1e2318d6" class="btn btn-s btn-white pseudo-ico-message">
         <i class="fa fa-envelope"></i>&nbsp;메세지</a>
         <br>
         <button type="button" class="btn btn-m btn-white pseudo-ico-share" data-ui="url-copy" data-ui-option="short" data-icon-event="hover" data-clipboard-text="https://www.idus.com/w/artist/b20eee2f-b3eb-4fee-bc81-735f1e2318d6" data-clipboard-message="작가님 URL이 복사되었습니다.">
-        <i class="ico-img"><span class="sp-icon icon-shareproduct"></span></i>
-        공유하기<br></button>
+        <i class="fa fa-share-alt"><span class="sp-icon icon-shareproduct"></span></i>
+        &nbsp;공유하기<br></button>
     </fieldset>
   <div class="border-row">
          <nav class="nav-links">
@@ -583,10 +583,10 @@ $(document).ready(function(){
                  <span>홈</span>
              </a>
              -->
-             <span>홈<br></span>
-             <span>스토리<br></span>
-             <span>판매 작품<br></span>
-             <span>구매 후기<br></span>
+             <span><i class="fa fa-home">홈</i><br></span>
+             <span><i class="fa fa-book">스토리</i><br></span>
+             <span><i class="fa fa-store">판매 작품</i><br></span>
+             <span><i class="fa fa-pencil-alt">구매 후기</i><br></span>
          </nav>
      </div>
   <div class="list-def border-row">
