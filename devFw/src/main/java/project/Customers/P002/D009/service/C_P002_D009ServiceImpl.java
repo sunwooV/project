@@ -60,7 +60,7 @@ public class C_P002_D009ServiceImpl implements C_P002_D009Service{
 	public boolean out(C_P002_D009VO member, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		if(c_p002_d009_DAO.out(member) != 1) {
+		if(c_p002_d009_DAO.check_pw(member)!= 1) {
 			out.println("<script>");
 			out.println("alert('회원탈퇴 실패');");
 			out.println("history.go(-1);");
@@ -68,6 +68,8 @@ public class C_P002_D009ServiceImpl implements C_P002_D009Service{
 			out.close();
 			return false;
 		}else {
+			c_p002_d009_DAO.out_insert(member);
+			c_p002_d009_DAO.out(member);
 			return true;
 		}
 	}

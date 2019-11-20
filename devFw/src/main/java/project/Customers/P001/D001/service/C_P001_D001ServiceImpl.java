@@ -144,7 +144,7 @@ public class C_P001_D001ServiceImpl implements C_P001_D001Service {
 			String charSet = "utf-8";
 			String hostSMTP = "smtp.naver.com";
 			String hostSMTPid = "wpsl76";
-			String hostSMTPpwd = "";
+			String hostSMTPpwd = "sdetrycherry852!";
 
 			// 보내는 사람 EMail, 제목, 내용
 			String fromEmail = "wpsl76@naver.com";

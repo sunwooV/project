@@ -43,7 +43,15 @@ public class C_P002_D009ControllerImpl implements C_P002_D009Controller {
    @RequestMapping(value ="/out_pw_check.do", method = { RequestMethod.GET, RequestMethod.POST })
    public ModelAndView out_pw_check(HttpServletRequest request, HttpServletResponse response) throws Exception {
       request.setCharacterEncoding("utf-8");
-      ModelAndView mav = new ModelAndView("Customers/p002_d009_out_pw_check");
+      ModelAndView mav = new ModelAndView("Popup/p002_d009_out_pw_check");
+      return mav;
+   }
+   
+   @Override
+   @RequestMapping(value ="/outend.do", method = { RequestMethod.GET, RequestMethod.POST })
+   public ModelAndView outend(HttpServletRequest request, HttpServletResponse response) throws Exception {
+      request.setCharacterEncoding("utf-8");
+      ModelAndView mav = new ModelAndView("Popup/p002_d009_successOut");
       return mav;
    }
 
@@ -68,7 +76,7 @@ public class C_P002_D009ControllerImpl implements C_P002_D009Controller {
 		if(c_p002_d009_Service.out(member, response)) {
 			session.invalidate();
 		}
-		return "redirect:./main.do";
+		return "redirect:./outend.do";
 	}
 
 

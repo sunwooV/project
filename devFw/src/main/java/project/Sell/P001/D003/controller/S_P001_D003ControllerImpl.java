@@ -71,6 +71,7 @@ public class S_P001_D003ControllerImpl implements S_P001_D003Controller {
 			result += "\"qna_content\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getQna_content() + "\",";
 			result += "\"qna_date\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getQna_date() + "\",";
 			result += "\"memberId\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getMemberId() + "\",";
+			result += "\"secretMember\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getSecretMember() + "\",";
 			result += "\"answer_yn\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getAnswer_yn() + "\",";
 			result += "\"answer_date\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getAnswer_date() + "\",";
 			result += "\"answer_content\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getAnswer_content() + "\",";

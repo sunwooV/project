@@ -18,6 +18,7 @@
 		var loginCheck = document.getElementById("memberId").value;
 		var num = 0;
 		
+		
 		//관심 상품 등록하기
 		$(document).on('click', '#heart', function(){
 			if(loginCheck == null || loginCheck == "") { //로그인 안되어 있을 때
@@ -60,8 +61,10 @@
 		$(document).on('click', '.faq_open', function(){
 			var secret = $(this).attr("name");
 			var memberId = $("#memberId").val(); //로그인한 아이디
-			var writerId = $("#qna_memberId").val(); //qna 글쓴이
 			var prod_memberId = $("#prod_memberId").val() //상품 글쓴이
+			
+			var id = $(this).attr("id");
+			var writerId = $("#"+id).find("#qna_memberId").val();  //qna 글쓴이
 			
 			if(secret == 'y'){ //비밀글일 경우
 				if(memberId == writerId || memberId == prod_memberId) { //로그인한 아이디가 글쓴이이거나 상품 글쓴이인 경우
@@ -142,8 +145,8 @@
 					
 
 					for(var i=0;i<data.length;i++){
-					list += '<li><a href="javascript:void(0)" class="faq_open" id="' + data[i].qna_number + '" name="' + data[i].secret_yn + '">';
-					
+					list += '<li><a href="javascript:void(0)" class="faq_open" id="' + data[i].qna_number + '" name="' + data[i].secret_yn + '">'
+						 + '<input type="hidden" id="qna_memberId" value="' + data[i].memberId + '">';
 						if(data[i].answer_yn == 'y'){
 							list += '<div class="cate">답변 완료</div>';
 						}
@@ -166,7 +169,7 @@
 						 
 						list += '</div>'
 						+ '<div class="user">'
-						+	'<span class="ff">' + data[i].memberId + '</span>'
+						+	'<span class="ff">' + data[i].secretMember + '</span>'
 						+ '</div>'
 						+ '<div class="date">'
 						+	'<span>' + data[i].qna_date + '</span>'
@@ -315,8 +318,8 @@
 						
 
 						for(var i=0;i<data.length;i++){
-						list += '<li><a href="javascript:void(0)" class="faq_open" id="' + data[i].qna_number + '">';
-						
+							list += '<li><a href="javascript:void(0)" class="faq_open" id="' + data[i].qna_number + '" name="' + data[i].secret_yn + '">'
+								 + '<input type="hidden" id="qna_memberId" value="' + data[i].memberId + '">';
 							if(data[i].answer_yn == 'y'){
 								list += '<div class="cate">답변 완료</div>';
 							}
@@ -325,19 +328,29 @@
 							}
 							
 							list += '<div class="cont_box">'
-							 +	'<span class="inquiry_prod">'+ prod_title + '</span>'
-							 + 	'<span class="inquiry_text" style="font-weight:bold;">' + data[i].qna_content + '</span>'
-							+ '</div>'
+							 +	'<span class="inquiry_prod">'+ prod_title + '</span>';
+							 
+							if(data[i].secret_yn == 'y'){ //비밀글일경우
+								if(memberId == prod_memberId || memberId == data[i].memberId){ //글 작성자이거나 해당 상품 게시자인 경우
+									list += '<span class="inquiry_text" id="text" style="font-weight:bold;">' + data[i].qna_content + '</span>';
+								} else { //제 3자의 경우
+									list += '<span class="inquiry_text" id="secret_text" style="font-weight:bold;">비밀글입니다.<img src="${contextPath }/resources/img/detailProduct/secret.png" style="width:20px;"></span>';
+								}
+							} else{ //비밀글이 아닐 경우
+								list += '<span class="inquiry_text" id="text" style="font-weight:bold;">' + data[i].qna_content + '</span>';
+							}
+							 
+							list += '</div>'
 							+ '<div class="user">'
-							+	'<span class="ff">' + data[i].memberId + '</span>'
+							+	'<span class="ff">' + data[i].secretMember + '</span>'
 							+ '</div>'
 							+ '<div class="date">'
 							+	'<span>' + data[i].qna_date + '</span>'
 							+ '</div>'
-						
 							+ '</a>'
 							+ '<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a' + data[i].qna_number + '">'
-							+ '<div class="question">'+ data[i].qna_content+ '</div>';
+							+ '<div class="question">'+ data[i].qna_content + '</div>';
+
 							if(data[i].memberId == memberId){
 								list += '<p class="delete_qna" id="deleteQuestion"><u>삭제</u></p>';
 								
@@ -350,7 +363,7 @@
 									+		'<span>'+data[i].answer_date+'</span></span>'
 									+  data[i].answer_content
 									 + '</div>';
-							} else if(data[i].answer_yn == 'n'){
+							} else {
 								list += '<div class="answer" style="display:none;">'
 									+	'<span class="ico asw">답변</span>'
 									
@@ -359,11 +372,8 @@
 									+  data[i].answer_content
 									 + '</div>';
 							}
-							
-							
-							list+= '</div>' 
-					+ '</li>';
-					console.log(list);
+							list += '</div>' 
+								+ '</li>';
 						}
 					$(".list_comment_inqury").html(list);
 
@@ -1228,6 +1238,7 @@ textarea{
 								<c:forEach var="prodQnA" items="${prodQnA }">
 									<li>
 										<a href="javascript:void(0)" class="faq_open" id="${prodQnA.qna_number }" name="${prodQnA.secret_yn }">
+											<input type="hidden" id="qna_memberId" value="${prodQnA.memberId }">
 											<div class="cate" id="cate${prodQnA.qna_number }">
 												<c:if test="${prodQnA.answer_yn == 'y' }"><!-- 답변이 있으면 -->
 													답변 완료
@@ -1261,7 +1272,7 @@ textarea{
 										
 										<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a${prodQnA.qna_number }">
 											<div class="question">${prodQnA.qna_content }</div>
-											<input type="hidden" id="qna_memberId" value="${prodQnA.memberId }">
+											
 											<c:if test="${prodQnA.memberId == member.getMemberid() }"><!-- 자신이 쓴 q&a 내용 삭제할 수 있음 -->
 												<p class="delete_qna" id="deleteQuestion"><u>삭제</u></p>
 											</c:if>

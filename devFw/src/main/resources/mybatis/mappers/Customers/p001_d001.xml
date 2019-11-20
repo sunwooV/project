@@ -12,13 +12,11 @@
 	]]>
 	</select>
 	
-	<select id="black_check" parameterType="C_P001_D001VO" resultType="int">
+	   <!-- 블랙리스트 검사 -->
+	<select id="black_check" parameterType="String" resultType="int">
 	<![CDATA[
-		select count(*) from member where email = #{email}
+		select count(*) from out_member where email = #{email} and BLACKLIST_YN !='N'
 		 ]]>
-	  <if test="BLACKLIST_YN == 'Y'">
-  </if>
-
 </select>
 	
 

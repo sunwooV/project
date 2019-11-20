@@ -38,6 +38,17 @@ public class C_P002_D009DAOImpl implements C_P002_D009DAO {
      		return sqlsession.delete("Customers.modify.out", member);
      	}
          
+         @Transactional
+     	public int out_insert(C_P002_D009VO member) throws Exception{
+     		return sqlsession.insert("Customers.modify.out_insert", member);
+     	}
+         
+         @Transactional
+         public int check_pw(C_P002_D009VO member) throws Exception{
+     		return sqlsession.selectOne("Customers.modify.check_pw", member);
+     	}
+         
+         
 }
 
 
