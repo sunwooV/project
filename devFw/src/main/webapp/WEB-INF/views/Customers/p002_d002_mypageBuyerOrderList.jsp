@@ -8,102 +8,85 @@
 <meta charset="UTF-8">
 <title>금도끼 은도끼|회원구매목록</title>
 <style type="text/css">
-
 .orderHistoryContainer {
-/* padding: 위 오른쪽 아래 왼쪽;*/
-	padding: 3% 15% 0% 15%;
-
-	
+	/* padding: 위 오른쪽 아래 왼쪽;*/
+	padding: 1% 15% 10% 15%;
 }
 
 .orderHistoryHeader {
-	padding-top:3%;
-	margin-left:15%;
+	padding-top: 3%;
+	margin-left: 15%;
 }
+
+.OHT_ttl, .OHC_cont {
+	font-size: 13px;
+	padding: 0.5%;
+	text-align: center;
+	border-bottom:1px solid darkgray;
+}
+
+.orderHistoryTable {
+	text-align: center;
+	width: -webkit-fill-available;
+	border-top:1px solid darkgray;
+	border-collapse:collapse;
+}
+.OHtableTitle{
+background-color:#faf5f1;
+}
+
 </style>
 <script type="text/javascript">
 	$('#usi-orderHistory').stacktable();
 </script>
 </head>
 <body>
-<!-- 주문내역 상단 -->
+	<!-- 주문내역 상단 -->
 	<div class="orderHistoryHeader">
-		<h1>주문내역</h1>
+		<h3>주문 내역 조회</h3>
 	</div>
 	<div class="orderHistoryContainer">
+		<!-- 주문 상품 정보 테이블 시작  -->
 		<table class="orderHistoryTable" id="orderHistoryTable">
+			<!-- 주문 상품 정보 테이블 상단 제목   -->
 			<thead class="orderHistoryTableTitles">
 				<tr class="OHtableTitle">
-					<th class="OHT_ttl"><span>주문일자[주문번호]</span></th>
+					<th class="OHT_ttl"><span>주문일자<br>[주문번호]
+					</span></th>
 					<th class="OHT_ttl"><span>상품이미지</span></th>
 					<th class="OHT_ttl"><span>상품정보</span></th>
 					<th class="OHT_ttl"><span>수량</span></th>
 					<th class="OHT_ttl"><span>상품구매금액</span></th>
 					<th class="OHT_ttl"><span>주문처리상태</span></th>
-					<th class="OHT_ttl"><span>취소/교환/반품</span></th>
+					<th class="OHT_ttl"><span>제품상태처리</span></th>
 				</tr>
 			</thead>
 			<tbody>
+				<!-- 첫 번째 상품 내용 -->
 				<tr class="orderHistoryContents">
-					<td class="OHC_cont"><a href="#"
-						class="usi-dataCellMobile">125892</a></td>
-					<td class="OHC_cont"><span
-						class="usi-dataCellMobile">Some Awesome Event</span></td>
-					<td class="OHC_cont"><span
-						class="usi-dataCellMobile">10</span></td>
-					<td class="OHC_cont"><span
-						class="usi-dataCellMobile">$20.00</span></td>
-					<td class="OHC_cont"><span
-						class="usi-dataCellMobile">Active</span></td>
-					<td class="usi-containerOrderCell usi-buttonsCell">
-						<button href="#"
-							class="usi-dataCellMobile usi-button secondary small">Edit
-							Order</button>
-					</td>
-					<td class="usi-containerOrderCell usi-buttonsCell">
-						<button href="#"
-							class="usi-dataCellMobile usi-button secondary small">Re-Order</button>
-					</td>
+					<td class="OHC_cont"><span class="orderDate" id="orderDate">2019-11-20</span>
+						<br> <a href="#" class="orderNum" id="orderNum">[20191120-0000000]</a></td>
+
+					<td class="OHC_cont"><span class="prod_1st_img" id="prod_1st_img">이미지</span></td>
+					<td class="OHC_cont"><span class="prod_short_detail"
+						id="prod_short_detail">상품 정보 설명들어감 제목 + 선택한 옵션</span></td>
+					<td class="OHC_cont"><span class="prod_cnt" id="prod_cnt">2</span></td>
+					<td class="OHC_cont"><span class="ttl_eachProd_price"
+						id="ttl_eachProd_price">29,000원</span></td>
+					<td class="OHC_cont"><span class="order_state"
+						id="order_state">배송준비중</span></td>
+
+					<td class="OHC_cont"><input type="button" value="취소신청 및 교환 신청"
+						class="orderButton" id="cancel_order" onClick="location.href='${contextPath}/changeProduct.do'">
+						<br>
+						<input type="button" value="리뷰쓰기"
+						class="orderButton" id="review_order" onClick="location.href='${contextPath}/review.do'">
+						<br>
+						<input type="button" value="구매확정하기"
+						class="orderButton" id="confirmBuy_order" onClick="location.href='${contextPath}/confirmBuy.do'">
+						</td>
 				</tr>
-				<tr class="usi-containerOrder">
-					<td class="usi-containerOrderCell"><a href="#"
-						class="usi-dataCellMobile">1234k5</a></td>
-					<td class="usi-containerOrderCell"><span
-						class="usi-dataCellMobile">Some Awesome Event</span></td>
-					<td class="usi-containerOrderCell"><span
-						class="usi-dataCellMobile">8544D, 1234, 2243, 55.4, 2209,
-							43A, 223, 9985</span></td>
-					<td class="usi-containerOrderCell"><span
-						class="usi-dataCellMobile">$2000.00</span></td>
-					<td class="usi-containerOrderCell"><span
-						class="usi-dataCellMobile">Open</span></td>
-					<td class="usi-containerOrderCell"></td>
-					<td class="usi-containerOrderCell">
-						<button href="#"
-							class="usi-dataCellMobile usi-button secondary small usi-buttonsCell">Re-Order</button>
-					</td>
-				</tr>
-				<tr class="usi-containerOrder">
-					<td class="usi-containerOrderCell"><a href="#"
-						class="usi-dataCellMobile">4444444</a></td>
-					<td class="usi-containerOrderCell"><span
-						class="usi-dataCellMobile">Some Awesome Event</span></td>
-					<td class="usi-containerOrderCell"><span
-						class="usi-dataCellMobile">2.228</span></td>
-					<td class="usi-containerOrderCell"><span
-						class="usi-dataCellMobile">$1052.00</span></td>
-					<td class="usi-containerOrderCell"><span
-						class="usi-dataCellMobile">Closed</span></td>
-					<td class="usi-containerOrderCell">
-						<button href="#"
-							class="usi-dataCellMobile usi-button secondary small usi-buttonsCell">Edit
-							Order</button>
-					</td>
-					<td class="usi-containerOrderCell">
-						<button href="#"
-							class="usi-dataCellMobile usi-button secondary small usi-buttonsCell">Re-Order</button>
-					</td>
-				</tr>
+				<!-- 2번째 상품 내용 -->
 			</tbody>
 		</table>
 	</div>

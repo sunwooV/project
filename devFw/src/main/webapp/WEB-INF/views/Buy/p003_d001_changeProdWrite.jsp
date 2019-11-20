@@ -64,7 +64,7 @@
 </head>
 <body>
 	<div id="changeProdHeader" class="changeProdHeader">
-		<h2>제품 교환 사유 작성</h2>
+		<h2>환불 및  교환 사유 작성</h2>
 	</div>
 	<div class="changeProdTitle">
 		글 제목 : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
