@@ -41,6 +41,7 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 
 		searchMap.put("prod_number", prod_number);	 
 		List list = S_P001_D002Service.detailProduct(searchMap);
+		List tags = S_P001_D002Service.tagList(searchMap);
 				
 		searchMap2.put("prod_category_code", ((S_P001_D002VO)list.get(0)).getProd_category_code());	 
 		
@@ -57,8 +58,12 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		List prodQnA = S_P001_D003Service.selectQnA(searchMap); //Q&A List
 		//int listSize = prodQnA.size();
 		
+		System.out.println("tag 들 :::: " + tags);
+		
+		System.out.println("controller 통과");
 		ModelAndView mav = new ModelAndView("Sell/p001_d002_detailProduct");
 		mav.addObject("detail", list);
+		mav.addObject("tags", tags);
 		mav.addObject("high_category", high_category);
 		mav.addObject("middle_category", middle_category);
 		mav.addObject("prodQnA", prodQnA);

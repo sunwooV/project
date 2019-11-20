@@ -85,7 +85,7 @@
 	</select>
 	
 	<select id="tagList" resultMap="S_P001_D002Result01" parameterType="java.util.Map">
-		SELECT  tag1, tag2, tag3, tag4, tag5
+		SELECT  prod_number, tag1, tag2, tag3, tag4, tag5
 		FROM tag
 		<where>
 			prod_number = #{prod_number}

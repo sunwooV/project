@@ -18,10 +18,30 @@
 		var loginCheck = document.getElementById("memberId").value;
 		var num = 0;
 		
-// 		//경매 입찰하기
-// 		$(document).on('click', '#bidding', function(){
-			
-// 		}
+		//관심 상품 등록하기
+		$(document).on('click', '#heart', function(){
+			if(loginCheck == null || loginCheck == "") { //로그인 안되어 있을 때
+				if(confirm("로그인 후 관심상품을 등록할 수 있습니다..\n로그인 하시겠습니까?")){
+					window.location.href="./loginInit.do?redirect=" + now;
+				} else{
+					return false;
+				}
+			} else { //로그인 되어있을 때 => 관심 상품 등록
+				if($(this).attr('name') == 'n'){ //관심 상품 등록
+					var heart = document.getElementById("heart");
+					$(this).html('<img src="${contextPath }/resources/img/detailProduct/fillheart.png" style="width:30px; height:30px;"> 관심 상품 추가 ');
+					$(this).css("color", "#dd5850");
+					heart.setAttribute("name", "y");
+				} else{ //관심 상품 해제
+					var heart = document.getElementById("heart");
+					$(this).html('<img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px;"> 관심 상품 추가 ');
+					$(this).css("color", "black");
+					heart.setAttribute("name", "n");
+				}
+				
+			}
+		});
+		
 		
 		//질문 적기
 		$(document).on('click', '#prod_inquiry_text', function(){
@@ -38,15 +58,36 @@
 		
 		//질문 리스트 열기
 		$(document).on('click', '.faq_open', function(){
-
-			num = $(this).attr("id");
-
-			var target = document.getElementById("a" + num);
+			var secret = $(this).attr("name");
+			var memberId = $("#memberId").val(); //로그인한 아이디
+			var writerId = $("#qna_memberId").val(); //qna 글쓴이
+			var prod_memberId = $("#prod_memberId").val() //상품 글쓴이
 			
-			if(target.style.display == 'none'){ //접혀있는데 눌렀을 경우
-				$('#a'+num).css("display", "block");
-			} else { //펴져있는데 눌렀을 경우
-				$('#a'+num).css("display", "none");
+			if(secret == 'y'){ //비밀글일 경우
+				if(memberId == writerId || memberId == prod_memberId) { //로그인한 아이디가 글쓴이이거나 상품 글쓴이인 경우
+					num = $(this).attr("id");
+
+					var target = document.getElementById("a" + num);
+					
+					if(target.style.display == 'none'){ //접혀있는데 눌렀을 경우
+						$('#a'+num).css("display", "block");
+					} else { //펴져있는데 눌렀을 경우
+						$('#a'+num).css("display", "none");
+					}
+				} else { //로그인한 아이디가 글쓴이가 아닐 경우
+					alert("비밀글은 작성자만 조회할 수 있습니다.");
+					return false;
+				}
+			} else { //비밀글이 아닐 경우
+				num = $(this).attr("id");
+
+				var target = document.getElementById("a" + num);
+				
+				if(target.style.display == 'none'){ //접혀있는데 눌렀을 경우
+					$('#a'+num).css("display", "block");
+				} else { //펴져있는데 눌렀을 경우
+					$('#a'+num).css("display", "none");
+				}
 			}
 		})
 		
@@ -59,6 +100,11 @@
 			var memberId = $("#memberId").val();
 			var command = "insert";
 			var prod_title = $("#prod_title").val();
+			var secret = $("#secretSelect").val();
+			var prod_memberId = $("#prod_memberId").val();
+			var qna_memberId = $("#qna_memberId").val();
+			
+			//console.log(secret);
 
 			//질문 사항 내용이 있는지 체크
 			if(content == ''){
@@ -73,7 +119,8 @@
 					qna_content: content,
 					prod_number: product,
 					memberId: memberId,
-					command: command
+					command: command,
+					secret_yn: secret
 			}
 	
 			$.ajax({
@@ -90,14 +137,12 @@
 		        	   alert(jsonInfo.error.error_text);
 		        	   return;
 		            } */
-		            console.log(data.length);
+		            //console.log(data.length);
 					var list = '';
-					
-					var test = '';
 					
 
 					for(var i=0;i<data.length;i++){
-					list += '<li><a href="javascript:void(0)" class="faq_open" id="' + data[i].qna_number + '">';
+					list += '<li><a href="javascript:void(0)" class="faq_open" id="' + data[i].qna_number + '" name="' + data[i].secret_yn + '">';
 					
 						if(data[i].answer_yn == 'y'){
 							list += '<div class="cate">답변 완료</div>';
@@ -107,9 +152,19 @@
 						}
 						
 						list += '<div class="cont_box">'
-						 +	'<span class="inquiry_prod">'+ prod_title + '</span>'
-						 + 	'<span class="inquiry_text" style="font-weight:bold;">' + data[i].qna_content + '</span>'
-						+ '</div>'
+						 +	'<span class="inquiry_prod">'+ prod_title + '</span>';
+						 
+						if(data[i].secret_yn == 'y'){ //비밀글일경우
+							if(memberId == prod_memberId || memberId == data[i].memberId){ //글 작성자이거나 해당 상품 게시자인 경우
+								list += '<span class="inquiry_text" id="text" style="font-weight:bold;">' + data[i].qna_content + '</span>';
+							} else { //제 3자의 경우
+								list += '<span class="inquiry_text" id="secret_text" style="font-weight:bold;">비밀글입니다.<img src="${contextPath }/resources/img/detailProduct/secret.png" style="width:20px;"></span>';
+							}
+						} else{ //비밀글이 아닐 경우
+							list += '<span class="inquiry_text" id="text" style="font-weight:bold;">' + data[i].qna_content + '</span>';
+						}
+						 
+						list += '</div>'
 						+ '<div class="user">'
 						+	'<span class="ff">' + data[i].memberId + '</span>'
 						+ '</div>'
@@ -164,9 +219,11 @@
 			var product = $("#prod_number").val();
 			var answer_content = $("#answer_write").val();
 			var command = 'insert';
+			
 
-			alert(answer_content);
-			alert(document.getElementById("answer_write").value);
+				
+			
+
 			//답변 유효성 검사
 			if(answer_content == ''){
 				alert("답변을 입력해주세요.");
@@ -293,7 +350,7 @@
 									+		'<span>'+data[i].answer_date+'</span></span>'
 									+  data[i].answer_content
 									 + '</div>';
-							} else {
+							} else if(data[i].answer_yn == 'n'){
 								list += '<div class="answer" style="display:none;">'
 									+	'<span class="ico asw">답변</span>'
 									
@@ -411,6 +468,14 @@
 
 		});
 		
+		//상품 문의 비밀글 여부
+		$("#secretSelect").change(function(){
+			if ($("#secretSelect").is(":checked")) { //비밀 글 선택
+				document.getElementsByName("secret")[0].value = 'y';
+			}else{
+				document.getElementsByName("secret")[0].value = 'n';
+			}
+		});
 		
 		//대표 사진 확대 기능
 	  //	$("a[rel^='prettyPhoto']").prettyPhoto();
@@ -573,7 +638,7 @@ img{
 .down{
 	width:75%;
 	float:left;
-	margin:5px 13%;
+	margin:30px 13%;
 }
 .category{
 	font-size: small;
@@ -590,7 +655,7 @@ img{
 	float:left;
 }
 .description{
-	margin:1%;
+	margin-left: 2%;
 	float:left;
 }
 .price{
@@ -614,6 +679,12 @@ img{
 .tab-content{
 	width: 758px;
     margin: 0px auto;
+}
+.tag{
+	color:#dd5850;
+	padding:3px;
+	font-weight:bold;
+	cursor:pointer;
 }
 #panels {margin:10px 20px 10px 0px; font-size:1.2em; line-height:1.5em; }
 #cart{
@@ -658,6 +729,9 @@ img{
     text-decoration: none;
     color: #333;
     cursor: pointer;
+}
+#heart{
+	padding: 3px;
 }
 #sold_price{
 	color:black;
@@ -933,6 +1007,7 @@ textarea{
 <div id="wrap">
 	<input type="hidden" id="command" name="command" value="">
 	<c:forEach var="product" items="${detail }" varStatus="status" >
+		<input type="hidden" id="prod_memberId" value="${product.memberId }">
 		<input type="hidden" id="prod_number" name="prod_number" value="${product.prod_number }">
 		<div class="category">
 			<c:forEach var="high_category" items="${high_category }">
@@ -1010,7 +1085,7 @@ textarea{
 				<br>
 				<h3 id="gray-text">지난 일주일간 ${product.heart }명의 회원이 관심을 보였어요!</h3>
 				<br>
-				<button id="heart"><img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px;"> 관심 상품 추가 </button>
+				<div id="heart" name="n"><img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px;"> 관심 상품 추가 </div>
 				<br><br>
 				<div class="content">
 					<c:choose>
@@ -1081,6 +1156,32 @@ textarea{
 			    	<br>
 			    	<h2>상세정보</h2>
 			    	<br>
+			    	<c:forEach var="tags" items="${tags }"> <!-- 해시태그 출력 -->
+			    		<c:choose>
+			    			<c:when test="${tags == null }">
+			    			
+			    			</c:when>
+			    			<c:otherwise>
+				    			<c:if test="${tags.tag1 != null }">
+					    			<a class="tag">#${tags.tag1 }</a>&nbsp
+					    		</c:if>
+					    		<c:if test="${tags.tag2 != null }">
+					    			<a class="tag">#${tags.tag2 }</a>&nbsp
+					    		</c:if>
+					    		<c:if test="${tags.tag3 != null }">
+					    			<a class="tag">#${tags.tag3 }</a>&nbsp
+					    		</c:if>
+					    		<c:if test="${tags.tag4 != null }">
+					    			<a class="tag">#${tags.tag4 }</a>&nbsp
+					    		</c:if>
+					    		<c:if test="${tags.tag5 != null }">
+					    			<a class="tag">#${tags.tag5 }</a>&nbsp
+					    		</c:if>
+			    			</c:otherwise>
+			    		</c:choose>
+			    		
+			    	</c:forEach>
+			    	<br>
 			    	${product.editor }
 			    </div>
 			    <div id="QnA" class="tab-pane fade">
@@ -1113,7 +1214,7 @@ textarea{
 						</div>
 						<br>
 						<div class="secretBox">
-							<label for="secretSelect"><input type="checkbox" name="secret">비밀글</label>
+							<input type="checkbox" name="secret" id="secretSelect" value="n"><label for="secretSelect">비밀글</label>
 						</div>
 						<div class="btn_area">
 							<input type="button" class="enrollInquiry" id="buy" value="등록">
@@ -1126,7 +1227,7 @@ textarea{
 							<ul class="list_comment_inqury">
 								<c:forEach var="prodQnA" items="${prodQnA }">
 									<li>
-										<a href="javascript:void(0)" class="faq_open" id="${prodQnA.qna_number }">
+										<a href="javascript:void(0)" class="faq_open" id="${prodQnA.qna_number }" name="${prodQnA.secret_yn }">
 											<div class="cate" id="cate${prodQnA.qna_number }">
 												<c:if test="${prodQnA.answer_yn == 'y' }"><!-- 답변이 있으면 -->
 													답변 완료
@@ -1137,11 +1238,20 @@ textarea{
 											</div>
 											<div class="cont_box">
 												<span class="inquiry_prod">${product.prod_title }</span>
-												<span class="inquiry_text" style="font-weight:bold;">${prodQnA.qna_content }</span>
-												
+												<c:if test="${prodQnA.secret_yn == 'y' }"> <!-- 비밀글일 경우 -->
+													<c:if test="${member.getMemberid() == prodQnA.memberId or member.getMemberid() == product.memberId }"> <!-- 글 작성자이거나 상품 작성자인 경우 -->
+														<span class="inquiry_text" id="text" style="font-weight:bold;">${prodQnA.qna_content }</span>
+													</c:if>
+													<c:if test="${member.getMemberid() != prodQnA.memberId and member.getMemberid() != product.memberId }"> <!-- 글작성자가 아닐 경우 -->
+														<span class="inquiry_text" id="secret_text" style="font-weight:bold;">비밀글입니다.<img src="${contextPath }/resources/img/detailProduct/secret.png" style="width:20px;"></span>	
+													</c:if>
+												</c:if>
+												<c:if test="${prodQnA.secret_yn == 'n' }">
+													<span class="inquiry_text" id="text" style="font-weight:bold;">${prodQnA.qna_content }</span>	
+												</c:if>
 											</div>
 											<div class="user">
-												<span class="ff">${prodQnA.memberId }</span> 
+												<span class="member${prodQnA.qna_number }">${prodQnA.secretMember }</span> 
 											</div>
 											<div class="date">
 												<span>${prodQnA.qna_date }</span>
@@ -1151,6 +1261,7 @@ textarea{
 										
 										<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a${prodQnA.qna_number }">
 											<div class="question">${prodQnA.qna_content }</div>
+											<input type="hidden" id="qna_memberId" value="${prodQnA.memberId }">
 											<c:if test="${prodQnA.memberId == member.getMemberid() }"><!-- 자신이 쓴 q&a 내용 삭제할 수 있음 -->
 												<p class="delete_qna" id="deleteQuestion"><u>삭제</u></p>
 											</c:if>

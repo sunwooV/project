@@ -10,6 +10,7 @@
 		<result property="qna_content" column="qna_content" />
 		<result property="qna_date" column="qna_date" />
 		<result property="memberId" column="memberId" />
+		<result property="secretMember" column="secretMember"/>
 		<result property="answer_yn" column="answer_yn" />
 		<result property="answer_date" column="answer_date" />
 		<result property="answer_content" column="answer_content" />
@@ -29,8 +30,8 @@
 		 ]]>
 		</selectKey>
 		<![CDATA[
-			INSERT INTO prodQnA (prod_number, qna_number, qna_content, qna_date, memberId, answer_yn)
-			VALUES(#{prod_number}, #{qna_number}, #{qna_content}, sysdate, #{memberId}, 'n')
+			INSERT INTO prodQnA (prod_number, qna_number, qna_content, qna_date, memberId, answer_yn, secret_yn)
+			VALUES(#{prod_number}, #{qna_number}, #{qna_content}, sysdate, #{memberId}, 'n', #{secret_yn})
 		 ]]>
 	</insert>
 	
@@ -48,7 +49,7 @@
 	
 	<select id="selectQnA" resultMap="S_P001_D003Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         SELECT prod_number, qna_number, qna_content, TO_CHAR(qna_date, 'yyyy-mm-dd HH24:MI') as qna_date, memberId, answer_yn, TO_CHAR(answer_date, 'yyyy-mm-dd HH24:MI') as answer_date, answer_content
+         SELECT prod_number, qna_number, qna_content, TO_CHAR(qna_date, 'yyyy-mm-dd HH24:MI') as qna_date, memberId, replace(memberId, substr(memberId,-3), '***') as secretMember, answer_yn, TO_CHAR(answer_date, 'yyyy-mm-dd HH24:MI') as answer_date, answer_content, secret_yn
          FROM   prodQnA
       ]]>
 		<where>

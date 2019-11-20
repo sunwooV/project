@@ -420,7 +420,7 @@
 						$("#direct").attr("disabled", false);
 						$("#way_caution").html("※중고와 경매에 대한 직거래입니다.※");
 						$("#price").css("display", "block"); //상품 가격란 표시
-						document.getElementsByName("")[0].value = 'y';
+						document.getElementsByName("reused_yn")[0].value = 'y';
 					} else {
 						$("#buyPrice").css("display", "none"); //구매 금액 입력할 수 있게 한다.
 						$("#price").css("display", "none"); //상품 가격란 미표시

@@ -9,9 +9,11 @@ public class S_P001_D003VO {
 	private String qna_content;
 	private String qna_date;
 	private String memberId;
+	private String secretMember;
 	private String answer_yn;
 	private String answer_date;
 	private String answer_content;
+	private String secret_yn;
 	
 	
 	public String getProd_number() {
@@ -44,6 +46,12 @@ public class S_P001_D003VO {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
+	public String getSecretMember() {
+		return secretMember;
+	}
+	public void setSecretMember(String secretMember) {
+		this.secretMember = secretMember;
+	}
 	public String getAnswer_yn() {
 		return answer_yn;
 	}
@@ -62,6 +70,11 @@ public class S_P001_D003VO {
 	public void setAnswer_content(String anwer_content) {
 		this.answer_content = anwer_content;
 	}
-	
-	
+	public String getSecret_yn() {
+		return secret_yn;
+	}
+	public void setSecret_yn(String secret_yn) {
+		this.secret_yn = secret_yn;
+	}
+
 }
