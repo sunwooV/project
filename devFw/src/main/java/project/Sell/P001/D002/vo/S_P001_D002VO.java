@@ -243,6 +243,7 @@ public class S_P001_D002VO {
 	public void setLeft_second(String left_second) {
 		this.left_second = left_second;
 	}
+
 	
 	
 	

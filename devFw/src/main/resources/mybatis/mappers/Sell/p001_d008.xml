@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Sell.p001_d008">
+
+	<resultMap id="S_P001_D008Result01" type="S_P001_D008VO">
+		<result property="prod_number" column="prod_number" />
+		<result property="date_check" column="date_check" />
+		<result property="reused_yn" column="reused_yn" />
+		<result property="flea_yn" column="flea_yn" />
+		<result property="auction_bid" column="auction_bid" />
+		<result property="auction_price" column="auction_price" />
+	</resultMap>
+
+	
+	<select id="auction_date_check" resultMap="S_P001_D008Result01" parameterType="java.util.Map">
+		SELECT prod_number, sign(auction_end_date - sysdate) as date_check, auction_bid, auction_price, reused_yn, flea_yn
+		FROM product
+		<where>
+			auction_yn = 'y'
+		</where>
+	</select>
+	
+	<!-- 낙찰자 없을 경우 -->
+	<update id="failAuction" parameterType="java.util.Map">
+		UPDATE product SET auction_yn = 'f'
+		<where>
+			prod_number = #{prod_number}
+		</where>
+	</update>
+	
+	<!-- 낙찰자 있을 경우 -->
+	<update id="winAuction" parameterType="java.util.Map">
+		UPDATE product SET auction_yn = 'w', reused_yn = 'n', flea_yn = 'n', prod_amount = '0'
+		<where>
+			prod_number = #{prod_number}
+		</where>
+	</update>
+
+</mapper>

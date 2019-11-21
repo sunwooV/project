@@ -6,8 +6,11 @@
 <mapper namespace="Customers.black">
 	<resultMap id="c_p004_d001Result" type="C_P004_D001VO">
 		<result property="memberid" column="memberid" />
+		<result property="PW" column="PW" />
 		<result property="name" column="name" />
 		<result property="email" column="email" />
+		<result property="birth" column="birth" />
+		<result property="phonenumber" column="phonenumber" />
 		<result property="reg_date" column="reg_date" />
 		<result property="log_date" column="log_date" />
 		<result property="approval_status" column="approval_status" />
@@ -15,6 +18,8 @@
 		<result property="seller_group" column="seller_group" />
 		<result property="flea_seller_group" column="flea_seller_group" />
 		<result property="blacklist_yn" column="blacklist_yn" />
+		<result property="out_member_date" column="out_member_date" />
+		<result property="verify" column="verify" />
 	</resultMap>
 
 	<select id="searchList" resultMap="c_p004_d001Result" parameterType="java.util.Map"> 
@@ -53,8 +58,8 @@
 	<!-- 회원추가 -->
 		<insert id="black_insert" parameterType="java.util.Map">
 	 <![CDATA[
-     insert into out_member (MEMBERID, PW, EMAIL, NAME, BIRTH, PHONENUMBER, BLACKLIST_YN, OUT_MEMBER_DATE)
-     values((select MEMBERID from member where memberid=#{memberid}),(select PW from member where memberid=#{memberid}),(select EMAIL from member where memberid=#{memberid}),(select NAME from member where memberid=#{memberid}),(select BIRTH from member where memberid=#{memberid}),(select PHONENUMBER from member where memberid=#{memberid}),(select BLACKLIST_YN from member where memberid=#{memberid}),sysdate)
+   insert into out_member (MEMBERID, PW, EMAIL, NAME, BIRTH, PHONENUMBER, REG_DATE,BLACKLIST_YN, MEMBER_GROUP, SELLER_GROUP, FLEA_SELLER_GROUP,OUT_MEMBER_DATE,verify,approval_status)
+values((select MEMBERID from member where memberid=#{memberid}),(select PW from member where memberid=#{memberid}),(select EMAIL from member where memberid=#{memberid}),(select NAME from member where memberid=#{memberid}),(select BIRTH from member where memberid=#{memberid}),(select PHONENUMBER from member where memberid=#{memberid}),(select REG_DATE from member where memberid=#{memberid}),(select BLACKLIST_YN from member where memberid=#{memberid}),(select MEMBER_GROUP from member where memberid=#{memberid}),(select SELLER_GROUP from member where memberid=#{memberid}),(select FLEA_SELLER_GROUP from member where memberid=#{memberid}),sysdate,(select verify from member where memberid=#{memberid}),(select approval_status from member where memberid=#{memberid}))
 	]]>
 	</insert>
 	
