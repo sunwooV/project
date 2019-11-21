@@ -617,18 +617,7 @@
 		}
 	}
 	
-	//수량 0일 때 수량을 선택해달라는 메시지 노출하기
-		$(document).on('click', '#cart', function(){
-		
- 	 		var frm = document.detail;
-			var prod_cnt = document.getElementsById('prod_amount').val(); //수량
-			alert(prod_cnt);
-			
-		/* 	frm.method="post";
-			frm.action="./modifyProduct.do";
-			frm.submit(); */
-		});
-	
+
 	
 	
 
