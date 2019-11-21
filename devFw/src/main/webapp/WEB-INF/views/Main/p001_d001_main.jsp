@@ -186,13 +186,16 @@
 								<div class="thumbnail">
 									<c:if test="${newProduct.reused_yn == 'y' }">
 										<!-- 상품 판매 카테고리 -->
-										<h4>중고</h4>
+										<span class="group">중고</span>
 									</c:if>
-									<c:if test="${newProduct.auction_yn == 'y' }">
-										<h4>경매</h4>
+									<c:if test="${newProduct.auction_yn == 'y' or newProduct.auction_yn == 'w' or newProduct.auction_yn == 'f'}">
+										<span class="group">경매</span>
 									</c:if>
 									<c:if test="${newProduct.flea_yn == 'y' }">
-										<h4>플리</h4>
+										<span class="group">플리</span>
+									</c:if>
+									<c:if test="${newProduct.auction_yn == 'y' }">
+										<span class="group" style="color:red;">(경매 진행 중)</span>
 									</c:if>
 									<img src="${newProduct.represent_image }"
 										style="width: 230px; height: 240px;" alt="..."
@@ -208,8 +211,11 @@
 												<p id="p">
 													<fmt:formatNumber value="${newProduct.auction_bid }"
 														type="number" />
-													원
+													원 
 												</p>
+											</c:when>
+											<c:when test="${((newProduct.auction_yn == 'f' or newProduct.auction_yn == 'w') and newProduct.reused_yn == 'n' and newProduct.flea_yn == 'n') or newProduct.prod_amount == 0 }">
+												<p id="p" style="color:red; font-weight:bold">품절</p>
 											</c:when>
 											<c:otherwise>
 												<c:if test="${newProduct.sale_percent != null }">

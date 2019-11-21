@@ -865,7 +865,7 @@
 						<label for="auction">경매</label>
 						<input type="hidden" name="auction_yn" id="auction_yn" value="${modifyProd.auction_yn }"/>
 					</c:if>
-					<c:if test="${modifyProd.auction_yn == 'n' }">
+					<c:if test="${modifyProd.auction_yn == 'n' or modifyProd.auction_yn == 'w' or modifyProd.auction_yn == 'f'}">
 						<input type="checkbox" name="prod_group" value="경매" class="checkSelect1" id="auction" />
 						<label for="auction">경매 </label>
 						<input type="hidden" name="auction_yn" id="auction_yn" value="${modifyProd.auction_yn }"/>
@@ -954,9 +954,16 @@
 			
 			<div class="subtitle" id="auction_price" style="display: none">
 					<a>경매 시작가 *</a> 
-					￦&nbsp<input type="number" id="auction_price" name="auction_price" min="0" value="${modifyProd.auction_price }"/>
-					<div style="color: red; font-size: 12px;">
-					※판매는 경매에서 경매 시작가부터 시작하고, 타 메뉴에서는 상품 가격으로 보여집니다.※</div>
+					<c:if test="${modifyProd.auction_yn == 'y' }">
+						￦&nbsp<input type="number" id="auction_price" name="auction_price" min="0" value="${modifyProd.auction_price }" readonly/>
+						<div style="color: red; font-size: 12px;">
+						※경매 진행 중 경매 시작가를 변경할 수 없습니다.※</div>
+					</c:if>
+					<c:if test="${modifyProd.auction_yn != 'y' }">
+						￦&nbsp<input type="number" id="auction_price" name="auction_price" min="0" value="${modifyProd.auction_price }"/>
+						<div style="color: red; font-size: 12px;">
+						※판매는 경매에서 경매 시작가부터 시작하고, 타 메뉴에서는 상품 가격으로 보여집니다.※</div>
+					</c:if>
 			</div>
 			
 
