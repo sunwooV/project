@@ -26,6 +26,7 @@ public class C_P004_D001VO {
 	private String seller_group;
 	private String flea_seller_group;
 	private String blacklist_yn;
+	private String verify;
 
 //	private String approval_status;
 //	private String approval_key;
@@ -97,5 +98,13 @@ public class C_P004_D001VO {
 	public void setBlacklist_yn(String blacklist_yn) {
 		this.blacklist_yn = blacklist_yn;
 	}
+	public String getVerify() {
+		return verify;
+	}
+	public void setVerify(String verify) {
+		this.verify = verify;
+	}
+	
+	
 	
 }

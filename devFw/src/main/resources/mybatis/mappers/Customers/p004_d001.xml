@@ -19,7 +19,7 @@
 
 	<select id="searchList" resultMap="c_p004_d001Result" parameterType="java.util.Map"> 
       <![CDATA[
-         select memberid, name, email, reg_date, log_date, approval_status, member_group, seller_group, flea_seller_group, blacklist_yn
+         select memberid, name, email, reg_date, log_date, approval_status, member_group, seller_group, flea_seller_group, blacklist_yn, verify
          from   member
       ]]>
 		<where>
@@ -32,7 +32,7 @@
 	
 	<update id="updateData" parameterType="java.util.Map">
 		update member
-		set  name = #{name}, seller_group = #{seller_group}, flea_seller_group = #{flea_seller_group}, blacklist_yn = #{blacklist_yn}
+		set  name = #{name}, seller_group = #{seller_group}, flea_seller_group = #{flea_seller_group}, blacklist_yn = #{blacklist_yn} ,verify = #{verify}
 		where memberid = #{memberid}
 	</update>	
 	
@@ -41,4 +41,21 @@
 		delete member
 		where memberid = #{memberid}
 	</delete>	
+	
+	
+	<!-- 블랙리스트 탈퇴시키기 -->
+		<delete id="black_out" parameterType="java.util.Map">
+	<![CDATA[
+		delete from member where memberid = #{memberid} and BLACKLIST_YN ='Y'
+		 ]]>
+	</delete>
+	
+	<!-- 회원추가 -->
+		<insert id="black_insert" parameterType="java.util.Map">
+	 <![CDATA[
+     insert into out_member (MEMBERID, PW, EMAIL, NAME, BIRTH, PHONENUMBER, BLACKLIST_YN, OUT_MEMBER_DATE)
+     values((select MEMBERID from member where memberid=#{memberid}),(select PW from member where memberid=#{memberid}),(select EMAIL from member where memberid=#{memberid}),(select NAME from member where memberid=#{memberid}),(select BIRTH from member where memberid=#{memberid}),(select PHONENUMBER from member where memberid=#{memberid}),(select BLACKLIST_YN from member where memberid=#{memberid}),sysdate)
+	]]>
+	</insert>
+	
 </mapper>

@@ -84,28 +84,41 @@ public class C_P001_D001ControllerImpl implements C_P001_D001Controller{
 		return mav1;
 	}
 	
+	
+	@Override
 	@RequestMapping(value = "/check_id.do", method =  { RequestMethod.GET, RequestMethod.POST })
 	public void check_id(@RequestParam("memberid") String memberid, HttpServletResponse response) throws Exception{
 		c_p001_d001_Service.check_id(memberid, response);
 		
 	}
+	
+	@Override
+	@RequestMapping(value = "/again.do", method =  { RequestMethod.GET, RequestMethod.POST })
+	public void again(@RequestParam("email") String email, HttpServletResponse response) throws Exception{
+		c_p001_d001_Service.again(email, response);
+		
+	}
+	@Override
 	@RequestMapping(value = "/black_check.do", method =  { RequestMethod.GET, RequestMethod.POST })
 	public void black_check(@RequestParam("email") String email, HttpServletResponse response) throws Exception{
 		c_p001_d001_Service.black_check(email, response);
 		
 	}
 	
+	@Override
 	@RequestMapping(value = "/check_email.do", method =  { RequestMethod.GET, RequestMethod.POST })
 	public void check_email(@RequestParam("email") String email, HttpServletResponse response) throws Exception{
 		c_p001_d001_Service.check_email(email, response);
 	}
 	
+	@Override
 	@RequestMapping(value = "/join_member.do", method =  { RequestMethod.GET, RequestMethod.POST })
 	public String join_member(@ModelAttribute C_P001_D001VO member, RedirectAttributes rttr, HttpServletResponse response) throws Exception{
 		rttr.addFlashAttribute("result", c_p001_d001_Service.join_member(member, response));
 		return "redirect:/main.do";
 	}
 	
+	@Override
 	@RequestMapping(value = "/kakao_join_member.do", method =  { RequestMethod.GET, RequestMethod.POST })
 	public String kakao_join_member(@ModelAttribute C_P001_D001VO member, RedirectAttributes rttr, HttpServletResponse response, HttpSession session) throws Exception{
 		rttr.addFlashAttribute("result", c_p001_d001_Service.kakao_join_member(member, response));
@@ -113,6 +126,7 @@ public class C_P001_D001ControllerImpl implements C_P001_D001Controller{
 		return "redirect:/main.do";
 	}
 	
+	@Override
 	@RequestMapping(value = "/approval_member.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public void approval_member(@ModelAttribute C_P001_D001VO member, HttpServletResponse response) throws Exception{
 		c_p001_d001_Service.approval_member(member, response);
@@ -121,6 +135,7 @@ public class C_P001_D001ControllerImpl implements C_P001_D001Controller{
 	 
 		
 		// 로그인
+	    @Override
 		@RequestMapping(value = "/login.do", method =  { RequestMethod.GET, RequestMethod.POST })
 		public String login(@ModelAttribute C_P001_D001VO member, HttpSession session, HttpServletResponse response) throws Exception{
 			member = c_p001_d001_Service.login(member, response);
@@ -143,6 +158,7 @@ public class C_P001_D001ControllerImpl implements C_P001_D001Controller{
 		}
 		
 		// 로그아웃
+	    @Override
 		@RequestMapping(value = "/logout.do", method =  { RequestMethod.GET, RequestMethod.POST })
 		public void logout(HttpSession session, HttpServletResponse response) throws Exception{
 			session.invalidate();

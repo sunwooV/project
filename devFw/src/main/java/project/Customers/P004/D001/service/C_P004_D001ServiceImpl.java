@@ -26,6 +26,7 @@ public class C_P004_D001ServiceImpl implements C_P004_D001Service{
 	@Override
 	public void saveData(Map<String, String[]> dataMap)  throws DataAccessException  {
 		String[] status = dataMap.get("STATUS");
+		String[] blacklist_yn = dataMap.get("blacklist_yn");
 		int length = status.length; // row수ㅜ
 		int i = 0;
 		
@@ -33,11 +34,19 @@ public class C_P004_D001ServiceImpl implements C_P004_D001Service{
 			Map<String, String> row = getRow(dataMap, length, i); // 현재 Index의 RowMap
 			if("U".equals(str)) { // 수정
 				c_p004_d001dao.updateData(row);
+				for(String str1 : blacklist_yn) {
+					if("Y".equals(str1)) {
+						c_p004_d001dao.black_insert(row);
+						c_p004_d001dao.black_out(row);
+					}
+				}
+	
 			}else if("D".equals(str)) { // 삭제
 				c_p004_d001dao.deleteData(row);
 			}
 			i++;
 		}
+		
 	}
 	
 	private Map getRow(Map<String, String[]> dataMap, int length, int index) {
