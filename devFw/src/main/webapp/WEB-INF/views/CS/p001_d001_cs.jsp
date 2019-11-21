@@ -162,11 +162,11 @@
 							<th>제목</th>
 						</tr>
 
-						<c:forEach var="deilvery" items="${eventList}" varStatus='index'>
+						<c:forEach var="deilvery" items="${deliveryList}" varStatus='index'>
 							<tr align="center"
-								onclick="location.href='${contextPath}/eventDetail.do?no_number=${event.no_number}'">
+								onclick="location.href='${contextPath}/eventDetail.do?division=${deilvery.division}'">
 								<td>${deilvery.division}</td>
-								<td>${deilvery.no_title}</td>
+								<td>${deilvery.title}</td>
 							</tr>
 						</c:forEach>
 					</table>

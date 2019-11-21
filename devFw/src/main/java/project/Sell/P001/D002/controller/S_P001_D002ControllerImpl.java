@@ -23,7 +23,8 @@ import project.Sell.P001.D002.vo.S_P001_D002VO;
 import project.Sell.P001.D003.vo.S_P001_D003VO;
 import project.Sell.P001.D002.service.S_P001_D002Service;
 import project.Sell.P001.D003.service.S_P001_D003Service;
-
+import project.Sell.P001.D008.service.S_P001_D008Service;
+import project.Sell.P001.D008.vo.S_P001_D008VO;
 
 @Controller("S_P001_D002Controller")
 public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
@@ -31,6 +32,8 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 	S_P001_D002Service S_P001_D002Service;
 	@Autowired
 	S_P001_D003Service S_P001_D003Service;
+	@Autowired
+	S_P001_D008Service S_P001_D008Service;
 	
 	@Override
 	@RequestMapping(value = "/detail.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -47,7 +50,6 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		
 		System.out.println("prod_category_code:::" + ((S_P001_D002VO)list.get(0)).getProd_category_code());
 		
-		
 		List middle_category = S_P001_D002Service.middle_category(searchMap2);
 		
 		searchMap2.put("high_category", ((S_P001_D001VO)middle_category.get(0)).getHigh_category());
@@ -55,8 +57,7 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		
 		List auction_left_date = S_P001_D002Service.auction_left_date(searchMap);
 
-		List prodQnA = S_P001_D003Service.selectQnA(searchMap); //Q&A List
-		//int listSize = prodQnA.size();
+		List prodQnA = S_P001_D003Service.selectQnA(searchMap); //Q&A List		
 		
 		System.out.println("tag 들 :::: " + tags);
 		
@@ -67,7 +68,7 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		mav.addObject("high_category", high_category);
 		mav.addObject("middle_category", middle_category);
 		mav.addObject("prodQnA", prodQnA);
-		//mav.addObject("listSize", listSize);
+	
 		if(auction_left_date != null) {
 			mav.addObject("auction_left_date", auction_left_date);
 		}
