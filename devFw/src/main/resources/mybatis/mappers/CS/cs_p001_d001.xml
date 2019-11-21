@@ -12,6 +12,12 @@
         <result property="no_writedate" column="no_writedate" />
         <result property="no_view_cnt" column="no_view_cnt" />
 	</resultMap> 
+		<resultMap id="CS_P001_D001Result02" type="CS_P001_D001VO">
+	   <result property="division" column="division" />
+        <result property="title" column="title" />
+        <result property="contents" column="contents" />
+
+	</resultMap> 
 	
 	
 	
@@ -43,6 +49,20 @@
 	<![CDATA[
 	SELECT COUNT(*) FROM notice
 	]]>
+	</select>
+	
+	<!-- 배달문의 -->
+	<select id="viewdelivery" resultMap="CS_P001_D001Result02">
+      <![CDATA[
+         	
+      
+SELECT  DIVISION,TITLE,CONTENTS
+FROM FNQ
+WHERE DIVISION IN '배송문의'
+ORDER BY TITLE;
+      	
+      ]]>
+
 	</select>
 	
 </mapper>
