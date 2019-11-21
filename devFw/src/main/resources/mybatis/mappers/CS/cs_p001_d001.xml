@@ -52,17 +52,19 @@
 	</select>
 	
 	<!-- 배달문의 -->
-	<select id="viewdelivery" resultMap="CS_P001_D001Result02">
+	<select id="selectdeliveryList" resultMap="CS_P001_D001Result02">
       <![CDATA[
          	
       
-SELECT  DIVISION,TITLE,CONTENTS
-FROM FNQ
-WHERE DIVISION IN '배송문의'
-ORDER BY TITLE;
+select  division,title
+from fnq
+where division in '배송문의'
+order by title
       	
       ]]>
 
 	</select>
+	
+	
 	
 </mapper>

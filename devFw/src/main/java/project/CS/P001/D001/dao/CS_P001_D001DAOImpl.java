@@ -37,11 +37,28 @@ public class CS_P001_D001DAOImpl implements CS_P001_D001DAO {
 		System.out.println("da0333333333333333333333333333333333" + dataList);
 		return dataList;
 	}
+	
+//	@Override
+//	public List selectdeliveryDetail(Map<String, Object> dataMap) {
+//		List dataList = null;
+//		dataList = sqlSession.selectList("CS.P001.D001.selectdeliveryDetail", dataMap);
+//		System.out.println("da0333333333333333333333333333333333" + dataList);
+//		return dataList;
+//	}
 
 	@Override
 	public int countBoard() {
 		return sqlSession.selectOne("CS.P001.D001.countBoard");
 	}
+
+	@Override
+	public List selectdeliveryList() throws DataAccessException {
+		List<CS_P001_D001VO> deliveryList = null;
+		deliveryList = sqlSession.selectList("CS.P001.D001.selectdeliveryList");/* xml 아이디값.select id 값*/
+		System.out.println("deliveryList" + deliveryList);
+		return deliveryList;
+	}
+
 	
 	
 }
