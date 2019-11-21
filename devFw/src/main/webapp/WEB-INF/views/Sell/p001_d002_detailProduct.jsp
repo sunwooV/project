@@ -617,6 +617,18 @@
 		}
 	}
 	
+	//수량 0일 때 수량을 선택해달라는 메시지 노출하기
+		$(document).on('click', '#cart', function(){
+		
+ 	 		var frm = document.detail;
+			var prod_cnt = document.getElementsById('prod_amount').val(); //수량
+			alert(prod_cnt);
+			
+		/* 	frm.method="post";
+			frm.action="./modifyProduct.do";
+			frm.submit(); */
+		});
+	
 	
 	
 
@@ -1080,7 +1092,7 @@ textarea{
 					</c:when>
 					<c:otherwise> <!-- 경매가 아닌 상품들 -->
 						<c:if test="${product.sale_percent != null }"> <!-- 세일 퍼센트가 존재한다면 -->
-							<span class="price">${product.sale_percent }%</span>
+							<span class="price">${product.sale_percent}%</span>
 							<span class="price" id="sold_price"><fmt:formatNumber value="${product.prod_price * (1-(product.sale_percent*0.01)) }" type="number" />원</span>
 							<span id="sale_price"><fmt:formatNumber value="${product.prod_price }" type="number" />원</span>
 							<input type="hidden" id="prod_price" value="${product.prod_price * (1-(product.sale_percent*0.01)) }">
