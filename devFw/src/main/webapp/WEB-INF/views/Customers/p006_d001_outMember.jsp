@@ -27,17 +27,14 @@
 		initSheet.Cols = [
 			{Header:"상태",Type:"Status",SaveName:"STATUS",MinWidth:50, Align:"Center"},
 			{Header:"삭제",Type:"DelCheck",SaveName:"DEL_CHK",MinWidth:50},
-			{Header:"ID",Type:"Text",SaveName:"memberid",MinWidth:80,Align:"Center"},			
-			{Header:"이름",Type:"Text",SaveName:"name",MinWidth:150,KeyField:1 ,MultiLineText:1, Wrap:1},
+			{Header:"ID",Type:"Text",SaveName:"memberid",MinWidth:80,Align:"Center"},
 			{Header:"이메일",Type:"Text",SaveName:"email",MinWidth:150},
-			{Header:"Date",Type:"Date",SaveName:"reg_date",MinWidth:100},
-			{Header:"Date",Type:"Date",SaveName:"log_date",MinWidth:100},
-			{Header:"이메일 승인여부",Type:"Text",SaveName:"approval_status",MinWidth:60,Align:"Center"},
-			{Header:"회원 구분",Type:"Text",SaveName:"member_group",MinWidth:60,Align:"Center"},
-			{Header:"판매자 YN",Type:"Text",SaveName:"seller_group",MinWidth:60,Align:"Center"},
-			{Header:"플리마켓 YN",Type:"Text",SaveName:"flea_seller_group",MinWidth:60,Align:"Center"},
+			{Header:"이름",Type:"Text",SaveName:"name",MinWidth:150,KeyField:1 ,MultiLineText:1, Wrap:1},
+			{Header:"생일",Type:"Text",SaveName:"birth",MinWidth:60,Align:"Center"},
+			{Header:"번호",Type:"Text",SaveName:"phonenumber",MinWidth:60,Align:"Center"},
 			{Header:"블랙리스트",Type:"Combo",ComboText:"Y|N",SaveName:"blacklist_yn",MinWidth:103,Align:"Center"},
-			{Header:"관리자YN",Type:"Combo",ComboText:"Y|N",SaveName:"verify",MinWidth:103,Align:"Center"}
+			{Header:"회원가입날짜",Type:"Date",SaveName:"reg_date",MinWidth:100},
+			{Header:"탈퇴날짜",Type:"Date",SaveName:"out_member_date",MinWidth:100}
 		];   
 		IBS_InitSheet( mySheet , initSheet);
 		
@@ -52,7 +49,7 @@
 		switch(sAction) {
 			case "search": //조회
 			    var param = FormQueryStringEnc(document.frm);
-				mySheet.DoSearch("${contextPath}/searchList.do", param);
+				mySheet.DoSearch("${contextPath}/outsearchList.do", param);
 				//mySheet.DoSearch("transaction_data2.json");
 				break;
 			case "reload": //초기화
@@ -61,7 +58,7 @@
 			case "save": // 저장
 				//var tempStr = mySheet.GetSaveString();
 				//alert("서버로 전달되는 문자열 확인 :"+tempStr);
-				mySheet.DoSave("${contextPath}/saveData.do");
+				mySheet.DoSave("${contextPath}/outsaveData.do");
 				break;			
 		}
 	}
@@ -86,7 +83,7 @@
 <body onload="LoadPage()">
   <div class="page_title">
     <span><a class="closeDepth" href="#">closeDepth</a></span> 
-    <span class="title">관리 > <b>회원 관리</b></span>
+    <span class="title">관리 > <b>탈퇴/블랙회원 관리</b></span>
   </div>
 
     <div class="exp_product">각 행의 데이터를 수정하거나 입력,삭제시 상태컬럼의 변화를

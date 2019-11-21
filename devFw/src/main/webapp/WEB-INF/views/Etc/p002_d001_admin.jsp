@@ -29,10 +29,10 @@
 			<div class="myshopMain_sub1">
 				<div id="list">
 					<h3>
-						<a href="./자체검사.jsp"><strong>플리마켓 자체검사</strong></a>
+						<a href="${contextPath }/fleaCreateStoreApproval.do"><strong>플리마켓 자체검사</strong></a>
 					</h3>
 					<p style="font-size: 11px;">
-						<a href="/myshop/order/list.html">플리마켓 개설검사 </a>
+						<a href="${contextPath }/fleaCreateStoreApproval.do">플리마켓 개설검사 </a>
 					</p>
 				</div>
 			</div>
@@ -49,10 +49,10 @@
 			<div class="myshopMain_sub3">
 				<div id="list">
 					<h3>
-						<a href="/myshop/wish_list.html"><strong>탈퇴 회원관리</strong></a>
+						<a href="${contextPath }/outsearchInit.do"><strong>탈퇴 회원관리</strong></a>
 					</h3>
 					<p style="font-size: 11px;">
-						<a href="/myshop/wish_list.html">탈퇴기록</a>
+						<a href="${contextPath }/outsearchInit.do">탈퇴기록</a>
 					</p>
 				</div>
 			</div>
