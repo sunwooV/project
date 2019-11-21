@@ -68,10 +68,13 @@ public class CS_P001_D001ControllerImpl implements CS_P001_D001Controller{
 				
 			
 			List eventList = cs_p001_d001Service.listEvent(vo);
+			List deliveryList = cs_p001_d001Service.listDelivery(vo);
 			System.out.println("5555555555555555555555555555555555555555555555555555"+eventList);
+			System.out.println("6666666666666666666666666666666666666666666666666666666666"+deliveryList);
 			ModelAndView mav = new ModelAndView("CS/p001_d001_cs");
 			mav.addObject("paging", vo);    
 			mav.addObject("eventList", eventList);
+			mav.addObject("deliveryList", deliveryList);
 			return mav;
 		}
 	  
@@ -122,6 +125,13 @@ public class CS_P001_D001ControllerImpl implements CS_P001_D001Controller{
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("resultMap", resultMap);
 		return mav;
+	}
+
+	@Override
+	public ModelAndView deilvery(String division, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 
