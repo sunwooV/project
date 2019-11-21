@@ -55,7 +55,7 @@
 .rating-form .form-item {
 	position: relative;
 	margin: auto;
-	width: 400px;
+	width: 500px;
 	text-align: center;
 	direction: rtl;
 	/*background: green;*/
@@ -257,7 +257,7 @@
 
 .reviewTextArea {
 	border: 1px solid black;
-	width: 300px;
+	width: 500px;
 	height: 300px;
 }
 
@@ -331,16 +331,34 @@
     	</textarea>
 				</div>
 				<div class="ReviewButton" id="ReviewButton">
-					<input type ="button" class="ReviewButtonStyle" onClick="submitReview()" value ="리뷰작성완료">
-					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-					<input type ="button" class="ReviewButtonStyle" onClick="cancelReview()" value="취소하기">
+					<input type="button" class="ReviewButtonStyle"
+						onClick="submitReview()" value="리뷰작성완료">
+					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="button"
+						class="ReviewButtonStyle" onClick="cancelReview()" value="취소하기">
 				</div>
 			</fieldset>
 		</form>
 	</div>
 	<script type="text/javascript">
-	function submitReview(){
-		window.location.href="${Path}/reviewComplete.do";}
-					</script>
+		//리뷰작성완료 화면으로 넘어가는 로직
+		function submitReview() {
+			
+			textDataDB();
+			reviewScore();
+			
+			window.location.href = "${Path}/reviewComplete.do";
+		};
+		
+		//리뷰 textarea데이터 서블릿으로 넘기는 로직
+		function textDateToDB(){
+			
+		};
+		
+		//리뷰점수 넘기기!
+		function reviewScore(){
+			
+		};
+		
+	</script>
 </body>
 </html>
