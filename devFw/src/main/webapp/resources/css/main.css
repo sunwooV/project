@@ -13331,9 +13331,6 @@ body {
 	background-color: #1a1a1a !important;
 }
 
-.bg-light {
-	border: 1px solid rgba(0, 0, 0, 0.1);
-}
 
 .bg-light.navbar-fixed-top {
 	border-width: 0 0 1px 0;
@@ -13587,8 +13584,8 @@ th {
 }
 
 #navbartop {
-	padding-left: 12%;
-	padding-right: 14%;
+    padding-left: 11%;
+    padding-right: 12%;
 }
 
 #register {

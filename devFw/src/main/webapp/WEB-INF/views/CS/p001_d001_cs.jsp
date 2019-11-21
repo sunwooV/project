@@ -121,12 +121,6 @@
 
 				</div>
 				<div id="FAQ2" class="tab-pane fade">
-					<p>히이아아sddsfs앙</p>
-				</div>
-				<div id="FAQ3" class="tab-pane fade">
-					<p>히이sfs아아앙</p>
-				</div>
-				<div id="FAQ4" class="tab-pane fade">
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -161,6 +155,104 @@
 						</tbody>
 					</table>
 				</div>
+				<div id="FAQ3" class="tab-pane fade">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th scope="col">Type</th>
+								<th scope="col">Column heading</th>
+								<th scope="col">Column heading</th>
+								<th scope="col">Column heading</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr class="table-secondary">
+								<th scope="row">Secondary</th>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+							</tr>
+							<tr class="table-secondary">
+								<th scope="row">Secondary</th>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+							</tr>
+							<tr class="table-secondary">
+								<th scope="row">Secondary</th>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+							</tr>
+
+
+						</tbody>
+					</table>
+				</div>
+				<div id="FAQ4" class="tab-pane fade">
+			<%-- 		<div style="float: right;">
+						<select id="cntPerPage" name="sel" onchange="selChange()">
+							<option value="5"
+								<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄
+								보기</option>
+							<option value="10"
+								<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10줄
+								보기</option>
+							<option value="15"
+								<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15줄
+								보기</option>
+							<option value="20"
+								<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄
+								보기</option>
+						</select>
+					</div> --%>
+					<!-- 옵션선택 끝 -->
+					<table class="table table-hover" id="evnet_td">
+						<tr>
+							<th>글번호</th>
+							<th>제목</th>
+							<th>게시자</th>
+							<th>게시일</th>
+							<th>조회수</th>
+						</tr>
+
+						<c:forEach var="event" items="${eventList}" varStatus='index'>
+							<tr align="center"
+								onclick="location.href='${contextPath}/eventDetail.do?no_number=${event.no_number}'">
+								<td>${event.no_number}</td>
+								<td>${event.no_title}</td>
+								<td>${event.no_writer}</td>
+								<td>${event.no_writedate}</td>
+								<td>${event.no_view_cnt}</td>
+							</tr>
+						</c:forEach>
+					</table>
+
+					<div style="display: block; text-align: center;">
+						<c:if test="${paging.startPage != 1 }">
+							<a
+								href="${contextPath}/event.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+						</c:if>
+						<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
+							var="p">
+							<c:choose>
+								<c:when test="${p == paging.nowPage }">
+									<b>${p }</b>
+								</c:when>
+								<c:when test="${p != paging.nowPage }">
+									<a
+										href="${contextPath}/event.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${paging.endPage != paging.lastPage}">
+							<a
+								href="${contextPath}/event.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+						</c:if>
+					</div>
+
+				</div>
 			</div>
 			<div class="row" style="padding-top: 8%">
 				<h2 style="padding: 0% 71% 2% 1%;">나의 문의/답변내역</h2>
@@ -174,35 +266,16 @@
 						onClick="location.href='${contextPath}/csWrite.do'">1:1
 						문의하기</button>
 				</p>
-
-
-
 			</div>
 		</div>
 	</div>
 
 </body>
 <script type="text/javascript">
-	$(document).ready(function() { // 페이지 document 로딩 완료 후 스크립트 실행
-		$("#viewhidden").click(function() {
-			status = $("#hidden").css("display");
-			if (status == "none") {
-				$("#hidden").css("display", "");
-			} else {
-				$("#hidden").css("display", "none");
-			}
-		});
-	});
-</script>
-<script>
-	$(document).on("click", ".guideBox > p", function() {
-		if ($(this).next().css("display") == "none") {
-			$(this).next().show();
-			$(this).children("span").text("[닫기]");
-		} else {
-			$(this).next().hide();
-			$(this).children("span").text("[열기]");
-		}
-	});
+	function selChange() {
+		var sel = document.getElementById('cntPerPage').value;
+		location.href = "${contextPath}/event.do?nowPage=${paging.nowPage}&cntPerPage="
+				+ sel;
+	}
 </script>
 </html>
