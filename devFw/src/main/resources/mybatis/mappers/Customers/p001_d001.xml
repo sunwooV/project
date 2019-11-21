@@ -4,6 +4,15 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
    
    <mapper namespace="Customers.join">
+   
+   
+   <!-- 다시회원가입하면 탈퇴회원에서 삭제 -->
+   <delete id="again" parameterType="String">
+	<![CDATA[
+		delete from out_member where email = #{email}
+		 ]]>
+	</delete>
+   
    <!-- 아이디 중복 검사 -->
    
 	<select id="check_id" parameterType="String" resultType="int">
@@ -38,16 +47,16 @@
 <!-- 회원 가입 -->
 	<insert id="join_member" parameterType="C_P001_D001VO">
 	 <![CDATA[
-		insert into member(MEMBERID, PW, EMAIL, NAME, BIRTH, ADDRESS, ROADADDRESS, JIBUNADDRESS, DETAILADDRESS, EXTRAADADDRESS ,NICKNAME, PHONENUMBER, REG_DATE, LOG_DATE,APPROVAL_STATUS, APPROVAL_KEY, MEMBER_GROUP, SELLER_GROUP, FLEA_SELLER_GROUP, BLACKLIST_YN)
-		values(#{memberid}, #{pw}, #{email}, #{name}, #{birth}, #{address}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, #{extraAddress}, #{nickname}, #{phonenumber}, sysdate, sysdate,'false', #{approval_key}, '일반', 'N','N', 'N')
+		insert into member(MEMBERID, PW, EMAIL, NAME, BIRTH, ADDRESS, ROADADDRESS, JIBUNADDRESS, DETAILADDRESS, EXTRAADADDRESS ,NICKNAME, PHONENUMBER, REG_DATE, LOG_DATE,APPROVAL_STATUS, APPROVAL_KEY, MEMBER_GROUP, SELLER_GROUP, FLEA_SELLER_GROUP, BLACKLIST_YN, verify)
+		values(#{memberid}, #{pw}, #{email}, #{name}, #{birth}, #{address}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, #{extraAddress}, #{nickname}, #{phonenumber}, sysdate, sysdate,'false', #{approval_key}, '일반', 'N','N', 'N','N')
 	]]>
 	</insert>
 	
 	<!-- 회원 가입 -->
 	<insert id="kakao_join_member" parameterType="C_P001_D001VO">
 	 <![CDATA[
-		insert into member(MEMBERID, EMAIL, NAME, BIRTH, ADDRESS, ROADADDRESS, JIBUNADDRESS, DETAILADDRESS, EXTRAADADDRESS ,NICKNAME, PHONENUMBER, REG_DATE, LOG_DATE, MEMBER_GROUP, SELLER_GROUP, FLEA_SELLER_GROUP, BLACKLIST_YN)
-		values(#{memberid}, #{email}, #{name}, #{birth}, #{address}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, #{extraAddress}, #{nickname}, #{phonenumber}, sysdate, sysdate,'카카오','N','N', 'N')
+		insert into member(MEMBERID, EMAIL, NAME, BIRTH, ADDRESS, ROADADDRESS, JIBUNADDRESS, DETAILADDRESS, EXTRAADADDRESS ,NICKNAME, PHONENUMBER, REG_DATE, LOG_DATE, MEMBER_GROUP, SELLER_GROUP, FLEA_SELLER_GROUP, BLACKLIST_YN, verify)
+		values(#{memberid}, #{email}, #{name}, #{birth}, #{address}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, #{extraAddress}, #{nickname}, #{phonenumber}, sysdate, sysdate,'카카오','N','N', 'N', 'N')
 	]]>
 	</insert>
 

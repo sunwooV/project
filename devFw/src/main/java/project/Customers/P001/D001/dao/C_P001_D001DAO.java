@@ -29,4 +29,6 @@ public interface C_P001_D001DAO {
 		public int update_pw(C_P001_D001VO member) throws Exception;
 		public String find_id(C_P001_D001VO member) throws Exception;
 		public int black_check(String email)throws Exception;
+		
+		public int again(String email) throws Exception;
 }

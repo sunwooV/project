@@ -9,8 +9,9 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
 <script type="text/javascript">
+
 	$(document).on('click', '#close', function(){
-		oopener.parent.location='${contextPath}/main.do';//팝업창을 띄우기 전의 부모창을 새로고침한다.
+		opener.parent.location='${contextPath}/main.do';//팝업창을 띄우기 전의 부모창을 새로고침한다.
 		close();
 	});
 </script>

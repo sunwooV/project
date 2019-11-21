@@ -70,11 +70,11 @@
 			<div class="myshopMain_sub3">
 				<div id="list">
 					<h3>
-						<a href="/myshop/deposits/historyList.html"><strong>포인트
+						<a href="${contextPath }/pointsearchInit.do"><strong>포인트
 								관리</strong></a>
 					</h3>
 					<p style="font-size: 11px;">
-						<a href="/myshop/deposits/historyList.html">포인트 지급 </a>
+						<a href="${contextPath }/pointsearchInit.do">포인트 지급 </a>
 					</p>
 				</div>
 			</div>
@@ -106,10 +106,10 @@
 			<div class="myshopMain_sub4">
 				<div id="list">
 					<h3>
-						<a href="/myshop/coupon/coupon.html"><strong>회원 관리</strong></a>
+						<a href="${contextPath }/searchInit.do"><strong>회원 관리</strong></a>
 					</h3>
 					<p style="font-size: 11px;">
-						<a href="/myshop/coupon/coupon.html">고객님이 보유하고 계신 쿠폰내역을
+						<a href="${contextPath }/searchInit.do">고객님이 보유하고 계신 쿠폰내역을
 							보여드립니다.</a>
 					</p>
 				</div>

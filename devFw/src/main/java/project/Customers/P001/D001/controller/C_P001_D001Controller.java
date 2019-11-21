@@ -27,4 +27,5 @@ public interface C_P001_D001Controller {
 	public String kakao_join_member(@ModelAttribute C_P001_D001VO member, RedirectAttributes rttr, HttpServletResponse response, HttpSession session) throws Exception;
 	public void check_join(HttpServletResponse response, HttpSession session) throws Exception;
 	public void black_check(@RequestParam("email") String email, HttpServletResponse response) throws Exception;
+	public void again(@RequestParam("email") String email, HttpServletResponse response) throws Exception;
 }

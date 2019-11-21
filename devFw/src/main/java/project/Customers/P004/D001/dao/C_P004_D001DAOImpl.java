@@ -34,5 +34,19 @@ public class C_P004_D001DAOImpl implements C_P004_D001DAO {
 		sqlSession.update("Customers.black.deleteData",row);
 	}
 	
+	@Override
+	public void black_out(Map<String, String> row) throws DataAccessException {
+		sqlSession.delete("Customers.black.black_out",row);
+		
+	}
+	
+	@Override
+	public void black_insert(Map<String, String> row) throws DataAccessException {
+		sqlSession.insert("Customers.black.black_insert",row);
+		
+	}
+	
+	
+	
 	
 }

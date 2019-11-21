@@ -28,5 +28,5 @@ public interface C_P001_D001Service {
 	public void black_check(String email, HttpServletResponse response) throws Exception;
 	
 	public String find_id(HttpServletResponse response, C_P001_D001VO member) throws Exception;
-
+	public void again(String email, HttpServletResponse response) throws Exception;
 }

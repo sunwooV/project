@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import project.Customers.P001.D001.vo.C_P001_D001VO;
+import project.Customers.P002.D009.vo.C_P002_D009VO;
 
 
 
@@ -84,6 +85,12 @@ public class C_P001_D001DAOImpl implements C_P001_D001DAO {
 		public String find_id(C_P001_D001VO member) throws Exception{
 			return sqlsession.selectOne("Customers.join.find_id", member);
 		}
+		
+		
+		  @Transactional
+	     	public int again(String email) throws Exception{
+	     		return sqlsession.delete("Customers.join.again", email);
+	     	}
 		
 	}
 

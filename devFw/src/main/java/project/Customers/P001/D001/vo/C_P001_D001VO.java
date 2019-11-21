@@ -24,6 +24,7 @@ public class C_P001_D001VO {
 	private Date log_date;
 	private String approval_status;
 	private String approval_key;
+	private String verify;
 	
 	public String getMemberid() {
 		return memberid;
@@ -121,6 +122,14 @@ public class C_P001_D001VO {
 	public void setExtraAddress(String extraAddress) {
 		this.extraAddress = extraAddress;
 	}
+	public String getVerify() {
+		return verify;
+	}
+	public void setVerify(String verify) {
+		this.verify = verify;
+	}
+	
+	
 	
 	
 	

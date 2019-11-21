@@ -15,6 +15,10 @@ public interface C_P004_D001DAO {
 		public void updateData(Map<String, String> row) throws DataAccessException;
 
 		public void deleteData(Map<String, String> row) throws DataAccessException;
+		
+		public void black_out(Map<String, String> row) throws DataAccessException;
+	
+		public void black_insert(Map<String, String> row) throws DataAccessException;
 		 
 
 }

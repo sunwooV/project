@@ -40,14 +40,19 @@
             <c:if test ="${ member == null}">
             <li class="nav-item"><a class="nav-link" href="./joinInit.do">Join</a></li>
             </c:if>
-             <c:if test ="${ member !=null}">
+             <c:if test ="${ member.verify == 'N'}">
              <li class="nav-item"><a class="nav-link" href="./mypage.do">MyPage<br>&nbsp;(${ member.nickname}님)</a></li>
              </c:if>
+             
+             <c:if test ="${ member.verify == 'Y'}">
+             <li class="nav-item"><a class="nav-link" href="./admin.do">Administrate<br>&nbsp;(${ member.nickname}님)</a></li>
+             </c:if>
+             
             <c:set var="member" value="${member }"/>
                      <c:if test ="${ member == null}">
                            <li class="nav-item"><a class="nav-link" href="./loginInit.do">Login</a></li>
                            </c:if>
-                         <c:if test ="${ member !=null}">
+                         <c:if test ="${ member != null}">
                            <li class="nav-item"><a class="nav-link" href="./logout.do">LOGOUT</a></li>
                            </c:if>
 				<li class="nav-item"><a class="nav-link" href="${contextPath}/cart.do">shopping list</a></li>
