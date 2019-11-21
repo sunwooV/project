@@ -162,6 +162,35 @@ layout-split:after {
     display: block;
     clear: both;
 }
+layout-split:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+<%-- 구매후기 왼쪽 --%>
+.layout-split.half>*:first-child {
+    margin-left: 0;
+}
+.layout-split.half>* {
+    width: 48%;
+    margin-left: 4%;
+    float: left;
+}
+.cardlist_section .split-cardlist .ui_card--side {
+    width: 100%;
+}
+.ui_title__txt{
+  color: #333;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  padding-bottom: 4px;
+  padding-left: 2px;
+  border-bottom: 1px solid #d9d9d9;
+}
+.cardlist_section .split-cardlist .ui_card--side {
+    width: 100%;
+}
 
 
 </style>
@@ -337,12 +366,14 @@ $(document).ready(function(){
 	                <span class="sp-icon icon-heart"></span>
 	                <span class="sp-icon icon-heart active"></span>
 	             </i>
-                 <em class="txt"><i class="ui_icon--heart"></i>스토어 찜하기</em>
+                 <em class="txt"><i class="fa fa-heart"></i>스토어 찜하기</em>
                  </button><br>
               
 		        <a href="#" class="btn btn-s btn-white pseudo-ico-message">
 		        <i class="fa fa-envelope"></i>&nbsp;메세지</a><br>
-		      
+		      	<button type="button" class="btn btn-m btn-white pseudo-ico-share" data-ui="url-copy" data-ui-option="short" data-icon-event="hover" data-clipboard-text="#">
+			    <i class="fa fa-share-alt"></i>
+			        공유하기<br></button>
             </fieldset>
             
             <div class="border-row">
@@ -401,6 +432,7 @@ $(document).ready(function(){
               <img class="d-block img-fluid" id="img-full" src="${flea.main_photo}" alt="First slide">
             </div>
            </c:forEach>
+           <!--  
             <div class="carousel-item">
               <img class="d-block img-fluid" id="img-full" src="http://placehold.it/900x350" alt="Second slide">
             </div>
@@ -408,6 +440,7 @@ $(document).ready(function(){
               <img class="d-block img-fluid" id="img-full" src="http://placehold.it/900x350" alt="Third slide">
             </div>
           </div>
+          -->
           <!--  
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -504,69 +537,9 @@ $(document).ready(function(){
                 </div>
             </div>
         </li>
-       <li class="ui_grid__item">
-            <div class="ui_card--side">
-                <div class="ui_card__inner">
-                    <div class="ui_card__imgcover">
-                        <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" class="ui_card__img" aria-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" style="background-image: url(https://image.idus.com/image/files/7c7e4972cbdc49b0a43cdb03973786e4_512.png)">
-                        </a>
-                    </div>
-                    <div class="ui_card__txtarea">
-                        <div class="ui_card__info">
-                            <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" arial-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" class="ui_card__title">?? 할인 ?? ??수제마카롱 30여종??</a>
-                            <span class="ui_card__para">
-                                너무 이쁜데 맛까지 짱입니다
-꼬끄가 너무 촉촉하고 맛있어요
-필링도 정말 잘 어울려요
-냉동실에 넣었다가 바로 꺼내먹어도 맛있습니다                            </span>
-                        </div>
-                        <div class="ui_card__rating">
-                            <div class="ui_card__vcenter">
-                                <div class="ui_rating" data-ui="rating" data-value="5">
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <span>&nbsp;| 최주연 (Ellen)</span>
-                                </div>
-                            </div>
-                            <input name="paging_param" type="hidden" value="1571350654000">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
+      
         
-           <li class="ui_grid__item">
-            <div class="ui_card--side">
-                <div class="ui_card__inner">
-                    <div class="ui_card__imgcover">
-                        <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" class="ui_card__img" aria-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" style="background-image: url(https://image.idus.com/image/files/7c7e4972cbdc49b0a43cdb03973786e4_512.png)">
-                        </a>
-                    </div>
-                    <div class="ui_card__txtarea">
-                        <div class="ui_card__info">
-                            <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" arial-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" class="ui_card__title">?? 할인 ?? ??수제마카롱 30여종??</a>
-                            <span class="ui_card__para">
-                                잘받았습니다. 배송 빨랐어요~ 블루베리랑 요거트 맛보았는디 블루베리는 필링도 쨈도 맛있었어요. 그런데 요거트는 필링에 설탕 씹히는 식감이 많이 나고 요거트맛도 별로 안나서 별로였습니다ㅠㅠ 다음에 재구매의사는 있는데 요거트 한번더 먹어보야겠네요~                            </span>
-                        </div>
-                        <div class="ui_card__rating">
-                            <div class="ui_card__vcenter">
-                                <div class="ui_rating" data-ui="rating" data-value="4.5">
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-half-fill" data-state="active"></i>
-                                    <span>&nbsp;| 이진아</span>
-                                </div>
-                            </div>
-                            <input name="paging_param" type="hidden" value="1571314103000">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
+           
         </ul>
        
      </section>

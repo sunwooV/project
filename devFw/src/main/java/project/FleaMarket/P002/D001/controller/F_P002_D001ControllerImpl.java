@@ -69,7 +69,7 @@ public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 			System.out.println(list.get(i));
 		}
 		System.out.println("확인 필요");
-		ModelAndView mav = new ModelAndView("FleaMarket/p002_d001_fleaMystore2");
+		ModelAndView mav = new ModelAndView("FleaMarket/p002_d001_fleaMystore");
 		mav.addObject("newProduct", newProduct);
 		mav.addObject("searchList", list);
 		
