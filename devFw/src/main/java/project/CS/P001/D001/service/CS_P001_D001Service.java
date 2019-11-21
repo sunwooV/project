@@ -11,6 +11,7 @@ public interface CS_P001_D001Service {
 	 public List listEvent(PagingVO vo) throws DataAccessException;
 	 public List<Map<String,Object>> selectBoardDetail(Map<String, Object> dataMap) throws DataAccessException;
 	 public int countBoard();
+	public List listDelivery(PagingVO vo);
 
 }
 

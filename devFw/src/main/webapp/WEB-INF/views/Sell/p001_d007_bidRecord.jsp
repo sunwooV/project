@@ -37,7 +37,11 @@ h1{
 			</tr>
 			<tr>
 				<td style="background:#FAFAFA">경매마감일자</td>
-				<td>${product_info.auction_end_date }</td>
+				<td>${product_info.auction_end_date }
+				<c:if test="${product_info.auction_yn == 'w' or product_info.auction_yn == 'f' }">
+				<span style="color:red;">(종료)</span>
+				</c:if>
+				</td>
 			</tr>
 			<tr>
 				<td style="background:#FAFAFA">최대 구매가능 수량</td>
@@ -69,12 +73,24 @@ h1{
 			</tr>
 		<c:forEach var="bidRecord" items="${bidRecord }" varStatus="index">
 			<c:if test="${index.first }"> <!-- 낙찰가능자 파란색으로 표시 -->
-				<tr style="color:blue;">
-					<td>${bidRecord.secretMember }</td>
-					<td>${bidRecord.bid_date }</td>
-					<td><fmt:formatNumber value="${bidRecord.bid_price }" type="number" /> 원</td>
-					<td>${bidRecord.bid_amount }</td>
-				</tr>
+				<c:choose>
+				<c:when test="${product_info.auction_yn == 'w' }">
+					<tr style="color:orange;">
+						<td>${bidRecord.secretMember }</td>
+						<td>${bidRecord.bid_date }</td>
+						<td><fmt:formatNumber value="${bidRecord.bid_price }" type="number" /> 원</td>
+						<td>${bidRecord.bid_amount }</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<tr style="color:blue;">
+						<td>${bidRecord.secretMember }</td>
+						<td>${bidRecord.bid_date }</td>
+						<td><fmt:formatNumber value="${bidRecord.bid_price }" type="number" /> 원</td>
+						<td>${bidRecord.bid_amount }</td>
+					</tr>
+				</c:otherwise>
+				</c:choose>
 			</c:if>
 			<c:if test="${!index.first }"> <!-- 낙찰가능자가 아니면 -->
 				<tr>

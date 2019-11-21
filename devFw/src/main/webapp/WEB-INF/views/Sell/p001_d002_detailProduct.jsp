@@ -492,7 +492,7 @@
 
 	});
 	
-	                                                                                                                                                    
+	//경매 상품 시간 계산 해주기 -> 처음 화면 펼칠 때 남은 시간 select한 후 화면단에서 시간 줄여주기                                                                                                                                   
 	$(window).load(function(){
 		var auction_yn = document.getElementsByName("auction_yn")[0].value;
 		
@@ -506,7 +506,12 @@
 			setInterval(function(){
 	
 				if(second > 0){
-					second--;
+					if(day == 0 && hour == 0 && min == 0 && second == 0){
+						second = 0;
+						return false;
+					} else{
+						second--;
+					}
 				} else{
 					if(min > 0){
 						second=59;
@@ -516,7 +521,10 @@
 							min=59;
 							hour--;
 						} else{
-							min=59;
+							if(day > 0){
+								min=59;
+								day--;
+							}
 						}
 					}
 				}
@@ -617,18 +625,7 @@
 		}
 	}
 	
-	//수량 0일 때 수량을 선택해달라는 메시지 노출하기
-		$(document).on('click', '#cart', function(){
-		
- 	 		var frm = document.detail;
-			var prod_cnt = document.getElementsById('prod_amount').val(); //수량
-			alert(prod_cnt);
-			
-		/* 	frm.method="post";
-			frm.action="./modifyProduct.do";
-			frm.submit(); */
-		});
-	
+
 	
 	
 
@@ -707,6 +704,11 @@ img{
 	padding:3px;
 	font-weight:bold;
 	cursor:pointer;
+}
+.alarm{
+	color:red;
+	font-weight:bold;
+	font-size:large;
 }
 #panels {margin:10px 20px 10px 0px; font-size:1.2em; line-height:1.5em; }
 #cart{
@@ -1050,7 +1052,7 @@ textarea{
 			
 			<div class="description"> <!-- 상품 설명 -->
 				<c:if test="${product.reused_yn == 'y' }"> <!-- 상품 판매 카테고리 -->
-					<P> 중고 </P>
+					<span> 중고 </span>
 					<input type="hidden" name="reused_yn" value="y">
 				</c:if>
 				<c:if test="${product.reused_yn == 'n' }"> <!-- 상품 판매 카테고리 -->
@@ -1058,15 +1060,22 @@ textarea{
 					<input type="hidden" name="reused_yn" value="n">
 				</c:if>
 				<c:if test="${product.auction_yn == 'y' }">
-					<P> 경매 </P>
+					<span> 경매 </span>
 					<input type="hidden" name="auction_yn" value="y">
 				</c:if>
 				<c:if test="${product.auction_yn == 'n' }">
-				
 					<input type="hidden" name="auction_yn" value="n">
 				</c:if>
+				<c:if test="${product.auction_yn == 'w' }"> <!-- 시간내에 경매 낙찰 됐을 경우 -->
+					<span>경매</span>
+					<input type="hidden" name="auction_yn" value="w">
+				</c:if>
+				<c:if test="${product.auction_yn == 'f' }"> <!-- 시간내에 경매 낙찰 되지 않았을 경우 -->
+					<span>경매</span>
+					<input type="hidden" name="auction_yn" value="f">
+				</c:if>
 				<c:if test="${product.flea_yn == 'y' }">
-					<P> 플리 </P>
+					<span> 플리 </span>
 					<input type="hidden" name="flea_yn" value="y">
 				</c:if>
 				<c:if test="${product.flea_yn == 'n' }">
@@ -1080,6 +1089,7 @@ textarea{
 					</div>
 				</c:if>
 				<h1>${product.prod_title}</h1>
+				
 				<input type="hidden" id="prod_title" value="${product.prod_title }">
 				<!-- <h3>#${product.tag1 }, #${product.tag2 }, #${product.tag3 }, #${product.tag4 }, #${product.tag5 }</h3> -->
 				<h3 id="gray-text">${product.memberId }</h3>
@@ -1090,16 +1100,23 @@ textarea{
 						<span id="auction_price">시작가: <fmt:formatNumber value="${product.auction_price }" type="number" />원</span><!-- 시작가 -->
 						<a href="./bidRecord.do?prod_number=${product.prod_number }" style="font-size:medium; padding:5px;"><u>경매기록</u></a>
 					</c:when>
+					<c:when test="${(product.auction_yn == 'f' and product.reused_yn == 'n' and product.flea_yn == 'n') or (product.auction_yn == 'w' and product.reused_yn == 'n' and product.flea_yn == 'n')}">
+						<span class="price" id="sold_price"><fmt:formatNumber value="${product.auction_bid }" type="number" />원</span><!-- 현재가 -->
+						<span id="auction_price">시작가: <fmt:formatNumber value="${product.auction_price }" type="number" />원</span><!-- 시작가 -->
+						<a href="./bidRecord.do?prod_number=${product.prod_number }" style="font-size:medium; padding:5px;"><u>경매기록</u></a>
+					</c:when>
 					<c:otherwise> <!-- 경매가 아닌 상품들 -->
 						<c:if test="${product.sale_percent != null }"> <!-- 세일 퍼센트가 존재한다면 -->
 							<span class="price">${product.sale_percent}%</span>
 							<span class="price" id="sold_price"><fmt:formatNumber value="${product.prod_price * (1-(product.sale_percent*0.01)) }" type="number" />원</span>
 							<span id="sale_price"><fmt:formatNumber value="${product.prod_price }" type="number" />원</span>
 							<input type="hidden" id="prod_price" value="${product.prod_price * (1-(product.sale_percent*0.01)) }">
+							<a href="./bidRecord.do?prod_number=${product.prod_number }" style="font-size:medium; padding:5px;"><u>경매기록</u></a>
 						</c:if> 
 						<c:if test="${product.sale_percent == null }"> <!-- 세일 퍼센트가 존재하지 않는다면 -->
 							<span class="price" id="sold_price"><fmt:formatNumber value="${product.prod_price }" type="number" />원</span>
 							<input type="hidden" id="prod_price" value="${product.prod_price }">
+							<a href="./bidRecord.do?prod_number=${product.prod_number }" style="font-size:medium; padding:5px;"><u>경매기록</u></a>
 						</c:if>
 					</c:otherwise>
 				</c:choose>
@@ -1143,7 +1160,23 @@ textarea{
 					</div>
 					<br>
 					<div id="pay">
-						<c:if test="${product.auction_yn == 'n' }">
+						<!-- 상품 판매 종료 관리 -->
+						<c:choose>
+						<c:when test="${product.auction_yn == 'f' and product.reused_yn == 'n' and product.flea_yn == 'n' }"> <!-- 다른 메뉴 선택하지 않고 경매가 입찰되지 않았을 경우 -->
+							<p class="alarm">===== 입찰 가능 시간이 지났습니다. =====</p>
+							<input type="button" class="pay" id="message" value="메시지로 문의" />
+						</c:when>
+						<c:when test="${product.auction_yn == 'w' }"> <!-- 경매가 낙찰됐을 때 -->
+							<p class="alarm">===== 판매가 종료되었습니다. =====</p>
+						</c:when>
+						<c:when test="${product.prod_amount == 0 }"> <!-- 상품 재고가 없을 때 -->
+							<p class="alarm">===== 품절입니다. =====</p>
+						</c:when>
+						<c:when test="${product.auction_yn == 'f' and (product.reused_yn == 'y' or product.flea_yn == 'y') }"> <!-- 경매 낙찰이 됐거나 경매 낙찰은 되지 않았는데 다른 메뉴도 선택했을 경우 -->
+							<p class="alarm">===== 경매는 종료되었습니다.(일반 구매는 가능) =====</p>
+						</c:when>
+						</c:choose>
+						<c:if test="${product.auction_yn == 'n' or (product.auction_yn == 'f' and (product.reused_yn == 'y' or product.flea_yn == 'y')) }">
 							<input type="button" class="pay" id="cart" value="장바구니" />
 							<input type="button" class="pay" id="buy" value="바로 구매" />
 							<input type="button" class="pay" id="kakaoPay" value="kakaoPay" />
@@ -1162,6 +1195,8 @@ textarea{
 							<input type="button" class="pay" id="bidding" value="입찰하기" onclick="window.open('./bidProduct.do?prod_number=${product.prod_number}', 'window팝업', 'width=520, height=620, menubar=no, status=no, toolbar=no')"/>
 							<input type="button" class="pay" id="message" value="메시지로 문의" />
 						</c:if>
+						
+						
 					</div>
 				</div>
 			</div>

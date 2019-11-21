@@ -156,40 +156,24 @@
 					</table>
 				</div>
 				<div id="FAQ3" class="tab-pane fade">
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th scope="col">Type</th>
-								<th scope="col">Column heading</th>
-								<th scope="col">Column heading</th>
-								<th scope="col">Column heading</th>
-							</tr>
-						</thead>
-						<tbody>
+					<table class="table table-hover" id="evnet_td">
+						<tr>
+							<th>분류</th>
+							<th>제목</th>
+						</tr>
 
-							<tr class="table-secondary">
-								<th scope="row">Secondary</th>
-								<td>Column content</td>
-								<td>Column content</td>
-								<td>Column content</td>
+						<c:forEach var="deilvery" items="${eventList}" varStatus='index'>
+							<tr align="center"
+								onclick="location.href='${contextPath}/eventDetail.do?no_number=${event.no_number}'">
+								<td>${deilvery.division}</td>
+								<td>${deilvery.no_title}</td>
 							</tr>
-							<tr class="table-secondary">
-								<th scope="row">Secondary</th>
-								<td>Column content</td>
-								<td>Column content</td>
-								<td>Column content</td>
-							</tr>
-							<tr class="table-secondary">
-								<th scope="row">Secondary</th>
-								<td>Column content</td>
-								<td>Column content</td>
-								<td>Column content</td>
-							</tr>
-
-
-						</tbody>
+						</c:forEach>
 					</table>
 				</div>
+				
+				
+				
 				<div id="FAQ4" class="tab-pane fade">
 			<%-- 		<div style="float: right;">
 						<select id="cntPerPage" name="sel" onchange="selChange()">
