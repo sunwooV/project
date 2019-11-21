@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Customers.out">
+	<resultMap id="c_p006_d001Result" type="C_P006_D001VO">
+		<result property="memberid" column="memberid" />
+		<result property="PW" column="PW" />
+		<result property="name" column="name" />
+		<result property="email" column="email" />
+		<result property="birth" column="birth" />
+		<result property="phonenumber" column="phonenumber" />
+		<result property="reg_date" column="reg_date" />
+		<result property="log_date" column="log_date" />
+		<result property="approval_status" column="approval_status" />
+		<result property="member_group" column="member_group" />
+		<result property="seller_group" column="seller_group" />
+		<result property="flea_seller_group" column="flea_seller_group" />
+		<result property="blacklist_yn" column="blacklist_yn" />
+		<result property="out_member_date" column="out_member_date" />
+		<result property="verify" column="verify" />
+	</resultMap>
+
+
+	<select id="searchList" resultMap="c_p006_d001Result" parameterType="java.util.Map"> 
+      <![CDATA[
+         select memberid, name, email, birth, phonenumber, reg_date, out_member_date, blacklist_yn
+         from   out_member
+      ]]>
+		<where>
+			<if test=" memberid != ''  and  memberid != null">
+				memberid = #{memberid}
+			</if>
+		</where>
+	</select>
+	
+	
+	<update id="updateData" parameterType="java.util.Map">
+		update out_member
+		set  blacklist_yn = #{blacklist_yn}
+		where memberid = #{memberid}
+	</update>	
+	
+	
+	<delete id="deleteData" parameterType="java.util.Map">
+		delete out_member
+		where memberid = #{memberid}
+	</delete>	
+	
+	
+	<!-- 블랙리스트 탈퇴시키기 -->
+		<delete id="black_out_again" parameterType="java.util.Map">
+	<![CDATA[
+		delete from out_member where memberid = #{memberid} and BLACKLIST_YN ='N'
+		 ]]>
+	</delete>
+	
+	<!-- 회원추가 -->
+		<insert id="member_again_insert" parameterType="java.util.Map">
+	 <![CDATA[
+     insert into member (MEMBERID, PW, EMAIL, NAME, BIRTH, PHONENUMBER, BLACKLIST_YN, reg_date,verify,member_group,seller_group,flea_seller_group,approval_status,log_date)
+     values((select MEMBERID from out_member where memberid=#{memberid}),(select PW from out_member where memberid=#{memberid}),(select EMAIL from out_member where memberid=#{memberid}),(select NAME from out_member where memberid=#{memberid}),(select BIRTH from out_member where memberid=#{memberid}),(select PHONENUMBER from out_member where memberid=#{memberid}),(select BLACKLIST_YN from out_member where memberid=#{memberid}),(select reg_date from out_member where memberid=#{memberid}),(select verify from out_member where memberid=#{memberid}),(select member_group from out_member where memberid=#{memberid}),(select seller_group from out_member where memberid=#{memberid}),(select flea_seller_group from out_member where memberid=#{memberid}),(select approval_status from out_member where memberid=#{memberid}),sysdate)
+	]]>
+	</insert>
+	
+</mapper>

@@ -37,8 +37,8 @@
 	<!-- 회원추가 -->
 		<insert id="out_insert" parameterType="C_P002_D009VO">
 	 <![CDATA[
-insert into out_member (MEMBERID, PW, EMAIL, NAME, BIRTH, PHONENUMBER, BLACKLIST_YN, OUT_MEMBER_DATE)
-values((select MEMBERID from member where memberid=#{memberid}),(select PW from member where memberid=#{memberid}),(select EMAIL from member where memberid=#{memberid}),(select NAME from member where memberid=#{memberid}),(select BIRTH from member where memberid=#{memberid}),(select PHONENUMBER from member where memberid=#{memberid}),(select BLACKLIST_YN from member where memberid=#{memberid}),sysdate)
+insert into out_member (MEMBERID, PW, EMAIL, NAME, BIRTH, PHONENUMBER, REG_DATE,BLACKLIST_YN, MEMBER_GROUP, SELLER_GROUP, FLEA_SELLER_GROUP,OUT_MEMBER_DATE,verify, approval_status)
+values((select MEMBERID from member where memberid=#{memberid}),(select PW from member where memberid=#{memberid}),(select EMAIL from member where memberid=#{memberid}),(select NAME from member where memberid=#{memberid}),(select BIRTH from member where memberid=#{memberid}),(select PHONENUMBER from member where memberid=#{memberid}),(select REG_DATE from member where memberid=#{memberid}),(select BLACKLIST_YN from member where memberid=#{memberid}),(select MEMBER_GROUP from member where memberid=#{memberid}),(select SELLER_GROUP from member where memberid=#{memberid}),(select FLEA_SELLER_GROUP from member where memberid=#{memberid}),sysdate,(select verify from member where memberid=#{memberid}),(select approval_status from member where memberid=#{memberid}))
 	]]>
 	</insert>
 	
