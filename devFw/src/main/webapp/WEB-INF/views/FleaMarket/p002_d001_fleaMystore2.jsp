@@ -4,6 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>  
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>  
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
+<%
+request.setCharacterEncoding("utf-8");
+String flea_code = request.getParameter("flea_code");
+System.out.println(":::::flea_code" + flea_code);
+%>
+
 <!DOCTYPE html>
 <html>
 <style>
@@ -64,12 +71,64 @@
 	width: 1000px;
 	height: 300px;
 }
+.carousel{
+	padding-left: 10px;
+}
 
 .profile-description .user_name{
  text-align: center;
 }
 
+<%--프로필 수정 팝업--%>
+a.selected {
+  background-color:#1F75CC;
+  color:white;
+  z-index:100;
+}
 
+a.selected2 {
+  background-color:#1F75CC;
+  color:white;
+  z-index:100;
+}
+
+.messagepop {
+  background-color:#FFFFFF;
+  border:1px solid #999999;
+  cursor:default;
+  display:none;
+  position:absolute;
+  text-align:left;
+  width:500px;
+  z-index:50;
+  padding: 25px 25px 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 3px;
+  padding-left: 15px;
+  text-indent: -15px;
+}
+
+.messagepop p, .messagepop.div {
+  border-bottom: 1px solid #EFEFEF;
+  margin: 8px 0;
+  padding-bottom: 8px;
+}
+
+.img_wrap{
+	width: 300px;
+	margin-top: 50px;
+}
+.img_wrap img{
+	max-width: 100%;
+}
+#sale_price {
+    color: #BDBDBD;
+    font-size: medium;
+    text-decoration: line-through;
+}
 
 
 
@@ -118,11 +177,127 @@ layout-split:after {
   <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
   <!-- Custom styles for this template -->
   <link href="${contextPath}/resources/css/shop-homepage.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+  <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+	function deselect(e) {
+	  $('.pop').slideFadeToggle(function() {
+	    e.removeClass('selected');
+	  });    
+	}
+	
+	function deselect2(e) {
+		  $('.pop2').slideFadeToggle(function() {
+		    e.removeClass('selected2');
+		  });    
+		}
+
+	$(function() {
+	  $('#contact').on('click', function() {
+	    if($(this).hasClass('selected')) {
+	      deselect($(this));               
+	    } else {
+	      $(this).addClass('selected');
+	      $('.pop').slideFadeToggle();
+	    }
+	    return false;
+	  });
+
+	  $('.close').on('click', function() {
+	    deselect($('#contact'));
+	    return false;
+	  });
+	});
+	
+	$(function() {
+		  $('#participants_add').on('click', function() {
+		    if($(this).hasClass('selected2')) {
+		      deselect2($(this));               
+		    } else {
+		      $(this).addClass('selected2');
+		      $('.pop2').slideFadeToggle();
+		    }
+		    return false;
+		  });
+
+		  $('.close2').on('click', function() {
+		    deselect2($('#participants_add'));
+		    return false;
+		  });
+		});
+
+	$.fn.slideFadeToggle = function(easing, callback) {
+	  return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
+	};
+	
+});
+</script>
+<script>
+	var cnt=1;
+	function fn_addFile(){
+		$("#d_file").append("<br>"+"<input  type='file' name='file"+cnt+"' />");
+		//cnt++;
+	}
+	var m_cnt=1;
+	function fn_m_addFile(){
+		$("#m_file").append("<br>"+"<input  type='file' name='m_file"+cnt+"' />");
+		//m_cnt++;
+	}
+</script>
 </head>
 
 <body>
+
+<!-- 프로필 수정 팝업창 -->
+ <div class="messagepop pop">
+ 	<h2>프로필 설정</h2>
+    <form method="post" id="new_message" action="/devFw/fleaProfileEdit.do" enctype="multipart/form-data">    
+        <p><label for="flea_name">플리마켓 스토어명&nbsp;</label><input type="text" size="30" name="flea_name" id="flea_name" /></p>
+        <p><label for="intro_cotent">소개글</label><br><textarea rows="6" name="intro_cotent" id="intro_cotent" cols="35"></textarea></p>
+ 		
+ 		<p><label for="profile_photo">프로필 이미지</label><br>
+        	<!--  <input type="file" id="profile_photo" name="profile_photo">
+        	<input type="submit" value="사진 업로드"></p>-->
+        	<input type="button" value="이미지 파일 추가" onClick="fn_addFile()" /><br>
+        </p>
+        	<div id="d_file">
+        	</div>
+        	
+        <p><label for="profile_photo">메인 이미지</label><br>
+        	<!--  <input type="file" id="profile_photo" name="profile_photo">
+        	<input type="submit" value="사진 업로드"></p>-->
+        	<input type="button" value="이미지 파일 추가" onClick="fn_m_addFile()" /><br>
+        </p>
+        	<div id="m_file">
+        	</div>
+        	
+        <p><input type="submit" value="확인" name="commit" id="message_submit"/><a class="close" href="/">Cancel</a></p>
+        <input type="hidden" id="flea_code" name="flea_code" value="<%=flea_code %>">
+    </form> 
+    
+
+</div>
+
+<!-- 프로필 수정 팝업창 -->
+ <div class="messagepop pop2">
+ 	<h2>참여자 추가</h2>
+    <form method="post" id="new_message" action="/devFw/participantsInsert.do" enctype="multipart/form-data">    
+        <p><label for="flea_name">회원 검색&nbsp;</label><input type="text" size="30" name="memberid" id="memberid" /></p>
+        <p><input type="submit" value="확인" name="commit" id="message_submit"/><a class="close" href="/">Cancel</a></p>
+        <c:forEach var="flea" items="${searchList}" > 
+        	<input type="hidden" name="flea_code" value="${flea.flea_code}">
+        </c:forEach>
+    </form>
+    
+
+</div>
+
+
 <div class="center-flea">
      <div class="row-left">
       <aside class="artist-area">
@@ -131,7 +306,7 @@ layout-split:after {
    	<p><a href="/devFw/fleaCreateStoreApproval.do">플리마켓 관리자(임시)</a></p>
    	<p><a href="/devFw/fleaSearchInit.do">플리마켓 마이페이지(임시)</a></p>
 	
-		             <p class="addmember"><a target="_blank" href="#" id="participants_add"><i class="fas fa-user-plus pa-5x"></i></a></p>
+		             <p class="addmember"><a target="_blank" href="#" id="participants_add"><i class="fa fa-user-plus pa-5x"></i></a></p>
 		                <c:forEach var="flea" items="${searchList}" > 
 				             <div class="profile-picture big-profile-picture clear">
 				                 <img width="120px" height="120px" alt="no picture" src="${flea.profile_photo}" />
@@ -292,12 +467,144 @@ layout-split:after {
           </c:if>
          </c:forEach>
 		
-	
+	<br>
+	 <div class="layout-split half">
+	  <section class="cardlist_section">
+   		 <div class="ui_title--sub">
+             <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaReview.do">구매후기</a></font></h3>
+         </div>
+         <ul class="split-cardlist">
+            <li class="ui_grid__item">
+            <div class="ui_card--side">
+                <div class="ui_card__inner">
+                    <div class="ui_card__imgcover">
+                        <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" class="ui_card__img" aria-label="수제마카롱 30여종" target="_blank" style="background-image: url(https://image.idus.com/image/files/7c7e4972cbdc49b0a43cdb03973786e4_512.png)"></a>
+                    </div>
+                    <div class="ui_card__txtarea">
+                        <div class="ui_card__info">
+                            <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" aria-label="수제마카롱 30여종" target="_blank" class="ui_card__title">수제마카롱 30여종</a>
+                            <span class="ui_card__para">
+                               	 포장이 너무 잘되어서 오고 너무 맛있어용??                            
+                            </span>
+                        </div>
+                        <div class="ui_card__rating">
+                            <div class="ui_card__vcenter">
+                                <div class="ui_rating" data-ui="rating" data-value="5">
+                                    <i class="ui_icon--star-fill" data-state="active"></i>
+                                    <i class="ui_icon--star-fill" data-state="active"></i>
+                                    <i class="ui_icon--star-fill" data-state="active"></i>
+                                    <i class="ui_icon--star-fill" data-state="active"></i>
+                                    <i class="ui_icon--star-fill" data-state="active"></i>
+                                    <span>&nbsp;| 김연주</span>
+                                </div>
+                            </div>
+                            <input name="paging_param" type="hidden" value="1571719189000">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+       <li class="ui_grid__item">
+            <div class="ui_card--side">
+                <div class="ui_card__inner">
+                    <div class="ui_card__imgcover">
+                        <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" class="ui_card__img" aria-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" style="background-image: url(https://image.idus.com/image/files/7c7e4972cbdc49b0a43cdb03973786e4_512.png)">
+                        </a>
+                    </div>
+                    <div class="ui_card__txtarea">
+                        <div class="ui_card__info">
+                            <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" arial-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" class="ui_card__title">?? 할인 ?? ??수제마카롱 30여종??</a>
+                            <span class="ui_card__para">
+                                너무 이쁜데 맛까지 짱입니다
+꼬끄가 너무 촉촉하고 맛있어요
+필링도 정말 잘 어울려요
+냉동실에 넣었다가 바로 꺼내먹어도 맛있습니다                            </span>
+                        </div>
+                        <div class="ui_card__rating">
+                            <div class="ui_card__vcenter">
+                                <div class="ui_rating" data-ui="rating" data-value="5">
+                                    <i class="ui_icon--star-fill" data-state="active"></i>
+                                    <i class="ui_icon--star-fill" data-state="active"></i>
+                                    <i class="ui_icon--star-fill" data-state="active"></i>
+                                    <i class="ui_icon--star-fill" data-state="active"></i>
+                                    <i class="ui_icon--star-fill" data-state="active"></i>
+                                    <span>&nbsp;| 최주연 (Ellen)</span>
+                                </div>
+                            </div>
+                            <input name="paging_param" type="hidden" value="1571350654000">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+           <li class="ui_grid__item">
+            <div class="ui_card--side">
+                <div class="ui_card__inner">
+                    <div class="ui_card__imgcover">
+                        <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" class="ui_card__img" aria-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" style="background-image: url(https://image.idus.com/image/files/7c7e4972cbdc49b0a43cdb03973786e4_512.png)">
+                        </a>
+                    </div>
+                    <div class="ui_card__txtarea">
+                        <div class="ui_card__info">
+                            <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" arial-label="?? 할인 ?? ??수제마카롱 30여종??" target="_blank" class="ui_card__title">?? 할인 ?? ??수제마카롱 30여종??</a>
+                            <span class="ui_card__para">
+                                잘받았습니다. 배송 빨랐어요~ 블루베리랑 요거트 맛보았는디 블루베리는 필링도 쨈도 맛있었어요. 그런데 요거트는 필링에 설탕 씹히는 식감이 많이 나고 요거트맛도 별로 안나서 별로였습니다ㅠㅠ 다음에 재구매의사는 있는데 요거트 한번더 먹어보야겠네요~                            </span>
+                        </div>
+                        <div class="ui_card__rating">
+                            <div class="ui_card__vcenter">
+                                <div class="ui_rating" data-ui="rating" data-value="4.5">
+                                    <i class="ui_icon--star-fill" data-state="active"></i>
+                                    <i class="ui_icon--star-fill" data-state="active"></i>
+                                    <i class="ui_icon--star-fill" data-state="active"></i>
+                                    <i class="ui_icon--star-half-fill" data-state="active"></i>
+                                    <span>&nbsp;| 이진아</span>
+                                </div>
+                            </div>
+                            <input name="paging_param" type="hidden" value="1571314103000">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        </ul>
        
-       </div>
+     </section>
+     
+     <section class="cardlist_section">
+   <div class="ui_title--sub">
+             <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaStory.do">스토리</a></font></h3>
+         </div>
+                <ul class="split-cardlist lines5">
+                                                <li class="ui_card--side">
+                            <div class="ui_card__inner">
+                                                                <div class="ui_card__imgcover">
+                                    <a href="/w/story/a2318646-a0ca-4322-ac8b-da222ec885f6" class="ui_card__img" style="background-image: url(https://image.idus.com/image/files/4b1b9b058f5046d99b0ade714ecdc0c4_720.jpg)"></a>
+                                </div>
+                                                                <div class="ui_card__txtarea ">
+                                    <div class="ui_card__info">
+                                        <a href="${contextPath}/FleaMarket/P002/D003/searchList.do" class="ui_card__title">2019년 10월 17일</a>
+                                        <span class="ui_card__para">안녕하세요. ??마카롱에 빠진날??입니다. <br>
+           <br>
+           마카롱, 수제청으로 디저트를 만들기 시작한지 어느덧 <br>
+           10여년이 되었네요.^^<br>
+           </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                                            </ul>
+     </section>
+</div>
+
+      </div>
+      <!-- /.col-lg-9 -->
     </div>
- </div>
- </div>
+    </div>
+    <!-- /.row -->
+       
+  </div>
+
 
          
 </body>
