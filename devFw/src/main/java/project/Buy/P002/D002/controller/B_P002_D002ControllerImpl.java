@@ -27,7 +27,7 @@ public class B_P002_D002ControllerImpl implements B_P002_D002Controller {
 	@RequestMapping(value="/review.do", method= {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView review(HttpServletRequest request) throws IOException {
 		request.setCharacterEncoding("utf-8");
-		ModelAndView mav = new ModelAndView("Buy/p002_d002_reviewWrite");
+		ModelAndView mav = new ModelAndView("Popup/b_p002_d002_reviewWrite");
 		return mav;
 	}
 

@@ -31,7 +31,7 @@
 						<ul class="footer-list" id="ftlist" style="font-size: 14px;">
 							<li><a href="#" id="ftlist">서울특별시 강남구 서초</a></li>
 							<li><a href="#" id="ftlist">사업자등록번호 : 223-233-1233</a></li>
-							<li><a href="#" id="ftlist">대표이사: OOO</a></li>
+							<li><a href="#" id="ftlist">대표이사: 신주연</a></li>
 						</ul>
 					</div>
 					<div class="col-md-4" id="kkk1">

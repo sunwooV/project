@@ -5,11 +5,44 @@
 
 <mapper namespace="CS.P001.D001">
 	<resultMap id="CS_P001_D001Result01" type="CS_P001_D001VO">
-	</resultMap>
+	   <result property="no_number" column="no_number" />
+        <result property="no_title" column="no_title" />
+        <result property="no_contents" column="no_contents" />
+        <result property="no_writer" column="no_writer" />
+        <result property="no_writedate" column="no_writedate" />
+        <result property="no_view_cnt" column="no_view_cnt" />
+	</resultMap> 
+	
+	
+	
 
-	<select id="CS" resultMap="CS_P001_D001Result01" parameterType="java.util.Map"> 
+	<select id="selectAllEventList" resultMap="CS_P001_D001Result01">
       <![CDATA[
-        
-	  ]]>	
+         	
+      
+  	SELECT no_number,no_title,no_writer,no_writedate,no_view_cnt
+						FROM notice 
+						ORDER BY no_number DESC 
+      	
+      ]]>
+
 	</select>
+	<!-- 리스트 불러오기 -->
+	
+	<update id="updateCnt" parameterType="java.util.HashMap">
+	<![CDATA[
+        update notice
+        set
+        no_view_cnt= nvl(no_view_cnt,0) + 1
+         where 
+         no_number=#{no_number}
+      ]]>
+	</update>
+	
+	<select id="countBoard" resultType="int">
+	<![CDATA[
+	SELECT COUNT(*) FROM notice
+	]]>
+	</select>
+	
 </mapper>

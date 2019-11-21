@@ -22,10 +22,6 @@
 	-blue: #007bff; -
 	-indigo: #6610f2; -
 	-purple: #6f42c1; -
-	-pink: #e83e8c; -
-	-red: #d9534f; -
-	-orange: #fd7e14; -
-	-yellow: #f0ad4e; -
 	-green: #4BBF73; -
 	-teal: #20c997; -
 	-cyan: #1F9BCF; -
@@ -13331,9 +13327,6 @@ body {
 	background-color: #1a1a1a !important;
 }
 
-.bg-light {
-	border: 1px solid rgba(0, 0, 0, 0.1);
-}
 
 .bg-light.navbar-fixed-top {
 	border-width: 0 0 1px 0;
@@ -13458,8 +13451,8 @@ th {
 }
 
 #con1 {
-	width: 100%;
-	margin-left: -9%;
+    width: 100%;
+    margin-left: 1%;
 }
 
 #ttt3 {
@@ -13587,8 +13580,8 @@ th {
 }
 
 #navbartop {
-	padding-left: 12%;
-	padding-right: 14%;
+    padding-left: 11%;
+    padding-right: 12%;
 }
 
 #register {
