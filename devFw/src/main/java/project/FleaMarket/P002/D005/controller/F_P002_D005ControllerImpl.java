@@ -116,7 +116,7 @@ public class F_P002_D005ControllerImpl implements F_P002_D005Controller {
 					//데이터 입력안했을때 오류 처리해야함!
 					d005Service.updateMember(map);
 					System.out.println("==========================flea_code="+flea_code);
-					response.sendRedirect("/devFw/fleaMystore.do?flea_code="+flea_code);
+					response.sendRedirect("/devFw/successEditProfile.do");
 				
 					/*RequestDispatcher dispatch = request.getRequestDispatcher("/FleaMarket/P002/D001/searchList.do");
 					dispatch.forward(request, response);*/
@@ -173,27 +173,28 @@ public class F_P002_D005ControllerImpl implements F_P002_D005Controller {
 		return resEnt;
 	}
 			
-			private List<String> fileProcess(MultipartHttpServletRequest multipartRequest) throws Exception{
-				List<String> fileList= new ArrayList<String>();
-				Iterator<String> fileNames = multipartRequest.getFileNames();
-				while(fileNames.hasNext()){
-					String fileName = fileNames.next();
-					MultipartFile mFile = multipartRequest.getFile(fileName);
-					String originalFileName=mFile.getOriginalFilename();
-					fileList.add(originalFileName);
-					File file = new File(uploadFilePath +"\\"+ fileName);
-					if(mFile.getSize()!=0){ //File Null Check
-						if(! file.exists()){ //경로상에 파일이 존재하지 않을 경우
-							if(file.getParentFile().mkdirs()){ //경로에 해당하는 디렉토리들을 생성
-								file.createNewFile(); //이후 파일 생성
-							}
-						}
-						mFile.transferTo(new File(uploadFilePath +"\\"+ originalFileName)); //임시로 저장된 multipartFile을 실제 파일로 전송
+	private List<String> fileProcess(MultipartHttpServletRequest multipartRequest) throws Exception{
+		List<String> fileList= new ArrayList<String>();
+		Iterator<String> fileNames = multipartRequest.getFileNames();
+		while(fileNames.hasNext()){
+			String fileName = fileNames.next();
+			MultipartFile mFile = multipartRequest.getFile(fileName);
+			String originalFileName=mFile.getOriginalFilename();
+			fileList.add(originalFileName);
+			File file = new File(uploadFilePath +"\\"+ fileName);
+			if(mFile.getSize()!=0){ //File Null Check
+				if(! file.exists()){ //경로상에 파일이 존재하지 않을 경우
+					if(file.getParentFile().mkdirs()){ //경로에 해당하는 디렉토리들을 생성
+						file.createNewFile(); //이후 파일 생성
 					}
 				}
-				return fileList;
-			}	
-			
+				mFile.transferTo(new File(uploadFilePath +"\\"+ originalFileName)); //임시로 저장된 multipartFile을 실제 파일로 전송
+			}
+		}
+		return fileList;
+	}	
+	
+
 			
 
 }
