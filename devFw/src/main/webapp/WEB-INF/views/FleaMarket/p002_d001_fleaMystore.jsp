@@ -275,9 +275,9 @@ $(document).ready(function(){
 <!-- 프로필 수정 팝업창 -->
  <div class="messagepop pop2">
  	<h2>참여자 추가</h2>
-    <form method="post" id="new_message" action="/devFw/editProfile.do" enctype="multipart/form-data">    
+    <form method="post" id="new_message" action="/devFw/participantsInsert.do" enctype="multipart/form-data">    
         <p><label for="flea_name">회원 검색&nbsp;</label><input type="text" size="30" name="memberid" id="memberid" /></p>
-        <p><input type="button" value="확인" name="commit" id="message_submit" onclick="window.open('./editProfile.do?prod_number=${product.prod_number}', 'window팝업', 'width=520, height=620, menubar=no, status=no, toolbar=no')"/><a class="close" href="/">Cancel</a></p>
+        <p><input type="submit" value="확인" name="commit" id="message_submit"/><a class="close" href="/">Cancel</a></p>
         <c:forEach var="flea" items="${searchList}" > 
         	<input type="hidden" name="flea_code" value="${flea.flea_code}">
         </c:forEach>
