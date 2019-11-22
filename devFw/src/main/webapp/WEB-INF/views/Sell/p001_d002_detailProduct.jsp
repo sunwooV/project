@@ -1193,7 +1193,12 @@ textarea{
 							</c:forEach>
 								<span id="auction_left_date">남음 (종료 : ${product.auction_end_date })</span>
 							<br><br>
-							<input type="button" class="pay" id="bidding" value="입찰하기" onclick="window.open('./bidProduct.do?prod_number=${product.prod_number}', 'window팝업', 'width=520, height=620, menubar=no, status=no, toolbar=no')"/>
+							<c:if test="${member.getMemberid() == product.memberId }"> <!-- 자신이 올린 상품일 경우 -->
+								<input type="button" class="pay" id="bidding" value="입찰하기" disabled="disabled"/>
+							</c:if>
+							<c:if test="${member.getMemberid() != product.memberId }">
+								<input type="button" class="pay" id="bidding" value="입찰하기" onclick="window.open('./bidProduct.do?prod_number=${product.prod_number}', 'window팝업', 'width=520, height=620, menubar=no, status=no, toolbar=no')"/>
+							</c:if>
 							<input type="button" class="pay" id="message" value="메시지로 문의" />
 						</c:if>
 						
