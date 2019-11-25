@@ -218,14 +218,10 @@
 		
 		
 		//Q&A 답변 달기 버튼
-		$(document).on('click', '.answer_enroll', function(){
+		$(document).on('click', '#answer_enroll', function(){
 			var product = $("#prod_number").val();
 			var answer_content = $("#answer_write").val();
 			var command = 'insert';
-			
-
-				
-			
 
 			//답변 유효성 검사
 			if(answer_content == ''){
@@ -1336,7 +1332,7 @@ textarea{
 															<span class="ico asw">답변</span>
 															<span class="tit_asw">판매자
 																<textarea id="answer_write" style="resize: none;"></textarea>
-																<button id="answer_enroll" class="answer_enroll">답변달기</button>
+																<input type="button" id="answer_enroll" class="answer_enroll" value="답변달기">
 															</span>
 														</div>
 													</c:if>
