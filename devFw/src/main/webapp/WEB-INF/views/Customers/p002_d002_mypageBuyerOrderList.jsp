@@ -38,7 +38,11 @@ background-color:#faf5f1;
 
 </style>
 <script type="text/javascript">
-	$('#usi-orderHistory').stacktable();
+function reviewPopup(){
+	
+	
+}
+	
 </script>
 </head>
 <body>
@@ -81,7 +85,7 @@ background-color:#faf5f1;
 						class="orderButton" id="cancel_order" onClick="location.href='${contextPath}/changeProduct.do'">
 						<br>
 						<input type="button" value="리뷰쓰기"
-						class="orderButton" id="review_order" onClick="location.href='${contextPath}/*/review.do'">
+						class="orderButton" id="review_order" onClick="reviewPopup()'">
 						<br>
 						<input type="button" value="구매확정하기"
 						class="orderButton" id="confirmBuy_order" onClick="location.href='${contextPath}/confirmBuy.do'">

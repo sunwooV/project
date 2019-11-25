@@ -19,6 +19,9 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Do+Hyeon|Merriweather|Noto+Sans+KR&display=swap&subset=korean"
 	rel="stylesheet">
+<script type="text/javascript">
+	$(document)
+</script>
 </head>
 <body>
    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbartop">
@@ -59,10 +62,9 @@
 				<li class="nav-item"><a class="nav-link" href="/devFw/fleaCreateStoreType.do">플리마켓 스토어 개설하기</a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0" id="searchform">
-				<input class="form-control mr-sm-2" type="text" id="searchbar"
+				<input class="form-control mr-sm-2" type="text" id="searchbar" name="searchbar" value=""
 					placeholder="Search">
-				<button class="btn btn-secondary my-2 my-sm-0" id="btnsearch"
-					type="submit">Search</button>
+				<input type="button" class="btn btn-secondary my-2 my-sm-0" id="btnsearch" value="Search" onclick="SearchProduct()">
 			</form>
 			<button type="submit" class="btn btn-outline-warning"  onclick="location.href='./enroll.do'" id="register">상품 등록</button>
 			<button type="submit" class="btn btn-outline-warning"  onclick="location.href='./chatInit.do'" id="register">채팅</button>
