@@ -52,11 +52,27 @@ public class CS_P001_D001DAOImpl implements CS_P001_D001DAO {
 	}
 
 	@Override
-	public List selectdeliveryList() throws DataAccessException {
+	public List selectAlldeliveryList() throws DataAccessException {
 		List<CS_P001_D001VO> deliveryList = null;
-		deliveryList = sqlSession.selectList("CS.P001.D001.selectdeliveryList");/* xml 아이디값.select id 값*/
+		deliveryList = sqlSession.selectList("CS.P001.D001.selectAlldeliveryList");/* xml 아이디값.select id 값*/
 		System.out.println("deliveryList" + deliveryList);
 		return deliveryList;
+	}
+
+	@Override
+	public List selectAllrefundList() throws DataAccessException {
+		List<CS_P001_D001VO> refundList = null;
+		refundList = sqlSession.selectList("CS.P001.D001.selectAllrefundList");/* xml 아이디값.select id 값*/
+		System.out.println("refundList" + refundList);
+		return refundList;
+	}
+
+	@Override
+	public List selectAlltopList() throws DataAccessException {
+		List<CS_P001_D001VO> topList = null;
+		topList = sqlSession.selectList("CS.P001.D001.selectAlltopList");/* xml 아이디값.select id 값*/
+		System.out.println("topList" + topList);
+		return topList;
 	}
 
 	

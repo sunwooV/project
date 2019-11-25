@@ -64,12 +64,18 @@ public class CS_P001_D001ControllerImpl implements CS_P001_D001Controller {
 
 		List eventList = cs_p001_d001Service.listEvent(vo);
 		List deliveryList = cs_p001_d001Service.listDelivery();
-		System.out.println("5555555555555555555555555555555555555555555555555555" + eventList);
-		System.out.println("66666666666666666666666666666666666666666666666666666" + deliveryList);
+		List refundList = cs_p001_d001Service.listRefund();
+		List topList = cs_p001_d001Service.listTop();
+		System.out.println("공지사항리스트" + eventList);
+		System.out.println("배송문의리스트" + deliveryList);
+		System.out.println("교환환불리스트" + refundList);
+		System.out.println("자주묻는질문" + topList);
 		ModelAndView mav = new ModelAndView("CS/p001_d001_cs");
 		mav.addObject("paging", vo);
 		mav.addObject("eventList", eventList);
 		mav.addObject("deliveryList", deliveryList);
+		mav.addObject("refundList", refundList);
+		mav.addObject("topList", topList);
 		return mav;
 
 	}
