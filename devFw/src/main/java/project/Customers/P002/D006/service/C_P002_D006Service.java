@@ -12,5 +12,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import project.FleaMarket.P001.D001.vo.F_P001_D001VO;
 
 public interface C_P002_D006Service {
+	public List listQna(String memberid) throws DataAccessException;
+    public List<Map<String, Object>> selectAllqnaList(Map<String, Object> dataMap) throws DataAccessException;
 	
 }

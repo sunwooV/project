@@ -49,7 +49,10 @@
 
         <typeAlias type="project.Etc.P001.D001.vo.E_P001_D001VO"  alias="E_P001_D001VO" />        
         <typeAlias type="project.CS.P001.D001.vo.CS_P001_D001VO"  alias="CS_P001_D001VO" />
+ 
         <typeAlias type="project.CS.P001.D001.vo.PagingVO"  alias="PagingVO" />
+        
+        <typeAlias type="project.Customers.P002.D006.vo.C_P002_D006VO"  alias="C_P002_D006VO" />
           
 	</typeAliases> 
 </configuration>

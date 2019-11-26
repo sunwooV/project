@@ -38,9 +38,10 @@
       <![CDATA[
          	
       
-  	SELECT no_number,no_title,no_writer,no_writedate,no_view_cnt
-						FROM notice 
-						ORDER BY no_number DESC 
+  	                 
+ SELECT  no_title, no_writedate
+						FROM notice
+						WHERE rownum <= 5
       	
       ]]>
 
@@ -68,7 +69,7 @@
       <![CDATA[
          	
       
-select  division,title
+select  division,title,contents
 from fnq
 where division in '배송문의'
 order by title
@@ -82,7 +83,7 @@ order by title
       <![CDATA[
          	
       
-select  division,title
+select  division,title,contents
 from fnq
 where division in '반품/교환/환불'
 order by title
@@ -96,8 +97,8 @@ order by title
       <![CDATA[
          	
       
-select  division,title
-from fnq
+select  division,title,contents
+from fnq	
 where division in '자주묻는질문'
 order by title
       	
