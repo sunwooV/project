@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Buy.P002.D002">
+	<resultMap id="B_P002_D002Result01" type="B_P002_D002VO">
+		<result property="seller_memberId" column="seller_memberId" />
+		<result property="review_number" column="review_number" />
+		<result property="prod_number" column="prod_number" />
+		<result property="buyer_memberId" column="buyer_memberId" />
+		<result property="review_score" column="review_score" />
+		<result property="review_title" column="review_title" />
+		<result property="review_content" column="review_content" />
+		<result property="review_date" column="review_date" />
+		<result property="flea_code" column="flea_code" />
+	</resultMap>
+	
+	<insert id="insertReview" parameterType="java.util.Map">
+	<!--order=before는 인서트하기전에 한당 -->
+		<selectKey order="BEFORE" resultType="int" keyProperty="review_number">
+			<![CDATA[ 
+			SELECT nvl2((max(review_number) + 1), (max(review_number) + 1), 1) 
+			FROM review 
+			]]>
+		</selectKey>
+		<![CDATA[
+        INSERT INTO review
+		(review_number, review_score, review_content)
+		values
+		(#{review_number}, #{review_score}, #{review_content})
+	  ]]>
+	</insert>
+</mapper>

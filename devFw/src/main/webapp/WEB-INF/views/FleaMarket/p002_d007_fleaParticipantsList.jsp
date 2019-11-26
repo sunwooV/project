@@ -86,7 +86,9 @@
   <div class="page_title">
     <span><a class="closeDepth" href="#">closeDepth</a></span> 
     <span class="title"><b>플리마켓 참여자 승인 처리</b></span><br><br>
+    <!--  
     <input type="hidden" name="memberId" value="${member.getMemberid() }" />
+  	-->
   </div>
 <!--  
     <div class="exp_product">
