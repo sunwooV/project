@@ -55,22 +55,23 @@ public class B_P002_D002ControllerImpl implements B_P002_D002Controller {
 			String value = request.getParameter(name);
 			dataMap.put(name, value);
 		}
+		System.out.println("--=---=-=----------"+ dataMap);
 
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		try {
-//			b_p002_d002Service.updateMember(dataMap);
+			b_p002_d002Service.insertReview(dataMap);
 			
-			RequestDispatcher dispatch = request.getRequestDispatcher("/hm/p0001/searchList.do");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/review.do");
 			dispatch.forward(request, response);
 		} catch (Exception e) {
 			message = " <script>";
 			message += " alert('오류 발생!!');";
-			message += " location.href='" + request.getContextPath() + "/hm/p0001/searchInit.do'; ";
+			message += " location.href='" + request.getContextPath() + "/insertReview.do'; ";
 			message += " </script>";
-			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
 			e.printStackTrace();
 		}		
 		return resEnt;

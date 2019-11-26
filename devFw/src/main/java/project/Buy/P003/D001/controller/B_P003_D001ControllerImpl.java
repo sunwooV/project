@@ -24,7 +24,7 @@ public class B_P003_D001ControllerImpl implements B_P003_D001Controller {
 	@RequestMapping(value="/changeProduct.do", method= {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView changeProd(HttpServletRequest request) throws IOException {
 		request.setCharacterEncoding("utf-8");
-		ModelAndView mav = new ModelAndView("Buy/p003_d001_changeProdWrite");
+		ModelAndView mav = new ModelAndView("Popup/b_p003_d001_changeProdWrite");
 		return mav;
 	}
 

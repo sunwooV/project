@@ -27,7 +27,7 @@ public class B_P002_D002DAOImpl implements B_P002_D002DAO {
 	public void insertReview(Map<String, Object> searchMap) throws DataAccessException {
 		System.out.println("Buy P002 D002 DAO의 insertReview");
 		//sqlSession.selecList("mapping되는 xml.그 xml의 id",)
-	 sqlSession.insert("Buy.b_p002_d002.insertReview", searchMap);
+	 sqlSession.update("Buy.P002.D002.insertReview", searchMap);
 	}
 
 }
