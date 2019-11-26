@@ -103,79 +103,59 @@
 			<div class="tab-content">
 				<!--컨텐츠  -->
 				<div id="FAQ1" class="tab-pane fade in active">
-					<table>
-						<tr>
-							<th scope="row">tr 메뉴 숨김 처리</th>
-							<td><a href="#" id="viewhidden" onclick="return false;"
-								class="button">클릭</a></td>
-						</tr>
-						<tr id="hidden" style="display: none;">
-							<th>숨김메뉴</th>
-							<td><input type="text" /></td>
-						</tr>
-						<tr>
-							<th>하단</th>
-							<td>하단</td>
-						</tr>
-					</table>
-
-				</div>
-				<div id="FAQ2" class="tab-pane fade">
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th scope="col">Type</th>
-								<th scope="col">Column heading</th>
-								<th scope="col">Column heading</th>
-								<th scope="col">Column heading</th>
-							</tr>
-						</thead>
-						<tbody>
-
-							<tr class="table-secondary">
-								<th scope="row">Secondary</th>
-								<td>Column content</td>
-								<td>Column content</td>
-								<td>Column content</td>
-							</tr>
-							<tr class="table-secondary">
-								<th scope="row">Secondary</th>
-								<td>Column content</td>
-								<td>Column content</td>
-								<td>Column content</td>
-							</tr>
-							<tr class="table-secondary">
-								<th scope="row">Secondary</th>
-								<td>Column content</td>
-								<td>Column content</td>
-								<td>Column content</td>
-							</tr>
-
-
-						</tbody>
-					</table>
-				</div>
-				<div id="FAQ3" class="tab-pane fade">
-					<table class="table table-hover" id="evnet_td">
+							<table class="table table-hover" >
 						<tr>
 							<th>분류</th>
 							<th>제목</th>
 						</tr>
 
-						<c:forEach var="deilvery" items="${deliveryList}" varStatus='index'>
-							<tr align="center"
-								onclick="location.href='${contextPath}/eventDetail.do?division=${deilvery.division}'">
+						<c:forEach var="top" items="${topList}"
+							varStatus='index'>
+							<tr>
+								<td>${top.division}</td>
+								<td>${top.title}</td>
+							</tr>
+						</c:forEach>
+					</table>
+
+				</div>
+				<div id="FAQ2" class="tab-pane fade">
+					<table class="table table-hover" >
+						<tr>
+							<th>분류</th>
+							<th>제목</th>
+						</tr>
+
+						<c:forEach var="refund" items="${refundList}"
+							varStatus='index'>
+							<tr>
+								<td>${refund.division}</td>
+								<td>${refund.title}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+				<div id="FAQ3" class="tab-pane fade">
+					<table class="table table-hover" >
+						<tr>
+							<th>분류</th>
+							<th>제목</th>
+						</tr>
+
+						<c:forEach var="deilvery" items="${deliveryList}"
+							varStatus='index'>
+							<tr>
 								<td>${deilvery.division}</td>
 								<td>${deilvery.title}</td>
 							</tr>
 						</c:forEach>
 					</table>
 				</div>
-				
-				
-				
+
+
+
 				<div id="FAQ4" class="tab-pane fade">
-			<%-- 		<div style="float: right;">
+					<%-- 		<div style="float: right;">
 						<select id="cntPerPage" name="sel" onchange="selChange()">
 							<option value="5"
 								<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄
@@ -192,7 +172,7 @@
 						</select>
 					</div> --%>
 					<!-- 옵션선택 끝 -->
-					<table class="table table-hover" id="evnet_td">
+					<table class="table table-hover">
 						<tr>
 							<th>글번호</th>
 							<th>제목</th>
@@ -202,8 +182,7 @@
 						</tr>
 
 						<c:forEach var="event" items="${eventList}" varStatus='index'>
-							<tr align="center"
-								onclick="location.href='${contextPath}/eventDetail.do?no_number=${event.no_number}'">
+							<tr>
 								<td>${event.no_number}</td>
 								<td>${event.no_title}</td>
 								<td>${event.no_writer}</td>

@@ -192,6 +192,10 @@ a
 
 
 
+
+
+
+
 :not
 
 
@@ -207,7 +211,11 @@ a
 
 
 
+
+
  
+
+
 
 
 
@@ -240,7 +248,11 @@ href
 
 
 
+
+
  
+
+
 
 
 
@@ -271,7 +283,11 @@ href
 
 
 
+
+
  
+
+
 
 
 
@@ -304,7 +320,11 @@ tabindex
 
 
 
+
+
  
+
+
 
 
 
@@ -350,7 +370,13 @@ color
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -380,7 +406,13 @@ color
 
 
 
+
+
 inherit
+
+
+
+
 
 
 
@@ -439,7 +471,13 @@ text-decoration
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -469,7 +507,13 @@ text-decoration
 
 
 
+
+
 none
+
+
+
+
 
 
 
@@ -617,6 +661,10 @@ button
 
 
 
+
+
+
+
 :not
 
 
@@ -632,7 +680,11 @@ button
 
 
 
+
+
  
+
+
 
 
 
@@ -663,7 +715,11 @@ button
 
 
 
+
+
  
+
+
 
 
 
@@ -712,6 +768,10 @@ type
 
 
 
+
+
+
+
 :not
 
 
@@ -727,7 +787,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -758,7 +822,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -807,7 +875,13 @@ type
 
 
 
+
+
+
+
 :not
+
+
 
 
 
@@ -838,6 +912,8 @@ type
 
 
 
+
+
 (
 :disabled
 
@@ -854,7 +930,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -903,6 +983,10 @@ type
 
 
 
+
+
+
+
 :not
 
 
@@ -918,7 +1002,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -949,7 +1037,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -995,7 +1087,13 @@ cursor
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -1025,7 +1123,13 @@ cursor
 
 
 
+
+
 pointer
+
+
+
+
 
 
 
@@ -1269,6 +1373,10 @@ mark, .mark {
 
 
 
+
+
+
+
 :not
 
 
@@ -1284,7 +1392,11 @@ mark, .mark {
 
 
 
+
+
  
+
+
 
 
 
@@ -1315,7 +1427,11 @@ mark, .mark {
 
 
 
+
+
  
+
+
 
 
 
@@ -1361,7 +1477,13 @@ margin-right
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -1391,8 +1513,14 @@ margin-right
 
 
 
+
+
 0
 .5rem
+
+
+
+
 
 
 
@@ -4262,6 +4390,10 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 
 
+
+
+
+
 :not
 
 
@@ -4277,7 +4409,11 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 
 
+
+
  
+
+
 
 
 
@@ -4308,7 +4444,11 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 
 
+
+
  
+
+
 
 
 
@@ -4354,6 +4494,10 @@ opacity
 
 
 
+
+
+
+
 :
 
 
@@ -4369,7 +4513,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -4415,6 +4563,10 @@ opacity
 
 
 
+
+
+
+
 :not
 
 
@@ -4430,7 +4582,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -4461,7 +4617,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -4507,7 +4667,13 @@ display
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -4537,7 +4703,13 @@ display
 
 
 
+
+
 none
+
+
+
+
 
 
 
@@ -4900,6 +5072,10 @@ none
 
 
 
+
+
+
+
 :not
 
 
@@ -4915,7 +5091,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -4946,7 +5126,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -4993,6 +5177,10 @@ none
 
 
 
+
+
+
+
 :not
 
 
@@ -5008,7 +5196,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -5040,7 +5232,11 @@ none
 
 
 
+
+
 	
+
+
 
 
 
@@ -5086,7 +5282,13 @@ margin-left
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -5116,8 +5318,14 @@ margin-left
 
 
 
+
+
 0
 px
+
+
+
+
 
 
 
@@ -5222,6 +5430,10 @@ px
 
 
 
+
+
+
+
 :not
 
 
@@ -5237,7 +5449,11 @@ px
 
 
 
+
+
  
+
+
 
 
 
@@ -5268,7 +5484,11 @@ px
 
 
 
+
+
  
+
+
 
 
 
@@ -5315,7 +5535,13 @@ px
 
 
 
+
+
+
+
 :not
+
+
 
 
 
@@ -5346,6 +5572,8 @@ px
 
 
 
+
+
 (
 :first-child
 
@@ -5362,7 +5590,11 @@ px
 
 
 
+
+
  
+
+
 
 
 
@@ -5408,7 +5640,13 @@ margin-top
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -5438,8 +5676,14 @@ margin-top
 
 
 
+
+
 0
 px
+
+
+
+
 
 
 
@@ -5859,6 +6103,10 @@ px
 
 
 
+
+
+
+
 [
 multiple
 ]
@@ -5892,9 +6140,17 @@ multiple
 
 
 
+
+
+
+
 [
 size
 ]
+
+
+
+
 
 
 
@@ -5938,7 +6194,11 @@ size
 
 
 
+
+
  
+
+
 
 
 
@@ -5973,7 +6233,11 @@ size
 
 
 
+
+
  
+
+
 
 
 
@@ -6019,7 +6283,13 @@ height
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -6049,7 +6319,13 @@ height
 
 
 
+
+
 auto
+
+
+
+
 
 
 
@@ -6108,7 +6384,13 @@ padding-right
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -6138,8 +6420,14 @@ padding-right
 
 
 
+
+
 1
 .5rem
+
+
+
+
 
 
 
@@ -6198,7 +6486,13 @@ background-image
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -6228,7 +6522,13 @@ background-image
 
 
 
+
+
 none
+
+
+
+
 
 
 
@@ -7313,6 +7613,10 @@ none
 
 
 
+
+
+
+
 :not
 
 
@@ -7328,7 +7632,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -7359,7 +7667,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -7390,7 +7702,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -7421,7 +7737,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -7467,6 +7787,10 @@ border-bottom
 
 
 
+
+
+
+
 :
 
 
@@ -7482,7 +7806,11 @@ border-bottom
 
 
 
+
+
  
+
+
 
 
 
@@ -7782,7 +8110,7 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .jumbotron {
-	margin-left: 11%;
+	margin-left: 12%;
 	background-color: #f7f7f9;
 	width: 76%;
 }
@@ -8395,6 +8723,10 @@ a.close.disabled {
 
 
 
+
+
+
+
 :not
 
 
@@ -8410,7 +8742,11 @@ a.close.disabled {
 
 
 
+
+
  
+
+
 
 
 
@@ -8441,7 +8777,11 @@ a.close.disabled {
 
 
 
+
+
  
+
+
 
 
 
@@ -8487,7 +8827,13 @@ margin-bottom
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -8517,8 +8863,14 @@ margin-bottom
 
 
 
+
+
 0
 .75rem
+
+
+
+
 
 
 
@@ -8784,7 +9136,11 @@ margin-bottom
 
 
 
+
+
  
+
+
 
 
 
@@ -8815,7 +9171,11 @@ margin-bottom
 
 
 
+
+
  
+
+
 
 
 
@@ -8861,7 +9221,13 @@ margin-left
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -8891,7 +9257,13 @@ margin-left
 
 
 
+
+
 .25rem
+
+
+
+
 
 
 
@@ -8939,7 +9311,11 @@ margin-left
 
 
 
+
+
  
+
+
 
 
 
@@ -8970,7 +9346,11 @@ margin-left
 
 
 
+
+
  
+
+
 
 
 
@@ -9016,7 +9396,13 @@ margin-right
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -9046,7 +9432,13 @@ margin-right
 
 
 
+
+
 .25rem
+
+
+
+
 
 
 
@@ -9697,6 +10089,10 @@ opacity
 
 
 
+
+
+
+
 :
 
 
@@ -9713,7 +10109,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -9771,6 +10171,10 @@ opacity
 
 
 
+
+
+
+
 :
 
 
@@ -9787,7 +10191,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -13076,6 +13484,10 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
 	:not
 	
 	
@@ -13091,7 +13503,11 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
 	 
+	
+	
 	
 	
 	
@@ -13122,7 +13538,11 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
 	 
+	
+	
 	
 	
 	
@@ -13168,7 +13588,13 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
 	:
+	
+	
 	
 	
 	
@@ -13198,7 +13624,13 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
 	underline
+	
+	
+	
+	
 	
 	
 	
@@ -13327,7 +13759,6 @@ body {
 	background-color: #1a1a1a !important;
 }
 
-
 .bg-light.navbar-fixed-top {
 	border-width: 0 0 1px 0;
 }
@@ -13451,8 +13882,8 @@ th {
 }
 
 #con1 {
-    width: 100%;
-    margin-left: 1%;
+	width: 100%;
+	margin-left: 1%;
 }
 
 #ttt3 {
@@ -13474,9 +13905,8 @@ th {
 }
 
 .menubar {
-	padding-right: 13%;
-	padding-left: 11%;
-	font-size: 14px;
+	padding-right: 12%;
+	padding-left: 12%;
 	font-weight: bold;
 }
 
@@ -13576,12 +14006,12 @@ th {
 }
 
 #searchform {
-	margin-left: -14%;
+	margin-left: -16%;
 }
 
 #navbartop {
-    padding-left: 11%;
-    padding-right: 12%;
+	padding-left: 14%;
+	padding-right: 14%;
 }
 
 #register {
@@ -13589,7 +14019,10 @@ th {
 	font-size: 13px;
 }
 
-.group{
-	font-weight:bold;
-	font-size:large;
+.group {
+	font-weight: bold;
+	font-size: large;
+}
+#li {
+	font-size:14px;
 }

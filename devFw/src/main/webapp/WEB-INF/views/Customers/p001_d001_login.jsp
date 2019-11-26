@@ -44,8 +44,8 @@
 						<a id="kakao_id_login" style="text-align: center" href="https://kauth.kakao.com/oauth/authorize?client_id=6694b0d17c224582f266da703a1a0558&redirect_uri=http://localhost:8090/devFw/kakaoLogin.do&response_type=code"> <img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/></a>
 					 </p>
 					 <p class="w3-center">
-					 <a href="./findIdInit.do">Forgot ID?</a><br>
-					 <a href="./find_pw_form.do">Forgot Password?</a>
+					 <a href="./findIdInit.do">❗아이디 찾기</a><br>
+					 <a href="./find_pw_form.do">❗비밀번호 찾기</a>
 					 </p>
 				</form>
 			</div>

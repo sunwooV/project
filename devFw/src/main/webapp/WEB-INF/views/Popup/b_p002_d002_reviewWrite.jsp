@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="Path" value="${pageContext.request.contextPath}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,17 +100,17 @@
 }
 
 .rating-form input[type='radio']:checked+label:before {
-	right: 25px;
+	right: 8px;
 	opacity: 1;
 }
 
 .rating-form input[type='radio']+label:after {
-	content: "/ 5";
+	content: "";
 	position: absolute;
 	right: 5px;
 	top: 96px;
-	font-size: 16px;
-	font-size: 1.6rem;
+	font-size: 15px;
+	font-size: 15px;
 	opacity: 0;
 	direction: ltr;
 	-webkit-transition: all 0s ease 0s;
@@ -282,7 +282,46 @@
 .TotalReviewSection {
 	padding: 5%;
 }
+.form-action{
+padding:10% 10% 8.5% 0%;
+}
+
 </style>
+	<script type="text/javascript">
+		//리뷰 내용 썼는지 체크
+		function submitReview() {
+			var frm = document.ratefrm;
+			//리뷰내용 가져오기
+			var reviewDetail = document.getElementsByName('review_content')[0].value;
+			alert(reviewDetail);
+			
+			if(reviewDetail != null || reviewDetail != ''){
+				
+				moveToAnotherPage();
+				alert("타고 들어가니?")
+			}else if(reviewDetail = null || reviewDetail =''){
+				alert("리뷰 내용을 입력하세요!");
+			}
+			
+
+			frm.method="get";
+			frm.action = "./insertReview.do";
+			frm.submit();//name이 있는 것을 모두 넘겨준당~~~~~
+		}
+
+		//리뷰 제출 시 리뷰 팝업창 닫고 부모창의 다른페이지 이동
+		function moveToAnotherPage(){
+			
+			if(window.opener && !window.opener.closed){ //부모창이 존재하고 닫혀있지 않을때 
+			window.opener.location = "${contextPath}/reviewComplete.do"; // 부모창에서 해당주소로 이동해라
+			window.close(); //그리고 열려있는 창을 닫아라
+			}
+		}
+		
+		function cancelReview(){
+			
+		}
+	</script>
 </head>
 <body>
 	<div class="TotalReviewSection">
@@ -290,75 +329,54 @@
 			<h2>리뷰작성</h2>
 		</div>
 		<!-- RATING - Form -->
-		<form class="rating-form" action="#" method="post" name="rating-movie">
+		<form class="rating-form" name="ratefrm">
 			<fieldset class="form-group">
 
 				<legend class="form-legend">Rating:</legend>
 
 				<div class="form-item">
 
-					<input id="rating-5" name="rating" type="radio" value="5" /> <label
+					<input id="rating-5" name="review_score" type="radio" value="5" /> <label
 						for="rating-5" data-value="5"> <span class="rating-star">
 							<i class="fa fa-star-o"></i> <i class="fa fa-star"></i>
 					</span> <span class="ir">5</span>
-					</label> <input id="rating-4" name="rating" type="radio" value="4" /> <label
+					</label> <input id="rating-4" name="review_score" type="radio" value="4" /> <label
 						for="rating-4" data-value="4"> <span class="rating-star">
 							<i class="fa fa-star-o"></i> <i class="fa fa-star"></i>
 					</span> <span class="ir">4</span>
-					</label> <input id="rating-3" name="rating" type="radio" value="3" /> <label
+					</label> <input id="rating-3" name="review_score" type="radio" value="3" /> <label
 						for="rating-3" data-value="3"> <span class="rating-star">
 							<i class="fa fa-star-o"></i> <i class="fa fa-star"></i>
 					</span> <span class="ir">3</span>
-					</label> <input id="rating-2" name="rating" type="radio" value="2" /> <label
+					</label> <input id="rating-2" name="review_score" type="radio" value="2" /> <label
 						for="rating-2" data-value="2"> <span class="rating-star">
 							<i class="fa fa-star-o"></i> <i class="fa fa-star"></i>
 					</span> <span class="ir">2</span>
-					</label> <input id="rating-1" name="rating" type="radio" value="1" /> <label
+					</label> <input id="rating-1" name="review_score" type="radio" value="1" /> <label
 						for="rating-1" data-value="1"> <span class="rating-star">
 							<i class="fa fa-star-o"></i> <i class="fa fa-star"></i>
 					</span> <span class="ir">1</span>
 					</label>
-
+<br><br>
 					<div class="form-action">
 						<input class="btn-reset" type="reset" value="Reset" />
 					</div>
 
-					<div class="form-output">? / 5</div>
-
+					<div class="form-output">
+					
+					</div>
+<br><br>
 				</div>
 				<div class="textArea">
-					<textarea class="reviewTextArea" placeholder="리뷰를 작성해주세요">
-    	</textarea>
+					<textarea class="reviewTextArea" id="reviewTextArea" name="review_content" placeholder="리뷰를 작성해주세요"></textarea>
 				</div>
 				<div class="ReviewButton" id="ReviewButton">
-					<input type="button" class="ReviewButtonStyle"
-						onClick="submitReview()" value="리뷰작성완료">
-					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="button"
-						class="ReviewButtonStyle" onClick="cancelReview()" value="취소하기">
+					<input type="button" class="ReviewButtonStyle" onClick="submitReview()" value="리뷰작성완료" />
+					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+					<input type="button" class="ReviewButtonStyle" onClick="cancelReview()" value="취소하기" />
 				</div>
 			</fieldset>
 		</form>
 	</div>
-	<script type="text/javascript">
-		//리뷰작성완료 화면으로 넘어가는 로직
-		function submitReview() {
-			
-			textDataDB();
-			reviewScore();
-			
-			window.location.href = "${Path}/reviewComplete.do";
-		};
-		
-		//리뷰 textarea데이터 서블릿으로 넘기는 로직
-		function textDateToDB(){
-			
-		};
-		
-		//리뷰점수 넘기기!
-		function reviewScore(){
-			
-		};
-		
-	</script>
 </body>
 </html>

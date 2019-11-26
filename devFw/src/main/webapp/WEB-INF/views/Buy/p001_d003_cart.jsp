@@ -44,16 +44,14 @@
 				// get the price for the item
 				//pricePer = $(this).parents("td").prev("td").text();
 				pricePer = $(this).val(); //this가 이벤트 호출한 객체 - quantity 달린 거 호출함
-				
+
 				// set the pricePer to a nice, digestable number
 				pricePer = formatNum(pricePer);
 				// calculate the new total
 				total = parseFloat(val * pricePer).toFixed(2);
 				// set the total cell to the new price
-				$(this).parents("td").siblings(".itemTotal").text(total+"원");
+				$(this).parents("td").siblings(".itemTotal").text(total + "원");
 
-				
-				
 				// recalculate prices for all items
 				calculatePrices();
 			}
@@ -96,13 +94,13 @@
 			value = formatNum(value);
 
 			sum += parseFloat(value);
-			$("table.pricing td.subtotal").text(sum.toFixed(2)+"원");
+			$("table.pricing td.subtotal").text(sum.toFixed(2) + "원");
 		});
 	}
 
 	function addTax() {
 		var tax = parseFloat(sum * 0.1).toFixed(2);
-		$("table.pricing td.tax").text(tax+"원");
+		$("table.pricing td.tax").text(tax + "원");
 	}
 
 	function calculateTotal() {
@@ -116,7 +114,7 @@
 
 		total = (subtotal + tax + shipping).toFixed(2);
 
-		$("table.pricing td.orderTotal").text(total+"원");
+		$("table.pricing td.orderTotal").text(total + "원");
 	}
 
 	function calculatePrices() {
@@ -136,36 +134,40 @@
 #tableTr {
 	font-size: 20px;
 	text-align: center;
-	
 }
 
-.contentCart{
+.contentCart {
 	text-align: center;
-	padding :3%;
+	padding: 3%;
 }
 
-.items{
-margin-left:32%
-}
-.items tr{
-width:200px;
-}
-.descForOption{
-margin:1%;
+.items {
+	margin-left: 32%
 }
 
-.pricing{
-	text-align: center;
-	padding :3%;
+.items tr {
+	width: 200px;
+}
+
+.descForOption {
+	margin: 1%;
+}
+
+.pricing {
+	padding: 3%;
+}
+
+#cart {
+	padding-left: 45%;
+	padding-bottom: 3%;
 }
 </style>
 </head>
 <body>
 	<div class="contentCart">
-		<h1>
-		 장바구니
-		</h1>
-		<p class="descForOption">상품 옵션에 관한 수정 및 삭제가 가능합니다. 변경 후 최종 주문을 원하시면 결제하기를 클릭해주세요.</p>
+		<h1>장바구니</h1>
+		<p class="descForOption">상품 옵션에 관한 수정 및 삭제가 가능합니다. 변경 후 최종 주문을
+			원하시면 결제하기를 클릭해주세요.</p>
 
 		<table class="items">
 			<thead>
@@ -223,7 +225,7 @@ margin:1%;
 						</p>
 
 					</td>
-					
+
 					<td><input type="number" class="quantity" value="1" min="1" />
 						<a href="#" class="remove">삭제하기</a></td>
 					<td class="itemTotal">6000</td>
@@ -242,7 +244,7 @@ margin:1%;
 						</p>
 
 					</td>
-					
+
 					<td><input type="number" class="quantity" value="1" min="1" />
 						<a href="#" class="remove">삭제하기</a></td>
 					<td class="itemTotal">3000</td>
@@ -252,8 +254,8 @@ margin:1%;
 
 		<div class="cost">
 			<h2>예상 결제 내역</h2>
-</div>
-
+		</div>
+		<div class="row" id="cart">
 			<table class="pricing">
 				<tbody>
 					<tr>
@@ -274,9 +276,10 @@ margin:1%;
 					</tr>
 				</tbody>
 			</table>
-			<button class="cta" onClick="location.href='#'">결제하기 &raquo;</button>
 		</div>
-	
+		<button class="cta" onClick="location.href='#'">결제하기 &raquo;</button>
+	</div>
+
 	<!-- End Content -->
 </body>
 </html>

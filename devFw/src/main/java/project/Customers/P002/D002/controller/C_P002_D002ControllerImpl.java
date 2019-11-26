@@ -16,7 +16,7 @@ public class C_P002_D002ControllerImpl implements C_P002_D002Controller{
 	
 
 	@Override
-	@RequestMapping(value = "/mpBuyOrderList.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/mpBuyerOrderList.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView mypage(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView("Customers/p002_d002_mypageBuyerOrderList");

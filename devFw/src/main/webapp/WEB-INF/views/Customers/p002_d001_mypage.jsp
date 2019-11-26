@@ -27,10 +27,10 @@
 			<div class="myshopMain_sub1">
 				<div id="list">
 					<h3>
-						<a href="${contextPath}/mypageBuyerOrderList.do"><strong>주문 조회</strong></a>
+						<a href="${contextPath}/mpBuyerOrderList.do"><strong>주문 조회</strong></a>
 					</h3>
 					<p style="font-size: 11px;">
-						<a href="/myshop/order/list.html">고객님께서 주문하신 상품의 주문내역을 확인하실 수
+						<a href="${contextPath}/mpBuyerOrderList.do">고객님께서 주문하신 상품의 주문내역을 확인하실 수
 							있습니다.
 						</a>
 					</p>
