@@ -15,6 +15,10 @@ public class F_P002_D001VO {
 	private String profile_photo = "";
 	private String main_photo = "";
 	private String flea_group = "";
+	private String join_offline_date = "";
+	private String join_offline_time = "";
+	private String join_offline_location = "";
+	private String join_prepayment_yn = "";
 	
 	public F_P002_D001VO() {
 		System.out.println("MemberVO 생성자 호출");
@@ -82,6 +86,38 @@ public class F_P002_D001VO {
 
 	public void setFlea_group(String flea_group) {
 		this.flea_group = flea_group;
+	}
+
+	public String getJoin_offline_date() {
+		return join_offline_date;
+	}
+
+	public void setJoin_offline_date(String join_offline_date) {
+		this.join_offline_date = join_offline_date;
+	}
+
+	public String getJoin_offline_time() {
+		return join_offline_time;
+	}
+
+	public void setJoin_offline_time(String join_offline_time) {
+		this.join_offline_time = join_offline_time;
+	}
+
+	public String getJoin_offline_location() {
+		return join_offline_location;
+	}
+
+	public void setJoin_offline_location(String join_offline_location) {
+		this.join_offline_location = join_offline_location;
+	}
+
+	public String getJoin_prepayment_yn() {
+		return join_prepayment_yn;
+	}
+
+	public void setJoin_prepayment_yn(String join_prepayment_yn) {
+		this.join_prepayment_yn = join_prepayment_yn;
 	}
 
 	

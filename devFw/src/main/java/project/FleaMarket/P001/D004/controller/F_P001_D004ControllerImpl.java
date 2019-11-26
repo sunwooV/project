@@ -82,7 +82,6 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 			response.sendRedirect("/devFw/fleaCreateStoreApproval.do");
 			System.out.println("update 완료");
 			
-			
 			f_p001_d004Service.insertMember(dataMap);
 			System.out.println("insert 완료");
 			//RequestDispatcher dispatch = request.getRequestDispatcher("FleaMarket/fleaCreateStoreApproval.do");
