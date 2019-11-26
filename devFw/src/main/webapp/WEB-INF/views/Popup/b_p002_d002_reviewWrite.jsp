@@ -100,17 +100,17 @@
 }
 
 .rating-form input[type='radio']:checked+label:before {
-	right: 25px;
+	right: 8px;
 	opacity: 1;
 }
 
 .rating-form input[type='radio']+label:after {
-	content: "/ 5";
+	content: "";
 	position: absolute;
 	right: 5px;
 	top: 96px;
-	font-size: 16px;
-	font-size: 1.6rem;
+	font-size: 15px;
+	font-size: 15px;
 	opacity: 0;
 	direction: ltr;
 	-webkit-transition: all 0s ease 0s;
@@ -282,7 +282,31 @@
 .TotalReviewSection {
 	padding: 5%;
 }
+.form-action{
+padding:10% 10% 8.5% 0%;
+}
+
 </style>
+	<script type="text/javascript">
+		//리뷰작성완료 화면으로 넘어가는 로직
+		function submitReview() {
+
+			textDataDB();
+			reviewScore();
+
+			window.location.href = "${Path}/reviewComplete.do";
+		};
+
+		//리뷰 textarea데이터 서블릿으로 넘기는 로직
+		function textDateToDB() {
+
+		};
+
+		//리뷰점수 넘기기!
+		function reviewScore() {
+
+		};
+	</script>
 </head>
 <body>
 	<div class="TotalReviewSection">
@@ -318,13 +342,13 @@
 							<i class="fa fa-star-o"></i> <i class="fa fa-star"></i>
 					</span> <span class="ir">1</span>
 					</label>
-
+<br><br>
 					<div class="form-action">
 						<input class="btn-reset" type="reset" value="Reset" />
 					</div>
 
-					<div class="form-output">? / 5</div>
-
+					<div class="form-output"></div>
+<br><br>
 				</div>
 				<div class="textArea">
 					<textarea class="reviewTextArea" placeholder="리뷰를 작성해주세요">
@@ -339,26 +363,5 @@
 			</fieldset>
 		</form>
 	</div>
-	<script type="text/javascript">
-		//리뷰작성완료 화면으로 넘어가는 로직
-		function submitReview() {
-			
-			textDataDB();
-			reviewScore();
-			
-			window.location.href = "${Path}/reviewComplete.do";
-		};
-		
-		//리뷰 textarea데이터 서블릿으로 넘기는 로직
-		function textDateToDB(){
-			
-		};
-		
-		//리뷰점수 넘기기!
-		function reviewScore(){
-			
-		};
-		
-	</script>
 </body>
 </html>
