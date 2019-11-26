@@ -60,10 +60,10 @@
 			<div class="myshopMain_sub4">
 				<div id="list">
 					<h3>
-						<a href="/myshop/mileage/historyList.html"><strong>포인트</strong></a>
+						<a href="${contextPath}/memberPoint.do"><strong>포인트</strong></a>
 					</h3>
 					<p style="font-size: 11px;">
-						<a href="/myshop/mileage/historyList.html">적립금은 상품 구매 시 사용하실 수
+						<a href="${contextPath}/memberPoint.do">적립금은 상품 구매 시 사용하실 수
 							있습니다.<br>적립된 금액은 현금으로 환불되지 않습니다.
 						</a>
 					</p>

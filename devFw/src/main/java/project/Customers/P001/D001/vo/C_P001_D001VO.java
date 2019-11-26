@@ -25,6 +25,7 @@ public class C_P001_D001VO {
 	private String approval_status;
 	private String approval_key;
 	private String verify;
+	private int member_point_code;
 	
 	public String getMemberid() {
 		return memberid;
@@ -128,8 +129,13 @@ public class C_P001_D001VO {
 	public void setVerify(String verify) {
 		this.verify = verify;
 	}
-	
-	
+	public int getMember_point_code() {
+		return member_point_code;
+	}
+	public void setMember_point_code(int member_point_code) {
+		this.member_point_code = member_point_code;
+	}
+
 	
 	
 	
