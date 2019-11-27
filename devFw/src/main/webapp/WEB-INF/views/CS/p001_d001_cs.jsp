@@ -169,7 +169,6 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="table" id="cs">
 				<div class="row">
 					<img src="${contextPath }/resources/img/qna.png" />
