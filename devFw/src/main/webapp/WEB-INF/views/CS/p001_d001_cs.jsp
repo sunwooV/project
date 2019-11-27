@@ -115,92 +115,72 @@
 			<h1 style="font-size: 37px;">고객센터</h1>
 
 			<div class="row" id="cscs">
-				<h2>
-					🔔공지사항🔔 <span class="glyphicon glyphicon-plus"></span>
-				</h2>
-				<table class="table table-hover" style="margin-right: 51%;">
-					<tr>
-						<th>제목</th>
-						<th>게시일</th>
-					</tr>
-
-					<c:forEach var="event" items="${eventList}" varStatus='index'>
+				<div class="container" id="cs2">
+					<h2 style="padding-bottom: 2%;">
+						🔔공지사항🔔 <span class="glyphicon glyphicon-plus"
+							style="padding-left: 63%;"></span>
+					</h2>
+					<table class="table table-hover" style="padding-left: 7%;">
 						<tr>
-							<td>📍${event.no_title}</td>
-							<td>${event.no_writedate}</td>
+							<th>제목</th>
+							<th>게시일</th>
 						</tr>
-					</c:forEach>
-				</table>
 
-
-
+						<c:forEach var="event" items="${eventList}" varStatus='index'>
+							<tr>
+								<td>📍${event.no_title}</td>
+								<td>${event.no_writedate}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
 
 				<div id="myshopMain">
 					<div class="myshopMain_sub1">
-						<div id="list">
-							<h3>
-								<a href="${contextPath}/mpBuyerOrderList.do"><strong>✔중고거래</strong></a>
-							</h3>
-						</div>
+						<img src="${contextPath }/resources/img/중고.png"
+							style="padding-top: 13%; padding-left: 23%; width: 78%;" />
+						<h3 style="font-size: 22px; padding-top: 5%; padding-left: 18%;">
+							<a href="${contextPath}/mpBuyerOrderList.do">중고거래</a>
+						</h3>
+
 					</div>
 					<div class="myshopMain_sub2">
-						<div id="list">
-							<h3>
-								<a href="${contextPath}/InfoInit.do"><strong>✔경매절차</strong></a>
-							</h3>
-
-						</div>
+						<img src="${contextPath }/resources/img/경매.png"
+							style="padding-top: 13%; padding-left: 23%; width: 78%;" />
+						<h3 style="font-size: 22px; padding-top: 5%; padding-left: 18%;">
+							<a href="${contextPath}/InfoInit.do"><strong>경매절차</strong></a>
+						</h3>
 					</div>
 					<div class="myshopMain_sub5">
-						<div id="list">
-							<h3>
-								<a href="${contextPath}/mypageQA.do"><strong>내가 쓴
-										게시글 확인</strong></a>
-							</h3>
-							<p style="font-size: 11px;">
-								<a href="${contextPath}/mypageQA.do"> 구매후기 / Q&A </a>
-							</p>
-						</div>
+						<img src="${contextPath }/resources/img/플리.png"
+							style="padding-top: 13%; padding-left: 23%; width: 78%;" />
+						<h3 style="font-size: 22px; padding-top: 5%; padding-left: 18%;">
+							<a href="${contextPath}/mypageQA.do"><strong>플리마켓 </strong></a>
+						</h3>
 					</div>
 					<div class="myshopMain_sub6">
-						<div id="list">
-							<h3>
-								<a href="/myshop/coupon/coupon.html"><strong>관심 상품</strong></a>
-							</h3>
-							<p style="font-size: 11px;">
-								<a href="/myshop/coupon/coupon.html">고객님이 보유하고 계신 쿠폰내역을
-									보여드립니다.</a>
-							</p>
-						</div>
+						<img src="${contextPath }/resources/img/환급.png"
+							style="padding-top: 13%; padding-left: 23%; width: 78%;" />
+						<h3 style="padding-top: 7%; font-size: 17px;">
+							<a href="/myshop/coupon/coupon.html"><strong>판매자
+									입금절차 </strong></a>
+						</h3>
+
 					</div>
 				</div>
 			</div>
 
-
-
-
-			<%-- 		<div class="list-group"
-						style="font-family: 'Do Hyeon', sans-serif; font-size: 24px; width: 30%; padding-top: 8%; margin-left: -3%;">
-						<a href="${contextPath}/detail2.do"
-							class="list-group-item list-group-item-action">✔중고거래 </a> <a
-							href="${contextPath}/detail3.do"
-							class="list-group-item list-group-item-action">✔경매절차</a> <a
-							href="${contextPath}/detail4.do"
-							class="list-group-item list-group-item-action">✔플리마켓 유형 및
-							참여방법</a> <a href="${contextPath}/detail1.do"
-							class="list-group-item list-group-item-action">✔판매자 입금절차 안내</a>
-					</div> --%>
-
 			<div class="table" id="cs">
-
-				<h1 style="font-size: 43px;">무엇이든 물어보세요</h1>
-				<form class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2" type="text" id="searchbar"
-						placeholder="검색어를 입력하세요"> <a href="#"><span
-						class="glyphicon glyphicon-search" style="font-size: 21px;"></span></a>
-				</form>
+				<div class="row">
+					<img src="${contextPath }/resources/img/qna.png" />
+					<h1 style="font-size: 43px;">무엇이든 물어보세요</h1>
+					<form class="form-inline my-2 my-lg-0">
+						<input class="form-control mr-sm-2" type="text" id="searchbar"
+							placeholder="검색어를 입력하세요"> <a href="#"><span
+							class="glyphicon glyphicon-search" style="font-size: 21px;"></span></a>
+					</form>
+				</div>
 			</div>
-
 			<div class="row" style="padding-left: 1%;">
 				<ul class="nav nav-tabs" style="width: 90%;">
 					<li class="active"><a data-toggle="tab" href="#FAQ1">자주 묻는

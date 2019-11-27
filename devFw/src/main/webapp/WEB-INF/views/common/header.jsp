@@ -86,7 +86,7 @@
 			</ul>
 			<form class="form-inline my-2 my-lg-0" id="searchform" name="searchform">
 				<input class="form-control mr-sm-2" type="text" id="searchbar" name="searchVal" value=""
-					placeholder="Search">
+					placeholder="검색어를 입력하세요♡">
 				<input type="button" class="btn btn-secondary my-2 my-sm-0" id="btnsearch" value="Search" onclick="SearchProduct()">
 			</form>
 			<button type="submit" class="btn btn-outline-warning"  onclick="location.href='./enroll.do'" id="register">상품 등록</button>
