@@ -109,6 +109,7 @@ label{
 <form name="searchForm">
 <c:set var="searchVal" value="${searchVal }"/>
 <c:set var="size" value="${size }"/>
+<c:set var="command" value="${command }"/>
 <input type="hidden" name="searchVal" value="${searchVal }">
 <div class="container">
 <br>
@@ -120,42 +121,86 @@ label{
 			<a href="./main.do">홈</a> > <span id="accent">"${searchVal }"</span> <span style="color:black;">검색 결과</span> : <span id="group">전체 </span>(<span id="accent"><fmt:formatNumber value="${size }" type="number"/></span>개의 상품)
 		</div>
 		<br>
-		<div class="categorySearch">
+		<%-- <div class="categorySearch">
 			<div class="left"><h3>카테고리</h3></div>
 			<div class="right">
 			
-			<c:forEach var="searchHighCategory" items="${searchHighCategory }" varStatus="status" >
-				<li id="subRight"><input type="checkbox" name="category_select" id="categoryCheck${status.index }" value="${searchHighCategory.category_code }" ><label for="categoryCheck${status.index }">${searchHighCategory.category_name } (<fmt:formatNumber value="${searchHighCategory.b_cnt }" type="number"/>)</label> <img id="down" class="${status.index }" src="${contextPath }/resources/img/down.svg">
-					
-					<ul>
-						<c:forEach var="searchMiddleCategory" items="${searchMiddleCategory }">
-							<c:if test="${searchMiddleCategory.high_category == searchHighCategory.category_code }">
-							<li class="middleCategory" id="m${status.index}">
-								${searchMiddleCategory.category_name } (${searchMiddleCategory.m_cnt })
-							</li>
-							</c:if>
-						</c:forEach>
-					</ul>
-				</li>
-			</c:forEach>
-			
+			<c:choose>
+				<c:when test="${command == 'categoryDetail' }">
+					<c:forEach var="searchMiddleCategory" items="${selectMiddleCategory }" varStatus="status" >
+						<li id="subRight">${searchMiddleCategory.category_name } (<fmt:formatNumber value="${searchMiddleCategory.m_cnt }" type="number"/>)
+						</li>
+					</c:forEach>
+				</c:when>
+				
+				<c:otherwise>
+					<c:forEach var="searchHighCategory" items="${searchHighCategory }" varStatus="status" >
+						<li id="subRight"><input type="checkbox" name="category_select" id="categoryCheck${status.index }" value="${searchHighCategory.category_code }" ><label for="categoryCheck${status.index }">${searchHighCategory.category_name } (<fmt:formatNumber value="${searchHighCategory.b_cnt }" type="number"/>)</label> <img id="down" class="${status.index }" src="${contextPath }/resources/img/down.svg">
+							
+							<ul>
+								<c:forEach var="searchMiddleCategory" items="${searchMiddleCategory }">
+									<c:if test="${searchMiddleCategory.high_category == searchHighCategory.category_code }">
+									<li class="middleCategory" id="m${status.index}">
+										${searchMiddleCategory.category_name } (${searchMiddleCategory.m_cnt })
+									</li>
+									</c:if>
+								</c:forEach>
+							</ul>
+						</li>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 			</div>
 		</div>
-		<hr>
+		<hr> --%>
+		<c:set var="reused" value="${reused }"/>
+		<c:set var="auction" value="${auction }"/>
+		<c:set var="flea" value="${flea }"/>
+		<c:set var="send_way" value="${send_way }"/>
 		<div class="groupSearch">
 			<div class="left"><h3>판매그룹</h3></div>
 			<div class="right">
-				<div id="subRight"><input type="checkbox" name="group_select" id="reused" value="reused"><label for="reused">중고상품</label></div>
-				<div id="subRight"><input type="checkbox" name="group_select" id="auction" value="auction"><label for="auction">경매상품</label></div>
-				<div id="subRight"><input type="checkbox" name="group_select" id="flea" value="flea"><label for="flea">플리마켓상품</label></div>
+				<c:if test="${reused != null }">
+					<div id="subRight"><input type="checkbox" name="group_select" id="reused" value="reused" checked="checked"><label for="reused">중고상품</label></div>
+				</c:if>
+				<c:if test="${reused == null }">
+					<div id="subRight"><input type="checkbox" name="group_select" id="reused" value="reused"><label for="reused">중고상품</label></div>
+				</c:if>
+				<c:if test="${auction != null }">
+					<div id="subRight"><input type="checkbox" name="group_select" id="auction" value="auction" checked="checked"><label for="auction">경매상품</label></div>
+				</c:if>
+				<c:if test="${auction == null }">
+					<div id="subRight"><input type="checkbox" name="group_select" id="auction" value="auction"><label for="auction">경매상품</label></div>
+				</c:if>
+				<c:if test="${flea != null }">
+					<div id="subRight"><input type="checkbox" name="group_select" id="flea" value="flea" checked="checked"><label for="flea">플리마켓상품</label></div>
+				</c:if>
+				<c:if test="${flea == null }">
+					<div id="subRight"><input type="checkbox" name="group_select" id="flea" value="flea"><label for="flea">플리마켓상품</label></div>
+				</c:if>
+				
 			</div>
 		</div>
 		<hr>
 		<div class="send_way">
 			<div class="left"><h3>거래방법</h3></div>
 			<div class="right">
-				<div id="subRight"><input type="checkbox" name="send_way_select" id="direct" value="direct"><label for="direct">직거래</label></div>
-				<div id="subRight"><input type="checkbox" name="send_way_select" id="delivery" value="delivery"><label for="delivery">택배거래</label></div>
+				<c:if test="${send_way == 'direct' }">
+					<div id="subRight"><input type="checkbox" name="send_way_select" id="direct" value="direct" checked="checked"><label for="direct">직거래</label></div>
+					<div id="subRight"><input type="checkbox" name="send_way_select" id="delivery" value="delivery"><label for="delivery">택배거래</label></div>
+				</c:if>
+				<c:if test="${send_way == 'delivery' }">
+					<div id="subRight"><input type="checkbox" name="send_way_select" id="direct" value="direct"><label for="direct">직거래</label></div>
+					<div id="subRight"><input type="checkbox" name="send_way_select" id="delivery" value="delivery" checked="checked"><label for="delivery">택배거래</label></div>
+				</c:if>
+				<c:if test="${send_way == 'direct delivery' }">
+					<div id="subRight"><input type="checkbox" name="send_way_select" id="direct" value="direct" checked="checked"><label for="direct">직거래</label></div>
+					<div id="subRight"><input type="checkbox" name="send_way_select" id="delivery" value="delivery" checked="checked"><label for="delivery">택배거래</label></div>
+				</c:if>
+				<c:if test="${send_way == null }">
+					<div id="subRight"><input type="checkbox" name="send_way_select" id="direct" value="direct"><label for="direct">직거래</label></div>
+					<div id="subRight"><input type="checkbox" name="send_way_select" id="delivery" value="delivery"><label for="delivery">택배거래</label></div>
+				</c:if>
 			</div>
 		</div>
 		<center><input type="button" name="detailSearch" id="detailSearch" value="상세검색"></center>

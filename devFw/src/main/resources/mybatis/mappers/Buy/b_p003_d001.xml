@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Buy.P003.D001">
+	<resultMap id="B_P003_D001Result01" type="B_P003_D001VO">
+		<result property="return_number" column="return_number" />
+		<result property="order_number" column="order_number" />
+		<result property="return_reason" column="return_reason" />
+		<result property="return_date" column="return_date" />
+		<result property="return_approve_yn" column="return_approve_yn" />
+		<result property="return_title" column="return_title" />
+		
+	</resultMap>
+	
+	<insert id="insertChangeReason" parameterType="java.util.Map">
+	<!--order=before는 인서트하기전에 한당 -->
+		<selectKey order="BEFORE" resultType="int" keyProperty="return_number">
+			<![CDATA[ 
+			SELECT nvl2((max(return_number) + 1), (max(return_number) + 1), 1) 
+			FROM return 
+			]]>
+		</selectKey>
+		<![CDATA[
+        INSERT INTO return
+		(return_number, return_title,  return_reason, return_date)
+		values
+		(#{return_number}, #{return_title}, #{return_reason}, sysdate)
+	  ]]>
+	</insert>
+</mapper>

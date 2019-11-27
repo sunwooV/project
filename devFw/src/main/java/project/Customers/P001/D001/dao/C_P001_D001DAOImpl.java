@@ -91,7 +91,11 @@ public class C_P001_D001DAOImpl implements C_P001_D001DAO {
 	     	public int again(String email) throws Exception{
 	     		return sqlsession.delete("Customers.join.again", email);
 	     	}
-		
+		  
+			@Transactional
+			public int join_point(C_P001_D001VO member) throws Exception{
+				return sqlsession.insert("Customers.join.join_point", member);
+			}
 	}
 
 

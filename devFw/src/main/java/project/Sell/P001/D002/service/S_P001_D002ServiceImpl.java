@@ -44,10 +44,37 @@ public class S_P001_D002ServiceImpl implements S_P001_D002Service {
 		return list;
 	}
 
-	
 	@Override
 	public List<S_P001_D002VO> tagList(Map<String, Object> searchMap) throws DataAccessException {
 		List<S_P001_D002VO> list =  S_P001_D002DAO.tagList(searchMap); 
 		return list;
 	}
+	
+	@Override
+	public String likeProd(Map<String, Object> searchMap) throws DataAccessException {
+		String likeProd =  S_P001_D002DAO.likeProd(searchMap); 
+		return likeProd;
+	}
+	
+	@Override
+	public String heart(Map<String, Object> searchMap) throws DataAccessException {
+		String heart =  S_P001_D002DAO.heart(searchMap); 
+		return heart;
+	}
+	
+	@Override
+	public void insertLikeProd(Map<String, Object> datahMap) throws Exception {
+		S_P001_D002DAO.insertLikeProd(datahMap);
+	}
+	
+	@Override
+	public void deleteLikeProd(Map<String, Object> datahMap) throws Exception {
+		S_P001_D002DAO.deleteLikeProd(datahMap);
+	}
+	
+	@Override
+	public void updateHeart(Map<String, Object> datahMap) throws Exception {
+		S_P001_D002DAO.updateHeart(datahMap);
+	}
+
 }

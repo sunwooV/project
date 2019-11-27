@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="Path" value="${pageContext.request.contextPath}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,23 @@
 <script type="text/javascript">
 	//작성완료된 교환사유를 넘기는 함수
 	function submitChangeProdReason() {
-		window.location.href="${Path}/changeProductComplete.do";
+		var frm =document.frmReturn;
+		
+		var reason = document.getElementsByName('return_reason')[0].value;
+		alert(reason);
+		var title = document.getElementsByName('return_title')[0].value;
+		alert(title);
+		
+		if((title != null || title !='') && (reason !=null || reason !='')){
+			frm.method="post";
+			frm.action="./insertChangeReason.do";
+			frm.submit();
+	
+		}else{
+			alert("내용 혹은 제목을 입력해주세요!");
+		}
+		
+		
 
 		//출처: https://jdkblog.tistory.com/58 [JDK's blog]
 	}
@@ -50,39 +66,39 @@
 	background-color: darkgray;
 	color: white;
 }
+
 .optionForbuyProd, .changeProdTitle {
-	text-align: left;
-	margin-left: 32%;
-	padding-bottom: 1%;
+	text-align: center;
+	padding-bottom: 3%;
 }
 
 .selectBuyProd, .input_changeProdTitle {
 	width: 500px;
 }
-
 </style>
 </head>
 <body>
+	<form name="frmReturn" >
 	<div id="changeProdHeader" class="changeProdHeader">
-		<h2>환불 및  교환 사유 작성</h2>
+		<h2>환불 및 교환 사유 작성</h2>
 	</div>
 	<div class="changeProdTitle">
-		글 제목 : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-		<input type="text" id="input_changeProdTitle" class="input_changeProdTitle">
+		글 제목 :
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input type="text" id="input_changeProdTitle" name="return_title" value=""
+			class="input_changeProdTitle">
 	</div>
-	
+
 	<div id="optionForbuyProd" class="optionForbuyProd">
-		해당 상품 선택 : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-		<select name="selectBuyProd" class="selectBuyProd" id="selectBuyProd">
-			<option value="prodHistory"></option>
-			<option value="prodHistory"></option>
-			<option value="prodHistory"></option>
-			<option value="prodHistory"></option>
+		해당 상품 선택 :
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <select
+			name="selectBuyProd" class="selectBuyProd" id="selectBuyProd" >
+		
 		</select>
 	</div>
 
 	<div id="changeProdWrite" class="changeProdWrite">
-		<textarea id="changeReason" class="changeReason"
+		<textarea id="changeReason" class="changeReason" name="return_reason"
 			placeholder="반품하시는 사유를 작성해주세요.">
 </textarea>
 	</div>
@@ -91,6 +107,6 @@
 		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 		<button onClick="cancelChangeProd()">교환 취소하기</button>
 	</div>
-
+</form>
 </body>
 </html>

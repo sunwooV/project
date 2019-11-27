@@ -132,6 +132,13 @@ public class C_P001_D001ControllerImpl implements C_P001_D001Controller{
 		c_p001_d001_Service.approval_member(member, response);
 	}
 	
+	@Override
+	@RequestMapping(value = "/join_point.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public void join_point(@ModelAttribute C_P001_D001VO member, HttpServletResponse response) throws Exception{
+		c_p001_d001_Service.join_point(member, response);
+		System.out.println("controller아이디=="+member.getMemberid());
+	}
+	
 	 
 		
 		// 로그인

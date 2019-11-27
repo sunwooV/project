@@ -37,6 +37,7 @@ public class S_P001_D002VO {
 	private String left_hour;
 	private String left_min;
 	private String left_second;
+	private String cnt;
 	
 	public S_P001_D002VO(){
 		System.out.println("S_P001_D002_VO 호출");
@@ -242,6 +243,12 @@ public class S_P001_D002VO {
 	}
 	public void setLeft_second(String left_second) {
 		this.left_second = left_second;
+	}
+	public String getCnt() {
+		return cnt;
+	}
+	public void setCnt(String cnt) {
+		this.cnt = cnt;
 	}
 
 	

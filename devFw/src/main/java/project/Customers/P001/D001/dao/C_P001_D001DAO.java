@@ -31,4 +31,6 @@ public interface C_P001_D001DAO {
 		public int black_check(String email)throws Exception;
 		
 		public int again(String email) throws Exception;
+		
+		public int join_point(C_P001_D001VO member) throws Exception;
 }

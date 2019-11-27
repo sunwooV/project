@@ -30,14 +30,77 @@
 			} else { //로그인 되어있을 때 => 관심 상품 등록
 				if($(this).attr('name') == 'n'){ //관심 상품 등록
 					var heart = document.getElementById("heart");
-					$(this).html('<img src="${contextPath }/resources/img/detailProduct/fillheart.png" style="width:30px; height:30px;"> 관심 상품 추가 ');
+					$(this).html('<img src="${contextPath }/resources/img/detailProduct/fillheart.png" style="width:30px; height:30px;"> 관심 상품  ');
 					$(this).css("color", "#dd5850");
 					heart.setAttribute("name", "y");
+					
+					var prod_number = $("#prod_number").val();
+					var memberId = $("#memberId").val();
+					var command = "like";
+					
+					var heart = {
+							prod_number: prod_number,
+							memberId: memberId,
+							command:command
+					}
+			
+					$.ajax({
+						type: "post",
+						async: false,
+						url: "/devFw/detail/likeProd.do",
+						data: heart,
+						dataType : 'text',
+						success: function(responseData){
+							var data = JSON.parse(responseData);
+							
+							$(".heart").html(data.heart);
+							
+							console.log("관심상품 등록 완료");
+							
+						},
+						error: function(data, textStatus){
+							alert("다시 시도해주세요.");
+						},
+						complete : function (data, textstatus){
+						}
+					});
+
 				} else{ //관심 상품 해제
 					var heart = document.getElementById("heart");
-					$(this).html('<img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px;"> 관심 상품 추가 ');
+					$(this).html('<img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px;"> 관심 상품  ');
 					$(this).css("color", "black");
 					heart.setAttribute("name", "n");
+					
+					var prod_number = $("#prod_number").val();
+					var memberId = $("#memberId").val();
+					var command = "dislike";
+					
+					var heart = {
+							prod_number: prod_number,
+							memberId: memberId,
+							command: command
+					}
+					
+					$.ajax({
+						type: "post",
+						async: false,
+						url: "/devFw/detail/likeProd.do",
+						data: heart,
+						dataType : 'text',
+						success: function(responseData){
+							var data = JSON.parse(responseData);
+							
+							$(".heart").html(data.heart);
+							
+							console.log("관심상품 해제 완료");
+							
+						},
+						error: function(data, textStatus){
+							alert("다시 시도해주세요.");
+						},
+						complete : function (data, textstatus){
+						}
+					});
 				}
 				
 			}
@@ -748,7 +811,7 @@ img{
     line-height: 1.5;
     text-align: center;
     text-decoration: none;
-    color: #333;
+    color: rgb(221, 88, 80);
     cursor: pointer;
 }
 #heart{
@@ -1119,9 +1182,21 @@ textarea{
 				</c:choose>
 	
 				<br>
-				<h3 id="gray-text">지난 일주일간 ${product.heart }명의 회원이 관심을 보였어요!</h3>
+				<h3 id="gray-text"><span class="heart">${product.heart }</span>명의 회원이 관심을 보였어요!</h3>
 				<br>
-				<div id="heart" name="n"><img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px;"> 관심 상품 추가 </div>
+
+				<c:set var="likeProd" value="${likeProd }"/>
+				
+				<c:if test="${likeProd == null }">
+					<div id="heart" name="n"><img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px;"> 관심 상품  </div>
+				</c:if>
+				<c:if test="${likeProd == '0' }">
+					<div id="heart" name="n"><img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px;"> 관심 상품  </div>
+				</c:if>
+				<c:if test="${likeProd == '1' }">
+					<div id="heart" name="y"><img src="${contextPath }/resources/img/detailProduct/fillheart.png" style="width:30px; height:30px;"> 관심 상품  </div>
+				</c:if>
+
 				<br><br>
 				<div class="content">
 					<c:choose>

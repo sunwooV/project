@@ -96,5 +96,13 @@
 		select memberid from member where name = #{name} and email = #{email} and birth = #{birth} and phonenumber = #{phonenumber}
 		 ]]>
 	</select>
+	<!-- 포인트 적립 -->
+	<insert id="join_point" parameterType="C_P001_D001VO">
+
+	 <![CDATA[
+		insert into member_point(MEMBERID,USEABLE_POINT,POINT_START,POINT_NUMBER,MEMBER_POINT_CODE,DISAPPEAR_POINT_DATE,TOTAL_POINT)
+		values((select MEMBERID from member where MEMBERID = #{memberid}), (select POINT_SCORE from point where POINT_NUMBER = 1),sysdate,(select POINT_NUMBER from point where POINT_NUMBER = 1),seqNo.NEXTVAL,SYSDATE + (INTERVAL '1' YEAR), (select POINT_SCORE from point where POINT_NUMBER = 1))
+		]]>
+		</insert>
 
 </mapper>

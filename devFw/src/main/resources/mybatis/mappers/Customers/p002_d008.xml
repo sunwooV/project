@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+    <mapper namespace="Customers.memberpoint">
+
+
+	<select id="point_check" parameterType="String" resultType="C_P002_D008VO">
+	<![CDATA[
+		select mp.*, (select POINT_SCORE from point p where p.POINT_NUMBER=mp.POINT_NUMBER) as score,(select POINT_CONTENT from point p where p.POINT_NUMBER=mp.POINT_NUMBER) as content from member_point mp where MEMBERID = #{memberid}
+			  ]]>
+	</select>
+	
+		<select id="grade_check" parameterType="String" resultType="C_P002_D008VO">
+	<![CDATA[
+		select * from seller_rank where MEMBERID = #{memberid}
+			  ]]>
+	</select>
+	
+	<!--  <select id="usable_point" parameterType="String" resultType="C_P002_D008VO">
+	<![CDATA[
+		select POINT_START, (select POINT_SCORE from point p where p.POINT_NUMBER=mp.POINT_NUMBER),(select POINT_CONTENT from point p where p.POINT_NUMBER=mp.POINT_NUMBER) from member_point mp where MEMBERID = #{memberid}
+			  ]]>
+	</select>-->
+	
+	
+
+	<!-- 비밀번호 변경 
+  	<update id="modify" parameterType="C_P002_D009VO">
+	<![CDATA[
+		update member set PW = #{pw} where MEMBERID = #{memberid}
+		  ]]>
+	</update>-->
+	
+	<!-- 회원정보 수정 
+	<update id="update" parameterType="C_P002_D009VO">
+		<![CDATA[
+		update member set ADDRESS = #{address}, ROADADDRESS = #{roadAddress} , JIBUNADDRESS = #{jibunAddress} , DETAILADDRESS = #{detailAddress} , EXTRAADADDRESS = #{extraAddress} , NICKNAME = #{nickname} , PHONENUMBER = #{phonenumber} , BIRTH = #{birth}
+		 where MEMBERID = #{memberid}
+		  ]]>
+	</update>-->
+	
+	<!--<delete id="out" parameterType="C_P002_D009VO">
+	<![CDATA[
+		delete from member where memberid = #{memberid} and pw = #{pw}
+		 ]]>
+	</delete>-->
+	
+	<!-- 회원추가 
+		<insert id="out_insert" parameterType="C_P002_D009VO">
+	 <![CDATA[
+insert into out_member (MEMBERID, PW, EMAIL, NAME, BIRTH, PHONENUMBER, REG_DATE,BLACKLIST_YN, MEMBER_GROUP, SELLER_GROUP, FLEA_SELLER_GROUP,OUT_MEMBER_DATE,verify, approval_status)
+values((select MEMBERID from member where memberid=#{memberid}),(select PW from member where memberid=#{memberid}),(select EMAIL from member where memberid=#{memberid}),(select NAME from member where memberid=#{memberid}),(select BIRTH from member where memberid=#{memberid}),(select PHONENUMBER from member where memberid=#{memberid}),(select REG_DATE from member where memberid=#{memberid}),(select BLACKLIST_YN from member where memberid=#{memberid}),(select MEMBER_GROUP from member where memberid=#{memberid}),(select SELLER_GROUP from member where memberid=#{memberid}),(select FLEA_SELLER_GROUP from member where memberid=#{memberid}),sysdate,(select verify from member where memberid=#{memberid}),(select approval_status from member where memberid=#{memberid}))
+	]]>
+	</insert>-->
+	
+	<!-- 비밀번호 확인 
+		<select id="check_pw" parameterType="C_P002_D009VO" resultType="int">
+	 <![CDATA[
+		select count(*) from member where MEMBERID = #{memberid} and pw = #{pw}
+	]]>
+	</select>-->
+	
+	
+	</mapper>
