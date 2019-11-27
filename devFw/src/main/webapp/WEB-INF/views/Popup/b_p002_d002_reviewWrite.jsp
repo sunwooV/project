@@ -299,7 +299,7 @@ padding:10% 10% 8.5% 0%;
 				
 				moveToAnotherPage();
 				alert("타고 들어가니?")
-			}else if(reviewDetail = null || reviewDetail =''){
+			}else if(reviewDetail == null || reviewDetail == ''){
 				alert("리뷰 내용을 입력하세요!");
 			}
 			
@@ -309,18 +309,11 @@ padding:10% 10% 8.5% 0%;
 			frm.submit();//name이 있는 것을 모두 넘겨준당~~~~~
 		}
 
-		//리뷰 제출 시 리뷰 팝업창 닫고 부모창의 다른페이지 이동
-		function moveToAnotherPage(){
-			
-			if(window.opener && !window.opener.closed){ //부모창이 존재하고 닫혀있지 않을때 
-			window.opener.location = "${contextPath}/reviewComplete.do"; // 부모창에서 해당주소로 이동해라
-			window.close(); //그리고 열려있는 창을 닫아라
-			}
-		}
+		
 		
 		function cancelReview(){
-			
-		}
+			self.close(); // 자기자신의 창을 닫아라!!
+					}
 	</script>
 </head>
 <body>
