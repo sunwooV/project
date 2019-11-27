@@ -22,29 +22,38 @@
 	font-size: 13px;
 	padding: 0.5%;
 	text-align: center;
-	border-bottom:1px solid lightgray;
+	border-bottom: 1px solid lightgray;
 }
 
 .orderHistoryTable {
 	text-align: center;
 	width: -webkit-fill-available;
-	border-top:1px solid lightgray;
-	border-collapse:collapse;
+	border-top: 1px solid lightgray;
+	border-collapse: collapse;
 }
 
-.OHtableTitle{
-background-color:#ccc;
+.OHtableTitle {
+	background-color: #ccc;
 }
-
 </style>
 <script type="text/javascript">
-function reviewPopup(){	
-	window.open("${contextPath}/review.do", "a", "width=700, height=700");
-};
 
-function confirmBuyPopup(){
-	window.open("${contextPath}/confirmBuy.do", "a", "width=600, height=500");
-};
+	//취소 및 교환 신청 팝업 뜨게 하기
+	function changeProdPopup() {
+		window.open("${contextPath}/changeProduct.do", "a",
+		"width=800, height=600");
+	};
+
+	//리뷰 팝업 뜨게 하기
+	function reviewPopup() {
+		window.open("${contextPath}/review.do", "a", "width=700, height=700");
+	};
+	
+	//구매확정 팝업 뜨게 하기
+	function confirmBuyPopup() {
+		window.open("${contextPath}/confirmBuy.do", "a",
+				"width=600, height=500");
+	};
 </script>
 </head>
 <body>
@@ -74,7 +83,8 @@ function confirmBuyPopup(){
 					<td class="OHC_cont"><span class="orderDate" id="orderDate">2019-11-20</span>
 						<br> <a href="#" class="orderNum" id="orderNum">[20191120-0000000]</a></td>
 
-					<td class="OHC_cont"><span class="prod_1st_img" id="prod_1st_img">이미지</span></td>
+					<td class="OHC_cont"><span class="prod_1st_img"
+						id="prod_1st_img">이미지</span></td>
 					<td class="OHC_cont"><span class="prod_short_detail"
 						id="prod_short_detail">상품 정보 설명들어감 제목 + 선택한 옵션</span></td>
 					<td class="OHC_cont"><span class="prod_cnt" id="prod_cnt">2</span></td>
@@ -84,14 +94,11 @@ function confirmBuyPopup(){
 						id="order_state">배송준비중</span></td>
 
 					<td class="OHC_cont"><input type="button" value="취소신청 및 교환 신청"
-						class="orderButton" id="cancel_order" onClick="location.href='${contextPath}/changeProduct.do'">
-						<br>
-						<input type="button" value="리뷰쓰기"
-						class="orderButton" id="review_order" onClick="reviewPopup()">
-						<br>
-						<input type="button" value="구매확정하기"
-						class="orderButton" id="confirmBuy_order" onClick="confirmBuyPopup()">
-						</td>
+						class="orderButton" id="cancel_order" onClick="changeProdPopup()">
+						<br> <input type="button" value="리뷰쓰기" class="orderButton"
+						id="review_order" onClick="reviewPopup()"> <br> <input
+						type="button" value="구매확정하기" class="orderButton"
+						id="confirmBuy_order" onClick="confirmBuyPopup()"></td>
 				</tr>
 				<!-- 2번째 상품 내용 -->
 			</tbody>

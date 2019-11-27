@@ -296,17 +296,16 @@ padding:10% 10% 8.5% 0%;
 			alert(reviewDetail);
 			
 			if(reviewDetail != null || reviewDetail != ''){
-				
-				moveToAnotherPage();
+				frm.method="get";
+				frm.action = "./reviewComplete.do";
+				frm.submit();//name이 있는 것을 모두 넘겨준당~~~~~				
 				alert("타고 들어가니?")
 			}else if(reviewDetail == null || reviewDetail == ''){
-				alert("리뷰 내용을 입력하세요!");
+				alert('리뷰 내용을 입력하세요!');
 			}
 			
 
-			frm.method="get";
-			frm.action = "./insertReview.do";
-			frm.submit();//name이 있는 것을 모두 넘겨준당~~~~~
+			
 		}
 
 		
