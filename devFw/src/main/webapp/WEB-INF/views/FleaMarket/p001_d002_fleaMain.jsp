@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="${contextPath }/resources/css/플리메인.css">
@@ -65,7 +66,7 @@ ol, ul {
 	cursor: pointer;
 }
 .ui_card__txtarea{
-	padding: 32px;
+	padding: 15px;
 }
 
 .ui_card__inner{
@@ -79,9 +80,9 @@ ol, ul {
     background-position: center top;
     background-repeat: no-repeat;
     text-align: center;
-    width: 130.2%;
+    width: 125.7%;
     height: 100px;
-    margin-left: -16.8%;
+    margin-left: -12.9%;
    
 }
 
@@ -97,12 +98,18 @@ ol, ul {
 	margin-top: -157px;
 }
 
+ul li {list-style-type: none;}
+
+#ppp{
+    padding: 6px;
+}
+
 </style>
 
 <body>
 
 	<!-- 메뉴사이드바랑 컨텐츠 ------------------------------------------------------------------------------------------------------------------------------------------>
-	<div class="container" style="max-width: 60%;">
+	<div class="container">
 	<!-- 상단 그림 -->
 		
 		<!-- Banner -->
@@ -350,19 +357,15 @@ ol, ul {
 
 		<!-- 컨텐츠 -->
 		<div class="row">
-			<h1 style="padding-left: 3%; padding-bottom: 0%; font-size: 23px;">지금까지 10개의 마켓이 열렸고, 3개의 마켓이 셀러를 기다리고 있습니다:)
-			</h1>
+			<p style="padding-left: 3%; padding-bottom: 0%; font-size: 23px;">지금까지 10개의 마켓이 열렸고, 3개의 마켓이 셀러를 기다리고 있습니다:)</p>
 		</div>
-		<!-- 플리마켓 맵-->
+		<!-- 플리마켓 맵
         <div class="fleaMap">
         	<a href="/devFw/fleaMap.do" id="fleaMap">
            	   <i class="fas fa-map-marked-alt pa-5x">오프라인 맵</i>
             </a>
-            &nbsp;
-            <a href="/devFw/fleaAddMap.do" id="addMap">
-           	   <i class="fas fa-map-marked-alt pa-5x">맵 등록 </i>
-            </a>
         </div>
+        -->
         
         <!--  
 		<div class="row">
@@ -427,6 +430,7 @@ ol, ul {
                     <div class="ui_card__txtarea">
                         <div class="ui_card__info">
                             <a href="#" target="_blank" class="ui_card__title">${bestStore.flea_name }</a>
+                            <br>
                             <span class="ui_card__para">
                             	${bestStore.intro_cotent }
                             </span>
@@ -435,11 +439,11 @@ ol, ul {
 						<div class="Relrr">
 					          <div class="bdycMe">
 					             <div class="gFsGXG">
-					             	${bestStore.join_offline_date}
+					             	일시: ${bestStore.join_offline_date}
 					             <!-- 
 					                 <time datetime="1576162800000">12.13</time>&nbsp;~&nbsp;<time datetime="1577804400000">01.01</time>&nbsp;</div>
 					             -->
-					                    <div class="iGGFft">${bestStore.join_offline_location}</div>
+					                    <div class="iGGFft">장소:${bestStore.join_offline_location}</div>
 					                       <div class="fQIbEE">
 					                           <i class="fas fa-clock">${bestStore.join_offline_time}</i>
 					                       </div>
@@ -456,16 +460,16 @@ ol, ul {
                                     <i class="ui_icon--star-fill" data-state="active"></i>
                                     <i class="ui_icon--star-fill" data-state="active"></i>
                                     <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <span>&nbsp;| ${bestStore.flea_name }</span>
+                                    <span>&nbsp;| ${bestStore.memberid }</span>
                                 </div>
                             </div>
                             <input name="paging_param" type="hidden" value="1574744451000">
                         </div>
                         
                         
-                        <p id="p">
+                        <p id="ppp">
 								<a href="#" class="btn btn-primary" id="ttt3" role="button">메세지 보내기</a>
-								<a href="${contextPath}/payInfo.do" class="btn btn-default"
+								<a href="#" class="btn btn-default"
 									id="ttt4" role="button">모집중</a>
 						</p>
                         

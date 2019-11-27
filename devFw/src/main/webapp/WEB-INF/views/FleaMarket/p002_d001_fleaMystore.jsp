@@ -28,12 +28,12 @@ System.out.println(":::::flea_code" + flea_code);
     margin-top: 19px;
 }
 .artist-area {
-    padding: 32px 16px 16px;
+    padding: 15px 16px 16px;
     border: 1px solid #d9d9d9;
     border-top: 0 none;
     padding-bottom: 18px;
     text-align: center;
-    width: 250px;
+    width: 213px;
     height: 700px;
 }
 .addmember{
@@ -77,6 +77,40 @@ System.out.println(":::::flea_code" + flea_code);
 
 .profile-description .user_name{
  text-align: center;
+}
+
+.profile-description{
+	font-size: 12px;
+}
+
+.border-row:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 16px;
+    border-top: 1px solid #d9d9d9;
+    margin-top: 16px;
+}
+
+.artist-area .nav-links {
+    border: 2px solid #555;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    padding: 16px;
+    font-size: 12px;
+}
+
+.user-name {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5; 
+    color: #333;
+    word-break: break-word;
 }
 
 <%--프로필 수정 팝업--%>
@@ -192,6 +226,10 @@ layout-split:after {
     width: 100%;
 }
 
+.list-def{
+	font-size: 12px;
+}
+	
 
 </style>
 <head>
@@ -211,6 +249,7 @@ layout-split:after {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
   <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca839997c3bd98863fdc033319b76889&libraries=services"></script>
 <script>
 $(document).ready(function(){
 	
@@ -266,7 +305,6 @@ $(document).ready(function(){
 	
 });
 </script>
-
 </head>
 
 <body>
@@ -291,11 +329,13 @@ $(document).ready(function(){
      <div class="row-left">
       <aside class="artist-area">
         <div class="user-info card-style-profile "> <!-- PROFILE (MIDDLE-CONTAINER) -->
-   	
+   	<!--  
    	<p><a href="/devFw/fleaCreateStoreApproval.do">플리마켓 관리자(임시)</a></p>
+   	-->
    	<p><a href="/devFw/fleaSearchInit.do">플리마켓 마이페이지(임시)</a></p>
-	
+					 	
 		             <p class="addmember"><a target="_blank" href="#" id="participants_add"><i class="fa fa-user-plus pa-5x"></i></a></p>
+		            
 		                <c:forEach var="flea" items="${searchList}" > 
 				             <div class="profile-picture big-profile-picture clear">
 				                 <img width="120px" height="120px" alt="no picture" src="${flea.profile_photo}" />
@@ -315,12 +355,16 @@ $(document).ready(function(){
 				                 <c:out value="${flea.flea_name}"/>
 				              </font></div>
 				              
-				              <div class="profile-description"><font size="2">
+				              <div class="profile-description">
 				                 <c:out value="${flea.intro_cotent}"/>
-							  </font></div>
+							  </div>
 				        </c:forEach>
          </div> 
              <fieldset class="ui-field border-row">
+       			 <button type="button" class="btn btn-m btn-white pseudo-ico-share" data-ui="url-copy" data-ui-option="short" data-icon-event="hover" data-clipboard-text="#">
+			     <i class="fa fa-user-plus pa-5x"></i>
+			        <a href="">참가 신청</a><br></button>
+       			 
        			 <button type="button" class="btn btn-s btn-white toggle-heart detail-like pseudo-ico-love" data-name="starred-toolbar" data-starred-type="artist" data-init="" data-starred="" data-target-id="b20eee2f-b3eb-4fee-bc81-735f1e2318d6">
 	             <i class="ico-img">
 	                <span class="sp-icon icon-heart"></span>
@@ -334,6 +378,7 @@ $(document).ready(function(){
 		      	<button type="button" class="btn btn-m btn-white pseudo-ico-share" data-ui="url-copy" data-ui-option="short" data-icon-event="hover" data-clipboard-text="#">
 			    <i class="fa fa-share-alt"></i>
 			        공유하기<br></button>
+			     
             </fieldset>
             
             <div class="border-row">
@@ -344,17 +389,19 @@ $(document).ready(function(){
 		                 <span>홈</span>
 		             </a>
 		             -->
-	             <span>홈<br></span>
-	             <span>스토리<br></span>
-	             <span>판매 작품<br></span>
-	             <span>구매 후기<br></span>
+	             <span><i class="fa fa-home pa-5x"></i>홈<br></span>
+	             <span><i class="fa fa-book pa-5x"></i>스토리<br></span>
+	             <span><i class="fa fa-store pa-5x"></i>판매 작품<br></span>
+	             <span><i class="fa fa-edit pa-5x"></i>구매 후기<br></span>
 		         </nav>
 		     </div>
 		     
 		   <div class="list-def border-row">
-		        <strong class="caption">활동정보</strong>
+		        <!--  
+		        <strong class="caption"><font size="3">활동정보</font></strong>
+		        -->
 		        <dl class="list">
-		            <dt><font size="2">좋아하는 사람</font></dt>
+		            <dt>좋아하는 사람</dt>
 		            <dd>
 		                <a href="#t" data-modal-trigger="user-list" data-modal="open" data-type="favorite" data-title="좋아하는 사람"><span id="like-count">
 		                  <c:forEach var="flea" items="${searchList}" > 
@@ -363,16 +410,20 @@ $(document).ready(function(){
 		                  </span><em>명</em>
 		                </a>
 		            </dd>
-		            <dt><font size="2">판매중인 작품</font></dt>
+		            <dt>판매중인 작품</dt>
 		            <dd>
 		                <a href="#">11<em>개</em></a>
 		            </dd>
-		            <dt><font size="2"><a href="/devFw/fleaReview.do">구매후기</a></font></dt>
+		            <dt><a href="/devFw/fleaReview.do">구매후기</a></dt>
 		            <dd>
 		                <a href="#">124<em>개</em></a>
 		            </dd>
-       		 </dl>
-   		   </div>
+       		  </dl>
+       		</div>
+       		<br><br><br><br><br><br><br><br>
+       		
+   		   
+   		   
     	<br><br><br><br>
   	</aside>  
 		     
@@ -387,11 +438,13 @@ $(document).ready(function(){
           </ol>
            -->
           <div class="carousel-inner" role="listbox">
+          <!--  
            <c:forEach var="flea" items="${searchList}" > 
             <div class="carousel-item active">
               <img class="d-block img-fluid" id="img-full" src="${flea.main_photo}" alt="First slide">
             </div>
            </c:forEach>
+           -->
            <!--  
             <div class="carousel-item">
               <img class="d-block img-fluid" id="img-full" src="http://placehold.it/900x350" alt="Second slide">
@@ -413,6 +466,60 @@ $(document).ready(function(){
           </a>
           -->
         </div>	     
+		
+  <!-- 플리마켓 맵 
+   	<div class="fleaMap">
+    	<a href="/devFw/fleaMap.do" id="fleaMap">
+       	   <i class="fa fa-map-marker-alt pa-5x">오프라인 맵<br></i>
+        </a>
+    </div>
+    -->
+     <div class="ui_title__txt"><font size="2"><a href="#">오프라인 플리마켓 정보</a></font></div>
+ 	 <!-- 플리 맵 추가 -->
+     <div id="map" style="width:100%;height:250px;"></div>
+	   
+	  	   
+  	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };  
+		
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		
+		<c:forEach var="addressList" items="${searchList}">
+		
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch('${addressList.join_offline_location}', function(result, status) {
+		
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+		
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+		
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">일자:  <c:out value="${addressList.join_offline_date}"/><br>시간: <i class="fas fa-clock"></i><c:out value="${addressList.join_offline_time}"/><br><i class="fas fa-map-marker-alt"></i>장소: <c:out value="${addressList.join_offline_location}"/><br></div>'
+		        });
+		        infowindow.open(map, marker);
+		
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    } 
+		});   
+		</c:forEach>
+	</script>
 		
 		<br>
   <div class="ui_title__txt"><font size="2"><a href="/devFw/fleaProduct.do">판매 상품</a></font></div>

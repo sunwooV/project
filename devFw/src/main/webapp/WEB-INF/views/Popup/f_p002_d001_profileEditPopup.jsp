@@ -26,6 +26,12 @@ System.out.println(":::::flea_code" + flea_code);
 		//m_cnt++;
 	}
 </script>
+<script>
+$(document).on('click', '#close', function(){
+	opener.location.reload(); //팝업창을 띄우기 전의 부모창을 새로고침한다.
+	close();
+});
+</script>
 </head>
 <body>
 <!-- 프로필 수정 팝업창 -->
@@ -51,7 +57,7 @@ System.out.println(":::::flea_code" + flea_code);
         	<div id="m_file">
         	</div>
         	
-        <p><input type="submit" value="확인" name="commit" id="message_submit"/><a class="close" href="/">Cancel</a></p>
+        <p><input type="submit" value="적용" name="commit" id="message_submit"/>&nbsp;<input type="button" id="close" value="취소"/></p>
         <input type="hidden" id="flea_code" name="flea_code" value="<%=flea_code %>">
     </form>     
 
