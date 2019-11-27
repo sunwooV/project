@@ -18,6 +18,52 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Do+Hyeon|Merriweather|Noto+Sans+KR&display=swap&subset=korean"
 	rel="stylesheet">
+<script type="text/javascript">
+	//질문 리스트 열기
+	$(document).on('click', '.faq_open1', function() {
+		var num = $(this).attr("id");
+
+		var target = document.getElementById("a" + num);
+
+		if (target.style.display == 'none') { //접혀있는데 눌렀을 경우
+			$('#a' + num).css("display", "");
+		} else { //펴져있는데 눌렀을 경우
+			$('#a' + num).css("display", "none");
+		}
+
+	});
+
+	$(document).on('click', '.faq_open2', function() {
+		var num = $(this).attr("id");
+
+		var target = document.getElementById("b" + num);
+
+		if (target.style.display == 'none') { //접혀있는데 눌렀을 경우
+			$('#b' + num).css("display", "");
+		} else { //펴져있는데 눌렀을 경우
+			$('#b' + num).css("display", "none");
+		}
+
+	});
+
+	$(document).on('click', '.faq_open3', function() {
+		var num = $(this).attr("id");
+
+		var target = document.getElementById("c" + num);
+
+		if (target.style.display == 'none') { //접혀있는데 눌렀을 경우
+			$('#c' + num).css("display", "");
+		} else { //펴져있는데 눌렀을 경우
+			$('#c' + num).css("display", "none");
+		}
+
+	});
+</script>
+<style>
+.faq_open1, .faq_open2, .faq_open3 {
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
 
@@ -65,32 +111,96 @@
 			</div>
 		</div>
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->
-		<div class="col-sm-10">
+		<div class="col-sm-10" id="csmain">
 			<h1 style="font-size: 37px;">고객센터</h1>
-			<div class="row" style="margin-top: -1%;">
-				<div class="table" id="cs">
-					<h1 style="font-size: 25px;">무엇이든 물어보세요</h1>
-					<form class="form-inline my-2 my-lg-0">
-						<input class="form-control mr-sm-2" type="text" id="searchbar"
-							placeholder="검색어를 입력하세요"> <a href="#"><span
-							class="glyphicon glyphicon-search" style="font-size: 21px;"></span></a>
-					</form>
-				</div>
-				<div class="table" id="cs_view">
-					<div class="list-group">
-						<a href="${contextPath}/detail2.do"
-							class="list-group-item list-group-item-action">중고거래 </a> <a
-							href="${contextPath}/detail3.do"
-							class="list-group-item list-group-item-action">경매절차</a> <a
-							href="${contextPath}/detail4.do"
-							class="list-group-item list-group-item-action">플리마켓 유형 및 참여방법</a>
-						<a href="${contextPath}/detail1.do"
-							class="list-group-item list-group-item-action">판매자 입금절차 안내</a>
-					</div>
-					<!-- .my_point_list -->
 
+			<div class="row" id="cscs">
+				<h2>
+					🔔공지사항🔔 <span class="glyphicon glyphicon-plus"></span>
+				</h2>
+				<table class="table table-hover" style="margin-right: 51%;">
+					<tr>
+						<th>제목</th>
+						<th>게시일</th>
+					</tr>
+
+					<c:forEach var="event" items="${eventList}" varStatus='index'>
+						<tr>
+							<td>📍${event.no_title}</td>
+							<td>${event.no_writedate}</td>
+						</tr>
+					</c:forEach>
+				</table>
+
+
+
+
+				<div id="myshopMain">
+					<div class="myshopMain_sub1">
+						<div id="list">
+							<h3>
+								<a href="${contextPath}/mpBuyerOrderList.do"><strong>✔중고거래</strong></a>
+							</h3>
+						</div>
+					</div>
+					<div class="myshopMain_sub2">
+						<div id="list">
+							<h3>
+								<a href="${contextPath}/InfoInit.do"><strong>✔경매절차</strong></a>
+							</h3>
+
+						</div>
+					</div>
+					<div class="myshopMain_sub5">
+						<div id="list">
+							<h3>
+								<a href="${contextPath}/mypageQA.do"><strong>내가 쓴
+										게시글 확인</strong></a>
+							</h3>
+							<p style="font-size: 11px;">
+								<a href="${contextPath}/mypageQA.do"> 구매후기 / Q&A </a>
+							</p>
+						</div>
+					</div>
+					<div class="myshopMain_sub6">
+						<div id="list">
+							<h3>
+								<a href="/myshop/coupon/coupon.html"><strong>관심 상품</strong></a>
+							</h3>
+							<p style="font-size: 11px;">
+								<a href="/myshop/coupon/coupon.html">고객님이 보유하고 계신 쿠폰내역을
+									보여드립니다.</a>
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
+
+
+
+
+			<%-- 		<div class="list-group"
+						style="font-family: 'Do Hyeon', sans-serif; font-size: 24px; width: 30%; padding-top: 8%; margin-left: -3%;">
+						<a href="${contextPath}/detail2.do"
+							class="list-group-item list-group-item-action">✔중고거래 </a> <a
+							href="${contextPath}/detail3.do"
+							class="list-group-item list-group-item-action">✔경매절차</a> <a
+							href="${contextPath}/detail4.do"
+							class="list-group-item list-group-item-action">✔플리마켓 유형 및
+							참여방법</a> <a href="${contextPath}/detail1.do"
+							class="list-group-item list-group-item-action">✔판매자 입금절차 안내</a>
+					</div> --%>
+
+			<div class="table" id="cs">
+
+				<h1 style="font-size: 43px;">무엇이든 물어보세요</h1>
+				<form class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="text" id="searchbar"
+						placeholder="검색어를 입력하세요"> <a href="#"><span
+						class="glyphicon glyphicon-search" style="font-size: 21px;"></span></a>
+				</form>
+			</div>
+
 			<div class="row" style="padding-left: 1%;">
 				<ul class="nav nav-tabs" style="width: 90%;">
 					<li class="active"><a data-toggle="tab" href="#FAQ1">자주 묻는
@@ -103,79 +213,65 @@
 			<div class="tab-content">
 				<!--컨텐츠  -->
 				<div id="FAQ1" class="tab-pane fade in active">
-					<table>
-						<tr>
-							<th scope="row">tr 메뉴 숨김 처리</th>
-							<td><a href="#" id="viewhidden" onclick="return false;"
-								class="button">클릭</a></td>
-						</tr>
-						<tr id="hidden" style="display: none;">
-							<th>숨김메뉴</th>
-							<td><input type="text" /></td>
-						</tr>
-						<tr>
-							<th>하단</th>
-							<td>하단</td>
-						</tr>
-					</table>
-
-				</div>
-				<div id="FAQ2" class="tab-pane fade">
 					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th scope="col">Type</th>
-								<th scope="col">Column heading</th>
-								<th scope="col">Column heading</th>
-								<th scope="col">Column heading</th>
-							</tr>
-						</thead>
-						<tbody>
-
-							<tr class="table-secondary">
-								<th scope="row">Secondary</th>
-								<td>Column content</td>
-								<td>Column content</td>
-								<td>Column content</td>
-							</tr>
-							<tr class="table-secondary">
-								<th scope="row">Secondary</th>
-								<td>Column content</td>
-								<td>Column content</td>
-								<td>Column content</td>
-							</tr>
-							<tr class="table-secondary">
-								<th scope="row">Secondary</th>
-								<td>Column content</td>
-								<td>Column content</td>
-								<td>Column content</td>
-							</tr>
-
-
-						</tbody>
-					</table>
-				</div>
-				<div id="FAQ3" class="tab-pane fade">
-					<table class="table table-hover" id="evnet_td">
 						<tr>
 							<th>분류</th>
 							<th>제목</th>
 						</tr>
 
-						<c:forEach var="deilvery" items="${eventList}" varStatus='index'>
-							<tr align="center"
-								onclick="location.href='${contextPath}/eventDetail.do?no_number=${event.no_number}'">
-								<td>${deilvery.division}</td>
-								<td>${deilvery.no_title}</td>
+						<c:forEach var="top" items="${topList}" varStatus='FAQ1'>
+							<tr id=${FAQ1.count } class="faq_open1">
+								<td>${top.division}</td>
+								<td>${top.title}</td>
+							</tr>
+							<tr style="display: none;" id="a${FAQ1.count }">
+								<td colspan="2">${top.contents}</td>
+							</tr>
+						</c:forEach>
+					</table>
+
+				</div>
+				<div id="FAQ2" class="tab-pane fade">
+					<table class="table table-hover">
+						<tr>
+							<th>분류</th>
+							<th>제목</th>
+						</tr>
+
+						<c:forEach var="refund" items="${refundList}" varStatus='FAQ2'>
+							<tr id=${FAQ2.count } class="faq_open2">
+								<td>${refund.division}</td>
+								<td>${refund.title}</td>
+							</tr>
+							<tr style="display: none;" id="b${FAQ2.count }">
+								<td colspan="2">${refund.contents}</td>
 							</tr>
 						</c:forEach>
 					</table>
 				</div>
-				
-				
-				
+				<div id="FAQ3" class="tab-pane fade">
+					<table class="table table-hover">
+						<tr>
+							<th>분류</th>
+							<th>제목</th>
+						</tr>
+
+						<c:forEach var="deilvery" items="${deliveryList}" varStatus='FAQ3'>
+							<tr id=${FAQ3.count } class="faq_open3">
+								<td>${deilvery.division}</td>
+								<td>${deilvery.title}</td>
+							</tr>
+							<tr style="display: none;" id="c${FAQ3.count }">
+								<td colspan="2">${deilvery.contents}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+
+
+
 				<div id="FAQ4" class="tab-pane fade">
-			<%-- 		<div style="float: right;">
+					<%-- 		<div style="float: right;">
 						<select id="cntPerPage" name="sel" onchange="selChange()">
 							<option value="5"
 								<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄
@@ -192,7 +288,7 @@
 						</select>
 					</div> --%>
 					<!-- 옵션선택 끝 -->
-					<table class="table table-hover" id="evnet_td">
+					<table class="table table-hover">
 						<tr>
 							<th>글번호</th>
 							<th>제목</th>
@@ -202,8 +298,7 @@
 						</tr>
 
 						<c:forEach var="event" items="${eventList}" varStatus='index'>
-							<tr align="center"
-								onclick="location.href='${contextPath}/eventDetail.do?no_number=${event.no_number}'">
+							<tr>
 								<td>${event.no_number}</td>
 								<td>${event.no_title}</td>
 								<td>${event.no_writer}</td>
@@ -253,7 +348,6 @@
 			</div>
 		</div>
 	</div>
-
 </body>
 <script type="text/javascript">
 	function selChange() {

@@ -43,44 +43,20 @@
 			<h1>게시글 관리</h1>
 			<form name="frm" method="post" encType="UTF-8">
 				<h2 align="center">상품 Q&A 내역</h2>
-				<div class="event">
-					<div style="float: right;">
-						<select id="cntPerPage" name="sel" onchange="selChange()"
-							style="font-size: 14px;">
-							<option value="5"
-								<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄
-								보기</option>
-							<option value="10"
-								<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10줄
-								보기</option>
-							<option value="15"
-								<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15줄
-								보기</option>
-							<option value="20"
-								<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄
-								보기</option>
-						</select>
-					</div>
-					<!-- 옵션선택 끝 -->
+				<div class="container">
 					<table class="table table-hover" id="evnet_td">
 						<tr>
-							<th>번호</th>
-							<th>분류</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
-							<th>조회</th>
+							<th>상품번호</th>
+							<th>내용</th>
+							<th>답변여부</th>
 						</tr>
 
-						<c:forEach var="event" items="${eventList}" varStatus='index'>
-							<tr align="center"
-								onclick="location.href='${contextPath}/eventDetail.do?no_number=${event.no_number}'">
-								<td>${event.no_number}</td>
-								<td>${event.no_title}</td>
-								<td>${event.mem_no}</td>
-								<td>${event.view_cnt}</td>
-								<td>${event.no_division}</td>
-								<td>${event.writedate}</td>
+						<c:forEach var="qna" items="${qnaList}" varStatus='index'>
+							<tr>
+								<td>${qna.prod_number}</td>
+								<td>${qna.qna_content}</td>
+								<td>${qna.answer_YN}</td>
+		
 							</tr>
 						</c:forEach>
 					</table>

@@ -18,6 +18,18 @@
         <result property="contents" column="contents" />
 
 	</resultMap> 
+			<resultMap id="CS_P001_D001Result03" type="CS_P001_D001VO">
+	   <result property="division" column="division" />
+        <result property="title" column="title" />
+        <result property="contents" column="contents" />
+
+	</resultMap> 
+			<resultMap id="CS_P001_D001Result04" type="CS_P001_D001VO">
+	   <result property="division" column="division" />
+        <result property="title" column="title" />
+        <result property="contents" column="contents" />
+
+	</resultMap> 
 	
 	
 	
@@ -26,9 +38,10 @@
       <![CDATA[
          	
       
-  	SELECT no_number,no_title,no_writer,no_writedate,no_view_cnt
-						FROM notice 
-						ORDER BY no_number DESC 
+  	                 
+ SELECT  no_title, no_writedate
+						FROM notice
+						WHERE rownum <= 5
       	
       ]]>
 
@@ -51,18 +64,48 @@
 	]]>
 	</select>
 	
-	<!-- 배달문의 -->
-	<select id="viewdelivery" resultMap="CS_P001_D001Result02">
+	<!-- 배송문의 -->
+	<select id="selectAlldeliveryList" resultMap="CS_P001_D001Result02">
       <![CDATA[
          	
       
-SELECT  DIVISION,TITLE,CONTENTS
-FROM FNQ
-WHERE DIVISION IN '배송문의'
-ORDER BY TITLE;
+select  division,title,contents
+from fnq
+where division in '배송문의'
+order by title
       	
       ]]>
 
 	</select>
+	
+	<!-- 교환.환불 -->
+		<select id="selectAllrefundList" resultMap="CS_P001_D001Result03">
+      <![CDATA[
+         	
+      
+select  division,title,contents
+from fnq
+where division in '반품/교환/환불'
+order by title
+      	
+      ]]>
+
+	</select>
+	
+		<!-- 자주묻는질문 -->
+			<select id="selectAlltopList" resultMap="CS_P001_D001Result04">
+      <![CDATA[
+         	
+      
+select  division,title,contents
+from fnq	
+where division in '자주묻는질문'
+order by title
+      	
+      ]]>
+
+	</select>
+	
+	
 	
 </mapper>

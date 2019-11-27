@@ -83,16 +83,16 @@
 		 ]]>
 		</selectKey>
 		<choose>
+			<when test="auction_date == 10"> <!-- test -->
+			<![CDATA[
+				INSERT INTO product (prod_number, reused_yn, auction_yn, flea_yn, auction_price, auction_bid, auction_date, auction_start_date, auction_end_date, prod_category_code, memberId, prod_price, prod_amount, prod_title, send_way, post_date, sale_percent, buy_price, direct_area, editor, represent_image)
+				VALUES (#{prod_number}, #{reused_yn}, #{auction_yn}, #{flea_yn}, #{auction_price}, #{auction_price}, #{auction_date}, sysdate, sysdate+1/60/24, #{prod_category_code}, #{memberId}, #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{images})
+			 ]]>
+			</when>
 			<when test="auction_date != null and auction_date != 10"> <!-- 경매 체크했을 때 -->
 			<![CDATA[
 				INSERT INTO product (prod_number, reused_yn, auction_yn, flea_yn, auction_price, auction_bid, auction_date, auction_start_date, auction_end_date, prod_category_code, memberId, prod_price, prod_amount, prod_title, send_way, post_date, sale_percent, buy_price, direct_area, editor, represent_image)
 				VALUES (#{prod_number}, #{reused_yn}, #{auction_yn}, #{flea_yn}, #{auction_price}, #{auction_price}, #{auction_date}, sysdate, sysdate+#{auction_date}, #{prod_category_code}, #{memberId}, #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{images})
-			 ]]>
-			</when>
-			<when test="auction_date == 10"> <!-- test -->
-			<![CDATA[
-				INSERT INTO product (prod_number, reused_yn, auction_yn, flea_yn, auction_price, auction_bid, auction_date, auction_start_date, auction_end_date, prod_category_code, memberId, prod_price, prod_amount, prod_title, send_way, post_date, sale_percent, buy_price, direct_area, editor, represent_image)
-				VALUES (#{prod_number}, #{reused_yn}, #{auction_yn}, #{flea_yn}, #{auction_price}, #{auction_price}, #{auction_date}, sysdate, sysdate+10/60/24, #{prod_category_code}, #{memberId}, #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{images})
 			 ]]>
 			</when>
 			<otherwise> <!-- 경매 외 다른 메뉴 선택했을 때 -->

@@ -39,19 +39,16 @@
 
 
 			<div class="row">
-				<img id="img" src="${contextPath }/resources/img/logo.jpg"/>
+				<img id="img" src="${contextPath }/resources/img/logo.jpg" />
 				<div class="jumbotron"
 					style="margin-left: 3%; background-color: #d3d3d363; width: 86%;">
-					<h2>소개</h2>
-					<p>☝ 참여형</p>
-					<h6>1</h6>
-					<h6>1</h6>
-					<h6>1</h6>
-
+					<p>금도끼은도끼는 중고거래,경매,플리마켓을 한번에 이용하는 MULTI IN 1 마켓입니다</p>
+					<h6>또한 구매자와 판매자가 안전거래를 할 수 있도록 안전거래 방식을 이용 합니다</h6>
+					<br>
 					<p>★고객 환급 방법★</p>
-					<h6>1</h6>
-					<h6>1</h6>
-					<h6>1</h6>
+					<h6>판매자가 상품을 발송함과 동시에 구매자의 마이페이지에는 구매완료 버튼이 생성됩니다</h6>
+					<h6>구매자가 상품수령 후 구매완료 버튼을 클릭하면 상품금액은 사이트로 입금 되었다가 매월 말일 환급을 받을
+						수 있습니다</h6>
 
 
 				</div>

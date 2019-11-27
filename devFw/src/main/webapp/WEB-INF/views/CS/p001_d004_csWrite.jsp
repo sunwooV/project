@@ -14,7 +14,7 @@
 	}
 	//작성취소 후 이전화면으로 돌아가기
 	function cancelCsWrite() {
-
+		history.back(-1);
 	}
 </script>
 <style type="text/css">

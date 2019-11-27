@@ -704,7 +704,7 @@
 
 				<div id="auctionDaySelect" style="display: none">
 					<a>경매 일자 * &nbsp&nbsp</a> 
-						<input type="checkbox" name="auction_date" value="10" class="checkSelect2" onclick="oneCheckbox(this)" id="test"/>10분(test) 
+						<input type="checkbox" name="auction_date" value="10" class="checkSelect2" onclick="oneCheckbox(this)" id="test"/>1분(test) 
 						<input type="checkbox" name="auction_date" value="3" class="checkSelect2" onclick="oneCheckbox(this)" />3일 
 						<input type="checkbox" name="auction_date" value="5" class="checkSelect2" onclick="oneCheckbox(this)" />5일 
 						<input type="checkbox" name="auction_date" value="7" class="checkSelect2" onclick="oneCheckbox(this)" />7일 
@@ -889,25 +889,25 @@
 						<c:choose>
 							<c:when test="${modifyProd.auction_yn == 'y' }"> <!-- 이미 경매가 진행 중인 상품은 경매일자 변경 불가능 -->
 								<c:if test="${modifyProd.auction_date == 10 }">
-									<input type="checkbox" name="auction_date" value="10" class="checkSelect2" onclick="oneCheckbox(this)" id="test" disabled="disabled" checked="checked"/>10분(test) 
+									<input type="checkbox" name="auction_date" value="10" class="checkSelect2" onclick="oneCheckbox(this)" id="test" disabled="disabled" checked="checked"/>1분(test) 
 									<input type="checkbox" name="auction_date" value="3" class="checkSelect2" onclick="oneCheckbox(this)" disabled="disabled"/>3일 
 									<input type="checkbox" name="auction_date" value="5" class="checkSelect2" onclick="oneCheckbox(this)" disabled="disabled"/>5일 
 									<input type="checkbox" name="auction_date" value="7" class="checkSelect2" onclick="oneCheckbox(this)" disabled="disabled"/>7일 
 								</c:if>
 								<c:if test="${modifyProd.auction_date == 3 }">
-									<input type="checkbox" name="auction_date" value="10" class="checkSelect2" onclick="oneCheckbox(this)" id="test" disabled="disabled"/>10분(test) 
+									<input type="checkbox" name="auction_date" value="10" class="checkSelect2" onclick="oneCheckbox(this)" id="test" disabled="disabled"/>1분(test) 
 									<input type="checkbox" name="auction_date" value="3" class="checkSelect2" onclick="oneCheckbox(this)" disabled="disabled" checked="checked"/>3일 
 									<input type="checkbox" name="auction_date" value="5" class="checkSelect2" onclick="oneCheckbox(this)" disabled="disabled"/>5일 
 									<input type="checkbox" name="auction_date" value="7" class="checkSelect2" onclick="oneCheckbox(this)" disabled="disabled"/>7일 
 								</c:if>
 								<c:if test="${modifyProd.auction_date == 5 }">
-									<input type="checkbox" name="auction_date" value="10" class="checkSelect2" onclick="oneCheckbox(this)" id="test" disabled="disabled"/>10분(test) 
+									<input type="checkbox" name="auction_date" value="10" class="checkSelect2" onclick="oneCheckbox(this)" id="test" disabled="disabled"/>1분(test) 
 									<input type="checkbox" name="auction_date" value="3" class="checkSelect2" onclick="oneCheckbox(this)" disabled="disabled"/>3일 
 									<input type="checkbox" name="auction_date" value="5" class="checkSelect2" onclick="oneCheckbox(this)" disabled="disabled" checked="checked"/>5일 
 									<input type="checkbox" name="auction_date" value="7" class="checkSelect2" onclick="oneCheckbox(this)" disabled="disabled"/>7일 
 								</c:if>
 								<c:if test="${modifyProd.auction_date == 7 }">
-									<input type="checkbox" name="auction_date" value="10" class="checkSelect2" onclick="oneCheckbox(this)" id="test" disabled="disabled"/>10분(test) 
+									<input type="checkbox" name="auction_date" value="10" class="checkSelect2" onclick="oneCheckbox(this)" id="test" disabled="disabled"/>1분(test) 
 									<input type="checkbox" name="auction_date" value="3" class="checkSelect2" onclick="oneCheckbox(this)" disabled="disabled"/>3일 
 									<input type="checkbox" name="auction_date" value="5" class="checkSelect2" onclick="oneCheckbox(this)" disabled="disabled"/>5일 
 									<input type="checkbox" name="auction_date" value="7" class="checkSelect2" onclick="oneCheckbox(this)" disabled="disabled" checked="checked"/>7일 
@@ -918,7 +918,7 @@
 								※경매 진행 중에는 경매 일자를 변경할 수 없습니다.※</div>
 							</c:when>
 							<c:otherwise>
-								<input type="checkbox" name="auction_date" value="10" class="checkSelect2" onclick="oneCheckbox(this)" id="test"/>10분(test) 
+								<input type="checkbox" name="auction_date" value="10" class="checkSelect2" onclick="oneCheckbox(this)" id="test"/>1분(test) 
 								<input type="checkbox" name="auction_date" value="3" class="checkSelect2" onclick="oneCheckbox(this)"/>3일 
 								<input type="checkbox" name="auction_date" value="5" class="checkSelect2" onclick="oneCheckbox(this)"/>5일 
 								<input type="checkbox" name="auction_date" value="7" class="checkSelect2" onclick="oneCheckbox(this)"/>7일 

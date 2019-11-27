@@ -12,6 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 public interface F_P002_D001Controller {
 	public ModelAndView fleaMystore(String flea_code, String memberid, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	
-	
+	public ModelAndView editProfile(HttpServletRequest request, HttpServletResponse response) throws Exception ;
+	public ModelAndView successEditProfile(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

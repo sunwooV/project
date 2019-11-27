@@ -69,13 +69,46 @@ public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 			System.out.println(list.get(i));
 		}
 		System.out.println("확인 필요");
-		ModelAndView mav = new ModelAndView("FleaMarket/p002_d001_fleaMystore2");
+		ModelAndView mav = new ModelAndView("FleaMarket/p002_d001_fleaMystore");
 		mav.addObject("newProduct", newProduct);
 		mav.addObject("searchList", list);
 		
 		System.out.println("===마지막===");
 		return mav;
 	}
-
+	
+	@Override
+	@RequestMapping(value = "/editProfile.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@ResponseBody
+	public ModelAndView editProfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		Enumeration enu = request.getParameterNames();
+		while (enu.hasMoreElements()) {
+			String name = (String)enu.nextElement();
+			String value = request.getParameter(name);
+			dataMap.put(name, value);
+			System.out.println(dataMap);
+		}
+		
+		
+		ModelAndView mav = new ModelAndView("Popup/f_p002_d001_profileEditPopup");
+		
+		return mav;
+	}
+	
+	
+	@Override
+	@RequestMapping(value = "/successEditProfile.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@ResponseBody
+	public ModelAndView successEditProfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		
+		
+		ModelAndView mav = new ModelAndView("Popup/f_p002_d001_profileEditSuccess");
+		
+		return mav;
+	}
 
 }

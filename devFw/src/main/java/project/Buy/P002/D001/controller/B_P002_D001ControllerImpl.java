@@ -20,7 +20,7 @@ public class B_P002_D001ControllerImpl implements B_P002_D001Controller {
 	@RequestMapping(value="/confirmBuy.do", method= {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView confirmBuy(HttpServletRequest request) throws IOException {
 		request.setCharacterEncoding("utf-8");
-		ModelAndView mav = new ModelAndView("Buy/p002_d001_confirmBuy");
+		ModelAndView mav = new ModelAndView("Popup/b_p002_d001_confirmBuy");
 		return mav;
 	}
 	

@@ -58,7 +58,7 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 	@Override
 	@RequestMapping(value = "/fleaCreateStoreInsert.do", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
-	public ResponseEntity fleaCreateStoreInsert(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ResponseEntity fleaCreateStoreInsert(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		Enumeration enu = request.getParameterNames();
@@ -68,7 +68,12 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 			dataMap.put(name, value);
 		}
 		
+		String memberid = (String)session.getAttribute("memberid");
+		System.out.println("멤버아이디는 "+ memberid);
+		dataMap.put("memberid", memberid);
+
 		System.out.println("dataMap::::::::::" + dataMap);
+		
 		
 		String message;
 		ResponseEntity resEnt = null;

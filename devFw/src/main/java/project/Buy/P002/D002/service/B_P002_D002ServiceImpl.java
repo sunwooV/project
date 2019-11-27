@@ -16,12 +16,13 @@ import project.Buy.P002.D002.vo.B_P002_D002VO;
 @Transactional(propagation = Propagation.REQUIRED)
 public class B_P002_D002ServiceImpl implements B_P002_D002Service{
 	@Autowired
-	private B_P002_D002DAO b_p002_d003DAO;
+	private B_P002_D002DAO b_p002_d002DAO;
 
+	//쓴 리뷰 내용 DB insert
 	@Override
-	public List<B_P002_D002VO> selectCart(Map<String, Object> searchMap) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+	public void insertReview(Map<String, Object> searchMap) throws DataAccessException {
+		b_p002_d002DAO.insertReview(searchMap);
+	
 	}
 
 	

@@ -15,9 +15,11 @@ public interface CS_P001_D001Controller {
 	public ModelAndView eventDetail(@RequestParam("NO_NUMBER") String no_number, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
 
-	public ModelAndView cs(PagingVO vo, @RequestParam("nowPage") String nowPage,  @RequestParam(value="cntPerPage") String cntPerPage, HttpServletRequest request,
+	public ModelAndView cs(PagingVO vo,@RequestParam("nowPage") String nowPage,  @RequestParam(value="cntPerPage") String cntPerPage, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
 
-	public ModelAndView deilvery(@RequestParam("DIVISION") String division, HttpServletRequest request,
-			HttpServletResponse response) throws Exception;
+	/*
+	 * public ModelAndView delivery(String division, HttpServletRequest request,
+	 * HttpServletResponse response) throws Exception;
+	 */
 }
