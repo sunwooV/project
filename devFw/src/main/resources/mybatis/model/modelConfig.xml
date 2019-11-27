@@ -45,6 +45,7 @@
         <typeAlias type="project.Customers.P002.D005.vo.C_P002_D005VO"  alias="C_P002_D005VO" />
         <typeAlias type="project.Customers.P006.D001.vo.C_P006_D001VO"  alias="C_P006_D001VO" />
         <typeAlias type="project.Customers.P002.D008.vo.C_P002_D008VO"  alias="C_P002_D008VO" />
+        <typeAlias type="project.Customers.P008.D001.vo.C_P008_D001VO"  alias="C_P008_D001VO" />
         
         
 

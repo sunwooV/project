@@ -1,11 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+ <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
+        <script type="text/javascript">
+
+            
+        	//상세정보, Q&A, 상품후기 나누는 탭
+        	function tab_menu(num){
+        		 var f = $('.menu_tab').find('li');
+        		 for ( var i = 0; i < f.length; i++ ) {
+        			  if ( i == num) {
+        			   f.eq(i).addClass('active');
+        			   $('.menu_tab0' + i ).show();
+        			  } else {
+        			   f.eq(i).removeClass('active');  
+        			   $('.menu_tab0' + i ).hide();
+        			  }
+        		}
+        	}
+        </script>
 <style>
 
 
@@ -148,18 +169,36 @@ li {
 
 .orderHistoryTable {
 	text-align: center;
-	width: -webkit-fill-available;
-	border-top:1px solid darkgray;
+	width: 1300px;
+	border-top:1px solid gray;
 	border-collapse:collapse;
+
 }
 
 .OHtableTitle{
 background-color:#faf5f1;
 }
+.tab-content{
+	width: 758px;
+	margin-left:-100px;
+
+}
+
+.up{
+	width:75%;
+	margin:0px auto;
+}
+.down{
+	width:75%;
+	float:left;
+	margin:30px 13%;
+}
 
 </style>
 <body>
+
 <h2 style="margin: 45px;">포인트 조회</h2>
+  
 <div class="xans-element- xans-myshop xans-myshop-summary ec-base-box gHalf"><ul>
 <li class="">
 <strong class="title">총 포인트</strong> <span class="data"><span id="xans_myshop_summary_total_mileage">${point.total_point }point</span>&nbsp;</span>
@@ -189,55 +228,159 @@ background-color:#faf5f1;
         </ul>
 </div>
 
-	<!-- 주문내역 상단 -->
-	<div class="orderHistoryHeader">
-		<h3>주문 내역 조회</h3>
-	</div>
+<div class="down"> 
+<!-- 상품 상세설명, Q&A, 후기 -->
+			<ul class="nav nav-tabs">
+			    <li class="active"><a data-toggle="tab" href="#usablepoint">적립 포인트</a></li>
+			    <li><a data-toggle="tab" href="#usepoint">사용한 포인트</a></li>
+			    <li><a data-toggle="tab" href="#disappear">소멸예정 포인트</a></li>
+			<!--     <li><a data-toggle="tab" href="#menu3">Menu 3</a></li> -->
+			</ul>
+			<div class="tab-content">
+			<div id="usablepoint" class="tab-pane fade in active">
+			<br>
+			    	<h2>적립포인트</h2>
+			    	<br>
+			    	   <div class="orderHistoryHeader"></div>
 	<div class="orderHistoryContainer">
 		<!-- 주문 상품 정보 테이블 시작  -->
 		<table class="orderHistoryTable" id="orderHistoryTable">
 			<!-- 주문 상품 정보 테이블 상단 제목   -->
 			<thead class="orderHistoryTableTitles">
 				<tr class="OHtableTitle">
-					<th class="OHT_ttl"><span>주문일자<br>[주문번호]
+					<th class="OHT_ttl"><span>적립날짜<br>
 					</span></th>
-					<th class="OHT_ttl"><span>상품이미지</span></th>
-					<th class="OHT_ttl"><span>상품정보</span></th>
-					<th class="OHT_ttl"><span>수량</span></th>
-					<th class="OHT_ttl"><span>상품구매금액</span></th>
-					<th class="OHT_ttl"><span>주문처리상태</span></th>
-					<th class="OHT_ttl"><span>제품상태처리</span></th>
+					<th class="OHT_ttl"><span>내용</span></th>
+					<th class="OHT_ttl"><span>적립금</span></th>
 				</tr>
 			</thead>
-			<tbody>
-				<!-- 첫 번째 상품 내용 -->
-				<tr class="orderHistoryContents">
-					<td class="OHC_cont"><span class="orderDate" id="orderDate">2019-11-20</span>
-						<br> <a href="#" class="orderNum" id="orderNum">[20191120-0000000]</a></td>
-
-					<td class="OHC_cont"><span class="prod_1st_img" id="prod_1st_img">이미지</span></td>
-					<td class="OHC_cont"><span class="prod_short_detail"
-						id="prod_short_detail">상품 정보 설명들어감 제목 + 선택한 옵션</span></td>
-					<td class="OHC_cont"><span class="prod_cnt" id="prod_cnt">2</span></td>
-					<td class="OHC_cont"><span class="ttl_eachProd_price"
-						id="ttl_eachProd_price">29,000원</span></td>
-					<td class="OHC_cont"><span class="order_state"
-						id="order_state">배송준비중</span></td>
-
-					<td class="OHC_cont"><input type="button" value="취소신청 및 교환 신청"
-						class="orderButton" id="cancel_order" onClick="location.href='${contextPath}/changeProduct.do'">
-						<br>
-						<input type="button" value="리뷰쓰기"
-						class="orderButton" id="review_order" onClick="location.href='${contextPath}/review.do'">
-						<br>
-						<input type="button" value="구매확정하기"
-						class="orderButton" id="confirmBuy_order" onClick="location.href='${contextPath}/confirmBuy.do'">
-						</td>
-				</tr>
-				<!-- 2번째 상품 내용 -->
-			</tbody>
+	
+	<c:set var="size" value="${listSize }"/>
+	<c:choose>
+                        <c:when test="${size == 0}">
+                            <tr>
+                                <td colspan="20" align="center">
+                              		조회된 결과가 없습니다.
+                                </td>
+                            </tr>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="row" items="${list}" >
+                            
+                                <tr>
+                                
+                                    <td align="center">
+                                     <fmt:formatDate value="${row.point_start}" pattern="yyyy-MM-dd HH:mm:ss" />
+                                     </td>
+                                       <td align="center">${row.content}</td>
+                                    <td align="center">${row.score}</td>
+                                </tr>
+                            </c:forEach>
+                        </c:otherwise> 
+                    </c:choose>
 		</table>
 	</div>
+			</div>
+			
+			
+			 <div id="usepoint" class="tab-pane fade">
+			 <br>
+			      <h2>사용포인트</h2>
+			      <br>
+			      <div class="orderHistoryHeader"></div>
+	<div class="orderHistoryContainer">
+		<!-- 주문 상품 정보 테이블 시작  -->
+		<table class="orderHistoryTable" id="orderHistoryTable">
+			<!-- 주문 상품 정보 테이블 상단 제목   -->
+			<thead class="orderHistoryTableTitles">
+				<tr class="OHtableTitle">
+					<th class="OHT_ttl"><span>사용날짜<br>
+					</span></th>
+					<th class="OHT_ttl"><span>내용</span></th>
+					<th class="OHT_ttl"><span>사용한 포인트</span></th>
+				</tr>
+			</thead>
+	
+	<c:set var="size" value="${listSize }"/>
+	<c:choose>
+                        <c:when test="${size == 0}">
+                            <tr>
+                                <td colspan="20" align="center">
+                              		조회된 결과가 없습니다.
+                                </td>
+                            </tr>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="row" items="${list}" >
+                            
+                                <tr>
+                                
+                                    <td align="center">
+                                     <fmt:formatDate value="${row.point_start}" pattern="yyyy-MM-dd HH:mm:ss" />
+                                     </td>
+                                       <td align="center">${row.content}</td>
+                                    <td align="center">${row.score}</td>
+                                </tr>
+                            </c:forEach>
+                        </c:otherwise> 
+                    </c:choose>
+		</table>
+	</div>
+</div>
 
+ <div id="disappear" class="tab-pane fade">
+ <br>
+			      <h2>소멸포인트</h2>
+			      <br>
+			           <div class="orderHistoryHeader"></div>
+	<div class="orderHistoryContainer">
+		<!-- 주문 상품 정보 테이블 시작  -->
+		<table class="orderHistoryTable" id="orderHistoryTable">
+			<!-- 주문 상품 정보 테이블 상단 제목   -->
+			<thead class="orderHistoryTableTitles">
+				<tr class="OHtableTitle">
+					<th class="OHT_ttl"><span>적립날짜<br></span></th>
+					<th class="OHT_ttl"><span>소멸예정날짜<br></span></th>
+					<th class="OHT_ttl"><span>내용</span></th>
+					<th class="OHT_ttl"><span>소멸 포인트</span></th>
+				</tr>
+			</thead>
+	
+	<c:set var="size" value="${listSize }"/>
+	<c:choose>
+                        <c:when test="${size == 0}">
+                            <tr>
+                                <td colspan="20" align="center">
+                              		조회된 결과가 없습니다.
+                                </td>
+                            </tr>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="row" items="${list}" >
+                            
+                                <tr>
+                                
+                                    <td align="center">
+                                     <fmt:formatDate value="${row.point_start}" pattern="yyyy-MM-dd HH:mm:ss" />
+                                     </td>
+                                      <td align="center">
+                                     <fmt:formatDate value="${row.point_start}" pattern="yyyy-MM-dd HH:mm:ss" />
+                                     </td>
+                                       <td align="center">${row.content}</td>
+                                    <td align="center">${row.score}</td>
+                                </tr>
+                            </c:forEach>
+                        </c:otherwise> 
+                    </c:choose>
+		</table>
+	</div>
+			    </div>
+</div>
+</div>
+
+
+
+	
+</form>
 </body>
 </html>

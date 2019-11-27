@@ -16,7 +16,10 @@ public class C_P002_D008VO {
 	private Date point_start;
 	private Date disappear_point_date;
 	private Date use_point_date;
-	private String point_content;
+	private String content;
+	private int score;
+	
+
 	
 	
 	public String getMember_point_code() {
@@ -80,13 +83,22 @@ public class C_P002_D008VO {
 	public void setUse_point_date(Date use_point_date) {
 		this.use_point_date = use_point_date;
 	}
-	public String getPoint_content() {
-		return point_content;
+	public String getContent() {
+		return content;
 	}
-	public void setPoint_content(String point_content) {
-		this.point_content = point_content;
+	public void setContent(String content) {
+		this.content = content;
 	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}	
 	
-	
-	
+	@Override
+    public String toString() {
+        return "C_P002_D008VO [point_start=" + point_start + ", content=" + content + ", score=" + score + " ]";
+    }
+ 
 }

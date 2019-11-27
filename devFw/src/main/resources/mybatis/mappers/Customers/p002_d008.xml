@@ -8,7 +8,7 @@
 
 	<select id="point_check" parameterType="String" resultType="C_P002_D008VO">
 	<![CDATA[
-		select * from member_point where MEMBERID = #{memberid}
+		select mp.*, (select POINT_SCORE from point p where p.POINT_NUMBER=mp.POINT_NUMBER) as score,(select POINT_CONTENT from point p where p.POINT_NUMBER=mp.POINT_NUMBER) as content from member_point mp where MEMBERID = #{memberid}
 			  ]]>
 	</select>
 	
@@ -17,6 +17,13 @@
 		select * from seller_rank where MEMBERID = #{memberid}
 			  ]]>
 	</select>
+	
+	<!--  <select id="usable_point" parameterType="String" resultType="C_P002_D008VO">
+	<![CDATA[
+		select POINT_START, (select POINT_SCORE from point p where p.POINT_NUMBER=mp.POINT_NUMBER),(select POINT_CONTENT from point p where p.POINT_NUMBER=mp.POINT_NUMBER) from member_point mp where MEMBERID = #{memberid}
+			  ]]>
+	</select>-->
+	
 	
 
 	<!-- 비밀번호 변경 

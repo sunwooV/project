@@ -1,5 +1,7 @@
 package project.Customers.P002.D008.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -37,11 +39,14 @@ public class C_P002_D008ControllerImpl implements C_P002_D008Controller {
 	      String memberid = (String)session.getAttribute("memberid");
 	      System.out.println(memberid);
 	       point=c_p002_d008_Service.point_check(memberid,response);
-	      
+	       List<C_P002_D008VO> list = c_p002_d008_Service.boardList(memberid); 
+
 		   //session.setAttribute("point", point);
-		   System.out.println("아이디입니다아아아아아앙"+point.getUseable_point());
+		   System.out.println("아이디입니다아아아아아앙"+list);
 	      ModelAndView mav = new ModelAndView("Customers/p002_d008_point");
 	      mav.addObject("point", point);
+	      mav.addObject("list", list);
+	      mav.addObject("listSize", list.size());
 	      return mav;
 	   }
 	   

@@ -1,6 +1,7 @@
 package project.Customers.P002.D008.service;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -25,5 +26,10 @@ public class C_P002_D008ServiceImpl implements C_P002_D008Service{
 //		out.println(c_p002_d008_DAO.point_check(memberid));
 //		out.close();
 	}
+	
+	@Override
+    public List<C_P002_D008VO> boardList(String memberid) throws Exception {
+        return c_p002_d008_DAO.boardList(memberid); 
+    }
 
 }

@@ -59,11 +59,11 @@
 			<div class="myshopMain_sub4">
 				<div id="list">
 					<h3>
-						<a href="/myshop/mileage/historyList.html"><strong>판매자
+						<a href="${contextPath }/gradesearchInit.do"><strong>판매자
 								등급 관리</strong></a>
 					</h3>
 					<p style="font-size: 11px;">
-						<a href="/myshop/mileage/historyList.html">등급 </a>
+						<a href="${contextPath }/gradesearchInit.do">등급 </a>
 					</p>
 				</div>
 			</div>
