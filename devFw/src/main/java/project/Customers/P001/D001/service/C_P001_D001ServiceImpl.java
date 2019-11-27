@@ -57,6 +57,15 @@ public class C_P001_D001ServiceImpl implements C_P001_D001Service {
 		out.close();
 	}
 	
+	@Override
+	public void join_point(C_P001_D001VO member, HttpServletResponse response) throws Exception {
+		
+		System.out.println("service아이디=="+member.getMemberid());
+		PrintWriter out = response.getWriter();
+		out.println(c_p001_d001_DAO.join_point(member));
+		out.close();
+		
+	}
 	
 	@Override
 	public void check_join(String userId, HttpServletResponse response) throws Exception{
@@ -123,7 +132,9 @@ public class C_P001_D001ServiceImpl implements C_P001_D001Service {
 		}else {
 			member.setApproval_key(create_key());
 			c_p001_d001_DAO.join_member(member);
+			c_p001_d001_DAO.join_point(member);
 			c_p001_d001_DAO.again(member.getEmail());
+	
 			//인증메일 발송
 			send_mail(member,"join");
 			out.println("<script>");
@@ -337,6 +348,8 @@ public class C_P001_D001ServiceImpl implements C_P001_D001Service {
 					return memberid;
 				}
 			}
+
+	
 		}                                                                                                                                                                                                                                    
 
 

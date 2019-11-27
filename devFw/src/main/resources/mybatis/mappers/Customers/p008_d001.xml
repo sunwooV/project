@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Customers.rank">
+	<resultMap id="c_p008_d001Result" type="C_P008_D001VO">
+	    <result property="rank_group" column="rank_group" />
+		<result property="grade_photo" column="grade_photo" />
+		<result property="rank_score" column="rank_score" />
+	</resultMap>
+
+	<select id="searchList" resultMap="c_p008_d001Result" parameterType="java.util.Map"> 
+      <![CDATA[
+         select rank_group, grade_photo, rank_score
+         from   seller_rank
+      ]]>
+		<where>
+			<if test=" rank_group != ''  and  rank_group != null">
+				rank_group = #{rank_group}
+			</if>
+		</where>
+	</select>
+	
+	   <insert id="insertData" parameterType="java.util.Map">
+  
+      <![CDATA[
+         INSERT INTO seller_rank (rank_group,grade_photo, rank_score)
+         values(#{rank_group},#{grade_photo}, #{rank_score})
+
+       ]]>
+   </insert>
+	
+	
+	<update id="updateData" parameterType="java.util.Map">
+		update seller_rank
+		set  rank_group = #{rank_group}, grade_photo =#{grade_photo},rank_score = #{rank_score}
+		where rank_group = #{rank_group}
+	</update>	
+	
+	
+	<delete id="deleteData" parameterType="java.util.Map">
+		delete seller_rank
+		where rank_group = #{rank_group}
+	</delete>	
+</mapper>
