@@ -11,4 +11,5 @@ public interface P_P001_D001Service {
 	public List<P_P001_D001VO> searchProduct(Map<String, Object> searchMap) throws DataAccessException;
 	public List<P_P001_D001VO> searchHighCategory(Map<String, Object> searchMap) throws DataAccessException;
 	public List<P_P001_D001VO> searchMiddleCategory(Map<String, Object> searchMap) throws DataAccessException;
+	
 }

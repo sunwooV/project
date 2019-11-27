@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,8 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 	S_P001_D003Service S_P001_D003Service;
 	@Autowired
 	S_P001_D008Service S_P001_D008Service;
+	@Autowired
+	private HttpSession session;
 	
 	@Override
 	@RequestMapping(value = "/detail.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -42,9 +45,22 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		Map<String, Object> searchMap2 = new HashMap<String, Object>();
 
-		searchMap.put("prod_number", prod_number);	 
+		String memberId = (String) session.getAttribute("memberid");
+		
+		searchMap.put("prod_number", prod_number);
+		searchMap.put("memberId", memberId);
+		
+		ModelAndView mav = new ModelAndView("Sell/p001_d002_detailProduct");
+		
 		List list = S_P001_D002Service.detailProduct(searchMap);
 		List tags = S_P001_D002Service.tagList(searchMap);
+		System.out.println("memberId" + memberId);
+		if(memberId != null) {
+			String likeProd = S_P001_D002Service.likeProd(searchMap);
+			mav.addObject("likeProd", likeProd);
+			System.out.println("----likeProd" + likeProd);
+		}
+		
 				
 		searchMap2.put("prod_category_code", ((S_P001_D002VO)list.get(0)).getProd_category_code());	 
 		
@@ -59,12 +75,14 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 
 		List prodQnA = S_P001_D003Service.selectQnA(searchMap); //Q&A List		
 		
+		
 		System.out.println("tag 들 :::: " + tags);
 		
 		System.out.println("controller 통과");
-		ModelAndView mav = new ModelAndView("Sell/p001_d002_detailProduct");
+
 		mav.addObject("detail", list);
 		mav.addObject("tags", tags);
+
 		mav.addObject("high_category", high_category);
 		mav.addObject("middle_category", middle_category);
 		mav.addObject("prodQnA", prodQnA);
@@ -76,6 +94,50 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		return mav;
 	}
 	
+	
+	@Override
+	@RequestMapping(value = "/detail/likeProd.do", method = { RequestMethod.POST, RequestMethod.POST })
+	public void likeProd(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+
+		System.out.println("detail/likeProd.do 들어옴");
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>(); //insert data
+		Enumeration enu = request.getParameterNames();
+		//parameter로 넘어온 값들을 dataMap이라는 Map에 저장한다.
+		while (enu.hasMoreElements()) { 
+			String name = (String)enu.nextElement();
+			String value = request.getParameter(name);
+			dataMap.put(name, value);
+			System.out.println(dataMap);
+		}
+		
+		String command = (String) dataMap.get("command");
+		
+		if(command.equals("like")) {
+			S_P001_D002Service.insertLikeProd(dataMap);
+			dataMap.put("heart", "up");
+			S_P001_D002Service.updateHeart(dataMap);
+		} else {
+			S_P001_D002Service.deleteLikeProd(dataMap);
+			dataMap.put("heart", "down");
+			S_P001_D002Service.updateHeart(dataMap);
+		}
+		String heart = (String)S_P001_D002Service.heart(dataMap);
+		String result = "";
+		result += "{";
+		result += "\"heart\":\"" + heart + "\"";
+		result += "}";
+		
+		System.out.println("result" + result);
+		
+		try {	
+			response.getWriter().print(result);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}	
 	
 	
 }
