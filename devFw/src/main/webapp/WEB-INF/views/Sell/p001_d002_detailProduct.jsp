@@ -47,7 +47,7 @@
 					$.ajax({
 						type: "post",
 						async: false,
-						url: "/devFw/detail/likeProd.do",
+						url: "/devFw/detailLikeProd.do",
 						data: heart,
 						dataType : 'text',
 						success: function(responseData){
@@ -84,7 +84,7 @@
 					$.ajax({
 						type: "post",
 						async: false,
-						url: "/devFw/detail/likeProd.do",
+						url: "/devFw/detailLikeProd.do",
 						data: heart,
 						dataType : 'text',
 						success: function(responseData){
@@ -192,7 +192,7 @@
 			$.ajax({
 				type: "post",
 				async: false,
-				url: "/devFw/detail/qna.do",
+				url: "/devFw/detailQna.do",
 				data: qna,
 				dataType : 'text',
 				success: function(responseData){
@@ -305,7 +305,7 @@
 			$.ajax({
 				type: "post",
 				async: false,
-				url: "/devFw/detail/answer.do",
+				url: "/devFw/detailAnswer.do",
 				data: answer,
 				dataType : 'text',
 				success: function(responseData){
@@ -361,7 +361,7 @@
 				$.ajax({
 					type: "post",
 					async: false,
-					url: "/devFw/detail/qna.do",
+					url: "/devFw/detailQna.do",
 					data: deleteInfo,
 					dataType : 'text',
 					success: function(responseData){
@@ -472,7 +472,7 @@
 				$.ajax({
 					type: "post",
 					async: false,
-					url: "/devFw/detail/answer.do",
+					url: "/devFw/detailAnswer.do",
 					data: deleteInfo,
 					dataType : 'text',
 					success: function(responseData){
