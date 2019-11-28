@@ -127,15 +127,18 @@ a.selected2 {
 }
 
 .messagepop {
-  background-color:#FFFFFF;
-  border:1px solid #999999;
-  cursor:default;
-  display:none;
-  position:absolute;
-  text-align:left;
-  width:500px;
-  z-index:50;
-  padding: 25px 25px 20px;
+    border: 1px solid #999999;
+    cursor: default;
+    display: none;
+    position: absolute;
+    text-align: left;
+    width: 50%;
+    z-index: 50;
+    background: #fff;
+    padding: 25px 25px 20px;
+    margin: 100px auto;
+    margin-left: 25%;
+  
 }
 
 label {
@@ -229,7 +232,115 @@ layout-split:after {
 .list-def{
 	font-size: 12px;
 }
+
+/*pop-header*/
+#pop-header{
+	width:100%;
+	height:50px;
+	text-align:center;
+	vertical-align:middle;
+	/*
+	border-bottom : 1px solid #C1CEF3;
+	*/
+}
+
+#pop-header>div{
+	display:inline-block;
+	width:initial;
+	font-family : nanumEB;
+	font-size:1.5em;	
+}
+
+ /*pop-up*/
+#user-add{
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  display:none;
+  z-index:150;
+}
+
+#pop-up{
+  margin: 100px auto;
+  padding:20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 50%;
+  position: relative;
+}
+
+ /*chat-header*/
+  #chat-header{
+     justify-content : space-between;
+     align-items:center;   
+  }
+#chat-header>i{
+	width:initial;
+	height:initial;
+	margin-right:15px;
+	color:#8da5ee;
+	border-radius:50%;
+}
+
+#chat-header>i:hover{
+	color:#6780cc;	
+}
 	
+#pop-close {
+   float: right;
+   font-size: 30px;
+   font-weight: bold;
+   text-decoration: none;
+   color: #333;
+}
+
+#pop-search>input[type=text] {
+    padding: 5px;
+    width: 70%;
+    height: 30px;
+    border: none;
+    background-color: rgba(100, 100, 100, 0.1);
+    border-radius: 5px;
+}
+
+#pop-search>input[type=button] {
+    width: 50px;
+    margin-left: 10px;
+    border-radius: 20px;
+    border: none;
+    background-color: #B9C9F8;
+}
+
+#pop-search>input[type=button]:hover,#pop-footer>input:hover{
+		background-color:#8da5ee;	
+	}	
+
+#pop-search {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#pop-footer {
+    display: flex;
+    flex-flow: row-reverse;
+    margin-top: 10px;
+}
+
+#pop-footer>input {
+    border: none;
+    width: 20%;
+    height: 35px;
+    border-radius: 5px;
+    background-color: #B9C9F8;
+}
 
 </style>
 <head>
@@ -252,6 +363,67 @@ layout-split:after {
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca839997c3bd98863fdc033319b76889&libraries=services"></script>
 <script>
 $(document).ready(function(){
+	$("#chat-header>i").on("click",addMember);
+	
+	function addMember(){
+		$('#user-add').fadeIn();
+	}
+	
+	//팝업 이벤트
+    $("#chat-header>i").on("click",showPopup);
+	$("#pop-close").on("click",closePopup);	 
+	
+	//팝업 검색
+	$("#pop-search>input[type=text]").on("keydown",function(event){
+		if(event.keyCode==13){
+			popSearch();
+		}
+	});		
+	$("#pop-search>input[type=button]").on("click",function(){
+		alert("aa");
+		popSearch();
+	});
+	
+	function popSearch(/*웹소켓 객체*/){
+		alert("확인;;;");
+		$('#pop-footer>input').prop('disabled',false);
+		var input=$('#pop-search>input[type=text]').toArray()[0];
+		//입력값으로 select날려서 결과받아 뿌리기
+		var contents={
+			keyword : $(input).val()
+		}
+		sendText(ws,"search_member",contents);
+	}
+	
+	function showPopup(){
+		$('#pop-list').empty();
+		$('#user-add').css('display','block');
+		$('#pop-footer>input').prop('disabled',true);		
+	}
+	
+	function closePopup(){
+		$('#user-add').css('display','none');
+	}
+	
+	function filter(){
+		alert("타는지 확인");
+        var value, name, item, i;
+
+        value = document.getElementById("value").value.toUpperCase();
+        item = document.getElementsByClassName("item");
+
+        for(i=0;i<item.length;i++){
+          name = item[i].getElementsByClassName("name");
+          if(name[0].innerHTML.toUpperCase().indexOf(value) > -1){
+            item[i].style.display = "flex";
+          }else{
+            item[i].style.display = "none";
+          }
+        }
+      }
+	
+	
+	
 	
 	function deselect(e) {
 	  $('.pop').slideFadeToggle(function() {
@@ -333,9 +505,14 @@ $(document).ready(function(){
    	<p><a href="/devFw/fleaCreateStoreApproval.do">플리마켓 관리자(임시)</a></p>
    	-->
    	<p><a href="/devFw/fleaSearchInit.do">플리마켓 마이페이지(임시)</a></p>
-					 	
+					 
 		             <p class="addmember"><a target="_blank" href="#" id="participants_add"><i class="fa fa-user-plus pa-5x"></i></a></p>
-		            
+		            <!-- 
+		            <div id="chat-header">
+						<div id="user-info"></div>
+						<i class="fa fa-user-plus pa-5x"></i>
+			         </div>
+		             -->
 		                <c:forEach var="flea" items="${searchList}" > 
 				             <div class="profile-picture big-profile-picture clear">
 				                 <img width="120px" height="120px" alt="no picture" src="${flea.profile_photo}" />
@@ -361,10 +538,19 @@ $(document).ready(function(){
 				        </c:forEach>
          </div> 
              <fieldset class="ui-field border-row">
+                <div id="chat-header">
+					<div id="user-info"></div>
+					<i class="fa fa-user-plus pa-5x">참가 신청</i>
+		         </div>
+		       
+              <div id="chat-header">
+               <div id="user-info"></div>
        			 <button type="button" class="btn btn-m btn-white pseudo-ico-share" data-ui="url-copy" data-ui-option="short" data-icon-event="hover" data-clipboard-text="#">
-			     <i class="fa fa-user-plus pa-5x"></i>
-			        <a href="">참가 신청</a><br></button>
-       			 
+			     	<i class="fa fa-user-plus pa-5x"></i>참가 신청<br>
+			     </button>  
+			     
+		      </div>
+
        			 <button type="button" class="btn btn-s btn-white toggle-heart detail-like pseudo-ico-love" data-name="starred-toolbar" data-starred-type="artist" data-init="" data-starred="" data-target-id="b20eee2f-b3eb-4fee-bc81-735f1e2318d6">
 	             <i class="ico-img">
 	                <span class="sp-icon icon-heart"></span>
@@ -391,7 +577,7 @@ $(document).ready(function(){
 		             -->
 	             <span><i class="fa fa-home pa-5x"></i>홈<br></span>
 	             <span><i class="fa fa-book pa-5x"></i>스토리<br></span>
-	             <span><i class="fa fa-store pa-5x"></i>판매 작품<br></span>
+	             <span><i class="fas fa-store"></i>판매 작품<br></span>
 	             <span><i class="fa fa-edit pa-5x"></i>구매 후기<br></span>
 		         </nav>
 		     </div>
@@ -646,6 +832,51 @@ $(document).ready(function(){
   </div>
 
 </div>
+
+<div id="user-add">
+		<div id="pop-up">
+		  <form method="post" id="new_message" action="/devFw/participantsInsert.do" enctype="multipart/form-data">    
+			<div id="pop-header">
+				<div>참여자 신청</div>
+				<a id="pop-close">&times;</a>			
+			</div>
+			<div id="pop-search">
+				<input onkeyup="filter()" type="text" placeholder="새로운 유저 검색"/>
+				<input type="submit" id="value" value="검색">
+			</div>
+			<div id="pop-list"></div>
+			<div id="pop-footer">
+				<input type="button" value="선택">			
+			</div>
+		   <c:forEach var="flea" items="${searchList}" > 
+       	     <input type="hidden" name="flea_code" value="${flea.flea_code}">
+       	   </c:forEach>
+		  </form>
+		</div>
+	</div>
+	
+<script type="text/javascript">
+      function filter(){
+        var value, name, item, i;
+        var addressArray = [];
+        
+        
+        
+        /*
+        value = document.getElementById("value").value.toUpperCase();
+        item = document.getElementsByClassName("item");
+
+        for(i=0;i<item.length;i++){
+          name = item[i].getElementsByClassName("name");
+          if(name[0].innerHTML.toUpperCase().indexOf(value) > -1){
+            item[i].style.display = "flex";
+          }else{
+            item[i].style.display = "none";
+          }
+        }
+        */
+      }
+</script>
          
 </body>
 </html>
