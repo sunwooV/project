@@ -148,9 +148,9 @@
 					</td>
 
 					<td class="OHC_cont">
-						<input type="button" value="주문하기" class="orderButton" id="order" onClick="#">
+						<input type="button" value="주문하기" class="orderButton" id="order">
 						<br>
-						<input type="button" value="장바구니담기" class="orderButton" id="basket" onClick="#"> 
+						<input type="button" value="장바구니담기" class="orderButton" id="basket"> 
 						<br> 
 						<input type="button" value="X 삭제" class="orderButton" id="delete" name="${myLikeProd.prod_number }">
 					</td>
