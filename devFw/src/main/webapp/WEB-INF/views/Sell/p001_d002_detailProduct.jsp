@@ -47,7 +47,7 @@
 					$.ajax({
 						type: "post",
 						async: false,
-						url: "/devFw/detail/likeProd.do",
+						url: "/devFw/detailLikeProd.do",
 						data: heart,
 						dataType : 'text',
 						success: function(responseData){
@@ -84,7 +84,7 @@
 					$.ajax({
 						type: "post",
 						async: false,
-						url: "/devFw/detail/likeProd.do",
+						url: "/devFw/detailLikeProd.do",
 						data: heart,
 						dataType : 'text',
 						success: function(responseData){
@@ -192,7 +192,7 @@
 			$.ajax({
 				type: "post",
 				async: false,
-				url: "/devFw/detail/qna.do",
+				url: "/devFw/detailQna.do",
 				data: qna,
 				dataType : 'text',
 				success: function(responseData){
@@ -305,7 +305,7 @@
 			$.ajax({
 				type: "post",
 				async: false,
-				url: "/devFw/detail/answer.do",
+				url: "/devFw/detailAnswer.do",
 				data: answer,
 				dataType : 'text',
 				success: function(responseData){
@@ -361,7 +361,7 @@
 				$.ajax({
 					type: "post",
 					async: false,
-					url: "/devFw/detail/qna.do",
+					url: "/devFw/detailQna.do",
 					data: deleteInfo,
 					dataType : 'text',
 					success: function(responseData){
@@ -472,7 +472,7 @@
 				$.ajax({
 					type: "post",
 					async: false,
-					url: "/devFw/detail/answer.do",
+					url: "/devFw/detailAnswer.do",
 					data: deleteInfo,
 					dataType : 'text',
 					success: function(responseData){
@@ -1219,14 +1219,14 @@ textarea{
 					<div>
 						<c:choose>
 							<c:when test="${product.send_way == 'direct' }">
-								<input type="radio" name="way_check" value="direct" checked="checked"> 직거래
+								<input type="radio" name="way_check" value="direct" checked="checked" id="direct"> <label for="direct">직거래(장소 : ${product.direct_area })</label>
 							</c:when>
 							<c:when test="${product.send_way == 'delivery' }">
-								<input type="radio" name="way_check" value="delivery" checked="checked"> 택배거래
+								<input type="radio" name="way_check" value="delivery" checked="checked" id="delivery"> <label for="delivery">택배거래</label>
 							</c:when>
 							<c:otherwise>
-								<input type="radio" name="way_check" value="direct" checked="checked"> 직거래
-								<input type="radio" name="way_check" value="delivery"> 택배거래
+								<input type="radio" name="way_check" value="direct" checked="checked" id="direct"> <label for="direct">직거래(장소 : ${product.direct_area })</label>
+								<input type="radio" name="way_check" value="delivery" id="delivery"> <label for="delivery">택배거래</label>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -1249,10 +1249,19 @@ textarea{
 						</c:when>
 						</c:choose>
 						<c:if test="${product.auction_yn == 'n' or (product.auction_yn == 'f' and (product.reused_yn == 'y' or product.flea_yn == 'y')) }">
-							<input type="button" class="pay" id="cart" value="장바구니" />
-							<input type="button" class="pay" id="buy" value="바로 구매" />
-							<input type="button" class="pay" id="kakaoPay" value="kakaoPay" />
-							<input type="button" class="pay" id="message" value="메시지로 문의" />
+							<c:if test="${member.getMemberid() == product.memberId }"> <!-- 상품을 올린 사람이면 -->
+								<input type="button" class="pay" id="cart" value="장바구니" style="background:lightgray;" disabled="disabled"/>
+								<input type="button" class="pay" id="buy" value="바로 구매" style="background:lightgray;" disabled="disabled"/>
+	<!-- 							<input type="button" class="pay" id="kakaoPay" value="kakaoPay" /> -->
+								<input type="button" class="pay" id="message" value="메시지로 문의" style="background:lightgray; cursor:default;" disabled="disabled"/>
+							</c:if>
+							<c:if test="${member.getMemberid() != product.memberId }">
+								<input type="button" class="pay" id="cart" value="장바구니" />
+								<input type="button" class="pay" id="buy" value="바로 구매" />
+	<!-- 							<input type="button" class="pay" id="kakaoPay" value="kakaoPay" /> -->
+								<input type="button" class="pay" id="message" value="메시지로 문의" />
+							</c:if>
+							
 						</c:if>
 						<c:if test="${product.auction_yn == 'y' }">
 							<c:forEach var="auction_left_date" items="${auction_left_date }">
@@ -1265,12 +1274,14 @@ textarea{
 								<span id="auction_left_date">남음 (종료 : ${product.auction_end_date })</span>
 							<br><br>
 							<c:if test="${member.getMemberid() == product.memberId }"> <!-- 자신이 올린 상품일 경우 -->
-								<input type="button" class="pay" id="bidding" value="입찰하기" disabled="disabled"/>
+								<input type="button" class="pay" id="bidding" value="입찰하기" style="background:lightgray;" disabled="disabled"/>
+								<input type="button" class="pay" id="message" value="메시지로 문의" style="background:lightgray; cursor:default" disabled="disabled"/>
 							</c:if>
 							<c:if test="${member.getMemberid() != product.memberId }">
 								<input type="button" class="pay" id="bidding" value="입찰하기" onclick="window.open('./bidProduct.do?prod_number=${product.prod_number}', 'window팝업', 'width=520, height=620, menubar=no, status=no, toolbar=no')"/>
+								<input type="button" class="pay" id="message" value="메시지로 문의" />
 							</c:if>
-							<input type="button" class="pay" id="message" value="메시지로 문의" />
+							
 						</c:if>
 						
 						

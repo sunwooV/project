@@ -117,7 +117,12 @@
 			if(chkbox3.length != 0){ //거래 방법 넘겨주기
 				for(i=0;i<chkbox3.length;i++){
 					if(chkbox3[i].checked == true){
-						send_way = chkbox3[i].value;
+						if(i==chkbox3.length-1){
+							send_way += chkbox3[i].value;
+						} else{
+							send_way += chkbox3[i].value + " ";
+						}
+
 					}
 				}
 			}
@@ -246,6 +251,7 @@
 				document.getElementsByName("images")[0].value = images;
 				document.getElementsByName("prod_group")[0].value = prod_group;
 				document.getElementsByName("auction_date")[0].value = auction_date;
+				document.getElementsByName("send_way")[0].value = send_way;
 				
 	/* 			document.getElementsByName("tag1")[0].value = tag1; // 처리한 tag를 param으로 전달
 				document.getElementsByName("tag2")[0].value = tag2;
@@ -694,9 +700,9 @@
 			<input type="hidden" name="memberId" value="${member.getMemberid() }" />
 			<div class="subtitle" id="group">
 				<a>게시 선택 * &nbsp&nbsp</a> 
-				<input type="checkbox" name="prod_group" value="중고" class="checkSelect1" id="reused" />중고 
-				<input type="checkbox" name="prod_group" value="경매" class="checkSelect1" id="auction" />경매 
-				<input type="checkbox" name="prod_group" value="플리" class="checkSelect1" id="flea" />플리마켓 
+				<input type="checkbox" name="prod_group" value="중고" class="checkSelect1" id="reused" /><label for="reused">중고</label> 
+				<input type="checkbox" name="prod_group" value="경매" class="checkSelect1" id="auction" /><label for="auction">경매</label> 
+				<input type="checkbox" name="prod_group" value="플리" class="checkSelect1" id="flea" /><label for="flea">플리마켓</label> 
 				<input type="hidden" name="reused_yn" value="n"/>
 				<input type="hidden" name="auction_yn" value="n"/>
 				<input type="hidden" name="flea_yn" value="n"/>
@@ -750,8 +756,8 @@
 
 			<div class="subtitle">
 				<a>거래 방법 * &nbsp&nbsp&nbsp&nbsp</a> 
-				<input type="checkbox" class="send_way" name="send_way" value="direct" id="direct" />직거래 
-				<input type="checkbox" class="send_way" name="send_way" value="delivery" />택배 거래 <br>
+				<input type="checkbox" class="send_way" name="send_way" value="direct" id="direct" /><label for="direct">직거래</label> 
+				<input type="checkbox" class="send_way" name="send_way" value="delivery" id="delivery"/><label for="delivery">택배 거래</label> <br>
 				<div id="way_caution" style="color: red; font-size: 12px; display: none;">
 				※플리마켓 직거래는 맵 등록 후 오프라인 상품 수령만 가능합니다.※</div>
 			</div>

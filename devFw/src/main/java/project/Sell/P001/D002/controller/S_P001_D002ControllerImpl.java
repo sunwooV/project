@@ -96,7 +96,7 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 	
 	
 	@Override
-	@RequestMapping(value = "/detail/likeProd.do", method = { RequestMethod.POST, RequestMethod.POST })
+	@RequestMapping(value = "/detailLikeProd.do", method = { RequestMethod.POST, RequestMethod.POST })
 	public void likeProd(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");

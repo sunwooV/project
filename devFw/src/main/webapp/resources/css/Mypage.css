@@ -11953,3 +11953,7 @@ th {
 	padding: 8% 8% 7% 8%;
 	border: 1px solid black;
 }
+
+a>div:hover{
+	background: lightgray;
+}

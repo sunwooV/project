@@ -31,7 +31,7 @@ public class S_P001_D003ControllerImpl implements S_P001_D003Controller {
 	
 	
 	@Override
-	@RequestMapping(value = "/detail/qna.do", method = { RequestMethod.POST, RequestMethod.POST })
+	@RequestMapping(value = "/detailQna.do", method = { RequestMethod.POST, RequestMethod.POST })
 	public void manageQnA(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
@@ -96,7 +96,7 @@ public class S_P001_D003ControllerImpl implements S_P001_D003Controller {
 	}	
 	
 	@Override
-	@RequestMapping(value = "/detail/answer.do", method = { RequestMethod.POST, RequestMethod.POST })
+	@RequestMapping(value = "/detailAnswer.do", method = { RequestMethod.POST, RequestMethod.POST })
 	public void manageAnswer(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
