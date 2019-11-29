@@ -84,6 +84,8 @@
 				</c:if>
 				<li class="nav-item"><a class="nav-link"
 					href="${contextPath}/cart.do">장바구니</a></li>
+					<li class="nav-item"><a class="nav-link"
+					href="${contextPath}/cs.do">고객센터</a></li>
 			</ul>
 	<!-- 		<form class="form-inline my-2 my-lg-0" id="searchform"
 				name="searchform">
