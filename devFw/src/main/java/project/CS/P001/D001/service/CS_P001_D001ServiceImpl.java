@@ -87,6 +87,19 @@ public class CS_P001_D001ServiceImpl implements CS_P001_D001Service {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List listNotice() {
+		List noticeList = null;
+		noticeList = cs_p001_d001DAO.selectAllnoticeList();
+		return noticeList;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectAllnoticeList(Map<String, Object> dataMap) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

@@ -68,8 +68,8 @@ public class CS_P001_D001ControllerImpl implements CS_P001_D001Controller {
 		List topList = cs_p001_d001Service.listTop();
 		System.out.println("공지사항리스트" + eventList);
 		System.out.println("배송문의리스트" + deliveryList);
-		System.out.println("교환환불리스트" + ((CS_P001_D001VO)refundList.get(0)).getContents());
-		System.out.println("자주묻는질문" + ((CS_P001_D001VO)topList.get(0)).getContents());
+		System.out.println("교환환불리스트" + ((CS_P001_D001VO) refundList.get(0)).getContents());
+		System.out.println("자주묻는질문" + ((CS_P001_D001VO) topList.get(0)).getContents());
 		ModelAndView mav = new ModelAndView("CS/p001_d001_cs");
 		mav.addObject("Paging", vo);
 		mav.addObject("eventList", eventList);
@@ -113,20 +113,19 @@ public class CS_P001_D001ControllerImpl implements CS_P001_D001Controller {
 //	}
 
 	@Override
-	@RequestMapping(value = "/eventDetail.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView eventDetail(@RequestParam("no_number") String no_number, HttpServletRequest request,
+	@RequestMapping(value = "/csnotice.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView eventDetail(@RequestParam(value="no_number", required=false) String no_number, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		String viewName = "eventDetail";
-		Map<String, Object> dataMap = new HashMap();
-		Map<String, Object> resultMap = new HashMap();
-		dataMap.put("no_number", no_number);
-		List<Map<String, Object>> dataList = cs_p001_d001Service.selectBoardDetail(dataMap);
-		resultMap = dataList.get(0);
-		System.out.println("고객번호111111111111111111111111111111111111" + dataList);
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("resultMap", resultMap);
-		return mav;/* 공지사항 리스트 */
+
+		
+		List noticeList = cs_p001_d001Service.listNotice();
+
+		System.out.println("공지사항리스트" + ((CS_P001_D001VO) noticeList.get(0)).getNo_title());
+
+		ModelAndView mav = new ModelAndView("CS/p001_d001_cs2");
+		mav.addObject("noticeList", noticeList);
+		return mav;
 	}
 	/*
 	 * @Override

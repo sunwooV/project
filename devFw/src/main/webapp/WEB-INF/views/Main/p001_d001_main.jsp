@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+_<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -30,13 +30,20 @@
 </head>
 <body>
 	<div class="jumbotron">
-		<h1 class="display-3" style="padding-left: 45%;">세상에
-			없던 3 in 1</h1>
-		<p style="padding-left: 69%;">경매 중고 플리마켓을 한번에</p>
-		<p>
+		<h1 class="display-3" style="margin: auto;">세상에 없던 MULTI in 1</h1>
+		<!-- 	<p>
 			<a class="btn btn-primary btn-lg" href="#" role="button"
-				style="font-size: 20px; margin-left: 83%;">더 알아보기</a>
-		</p>
+				style="font-size: 20px; margin-left: 83%;">더 알아보기</a> 
+		</p> -->
+		<form class="form-inline my-2 my-lg-0" id="searchform"
+			name="searchform">
+			<input class="form-control mr-sm-2" type="text" id="searchbar"
+				name="searchVal" value="" placeholder="검색어를 입력하세요♡"> <input
+				type="button" class="btn btn-secondary my-2 my-sm-0" id="btnsearch"
+				value="Search" onclick="SearchProduct()">
+		</form>
+		<button type="submit" class="btn btn-outline-warning"
+			onclick="location.href='./enroll.do'" id="register">상품 등록</button>
 	</div>
 
 	<!-- 메뉴사이드바랑 컨텐츠 ------------------------------------------------------------------------------------------------------------------------------------------>
@@ -188,14 +195,15 @@
 										<!-- 상품 판매 카테고리 -->
 										<span class="group">중고</span>
 									</c:if>
-									<c:if test="${newProduct.auction_yn == 'y' or newProduct.auction_yn == 'w' or newProduct.auction_yn == 'f'}">
+									<c:if
+										test="${newProduct.auction_yn == 'y' or newProduct.auction_yn == 'w' or newProduct.auction_yn == 'f'}">
 										<span class="group">경매</span>
 									</c:if>
 									<c:if test="${newProduct.flea_yn == 'y' }">
 										<span class="group">플리</span>
 									</c:if>
 									<c:if test="${newProduct.auction_yn == 'y' }">
-										<span class="group" style="color:red;">(경매 진행 중)</span>
+										<span class="group" style="color: red;">(경매 진행 중)</span>
 									</c:if>
 									<img src="${newProduct.represent_image }"
 										style="width: 230px; height: 240px;" alt="..."
@@ -211,11 +219,12 @@
 												<p id="p">
 													<fmt:formatNumber value="${newProduct.auction_bid }"
 														type="number" />
-													원 
+													원
 												</p>
 											</c:when>
-											<c:when test="${((newProduct.auction_yn == 'f' or newProduct.auction_yn == 'w') and newProduct.reused_yn == 'n' and newProduct.flea_yn == 'n') or newProduct.prod_amount == 0 }">
-												<p id="p" style="color:red; font-weight:bold">품절</p>
+											<c:when
+												test="${((newProduct.auction_yn == 'f' or newProduct.auction_yn == 'w') and newProduct.reused_yn == 'n' and newProduct.flea_yn == 'n') or newProduct.prod_amount == 0 }">
+												<p id="p" style="color: red; font-weight: bold">품절</p>
 											</c:when>
 											<c:otherwise>
 												<c:if test="${newProduct.sale_percent != null }">
@@ -318,8 +327,10 @@
 						<c:forEach var="bestStore" items="${bestStore}">
 							<div class="col-sm-3">
 								<div class="thumbnail">
-									<img src=${bestStore.profile_photo}
-										style="width: 230px; height: 240px;" alt="..."  onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code }'">
+									<img src=${bestStore.profile_photo
+										}
+										style="width: 230px; height: 240px;" alt="..."
+										onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code }'">
 
 									<div class="caption">
 										<h3>${bestStore.flea_name }</h3>
@@ -331,14 +342,11 @@
 												id="ttt4" role="button">메세지보내기</a>
 										</p>
 									</div>
-
 								</div>
 							</div>
 						</c:forEach>
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
@@ -350,5 +358,20 @@
 	$(function() {
 		$('.tree-toggle').parent().children('ul.tree').toggle(200);
 	})
+</script>
+<script>
+	$(document).on('click', '#btnsearch', function() {
+		var searchVal = $("#searchbar").val();
+		var frm = document.searchform;
+		//검색어 유효성 검사
+		if (searchVal == "") {
+			alert("검색어를 입력해주세요.");
+			return false;
+		}
+		frm.method = "get";
+		frm.action = "./searchProduct.do";
+		frm.submit();
+
+	});
 </script>
 </html>
