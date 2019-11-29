@@ -5,30 +5,32 @@
 
 <mapper namespace="CS.P001.D001">
 	<resultMap id="CS_P001_D001Result01" type="CS_P001_D001VO">
-	   <result property="no_number" column="no_number" />
         <result property="no_title" column="no_title" />
         <result property="no_contents" column="no_contents" />
-        <result property="no_writer" column="no_writer" />
         <result property="no_writedate" column="no_writedate" />
-        <result property="no_view_cnt" column="no_view_cnt" />
-	</resultMap> 
+	</resultMap>
+	 
 		<resultMap id="CS_P001_D001Result02" type="CS_P001_D001VO">
 	   <result property="division" column="division" />
         <result property="title" column="title" />
         <result property="contents" column="contents" />
-
 	</resultMap> 
+	
 			<resultMap id="CS_P001_D001Result03" type="CS_P001_D001VO">
 	   <result property="division" column="division" />
         <result property="title" column="title" />
         <result property="contents" column="contents" />
-
 	</resultMap> 
+	
 			<resultMap id="CS_P001_D001Result04" type="CS_P001_D001VO">
-	   <result property="division" column="division" />
         <result property="title" column="title" />
         <result property="contents" column="contents" />
-
+	</resultMap> 
+	
+	<resultMap id="CS_P001_D001Result05" type="CS_P001_D001VO">
+  <result property="no_title" column="no_title" />
+        <result property="no_contents" column="no_contents" />
+        <result property="no_writedate" column="no_writedate" />
 	</resultMap> 
 	
 	
@@ -39,7 +41,7 @@
          	
       
   	                 
- SELECT  no_title, no_writedate
+ SELECT  no_title, no_writedate, no_contents
 						FROM notice
 						WHERE rownum <= 5
       	
@@ -97,10 +99,22 @@ order by title
       <![CDATA[
          	
       
-select  division,title,contents
+select  title,contents
 from fnq	
 where division in '자주묻는질문'
 order by title
+      	
+      ]]>
+
+	</select>
+	
+	<select id="selectAllnoticeList" resultMap="CS_P001_D001Result05">
+      <![CDATA[
+         	
+      
+  	                 
+ SELECT  no_title, no_writedate, no_contents
+						FROM notice
       	
       ]]>
 

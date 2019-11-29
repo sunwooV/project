@@ -22,8 +22,8 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/tomcat9/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="C:/tomcat9/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="C:/Tomcat9/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Tomcat9/lib/jsp-api.jar"/>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
 			<attribute name="optional" value="true"/>

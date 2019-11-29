@@ -21,6 +21,7 @@ public interface CS_P001_D001DAO {
 	 public List selectAlldeliveryList() throws DataAccessException;
 	 public List selectAllrefundList() throws DataAccessException;
 	 public List selectAlltopList() throws DataAccessException;
+	 public List selectAllnoticeList() throws DataAccessException;
 	 public void updateCNT(Map<String, Object> dataMap) throws DataAccessException;
 	 public int countBoard();
 

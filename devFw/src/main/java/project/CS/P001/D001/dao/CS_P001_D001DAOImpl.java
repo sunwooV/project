@@ -75,4 +75,11 @@ public class CS_P001_D001DAOImpl implements CS_P001_D001DAO {
 		return topList;
 	}
 
+	@Override
+	public List selectAllnoticeList() throws DataAccessException {
+		List<CS_P001_D001VO> noticeList = null;
+		noticeList = sqlSession.selectList("CS.P001.D001.selectAllnoticeList");/* xml 아이디값.select id 값 */
+		System.out.println("noticeList" + noticeList);
+		return noticeList;
+	}
 }

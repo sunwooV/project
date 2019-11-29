@@ -58,9 +58,22 @@
 		}
 
 	});
+
+	$(document).on('click', '.faq_open4', function() {
+		var num = $(this).attr("id");
+
+		var target = document.getElementById("d" + num);
+
+		if (target.style.display == 'none') { //접혀있는데 눌렀을 경우
+			$('#d' + num).css("display", "");
+		} else { //펴져있는데 눌렀을 경우
+			$('#d' + num).css("display", "none");
+		}
+
+	});
 </script>
 <style>
-.faq_open1, .faq_open2, .faq_open3 {
+.faq_open1, .faq_open2, .faq_open3, .faq_open4 {
 	cursor: pointer;
 }
 </style>
@@ -118,7 +131,8 @@
 				<div class="container" id="cs2">
 					<h2 style="padding-bottom: 2%;">
 						🔔공지사항🔔 <span class="glyphicon glyphicon-plus"
-							style="padding-left: 63%;"></span>
+							style="padding-left: 60%;"
+							onclick="location.href='./csnotice.do'"></span>
 					</h2>
 					<table class="table table-hover" style="padding-left: 7%;">
 						<tr>
@@ -126,10 +140,13 @@
 							<th>게시일</th>
 						</tr>
 
-						<c:forEach var="event" items="${eventList}" varStatus='index'>
-							<tr>
-								<td>📍${event.no_title}</td>
+						<c:forEach var="event" items="${eventList}" varStatus='notice'>
+							<tr id=${notice.count } class="faq_open4">
+								<td>${event.no_title}</td>
 								<td>${event.no_writedate}</td>
+							</tr>
+							<tr style="display: none;" id="d${notice.count }">
+								<td colspan="2">${event.no_contents}</td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -172,16 +189,18 @@
 			<div class="table" id="cs">
 				<div class="row">
 					<img src="${contextPath }/resources/img/qna.png" />
-					<h1 style="font-size: 43px;">무엇이든 물어보세요</h1>
-					<form class="form-inline my-2 my-lg-0">
+					<h1
+						style="padding-left: 2%; font-size: 56px; padding-top: 2%; padding-right: 15%;">무엇이든
+						물어보세요</h1>
+					<form class="form-inline my-2 my-lg-0" id="searchform">
 						<input class="form-control mr-sm-2" type="text" id="searchbar"
 							placeholder="검색어를 입력하세요"> <a href="#"><span
-							class="glyphicon glyphicon-search" style="font-size: 21px;"></span></a>
+							class="glyphicon glyphicon-search" style="font-size: 24px;"></span></a>
 					</form>
 				</div>
 			</div>
 			<div class="row" style="padding-left: 1%;">
-				<ul class="nav nav-tabs" style="width: 90%;">
+				<ul class="nav nav-tabs" style="width: 98%;">
 					<li class="active"><a data-toggle="tab" href="#FAQ1">자주 묻는
 							질문</a></li>
 					<li><a data-toggle="tab" href="#FAQ2">교환/환불</a></li>
@@ -194,17 +213,15 @@
 				<div id="FAQ1" class="tab-pane fade in active">
 					<table class="table table-hover">
 						<tr>
-							<th>분류</th>
 							<th>제목</th>
 						</tr>
 
 						<c:forEach var="top" items="${topList}" varStatus='FAQ1'>
 							<tr id=${FAQ1.count } class="faq_open1">
-								<td>${top.division}</td>
-								<td>${top.title}</td>
+								<td>❓${top.title}</td>
 							</tr>
 							<tr style="display: none;" id="a${FAQ1.count }">
-								<td colspan="2">${top.contents}</td>
+								<td colspan="2">☞${top.contents}</td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -313,7 +330,7 @@
 				</div>
 			</div>
 			<div class="row" style="padding-top: 8%">
-				<h2 style="padding: 0% 71% 2% 1%;">나의 문의/답변내역</h2>
+				<h2 style="padding-left: 2%;">나의 1:1 문의/답변내역</h2>
 
 				<div class="jumbotron" style="width: 93%; margin-left: 1%;">문의내역
 					없</div>
