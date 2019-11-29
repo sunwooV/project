@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="Path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>장바구니</title>
-
-
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -127,13 +124,41 @@
 	function formatNum(num) {
 		return parseFloat(num.replace(/[^0-9-.]/g, ','));
 	}
-	
-	function moveToPayInfo(){
-		
-		
-	}
 </script>
 <style type="text/css">
+@import
+	url(https://fonts.googleapis.com/css?family=Bitter:400,400italic,700);
+
+#tableTr {
+	font-size: 20px;
+	text-align: center;
+}
+
+.contentCart {
+	text-align: center;
+	padding: 3%;
+}
+
+.items {
+	margin-left: 32%
+}
+
+.items tr {
+	width: 200px;
+}
+
+.descForOption {
+	margin: 1%;
+}
+
+.pricing {
+	padding: 3%;
+}
+
+#cart {
+	padding-left: 45%;
+	padding-bottom: 3%;
+}
 .orderHistoryContainer {
 	/* padding: 위 오른쪽 아래 왼쪽;*/
 	padding: 1% 15% 10% 15%;
@@ -161,46 +186,118 @@
 .OHtableTitle {
 	background-color: #ccc;
 }
-
+.represent_img{
+    width: 100px;
+    height: 125px;
+}
+.orderButton{
+	border-radius: 5%;
+	margin-top:3px;
+}
+#order{
+	background:#424242;
+	color:white;
+	border:1px solid #424242;
+	
+}
+#basket, #delete{
+	background:white;
+	color:#424242;
+	border:1px solid #A4A4A4;
+}
+#basket:hover, #delete:hover{
+	border:1px solid #424242;
+}
 </style>
 </head>
 <body>
-<input type="hidden" id="memberId" value="${member.getMemberid() }">
-	<!-- 주문내역 상단 -->
-	<div class="orderHistoryHeader">
-		<h3>장바구니</h3>
-	</div>
-	<div class="orderHistoryContainer">
-		<!-- 주문 상품 정보 테이블 시작  -->
-		<table class="orderHistoryTable" id="orderHistoryTable">
-			<!-- 주문 상품 정보 테이블 상단 제목   -->
-			<thead class="orderHistoryTableTitles">
-				<tr class="OHtableTitle">
-					<th class="OHT_ttl"><span>상품번호</span></th>
-					<th class="OHT_ttl"><span>상품이미지</span></th>
-					<th class="OHT_ttl"><span>상품정보</span></th>
-					<th class="OHT_ttl"><span>수량</span></th>
-					<th class="OHT_ttl"><span>상품금액</span></th>
-					<th class="OHT_ttl"><span>배송비</span></th>
+	<div class="contentCart">
+		<h1>장바구니</h1>
+		<p class="descForOption">상품 옵션에 관한 수정 및 삭제가 가능합니다. 변경 후 최종 주문을
+			원하시면 결제하기를 클릭해주세요.</p>
+
+		<table class="items">
+			<thead>
+				<tr>
+					<th id="tableTr">상품명</th>
+					<th id="tableTr">수량</th>
+					<th id="tableTr">총 금액</th>
 				</tr>
 			</thead>
 			<tbody>
-				<!-- 첫 번째 상품 내용 cif 처리하기 -->
-					<c:forEach var="myLikeProd" items="${myLikeProd }">
-				<tr class="orderHistoryContents">
-					<td class="OHC_cont"><span class="prod_number" id="prod_number">0000-000</span></td>
-					<td class="OHC_cont"><span class="prod_1st_img" id="prod_1st_img">상품 이미지</span></td>
-					<td class="OHC_cont"><span class="prod_short_detail" id="prod_short_detail">상품 정보 설명들어감 제목 + 선택한 옵션</span></td>
-					<td class="OHC_cont"><span class="prod_cnt" id="prod_cnt">2</span></td>
-					<td class="OHC_cont"><span class="ttl_eachProd_price" id="ttl_eachProd_price">29,000원</span></td>
-					<td class="OHC_cont"><span class="shippingFee" id="shippingFee">2,500원</span></td>
+				<tr>
+					<td>
+						<div class="item">
+							<div class="item-front">
+								<img src="${Path}/resources/image/케익.jpg" width="200px"
+									height="200px" />
+							</div>
+						</div>
+						<p>
+							테스트용 케익<sup>&reg;</sup><br /> <span class="itemNum">제품코드</span>
+						</p>
 
+					</td>
+					<td><input type="number" class="quantity" value="1" min="1" />
+						<a href="#" class="remove">삭제하기</a></td>
+					<td class="itemTotal">5000</td>
 				</tr>
-				</c:forEach>
-				<!-- 2번째 상품 내용 -->
+				<tr>
+					<td>
+						<div class="item">
+							<div class="item-front">
+								<img src="${Path}/resources/image/케익.jpg" width="200px"
+									height="200px" />
+							</div>
+						</div>
+						<p>
+							Hario Skerton Grinder<br /> <span class="itemNum">제품코드</span>
+						</p>
+
+					</td>
+					<td><input type="number" class="quantity" value="1" min="1" />
+						<a href="#" class="remove">삭제하기</a></td>
+					<td class="itemTotal">4000</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="item">
+							<div class="item-front">
+								<img src="${Path}/resources/image/케익.jpg" width="200px"
+									height="200px" />
+							</div>
+						</div>
+						<p>
+							Hario V60 Kettle<br /> <span class="itemNum">제품코드</span>
+						</p>
+
+					</td>
+
+					<td><input type="number" class="quantity" value="1" min="1" />
+						<a href="#" class="remove">삭제하기</a></td>
+					<td class="itemTotal">6000</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="item">
+							<div class="item-front">
+								<img src="${Path}/resources/image/케익.jpg" width="200px"
+									height="200px" />
+							</div>
+						</div>
+						<p>
+							Zingerman&rsquo;s Brazil Sweet Yellow<br /> <span
+								class="itemNum">제품코드</span>
+						</p>
+
+					</td>
+
+					<td><input type="number" class="quantity" value="1" min="1" />
+						<a href="#" class="remove">삭제하기</a></td>
+					<td class="itemTotal">3000</td>
+				</tr>
 			</tbody>
 		</table>
-	</div>
 
 		<div class="cost">
 			<h2>예상 결제 내역</h2>
@@ -209,25 +306,25 @@
 			<table class="pricing">
 				<tbody>
 					<tr>
-						<td>예상 결제 금액</td>
+						<td>총 상품 금액</td>
 						<td class="subtotal"></td>
 					</tr>
 					<tr>
 						<td>부가가치세(10%)</td>
-						<td class="tax" ></td>
+						<td class="tax"></td>
 					</tr>
 					<tr>
 						<td>배송비</td>
 						<td class="shipping">2500원</td>
 					</tr>
 					<tr>
-						<td><strong>총 금액</strong></td>
+						<td><strong>결제 예상 금액</strong></td>
 						<td class="orderTotal"></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<button class="cta" onClick="moveToPayInfo()">주문하기 &raquo;</button>
+		<button class="cta" onClick="location.href='${contextPath}'">주문하기 &raquo;</button>
 	</div>
 
 	<!-- End Content -->
