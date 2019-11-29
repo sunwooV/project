@@ -33,7 +33,8 @@
 				<li><a href="${contextPath}/detail2.do">장바구니</a></li>
 				<li><a href="${contextPath}/detail3.do">포인트</a></li>
 				<li><a href="${contextPath}/detail4.do">관심상품</a></li>
-				<li><a href="${contextPath}/detail4.do">게시글 관리</a></li>
+				<li><a href="${contextPath}/mypageQnA.do">Q&A내역</a></li>
+				<li><a href="${contextPath}/mypagereview.do">상품 REVIEW 작성내역</a></li>
 				<li><a href="${contextPath}/detail4.do">탈퇴 하기</a></li>
 			</div>
 		</div>
@@ -42,24 +43,31 @@
 			style="padding-right: 11%; padding-left: 2%; font-size: 37px;">
 			<h1>게시글 관리</h1>
 			<form name="frm" method="post" encType="UTF-8">
-				<h2 align="center">상품 Q&A 내역</h2>
+				<h2 align="center">상품 REVIEW 작성내역</h2>
 				<div class="container" style="padding-top: 3%;">
-					<table class="table table-hover" id="evnet_td">
+
+
+
+					<table class="table table-hover" style="padding-left: 7%;">
 						<tr>
-							<th>상품번호</th>
-							<th>내용</th>
-							<th>답변여부</th>
+							<th>번호</th>
+							<th>상품</th>
+							<th>제목</th>
 						</tr>
 
-						<c:forEach var="qna" items="${qnaList}" varStatus='index'>
-							<tr>
-								<td>${qna.prod_number}</td>
-								<td>${qna.qna_content}</td>
-								<td>${qna.answer_YN}</td>
-
+						<c:forEach var="review" items="${reviewList}" varStatus='index'>
+							<tr id=${index.count } class="open">
+								<td>${review.review_number}</td>
+								<td>${review.prod_number}</td>
+								<td>${review.review_title}</td>
+							</tr>
+							<tr style="display: none;" id="a${index.count }">
+								<td colspan="2">${review.review_content}</td>
 							</tr>
 						</c:forEach>
 					</table>
+
+
 
 					<div style="padding-left: 46%; font-size: 12px;">
 						<c:if test="${paging.startPage != 1 }">
@@ -99,5 +107,18 @@
 		location.href = "${contextPath}/event.do?nowPage=${paging.nowPage}&cntPerPage="
 				+ sel;
 	}
+
+	$(document).on('click', '.open', function() {
+		var num = $(this).attr("id");
+
+		var target = document.getElementById("a" + num);
+
+		if (target.style.display == 'none') { //접혀있는데 눌렀을 경우
+			$('#a' + num).css("display", "");
+		} else { //펴져있는데 눌렀을 경우
+			$('#a' + num).css("display", "none");
+		}
+
+	});
 </script>
 </html>

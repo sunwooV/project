@@ -42,8 +42,6 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 				type="button" class="btn btn-secondary my-2 my-sm-0" id="btnsearch"
 				value="Search" onclick="SearchProduct()">
 		</form>
-		<button type="submit" class="btn btn-outline-warning"
-			onclick="location.href='./enroll.do'" id="register">상품 등록</button>
 	</div>
 
 	<!-- 메뉴사이드바랑 컨텐츠 ------------------------------------------------------------------------------------------------------------------------------------------>
@@ -64,7 +62,7 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 						<div class="col-sm-3">
 							<div class="thumbnail">
 								<h4>중고상품</h4>
-								<img src="./img/케익.jpg" width=230, height=240 alt="...">
+								<img src="${contextPath }/resources/img/케익.jpg" width=230, height=240 alt="...">
 								<div class="caption">
 									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
 									<p id="p">7000원</p>
@@ -80,7 +78,7 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 						<div class="col-sm-3">
 							<div class="thumbnail">
 								<h4>중고상품</h4>
-								<img src="./img/케익.jpg" width=230, height=240 alt="...">
+								<img src="${contextPath }/resources/img/케익.jpg" width=230, height=240 alt="...">
 								<div class="caption">
 									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
 									<p id="p">7000원</p>
@@ -95,7 +93,7 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 						<div class="col-sm-3">
 							<div class="thumbnail">
 								<h4>중고상품</h4>
-								<img src="./img/케익.jpg" width=230, height=240 alt="...">
+								<img src="${contextPath }/resources/img/케익.jpg" width=230, height=240 alt="...">
 								<div class="caption">
 									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
 									<p id="p">7000원</p>

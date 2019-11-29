@@ -72,7 +72,7 @@
 					</div>
 				</div>
 			</a>
-			<a href="${contextPath}/mypageQA.do">
+			<a href="${contextPath}/mypageQnA.do">
 				<div class="myshopMain_sub5">
 					<div id="list">
 						<h3>
