@@ -74,6 +74,7 @@ public class S_P001_D002ServiceImpl implements S_P001_D002Service {
 	
 	@Override
 	public void updateHeart(Map<String, Object> datahMap) throws Exception {
+		System.out.println("updateHeart 해써용");
 		S_P001_D002DAO.updateHeart(datahMap);
 	}
 

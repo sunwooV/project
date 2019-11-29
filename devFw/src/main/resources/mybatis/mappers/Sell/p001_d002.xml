@@ -116,9 +116,18 @@
 		 ]]>
 		 <where>
 		 <![CDATA[
-		 	prod_number = #{prod_number}
-		 	and memberId = #{memberId}
+		 	memberId = #{memberId}
 		 ]]>
+	 	<if test="checkProd == null">
+		 	and prod_number = #{prod_number}
+		 </if>
+		 <if test="checkProd != null">
+		 	and prod_number IN 
+		 	<foreach collection="checkProd" item="checkProd" index="index" separator="," open="(" close=")">
+		 		#{checkProd}
+		 	</foreach>
+		 </if>
+		 
 		 </where>
 	</delete>
 	
@@ -132,10 +141,17 @@
 		 <if test="heart == 'down'">
 		 	SET heart = heart - 1
 		 </if>
+		 
 		 <where>
-		 <![CDATA[
+		 <if test="checkProd == null">
 		 	prod_number = #{prod_number}
-		 ]]>
+		 </if>
+		 <if test="checkProd != null">
+		 	prod_number IN 
+		 	<foreach collection="checkProd" item="checkProd" index="index" separator="," open="(" close=")">
+		 		#{checkProd}
+		 	</foreach>
+		 </if>
 		 </where>
 	</update>
 	
