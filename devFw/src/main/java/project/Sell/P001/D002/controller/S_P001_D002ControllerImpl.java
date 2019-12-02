@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,10 +22,13 @@ import org.springframework.web.servlet.ModelAndView;
 import project.Sell.P001.D001.vo.S_P001_D001VO;
 import project.Sell.P001.D002.vo.S_P001_D002VO;
 import project.Sell.P001.D003.vo.S_P001_D003VO;
+import project.Sell.P001.D008.vo.S_P001_D008VO;
+import project.Customers.P002.D014.vo.C_P002_D014VO;
 import project.Sell.P001.D002.service.S_P001_D002Service;
 import project.Sell.P001.D003.service.S_P001_D003Service;
 import project.Sell.P001.D008.service.S_P001_D008Service;
-import project.Sell.P001.D008.vo.S_P001_D008VO;
+import project.Customers.P002.D014.service.C_P002_D014Service;
+
 
 @Controller("S_P001_D002Controller")
 public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
@@ -34,6 +38,10 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 	S_P001_D003Service S_P001_D003Service;
 	@Autowired
 	S_P001_D008Service S_P001_D008Service;
+	@Autowired
+	C_P002_D014Service C_P002_D014Service;
+	@Autowired
+	private HttpSession session;
 	
 	@Override
 	@RequestMapping(value = "/detail.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -42,9 +50,22 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		Map<String, Object> searchMap2 = new HashMap<String, Object>();
 
-		searchMap.put("prod_number", prod_number);	 
+		String memberId = (String) session.getAttribute("memberid");
+		
+		searchMap.put("prod_number", prod_number);
+		searchMap.put("memberId", memberId);
+		
+		ModelAndView mav = new ModelAndView("Sell/p001_d002_detailProduct");
+		
 		List list = S_P001_D002Service.detailProduct(searchMap);
 		List tags = S_P001_D002Service.tagList(searchMap);
+		System.out.println("memberId" + memberId);
+		if(memberId != null) {
+			String likeProd = S_P001_D002Service.likeProd(searchMap);
+			mav.addObject("likeProd", likeProd);
+			System.out.println("----likeProd" + likeProd);
+		}
+		
 				
 		searchMap2.put("prod_category_code", ((S_P001_D002VO)list.get(0)).getProd_category_code());	 
 		
@@ -59,12 +80,14 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 
 		List prodQnA = S_P001_D003Service.selectQnA(searchMap); //Q&A List		
 		
+		
 		System.out.println("tag 들 :::: " + tags);
 		
 		System.out.println("controller 통과");
-		ModelAndView mav = new ModelAndView("Sell/p001_d002_detailProduct");
+
 		mav.addObject("detail", list);
 		mav.addObject("tags", tags);
+
 		mav.addObject("high_category", high_category);
 		mav.addObject("middle_category", middle_category);
 		mav.addObject("prodQnA", prodQnA);
@@ -76,6 +99,83 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		return mav;
 	}
 	
+	
+	@Override
+	@RequestMapping(value = "/detailLikeProd.do", method = { RequestMethod.POST, RequestMethod.POST })
+	public void likeProd(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		System.out.println("detail/likeProd.do 들어옴");
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>(); //insert data
+		Enumeration enu = request.getParameterNames();
+		String result = "";
+
+		while (enu.hasMoreElements()) { 
+			String name = (String)enu.nextElement();
+			String value = request.getParameter(name);
+			dataMap.put(name, value);
+			System.out.println(dataMap);
+		}
+		
+		String command = (String) dataMap.get("command");
+		
+		if(command.equals("like")) {
+			S_P001_D002Service.insertLikeProd(dataMap);
+			dataMap.put("heart", "up");
+			S_P001_D002Service.updateHeart(dataMap);
+			String heart = (String)S_P001_D002Service.heart(dataMap);
+			
+			result += "{";
+			result += "\"heart\":\"" + heart + "\"";
+			result += "}";
+		} else if(command.equals("dislike")){
+			S_P001_D002Service.deleteLikeProd(dataMap);
+			dataMap.put("heart", "down");
+			S_P001_D002Service.updateHeart(dataMap);
+			String heart = (String)S_P001_D002Service.heart(dataMap);
+			
+			result += "{";
+			result += "\"heart\":\"" + heart + "\"";
+			result += "}";
+		} else { //관심 상품 삭제
+			S_P001_D002Service.deleteLikeProd(dataMap);
+			dataMap.put("heart", "down");
+			S_P001_D002Service.updateHeart(dataMap);
+			
+			List likeProd = C_P002_D014Service.myLikeProd(dataMap);
+			
+			result += "[";
+			for(int i=0;i<likeProd.size();i++) {
+				result += "{";
+				result += "\"prod_number\":\"" + ((C_P002_D014VO)likeProd.get(i)).getProd_number() + "\",";
+				result += "\"reused_yn\":\"" + ((C_P002_D014VO)likeProd.get(i)).getReused_yn() + "\",";
+				result += "\"auction_yn\":\"" + ((C_P002_D014VO)likeProd.get(i)).getAuction_yn() + "\",";
+				result += "\"flea_yn\":\"" + ((C_P002_D014VO)likeProd.get(i)).getFlea_yn() + "\",";
+				result += "\"send_way\":\"" + ((C_P002_D014VO)likeProd.get(i)).getSend_way() + "\",";
+				result += "\"represent_image\":\"" + ((C_P002_D014VO)likeProd.get(i)).getRepresent_image() + "\",";
+				result += "\"prod_title\":\"" + ((C_P002_D014VO)likeProd.get(i)).getProd_title() + "\",";
+				result += "\"prod_price\":\"" + ((C_P002_D014VO)likeProd.get(i)).getProd_price() + "\",";
+				result += "\"auction_bid\":\"" + ((C_P002_D014VO)likeProd.get(i)).getAuction_bid() + "\",";
+				result += "\"sale_percent\":\"" + ((C_P002_D014VO)likeProd.get(i)).getSale_percent() + "\"";
+				
+				result += "}";
+				if(i != likeProd.size() -1) {
+					result += ", ";
+				}
+			}
+			result += "]";
+		}
+		
+		System.out.println("result" + result);
+		
+		try {	
+			response.getWriter().print(result);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}	
 	
 	
 }

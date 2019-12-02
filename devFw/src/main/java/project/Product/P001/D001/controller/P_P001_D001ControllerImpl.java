@@ -1,5 +1,6 @@
 package project.Product.P001.D001.controller;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.Product.P001.D001.service.P_P001_D001Service;
+import project.Product.P001.D001.vo.P_P001_D001VO;
 
 @Controller("P_P001_D001Controller")
 public class P_P001_D001ControllerImpl implements P_P001_D001Controller {
@@ -26,58 +28,94 @@ public class P_P001_D001ControllerImpl implements P_P001_D001Controller {
 	@RequestMapping(value = "/searchProduct.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView searchProduct(@RequestParam(value="searchVal", required=false) String searchVal, @RequestParam(value="command", required=false) String command,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
+		
 		Map<String, Object> searchMap = new HashMap<String, Object>();
+
+		String send_way = "";
+		
 		searchMap.put("searchVal", searchVal);	 
+		
 		ModelAndView mav = new ModelAndView("Product/p001_d001_searchProduct");
+		
+		//상세 검색 했을 경우
 		if(command != null) {
+			int Ccnt = 0;
+			int Gcnt = 0;
+			int Scnt = 0;
 			
-			String[] category_select = request.getParameterValues("category_select");
+//			String[] category_select = request.getParameterValues("category_select");
 			String[] group_select = request.getParameterValues("group_select");
 			String[] send_way_select =request.getParameterValues("send_way_select");
 			
-			System.out.println(category_select.length + ", " + group_select.length + ", " + send_way_select.length);
 			
-//			HashMap<Object,Object> hm = new HashMap<Object, Object>();
-//			
-//			@SuppressWarnings("unchecked")
-//			Enumeration<String> names = request.getParameterNames();
-//			
-//			while(names.hasMoreElements())
-//			{
-//				String retName = names.nextElement().toString();
-//				Object obj = request.getParameter(retName);
-//				Object objs [] = request.getParameterValues(retName);
-//				
-//				if(objs != null && objs.length > 1)
-//				{
-//					hm.put(retName, objs);
-//				}else{
-//					hm.put(retName, obj);
+			//상세 검색에서 체크된게 있다면
+//			if(category_select != null) {
+//				Ccnt = category_select.length;
+//				searchMap.put("Ccnt", Ccnt);
+//				for(int i=0;i<Ccnt;i++) {
+//					category.add(category_select[i]);
 //				}
+//				searchMap.put("category", category);
 //				
+//				List selectMiddleCategory = P_P001_D001Service.searchMiddleCategory(searchMap);
+//				
+//				System.out.println("detail Category search:: " + selectMiddleCategory);
+//				mav.addObject("command", "categoryDetail");
+//				mav.addObject("selectMiddleCategory", selectMiddleCategory);
 //			}
-//			
-//			System.out.println((hm.get("category_select")));
+			if(group_select != null) {
+				Gcnt = group_select.length;
+				
+				for(int i=0;i<Gcnt;i++) {
+					if(group_select[i].equals("reused")){
+						searchMap.put("reused", "y");
+						mav.addObject("reused", "y");
+					}
+					if(group_select[i].equals("auction")) {
+						searchMap.put("auction", "y");
+						mav.addObject("auction", "y");
+					}
+					if(group_select[i].equals("flea")) {
+						searchMap.put("flea", "y");
+						mav.addObject("flea", "y");
+					}
+				}
+			}
+			if(send_way_select != null) {
+				Scnt = send_way_select.length;
+				
+				for(int i=0;i<Scnt;i++) {
+					if(i != Scnt - 1) { //마지막이 아니면
+						send_way += send_way_select[i] + " ";
+					}else {
+						send_way += send_way_select[i];
+					}
+				}
+				searchMap.put("send_way", send_way);
+				mav.addObject("send_way", send_way);
+			}
+			System.out.println("searchMap 검사 :::: " + searchMap);
 			
+			List detailSearch = P_P001_D001Service.searchProduct(searchMap);
+
+			mav.addObject("searchProduct", detailSearch);
+			mav.addObject("searchVal", searchVal);
+			mav.addObject("size", detailSearch.size());
 		} else {
-		System.out.println(searchVal);
-		List searchProduct = P_P001_D001Service.searchProduct(searchMap);
-		List searchHighCategory = P_P001_D001Service.searchHighCategory(searchMap);
-		
-		//searchMap.put("high_category", searchHighCategory);
-		List searchMiddleCategory = P_P001_D001Service.searchMiddleCategory(searchMap);
-		
-		System.out.println("slslslslslsl" + searchMiddleCategory);
-		
-		
-		
-		
-		mav.addObject("searchProduct", searchProduct);
-		mav.addObject("searchHighCategory", searchHighCategory);
-		mav.addObject("searchMiddleCategory", searchMiddleCategory);
-		mav.addObject("searchVal", searchVal);
-		mav.addObject("size", searchProduct.size());
-		
+			System.out.println(searchVal);
+			List searchProduct = P_P001_D001Service.searchProduct(searchMap);
+			//List searchHighCategory = P_P001_D001Service.searchHighCategory(searchMap);
+			
+			//searchMap.put("high_category", searchHighCategory);
+			//List searchMiddleCategory = P_P001_D001Service.searchMiddleCategory(searchMap);
+			
+			//System.out.println("slslslslslsl" + ((P_P001_D001VO)searchMiddleCategory.get(0)).getCategory_name());
+			
+			mav.addObject("searchProduct", searchProduct);
+			//mav.addObject("searchHighCategory", searchHighCategory);
+			//mav.addObject("searchMiddleCategory", searchMiddleCategory);
+			mav.addObject("searchVal", searchVal);
+			mav.addObject("size", searchProduct.size());
 		}
 		return mav;
 	}

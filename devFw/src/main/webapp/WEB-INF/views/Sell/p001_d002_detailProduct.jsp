@@ -30,14 +30,77 @@
 			} else { //로그인 되어있을 때 => 관심 상품 등록
 				if($(this).attr('name') == 'n'){ //관심 상품 등록
 					var heart = document.getElementById("heart");
-					$(this).html('<img src="${contextPath }/resources/img/detailProduct/fillheart.png" style="width:30px; height:30px;"> 관심 상품 추가 ');
+					$(this).html('<img src="${contextPath }/resources/img/detailProduct/fillheart.png" style="width:30px; height:30px;"> 관심 상품  ');
 					$(this).css("color", "#dd5850");
 					heart.setAttribute("name", "y");
+					
+					var prod_number = $("#prod_number").val();
+					var memberId = $("#memberId").val();
+					var command = "like";
+					
+					var heart = {
+							prod_number: prod_number,
+							memberId: memberId,
+							command:command
+					}
+			
+					$.ajax({
+						type: "post",
+						async: false,
+						url: "/devFw/detailLikeProd.do",
+						data: heart,
+						dataType : 'text',
+						success: function(responseData){
+							var data = JSON.parse(responseData);
+							
+							$(".heart").html(data.heart);
+							
+							console.log("관심상품 등록 완료");
+							
+						},
+						error: function(data, textStatus){
+							alert("다시 시도해주세요.");
+						},
+						complete : function (data, textstatus){
+						}
+					});
+
 				} else{ //관심 상품 해제
 					var heart = document.getElementById("heart");
-					$(this).html('<img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px;"> 관심 상품 추가 ');
+					$(this).html('<img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px;"> 관심 상품  ');
 					$(this).css("color", "black");
 					heart.setAttribute("name", "n");
+					
+					var prod_number = $("#prod_number").val();
+					var memberId = $("#memberId").val();
+					var command = "dislike";
+					
+					var heart = {
+							prod_number: prod_number,
+							memberId: memberId,
+							command: command
+					}
+					
+					$.ajax({
+						type: "post",
+						async: false,
+						url: "/devFw/detailLikeProd.do",
+						data: heart,
+						dataType : 'text',
+						success: function(responseData){
+							var data = JSON.parse(responseData);
+							
+							$(".heart").html(data.heart);
+							
+							console.log("관심상품 해제 완료");
+							
+						},
+						error: function(data, textStatus){
+							alert("다시 시도해주세요.");
+						},
+						complete : function (data, textstatus){
+						}
+					});
 				}
 				
 			}
@@ -129,7 +192,7 @@
 			$.ajax({
 				type: "post",
 				async: false,
-				url: "/devFw/detail/qna.do",
+				url: "/devFw/detailQna.do",
 				data: qna,
 				dataType : 'text',
 				success: function(responseData){
@@ -242,7 +305,7 @@
 			$.ajax({
 				type: "post",
 				async: false,
-				url: "/devFw/detail/answer.do",
+				url: "/devFw/detailAnswer.do",
 				data: answer,
 				dataType : 'text',
 				success: function(responseData){
@@ -298,7 +361,7 @@
 				$.ajax({
 					type: "post",
 					async: false,
-					url: "/devFw/detail/qna.do",
+					url: "/devFw/detailQna.do",
 					data: deleteInfo,
 					dataType : 'text',
 					success: function(responseData){
@@ -409,7 +472,7 @@
 				$.ajax({
 					type: "post",
 					async: false,
-					url: "/devFw/detail/answer.do",
+					url: "/devFw/detailAnswer.do",
 					data: deleteInfo,
 					dataType : 'text',
 					success: function(responseData){
@@ -748,7 +811,7 @@ img{
     line-height: 1.5;
     text-align: center;
     text-decoration: none;
-    color: #333;
+    color: rgb(221, 88, 80);
     cursor: pointer;
 }
 #heart{
@@ -1119,9 +1182,21 @@ textarea{
 				</c:choose>
 	
 				<br>
-				<h3 id="gray-text">지난 일주일간 ${product.heart }명의 회원이 관심을 보였어요!</h3>
+				<h3 id="gray-text"><span class="heart">${product.heart }</span>명의 회원이 관심을 보였어요!</h3>
 				<br>
-				<div id="heart" name="n"><img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px;"> 관심 상품 추가 </div>
+
+				<c:set var="likeProd" value="${likeProd }"/>
+				
+				<c:if test="${likeProd == null }">
+					<div id="heart" name="n"><img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px;"> 관심 상품  </div>
+				</c:if>
+				<c:if test="${likeProd == '0' }">
+					<div id="heart" name="n"><img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px;"> 관심 상품  </div>
+				</c:if>
+				<c:if test="${likeProd == '1' }">
+					<div id="heart" name="y"><img src="${contextPath }/resources/img/detailProduct/fillheart.png" style="width:30px; height:30px;"> 관심 상품  </div>
+				</c:if>
+
 				<br><br>
 				<div class="content">
 					<c:choose>
@@ -1144,14 +1219,14 @@ textarea{
 					<div>
 						<c:choose>
 							<c:when test="${product.send_way == 'direct' }">
-								<input type="radio" name="way_check" value="direct" checked="checked"> 직거래
+								<input type="radio" name="way_check" value="direct" checked="checked" id="direct"> <label for="direct">직거래(장소 : ${product.direct_area })</label>
 							</c:when>
 							<c:when test="${product.send_way == 'delivery' }">
-								<input type="radio" name="way_check" value="delivery" checked="checked"> 택배거래
+								<input type="radio" name="way_check" value="delivery" checked="checked" id="delivery"> <label for="delivery">택배거래</label>
 							</c:when>
 							<c:otherwise>
-								<input type="radio" name="way_check" value="direct" checked="checked"> 직거래
-								<input type="radio" name="way_check" value="delivery"> 택배거래
+								<input type="radio" name="way_check" value="direct" checked="checked" id="direct"> <label for="direct">직거래(장소 : ${product.direct_area })</label>
+								<input type="radio" name="way_check" value="delivery" id="delivery"> <label for="delivery">택배거래</label>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -1174,10 +1249,19 @@ textarea{
 						</c:when>
 						</c:choose>
 						<c:if test="${product.auction_yn == 'n' or (product.auction_yn == 'f' and (product.reused_yn == 'y' or product.flea_yn == 'y')) }">
-							<input type="button" class="pay" id="cart" value="장바구니" />
-							<input type="button" class="pay" id="buy" value="바로 구매" />
-							<input type="button" class="pay" id="kakaoPay" value="kakaoPay" />
-							<input type="button" class="pay" id="message" value="메시지로 문의" />
+							<c:if test="${member.getMemberid() == product.memberId }"> <!-- 상품을 올린 사람이면 -->
+								<input type="button" class="pay" id="cart" value="장바구니" style="background:lightgray;" disabled="disabled"/>
+								<input type="button" class="pay" id="buy" value="바로 구매" style="background:lightgray;" disabled="disabled"/>
+	<!-- 							<input type="button" class="pay" id="kakaoPay" value="kakaoPay" /> -->
+								<input type="button" class="pay" id="message" value="메시지로 문의" style="background:lightgray; cursor:default;" disabled="disabled"/>
+							</c:if>
+							<c:if test="${member.getMemberid() != product.memberId }">
+								<input type="button" class="pay" id="cart" value="장바구니" />
+								<input type="button" class="pay" id="buy" value="바로 구매" />
+	<!-- 							<input type="button" class="pay" id="kakaoPay" value="kakaoPay" /> -->
+								<input type="button" class="pay" id="message" value="메시지로 문의" />
+							</c:if>
+							
 						</c:if>
 						<c:if test="${product.auction_yn == 'y' }">
 							<c:forEach var="auction_left_date" items="${auction_left_date }">
@@ -1190,12 +1274,14 @@ textarea{
 								<span id="auction_left_date">남음 (종료 : ${product.auction_end_date })</span>
 							<br><br>
 							<c:if test="${member.getMemberid() == product.memberId }"> <!-- 자신이 올린 상품일 경우 -->
-								<input type="button" class="pay" id="bidding" value="입찰하기" disabled="disabled"/>
+								<input type="button" class="pay" id="bidding" value="입찰하기" style="background:lightgray;" disabled="disabled"/>
+								<input type="button" class="pay" id="message" value="메시지로 문의" style="background:lightgray; cursor:default" disabled="disabled"/>
 							</c:if>
 							<c:if test="${member.getMemberid() != product.memberId }">
 								<input type="button" class="pay" id="bidding" value="입찰하기" onclick="window.open('./bidProduct.do?prod_number=${product.prod_number}', 'window팝업', 'width=520, height=620, menubar=no, status=no, toolbar=no')"/>
+								<input type="button" class="pay" id="message" value="메시지로 문의" />
 							</c:if>
-							<input type="button" class="pay" id="message" value="메시지로 문의" />
+							
 						</c:if>
 						
 						

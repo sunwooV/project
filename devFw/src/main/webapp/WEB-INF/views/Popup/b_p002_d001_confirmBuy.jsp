@@ -9,8 +9,9 @@
 <title>금도끼은도끼|구매확정</title>
 <style type="text/css">
 .WholeConfirmBuyForm{
-text-align:center;
+text-align:left;
 padding-top:5%;
+margin-left:5%;
 }
 </style>
 </head>

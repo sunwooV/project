@@ -4,11 +4,7 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Sell.p001_d002">
-	<resultMap id="S_P001_D002Result02" type="S_P001_D001VO">
-		<result property="category_code" column="category_code" />
-		<result property="category_name" column="category_name" />
-		<result property="high_category" column="high_category" />
-	</resultMap>
+	
 	<resultMap id="S_P001_D002Result01" type="S_P001_D002VO">
 		<result property="prod_number" column="prod_number" />
 		<result property="prod_group" column="prod_group" />
@@ -36,6 +32,11 @@
 		<result property="tag4" column="tag4" />
 		<result property="tag5" column="tag5" />
 		<result property="prodViews" column="prodViews" />
+	</resultMap>
+	<resultMap id="S_P001_D002Result02" type="S_P001_D001VO">
+		<result property="category_code" column="category_code" />
+		<result property="category_name" column="category_name" />
+		<result property="high_category" column="high_category" />
 	</resultMap>
 	<resultMap id="S_P001_D002Result03" type="S_P001_D002VO">
 		<result property="left_day" column="left_day" />
@@ -89,6 +90,76 @@
 		FROM tag
 		<where>
 			prod_number = #{prod_number}
+		</where>
+	</select>
+	
+	<!-- 관심 상품 -->
+	<select id="likeProd" resultType="String" parameterType="java.util.Map">
+		SELECT  count(*) as cnt
+		FROM likeProd
+		<where>
+		prod_number = #{prod_number}
+		and memberId = #{memberId}
+		</where>
+	</select>
+	
+	<insert id="insertLikeProd" parameterType="java.util.Map">
+		<![CDATA[
+			INSERT INTO likeProd (prod_number, memberId)
+			VALUES(#{prod_number}, #{memberId})
+		 ]]>
+	</insert>
+	
+	<delete id="deleteLikeProd" parameterType="java.util.Map">
+		<![CDATA[
+			DELETE FROM likeProd 
+		 ]]>
+		 <where>
+		 <![CDATA[
+		 	memberId = #{memberId}
+		 ]]>
+	 	<if test="checkProd == null">
+		 	and prod_number = #{prod_number}
+		 </if>
+		 <if test="checkProd != null">
+		 	and prod_number IN 
+		 	<foreach collection="checkProd" item="checkProd" index="index" separator="," open="(" close=")">
+		 		#{checkProd}
+		 	</foreach>
+		 </if>
+		 
+		 </where>
+	</delete>
+	
+	<update id="updateHeart" parameterType="java.util.Map">
+		<![CDATA[
+			UPDATE product
+		 ]]>
+		 <if test="heart == 'up'">
+		 	SET heart = heart + 1
+		 </if>
+		 <if test="heart == 'down'">
+		 	SET heart = heart - 1
+		 </if>
+		 
+		 <where>
+		 <if test="checkProd == null">
+		 	prod_number = #{prod_number}
+		 </if>
+		 <if test="checkProd != null">
+		 	prod_number IN 
+		 	<foreach collection="checkProd" item="checkProd" index="index" separator="," open="(" close=")">
+		 		#{checkProd}
+		 	</foreach>
+		 </if>
+		 </where>
+	</update>
+	
+	<select id="heart" resultType="String" parameterType="java.util.Map">
+		SELECT  heart
+		FROM product
+		<where>
+		prod_number = #{prod_number}
 		</where>
 	</select>
 

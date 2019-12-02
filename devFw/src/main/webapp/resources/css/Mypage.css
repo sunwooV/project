@@ -2150,8 +2150,8 @@ pre code {
 
 .table {
 	width: 100%;
-	margin-bottom: 1rem;
-	color: #919aa1;
+	margin-bottom: 10%;
+	color:black;
 }
 
 .table th, .table td {
@@ -11952,4 +11952,11 @@ th {
 #sidebar {
 	padding: 8% 8% 7% 8%;
 	border: 1px solid black;
+}
+
+a>div:hover{
+	background: lightgray;
+}
+.table>tbody>tr>th{
+	font-size:13px;
 }

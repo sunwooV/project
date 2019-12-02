@@ -13,11 +13,15 @@
 		<result property="profile_photo" column="profile_photo" />
 		<result property="main_photo" column="main_photo" />
 		<result property="flea_group" column="flea_group" />
+		<result property="join_offline_date" column="join_offline_date" />
+		<result property="join_offline_time" column="join_offline_time" />
+		<result property="join_offline_location" column="join_offline_location" />
+		<result property="join_prepayment_yn" column="join_prepayment_yn" />
 	</resultMap>
 
 	<select id="searchList" resultMap="p0001Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         select flea_code, memberid, flea_name, intro_cotent, flea_like_count, profile_photo, main_photo, flea_group
+         select *
          from flea
       ]]>
 		<where>

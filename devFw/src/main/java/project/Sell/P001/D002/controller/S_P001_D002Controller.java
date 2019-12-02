@@ -7,4 +7,5 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface S_P001_D002Controller {
 	public ModelAndView detailProduct(String prod_number, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public void likeProd(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

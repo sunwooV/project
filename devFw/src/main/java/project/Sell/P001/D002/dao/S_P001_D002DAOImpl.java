@@ -44,7 +44,35 @@ public class S_P001_D002DAOImpl implements S_P001_D002DAO {
 	
 	@Override
 	public List<S_P001_D002VO> tagList(Map<String, Object> searchMap) throws DataAccessException {
-		List<S_P001_D002VO> auction_date = sqlSession.selectList("Sell.p001_d002.tagList", searchMap);
-		return auction_date;
+		List<S_P001_D002VO> tagList = sqlSession.selectList("Sell.p001_d002.tagList", searchMap);
+		return tagList;
 	}
+	
+	@Override
+	public String likeProd(Map<String, Object> searchMap) throws DataAccessException {
+		String likeProd = sqlSession.selectOne("Sell.p001_d002.likeProd", searchMap);
+		return likeProd;
+	}
+	
+	@Override
+	public String heart(Map<String, Object> searchMap) throws DataAccessException {
+		String heart = sqlSession.selectOne("Sell.p001_d002.heart", searchMap);
+		return heart;
+	}
+	
+	@Override
+	public void insertLikeProd(Map<String, Object> datahMap) throws DataAccessException {
+		sqlSession.update("Sell.p001_d002.insertLikeProd", datahMap);
+	}
+	
+	@Override
+	public void deleteLikeProd(Map<String, Object> datahMap) throws DataAccessException {
+		sqlSession.update("Sell.p001_d002.deleteLikeProd", datahMap);
+	}
+	
+	@Override
+	public void updateHeart(Map<String, Object> datahMap) throws DataAccessException {
+		sqlSession.update("Sell.p001_d002.updateHeart", datahMap);
+	}
+	
 }

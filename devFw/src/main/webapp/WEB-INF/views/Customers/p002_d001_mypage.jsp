@@ -24,73 +24,80 @@
 		style="padding-bottom: 92px; padding-left: 75px;">
 		<div id="myshopMain">
 			<h1 style="padding-bottom: 27px; font-size: 32px;">MY PAGE</h1>
-			<div class="myshopMain_sub1">
-				<div id="list">
-					<h3>
-						<a href="${contextPath}/mpBuyerOrderList.do"><strong>주문 조회</strong></a>
-					</h3>
-					<p style="font-size: 11px;">
-						<a href="${contextPath}/mpBuyerOrderList.do">고객님께서 주문하신 상품의 주문내역을 확인하실 수
-							있습니다.
-						</a>
-					</p>
+			<a href="${contextPath}/mpBuyerOrderList.do">
+				<div class="myshopMain_sub1">
+					<div id="list">
+						<h3>
+							<strong>주문 조회</strong>
+						</h3>
+						<p style="font-size: 11px;">
+							고객님께서 주문하신 상품의 주문내역을 확인하실 수 있습니다.
+						</p>
+					</div>
 				</div>
-			</div>
-			<div class="myshopMain_sub2">
-				<div id="list">
-					<h3>
-						<a href="${contextPath}/InfoInit.do"><strong>내 정보</strong></a>
-					</h3>
-					<p style="font-size: 11px;">
-						<a href="${contextPath}/InfoInit.do">회원이신 고객님의 개인정보를 관리하는 공간입니다.
-						</a>
-					</p>
+			</a>
+			<a href="${contextPath}/InfoInit.do">
+				<div class="myshopMain_sub2">
+					<div id="list">
+						<h3>
+							<strong>내 정보</strong>
+						</h3>
+						<p style="font-size: 11px;">
+							회원이신 고객님의 개인정보를 관리하는 공간입니다.
+						</p>
+					</div>
 				</div>
-			</div>
-			<div class="myshopMain_sub3">
-				<div id="list">
-					<h3>
-						<a href="/myshop/wish_list.html"><strong>장바구니</strong></a>
-					</h3>
-					<p style="font-size: 11px;">
-						<a href="/myshop/wish_list.html">관심상품으로 등록하신 상품의 목록을 보여드립니다.</a>
-					</p>
+			</a>
+			<a href="/myshop/wish_list.html">
+				<div class="myshopMain_sub3">
+					<div id="list">
+						<h3>
+							<strong>장바구니</strong>
+						</h3>
+						<p style="font-size: 11px;">
+							관심상품으로 등록하신 상품의 목록을 보여드립니다.
+						</p>
+					</div>
 				</div>
-			</div>
-			<div class="myshopMain_sub4">
-				<div id="list">
-					<h3>
-						<a href="${contextPath}/memberPoint.do"><strong>포인트</strong></a>
-					</h3>
-					<p style="font-size: 11px;">
-						<a href="${contextPath}/memberPoint.do">적립금은 상품 구매 시 사용하실 수
-							있습니다.<br>적립된 금액은 현금으로 환불되지 않습니다.
-						</a>
-					</p>
+			</a>
+			<a href="${contextPath}/memberPoint.do">
+				<div class="myshopMain_sub4">
+					<div id="list">
+						<h3>
+							<strong>포인트</strong>
+						</h3>
+						<p style="font-size: 11px;">
+							적립금은 상품 구매 시 사용하실 수 있습니다.<br>적립된 금액은 현금으로 환불되지 않습니다.
+						</p>
+					</div>
 				</div>
-			</div>
-			<div class="myshopMain_sub5">
-				<div id="list">
-					<h3>
-						<a href="${contextPath}/mypageQA.do"><strong>내가 쓴 게시글 확인</strong></a>
-					</h3>
-					<p style="font-size: 11px;">
-						<a href="${contextPath}/mypageQA.do"> 구매후기 / Q&A
-						</a>
-					</p>
+			</a>
+			<a href="${contextPath}/mypageQnA.do">
+				<div class="myshopMain_sub5">
+					<div id="list">
+						<h3>
+							<strong>내가 쓴 게시글 확인</strong>
+						</h3>
+						<p style="font-size: 11px;">
+							 구매후기 / Q&A
+							
+						</p>
+					</div>
 				</div>
-			</div>
-			<div class="myshopMain_sub6">
-				<div id="list">
-					<h3>
-						<a href="/myshop/coupon/coupon.html"><strong>관심 상품</strong></a>
-					</h3>
-					<p style="font-size: 11px;">
-						<a href="/myshop/coupon/coupon.html">고객님이 보유하고 계신 쿠폰내역을
-							보여드립니다.</a>
-					</p>
+			</a>
+			
+			<a href="./mypageLikeProd.do">
+				<div class="myshopMain_sub6">
+						<div id="list">
+							<h3>
+								<strong>관심 상품</strong>
+							</h3>
+							<p style="font-size: 11px;">
+								관심상품을 볼 수 있습니다.
+							</p>
+						</div>
 				</div>
-			</div>
+			</a>
 		</div>
 	</div>
 </body>

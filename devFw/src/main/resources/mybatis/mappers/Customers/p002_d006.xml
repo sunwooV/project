@@ -15,7 +15,7 @@
       <![CDATA[
          	
       
-			select prod_number, qna_content, answer_YN
+			select prod_number, qna_content, answer_YN,answer_content
 			from prodqna
 			where memberid = #{memberid}
       	

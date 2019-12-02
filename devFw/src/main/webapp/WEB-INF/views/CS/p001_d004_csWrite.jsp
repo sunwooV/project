@@ -65,8 +65,8 @@
 		<input type="text" id="input_csWriteTitle" class="input_csWriteTitle">
 	</div>
 	<div class="selectOption" id="selectOption">
-		문의 유형을 선택하세요: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <select name="QType"
-			class="selectQuestionType" id="selectQuestionType">
+		문의 유형을 선택하세요: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+		<select name="QType" class="selectQuestionType" id="selectQuestionType">
 			<option value="OneToOne">1:1문의</option>
 			<option value="changeAndRefund">교환 및 환불</option>
 			<option value="shipping">배송문의</option>

@@ -20,37 +20,37 @@
 	href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Do+Hyeon|Merriweather|Noto+Sans+KR&display=swap&subset=korean"
 	rel="stylesheet">
 <script type="text/javascript">
-	$(document).on('click', '#btnsearch', function(){
+/* 	$(document).on('click', '#btnsearch', function() {
 		var searchVal = $("#searchbar").val();
 		var frm = document.searchform;
-		
+
 		//검색어 유효성 검사
-		if(searchVal == ""){
+		if (searchVal == "") {
 			alert("검색어를 입력해주세요.");
 			return false;
 		}
-		
-		frm.method="get";
-		frm.action="./searchProduct.do";
+
+		frm.method = "get";
+		frm.action = "./searchProduct.do";
 		frm.submit();
 
 	});
-	
-
+ */
 	$('.tree-toggle').click(function() {
 		$(this).parent().children('ul.tree').toggle(200);
 	});
 	$(function() {
 		$('.tree-toggle').parent().children('ul.tree').toggle(200);
 	})
-
 </script>
 </head>
 <body>
-   <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbartop">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light"
+		id="navbartop">
 		<!-- 상단바 -->
-		<a class="navbar-brand" href="./main.do"><img src="${contextPath }/resources/img/logo.jpg"
-			width=180px; height=50px; /></a>
+		<a class="navbar-brand" href="./main.do"><img
+			src="${contextPath }/resources/img/logo.jpg" width=180px;
+			height=50px; /></a>
 		<button class="navbar-toggler collapsed" type="button"
 			data-toggle="collapse" data-target="#navbarColor03"
 			aria-controls="navbarColor03" aria-expanded="false"
@@ -59,38 +59,47 @@
 		</button>
 		<div class="navbar-collapse collapse" id="navbarColor03" style="">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="./main.do">Home
+				<!-- 	<li class="nav-item active"><a class="nav-link" href="./main.do">Home
 						<span class="sr-only">(current)</span>
-				</a></li>
-				<c:set var="member" value="${member }"/>
-            <c:if test ="${ member == null}">
-            <li class="nav-item"><a class="nav-link" href="./joinInit.do">Join</a></li>
-            </c:if>
-             <c:if test ="${ member.verify == 'N'}">
-             <li class="nav-item"><a class="nav-link" href="./mypage.do">MyPage<br>&nbsp;(${ member.nickname}님)</a></li>
-             </c:if>
-             
-             <c:if test ="${ member.verify == 'Y'}">
-             <li class="nav-item"><a class="nav-link" href="./admin.do">Administrate<br>&nbsp;(${ member.nickname}님)</a></li>
-             </c:if>
-             
-            <c:set var="member" value="${member }"/>
-                     <c:if test ="${ member == null}">
-                           <li class="nav-item"><a class="nav-link" href="./loginInit.do">Login</a></li>
-                           </c:if>
-                         <c:if test ="${ member != null}">
-                           <li class="nav-item"><a class="nav-link" href="./logout.do">LOGOUT</a></li>
-                           </c:if>
-				<li class="nav-item"><a class="nav-link" href="${contextPath}/cart.do">shopping list</a></li>
-				<li class="nav-item"><a class="nav-link" href="/devFw/fleaCreateStoreType.do">플리마켓 스토어 개설하기</a></li>
+				</a></li> -->
+				<c:set var="member" value="${member }" />
+				<c:if test="${ member == null}">
+					<li class="nav-item"><a class="nav-link" href="./joinInit.do">회원가입</a></li>
+				</c:if>
+				<c:if test="${ member.verify == 'N'}">
+					<li class="nav-item"><a class="nav-link" href="./mypage.do">마이페이지&nbsp;(${ member.nickname}님)</a></li>
+				</c:if>
+
+				<c:if test="${ member.verify == 'Y'}">
+					<li class="nav-item"><a class="nav-link" href="./admin.do">Administrate<br>&nbsp;(${ member.nickname}님)
+					</a></li>
+				</c:if>
+
+				<c:set var="member" value="${member }" />
+				<c:if test="${ member == null}">
+					<li class="nav-item"><a class="nav-link" href="./loginInit.do">로그인</a></li>
+				</c:if>
+				<c:if test="${ member != null}">
+					<li class="nav-item"><a class="nav-link" href="./logout.do">로그아웃</a></li>
+				</c:if>
+				<li class="nav-item"><a class="nav-link"
+					href="${contextPath}/cart.do">장바구니</a></li>
+					<li class="nav-item"><a class="nav-link"
+					href="${contextPath}/cs.do">고객센터</a></li>
 			</ul>
-			<form class="form-inline my-2 my-lg-0" id="searchform" name="searchform">
-				<input class="form-control mr-sm-2" type="text" id="searchbar" name="searchVal" value=""
-					placeholder="Search">
-				<input type="button" class="btn btn-secondary my-2 my-sm-0" id="btnsearch" value="Search" onclick="SearchProduct()">
-			</form>
-			<button type="submit" class="btn btn-outline-warning"  onclick="location.href='./enroll.do'" id="register">상품 등록</button>
-			<button type="submit" class="btn btn-outline-warning"  onclick="location.href='./chatInit.do'" id="register">채팅</button>
+	<!-- 		<form class="form-inline my-2 my-lg-0" id="searchform"
+				name="searchform">
+				<input class="form-control mr-sm-2" type="text" id="searchbar"
+					name="searchVal" value="" placeholder="검색어를 입력하세요♡"> <input
+					type="button" class="btn btn-secondary my-2 my-sm-0" id="btnsearch"
+					value="Search" onclick="SearchProduct()">
+			</form> -->
+			<a href="/devFw/fleaCreateStoreType.do" style="font-size: 15px;">✚플리마켓
+				스토어&nbsp;&nbsp;&nbsp;</a>
+				<a href="${contextPath}/enroll.do" style="font-size: 15px;">✚상품 등록&nbsp;&nbsp;&nbsp;</a>
+				 <a href="${contextPath}/chatInit.do"
+				style="font-size: 15px;">🖂채팅</a>
+
 		</div>
 	</nav>
 	<!--  -->
