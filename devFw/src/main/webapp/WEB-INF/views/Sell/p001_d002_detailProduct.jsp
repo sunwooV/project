@@ -1087,6 +1087,7 @@ textarea{
 </style>
 </head>
 <body>
+<c:set var="fleaName" value="${fleaName }"/>
 <form name="detail">
 <div id="wrap">
 	<input type="hidden" id="command" name="command" value="">
@@ -1151,8 +1152,12 @@ textarea{
 				<h1>${product.prod_title}</h1>
 				
 				<input type="hidden" id="prod_title" value="${product.prod_title }">
-				<!-- <h3>#${product.tag1 }, #${product.tag2 }, #${product.tag3 }, #${product.tag4 }, #${product.tag5 }</h3> -->
-				<h3 id="gray-text">${product.memberId }</h3>
+				<c:if test="${product.flea_yn == 'y' }"> <!-- 플리마켓에 올라온 상품인 경우 플리마켓명도 함께 표시 -->
+					<h3 id="gray-text">${fleaName } (${product.memberId })</h3>
+				</c:if>
+				<c:if test="${product.flea_yn == 'n' }">
+					<h3 id="gray-text">${product.memberId }</h3>
+				</c:if>
 				<br>
 				<c:choose>
 					<c:when test="${product.auction_yn == 'y' or product.auction_yn == 'w' or product.auction_yn == 'f' }"> <!-- 경매 상품이면 시작가와 현재가를 표시해준다. -->
@@ -1221,6 +1226,9 @@ textarea{
 							</c:when>
 							<c:when test="${product.send_way == 'delivery' }">
 								<input type="radio" name="way_check" value="delivery" checked="checked" id="delivery"> <label for="delivery">택배거래</label>
+							</c:when>
+							<c:when test="${product.send_way == 'receipt' }">
+								<input type="radio" name="way_check" value="receipt" checked="checked" id="receipt"> <label for="receipt">현장거래</label>
 							</c:when>
 							<c:otherwise>
 								<input type="radio" name="way_check" value="direct" checked="checked" id="direct"> <label for="direct">직거래(장소 : ${product.direct_area })</label>

@@ -13,6 +13,7 @@ import java.util.UUID;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +38,8 @@ public class S_P001_D001ControllerImpl implements S_P001_D001Controller {
 	private static final Logger logger = LoggerFactory.getLogger(S_P001_D001ControllerImpl.class);
 	@Autowired
 	S_P001_D001Service S_P001_D001Service;
+	@Autowired
+	private HttpSession session;
 	@Value("${uploadFilePath}")
 	private String uploadFilePath;
 	@Value("${downloadFilePath}")
@@ -51,15 +54,47 @@ public class S_P001_D001ControllerImpl implements S_P001_D001Controller {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		searchMap.put("category_name", category_name);	 
-		
-		List high_category = S_P001_D001Service.high_category(searchMap);
-		List middle_category = S_P001_D001Service.middle_category(searchMap);
+		String loginCheck = (String) session.getAttribute("memberid");
+		System.out.println("session:::" + loginCheck);
 
-		ModelAndView mav = new ModelAndView("Sell/p001_d001_enroll");
-		mav.addObject("high_category", high_category);
-		mav.addObject("middle_category", middle_category);
-		
-		return mav;
+		if(loginCheck == null) { //로그인하지 않았으면 
+			System.out.println("로그인 안했음");
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("redirect:./loginInit.do");
+			return mav;
+		}
+		else { //로그인 되어있으면
+			searchMap.put("memberId", loginCheck);
+			String checkSeller = S_P001_D001Service.checkSeller(searchMap);
+			if(Integer.parseInt(checkSeller) == 0) { //판매자 등록이 되어있지 않으면
+				System.out.println("판매자등록 안했음");
+				
+				//판매자 등록 페이지 완성되면 변경하기~~~!!!
+				ModelAndView mav = new ModelAndView();
+				mav.setViewName("redirect:./main.do");
+				
+				return mav;
+			} else { //판매자 등록이 되어 있는 경우
+				ModelAndView mav = new ModelAndView("Sell/p001_d001_enroll");
+				
+				searchMap.put("flea_seller_group", "checkFleaSeller");
+				String checkFleaSeller = S_P001_D001Service.checkSeller(searchMap); //플리마켓 셀러인지 확인
+				if(Integer.parseInt(checkFleaSeller) == 0) { //플리마켓 셀러가 아닌 경우
+					mav.addObject("flea_seller_group", "n");
+				} else {
+					List partFlea = S_P001_D001Service.partFlea(searchMap);
+					mav.addObject("partFlea", partFlea);
+					mav.addObject("flea_seller_group", "y");
+				}
+				List high_category = S_P001_D001Service.high_category(searchMap);
+				List middle_category = S_P001_D001Service.middle_category(searchMap);
+	
+				mav.addObject("high_category", high_category);
+				mav.addObject("middle_category", middle_category);
+				
+				return mav;
+			}
+		}
 	}
 	
 
@@ -87,6 +122,7 @@ public class S_P001_D001ControllerImpl implements S_P001_D001Controller {
 			dataMap.put(name, value);
 			System.out.println(dataMap);
 		}
+		
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders(); // 헤더변경 시 사용

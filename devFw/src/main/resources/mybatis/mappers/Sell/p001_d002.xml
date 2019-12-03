@@ -31,7 +31,7 @@
 		<result property="tag3" column="tag3" />
 		<result property="tag4" column="tag4" />
 		<result property="tag5" column="tag5" />
-		<result property="prodViews" column="prodViews" />
+		<result property="fleamarket" column="fleamarket" />
 	</resultMap>
 	<resultMap id="S_P001_D002Result02" type="S_P001_D001VO">
 		<result property="category_code" column="category_code" />
@@ -65,7 +65,6 @@
 		</where>
 	</select>
 
-	
 	<select id="detailProduct" resultMap="S_P001_D002Result01" parameterType="java.util.Map">
          select *
          from   product
@@ -160,6 +159,15 @@
 		FROM product
 		<where>
 		prod_number = #{prod_number}
+		</where>
+	</select>
+	
+	
+	<select id="fleaName" resultType="String" parameterType="java.util.Map">
+		SELECT  flea_name
+		FROM flea
+		<where>
+		flea_code = #{flea_code}
 		</where>
 	</select>
 

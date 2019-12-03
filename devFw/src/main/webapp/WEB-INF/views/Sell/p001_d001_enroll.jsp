@@ -82,7 +82,6 @@
 		
 		//전송버튼
 		$("#enroll").click(function() {
-			
 			var frm = document.productEnroll;
 			var prod_group ="";
 			var auction_date = "";
@@ -184,6 +183,8 @@
 			var price = document.getElementsByName("prod_price")[0].value;
 			var auction_price = document.getElementsByName("auction_price")[0].value;
 			var direct_area = document.getElementsByName("direct_area")[0].value;
+			var fleamarket = document.getElementsByName("fleamarket")[0].value;
+			var fleaCheck = $("#flea_seller_group").val();
 			
 			
 			if(category == null || category == ""){
@@ -192,6 +193,15 @@
 				document.getElementById("highCategory").focus();
 				return false;
 				
+			}
+			if(fleaCheck != null){
+				if($("#flea").is(":checked")){
+					if(fleamarket == null || fleamarket == ""){
+						alert("게시할 플리마켓을 선택해주세요.");
+						document.getElementById("fleamarket").focus();
+						return false;
+					}
+				}
 			}
 			if(prod_group == null || prod_group == ""){
 				alert("게시 선택을 선택해주세요.");
@@ -419,80 +429,104 @@
 		});
 
 		//중고 버튼
-		$("#reused").change(
-				function() {
-					if ($("#reused").is(":checked")) { //중고 버튼 클릭
-						$("#buyPrice").css("display", "block");
-						$("#direct").attr("disabled", false);
-						$("#way_caution").html("※중고와 경매에 대한 직거래입니다.※");
-						$("#price").css("display", "block"); //상품 가격란 표시
-						document.getElementsByName("reused_yn")[0].value = 'y';
-					} else {
-						$("#buyPrice").css("display", "none"); //구매 금액 입력할 수 있게 한다.
-						$("#price").css("display", "none"); //상품 가격란 미표시
-						document.getElementsByName("reused_yn")[0].value = 'n';
-						if ($("#auction").is(":checked")) { //플리마켓만 체크되어 있지 않을 때
-							$("#direct").attr("disabled", false);
-							$("#way_caution").html("※중고와 경매에 대한 직거래입니다.※");
-						} else { //플리마켓만 체크되어 있는 경우 직거래 사용 못 하게
-							$("#direct").attr("disabled", true);
-							$("#way_caution").html("※플리마켓 직거래는 맵 등록 후 오프라인 상품 수령만 가능합니다.※"); //플리마켓은 직거래가 안된다는 경고 출력
-						}
-						if($("#flea").is(":checked")){
-							$("#price").css("display", "block"); //상품 가격란 표시
-						}
+		$("#reused").change(function() {
+			if ($("#reused").is(":checked")) { //중고 버튼 클릭
+				if($("#flea").is(":checked")){ //플리마켓과 교차 선택 불가
+					alert("플리마켓과 교차 선택이 불가능합니다.");
+					$("#reused").removeAttr('checked');
+				} else {
+					$("#yesflea").css("display", "none"); //현장수령은 막음
+					$("#buyPrice").css("display", "block");
+					$("#direct").attr("disabled", false);
+					$("#way_caution").html("※중고와 경매에 대한 직거래입니다.※");
+					$("#price").css("display", "block"); //상품 가격란 표시
+					document.getElementsByName("reused_yn")[0].value = 'y';
+				}
+			} else {
+				if($("#auction").is(":checked")){
+					$("#yesflea").css("display", "none");
+				} else{
+					$("#direct").removeAttr("checked");
+					$("#delivery").removeAttr("checked");
+					$("#yesflea").css("display", "");
+				}
+				$("#buyPrice").css("display", "none"); //구매 금액 입력할 수 있게 한다.
+				$("#price").css("display", "none"); //상품 가격란 미표시
+				
+				document.getElementsByName("reused_yn")[0].value = 'n';
 	
-					}
-				});
+				$("#direct").attr("disabled", false);
+			}
+		});
 
 		//경매 버튼
-		$("#auction").change(
-			function() {
-				if ($("#auction").is(":checked")) { //경매 버튼 클릭
+		$("#auction").change(function() {
+			if ($("#auction").is(":checked")) { //경매 버튼 클릭
+				if($("#flea").is(":checked")){ //플리마켓과 교차 선택 불가
+					alert("플리마켓과 교차 선택이 불가능합니다.");
+					$("#auction").removeAttr('checked');
+				}else{
+					$("#yesflea").css("display", "none"); //현장 수령 막기
 					alert("경매 일자를 선택해주세요.");
+
 					$("#auctionDaySelect").css("display", "block");
 					$("#direct").attr("disabled", false);
 					$("#way_caution").html("※중고와 경매에 대한 직거래입니다.※");
 					$("#auction_price").css("display", "block"); //경매 시작가 표시
 					document.getElementsByName("auction_yn")[0].value = 'y';
 					document.getElementById("discount").readOnly = true;
-				} else {
-					$("#auctionDaySelect").css("display", "none");
-					document.getElementsByName("auction_yn")[0].value = 'n';
-					document.getElementById("discount").readOnly = false;
-					if ($("#reused").is(":checked")) { //플리마켓만 체크되어 있지 않을 때
-						$("#direct").attr("disabled", false);
-						$("#way_caution").html("※중고와 경매에 대한 직거래입니다.※");
-					} else { //플리마켓만 체크되어 있는 경우 직거래 사용 못 하게
-						$("#direct").attr("disabled", true);
-						$("#way_caution").html("※플리마켓 직거래는 맵 등록 후 오프라인 상품 수령만 가능합니다.※"); //플리마켓은 직거래가 안된다는 경고 출력
-					}
-					$("#auction_price").css("display", "none"); //경매 시작가 미표시
 				}
+			} else {
+				if($("#reused").is(":checked")){
+					$("#yesflea").css("display", "none");
+				} else{
+					$("#direct").removeAttr("checked");
+					$("#delivery").removeAttr("checked");
+					$("#yesflea").css("display", "");
+				}
+				$("#auctionDaySelect").css("display", "none");
+				document.getElementsByName("auction_yn")[0].value = 'n';
+				document.getElementById("discount").readOnly = false;
+
+				$("#direct").attr("disabled", false);
+				
+				$("#auction_price").css("display", "none"); //경매 시작가 미표시
+			}
 		});
 
 		//플리마켓 버튼
 		$("#flea").change(function() {
 			if ($("#flea").is(":checked")) {
-				$("#price").css("display", "block"); //상품 가격란 표시
-				document.getElementsByName("flea_yn")[0].value = 'y';
-				if ($("#reused").is(":checked")) { //중고가 함께 체크되어 있을 때
-					$("#direct").attr("disabled", false); //직거래 가능
-				} else if ($("#auction").is(":checked")) { //경매가 함께 체크되어 있을 때
-					$("#direct").attr("disabled", false); //직거래 가능
-				} else { //플리마켓 혼자 체크된 경우
-					$("#direct").attr("disabled", true);
+				if($("#reused").is(":checked")){ //중고, 경매와 교차 선택 불가
+					alert("중고, 경매와 교차선택이 불가능합니다.");
+					$("#flea").removeAttr('checked');
+				} else if($("#auction").is(":checked")){ //중고, 경매와 교차 선택 불가
+					alert("중고, 경매와 교차선택이 불가능합니다.");
+					$("#flea").removeAttr('checked');
+				} else{
+					$("#noflea").css("display", "none");
+					$("#price").css("display", "block"); //상품 가격란 표시
+					$("#selectFlea").css("display", ""); //참여중인 플리마켓 중에 상품을 게시할 마켓 선택
+					document.getElementsByName("flea_yn")[0].value = 'y';
+					if ($("#reused").is(":checked")) { //중고가 함께 체크되어 있을 때
+						$("#direct").attr("disabled", false); //직거래 가능
+					} else if ($("#auction").is(":checked")) { //경매가 함께 체크되어 있을 때
+						$("#direct").attr("disabled", false); //직거래 가능
+					} else { //플리마켓 혼자 체크된 경우
+						$("#direct").attr("disabled", true);
+					}
+					$("#way_caution").css("display", "block"); //플리마켓은 직거래가 안된다는 경고 출력
 				}
-				$("#way_caution").css("display", "block"); //플리마켓은 직거래가 안된다는 경고 출력
 			} else {
+				$("#receipt").removeAttr("checked");
+				$("#noflea").css("display", "");
 				$("#direct").attr("disabled", false);
 				$("#way_caution").css("display", "none");
 				document.getElementsByName("flea_yn")[0].value = 'n';
-				if($("#reused").is(":checked")){ //플리마켓을 해제해도 중고가 체크되어 있으면 상품 가격란 표시
-					$("#price").css("display", "block"); //상품 가격란 표시
-				} else {
-					$("#price").css("display", "none"); //상품 가격란 미표시
-				}
+		
+				$("#price").css("display", "none"); //상품 가격란 미표시
+				$("#selectFlea").css("display", "none");
+				
 			}
 		});
 		
@@ -555,6 +589,7 @@
 		return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	} */
 	
+	//태그
 	$(document).ready(function() {
 
 		var tag = {};
@@ -671,12 +706,15 @@
 </head>
 <body>
 	<c:set var="command" value="${command }"/>
+	<c:set var="flea_seller_group" value="${flea_seller_group }" />
+	<input type="hidden" id="flea_seller_group" value="${flea_seller_group }"/>
 	<input type="hidden" id="command" value="${command }">
+	
 	<c:if test="${command != 'modify' }">
 	<form class="form" name="productEnroll" id="enrollProduct" method="post" action="./enrollSuccess.do">
 		<div class="containBox">
 			<h1>상품 등록</h1>
-			<span>(*: 필수항목)</span>
+			<span>(*: 필수항목)</span><span style="color:red">※중고,경매:온라인거래/플리마켓:오프라인거래(교차선택 불가)※</span>
 			<div class="subtitle" id="category">
 				<a>카테고리 * &nbsp&nbsp&nbsp&nbsp</a> 
 				<select id="highCategory" name="highCategory">
@@ -701,8 +739,22 @@
 			<div class="subtitle" id="group">
 				<a>게시 선택 * &nbsp&nbsp</a> 
 				<input type="checkbox" name="prod_group" value="중고" class="checkSelect1" id="reused" /><label for="reused">중고</label> 
-				<input type="checkbox" name="prod_group" value="경매" class="checkSelect1" id="auction" /><label for="auction">경매</label> 
-				<input type="checkbox" name="prod_group" value="플리" class="checkSelect1" id="flea" /><label for="flea">플리마켓</label> 
+				<input type="checkbox" name="prod_group" value="경매" class="checkSelect1" id="auction" /><label for="auction">경매&nbsp&nbsp&nbsp</label>
+				<c:if test="${flea_seller_group == 'n' }"> <!-- 플리마켓 셀러 아닌 경우 플리마켓 체크 못 하게 -->
+					<input type="checkbox" name="prod_group" value="플리" class="checkSelect1" id="flea" disabled="disabled" /><label for="flea">플리마켓</label>
+					<span style="color:blue"> ▶ 플리마켓 참여 후 이용 가능</span> 
+				</c:if> 
+				<c:if test="${flea_seller_group == 'y' }"> 
+					<input type="checkbox" name="prod_group" value="플리" class="checkSelect1" id="flea" /><label for="flea">플리마켓</label>
+					<span id="selectFlea" style="display:none;">
+					<select id="fleamarket" name="fleamarket">
+						<option value="" selected="selected">--플리마켓 선택--</option>
+						<c:forEach var="partFlea" items="${partFlea }">
+					  		<option value="${partFlea.flea_code }" id="${partFlea.flea_code }">${partFlea.flea_name }</option>
+					  	</c:forEach>
+					</select>
+					</span>
+				</c:if> 
 				<input type="hidden" name="reused_yn" value="n"/>
 				<input type="hidden" name="auction_yn" value="n"/>
 				<input type="hidden" name="flea_yn" value="n"/>
@@ -716,7 +768,7 @@
 						<input type="checkbox" name="auction_date" value="7" class="checkSelect2" onclick="oneCheckbox(this)" />7일 
 						<br>
 					<div style="color: red; font-size: 12px;">
-					※경매 포함 중복 체크 시 경매에 선택 일자동안 게시된 후 판매되지 않은 상품만 타 메뉴로 넘어갑니다※</div>
+					※경매 포함 중복 체크 시 경매에 선택 일자동안 게시된 후 판매되지 않은 상품만 중고로 넘어갑니다.※</div>
 				</div>
 			</div>
 
@@ -745,7 +797,7 @@
 					<a>경매 시작가 *</a> 
 					￦&nbsp<input type="number" id="auction_price" name="auction_price" min="0"/>
 					<div style="color: red; font-size: 12px;">
-					※판매는 경매에서 경매 시작가부터 시작하고, 타 메뉴에서는 상품 가격으로 보여집니다.※</div>
+					※판매는 경매에서 경매 시작가부터 시작하고, 중고에서는 상품 가격으로 보여집니다.※</div>
 			</div>
 			
 
@@ -756,10 +808,13 @@
 
 			<div class="subtitle">
 				<a>거래 방법 * &nbsp&nbsp&nbsp&nbsp</a> 
-				<input type="checkbox" class="send_way" name="send_way" value="direct" id="direct" /><label for="direct">직거래</label> 
-				<input type="checkbox" class="send_way" name="send_way" value="delivery" id="delivery"/><label for="delivery">택배 거래</label> <br>
-				<div id="way_caution" style="color: red; font-size: 12px; display: none;">
-				※플리마켓 직거래는 맵 등록 후 오프라인 상품 수령만 가능합니다.※</div>
+				<span id="noflea">
+					<input type="checkbox" class="send_way" name="send_way" value="direct" id="direct" /><label for="direct">직거래</label> 
+					<input type="checkbox" class="send_way" name="send_way" value="delivery" id="delivery"/><label for="delivery">택배 거래</label> 
+				</span>
+				<span id="yesflea" style="display:contents;">
+					<input type="checkbox" class="send_way" name="send_way" value="receipt" id="receipt" /><label for="receipt">현장 수령</label><br>
+				</span>
 			</div>
 
 			<div class="subtitle" id="directCheck" style="display: none" >
@@ -856,6 +911,7 @@
 			
 			<div class="subtitle" id="group">
 				<a>게시 선택 * &nbsp&nbsp</a> 
+			
 					<c:if test="${modifyProd.reused_yn == 'y' }">
 						<input type="checkbox" name="prod_group" value="중고" class="checkSelect1" id="reused" checked="checked"/>
 						<label for="reused">중고</label>
@@ -868,25 +924,58 @@
 					</c:if>
 					<c:if test="${modifyProd.auction_yn == 'y' }">
 						<input type="checkbox" name="prod_group" value="경매" class="checkSelect1" id="auction" checked="checked"/>
-						<label for="auction">경매</label>
+						<label for="auction">경매&nbsp&nbsp&nbsp</label>
 						<input type="hidden" name="auction_yn" id="auction_yn" value="${modifyProd.auction_yn }"/>
 					</c:if>
 					<c:if test="${modifyProd.auction_yn == 'n' or modifyProd.auction_yn == 'w' or modifyProd.auction_yn == 'f'}">
 						<input type="checkbox" name="prod_group" value="경매" class="checkSelect1" id="auction" />
-						<label for="auction">경매 </label>
+						<label for="auction">경매&nbsp&nbsp&nbsp</label>
 						<input type="hidden" name="auction_yn" id="auction_yn" value="${modifyProd.auction_yn }"/>
 					</c:if>
+			
+				
 					<c:if test="${modifyProd.flea_yn == 'y' }">
 						<input type="checkbox" name="prod_group" value="플리" class="checkSelect1" id="flea" checked="checked"/>
-						<label for="flea">플리</label>
+						<label for="flea">플리마켓</label>
 						<input type="hidden" name="flea_yn" id="flea_yn" value="${modifyProd.flea_yn }"/>
+						<span id="selectFlea" style="display:contents;">
+						<select id="fleamarket" name="fleamarket">
+							<option value="">--플리마켓 선택--</option>
+							<c:forEach var="partFlea" items="${partFlea }">
+								<c:if test="${modifyProd.fleamarket == partFlea.flea_name }">
+									<option value="${partFlea.flea_code }" selected="selected">${partFlea.flea_name }</option>
+								</c:if>
+								<c:if test="${modifyProd.fleamarket != partFlea.flea_name }">
+									<option value="${partFlea.flea_code }" id="${partFlea.flea_code }">${partFlea.flea_name }</option>
+								</c:if>
+						  		
+						  	</c:forEach>
+						</select>
+						</span>
+
 					</c:if>
 					<c:if test="${modifyProd.flea_yn == 'n' }">
-						<input type="checkbox" name="prod_group" value="플리" class="checkSelect1" id="flea" />
-						<label for="flea">플리</label>
-						<input type="hidden" name="flea_yn" id="flea_yn" value="${modifyProd.flea_yn }"/>
+						<c:if test="${flea_seller_group == 'n' }"> <!-- 플리마켓 셀러 아닌 경우 플리마켓 체크 못 하게 -->
+							<input type="checkbox" name="prod_group" value="플리" class="checkSelect1" id="flea" disabled="disabled"/>
+							<label for="flea">플리마켓</label><span style="color:blue"> ▶ 플리마켓 참여 후 이용 가능</span>
+							<input type="hidden" name="flea_yn" id="flea_yn" value="${modifyProd.flea_yn }"/>
+						</c:if> 
+						<c:if test="${flea_seller_group == 'y' }"> 
+							<input type="checkbox" name="prod_group" value="플리" class="checkSelect1" id="flea"/>
+							<label for="flea">플리마켓</label>
+							<input type="hidden" name="flea_yn" id="flea_yn" value="${modifyProd.flea_yn }"/>
+							<span id="selectFlea" style="display:none;">
+							<select id="fleamarket" name="fleamarket">
+								<option value="" selected="selected">--플리마켓 선택--</option>
+								<c:forEach var="partFlea" items="${partFlea }">
+							  		<option value="${partFlea.flea_name }" id="${partFlea.flea_code }">${partFlea.flea_name }</option>
+							  	</c:forEach>
+							</select>
+							</span>
+						</c:if>
+						
 					</c:if>
-					
+				</span>
 
 				<br>
 
@@ -930,7 +1019,7 @@
 								<input type="checkbox" name="auction_date" value="7" class="checkSelect2" onclick="oneCheckbox(this)"/>7일 
 								<br>
 								<div style="color: red; font-size: 12px;">
-								※경매 포함 중복 체크 시 경매에 선택 일자동안 게시된 후 판매되지 않은 상품만 타 메뉴로 넘어갑니다※</div>
+								※경매 포함 중복 체크 시 경매에 선택 일자동안 게시된 후 판매되지 않은 상품만 중고로 넘어갑니다.※</div>
 							</c:otherwise>
 						</c:choose>
 						
@@ -968,7 +1057,7 @@
 					<c:if test="${modifyProd.auction_yn != 'y' }">
 						￦&nbsp<input type="number" id="auction_price" name="auction_price" min="0" value="${modifyProd.auction_price }"/>
 						<div style="color: red; font-size: 12px;">
-						※판매는 경매에서 경매 시작가부터 시작하고, 타 메뉴에서는 상품 가격으로 보여집니다.※</div>
+						※판매는 경매에서 경매 시작가부터 시작하고, 중고에서는 상품 가격으로 보여집니다.※</div>
 					</c:if>
 			</div>
 			
@@ -981,18 +1070,47 @@
 			<div class="subtitle">
 				<a>거래 방법 * &nbsp&nbsp&nbsp&nbsp</a>
 				<input type="hidden" id="selectSend_way" value="${modifyProd.send_way }">
+		
 				<c:if test="${modifyProd.send_way == 'direct' }">
-					<input type="checkbox" class="send_way" name="send_way" value="direct" id="direct" checked="checked"/>직거래 
-					<input type="checkbox" class="send_way" name="send_way" value="delivery" />택배 거래 <br>
+					<span id="noflea">
+						<input type="checkbox" class="send_way" name="send_way" value="direct" id="direct" checked="checked"/><label for="direct">직거래</label> 
+						<input type="checkbox" class="send_way" name="send_way" value="delivery" id="delivery" /><label for="delivery">택배 거래</label>
+					</span>
+					<span id="yesflea" style="display:none;"> 
+						<input type="checkbox" class="send_way" name="send_way" value="receipt" id="receipt" /><label for="receipt">현장 거래</label> <br>
+					</span>
 				</c:if>
 				<c:if test="${modifyProd.send_way == 'delivery' }">
-					<input type="checkbox" class="send_way" name="send_way" value="direct" id="direct" />직거래 
-					<input type="checkbox" class="send_way" name="send_way" value="delivery" checked="checked"/>택배 거래 <br>
+					<span id="noflea">
+						<input type="checkbox" class="send_way" name="send_way" value="direct" id="direct" /><label for="direct">직거래</label> 
+						<input type="checkbox" class="send_way" name="send_way" value="delivery" id="delivery" checked="checked"/><label for="delivery">택배 거래</label>
+					</span>
+					<span id="yesflea" style="display:none;"> 
+						<input type="checkbox" class="send_way" name="send_way" value="receipt" id="receipt" /><label for="receipt">현장 거래</label> <br>
+					</span>
 				</c:if>
 				<c:if test="${modifyProd.send_way == 'direct delivery' }">
-					<input type="checkbox" class="send_way" name="send_way" value="direct" id="direct" checked="checked" />직거래 
-					<input type="checkbox" class="send_way" name="send_way" value="delivery" checked="checked"/>택배 거래 <br>
+					<span id="noflea">
+						<input type="checkbox" class="send_way" name="send_way" value="direct" id="direct" checked="checked" /><label for="direct">직거래</label> 
+						<input type="checkbox" class="send_way" name="send_way" value="delivery" id="delivery" checked="checked"/><label for="delivery">택배 거래</label>
+					</span>
+					<span id="yesflea" style="display:none;"> 
+						<input type="checkbox" class="send_way" name="send_way" value="receipt" id="receipt" /><label for="receipt">현장 거래</label> <br>
+					</span>
 				</c:if>
+			
+				
+				<c:if test="${modifyProd.send_way == 'receipt' }">
+					<span id="noflea" style="display:none;">
+						<input type="checkbox" class="send_way" name="send_way" value="direct" id="direct" /><label for="direct">직거래</label> 
+						<input type="checkbox" class="send_way" name="send_way" value="delivery" id="delivery" /><label for="delivery">택배 거래</label>
+					</span>
+					<span id="yesflea" style="display:contents;"> 
+						<input type="checkbox" class="send_way" name="send_way" value="receipt" id="receipt"  checked="checked"/><label for="receipt">현장 거래</label> <br>
+					</span>
+				</c:if>
+				
+				
 				<div id="way_caution" style="color: red; font-size: 12px; display: none;">
 				※플리마켓 직거래는 맵 등록 후 오프라인 상품 수령만 가능합니다.※</div>
 			</div>

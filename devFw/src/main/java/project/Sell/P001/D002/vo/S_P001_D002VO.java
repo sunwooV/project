@@ -38,6 +38,7 @@ public class S_P001_D002VO {
 	private String left_min;
 	private String left_second;
 	private String cnt;
+	private String fleamarket;
 	
 	public S_P001_D002VO(){
 		System.out.println("S_P001_D002_VO 호출");
@@ -250,8 +251,11 @@ public class S_P001_D002VO {
 	public void setCnt(String cnt) {
 		this.cnt = cnt;
 	}
+	public String getFleamarket() {
+		return fleamarket;
+	}
+	public void setFleamarket(String fleamarket) {
+		this.fleamarket = fleamarket;
+	}
 
-	
-	
-	
 }

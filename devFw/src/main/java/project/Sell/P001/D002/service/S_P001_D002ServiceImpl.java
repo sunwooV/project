@@ -63,6 +63,12 @@ public class S_P001_D002ServiceImpl implements S_P001_D002Service {
 	}
 	
 	@Override
+	public String fleaName(Map<String, Object> searchMap) throws DataAccessException {
+		String fleaName =  S_P001_D002DAO.fleaName(searchMap); 
+		return fleaName;
+	}
+	
+	@Override
 	public void insertLikeProd(Map<String, Object> datahMap) throws Exception {
 		S_P001_D002DAO.insertLikeProd(datahMap);
 	}

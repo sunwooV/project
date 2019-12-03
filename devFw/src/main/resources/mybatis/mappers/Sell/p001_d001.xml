@@ -32,8 +32,9 @@
 		<result property="represent_image" column="represent_image" />
 		<result property="tag_list" column="tag_list" />
 	</resultMap>
-	<resultMap id="S_P001_D001Result03" type="S_P001_D002VO">
-		<result property="prod_number" column="prod_number" />
+	<resultMap id="S_P001_D001Result03" type="S_P001_D001VO">
+		<result property="flea_code" column="flea_code" />
+		<result property="flea_name" column="flea_name" />
 	</resultMap>
 
 	<select id="high_category" resultMap="S_P001_D001Result01" parameterType="java.util.Map"> 
@@ -97,8 +98,8 @@
 			</when>
 			<otherwise> <!-- 경매 외 다른 메뉴 선택했을 때 -->
 			<![CDATA[
-				INSERT INTO product (prod_number, reused_yn, auction_yn, flea_yn, prod_category_code, memberId, prod_price, prod_amount, prod_title, send_way, post_date, sale_percent, buy_price, direct_area, editor, represent_image)
-				VALUES (#{prod_number}, #{reused_yn}, #{auction_yn}, #{flea_yn}, #{prod_category_code}, #{memberId}, #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{images})
+				INSERT INTO product (prod_number, reused_yn, auction_yn, flea_yn, prod_category_code, memberId, prod_price, prod_amount, prod_title, send_way, post_date, sale_percent, buy_price, direct_area, editor, represent_image, fleamarket)
+				VALUES (#{prod_number}, #{reused_yn}, #{auction_yn}, #{flea_yn}, #{prod_category_code}, #{memberId}, #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{images}, #{fleamarket})
 			 ]]>
 			</otherwise>
 		</choose>
@@ -118,4 +119,37 @@
       ]]>
 	</select>
 
+
+	<!-- 상품 등록을 할 수 있는지 유효성 검사 -->
+	<select id="checkSeller" resultType="String">
+	<![CDATA[
+         select count(*) as cnt
+         from   member
+    ]]>
+    <where>
+    <![CDATA[
+         seller_group = 'y'
+         and memberid = #{memberId}
+    ]]>
+    <if test="flea_seller_group != null">
+     <![CDATA[
+         and flea_seller_group = 'y'
+    ]]>
+    </if>
+    </where>
+	</select>
+	
+	<!-- 플리마켓 리스트 출력 -->
+	<select id="partFlea" resultMap="S_P001_D001Result03" parameterType="java.util.Map">
+	<![CDATA[
+         select flea_code, flea_name
+         from   flea
+       ]]>
+      <where>
+      <![CDATA[
+      	memberid = #{memberId}
+       ]]>
+      </where>
+	</select>
+	
 </mapper>

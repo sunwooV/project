@@ -17,6 +17,7 @@ public interface S_P001_D002DAO {
 	public List<S_P001_D002VO> tagList(Map<String, Object> searchMap) throws DataAccessException;
 	public String likeProd(Map<String, Object> searchMap) throws DataAccessException;
 	public String heart(Map<String, Object> searchMap) throws DataAccessException;
+	public String fleaName(Map<String, Object> searchMap) throws DataAccessException;
 	
 	public void insertLikeProd(Map<String, Object> datahMap) throws DataAccessException;
 	public void deleteLikeProd(Map<String, Object> datahMap) throws DataAccessException;
