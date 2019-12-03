@@ -13,5 +13,5 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public interface F_P001_D002Controller {
 	
 	public ModelAndView fleaMain(HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	//public void date_check() throws Exception;
 }
