@@ -20,7 +20,7 @@
 	href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Do+Hyeon|Merriweather|Noto+Sans+KR&display=swap&subset=korean"
 	rel="stylesheet">
 <script type="text/javascript">
-	$(document).on('click', '#btnsearch', function() {
+/* 	$(document).on('click', '#btnsearch', function() {
 		var searchVal = $("#searchbar").val();
 		var frm = document.searchform;
 
@@ -35,7 +35,7 @@
 		frm.submit();
 
 	});
-
+ */
 	$('.tree-toggle').click(function() {
 		$(this).parent().children('ul.tree').toggle(200);
 	});
@@ -84,6 +84,8 @@
 				</c:if>
 				<li class="nav-item"><a class="nav-link"
 					href="${contextPath}/cart.do">장바구니</a></li>
+					<li class="nav-item"><a class="nav-link"
+					href="${contextPath}/cs.do">고객센터</a></li>
 			</ul>
 	<!-- 		<form class="form-inline my-2 my-lg-0" id="searchform"
 				name="searchform">
@@ -93,7 +95,9 @@
 					value="Search" onclick="SearchProduct()">
 			</form> -->
 			<a href="/devFw/fleaCreateStoreType.do" style="font-size: 15px;">✚플리마켓
-				스토어&nbsp;&nbsp;&nbsp;</a> <a href="${contextPath}/chatInit.do"
+				스토어&nbsp;&nbsp;&nbsp;</a>
+				<a href="${contextPath}/enroll.do" style="font-size: 15px;">✚상품 등록&nbsp;&nbsp;&nbsp;</a>
+				 <a href="${contextPath}/chatInit.do"
 				style="font-size: 15px;">🖂채팅</a>
 
 		</div>

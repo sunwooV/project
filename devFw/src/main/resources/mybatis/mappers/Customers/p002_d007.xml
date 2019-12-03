@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="C_P002_D007">
+	<resultMap id="C_P002_D007Result01" type="C_P002_D007VO">
+		<result property="review_number" column="review_number" />
+		<result property="prod_number" column="prod_number" />
+		<result property="review_title" column="review_title" />
+		<result property="review_content" column="review_content" />
+	</resultMap>
+
+	<select id="selectAllreviewList" resultMap="C_P002_D007Result01"
+		parameterType="String">
+      <![CDATA[
+         	
+      
+			select review_number, prod_number,review_title,review_content
+            from review
+			where buyer_memberid = #{buyer_memberid}
+      	
+      ]]>
+
+	</select>
+
+</mapper>
