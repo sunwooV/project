@@ -31,7 +31,7 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 <body>
 	<div class="jumbotron">
 		<div id="text"><h1 class="display-3" style="margin: auto;">세상에 없던 MULTI in 1</h1></div>
-		<div id="image"><img style="width:100%; margin-top:-55px; opacity: 0.75;" src="${contextPath }/resources/img/main/main111.png"></div> 
+		<div id="image"><img style="width:101%; margin-top:-55px; opacity: 0.75;" src="${contextPath }/resources/img/main/main111.png"></div> 
 		
 		<!-- 	<p>
 			<a class="btn btn-primary btn-lg" href="#" role="button"

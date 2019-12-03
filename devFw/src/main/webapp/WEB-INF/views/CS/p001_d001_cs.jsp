@@ -185,14 +185,15 @@
 
 					</div>
 				</div>
+
 			</div>
 			<div class="table" id="cs">
 				<div class="row">
 					<img src="${contextPath }/resources/img/qna.png" />
 					<h1
-						style="padding-left: 2%; font-size: 56px; padding-top: 2%; padding-right: 15%;">무엇이든
+						style="padding-left: 3%; font-size: 56px; padding-top: 2%; padding-right: 1%;">무엇이든
 						물어보세요</h1>
-					<form class="form-inline my-2 my-lg-0" id="searchform">
+					<form class="form-inline my-2 my-lg-0" id="searchdiv">
 						<input class="form-control mr-sm-2" type="text" id="searchbar"
 							placeholder="검색어를 입력하세요"> <a href="#"><span
 							class="glyphicon glyphicon-search" style="font-size: 24px;"></span></a>
@@ -286,20 +287,19 @@
 					<!-- 옵션선택 끝 -->
 					<table class="table table-hover">
 						<tr>
-							<th>글번호</th>
+
 							<th>제목</th>
-							<th>게시자</th>
 							<th>게시일</th>
-							<th>조회수</th>
+
 						</tr>
 
 						<c:forEach var="event" items="${eventList}" varStatus='index'>
 							<tr>
-								<td>${event.no_number}</td>
+
 								<td>${event.no_title}</td>
-								<td>${event.no_writer}</td>
+
 								<td>${event.no_writedate}</td>
-								<td>${event.no_view_cnt}</td>
+
 							</tr>
 						</c:forEach>
 					</table>
@@ -328,19 +328,6 @@
 					</div>
 
 				</div>
-			</div>
-			<div class="row" style="padding-top: 8%">
-				<h2 style="padding-left: 2%;">나의 1:1 문의/답변내역</h2>
-
-				<div class="jumbotron" style="width: 93%; margin-left: 1%;">문의내역
-					없</div>
-
-				<p>
-					<button type="button" class="btn btn-warning"
-						style="margin-left: 754%; font-size: 17px;"
-						onClick="location.href='${contextPath}/csWrite.do'">1:1
-						문의하기</button>
-				</p>
 			</div>
 		</div>
 	</div>

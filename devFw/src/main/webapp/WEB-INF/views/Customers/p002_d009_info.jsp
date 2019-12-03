@@ -36,7 +36,6 @@
 	src="https://www.seedlogix.com/hubs/themes/clients/powerleads/enterprise/assets/js/main.js"
 	type="text/javascript" charset="utf-8"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <head>
 
 <script>
@@ -44,9 +43,7 @@
 		window.open("${contextPath}/out_pw_check.do", "a",
 				"width=400, height=300, left=100, top=50");
 	}
-
 	$(function() {
-
 		if ($("#pwForm").submit(function() {
 			if ($("#pw").val() !== $("#pw2").val()) {
 				alert("비밀번호가 다릅니다.");
@@ -64,10 +61,8 @@
 		}))
 			;
 	})
-
 	function update_info() {
 		var frm = document.update;
-
 		frm.method = "POST";
 		frm.action = "./update.do";
 		alert("수정 완료.");
@@ -117,7 +112,7 @@
 #home-process-section .tabs-content, #home-process-section .tabs-content p
 	{
 	text-align: center;
-	font-size: 17px;
+	font-size: 11px;
 	line-height: 1.9em;
 }
 
@@ -138,6 +133,7 @@
 }
 
 table.type05 {
+	font-size: 11px;
 	border-collapse: separate;
 	border-spacing: 1px;
 	text-align: left;
@@ -149,7 +145,6 @@ table.type05 {
 table.type05 th {
 	text-align: center;
 	width: 210px;
-	padding: 25px;
 	font-size: larger;
 	font-weight: bold;
 	vertical-align: center;
@@ -181,22 +176,6 @@ input[type=text]#id, #email, #name, #approval_status {
 			<div class="w-col w-col-12">
 				<h2>내 정보</h2>
 				<div class="w-tabs" data-duration-in="300" data-duration-out="100">
-					<div class="tap-menu w-tab-menu">
-						<a class="second tap-link w-inline-block w-tab-link w--current"
-							data-w-tab="Tab 1">
-							<div>회원정보수정 / 탈퇴</div>
-						</a> <a class="second tap-link w-inline-block w-tab-link"
-							data-w-tab="Tab 2">
-							<div>내 등급 / 포인트</div>
-						</a> <a class="second tap-link w-inline-block w-tab-link"
-							data-w-tab="Tab 3">
-							<div>Same-Day Installation</div>
-						</a> <a class="second tap-link w-inline-block w-tab-link"
-							data-w-tab="Tab 4">
-							<div>Service Agreement</div>
-						</a>
-					</div>
-
 					<div class="gray tabs-content w-tab-content"
 						style="width: 1200px; background-color: white;">
 						<div class="w-tab-pane w--tab-active" data-w-tab="Tab 1">
@@ -265,12 +244,10 @@ input[type=text]#id, #email, #name, #approval_status {
 																oncomplete : function(
 																		data) {
 																	// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
 																	// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
 																	// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 																	var roadAddr = data.roadAddress; // 도로명 주소 변수
 																	var extraRoadAddr = ''; // 참고 항목 변수
-
 																	// 법정동명이 있을 경우 추가한다. (법정리는 제외)
 																	// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
 																	if (data.bname !== ''
@@ -291,7 +268,6 @@ input[type=text]#id, #email, #name, #approval_status {
 																				+ extraRoadAddr
 																				+ ')';
 																	}
-
 																	// 우편번호와 주소 정보를 해당 필드에 넣는다.
 																	document
 																			.getElementById('address').value = data.zonecode;
@@ -299,7 +275,6 @@ input[type=text]#id, #email, #name, #approval_status {
 																			.getElementById("roadAddress").value = roadAddr;
 																	document
 																			.getElementById("jibunAddress").value = data.jibunAddress;
-
 																	// 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
 																	if (roadAddr !== '') {
 																		document
@@ -308,7 +283,6 @@ input[type=text]#id, #email, #name, #approval_status {
 																		document
 																				.getElementById("extraAddress").value = '';
 																	}
-
 																	var guideTextBox = document
 																			.getElementById("guide");
 																	// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
@@ -319,7 +293,6 @@ input[type=text]#id, #email, #name, #approval_status {
 																				+ expRoadAddr
 																				+ ')';
 																		guideTextBox.style.display = 'block';
-
 																	} else if (data.autoJibunAddress) {
 																		var expJibunAddr = data.autoJibunAddress;
 																		guideTextBox.innerHTML = '(예상 지번 주소 : '
