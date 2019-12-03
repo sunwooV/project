@@ -342,6 +342,11 @@ layout-split:after {
     background-color: #B9C9F8;
 }
 
+.ui_card__img:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
 </style>
 <head>
   <meta charset="UTF-8">
@@ -586,13 +591,14 @@ $(document).ready(function(){
 		        <!--  
 		        <strong class="caption"><font size="3">활동정보</font></strong>
 		        -->
+		        <c:forEach var="flea" items="${searchList}" > 
 		        <dl class="list">
 		            <dt>좋아하는 사람</dt>
 		            <dd>
 		                <a href="#t" data-modal-trigger="user-list" data-modal="open" data-type="favorite" data-title="좋아하는 사람"><span id="like-count">
-		                  <c:forEach var="flea" items="${searchList}" > 
+		                  
 		              		 <c:out value="${flea.flea_like_count}"/>
-		               	  </c:forEach>
+		               	 
 		                  </span><em>명</em>
 		                </a>
 		            </dd>
@@ -604,7 +610,8 @@ $(document).ready(function(){
 		            <dd>
 		                <a href="#">124<em>개</em></a>
 		            </dd>
-       		  </dl>
+       		    </dl>
+       		    </c:forEach>
        		</div>
        		<br><br><br><br><br><br><br><br>
        		
@@ -755,17 +762,21 @@ $(document).ready(function(){
 		
 	<br>
 	 <div class="layout-split half">
+	 <c:forEach var="flea" items="${searchList}" > 
 	  <section class="cardlist_section">
    		 <div class="ui_title--sub">
-             <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaReview.do">구매후기</a></font></h3>
+             <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaReview.do?flea_code=${flea.flea_code}">구매후기</a></font></h3>
          </div>
          <ul class="split-cardlist">
             <li class="ui_grid__item">
             <div class="ui_card--side">
                 <div class="ui_card__inner">
                     <div class="ui_card__imgcover">
-                        <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" class="ui_card__img" aria-label="수제마카롱 30여종" target="_blank" style="background-image: url(https://image.idus.com/image/files/7c7e4972cbdc49b0a43cdb03973786e4_512.png)"></a>
-                    </div>
+                  		<!--  
+                  		<img src="\devFw\resources\photoUpload\케익.jpg" class="ui_card__img"
+							style="width: 230; height: 240; " alt="..." onclick="#">
+                  		-->
+                  </div>
                     <div class="ui_card__txtarea">
                         <div class="ui_card__info">
                             <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" aria-label="수제마카롱 30여종" target="_blank" class="ui_card__title">수제마카롱 30여종</a>
@@ -821,6 +832,7 @@ $(document).ready(function(){
                         </li>
                                             </ul>
      </section>
+     </c:forEach>
 </div>
 
       </div>
