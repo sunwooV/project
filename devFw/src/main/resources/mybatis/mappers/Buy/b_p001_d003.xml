@@ -5,19 +5,41 @@
 
 <mapper namespace="Buy.P001.D003">
 	<resultMap id="B_P001_D003Result01" type="B_P001_D003VO">
-		<result property="photo1" column="photo1" />
+	<!-- 2개는 product table로부터! -->
+		<result property="represent_image" column="represent_image" />
 		<result property="prod_name" column="prod_name" />
+		
+		<!-- cart table로부터! -->
 		<result property="memberid" column="memberid" />
 		<result property="prod_number" column="prod_number" />
 		<result property="cart_count" column="cart_count" />
-		<result property="cart_list_number" column="cart_list_number" />
-		<result property="joinDate" column="option_number" />
+	<!--	<result property="joinDate" column="option_number" />-->
 	</resultMap>
 
-	<select id="selectCart" resultMap="B_P001_D003Result01" parameterType="java.util.Map"> 
+	<select id="cartList" resultMap="B_P001_D003Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         select prod_number, cart_count, option_number
-         from   cart 
+         select c.prod_number, p.prod_name, p.represent_image, c.cart_count
+         from   cart c, product p, member m
 	  ]]>	
+	<where>
+	 <![CDATA[ 
+				c.memberid = m.memberid
+	]]>
+	</where>
+	<![CDATA[  and #{memberid} = c.memberid  ]]>
 	</select>
+	
+	<insert id ="addCart" parameterType="java.util.Map">
+	<![CDATA[  
+		update cart
+		set 
+		
+	]]>
+	<where>
+		<![CDATA[  
+		
+		
+	]]>
+	</where>
+	</insert>
 </mapper>

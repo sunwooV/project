@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class B_P001_D003VO {
 
 
-	private String photo1; // prodphoto
+	private String represent_image; // prodphoto
 	private String prod_name;//
 	
 	// cart Info
@@ -22,12 +22,15 @@ public class B_P001_D003VO {
 	public B_P001_D003VO() {
 		System.out.println("B_P001_D003VO 호출");
 	}
-	public String getPhoto1() {
-		return photo1;
+	
+	public String getRepresent_image() {
+		return represent_image;
 	}
-	public void setPhoto1(String photo1) {
-		this.photo1 = photo1;
+
+	public void setRepresent_image(String represent_image) {
+		this.represent_image = represent_image;
 	}
+
 	public String getProd_name() {
 		return prod_name;
 	}
