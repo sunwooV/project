@@ -30,18 +30,14 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 </head>
 <body>
 	<div class="jumbotron">
-		<h1 class="display-3" style="margin: auto;">세상에 없던 MULTI in 1</h1>
+		<div id="text"><h1 class="display-3" style="margin: auto;">세상에 없던 MULTI in 1</h1></div>
+		<div id="image"><img style="width:100%; margin-top:-55px; opacity: 0.75;" src="${contextPath }/resources/img/main/main111.png"></div> 
+		
 		<!-- 	<p>
 			<a class="btn btn-primary btn-lg" href="#" role="button"
 				style="font-size: 20px; margin-left: 83%;">더 알아보기</a> 
 		</p> -->
-		<form class="form-inline my-2 my-lg-0" id="searchform"
-			name="searchform">
-			<input class="form-control mr-sm-2" type="text" id="searchbar"
-				name="searchVal" value="" placeholder="검색어를 입력하세요♡"> <input
-				type="button" class="btn btn-secondary my-2 my-sm-0" id="btnsearch"
-				value="Search" onclick="SearchProduct()">
-		</form>
+		
 	</div>
 
 	<!-- 메뉴사이드바랑 컨텐츠 ------------------------------------------------------------------------------------------------------------------------------------------>
@@ -357,19 +353,5 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 		$('.tree-toggle').parent().children('ul.tree').toggle(200);
 	})
 </script>
-<script>
-	$(document).on('click', '#btnsearch', function() {
-		var searchVal = $("#searchbar").val();
-		var frm = document.searchform;
-		//검색어 유효성 검사
-		if (searchVal == "") {
-			alert("검색어를 입력해주세요.");
-			return false;
-		}
-		frm.method = "get";
-		frm.action = "./searchProduct.do";
-		frm.submit();
 
-	});
-</script>
 </html>

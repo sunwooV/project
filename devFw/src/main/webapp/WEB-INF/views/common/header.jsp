@@ -42,6 +42,33 @@
 	$(function() {
 		$('.tree-toggle').parent().children('ul.tree').toggle(200);
 	})
+
+	$('#btnsearch').click(function(){
+		clickEvent();
+
+	});
+	
+	//enter 눌렀을 때 처리
+	$('#searchbar').keypress(function(event){
+		if(event.which == 13){ 
+			clickEvent();
+			return false;
+		}
+	});
+
+	function clickEvent(){
+		var searchVal = $("#searchbar").val();
+		var frm = document.searchform;
+		//검색어 유효성 검사
+		if (searchVal == "") {
+			alert("검색어를 입력해주세요.");
+			return false;
+		}
+		frm.method = "get";
+		frm.action = "./searchProduct.do";
+		frm.submit();
+	}
+
 </script>
 </head>
 <body>
@@ -94,11 +121,18 @@
 					type="button" class="btn btn-secondary my-2 my-sm-0" id="btnsearch"
 					value="Search" onclick="SearchProduct()">
 			</form> -->
-			<a href="/devFw/fleaCreateStoreType.do" style="font-size: 15px;">✚플리마켓
-				스토어&nbsp;&nbsp;&nbsp;</a>
-				<a href="${contextPath}/enroll.do" style="font-size: 15px;">✚상품 등록&nbsp;&nbsp;&nbsp;</a>
-				 <a href="${contextPath}/chatInit.do"
-				style="font-size: 15px;">🖂채팅</a>
+<!-- 			<a href="/devFw/fleaCreateStoreType.do" style="font-size: 15px;">✚플리마켓 -->
+<!-- 				스토어&nbsp;&nbsp;&nbsp;</a> -->
+<%-- 				<a href="${contextPath}/enroll.do" style="font-size: 15px;">✚상품 등록&nbsp;&nbsp;&nbsp;</a> --%>
+<%-- 				 <a href="${contextPath}/chatInit.do" --%>
+<!-- 				style="font-size: 15px;">🖂채팅</a> -->
+		<form class="form-inline my-2 my-lg-0" id="searchform"
+			name="searchform">
+			<input class="form-control mr-sm-2" type="text" id="searchbar"
+				name="searchVal" value="" placeholder="검색어를 입력하세요♡"> <input
+				type="button" class="btn btn-secondary my-2 my-sm-0" id="btnsearch"
+				value="Search" onclick="SearchProduct()">
+		</form>
 
 		</div>
 	</nav>

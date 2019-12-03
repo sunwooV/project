@@ -1155,28 +1155,26 @@ textarea{
 				<h3 id="gray-text">${product.memberId }</h3>
 				<br>
 				<c:choose>
-					<c:when test="${product.auction_yn == 'y' }"> <!-- 경매 상품이면 시작가와 현재가를 표시해준다. -->
+					<c:when test="${product.auction_yn == 'y' or product.auction_yn == 'w' or product.auction_yn == 'f' }"> <!-- 경매 상품이면 시작가와 현재가를 표시해준다. -->
 						<span class="price" id="sold_price"><fmt:formatNumber value="${product.auction_bid }" type="number" />원</span><!-- 현재가 -->
 						<span id="auction_price">시작가: <fmt:formatNumber value="${product.auction_price }" type="number" />원</span><!-- 시작가 -->
 						<a href="./bidRecord.do?prod_number=${product.prod_number }" style="font-size:medium; padding:5px;"><u>경매기록</u></a>
 					</c:when>
-					<c:when test="${(product.auction_yn == 'f' and product.reused_yn == 'n' and product.flea_yn == 'n') or (product.auction_yn == 'w' and product.reused_yn == 'n' and product.flea_yn == 'n')}">
-						<span class="price" id="sold_price"><fmt:formatNumber value="${product.auction_bid }" type="number" />원</span><!-- 현재가 -->
-						<span id="auction_price">시작가: <fmt:formatNumber value="${product.auction_price }" type="number" />원</span><!-- 시작가 -->
-						<a href="./bidRecord.do?prod_number=${product.prod_number }" style="font-size:medium; padding:5px;"><u>경매기록</u></a>
-					</c:when>
+<%-- 					<c:when test="${(product.auction_yn == 'f' and product.reused_yn == 'n' and product.flea_yn == 'n') or (product.auction_yn == 'w' and product.reused_yn == 'n' and product.flea_yn == 'n')}"> --%>
+<%-- 						<span class="price" id="sold_price"><fmt:formatNumber value="${product.auction_bid }" type="number" />원</span><!-- 현재가 --> --%>
+<%-- 						<span id="auction_price">시작가: <fmt:formatNumber value="${product.auction_price }" type="number" />원</span><!-- 시작가 --> --%>
+<%-- 						<a href="./bidRecord.do?prod_number=${product.prod_number }" style="font-size:medium; padding:5px;"><u>경매기록</u></a> --%>
+<%-- 					</c:when> --%>
 					<c:otherwise> <!-- 경매가 아닌 상품들 -->
 						<c:if test="${product.sale_percent != null }"> <!-- 세일 퍼센트가 존재한다면 -->
 							<span class="price">${product.sale_percent}%</span>
 							<span class="price" id="sold_price"><fmt:formatNumber value="${product.prod_price * (1-(product.sale_percent*0.01)) }" type="number" />원</span>
 							<span id="sale_price"><fmt:formatNumber value="${product.prod_price }" type="number" />원</span>
 							<input type="hidden" id="prod_price" value="${product.prod_price * (1-(product.sale_percent*0.01)) }">
-							<a href="./bidRecord.do?prod_number=${product.prod_number }" style="font-size:medium; padding:5px;"><u>경매기록</u></a>
 						</c:if> 
 						<c:if test="${product.sale_percent == null }"> <!-- 세일 퍼센트가 존재하지 않는다면 -->
 							<span class="price" id="sold_price"><fmt:formatNumber value="${product.prod_price }" type="number" />원</span>
 							<input type="hidden" id="prod_price" value="${product.prod_price }">
-							<a href="./bidRecord.do?prod_number=${product.prod_number }" style="font-size:medium; padding:5px;"><u>경매기록</u></a>
 						</c:if>
 					</c:otherwise>
 				</c:choose>

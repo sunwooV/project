@@ -8436,11 +8436,34 @@ a.badge-dark:focus, a.badge-dark.focus {
 	margin-left: 12%;
 	background-color: #f7f7f9;
 	width: 76%;
+	height:400px;
+	overflow:hidden;
+	position:relative;
+}
+#image{
+	
+	position:absolute;
+	z-index:1;
+}
+#text{
+	position: absolute;
+    color: black;
+    z-index: 2;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    left: 3px;
+    padding-right: 167px;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    margin-top: 50px;
+}
+.jumbotron > img {
+	width:100%;
+	height:auto;
 }
 
 @media ( min-width : 576px) {
 	.jumbotron {
-		padding: 3% 13% 5% 17%;
 		font-family: 'Noto Sans KR', sans-serif;
 		margin-top: -1%;
 	}
@@ -14330,7 +14353,7 @@ th {
 
 #searchbar {
 	font-size: 13px;
-	width: 80%;
+	width: 70%;
 }
 
 .menubar {
@@ -14433,8 +14456,7 @@ th {
 }
 
 #searchform {
-	width: 77%;
-	margin: auto;
+	width: 27%;
 }
 
 #navbartop {
