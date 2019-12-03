@@ -43,7 +43,7 @@
 			<h1>게시글 관리</h1>
 			<form name="frm" method="post" encType="UTF-8">
 				<h2 align="center">상품 Q&A 내역</h2>
-				<div class="container">
+				<div class="container" style="padding-top: 3%;">
 					<table class="table table-hover" id="evnet_td">
 						<tr>
 							<th>상품번호</th>
@@ -56,7 +56,7 @@
 								<td>${qna.prod_number}</td>
 								<td>${qna.qna_content}</td>
 								<td>${qna.answer_YN}</td>
-		
+
 							</tr>
 						</c:forEach>
 					</table>

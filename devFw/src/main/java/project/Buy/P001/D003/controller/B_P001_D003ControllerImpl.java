@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.Buy.P001.D003.service.B_P001_D003Service;
@@ -32,7 +34,7 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 	// 장바구니 상품 조회
 	@Override
 	@RequestMapping(value = "/cart.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView selectCart(@ModelAttribute C_P001_D001VO member, HttpServletRequest request,
+	public ModelAndView selectCart(@RequestParam("memberId") String memberId, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 //		Map<String, Object> searchMap = new HashMap<String, Object>(); //  Map
@@ -48,33 +50,39 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 	// 장바구니 옵션 수정
 	@Override
 	@RequestMapping(value = "/editCart.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView editCart(@ModelAttribute C_P001_D001VO member, HttpServletRequest request,
+	@ResponseBody
+	public Map<String, Object> editCart(@ModelAttribute C_P001_D001VO member, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-
-		ModelAndView mav = new ModelAndView("Buy/p001_d003_cart");
-		return mav;
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		
+		return resultMap;
 	}
 
 	// 장바구니 제품 추가
 	@Override
-	public ModelAndView addCart(@ModelAttribute S_P001_D002VO product, @ModelAttribute C_P001_D001VO member,
+	@RequestMapping(value = "/addCart.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@ResponseBody
+	public Map<String, Object> addCart(@ModelAttribute S_P001_D002VO product, @ModelAttribute C_P001_D001VO member,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("itf-8");
 
-		ModelAndView mav = new ModelAndView("Buy/p001_d003_cart");
-		return mav;
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		return resultMap;
 	}
 
 	// 장바구니 목록 삭제
 	@Override
 	@RequestMapping(value = "/delCart.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView delCart(@ModelAttribute C_P001_D001VO member, HttpServletRequest request,
+	@ResponseBody
+	public Map<String, Object> delCart(@ModelAttribute C_P001_D001VO member, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("itf-8");
-
-		ModelAndView mav = new ModelAndView("Buy/p001_d003_cart");
-		return mav;
-
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		return resultMap;
 	}
 
 }

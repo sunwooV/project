@@ -64,7 +64,12 @@
 		    	and (p.reused_yn = 'y' or p.auction_yn = 'y' or p.flea_yn = 'y')
 		    </if>
 		    <if test="send_way != null">
-		    	and p.send_way = #{send_way}
+		    	<if test="send_way == 'direct delivery'">
+		    		and p.send_way IN (#{send_way}, 'direct', 'delivery')
+		    	</if>
+		    	<if test="send_way != 'direct delivery'">
+		    		and p.send_way = #{send_way}
+		    	</if>
 		    </if>
 <!-- 		    <if test="Ccnt != null"> -->
 <!-- 		    and p.prod_category_code IN (select category_code -->

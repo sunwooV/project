@@ -20,7 +20,8 @@ public class C_P002_D008DAOImpl implements C_P002_D008DAO{
 		System.out.println("dao입니다만========"+memberid);
 		return sqlsession.selectOne("Customers.memberpoint.point_check", memberid);
 	}
-	
+
+	@Transactional
 	public List<C_P002_D008VO> boardList(String memberid) throws Exception {
 		System.out.println("dao입니다만========"+memberid);
         return sqlsession.selectList("Customers.memberpoint.point_check",memberid); 
