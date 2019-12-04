@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,12 +32,15 @@ public class B_P002_D002ControllerImpl implements B_P002_D002Controller {
 	B_P002_D002Service b_p002_d002Service;
 	@Autowired
 	B_P002_D002VO b_p002_d002VO;
+	@Autowired
+	private HttpSession session;
 	
 	//리뷰 팝업창 띄우기
 	@Override
 	@RequestMapping(value="/review.do", method= {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView review(HttpServletRequest request) throws IOException {
 		request.setCharacterEncoding("utf-8");
+
 		ModelAndView mav = new ModelAndView("Popup/b_p002_d002_reviewWrite");
 		return mav;
 	}

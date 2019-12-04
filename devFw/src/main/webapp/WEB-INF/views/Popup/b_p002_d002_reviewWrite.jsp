@@ -282,37 +282,37 @@
 .TotalReviewSection {
 	padding: 5%;
 }
+
 .form-action{
 padding:10% 10% 8.5% 0%;
 }
 
 </style>
 	<script type="text/javascript">
-		//리뷰 내용 썼는지 체크
+	
+	
 		function submitReview() {
+			
 			var frm = document.ratefrm;
 			//리뷰내용 가져오기
 			var reviewDetail = document.getElementsByName('review_content')[0].value;
+			
 			alert(reviewDetail);
 			
 			if(reviewDetail != null || reviewDetail != ''){
 				frm.method="get";
 				frm.action = "./reviewComplete.do";
-				frm.submit();//name이 있는 것을 모두 넘겨준당~~~~~				
-				alert("타고 들어가니?")
-			}else if(reviewDetail == null || reviewDetail == ''){
+				frm.submit();//name이 있는 것을 모두 넘겨줌				
+				
+			}else if(reviewDetail == null || reviewDetail == ''){ 	//리뷰 내용 썼는지 체크
 				alert('리뷰 내용을 입력하세요!');
 			}
-			
-
-			
-		}
-
 		
+		}
 		
 		function cancelReview(){
-			self.close(); // 자기자신의 창을 닫아라!!
-					}
+			self.close(); //창 닫기
+			}
 	</script>
 </head>
 <body>

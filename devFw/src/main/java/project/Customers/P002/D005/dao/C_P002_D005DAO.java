@@ -11,9 +11,7 @@ public interface C_P002_D005DAO {
 	void insertMessage(C_P002_D005VO c_p002_d005vo) throws Exception;
 
 	List<C_P001_D001VO> selectMemberList(String memberid) throws Exception;
-
 	List<C_P002_D005VO> selectMessageList(C_P002_D005VO c_p002_d005vo) throws Exception;
-
 	List<C_P001_D001VO> selectSearchList(Map<String, String> searchMap) throws Exception;
 
 }
