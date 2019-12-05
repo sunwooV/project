@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import project.FleaMarket.P002.D001.service.F_P002_D001Service;
 import project.FleaMarket.P002.D003.dao.F_P002_D003DAO;
 import project.FleaMarket.P002.D003.service.F_P002_D003Service;
 import project.FleaMarket.P002.D003.vo.F_P002_D003VO;
@@ -38,26 +39,66 @@ public class F_P002_D003ControllerImpl implements F_P002_D003Controller {
 	@Autowired
 	F_P002_D003Service d003Service;
 	@Autowired
+	F_P002_D001Service d001Service;
+	@Autowired
 	F_P002_D003VO d003VO;
+	
 	
 	@Override
 	@RequestMapping(value = "/fleaStory.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView fleaStory(@RequestParam(value="p_id", required=false) String p_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView fleaStory(@RequestParam(value="p_id", required=false) String p_id, @RequestParam(value="flea_code", required=false) String flea_code, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		searchMap.put("p_id", p_id);	 
-		System.out.println("p_id�� =" + p_id);
+		System.out.println("p_id확인 =" + p_id);
+		searchMap.put("flea_code", flea_code);	 
+		System.out.println("flea_code =" +flea_code);
 		
-		List list = d003Service.searchList(searchMap);
+		List storylist = d003Service.searchList(searchMap);
+		List list = d001Service.searchList(searchMap);
 		
+		for(int i = 0; i < storylist.size(); i++)
+		{
+			System.out.println(storylist.get(i));
+		}
 		for(int i = 0; i < list.size(); i++)
 		{
-			System.out.println(list.get(i));
+			System.out.println("ddd"+ list.get(i));
 		}
 		
 		ModelAndView mav = new ModelAndView("FleaMarket/p002_d003_fleaStory");
+		mav.addObject("storyList", storylist);
 		mav.addObject("searchList", list);
+		
 		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value = "/insertStory.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public void insertStory(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		Map<String, Object> searchMap = new HashMap<String, Object>();
+		Enumeration enu = request.getParameterNames();
+		while (enu.hasMoreElements()) { 
+			String name = (String)enu.nextElement();
+			String value = request.getParameter(name);
+			searchMap.put(name, value);
+			System.out.println("스토리 ajax 데이터:::::"+searchMap);
+		}
+		
+		String command = (String)searchMap.get("command");
+		
+		
+//		List list = d003Service.searchList(searchMap);
+//		
+//		for(int i = 0; i < list.size(); i++)
+//		{
+//			System.out.println(list.get(i));
+//		}
+//		
+//		ModelAndView mav = new ModelAndView("FleaMarket/p002_d003_fleaStory");
+//		mav.addObject("searchList", list);
+//		return mav;
 	}
 
 }

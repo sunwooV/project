@@ -868,16 +868,14 @@ $.ratePicker("#rating-2", {
               <div class="total-sort">
                 <span class="active" data-outputtype="1">전체</span><i style="display: inline-block;">|</i>
                 <span data-outputtype="2" style="display: inline-block;">포토<em data-review="photoCount">(8)</em></span>
-              </div>
-              <div class="sort">
-                <div class="selbox_comm v2" data-container="reviewSelectSort">
-                  <a href="javascript:void(0);" class="btn_option ico" data-sortcd="3" data-index="0">베스트순</a>
-                  <ul class="list_option" data-selectbox="list">
-                    <li><a href="javascript:void(0);" data-sortcd="3" data-index="0">베스트순</a></li>
-                    <li><a href="javascript:void(0);" data-sortcd="2" data-index="1">최신순</a></li>
-                  </ul>
-                </div>
-              </div>
+             
+	              <!-- 정렬(베스트순/최신순) -->
+	              <select id="selectSort" name="selectSort" style="float: right;">
+					<option value="">--베스트순--</option>
+					<option value="베스트순" selected="selected">베스트순</option>
+					<option value="최신순" id="newest">최신순</option>
+				  </select>
+			  </div>
    </div>
      <br>
          
@@ -903,13 +901,13 @@ $.ratePicker("#rating-2", {
                             <i class="ui_icon--star-fill" data-state="active"></i>
                         </div>
                     </div>
-
+ <c:forEach var="review" items="${reviewList}" > 
                     <a href="#" target="_blank">
                         <div class="split-hard">
                             <span class="split crop-circ" style="background-image: url(https://image.idus.com/image/files/37cec8c9f8bd47458facc5bdacfb0b24.jpg)"> </span>
                             <div class="split">
                             
-                            	 <c:forEach var="review" items="${reviewList}" > 
+                            	
 					               	 <span id="rating-1" style="cursor: pointer;" data-stars="4">
 					               	 	<input name="rating-1" type="hidden" value="${review.review_score}">
 					               	 	 	<c:forEach var="i" begin="1" end="${review.review_score}">
@@ -919,7 +917,7 @@ $.ratePicker("#rating-2", {
 					               	 			<i class="fa fa-star" style="color: rgb(236, 240, 241);"></i>
 					               	 		</c:forEach>
 					               	 </span>
-				          		</c:forEach>
+				          		
                             	
                                 <span class="txt-strong">뽀또</span>
                                 <span class="txt">2019년 12월 02일</span>
@@ -938,6 +936,8 @@ $.ratePicker("#rating-2", {
                  
 
                    </a>
+                  </c:forEach>
+                   
                 </div>
 
             </div>

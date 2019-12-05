@@ -1099,7 +1099,7 @@ textarea{
 				${high_category.category_name }
 				<input type="hidden" name="high_category" value="${high_category.category_code }">
 			</c:forEach>
-			>
+			
 			<c:forEach var="middle_category" items="${middle_category }">
 				${middle_category.category_name }
 				<input type="hidden" name="middle_category" value="${middle_category.category_code }">
@@ -1374,7 +1374,7 @@ textarea{
 					</div>
 					<br><br>
 					<div class="listWrapper">
-						<div class="iqry_comments_area">
+						<div classs="iqry_comments_area">
 							<ul class="list_comment_inqury">
 								<c:forEach var="prodQnA" items="${prodQnA }">
 									<li>

@@ -7,121 +7,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Component("F_P002_D003VO")
 public class F_P002_D003VO {
-	private String seller_memberid = "";
-	private String review_group = "";
-	private String review_number = "";
-	private String prod_number = "";
-	private String buyer_memberid = "";
-	private String review_score = "";
-	private String review_title = "";
-	private String review_photo = "";
-	private String review_content = "";
-	private Date review_date;
 	private String flea_code = "";
+	private String memberid = "";
+	private String story_number = "";
+	private Date story_write_date;
+	private String story_title = "";
+	private String story_cotent = "";
+	private String heart_count = "";
 	
 	
 	public F_P002_D003VO() {
-		System.out.println("MemberVO ª˝º∫¿⁄ »£√‚");
-	}
-
-
-	public String getSeller_memberid() {
-		return seller_memberid;
-	}
-
-
-	public void setSeller_memberid(String seller_memberid) {
-		this.seller_memberid = seller_memberid;
-	}
-
-
-	public String getReview_group() {
-		return review_group;
-	}
-
-
-	public void setReview_group(String review_group) {
-		this.review_group = review_group;
-	}
-
-
-	public String getReview_number() {
-		return review_number;
-	}
-
-
-	public void setReview_number(String review_number) {
-		this.review_number = review_number;
-	}
-
-
-	public String getProd_number() {
-		return prod_number;
-	}
-
-
-	public void setProd_number(String prod_number) {
-		this.prod_number = prod_number;
-	}
-
-
-	public String getBuyer_memberid() {
-		return buyer_memberid;
-	}
-
-
-	public void setBuyer_memberid(String buyer_memberid) {
-		this.buyer_memberid = buyer_memberid;
-	}
-
-
-	public String getReview_score() {
-		return review_score;
-	}
-
-
-	public void setReview_score(String review_score) {
-		this.review_score = review_score;
-	}
-
-
-	public String getReview_title() {
-		return review_title;
-	}
-
-
-	public void setReview_title(String review_title) {
-		this.review_title = review_title;
-	}
-
-
-	public String getReview_photo() {
-		return review_photo;
-	}
-
-
-	public void setReview_photo(String review_photo) {
-		this.review_photo = review_photo;
-	}
-
-
-	public String getReview_content() {
-		return review_content;
-	}
-
-
-	public void setReview_content(String review_content) {
-		this.review_content = review_content;
-	}
-
-
-	public Date getReview_date() {
-		return review_date;
-	}
-
-
-	public void setReview_date(Date review_date) {
-		this.review_date = review_date;
+		System.out.println("MemberVO ÏÉùÏÑ±Ïûê Ìò∏Ï∂ú");
 	}
 
 
@@ -133,8 +29,68 @@ public class F_P002_D003VO {
 	public void setFlea_code(String flea_code) {
 		this.flea_code = flea_code;
 	}
-	
-	
+
+
+	public String getMemberid() {
+		return memberid;
+	}
+
+
+	public void setMemberid(String memberid) {
+		this.memberid = memberid;
+	}
+
+
+	public String getStory_number() {
+		return story_number;
+	}
+
+
+	public void setStory_number(String story_number) {
+		this.story_number = story_number;
+	}
+
+
+	public Date getStory_write_date() {
+		return story_write_date;
+	}
+
+
+	public void setStory_write_date(Date story_write_date) {
+		this.story_write_date = story_write_date;
+	}
+
+
+	public String getStory_cotent() {
+		return story_cotent;
+	}
+
+
+	public void setStory_cotent(String story_cotent) {
+		this.story_cotent = story_cotent;
+	}
+
+
+	public String getHeart_count() {
+		return heart_count;
+	}
+
+
+	public void setHeart_count(String heart_count) {
+		this.heart_count = heart_count;
+	}
+
+
+	public String getStory_title() {
+		return story_title;
+	}
+
+
+	public void setStory_title(String story_title) {
+		this.story_title = story_title;
+	}
+
+
 	
 	
 
