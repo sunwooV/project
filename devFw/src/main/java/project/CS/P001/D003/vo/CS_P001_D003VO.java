@@ -7,20 +7,23 @@ import org.springframework.stereotype.Component;
 
 @Component("CS_P001_D003VO")
 public class CS_P001_D003VO {
-	private int private_qna_num;
+	private String private_qna_num;
 	private String private_qna_content;
 	private String private_qna_title;
 	private Date private_qna_date;
 	private String private_memberid;
-	private Date private_answer_date;
+	private String private_answer_date;
 	private String private_answer_content;
-	private int answer_num;
+	private String answer_num;
 	private String private_answer_memberid;
+	private String private_answer_yn;
 	
-	public int getPrivate_qna_num() {
+	
+	
+	public String getPrivate_qna_num() {
 		return private_qna_num;
 	}
-	public void setPrivate_qna_num(int private_qna_num) {
+	public void setPrivate_qna_num(String private_qna_num) {
 		this.private_qna_num = private_qna_num;
 	}
 	public String getPrivate_qna_content() {
@@ -47,10 +50,10 @@ public class CS_P001_D003VO {
 	public void setPrivate_memberid(String private_memberid) {
 		this.private_memberid = private_memberid;
 	}
-	public Date getPrivate_answer_date() {
+	public String getPrivate_answer_date() {
 		return private_answer_date;
 	}
-	public void setPrivate_answer_date(Date private_answer_date) {
+	public void setPrivate_answer_date(String private_answer_date) {
 		this.private_answer_date = private_answer_date;
 	}
 	public String getPrivate_answer_content() {
@@ -59,10 +62,10 @@ public class CS_P001_D003VO {
 	public void setPrivate_answer_content(String private_answer_content) {
 		this.private_answer_content = private_answer_content;
 	}
-	public int getAnswer_num() {
+	public String getAnswer_num() {
 		return answer_num;
 	}
-	public void setAnswer_num(int answer_num) {
+	public void setAnswer_num(String answer_num) {
 		this.answer_num = answer_num;
 	}
 	public String getPrivate_answer_memberid() {
@@ -70,6 +73,12 @@ public class CS_P001_D003VO {
 	}
 	public void setPrivate_answer_memberid(String private_answer_memberid) {
 		this.private_answer_memberid = private_answer_memberid;
+	}
+	public String getPrivate_answer_yn() {
+		return private_answer_yn;
+	}
+	public void setPrivate_answer_yn(String private_answer_yn) {
+		this.private_answer_yn = private_answer_yn;
 	}
 	
 

@@ -2,9 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	session.removeAttribute("member");
-%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -46,7 +43,6 @@
 	}
 
 	$(function() {
-
 		if ($("#pwForm").submit(function() {
 			if ($("#pw").val() !== $("#pw2").val()) {
 				alert("비밀번호가 다릅니다.");
@@ -61,8 +57,7 @@
 				alert("공백은 입력이 불가능합니다.");
 				return false;
 			}
-		}))
-			;
+		}));
 	})
 
 	function update_info() {
@@ -177,34 +172,14 @@ input[type=text]#id, #email, #name, #approval_status {
 	<form name="update">
 		<!--  Process  -->
 		<div id="home-process-section">
-
 			<div class="w-col w-col-12">
 				<h2>내 정보</h2>
-				<div class="w-tabs" data-duration-in="300" data-duration-out="100">
-					<div class="tap-menu w-tab-menu">
-						<a class="second tap-link w-inline-block w-tab-link w--current"
-							data-w-tab="Tab 1">
-							<div>회원정보수정 / 탈퇴</div>
-						</a> <a class="second tap-link w-inline-block w-tab-link"
-							data-w-tab="Tab 2">
-							<div>내 등급 / 포인트</div>
-						</a> <a class="second tap-link w-inline-block w-tab-link"
-							data-w-tab="Tab 3">
-							<div>Same-Day Installation</div>
-						</a> <a class="second tap-link w-inline-block w-tab-link"
-							data-w-tab="Tab 4">
-							<div>Service Agreement</div>
-						</a>
-					</div>
-
 					<div class="gray tabs-content w-tab-content"
 						style="width: 1200px; background-color: white;">
 						<div class="w-tab-pane w--tab-active" data-w-tab="Tab 1">
 							<p>
 							<form id="pwForm" action="./modify.do" method="post">
 								<table class="type05">
-
-
 									<tr>
 										<th scope="row" id="id">아이디</th>
 										<td><input type="text" id="memberid" name="memberid"
@@ -354,40 +329,16 @@ input[type=text]#id, #email, #name, #approval_status {
 											placeholder="990101형식으로 입력해주세요." required></td>
 									</tr>
 								</table>
+								</form>
 								<input type="button" id="update" value="변경하기"
 									onclick="update_info()">&emsp;&emsp; <input
 									type="button" id="out" onclick="showPopup();" value="탈퇴하기">
 
-							</form>
+							
 							</p>
-						</div>
-						<div class="w-tab-pane" data-w-tab="Tab 2" style="">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-								Vestibulum quam arcu, auctor sed eros non, tincidunt euismod
-								urna. Ut sollicitudin massa rutrum gravida faucibus. Curabitur
-								suscipit tincidunt odio sit amet dictum. Fusce elementum a dui
-								vel elementum. Etiam molestie blandit dui. Fusce non mollis
-								justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</div>
-						<div class="w-tab-pane" data-w-tab="Tab 3" style="">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-								Vestibulum quam arcu, auctor sed eros non, tincidunt euismod
-								urna. Ut sollicitudin massa rutrum gravida faucibus. Curabitur
-								suscipit tincidunt odio sit amet dictum. Fusce elementum a dui
-								vel elementum. Etiam molestie blandit dui. Fusce non mollis
-								justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</div>
-						<div class="w-tab-pane" data-w-tab="Tab 4" style="">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-								Vestibulum quam arcu, auctor sed eros non, tincidunt euismod
-								urna. Ut sollicitudin massa rutrum gravida faucibus. Curabitur
-								suscipit tincidunt odio sit amet dictum. Fusce elementum a dui
-								vel elementum. Etiam molestie blandit dui. Fusce non mollis
-								justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</div>
-					</div>
-				</div>
 			</div>
+		</div>
+		</div>
 		</div>
 	</form>
 </body>
