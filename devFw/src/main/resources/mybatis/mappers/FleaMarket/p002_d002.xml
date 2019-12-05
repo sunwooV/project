@@ -19,14 +19,14 @@
 		
 	</resultMap>
 
-	<select id="searchList" resultMap="p002_d002_Result01" parameterType="java.util.Map"> 
+	<select id="reviewList" resultMap="p002_d002_Result01" parameterType="java.util.Map"> 
       <![CDATA[
          select *
          from review
       ]]>
 		<where>
-			<if test=" review_number != ''  and  review_number != null">
-				review_number = #{review_number}
+			<if test=" flea_code != ''  and  flea_code != null">
+				flea_code = #{flea_code}
 			</if>
 		</where>
 	</select>
