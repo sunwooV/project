@@ -18,8 +18,8 @@ public class F_P002_D002DAOImpl implements F_P002_D002DAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<F_P002_D002VO> reviewList(Map<String, Object> searchMap) throws DataAccessException {
-		List<F_P002_D002VO> list = sqlSession.selectList("FleaMarket.p002_d002.reviewList", searchMap);
+	public List<F_P002_D002VO> searchList(Map<String, Object> searchMap) throws DataAccessException {
+		List<F_P002_D002VO> list = sqlSession.selectList("FleaMarket.p002_d002.searchList", searchMap);
 		for(int i = 0; i < list.size(); i++)
 		{
 			System.out.println(list.get(i));

@@ -7,7 +7,7 @@ import org.springframework.dao.DataAccessException;
 import project.FleaMarket.P002.D002.vo.F_P002_D002VO;
 
 public interface F_P002_D002DAO {
-	 public List<F_P002_D002VO> reviewList(Map<String, Object> searchMap) throws DataAccessException;
+	 public List<F_P002_D002VO> searchList(Map<String, Object> searchMap) throws DataAccessException;
 	 public List<F_P002_D002VO> searchMod(Map<String, Object> searchMap) throws DataAccessException;
 	 public List<F_P002_D002VO> searchAdd() throws DataAccessException;
 	 

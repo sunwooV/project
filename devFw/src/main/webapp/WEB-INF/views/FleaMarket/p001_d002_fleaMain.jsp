@@ -403,7 +403,7 @@ ul li {list-style-type: none;}
 
 		<!-- 컨텐츠 -->
 		<div class="row">
-			<p style="padding-left: 3%; padding-bottom: 0%; font-size: 23px;">지금까지 2개의 마켓이 열렸고, 1개의 마켓이 셀러를 기다리고 있습니다:)</p>
+			<p style="padding-left: 3%; padding-bottom: 0%; font-size: 23px;">지금까지 10개의 마켓이 열렸고, 3개의 마켓이 셀러를 기다리고 있습니다:)</p>
 		</div>
 		<!-- 플리마켓 맵
         <div class="fleaMap">

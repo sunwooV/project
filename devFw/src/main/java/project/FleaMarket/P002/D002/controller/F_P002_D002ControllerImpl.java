@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import project.FleaMarket.P002.D001.service.F_P002_D001Service;
 import project.FleaMarket.P002.D002.dao.F_P002_D002DAO;
 import project.FleaMarket.P002.D002.service.F_P002_D002Service;
 import project.FleaMarket.P002.D002.vo.F_P002_D002VO;
@@ -39,41 +38,25 @@ public class F_P002_D002ControllerImpl implements F_P002_D002Controller {
 	@Autowired
 	F_P002_D002Service d002Service;
 	@Autowired
-	F_P002_D001Service d001Service;
-	@Autowired
 	F_P002_D002VO d002VO;
 	
 	@Override
 	@RequestMapping(value = "/fleaReview.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView fleaReview(@RequestParam(value="p_id", required=false) String p_id, @RequestParam(value="flea_code", required=false) String flea_code, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView fleaReview(@RequestParam(value="p_id", required=false) String p_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> searchMap = new HashMap<String, Object>();
-		System.out.println("eeeeeeeee");
 		searchMap.put("p_id", p_id);	 
 		System.out.println("p_id=" + p_id);
 		
-		searchMap.put("flea_code", flea_code);	 
-		System.out.println("flea_code =" +flea_code);
+		List list = d002Service.searchList(searchMap);
 		
-		List reviewList = d002Service.reviewList(searchMap);
-		List list = d001Service.searchList(searchMap);
-		
-		for(int i = 0; i < reviewList.size(); i++)
-		{
-			System.out.println(reviewList.get(i));
-		}
-		System.out.println("ddddd");
 		for(int i = 0; i < list.size(); i++)
 		{
-			System.out.println("ddd"+ list.get(i));
+			System.out.println(list.get(i));
 		}
 		
-		
 		ModelAndView mav = new ModelAndView("FleaMarket/p002_d002_fleaReview");
-		mav.addObject("reviewList", reviewList);
 		mav.addObject("searchList", list);
-		
-		System.out.println("확인필요!!!!");
 		return mav;
 	}
 

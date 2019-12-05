@@ -182,7 +182,6 @@ ul {
   padding-bottom: 4px;
   padding-left: 2px;
   border-bottom: 1px solid #d9d9d9;
-  width: 200%;
 }
 
 
@@ -381,10 +380,6 @@ layout-split:after {
     background-color: #f9f9f9;
 }
 
-.first-part{
-   width: 200%;
-}
-
 .review_btn_area {
     width: 160px;
     position: absolute;
@@ -419,62 +414,14 @@ layout-split:after {
     vertical-align: top;
 }
 
-.list_type>li {
-    position: relative;
-    padding-left: 6px;
-    color: #999;
-}
-
-.desc_cont .title_area.clear .total-sort span {
-    cursor: pointer;
-}
-
-.title_area .sort {
-    float: right;
-}
-
-.desc_cont .title_area.clear .sort .selbox_comm {
-    width: 86px;
-}
-.selbox_comm.v2 {
-    height: 30px;
-    padding: 4px 12px 0px 14px;
-}
-.selbox_comm {
-    float: left;
-    position: relative;
-    z-index: 10;
-    width: auto;
-    height: 36px;
-    padding: 0 12px 0 8px;
-    border: 1px solid #ddd;
-    background-color: #fff;
-}
-
-}
-.desc_cont .title_area.clear {
-    min-height: 32px;
-    margin-bottom: 15px;
-}
-
-.content_main .selbox_comm.on .btn_option:after, .ui-dialog .selbox_comm.on .btn_option:after {
-    background-position: -190px -139px;
-}
-
-.selbox_comm.v2 .list_option a {
-    line-height: 19px;
-    padding-top: 2px;
-}
-.selbox_comm .list_option a {
-    display: block;
+.desc_cont .deal_buy_review .review_rating_box .average .star .grade {
+    display: inline-block;
+    margin-left: 10px;
+    font-family: tahoma;
+    font-size: 26px;
     line-height: 34px;
-    padding-top: 2px;
-    color: #666;
-    text-decoration: none;
-    text-indent: 0px;
+    color: #333;
 }
-
-
 </style>
 <head>
   <meta charset="UTF-8">
@@ -489,19 +436,11 @@ layout-split:after {
   <!-- Custom styles for this template -->
   <link href="${contextPath}/resources/css/shop-homepage.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!-- 별점 -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
-    <link rel="stylesheet" href="/stylesheets/style.css" integrity="sha256-OlSbjYBfrJGGd2zbT3qCsAZsPGxRwKOSGjqqfjF8aiY= sha512-1aDUINxj8c9UXJ76eIMAkG2/ofIjG8FBW4drgHUglwY/rGn+YWUtm8iSkrpAOtwZ9b9LEva02KPrTDx3M5ib3w==" crossorigin="anonymous">
-    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-  
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
   <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca839997c3bd98863fdc033319b76889&libraries=services"></script>
-<!-- Jquery Rate Picker-->
-<script type="text/javascript" src="${contextPath}/resources/js/jquery-rate-picker.js"></script>
 <script>
 $(document).ready(function(){
 	$("#chat-header>i").on("click",addMember);
@@ -616,21 +555,8 @@ $(document).ready(function(){
 	  return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
 	};
 	
-	$(".selbox_comm").click(function(){
-		alert("ssss");
-		$(".selbox_comm").attr('class', 'selbox_comm v2 on ');
-	});
-	
 });
 </script>
-<script>
-$.ratePicker("#rating-2", {
-    rate : function (stars){
-        alert('Sample 3\'s Rate is ' + stars);
-    }
-});
-</script>
-
 </head>
 
 <body>
@@ -667,7 +593,7 @@ $.ratePicker("#rating-2", {
 						<i class="fa fa-user-plus pa-5x"></i>
 			         </div>
 		             -->
-		            <c:forEach var="flea" items="${searchList}" > 
+		                <c:forEach var="flea" items="${searchList}" > 
 				             <div class="profile-picture big-profile-picture clear">
 				                 <img width="120px" height="120px" alt="no picture" src="${flea.profile_photo}" />
 					             <!-- 
@@ -689,8 +615,7 @@ $.ratePicker("#rating-2", {
 				              <div class="profile-description">
 				                 <c:out value="${flea.intro_cotent}"/>
 							  </div>
-				   </c:forEach>
-	               
+				        </c:forEach>
          </div> 
              <fieldset class="ui-field border-row">
                 <div id="chat-header">
@@ -745,11 +670,9 @@ $.ratePicker("#rating-2", {
 		            <dt>좋아하는 사람</dt>
 		            <dd>
 		                <a href="#t" data-modal-trigger="user-list" data-modal="open" data-type="favorite" data-title="좋아하는 사람"><span id="like-count">
-		                 <!--  
 		                  <c:forEach var="flea" items="${searchList}" > 
 		              		 <c:out value="${flea.flea_like_count}"/>
 		               	  </c:forEach>
-		               	  -->
 		                  </span><em>명</em>
 		                </a>
 		            </dd>
@@ -822,34 +745,12 @@ $.ratePicker("#rating-2", {
           
          </div>
          
-   <div class="first-part">      
          <div class="deal_buy_review" data-review="starInfo">  <div class="review_rating_box notxt">
 		    <div class="average">
-		      <div class="prev" style="font-size : 26px;">
-			    <!-- 
-			    <div class="star_rating">
-                    <i class="fa fa-star" class="on" data-state="active"></i>
-                    <i class="fa fa-star" class="on" data-state="active"></i>
-                    <i class="fa fa-star" class="on" data-state="active"></i>
-                    <i class="fa fa-star" class="on" data-state="active"></i>
-                    <i class="fa fa-star" class="on" data-state="active"></i>
-               	 </div>
-               	 -->
-               	 <c:forEach var="review" items="${reviewList}" > 
-	               	 <span id="rating-1" style="cursor: pointer;" data-stars="4">
-	               	 	<input name="rating-1" type="hidden" value="${review.review_score}">
-	               	 	 	<c:forEach var="i" begin="1" end="${review.review_score}">
-	               	 	 		<i class="fa fa-star" style="color: rgb(241, 196, 15);"></i>
-	               	 		</c:forEach>
-	               	 		<c:forEach var="i" begin="${review.review_score}" end="4">
-	               	 			<i class="fa fa-star" style="color: rgb(236, 240, 241);"></i>
-	               	 		</c:forEach>
-	               	 </span>
-          		</c:forEach>
-               	
-
+		      <div class="star">
+		        <span class="bg lg"><i style="width:100%"></i></span>
 		        <strong class="grade">4.6</strong>
-		        <span class="rv_num" style="font-size : 13px;">(총 <em>10</em> 건 구매후기 기준)</span>
+		        <span class="rv_num">(총 <em>10</em> 건 구매후기 기준)</span>
 		      </div>
 		    </div>
 		    <div class="review_btn_area ">
@@ -860,34 +761,14 @@ $.ratePicker("#rating-2", {
 		<ul class="list_type">
 		    <li>구매후기는 구매완료 후 마이페이지 &gt; 주문배송조회에서 작성하실 수 있습니다.</li>
 		</ul>
-    </div>
-    
-    <br>
-    
-   <div class="title_area clear" data-review="sort" style="display: block; width: 200%;">
-              <div class="total-sort">
-                <span class="active" data-outputtype="1">전체</span><i style="display: inline-block;">|</i>
-                <span data-outputtype="2" style="display: inline-block;">포토<em data-review="photoCount">(8)</em></span>
-              </div>
-              <div class="sort">
-                <div class="selbox_comm v2" data-container="reviewSelectSort">
-                  <a href="javascript:void(0);" class="btn_option ico" data-sortcd="3" data-index="0">베스트순</a>
-                  <ul class="list_option" data-selectbox="list">
-                    <li><a href="javascript:void(0);" data-sortcd="3" data-index="0">베스트순</a></li>
-                    <li><a href="javascript:void(0);" data-sortcd="2" data-index="1">최신순</a></li>
-                  </ul>
-                </div>
-              </div>
-   </div>
-     <br>
+         
          
   	<!-- 
             <div class="ui_title hide-m">
                 <h2 class="ui_title__txt">구매후기</h2>
             </div> -->
- <c:forEach var="review" items="${reviewList}" > 
-   <ul class="masonry-grid x2" data-col="2" style="position: relative; height: 2221.64px;">
-           <li class="card-style story" style="position: absolute; left: 0px; top: 0px;">
+                        <ul class="masonry-grid x2" data-col="2" style="position: relative; height: 2221.64px;">
+                                <li class="card-style story" style="position: absolute; left: 0px; top: 0px;">
             <div class="bordering">
 
                 <input name="time_stamp" type="hidden" value="1575262761000">
@@ -908,34 +789,19 @@ $.ratePicker("#rating-2", {
                         <div class="split-hard">
                             <span class="split crop-circ" style="background-image: url(https://image.idus.com/image/files/37cec8c9f8bd47458facc5bdacfb0b24.jpg)"> </span>
                             <div class="split">
-                            
-                            	 <c:forEach var="review" items="${reviewList}" > 
-					               	 <span id="rating-1" style="cursor: pointer;" data-stars="4">
-					               	 	<input name="rating-1" type="hidden" value="${review.review_score}">
-					               	 	 	<c:forEach var="i" begin="1" end="${review.review_score}">
-					               	 	 		<i class="fa fa-star" style="color: rgb(241, 196, 15);"></i>
-					               	 		</c:forEach>
-					               	 		<c:forEach var="i" begin="${review.review_score}" end="4">
-					               	 			<i class="fa fa-star" style="color: rgb(236, 240, 241);"></i>
-					               	 		</c:forEach>
-					               	 </span>
-				          		</c:forEach>
-                            	
                                 <span class="txt-strong">뽀또</span>
                                 <span class="txt">2019년 12월 02일</span>
                             </div>
                         </div>
                         
                         <p class="desc">실제로 받아 보니까 더 예뻤어요!
-							진주 눈꽃송이 등의 조합이라서 옷차림도 안 타고 웬만한 코디에 다 잘어울릴거 같아요ㅎㅎ
-							귀찌 변경했는데 잘 착용하고 있어요!♡
-							321은 배송도 빠르게 해주시고 귀찌 가능제품들도 많아서 졸아요 ㅠ_ㅠ 사장님의 친절함은 말모..! 감사합니다 💛
+						진주 눈꽃송이 등의 조합이라서 옷차림도 안 타고 웬만한 코디에 다 잘어울릴거 같아요ㅎㅎ
+						귀찌 변경했는데 잘 착용하고 있어요!♡
+						321은 배송도 빠르게 해주시고 귀찌 가능제품들도 많아서 졸아요 ㅠ_ㅠ 사장님의 친절함은 말모..! 감사합니다 💛
 						</p>
                         
-                        <img src="${review.review_photo}" style="width: 200px; height: 200px; " alt="...">
-                        
                         <br>
-                 
+                        <div class="area-img" style="background-image: url(https://image.idus.com/image/files/f72ae59f78da434a9dc1de99fa107d70_720.jpg)"></div>
 
                    </a>
                 </div>
@@ -943,7 +809,6 @@ $.ratePicker("#rating-2", {
             </div>
         </li>
      </ul>
-</c:forEach>
     </div>
   </div>
   </div>
