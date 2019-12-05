@@ -222,12 +222,12 @@
 						 
 						if(data[i].secret_yn == 'y'){ //비밀글일경우
 							if(memberId == prod_memberId || memberId == data[i].memberId){ //글 작성자이거나 해당 상품 게시자인 경우
-								list += '<span class="inquiry_text" id="text" style="font-weight:bold;">' + data[i].qna_content + '</span>';
+								list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + data[i].qna_content + '</span>';
 							} else { //제 3자의 경우
 								list += '<span class="inquiry_text" id="secret_text" style="font-weight:bold;">비밀글입니다.<img src="${contextPath }/resources/img/detailProduct/secret.png" style="width:20px;"></span>';
 							}
 						} else{ //비밀글이 아닐 경우
-							list += '<span class="inquiry_text" id="text" style="font-weight:bold;">' + data[i].qna_content + '</span>';
+							list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + data[i].qna_content + '</span>';
 						}
 						 
 						list += '</div>'
@@ -391,12 +391,12 @@
 							 
 							if(data[i].secret_yn == 'y'){ //비밀글일경우
 								if(memberId == prod_memberId || memberId == data[i].memberId){ //글 작성자이거나 해당 상품 게시자인 경우
-									list += '<span class="inquiry_text" id="text" style="font-weight:bold;">' + data[i].qna_content + '</span>';
+									list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + data[i].qna_content + '</span>';
 								} else { //제 3자의 경우
 									list += '<span class="inquiry_text" id="secret_text" style="font-weight:bold;">비밀글입니다.<img src="${contextPath }/resources/img/detailProduct/secret.png" style="width:20px;"></span>';
 								}
 							} else{ //비밀글이 아닐 경우
-								list += '<span class="inquiry_text" id="text" style="font-weight:bold;">' + data[i].qna_content + '</span>';
+								list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + data[i].qna_content + '</span>';
 							}
 							 
 							list += '</div>'
@@ -1392,14 +1392,14 @@ textarea{
 												<span class="inquiry_prod">${product.prod_title }</span>
 												<c:if test="${prodQnA.secret_yn == 'y' }"> <!-- 비밀글일 경우 -->
 													<c:if test="${member.getMemberid() == prodQnA.memberId or member.getMemberid() == product.memberId }"> <!-- 글 작성자이거나 상품 작성자인 경우 -->
-														<span class="inquiry_text" id="text" style="font-weight:bold;">${prodQnA.qna_content }</span>
+														<span class="inquiry_text" id="contText" style="font-weight:bold;">${prodQnA.qna_content }</span>
 													</c:if>
 													<c:if test="${member.getMemberid() != prodQnA.memberId and member.getMemberid() != product.memberId }"> <!-- 글작성자가 아닐 경우 -->
 														<span class="inquiry_text" id="secret_text" style="font-weight:bold;">비밀글입니다.<img src="${contextPath }/resources/img/detailProduct/secret.png" style="width:20px;"></span>	
 													</c:if>
 												</c:if>
 												<c:if test="${prodQnA.secret_yn == 'n' }">
-													<span class="inquiry_text" id="text" style="font-weight:bold;">${prodQnA.qna_content }</span>	
+													<span class="inquiry_text" id="contText" style="font-weight:bold;">${prodQnA.qna_content }</span>	
 												</c:if>
 											</div>
 											<div class="user">

@@ -12,7 +12,7 @@ import project.Customers.P004.D001.dao.C_P004_D001DAO;
 import project.Customers.P004.D001.vo.C_P004_D001VO;
 
 
-@Service("C_P004_D001Servic")
+@Service("C_P004_D001Service")
 public class C_P004_D001ServiceImpl implements C_P004_D001Service{
 	@Autowired
 	private C_P004_D001DAO c_p004_d001dao;

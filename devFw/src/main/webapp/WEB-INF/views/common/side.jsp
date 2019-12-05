@@ -40,7 +40,7 @@ a{
 <body>
 <div class="side">
 	<div id="seller">
-	<a href="./fleaCreateStoreType.do">
+	<a href="./enrollSeller.do">
 		<img id="side" src="${contextPath }/resources/img/side/seller.png">
 		<p id="sideP" style="margin:0px;">판매자등록</p>
 	</a>
