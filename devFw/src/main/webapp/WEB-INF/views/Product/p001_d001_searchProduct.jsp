@@ -120,10 +120,6 @@ label{
 <input type="hidden" name="searchVal" value="${searchVal }">
 <div class="container">
 <br>
-<div class="searchbar">
-<input class="form-control mr-sm-2" type="text" id="searchbar" name="searchVal" value=""> 
-<input type="button" class="btn btn-secondary my-2 my-sm-0" id="btnsearch" value="Search" onclick="SearchProduct()">
-</div>
 
 <hr>
 	<div class="detailSearch">

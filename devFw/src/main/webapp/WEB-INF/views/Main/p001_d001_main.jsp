@@ -27,6 +27,14 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 <link
 	href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Do+Hyeon|Merriweather|Noto+Sans+KR&display=swap&subset=korean"
 	rel="stylesheet">
+<script>
+	$('.tree-toggle').click(function() {
+		$(this).parent().children('ul.tree').toggle(200);
+	});
+	$(function() {
+		$('.tree-toggle').parent().children('ul.tree').toggle(200);
+	})
+</script>
 </head>
 <body>
 	<div class="jumbotron">
@@ -347,13 +355,6 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 		</div>
 	</div>
 </body>
-<script>
-	$('.tree-toggle').click(function() {
-		$(this).parent().children('ul.tree').toggle(200);
-	});
-	$(function() {
-		$('.tree-toggle').parent().children('ul.tree').toggle(200);
-	})
-</script>
+
 
 </html>
