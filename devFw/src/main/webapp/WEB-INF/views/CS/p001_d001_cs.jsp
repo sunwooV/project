@@ -84,8 +84,7 @@
 	<div class="container-fluid"
 		style="padding-left: 16%; padding-top: 3%; margin-right: -4%;">
 		<div class="col-sm-2" id="col">
-			<div class="table" id="sidebar"
-				style="font-size: 13px; border: 1px solid black;">
+			<div class="table" id="sidebar">
 				<ul class="nav nav-tabs">
 					<h1 style="padding-bottom: 6%; font-size: 18px;">FAQ/자주묻는질문</h1>
 					<li class="active"><a data-toggle="tab" href="#home" id="tab">구매관련</a></li>
@@ -115,8 +114,7 @@
 				</div>
 			</div>
 
-			<div class="table" id="sidebar1"
-				style="font-size: 13px; border: 1px solid black;">
+			<div class="table" id="sidebar1">
 				<h1 style="font-size: 19px;">마이페이지</h1>
 				<li><a href="#">포인트 조회</a></li>
 				<li><a href="#">회원정보조회/수정</a></li>
@@ -129,11 +127,11 @@
 
 			<div class="row" id="cscs">
 				<div class="container" id="cs2">
-					<h2 style="padding-bottom: 2%;">
+					<h3 style="padding-bottom: 2%;">
 						🔔공지사항🔔 <span class="glyphicon glyphicon-plus"
-							style="padding-left: 60%;"
+							style="padding-left: 76%;"
 							onclick="location.href='./csnotice.do'"></span>
-					</h2>
+					</h3>
 					<table class="table table-hover" style="padding-left: 7%;">
 						<tr>
 							<th>제목</th>
@@ -156,7 +154,7 @@
 					<div class="myshopMain_sub1">
 						<img src="${contextPath }/resources/img/중고.png"
 							style="padding-top: 13%; padding-left: 23%; width: 78%;" />
-						<h3 style="font-size: 22px; padding-top: 5%; padding-left: 18%;">
+						<h3 style="font-size: 17px; padding-top: 9%; padding-left: 25%;">
 							<a href="${contextPath}/mpBuyerOrderList.do">중고거래</a>
 						</h3>
 
@@ -164,14 +162,14 @@
 					<div class="myshopMain_sub2">
 						<img src="${contextPath }/resources/img/경매.png"
 							style="padding-top: 13%; padding-left: 23%; width: 78%;" />
-						<h3 style="font-size: 22px; padding-top: 5%; padding-left: 18%;">
+						<h3 style="font-size: 17px; padding-top: 9%; padding-left: 25%;">
 							<a href="${contextPath}/InfoInit.do"><strong>경매절차</strong></a>
 						</h3>
 					</div>
 					<div class="myshopMain_sub5">
 						<img src="${contextPath }/resources/img/플리.png"
 							style="padding-top: 13%; padding-left: 23%; width: 78%;" />
-						<h3 style="font-size: 22px; padding-top: 5%; padding-left: 18%;">
+						<h3 style="font-size: 17px; padding-top: 9%; padding-left: 25%;">
 							<a href="${contextPath}/mypageQA.do"><strong>플리마켓 </strong></a>
 						</h3>
 					</div>
@@ -188,13 +186,14 @@
 
 			</div>
 			<div class="table" id="cs">
-				<div class="row">
-					<img src="${contextPath }/resources/img/qna.png" />
+				<div class="row" style="padding-left: 11%; padding-bottom: 2%;">
+
+					<img src="${contextPath }/resources/img/qa.png" style="width: 13%;" />
 					<h1
-						style="padding-left: 3%; font-size: 56px; padding-top: 2%; padding-right: 1%;">무엇이든
+						style="padding-left: 5%; font-size: 46px; padding-top: 3.5%; padding-right: 1%;">무엇이든
 						물어보세요</h1>
 					<form class="form-inline my-2 my-lg-0" id="searchdiv">
-						<input class="form-control mr-sm-2" type="text" id="searchbar"
+						<input class="form-control mr-sm-2" type="text" id="searchbar2"
 							placeholder="검색어를 입력하세요"> <a href="#"><span
 							class="glyphicon glyphicon-search" style="font-size: 24px;"></span></a>
 					</form>

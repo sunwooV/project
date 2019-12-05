@@ -14,12 +14,11 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 	font-size: medium;
 	text-decoration: line-through;
 }
+ h1 {text-shadow: 1px 1px 2px black, 0 0 1em white, 0 0 0.2em white;}
 </style>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="${contextPath}/resources/css/main.css">
-<!-- <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<link rel="stylesheet" href="${contextPath }/resources/css/kyung.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script
@@ -31,15 +30,9 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 <body>
 	<div class="jumbotron">
 		<div id="image">
-		<div id="text">
-		<h1 class="display-3" style="margin: auto;">세상에 없던 MULTI in 1</h1></div>
-		<img style="width:101%; margin-top:-55px; opacity: 0.75;" src="${contextPath }/resources/img/main/main111.png"></div> 
-		
-		<!-- 	<p>
-			<a class="btn btn-primary btn-lg" href="#" role="button"
-				style="font-size: 20px; margin-left: 83%;">더 알아보기</a> 
-		</p> -->
-		
+		<div id="text1">
+		<h1 class="display-3" style="margin: auto;">경매를 시작해 보세요!</h1></div>
+		<img style="width: 124%;margin-top:-55px;opacity: 0.75;" src="https://blog.toss.im/wp-content/uploads/2019/07/raul-petri-LCLOu3ON8F4-unsplash-1170x680.jpg"></div> 
 	</div>
 
 	<!-- 메뉴사이드바랑 컨텐츠 ------------------------------------------------------------------------------------------------------------------------------------------>

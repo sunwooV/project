@@ -46,8 +46,7 @@
 	<div class="container-fluid"
 		style="padding-left: 16%; padding-top: 3%; margin-right: -4%;">
 		<div class="col-sm-2" id="col">
-			<div class="table" id="sidebar"
-				style="font-size: 13px; border: 1px solid black;">
+			<div class="table" id="sidebar">
 				<ul class="nav nav-tabs">
 					<h1 style="padding-bottom: 6%; font-size: 18px;">FAQ/자주묻는질문</h1>
 					<li class="active"><a data-toggle="tab" href="#home" id="tab">구매관련</a></li>
@@ -77,8 +76,7 @@
 				</div>
 			</div>
 
-			<div class="table" id="sidebar1"
-				style="font-size: 13px; border: 1px solid black;">
+			<div class="table" id="sidebar1">
 				<h1 style="font-size: 19px;">마이페이지</h1>
 				<li><a href="#">포인트 조회</a></li>
 				<li><a href="#">회원정보조회/수정</a></li>
