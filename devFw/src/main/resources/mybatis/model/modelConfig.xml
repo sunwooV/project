@@ -1,142 +1,65 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
-
 <configuration>
 	<typeAliases>
-		<typeAlias type="project.hm.p0001.vo.P0001VO"
-			alias="p0001VO" />
-		<typeAlias type="project.hm.p0002.vo.P0002VO"
-			alias="p0002VO" />
-		<typeAlias type="project.hm.p0003.vo.P0003VO"
-			alias="p0003VO" />
-		<typeAlias type="project.hm.p0004.vo.P0004VO"
-			alias="p0004VO" />
-		<typeAlias type="project.hm.s0001.vo.S0001VO"
-			alias="s0001VO" />
-		<typeAlias type="project.hm.s0002.vo.S0002VO"
-			alias="s0002VO" />
-
-		<typeAlias
-			type="project.FleaMarket.P001.D001.vo.F_P001_D001VO"
-			alias="F_P001_D001VO" />
-		<typeAlias
-			type="project.FleaMarket.P001.D002.vo.F_P001_D002VO"
-			alias="F_P001_D002VO" />
-		<typeAlias
-			type="project.FleaMarket.P001.D003.vo.F_P001_D003VO"
-			alias="F_P001_D003VO" />
-		<typeAlias
-			type="project.FleaMarket.P001.D004.vo.F_P001_D004VO"
-			alias="F_P001_D004VO" />
-		<typeAlias
-			type="project.FleaMarket.P002.D001.vo.F_P002_D001VO"
-			alias="F_P002_D001VO" />
-		<typeAlias
-			type="project.FleaMarket.P002.D002.vo.F_P002_D002VO"
-			alias="F_P002_D002VO" />
-		<typeAlias
-			type="project.FleaMarket.P002.D003.vo.F_P002_D003VO"
-			alias="F_P002_D003VO" />
-		<typeAlias
-			type="project.FleaMarket.P002.D004.vo.F_P002_D004VO"
-			alias="F_P002_D004VO" />
-		<typeAlias
-			type="project.FleaMarket.P002.D005.vo.F_P002_D005VO"
-			alias="F_P002_D005VO" />
-		<typeAlias
-			type="project.FleaMarket.P002.D006.vo.F_P002_D006VO"
-			alias="F_P002_D006VO" />
-		<typeAlias
-			type="project.FleaMarket.P002.D007.vo.F_P002_D007VO"
-			alias="F_P002_D007VO" />
-		<typeAlias
-			type="project.FleaMarket.P003.D001.vo.F_P003_D001VO"
-			alias="F_P003_D001VO" />
-
-		<typeAlias type="project.Main.P001.D001.vo.M_P001_D001VO"
-			alias="M_P001_D001VO" />
-
-		<typeAlias type="project.Product.P001.D001.vo.P_P001_D001VO"
-			alias="P_P001_D001VO" />
-
-		<typeAlias type="project.Sell.P001.D001.vo.S_P001_D001VO"
-			alias="S_P001_D001VO" />
-		<typeAlias type="project.Sell.P001.D002.vo.S_P001_D002VO"
-			alias="S_P001_D002VO" />
-		<typeAlias type="project.Sell.P001.D003.vo.S_P001_D003VO"
-			alias="S_P001_D003VO" />
-		<typeAlias type="project.Sell.P001.D005.vo.S_P001_D005VO"
-			alias="S_P001_D005VO" />
-		<typeAlias type="project.Sell.P001.D006.vo.S_P001_D006VO"
-			alias="S_P001_D006VO" />
-		<typeAlias type="project.Sell.P001.D007.vo.S_P001_D007VO"
-			alias="S_P001_D007VO" />
-		<typeAlias type="project.Sell.P001.D008.vo.S_P001_D008VO"
-			alias="S_P001_D008VO" />
-
-		<typeAlias type="project.Buy.P001.D003.vo.B_P001_D003VO"
-			alias="B_P001_D003VO" />
-		<typeAlias type="project.Buy.P001.D004.vo.B_P001_D004VO"
-			alias="B_P001_D004VO" />
-
-		<typeAlias type="project.Buy.P002.D002.vo.B_P002_D002VO"
-			alias="B_P002_D002VO" />
-		<typeAlias type="project.Buy.P003.D001.vo.B_P003_D001VO"
-			alias="B_P003_D001VO" />
-			
-        
-		<typeAlias
-			type="project.Customers.P001.D001.vo.C_P001_D001VO"
-			alias="C_P001_D001VO" />
-		<typeAlias
-			type="project.Customers.P002.D001.vo.C_P002_D001VO"
-			alias="C_P002_D001VO" />
-		<typeAlias
-			type="project.Customers.P002.D005.vo.C_P002_D005VO"
-			alias="C_P002_D005VO" />
-		<typeAlias
-			type="project.Customers.P002.D006.vo.C_P002_D006VO"
-			alias="C_P002_D006VO" />
-		<typeAlias
-			type="project.Customers.P002.D007.vo.C_P002_D007VO"
-			alias="C_P002_D007VO" />
-		<typeAlias
-			type="project.Customers.P002.D008.vo.C_P002_D008VO"
-			alias="C_P002_D008VO" />
-		<typeAlias
-			type="project.Customers.P002.D009.vo.C_P002_D009VO"
-			alias="C_P002_D009VO" />
-		<typeAlias
-			type="project.Customers.P002.D014.vo.C_P002_D014VO"
-			alias="C_P002_D014VO" />
-		<typeAlias
-			type="project.Customers.P004.D001.vo.C_P004_D001VO"
-			alias="C_P004_D001VO" />
-		<typeAlias
-			type="project.Customers.P006.D001.vo.C_P006_D001VO"
-			alias="C_P006_D001VO" />
-		<typeAlias
-			type="project.Customers.P007.D001.vo.C_P007_D001VO"
-			alias="C_P007_D001VO" />
-		<typeAlias
-			type="project.Customers.P008.D001.vo.C_P008_D001VO"
-			alias="C_P008_D001VO" />
-
-		<typeAlias type="project.CS.P001.D001.vo.CS_P001_D001VO"
-			alias="CS_P001_D001VO" />
-        <typeAlias type="project.CS.P001.D003.vo.CS_P001_D003VO"
-          alias="CS_P001_D003VO" />
-
-		<typeAlias type="project.Etc.P001.D001.vo.E_P001_D001VO"
-			alias="E_P001_D001VO" />
-		<typeAlias type="project.CS.P001.D001.vo.CS_P001_D001VO"
-			alias="CS_P001_D001VO" />
-
-		<typeAlias type="project.CS.P001.D001.vo.PagingVO"
-			alias="PagingVO" />
-
-
+		<typeAlias type="project.hm.p0001.vo.P0001VO" alias="p0001VO" />
+		<typeAlias type="project.hm.p0002.vo.P0002VO" alias="p0002VO" />
+		<typeAlias type="project.hm.p0003.vo.P0003VO" alias="p0003VO" />
+		<typeAlias type="project.hm.p0004.vo.P0004VO" alias="p0004VO" />
+		<typeAlias type="project.hm.s0001.vo.S0001VO" alias="s0001VO" />
+		<typeAlias type="project.hm.s0002.vo.S0002VO" alias="s0002VO" />
+		
+		<typeAlias type="project.FleaMarket.P001.D001.vo.F_P001_D001VO" alias="F_P001_D001VO" />
+		<typeAlias type="project.FleaMarket.P001.D002.vo.F_P001_D002VO" alias="F_P001_D002VO" />
+		<typeAlias type="project.FleaMarket.P001.D003.vo.F_P001_D003VO" alias="F_P001_D003VO" />
+		<typeAlias type="project.FleaMarket.P001.D004.vo.F_P001_D004VO" alias="F_P001_D004VO" />
+		<typeAlias type="project.FleaMarket.P002.D001.vo.F_P002_D001VO" alias="F_P002_D001VO" />
+		<typeAlias type="project.FleaMarket.P002.D002.vo.F_P002_D002VO" alias="F_P002_D002VO" />
+		<typeAlias type="project.FleaMarket.P002.D003.vo.F_P002_D003VO" alias="F_P002_D003VO" />
+		<typeAlias type="project.FleaMarket.P002.D004.vo.F_P002_D004VO" alias="F_P002_D004VO" />
+		<typeAlias type="project.FleaMarket.P002.D005.vo.F_P002_D005VO" alias="F_P002_D005VO" />
+		<typeAlias type="project.FleaMarket.P002.D006.vo.F_P002_D006VO" alias="F_P002_D006VO" />
+		<typeAlias type="project.FleaMarket.P002.D007.vo.F_P002_D007VO" alias="F_P002_D007VO" />
+		<typeAlias type="project.FleaMarket.P003.D001.vo.F_P003_D001VO" alias="F_P003_D001VO" />
+		
+		<typeAlias type="project.Main.P001.D001.vo.M_P001_D001VO" alias="M_P001_D001VO" />
+		
+		<typeAlias type="project.Product.P001.D001.vo.P_P001_D001VO" alias="P_P001_D001VO" />
+		
+		<typeAlias type="project.Sell.P001.D001.vo.S_P001_D001VO" alias="S_P001_D001VO" />
+		<typeAlias type="project.Sell.P001.D002.vo.S_P001_D002VO" alias="S_P001_D002VO" />
+		<typeAlias type="project.Sell.P001.D003.vo.S_P001_D003VO" alias="S_P001_D003VO" />
+		<typeAlias type="project.Sell.P001.D005.vo.S_P001_D005VO" alias="S_P001_D005VO" />
+		<typeAlias type="project.Sell.P001.D006.vo.S_P001_D006VO" alias="S_P001_D006VO" />
+		<typeAlias type="project.Sell.P001.D007.vo.S_P001_D007VO" alias="S_P001_D007VO" />
+		<typeAlias type="project.Sell.P001.D008.vo.S_P001_D008VO" alias="S_P001_D008VO" />
+		
+		<typeAlias type="project.Buy.P001.D003.vo.B_P001_D003VO" alias="B_P001_D003VO" />
+		<typeAlias type="project.Buy.P001.D004.vo.B_P001_D004VO" alias="B_P001_D004VO" />
+		<typeAlias type="project.Buy.P002.D002.vo.B_P002_D002VO" alias="B_P002_D002VO" />
+		<typeAlias type="project.Buy.P003.D001.vo.B_P003_D001VO" alias="B_P003_D001VO" />
+		
+		<typeAlias type="project.Customers.P001.D001.vo.C_P001_D001VO" alias="C_P001_D001VO" />
+		<typeAlias type="project.Customers.P002.D001.vo.C_P002_D001VO" alias="C_P002_D001VO" />
+		<typeAlias type="project.Customers.P002.D005.vo.C_P002_D005VO" alias="C_P002_D005VO" />
+		<typeAlias type="project.Customers.P002.D006.vo.C_P002_D006VO" alias="C_P002_D006VO" />
+		<typeAlias type="project.Customers.P002.D007.vo.C_P002_D007VO" alias="C_P002_D007VO" />
+		<typeAlias type="project.Customers.P002.D008.vo.C_P002_D008VO" alias="C_P002_D008VO" />
+		<typeAlias type="project.Customers.P002.D009.vo.C_P002_D009VO" alias="C_P002_D009VO" />
+		<typeAlias type="project.Customers.P002.D014.vo.C_P002_D014VO" alias="C_P002_D014VO" />
+		<typeAlias type="project.Customers.P003.D001.vo.C_P003_D001VO" alias="C_P003_D001VO" />
+		<typeAlias type="project.Customers.P004.D001.vo.C_P004_D001VO" alias="C_P004_D001VO" />
+		<typeAlias type="project.Customers.P006.D001.vo.C_P006_D001VO" alias="C_P006_D001VO" />
+		<typeAlias type="project.Customers.P007.D001.vo.C_P007_D001VO" alias="C_P007_D001VO" />
+		<typeAlias type="project.Customers.P008.D001.vo.C_P008_D001VO" alias="C_P008_D001VO" />
+		
+		<typeAlias type="project.CS.P001.D001.vo.CS_P001_D001VO" alias="CS_P001_D001VO" />
+		<typeAlias type="project.CS.P001.D001.vo.CS_P001_D001VO" alias="CS_P001_D001VO" />
+		<typeAlias type="project.CS.P001.D003.vo.CS_P001_D003VO" alias="CS_P001_D003VO" />
+		<typeAlias type="project.CS.P001.D001.vo.PagingVO" alias="PagingVO" />
+		
+		<typeAlias type="project.Etc.P001.D001.vo.E_P001_D001VO" alias="E_P001_D001VO" />
 
 	</typeAliases>
 </configuration>

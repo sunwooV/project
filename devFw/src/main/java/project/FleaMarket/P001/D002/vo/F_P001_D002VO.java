@@ -15,10 +15,12 @@ public class F_P001_D002VO {
 	private String profile_photo = "";
 	private String main_photo = "";
 	private String flea_group = "";
-	private String join_offline_date = "";
+	private Date join_offline_date;
+	private String recruit_yn = "";
 	private String join_offline_time = "";
 	private String join_offline_location = "";
 	private String join_prepayment_yn = "";
+	private String date_check = "";
 	
 	public F_P001_D002VO() {
 		System.out.println("MemberVO 생성자 호출");
@@ -88,14 +90,6 @@ public class F_P001_D002VO {
 		this.flea_group = flea_group;
 	}
 
-	public String getJoin_offline_date() {
-		return join_offline_date;
-	}
-
-	public void setJoin_offline_date(String join_offline_date) {
-		this.join_offline_date = join_offline_date;
-	}
-
 	public String getJoin_offline_time() {
 		return join_offline_time;
 	}
@@ -120,6 +114,31 @@ public class F_P001_D002VO {
 		this.join_prepayment_yn = join_prepayment_yn;
 	}
 
+	public Date getJoin_offline_date() {
+		return join_offline_date;
+	}
+
+	public void setJoin_offline_date(Date join_offline_date) {
+		this.join_offline_date = join_offline_date;
+	}
+
+	public String getRecruit_yn() {
+		return recruit_yn;
+	}
+
+	public void setRecruit_yn(String recruit_yn) {
+		this.recruit_yn = recruit_yn;
+	}
+
+	public String getDate_check() {
+		return date_check;
+	}
+
+	public void setDate_check(String date_check) {
+		this.date_check = date_check;
+	}
+
+	
 	
 	
 }

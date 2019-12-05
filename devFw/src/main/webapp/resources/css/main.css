@@ -1,6 +1,4 @@
 @charset "UTF-8";
-
-@charset "UTF-8";
 /*!
  * Bootswatch v4.3.1
  * Homepage: https://bootswatch.com
@@ -15,7 +13,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 @import
-	url('https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap&subset=korean')
+	url('https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding|Noto+Sans+KR&display=swap')
 	;
 
 :root { -
@@ -200,6 +198,10 @@ a
 
 
 
+
+
+
+
 :not
 
 
@@ -219,7 +221,11 @@ a
 
 
 
+
+
  
+
+
 
 
 
@@ -260,7 +266,11 @@ href
 
 
 
+
+
  
+
+
 
 
 
@@ -299,7 +309,11 @@ href
 
 
 
+
+
  
+
+
 
 
 
@@ -340,7 +354,11 @@ tabindex
 
 
 
+
+
  
+
+
 
 
 
@@ -398,7 +416,13 @@ color
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -436,7 +460,13 @@ color
 
 
 
+
+
 inherit
+
+
+
+
 
 
 
@@ -511,7 +541,13 @@ text-decoration
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -549,7 +585,13 @@ text-decoration
 
 
 
+
+
 none
+
+
+
+
 
 
 
@@ -713,6 +755,10 @@ button
 
 
 
+
+
+
+
 :not
 
 
@@ -732,7 +778,11 @@ button
 
 
 
+
+
  
+
+
 
 
 
@@ -771,7 +821,11 @@ button
 
 
 
+
+
  
+
+
 
 
 
@@ -832,6 +886,10 @@ type
 
 
 
+
+
+
+
 :not
 
 
@@ -851,7 +909,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -890,7 +952,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -951,7 +1017,13 @@ type
 
 
 
+
+
+
+
 :not
+
+
 
 
 
@@ -990,6 +1062,8 @@ type
 
 
 
+
+
 (
 :disabled
 
@@ -1010,7 +1084,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -1071,6 +1149,10 @@ type
 
 
 
+
+
+
+
 :not
 
 
@@ -1090,7 +1172,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -1129,7 +1215,11 @@ type
 
 
 
+
+
  
+
+
 
 
 
@@ -1187,7 +1277,13 @@ cursor
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -1225,7 +1321,13 @@ cursor
 
 
 
+
+
 pointer
+
+
+
+
 
 
 
@@ -1485,6 +1587,10 @@ mark, .mark {
 
 
 
+
+
+
+
 :not
 
 
@@ -1504,7 +1610,11 @@ mark, .mark {
 
 
 
+
+
  
+
+
 
 
 
@@ -1543,7 +1653,11 @@ mark, .mark {
 
 
 
+
+
  
+
+
 
 
 
@@ -1601,7 +1715,13 @@ margin-right
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -1639,8 +1759,14 @@ margin-right
 
 
 
+
+
 0
 .5rem
+
+
+
+
 
 
 
@@ -4525,6 +4651,10 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 
 
+
+
+
+
 :not
 
 
@@ -4544,7 +4674,11 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 
 
+
+
  
+
+
 
 
 
@@ -4583,7 +4717,11 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 
 
+
+
  
+
+
 
 
 
@@ -4641,6 +4779,10 @@ opacity
 
 
 
+
+
+
+
 :
 
 
@@ -4660,7 +4802,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -4718,6 +4864,10 @@ opacity
 
 
 
+
+
+
+
 :not
 
 
@@ -4737,7 +4887,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -4776,7 +4930,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -4834,7 +4992,13 @@ display
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -4872,7 +5036,13 @@ display
 
 
 
+
+
 none
+
+
+
+
 
 
 
@@ -5251,6 +5421,10 @@ none
 
 
 
+
+
+
+
 :not
 
 
@@ -5270,7 +5444,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -5309,7 +5487,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -5368,6 +5550,10 @@ none
 
 
 
+
+
+
+
 :not
 
 
@@ -5387,7 +5573,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -5427,7 +5617,11 @@ none
 
 
 
+
+
 	
+
+
 
 
 
@@ -5485,7 +5679,13 @@ margin-left
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -5523,8 +5723,14 @@ margin-left
 
 
 
+
+
 0
 px
+
+
+
+
 
 
 
@@ -5645,6 +5851,10 @@ px
 
 
 
+
+
+
+
 :not
 
 
@@ -5664,7 +5874,11 @@ px
 
 
 
+
+
  
+
+
 
 
 
@@ -5703,7 +5917,11 @@ px
 
 
 
+
+
  
+
+
 
 
 
@@ -5762,7 +5980,13 @@ px
 
 
 
+
+
+
+
 :not
+
+
 
 
 
@@ -5801,6 +6025,8 @@ px
 
 
 
+
+
 (
 :first-child
 
@@ -5821,7 +6047,11 @@ px
 
 
 
+
+
  
+
+
 
 
 
@@ -5879,7 +6109,13 @@ margin-top
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -5917,8 +6153,14 @@ margin-top
 
 
 
+
+
 0
 px
+
+
+
+
 
 
 
@@ -6354,6 +6596,10 @@ px
 
 
 
+
+
+
+
 [
 multiple
 ]
@@ -6395,9 +6641,17 @@ multiple
 
 
 
+
+
+
+
 [
 size
 ]
+
+
+
+
 
 
 
@@ -6453,7 +6707,11 @@ size
 
 
 
+
+
  
+
+
 
 
 
@@ -6496,7 +6754,11 @@ size
 
 
 
+
+
  
+
+
 
 
 
@@ -6554,7 +6816,13 @@ height
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -6592,7 +6860,13 @@ height
 
 
 
+
+
 auto
+
+
+
+
 
 
 
@@ -6667,7 +6941,13 @@ padding-right
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -6705,8 +6985,14 @@ padding-right
 
 
 
+
+
 1
 .5rem
+
+
+
+
 
 
 
@@ -6781,7 +7067,13 @@ background-image
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -6819,7 +7111,13 @@ background-image
 
 
 
+
+
 none
+
+
+
+
 
 
 
@@ -7184,6 +7482,7 @@ none
 .nav-tabs {
 	border-bottom: 1px solid #eceeef;
 	font-weight: bold;
+	width: 100%;
 }
 
 .nav-tabs .nav-item {
@@ -7608,7 +7907,7 @@ none
 .navbar-light .navbar-nav .show>.nav-link, .navbar-light .navbar-nav .active>.nav-link,
 	.navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active
 	{
-	color:black;
+	color: black;
 }
 
 .navbar-light .navbar-toggler {
@@ -7916,6 +8215,10 @@ none
 
 
 
+
+
+
+
 :not
 
 
@@ -7935,7 +8238,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -7974,7 +8281,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -8013,7 +8324,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -8052,7 +8367,11 @@ none
 
 
 
+
+
  
+
+
 
 
 
@@ -8110,6 +8429,10 @@ border-bottom
 
 
 
+
+
+
+
 :
 
 
@@ -8129,7 +8452,11 @@ border-bottom
 
 
 
+
+
  
+
+
 
 
 
@@ -8434,15 +8761,39 @@ a.badge-dark:focus, a.badge-dark.focus {
 
 .jumbotron {
 	margin-left: 12%;
-	background-color: #f7f7f9;
 	width: 76%;
+	height: 400px;
+	overflow: hidden;
+	position: relative;
+}
+
+#image {
+	position: absolute;
+	z-index: 1;
+}
+
+#text {
+	position: absolute;
+	color: black;
+	z-index: 2;
+	margin: auto;
+	width: 100%;
+	text-align: center;
+	left: 3px;
+	padding-right: 167px;
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+	margin-top: 50px;
+}
+
+.jumbotron>img {
+	width: 100%;
+	height: auto;
 }
 
 @media ( min-width : 576px) {
 	.jumbotron {
-		padding: 3% 13% 5% 17%;
 		font-family: 'Noto Sans KR', sans-serif;
-		margin-top: -1%;
+		margin-top: -1.2%;
 	}
 }
 
@@ -9055,6 +9406,10 @@ a.close.disabled {
 
 
 
+
+
+
+
 :not
 
 
@@ -9074,7 +9429,11 @@ a.close.disabled {
 
 
 
+
+
  
+
+
 
 
 
@@ -9113,7 +9472,11 @@ a.close.disabled {
 
 
 
+
+
  
+
+
 
 
 
@@ -9171,7 +9534,13 @@ margin-bottom
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -9209,8 +9578,14 @@ margin-bottom
 
 
 
+
+
 0
 .75rem
+
+
+
+
 
 
 
@@ -9488,7 +9863,11 @@ margin-bottom
 
 
 
+
+
  
+
+
 
 
 
@@ -9527,7 +9906,11 @@ margin-bottom
 
 
 
+
+
  
+
+
 
 
 
@@ -9585,7 +9968,13 @@ margin-left
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -9623,7 +10012,13 @@ margin-left
 
 
 
+
+
 .25rem
+
+
+
+
 
 
 
@@ -9683,7 +10078,11 @@ margin-left
 
 
 
+
+
  
+
+
 
 
 
@@ -9722,7 +10121,11 @@ margin-left
 
 
 
+
+
  
+
+
 
 
 
@@ -9780,7 +10183,13 @@ margin-right
 
 
 
+
+
+
+
 :
+
+
 
 
 
@@ -9818,7 +10227,13 @@ margin-right
 
 
 
+
+
 .25rem
+
+
+
+
 
 
 
@@ -10485,6 +10900,10 @@ opacity
 
 
 
+
+
+
+
 :
 
 
@@ -10505,7 +10924,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -10575,6 +10998,10 @@ opacity
 
 
 
+
+
+
+
 :
 
 
@@ -10595,7 +11022,11 @@ opacity
 
 
 
+
+
  
+
+
 
 
 
@@ -13896,6 +14327,10 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
 	:not
 	
 	
@@ -13915,7 +14350,11 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
 	 
+	
+	
 	
 	
 	
@@ -13954,7 +14393,11 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
 	 
+	
+	
 	
 	
 	
@@ -14012,7 +14455,13 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
 	:
+	
+	
 	
 	
 	
@@ -14050,7 +14499,13 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
 	underline
+	
+	
+	
+	
 	
 	
 	
@@ -14329,8 +14784,8 @@ th {
 }
 
 #searchbar {
-	font-size: 13px;
-	width: 80%;
+	font-size: 12px;
+	width: 70%;
 }
 
 .menubar {
@@ -14373,11 +14828,10 @@ th {
 }
 
 .menubar li ul {
+	margin-top: -0.1%;
 	background: rgb(109, 109, 109);
 	display: none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
 	height: auto;
-	padding: 0px;
-	margin: 0px;
 	border: 0px;
 	position: absolute;
 	width: 200px;
@@ -14433,8 +14887,7 @@ th {
 }
 
 #searchform {
-	width: 77%;
-	margin: auto;
+	width: 27%;
 }
 
 #navbartop {

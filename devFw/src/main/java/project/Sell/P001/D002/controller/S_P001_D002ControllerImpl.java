@@ -59,6 +59,16 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		
 		List list = S_P001_D002Service.detailProduct(searchMap);
 		List tags = S_P001_D002Service.tagList(searchMap);
+
+		String flea_code = ((S_P001_D002VO)list.get(0)).getFleamarket();
+
+		if(flea_code != null) {
+			searchMap.put("flea_code", flea_code);
+			
+			String fleaName = S_P001_D002Service.fleaName(searchMap);
+			mav.addObject("fleaName", fleaName);
+		}
+		
 		System.out.println("memberId" + memberId);
 		if(memberId != null) {
 			String likeProd = S_P001_D002Service.likeProd(searchMap);
@@ -176,6 +186,5 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 			e.printStackTrace();
 		}
 	}	
-	
 	
 }

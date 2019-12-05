@@ -12,16 +12,18 @@
 		<result property="flea_like_count" column="flea_like_count" />
 		<result property="profile_photo" column="profile_photo" />
 		<result property="main_photo" column="main_photo" />
+		<result property="recruit_yn" column="recruit_yn" />
 		<result property="join_offline_date" column="join_offline_date" />
 		<result property="join_offline_time" column="join_offline_time" />
 		<result property="join_offline_location" column="join_offline_location" />
 		<result property="join_prepayment_yn" column="join_prepayment_yn" />
+		<result property="date_check" column="date_check" />
 		
 	</resultMap>
 
 	<select id="searchList" resultMap="p0001Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         select flea_code, memberid, flea_name, intro_cotent, flea_like_count, profile_photo, main_photo, flea_group, join_offline_date, join_offline_time, join_offline_location, join_prepayment_yn 
+         select *
          from flea
       ]]>
 		<where>
@@ -46,6 +48,20 @@
 			</if>
 		</where>
 	</select>
+
+ 	<!-- 모집기간 체크 -->
+	<select id="recruit_date_check" resultMap="p0001Result01" parameterType="java.util.Map">
+		SELECT sign(JOIN_OFFLINE_DATE - sysdate) as date_check, flea_code
+		FROM flea
+	</select>
+	
+	<!-- 모집날짜가 지날 경우 -->
+	<update id="updateRecruit" parameterType="java.util.Map">
+		UPDATE flea SET recruit_yn = 'n'
+		<where>
+			flea_code = #{flea_code}
+		</where>
+	</update>
 
 	<update id="updateMember" parameterType="java.util.Map">
 		update t_member

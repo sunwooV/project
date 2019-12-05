@@ -28,6 +28,14 @@ public class F_P001_D002DAOImpl implements F_P001_D002DAO {
 	}
 	
 	@Override
+	public List<F_P001_D002VO> recruit_yn() throws DataAccessException {
+		List<F_P001_D002VO> recruit_date = sqlSession.selectList("FleaMarket.p001_d002.recruit_date_check");
+		return recruit_date;
+	}
+	
+	
+	
+	@Override
 	public List<F_P001_D002VO> searchMod(Map<String, Object> searchMap) throws DataAccessException {
 		List<F_P001_D002VO> list = sqlSession.selectList("hm.p0001.searchMod", searchMap);
 		return list;
@@ -52,6 +60,11 @@ public class F_P001_D002DAOImpl implements F_P001_D002DAO {
 	@Override
 	public void deleteMember(Map<String, Object> datahMap) throws DataAccessException {
 		sqlSession.update("hm.F_P001_D002.deleteMember", datahMap);
+	}
+	
+	@Override
+	public void updateRecruit(Map<String, Object> datahMap) throws DataAccessException {
+		sqlSession.update("FleaMarket.p001_d002.updateRecruit", datahMap);
 	}
 
 }

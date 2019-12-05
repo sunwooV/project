@@ -21,6 +21,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,6 +58,33 @@ public class F_P001_D002ControllerImpl implements F_P001_D002Controller {
 		ModelAndView mav = new ModelAndView("FleaMarket/p001_d002_fleaMain");
 		mav.addObject("searchList", list);
 		return mav;
+	}
+	
+	@Scheduled(fixedRate = 10000)
+	public void date_check() throws Exception {
+		System.out.println("=============모집 기간 확인=============");
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		System.out.println("요기이ㅣ이");
+		String date_check = null;
+		String flea_code = null;
+	
+		List list = d002Service.recruit_date_check();
+		System.out.println("recruit::::list="+list);
+		
+		for(int i = 0; i < list.size(); i++)
+		{
+			flea_code = ((F_P001_D002VO)list.get(i)).getFlea_code();
+			date_check = ((F_P001_D002VO)list.get(i)).getDate_check();
+			System.out.println("=====date_check: "+ date_check);
+			System.out.println("=====flea_code: "+ flea_code);
+			
+			if(Integer.parseInt(date_check) < 0) {
+				dataMap.put("flea_code", flea_code);
+				d002Service.updateRecruit(dataMap);
+				System.out.println("updateRecruit");
+			}
+		}
+		
 	}
 	
 

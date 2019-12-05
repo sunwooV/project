@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	session.removeAttribute("member");
+%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -10,7 +13,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Do+Hyeon|Merriweather|Noto+Sans+KR&display=swap&subset=korean"
 	rel="stylesheet">
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
 	href="https://www.seedlogix.com/hubs/themes/clients/powerleads/enterprise/assets/css/normalize.css">
 <link rel="stylesheet"
 	href="https://www.seedlogix.com/hubs/themes/clients/powerleads/enterprise/assets/css/components.css">
@@ -19,7 +22,7 @@
 <link rel="stylesheet"
 	href="https://www.seedlogix.com/hubs/themes/clients/psg/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet"
-	href="https://www.seedlogix.com/hubs/themes/clients/psg/pixons/style.css">
+	href="https://www.seedlogix.com/hubs/themes/clients/psg/pixons/style.css"> -->
 <script
 	src="https://seedlogix.com/hubs/themes/clients/powerleads/enterprise/assets/js/jquery.min.js"
 	type="text/javascript" charset="utf-8"></script>
@@ -33,7 +36,6 @@
 	src="https://www.seedlogix.com/hubs/themes/clients/powerleads/enterprise/assets/js/main.js"
 	type="text/javascript" charset="utf-8"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <head>
 
 <script>
@@ -41,7 +43,6 @@
 		window.open("${contextPath}/out_pw_check.do", "a",
 				"width=400, height=300, left=100, top=50");
 	}
-
 	$(function() {
 		if ($("#pwForm").submit(function() {
 			if ($("#pw").val() !== $("#pw2").val()) {
@@ -57,12 +58,11 @@
 				alert("공백은 입력이 불가능합니다.");
 				return false;
 			}
-		}));
+		}))
+			;
 	})
-
 	function update_info() {
 		var frm = document.update;
-
 		frm.method = "POST";
 		frm.action = "./update.do";
 		alert("수정 완료.");
@@ -112,7 +112,7 @@
 #home-process-section .tabs-content, #home-process-section .tabs-content p
 	{
 	text-align: center;
-	font-size: 17px;
+	font-size: 11px;
 	line-height: 1.9em;
 }
 
@@ -133,6 +133,7 @@
 }
 
 table.type05 {
+	font-size: 11px;
 	border-collapse: separate;
 	border-spacing: 1px;
 	text-align: left;
@@ -144,7 +145,6 @@ table.type05 {
 table.type05 th {
 	text-align: center;
 	width: 210px;
-	padding: 25px;
 	font-size: larger;
 	font-weight: bold;
 	vertical-align: center;
@@ -172,14 +172,18 @@ input[type=text]#id, #email, #name, #approval_status {
 	<form name="update">
 		<!--  Process  -->
 		<div id="home-process-section">
+
 			<div class="w-col w-col-12">
-				<h2>내 정보</h2>
+				<h1 style="padding-left:12%;">내 정보</h1>
+				<div class="w-tabs" data-duration-in="300" data-duration-out="100" style="margin-top: -4%;">
 					<div class="gray tabs-content w-tab-content"
-						style="width: 1200px; background-color: white;">
+						style="width: 1200px; background-color: #ffffff00;">
 						<div class="w-tab-pane w--tab-active" data-w-tab="Tab 1">
 							<p>
 							<form id="pwForm" action="./modify.do" method="post">
 								<table class="type05">
+
+
 									<tr>
 										<th scope="row" id="id">아이디</th>
 										<td><input type="text" id="memberid" name="memberid"
@@ -196,7 +200,7 @@ input[type=text]#id, #email, #name, #approval_status {
 											<br> <label>신규 비밀번호 다시 입력</label>&nbsp; <input
 											type="password" id="pw2" type="password" required><br>
 											<br>
-											<button type="submit">비밀번호 변경</button></td>
+											<button type="submit" class="btn btn-dark">비밀번호 변경</button></td>
 									</tr>
 									<tr>
 										<th scope="row">이메일</th>
@@ -219,7 +223,7 @@ input[type=text]#id, #email, #name, #approval_status {
 										<th scope="row">배송지 관리</th>
 										<td><input type="text" id="address" name="address"
 											value="<%=session.getAttribute("address")%>" required>
-											<input type="button" onclick="sample4_execDaumPostcode()"
+											<input type="button" class="btn btn-dark" onclick="sample4_execDaumPostcode()"
 											value="우편번호 찾기"><br> <br> <input
 											type="text" id="roadAddress" name="roadAddress"
 											value="<%=session.getAttribute("roadAddress")%>" required>
@@ -240,12 +244,10 @@ input[type=text]#id, #email, #name, #approval_status {
 																oncomplete : function(
 																		data) {
 																	// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
 																	// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
 																	// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 																	var roadAddr = data.roadAddress; // 도로명 주소 변수
 																	var extraRoadAddr = ''; // 참고 항목 변수
-
 																	// 법정동명이 있을 경우 추가한다. (법정리는 제외)
 																	// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
 																	if (data.bname !== ''
@@ -266,7 +268,6 @@ input[type=text]#id, #email, #name, #approval_status {
 																				+ extraRoadAddr
 																				+ ')';
 																	}
-
 																	// 우편번호와 주소 정보를 해당 필드에 넣는다.
 																	document
 																			.getElementById('address').value = data.zonecode;
@@ -274,7 +275,6 @@ input[type=text]#id, #email, #name, #approval_status {
 																			.getElementById("roadAddress").value = roadAddr;
 																	document
 																			.getElementById("jibunAddress").value = data.jibunAddress;
-
 																	// 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
 																	if (roadAddr !== '') {
 																		document
@@ -283,7 +283,6 @@ input[type=text]#id, #email, #name, #approval_status {
 																		document
 																				.getElementById("extraAddress").value = '';
 																	}
-
 																	var guideTextBox = document
 																			.getElementById("guide");
 																	// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
@@ -294,7 +293,6 @@ input[type=text]#id, #email, #name, #approval_status {
 																				+ expRoadAddr
 																				+ ')';
 																		guideTextBox.style.display = 'block';
-
 																	} else if (data.autoJibunAddress) {
 																		var expJibunAddr = data.autoJibunAddress;
 																		guideTextBox.innerHTML = '(예상 지번 주소 : '
@@ -329,16 +327,16 @@ input[type=text]#id, #email, #name, #approval_status {
 											placeholder="990101형식으로 입력해주세요." required></td>
 									</tr>
 								</table>
-								</form>
-								<input type="button" id="update" value="변경하기"
+								<input type="button" class="btn btn-dark" id="update" value="변경하기"
 									onclick="update_info()">&emsp;&emsp; <input
-									type="button" id="out" onclick="showPopup();" value="탈퇴하기">
+									type="button" class="btn btn-dark" id="out" onclick="showPopup();" value="탈퇴하기">
 
-							
+							</form>
 							</p>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-		</div>
 		</div>
 	</form>
 </body>

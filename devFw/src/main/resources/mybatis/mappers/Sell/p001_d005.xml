@@ -109,6 +109,7 @@
 					, direct_area = #{direct_area}
 					, editor = #{editor}
 					, represent_image = #{images}
+					, fleamarket = #{fleamarket}
 			]]>
 			</otherwise>
 		</choose>

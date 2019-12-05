@@ -64,6 +64,8 @@ ol, ul {
 	width: 500px;
 	margin-bottom: 12px;
 	cursor: pointer;
+	float: left;
+    margin-right: 50px;
 }
 .ui_card__txtarea{
 	padding: 15px;
@@ -104,7 +106,51 @@ ul li {list-style-type: none;}
     padding: 6px;
 }
 
+.blinkcss {
+    background-color: #004A7F;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Arial;
+  font-size: 20px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-animation: glowing 1500ms infinite;
+  -moz-animation: glowing 1500ms infinite;
+  -o-animation: glowing 1500ms infinite;
+  animation: glowing 1500ms infinite;
+}
+
+@-webkit-keyframes glowing {
+  0% { background-color: #B20000;  }
+  50% { background-color: #FF0000;  }
+  100% { background-color: #B20000;  }
+}
+
+@-moz-keyframes glowing {
+  0% { background-color: #B20000;  }
+  50% { background-color: #FF0000;}
+  100% { background-color: #B20000;}
+}
+
+@-o-keyframes glowing {
+  0% { background-color: #B20000;  }
+  50% { background-color: #FF0000;  }
+  100% { background-color: #B20000; }
+}
+
+@keyframes glowing {
+  0% { background-color: #B20000;  }
+  50% { background-color: #FF0000;  }
+  100% { background-color: #B20000; }
+}
+
 </style>
+
 
 <body>
 
@@ -357,7 +403,7 @@ ul li {list-style-type: none;}
 
 		<!-- 컨텐츠 -->
 		<div class="row">
-			<p style="padding-left: 3%; padding-bottom: 0%; font-size: 23px;">지금까지 10개의 마켓이 열렸고, 3개의 마켓이 셀러를 기다리고 있습니다:)</p>
+			<p style="padding-left: 3%; padding-bottom: 0%; font-size: 23px;">지금까지 2개의 마켓이 열렸고, 1개의 마켓이 셀러를 기다리고 있습니다:)</p>
 		</div>
 		<!-- 플리마켓 맵
         <div class="fleaMap">
@@ -424,7 +470,6 @@ ul li {list-style-type: none;}
                     	<img src="${bestStore.profile_photo}" class="ui_card__img"
 							style="width: 230; height: 240; " alt="..." onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code }'">
                        <!--  <a href="#" class="ui_card__img" target="_blank" style="background-image: url('${bestStore.profile_photo}')">-->
-                        </a>
                     </div>
 
                     <div class="ui_card__txtarea">
@@ -469,8 +514,13 @@ ul li {list-style-type: none;}
                         
                         <p id="ppp">
 								<a href="#" class="btn btn-primary" id="ttt3" role="button">메세지 보내기</a>
-								<a href="#" class="btn btn-default"
-									id="ttt4" role="button">모집중</a>
+								
+								<c:if test="${bestStore.recruit_yn == 'n'}">
+									<a href="#" class="btn btn-default" id="ttt4" role="button">모집종료</a>
+								</c:if>
+								<c:if test="${bestStore.recruit_yn == 'y'}">
+									<a href="#" class="btn btn-default blinkcss" id="ttt4" role="button" style="background: red;">모집중</a>
+								</c:if>
 						</p>
                         
                     </div>

@@ -33,9 +33,21 @@ public class S_P001_D001DAOImpl implements S_P001_D001DAO {
 	}
 	
 	@Override
+	public List<S_P001_D001VO> partFlea(Map<String, Object> searchMap) throws DataAccessException {
+		List<S_P001_D001VO> partFlea = sqlSession.selectList("Sell.p001_d001.partFlea", searchMap);
+		return partFlea;
+	}
+	
+	@Override
 	public String selectProdNumber() throws DataAccessException {
 		String selectProdNumber = sqlSession.selectOne("Sell.p001_d001.selectProdNumber");
 		return selectProdNumber;
+	}
+	
+	@Override
+	public String checkSeller(Map<String, Object> searchMap) throws DataAccessException {
+		String checkSeller = sqlSession.selectOne("Sell.p001_d001.checkSeller", searchMap);
+		return checkSeller;
 	}
 	
 	@Override

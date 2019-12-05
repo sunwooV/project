@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -31,6 +32,8 @@ public class S_P001_D005ControllerImpl implements S_P001_D005Controller {
 	S_P001_D002Service S_P001_D002Service;
 	@Autowired
 	S_P001_D001Service S_P001_D001Service;
+	@Autowired
+	private HttpSession session;
 	
 	@Override
 	@RequestMapping(value = "/modifyProduct.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -40,6 +43,8 @@ public class S_P001_D005ControllerImpl implements S_P001_D005Controller {
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		searchMap.put("prod_number", prod_number);	 
 		
+		ModelAndView mav = new ModelAndView("Sell/p001_d001_enroll");
+		
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		Enumeration enu = request.getParameterNames();
 		while (enu.hasMoreElements()) {
@@ -47,6 +52,17 @@ public class S_P001_D005ControllerImpl implements S_P001_D005Controller {
 			String value = request.getParameter(name);
 			dataMap.put(name, value);
 			System.out.println(dataMap);
+		}
+		String memberId = (String)session.getAttribute("memberid");
+		searchMap.put("memberId", memberId);
+		searchMap.put("flea_seller_group", "checkFleaSeller");
+		String checkFleaSeller = S_P001_D001Service.checkSeller(searchMap); //플리마켓 셀러인지 확인
+		if(Integer.parseInt(checkFleaSeller) == 0) { //플리마켓 셀러가 아닌 경우
+			mav.addObject("flea_seller_group", "n");
+		} else {
+			List partFlea = S_P001_D001Service.partFlea(searchMap);
+			mav.addObject("partFlea", partFlea);
+			mav.addObject("flea_seller_group", "y");
 		}
 		
 		String selectHigh = (String)dataMap.get("high_category");
@@ -59,7 +75,7 @@ public class S_P001_D005ControllerImpl implements S_P001_D005Controller {
 		
 		List tagList = S_P001_D002Service.tagList(searchMap);
 
-		ModelAndView mav = new ModelAndView("Sell/p001_d001_enroll");
+		
 		mav.addObject("command", "modify");
 		
 		mav.addObject("modifyProd", modifyProd);

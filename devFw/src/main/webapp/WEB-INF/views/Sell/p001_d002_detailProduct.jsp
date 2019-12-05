@@ -222,12 +222,12 @@
 						 
 						if(data[i].secret_yn == 'y'){ //비밀글일경우
 							if(memberId == prod_memberId || memberId == data[i].memberId){ //글 작성자이거나 해당 상품 게시자인 경우
-								list += '<span class="inquiry_text" id="text" style="font-weight:bold;">' + data[i].qna_content + '</span>';
+								list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + data[i].qna_content + '</span>';
 							} else { //제 3자의 경우
 								list += '<span class="inquiry_text" id="secret_text" style="font-weight:bold;">비밀글입니다.<img src="${contextPath }/resources/img/detailProduct/secret.png" style="width:20px;"></span>';
 							}
 						} else{ //비밀글이 아닐 경우
-							list += '<span class="inquiry_text" id="text" style="font-weight:bold;">' + data[i].qna_content + '</span>';
+							list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + data[i].qna_content + '</span>';
 						}
 						 
 						list += '</div>'
@@ -391,12 +391,12 @@
 							 
 							if(data[i].secret_yn == 'y'){ //비밀글일경우
 								if(memberId == prod_memberId || memberId == data[i].memberId){ //글 작성자이거나 해당 상품 게시자인 경우
-									list += '<span class="inquiry_text" id="text" style="font-weight:bold;">' + data[i].qna_content + '</span>';
+									list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + data[i].qna_content + '</span>';
 								} else { //제 3자의 경우
 									list += '<span class="inquiry_text" id="secret_text" style="font-weight:bold;">비밀글입니다.<img src="${contextPath }/resources/img/detailProduct/secret.png" style="width:20px;"></span>';
 								}
 							} else{ //비밀글이 아닐 경우
-								list += '<span class="inquiry_text" id="text" style="font-weight:bold;">' + data[i].qna_content + '</span>';
+								list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + data[i].qna_content + '</span>';
 							}
 							 
 							list += '</div>'
@@ -1087,6 +1087,7 @@ textarea{
 </style>
 </head>
 <body>
+<c:set var="fleaName" value="${fleaName }"/>
 <form name="detail">
 <div id="wrap">
 	<input type="hidden" id="command" name="command" value="">
@@ -1142,7 +1143,7 @@ textarea{
 			
 					<input type="hidden" name="flea_yn" value="n">
 				</c:if>
-				<c:if test="${product.memberId == member.getMemberid() }">
+				<c:if test="${product.memberId == member.getMemberid()}">
 					<div class="writer_option" style="float:right; margin-top: -30px;">
 						<input type="button" id="modify" value="수정">
 						<input type="button" id="delete" value="삭제">
@@ -1151,32 +1152,34 @@ textarea{
 				<h1>${product.prod_title}</h1>
 				
 				<input type="hidden" id="prod_title" value="${product.prod_title }">
-				<!-- <h3>#${product.tag1 }, #${product.tag2 }, #${product.tag3 }, #${product.tag4 }, #${product.tag5 }</h3> -->
-				<h3 id="gray-text">${product.memberId }</h3>
+				<c:if test="${product.flea_yn == 'y' }"> <!-- 플리마켓에 올라온 상품인 경우 플리마켓명도 함께 표시 -->
+					<h3 id="gray-text">${fleaName } (${product.memberId })</h3>
+				</c:if>
+				<c:if test="${product.flea_yn == 'n' }">
+					<h3 id="gray-text">${product.memberId }</h3>
+				</c:if>
 				<br>
 				<c:choose>
-					<c:when test="${product.auction_yn == 'y' }"> <!-- 경매 상품이면 시작가와 현재가를 표시해준다. -->
+					<c:when test="${product.auction_yn == 'y' or product.auction_yn == 'w' or product.auction_yn == 'f' }"> <!-- 경매 상품이면 시작가와 현재가를 표시해준다. -->
 						<span class="price" id="sold_price"><fmt:formatNumber value="${product.auction_bid }" type="number" />원</span><!-- 현재가 -->
 						<span id="auction_price">시작가: <fmt:formatNumber value="${product.auction_price }" type="number" />원</span><!-- 시작가 -->
 						<a href="./bidRecord.do?prod_number=${product.prod_number }" style="font-size:medium; padding:5px;"><u>경매기록</u></a>
 					</c:when>
-					<c:when test="${(product.auction_yn == 'f' and product.reused_yn == 'n' and product.flea_yn == 'n') or (product.auction_yn == 'w' and product.reused_yn == 'n' and product.flea_yn == 'n')}">
-						<span class="price" id="sold_price"><fmt:formatNumber value="${product.auction_bid }" type="number" />원</span><!-- 현재가 -->
-						<span id="auction_price">시작가: <fmt:formatNumber value="${product.auction_price }" type="number" />원</span><!-- 시작가 -->
-						<a href="./bidRecord.do?prod_number=${product.prod_number }" style="font-size:medium; padding:5px;"><u>경매기록</u></a>
-					</c:when>
+<%-- 					<c:when test="${(product.auction_yn == 'f' and product.reused_yn == 'n' and product.flea_yn == 'n') or (product.auction_yn == 'w' and product.reused_yn == 'n' and product.flea_yn == 'n')}"> --%>
+<%-- 						<span class="price" id="sold_price"><fmt:formatNumber value="${product.auction_bid }" type="number" />원</span><!-- 현재가 --> --%>
+<%-- 						<span id="auction_price">시작가: <fmt:formatNumber value="${product.auction_price }" type="number" />원</span><!-- 시작가 --> --%>
+<%-- 						<a href="./bidRecord.do?prod_number=${product.prod_number }" style="font-size:medium; padding:5px;"><u>경매기록</u></a> --%>
+<%-- 					</c:when> --%>
 					<c:otherwise> <!-- 경매가 아닌 상품들 -->
 						<c:if test="${product.sale_percent != null }"> <!-- 세일 퍼센트가 존재한다면 -->
 							<span class="price">${product.sale_percent}%</span>
 							<span class="price" id="sold_price"><fmt:formatNumber value="${product.prod_price * (1-(product.sale_percent*0.01)) }" type="number" />원</span>
 							<span id="sale_price"><fmt:formatNumber value="${product.prod_price }" type="number" />원</span>
 							<input type="hidden" id="prod_price" value="${product.prod_price * (1-(product.sale_percent*0.01)) }">
-							<a href="./bidRecord.do?prod_number=${product.prod_number }" style="font-size:medium; padding:5px;"><u>경매기록</u></a>
 						</c:if> 
 						<c:if test="${product.sale_percent == null }"> <!-- 세일 퍼센트가 존재하지 않는다면 -->
 							<span class="price" id="sold_price"><fmt:formatNumber value="${product.prod_price }" type="number" />원</span>
 							<input type="hidden" id="prod_price" value="${product.prod_price }">
-							<a href="./bidRecord.do?prod_number=${product.prod_number }" style="font-size:medium; padding:5px;"><u>경매기록</u></a>
 						</c:if>
 					</c:otherwise>
 				</c:choose>
@@ -1223,6 +1226,9 @@ textarea{
 							</c:when>
 							<c:when test="${product.send_way == 'delivery' }">
 								<input type="radio" name="way_check" value="delivery" checked="checked" id="delivery"> <label for="delivery">택배거래</label>
+							</c:when>
+							<c:when test="${product.send_way == 'receipt' }">
+								<input type="radio" name="way_check" value="receipt" checked="checked" id="receipt"> <label for="receipt">현장거래</label>
 							</c:when>
 							<c:otherwise>
 								<input type="radio" name="way_check" value="direct" checked="checked" id="direct"> <label for="direct">직거래(장소 : ${product.direct_area })</label>
@@ -1386,14 +1392,14 @@ textarea{
 												<span class="inquiry_prod">${product.prod_title }</span>
 												<c:if test="${prodQnA.secret_yn == 'y' }"> <!-- 비밀글일 경우 -->
 													<c:if test="${member.getMemberid() == prodQnA.memberId or member.getMemberid() == product.memberId }"> <!-- 글 작성자이거나 상품 작성자인 경우 -->
-														<span class="inquiry_text" id="text" style="font-weight:bold;">${prodQnA.qna_content }</span>
+														<span class="inquiry_text" id="contText" style="font-weight:bold;">${prodQnA.qna_content }</span>
 													</c:if>
 													<c:if test="${member.getMemberid() != prodQnA.memberId and member.getMemberid() != product.memberId }"> <!-- 글작성자가 아닐 경우 -->
 														<span class="inquiry_text" id="secret_text" style="font-weight:bold;">비밀글입니다.<img src="${contextPath }/resources/img/detailProduct/secret.png" style="width:20px;"></span>	
 													</c:if>
 												</c:if>
 												<c:if test="${prodQnA.secret_yn == 'n' }">
-													<span class="inquiry_text" id="text" style="font-weight:bold;">${prodQnA.qna_content }</span>	
+													<span class="inquiry_text" id="contText" style="font-weight:bold;">${prodQnA.qna_content }</span>	
 												</c:if>
 											</div>
 											<div class="user">

@@ -35,9 +35,21 @@ public class S_P001_D001ServiceImpl implements S_P001_D001Service {
 	}
 	
 	@Override
+	public List<S_P001_D001VO> partFlea(Map<String, Object> searchMap) throws DataAccessException {
+		List<S_P001_D001VO> partFlea =  S_P001_D001DAO.partFlea(searchMap); 
+		return partFlea;
+	}
+	
+	@Override
 	public String selectProdNumber() throws DataAccessException {
 		String selectProdNumber =  S_P001_D001DAO.selectProdNumber(); 
 		return selectProdNumber;
+	}
+	
+	@Override
+	public String checkSeller(Map<String, Object> searchMap) throws DataAccessException {
+		String checkSeller =  S_P001_D001DAO.checkSeller(searchMap); 
+		return checkSeller;
 	}
 	
 	@Override

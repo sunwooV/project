@@ -19,6 +19,13 @@
 	});
 </script>
 <style>
+.searchbar{
+	width:350px;
+	display:block;
+	margin:0px auto;
+	margin-top:30px;
+	margin-bottom:50px;
+}
 #sale_price {
 	color: #BDBDBD;
 	font-size: medium;
@@ -117,6 +124,7 @@ label{
 <hr>
 	<div class="detailSearch">
 		<input type="hidden" name="command" value="detailSearch">
+		
 		<div class="title">
 			<a href="./main.do">홈</a> > <span id="accent">"${searchVal }"</span> <span style="color:black;">검색 결과</span> : <span id="group">전체 </span>(<span id="accent"><fmt:formatNumber value="${size }" type="number"/></span>개의 상품)
 		</div>

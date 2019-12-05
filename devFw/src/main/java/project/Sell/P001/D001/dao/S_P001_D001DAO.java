@@ -14,8 +14,9 @@ public interface S_P001_D001DAO {
 	
 	public List<S_P001_D001VO> high_category(Map<String, Object> searchMap) throws DataAccessException;
 	public List<S_P001_D001VO> middle_category(Map<String, Object> searchMap) throws DataAccessException;
+	public List<S_P001_D001VO> partFlea(Map<String, Object> searchMap) throws DataAccessException;
 	public String selectProdNumber() throws DataAccessException;
-	
+	public String checkSeller(Map<String, Object> searchMap) throws DataAccessException;
 	
 	public void insertProduct(Map<String, Object> datahMap) throws DataAccessException;
 	public void insertTag(Map<String, Object> datahMap) throws DataAccessException;
