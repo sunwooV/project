@@ -7,4 +7,5 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface C_P003_D001Controller {
 	public ModelAndView enrollSeller(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView sellerBasic(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

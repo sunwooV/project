@@ -21,4 +21,14 @@ public class C_P003_D001ControllerImpl implements C_P003_D001Controller {
 
 		return mav;
 	}
+	
+	@Override
+	@RequestMapping(value = "/sellerBasic.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView sellerBasic(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		
+		ModelAndView mav = new ModelAndView("Customers/p003_d001_sellerBasic");
+
+		return mav;
+	}
 }
