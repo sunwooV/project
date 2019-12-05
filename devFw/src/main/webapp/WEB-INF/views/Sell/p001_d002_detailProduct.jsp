@@ -1143,7 +1143,7 @@ textarea{
 			
 					<input type="hidden" name="flea_yn" value="n">
 				</c:if>
-				<c:if test="${product.memberId == member.getMemberid() }">
+				<c:if test="${product.memberId == member.getMemberid()}">
 					<div class="writer_option" style="float:right; margin-top: -30px;">
 						<input type="button" id="modify" value="수정">
 						<input type="button" id="delete" value="삭제">

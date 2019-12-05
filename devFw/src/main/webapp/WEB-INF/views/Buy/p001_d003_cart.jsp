@@ -57,30 +57,14 @@
 }
 </style>
 <script type="text/javascript">
-	
-	//품목 삭제
-	function delOption(){
-		
-	}
-	
-	
-	//수량 업데이트
-	function updateQuantity(){
-		
-		
-	}
 
-	//결제를 원하는 상품정보 및 예상 결제금액을 주문정보 입력하는 곳으러 넘김~~+페이지 이동
-	function moveToPayInfo() {
-
-	}
 </script>
 </head>
 <body>
 	<input type="hidden" id="memberId" value="${member.getMemberid()}">
-	<c:set var="size" value="${size}" />
-	<input type="hidden" id="size" value="${size}">
-	<!-- 주문내역 상단 -->
+
+	<form name = "Mycart">
+	<!-- 장바구니 상단 -->
 	<div class="orderHistoryHeader">
 		<h3>장바구니</h3>
 	</div>
@@ -91,7 +75,6 @@
 			<thead class="orderHistoryTableTitles">
 				<tr class="OHtableTitle">
 					<th class="OHT_ttl"><input type="checkbox" id="allCheck"></th>
-					<th class="OHT_ttl"><span>상품번호</span></th>
 					<th class="OHT_ttl"><span>상품이미지</span></th>
 					<th class="OHT_ttl"><span>상품정보</span></th>
 					<th class="OHT_ttl"><span>수량</span></th>
@@ -101,18 +84,19 @@
 			</thead>
 			<tbody>
 				<!-- 상품 내용 cif 처리하기 -->
-				<c:forEach var="cartList" items="${cartList}">
+				
+				<c:forEach var="cartList" items="${dataList}">
+				<input type="hidden" id="prod_price" value="${cartList.prod_price}">
 					<tr class="orderHistoryContents">
 						<td class="OHC_cont"><input type="checkbox" name="checkProd"
-							id="checkProd" value="${cartList.prod_number}"></td>
+							id="checkProd" value="">
+							<input type="hidden" name="prod_number" value="${cartList.prod_number}"></td>
 						<td class="OHC_cont"><img src="${cartList.represent_image}"
 							name="represent_image"></td>
-						<td class="OHC_cont"><span class="${cartList.prod_name}"
-							name="prod_name" value=""></span></td>
-						<td class="OHC_cont"><span class="${cartList.cart_count}"
-							name="cart_count"></span></td>
-						<td class="OHC_cont"><span class="ttl_eachProd_price"
-							name="ttl_eachProd_price" id="ttl_eachProd_price"></span></td>
+						<td class="OHC_cont">${cartList.prod_title}
+							</td>
+						<td class="OHC_cont">${cartList.cart_count}</td>
+						<td class="OHC_cont"></td>
 						<td class="OHC_cont"><span class="shippingFee"
 							name="shippingFee"></span></td>
 					</tr>
@@ -135,7 +119,6 @@
 						<td class="OHC_cont" id="shippingFee"></td>
 						<td class="OHC_cont" id="orderTotal"></td>
 					</tr>
-
 				</tbody>
 			</table>
 		</div>
@@ -145,5 +128,6 @@
 	</div>
 
 	<!-- End Content -->
+	</form>
 </body>
 </html>

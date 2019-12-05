@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,23 +31,36 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 	B_P001_D003Service b_p001_d003Service;
 	@Autowired
 	B_P001_D003VO b_p001_d003VO;
+	@Autowired
+	private HttpSession session;
 
 	// 장바구니 상품 조회
 	@Override
 	@RequestMapping(value = "/cart.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView selectCart(@RequestParam("memberId") String memberId, HttpServletRequest request,
+	public ModelAndView selectCart(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-//		Map<String, Object> searchMap = new HashMap<String, Object>(); //  Map
-//		List<B_P001_D003VO> list = b_p001_d003Service.selectCart(searchMap); //List
+		String memberId =  (String)session.getAttribute("memberid");
+		System.out.println(memberId);
 		
 		
-		ModelAndView mav = new ModelAndView("Buy/p001_d003_cart"); // view
-		// mav.addObject("selectCart", list); // data
+		//검색조건을 담음
+		Map<String, Object> searchMap = new HashMap<String, Object>(); //  Map
+		searchMap.put("memberid", memberId);
+		
+		ModelAndView mav = new ModelAndView("Buy/p001_d003_cart");// view
+		System.out.println("장바구니 검색조건 담기"+searchMap);
+		
+		//검색하고 나온 결과를 받아서 리턴!!
+		List dataList = b_p001_d003Service.selectCart(searchMap); //List
+		System.out.println("장바구니 리스트"+dataList);
+	
+		mav.addObject("dataList", dataList); // data
+		System.out.println("cart"+dataList);
 		return mav;
 
 	}
-
+	
 	// 장바구니 옵션 수정
 	@Override
 	@RequestMapping(value = "/editCart.do", method = { RequestMethod.GET, RequestMethod.POST })

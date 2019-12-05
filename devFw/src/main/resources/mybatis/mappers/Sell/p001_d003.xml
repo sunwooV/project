@@ -69,6 +69,7 @@
 			SET answer_yn='y', answer_content=#{answer_content}, answer_date=sysdate
 		 ]]>
 		 <where>
+	
 	 	<![CDATA[
 	 		prod_number=#{prod_number}
 			AND qna_number=#{qna_number}
@@ -96,8 +97,10 @@
       ]]>
 		<where>
 		<![CDATA[
+		
 			prod_number = #{prod_number}
 			AND qna_number = #{qna_number}
+		
 		]]>
 		</where>
 	</select>

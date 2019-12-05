@@ -7,7 +7,8 @@ public class B_P001_D003VO {
 
 
 	private String represent_image; // prodphoto
-	private String prod_name;//
+	private String prod_title;//
+	private int prod_price;
 	
 	// cart Info
 	private String member_ID;
@@ -31,12 +32,15 @@ public class B_P001_D003VO {
 		this.represent_image = represent_image;
 	}
 
-	public String getProd_name() {
-		return prod_name;
+	
+	public String getProd_title() {
+		return prod_title;
 	}
-	public void setProd_name(String prod_name) {
-		this.prod_name = prod_name;
+
+	public void setProd_title(String prod_title) {
+		this.prod_title = prod_title;
 	}
+
 	public String getMember_ID() {
 		return member_ID;
 	}
@@ -66,6 +70,14 @@ public class B_P001_D003VO {
 	}
 	public void setCart_count(int cart_count) {
 		this.cart_count = cart_count;
+	}
+
+	public int getProd_price() {
+		return prod_price;
+	}
+
+	public void setProd_price(int prod_price) {
+		this.prod_price = prod_price;
 	}
 	
 }
