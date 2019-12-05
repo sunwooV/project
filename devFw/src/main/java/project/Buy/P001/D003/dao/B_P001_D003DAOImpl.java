@@ -30,7 +30,7 @@ public class B_P001_D003DAOImpl implements B_P001_D003DAO {
 
 	@Override
 	public void insertCart(Map<String, Object> searchMap) throws DataAccessException {
-		
+		sqlSession.update("Buy.P001.D003.insertCart", searchMap);
 		
 	}
 

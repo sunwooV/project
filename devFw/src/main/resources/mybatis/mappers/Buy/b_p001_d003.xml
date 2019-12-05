@@ -9,6 +9,7 @@
 		<result property="represent_image" column="represent_image" />
 		<result property="prod_title" column="prod_title" />
 		<result property="prod_price" column="prod_price" />
+		<result property="prod_amount" column="prod_amount" />
 		
 		<!-- cart table로부터! -->
 		<result property="memberid" column="memberid" />
@@ -19,30 +20,23 @@
 
 	<select id="cartList" resultMap="B_P001_D003Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         select c.prod_number, p.prod_title, p.prod_price, p.represent_image, c.cart_count
+         select c.prod_number, p.prod_title, p.prod_price, p.represent_image, p.prod_amount, p.prod_amount, c.cart_count
          from   cart c, product p, member m
 	  ]]>	
 	<where>
 	 <![CDATA[ 
 			 c.prod_number = p.prod_number
+			and m.memberid = c.memberid
 			and m.memberid = #{memberid}	
 	]]>
+	
 	</where>
 	</select>
 	
-	<!-- update id ="insertCart" parameterType="java.util.Map">
+	 <insert id ="insertCart" parameterType="java.util.Map">
 	<![CDATA[  
-		update cart
-		set 	memberid = #{memberid}, 
-				prod_number = #{prod_number}, 
-				cart_count = #{cart_count}	
-	]]>
-	
-	<where>
-		<![CDATA[  
-		
-		
-	]]>
-	</where>
-	</update> -->
+		insert cart(memberid, prod_number, cart_count)
+		values(#{memberid}, #{prod_number}, #{cart_count})
+	]]>	
+	</insert> 
 </mapper>

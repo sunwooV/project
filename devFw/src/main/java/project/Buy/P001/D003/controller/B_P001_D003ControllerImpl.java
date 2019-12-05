@@ -67,6 +67,10 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 	@ResponseBody
 	public Map<String, Object> editCart(@ModelAttribute C_P001_D001VO member, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		
+		String memberId = member.getMemberid();
+		System.out.println("장바구니 옵션수정의 "+memberId);
+		
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
@@ -82,9 +86,26 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("itf-8");
 
+		String memberId = member.getMemberid();
+		String memberId2 = (String) request.getSession().getAttribute("memberId");
+		System.out.println("장바구니 제품 추가의 1"+memberId);
+		System.out.println("장바구니 제품 추가의 2"+memberId2);
+		String prod = product.getProd_number();
+		System.out.println("장바구니 제품 추가의 "+ prod);
+		String data = request.getParameter("insertCartInfo");
+		int countNum = data.indexOf("count");
+		System.out.println(data);
+		System.out.println(countNum);
+		
 		Map<String, Object> dataMap = new HashMap<String, Object>();
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		return resultMap;
+		dataMap.put("memberid", memberId);
+		dataMap.put("prod_number", prod);
+		
+		b_p001_d003Service.insertCart(dataMap);
+		
+		
+		
+		return dataMap;
 	}
 
 	// 장바구니 목록 삭제

@@ -9,6 +9,7 @@ public class B_P001_D003VO {
 	private String represent_image; // prodphoto
 	private String prod_title;//
 	private int prod_price;
+	private int prod_amount;
 	
 	// cart Info
 	private String member_ID;
@@ -78,6 +79,14 @@ public class B_P001_D003VO {
 
 	public void setProd_price(int prod_price) {
 		this.prod_price = prod_price;
+	}
+
+	public int getProd_amount() {
+		return prod_amount;
+	}
+
+	public void setProd_amount(int prod_amount) {
+		this.prod_amount = prod_amount;
 	}
 	
 }

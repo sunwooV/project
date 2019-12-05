@@ -28,7 +28,7 @@ public class B_P001_D003ServiceImpl implements B_P001_D003Service{
 	//장바구니에 품목 추가
 	@Override
 	public void insertCart(Map<String, Object> searchMap) throws DataAccessException {
-		// TODO Auto-generated method stub
+		b_p001_d003DAO.insertCart(searchMap);
 		
 	}
 

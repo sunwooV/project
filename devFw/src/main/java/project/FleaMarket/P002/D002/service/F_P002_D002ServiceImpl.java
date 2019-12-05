@@ -20,8 +20,9 @@ public class F_P002_D002ServiceImpl implements F_P002_D002Service {
 	private F_P002_D002DAO d002DAO;
 
 	@Override
-	public List<F_P002_D002VO> searchList(Map<String, Object> searchMap) throws DataAccessException {
-		List<F_P002_D002VO> list =  d002DAO.searchList(searchMap); 
+	public List<F_P002_D002VO> reviewList(Map<String, Object> searchMap) throws DataAccessException {
+		List<F_P002_D002VO> list =  d002DAO.reviewList(searchMap); 
+		System.out.println("reviewList Service 확인!!!");
 		return list;
 	}
 
