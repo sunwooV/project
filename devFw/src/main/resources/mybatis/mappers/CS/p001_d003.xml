@@ -11,10 +11,18 @@
         <result property="private_qna_title" column="private_qna_title" />
         <result property="private_qna_date" column="private_qna_date" />
         <result property="private_memberid" column="private_memberid" />
-        <result property="private_answer_date" column="private_answer_date" />
-         <result property="private_answer_content" column="private_answer_content" />
+       
 	</resultMap>
 	
+		<resultMap id="Result01" type="CS_P001_D003VO">
+		<result property="private_qna_num" column="private_qna_num" />
+		<result property="answer_num" column="answer_num" />
+		<result property="private_answer_memberid" column="private_answer_memberid" />
+		<result property="private_answer_content" column="private_answer_content" />
+		<result property="private_answer_date" column="private_answer_date" />
+		 <result property="private_answer_yn" column="private_answer_yn"/>
+	</resultMap>
+
 	
 	
 	<select id="privatelist" resultMap="result">
@@ -47,6 +55,50 @@
 						WHERE private_qna_num=#{private_qna_num}
 	]]>
 	</select>
+	
+
+	<!-- Q&A -->
+	<insert id="insertcomment" parameterType="java.util.Map">
+		<selectKey keyProperty="answer_num" resultType="int" order="BEFORE">
+		<![CDATA[
+			SELECT nvl2((max(answer_num) + 1), (max(answer_num) + 1), 1)
+			FROM private_answer
+			WHERE private_qna_num = #{private_qna_num}
+		 ]]>
+		</selectKey>
+		<![CDATA[
+			INSERT INTO private_answer (private_qna_num, answer_num, private_answer_memberid, private_answer_date, private_answer_content,  private_answer_yn)
+			VALUES(#{private_qna_num}, #{answer_num}, #{private_answer_memberid}, sysdate, #{private_answer_content}, 'Y')
+		 ]]>
+	</insert>
+	
+	<delete id="deletecomment" parameterType="java.util.Map">
+		<![CDATA[
+			DELETE FROM private_answer
+		 ]]>
+		 <where>
+		 <![CDATA[
+		 	private_qna_num = #{private_qna_num}
+		 	AND answer_num = #{answer_num}
+		 ]]>
+		 </where>
+	</delete>
+	
+	<select id="selectcomment" resultMap="Result01" parameterType="java.util.Map"> 
+      <![CDATA[
+         SELECT private_qna_num, answer_num, private_answer_memberid, TO_CHAR(private_answer_date, 'yyyy-mm-dd HH24:MI') as private_answer_date, private_answer_content, private_answer_yn
+         FROM   private_answer
+      ]]>
+		<where>
+		<![CDATA[
+			private_qna_num = #{private_qna_num}
+		]]>
+		</where>
+		<![CDATA[
+			ORDER BY answer_num DESC
+		]]>
+	</select>
+
 	
 </mapper>
 

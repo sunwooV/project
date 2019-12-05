@@ -11,7 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import project.CS.P001.D001.vo.CS_P001_D001VO;
 import project.CS.P001.D001.vo.PagingVO;
+import project.CS.P001.D003.vo.CS_P001_D003VO;
 import project.Customers.P002.D008.vo.C_P002_D008VO;
+import project.Sell.P001.D003.dao.S_P001_D003DAO;
+import project.Sell.P001.D003.vo.S_P001_D003VO;
 
 @Repository("CS_P001_D003DAO")
 public class CS_P001_D003DAOImpl implements CS_P001_D003DAO{
@@ -41,6 +44,22 @@ public class CS_P001_D003DAOImpl implements CS_P001_D003DAO{
 		System.out.println("da0333333333333333333333333333333333" + dataList);
 		return dataList;
 	}
-
+	@Override
+	public void insertcomment(Map<String, Object> datahMap) throws DataAccessException {
+		sqlSession.update("CS.private.insertcomment", datahMap);
+	}
+	
+	@Override
+	public void deletecomment(Map<String, Object> datahMap) throws DataAccessException {
+		sqlSession.update("CS.private.deletecomment", datahMap);
+	}
+	
+	@Override
+	public List<CS_P001_D003VO> selectcomment(Map<String, Object> searchMap) throws DataAccessException {
+		List<CS_P001_D003VO> list = sqlSession.selectList("CS.private.selectcomment", searchMap);
+		return list;
+	}
+		
+		
 
 }

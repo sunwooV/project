@@ -20,6 +20,8 @@ public class C_P002_D009VO {
 	private String nickname;
 	private String phonenumber;
 	private String approval_status;
+	private String verify;
+	
 	public String getMemberid() {
 		return memberid;
 	}
@@ -98,5 +100,12 @@ public class C_P002_D009VO {
 	public void setApproval_status(String approval_status) {
 		this.approval_status = approval_status;
 	}
+	public String getVerify() {
+		return verify;
+	}
+	public void setVerify(String verify) {
+		this.verify = verify;
+	}
+	
 
 }

@@ -34,6 +34,7 @@ h2{
 	padding: 0.5%;
 	text-align: center;
 	border-bottom:1px solid darkgray;
+	background: darkgray;
 }
 
 .orderHistoryTable {
