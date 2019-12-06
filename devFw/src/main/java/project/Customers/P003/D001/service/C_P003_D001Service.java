@@ -1,5 +1,7 @@
 package project.Customers.P003.D001.service;
 
-public interface C_P003_D001Service {
+import java.util.Map;
 
+public interface C_P003_D001Service {
+	public void changeSeller(Map<String, Object> datahMap) throws Exception;
 }

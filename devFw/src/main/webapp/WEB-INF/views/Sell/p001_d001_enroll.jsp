@@ -861,7 +861,7 @@
 
 	</form>
 	</c:if>
-
+	 
 <!-- 수정 폼 -->
 	<c:if test="${command == 'modify' }">
 	<form class="form" name="productModify" id="productModify" method="post" action="./enrollSuccess.do">

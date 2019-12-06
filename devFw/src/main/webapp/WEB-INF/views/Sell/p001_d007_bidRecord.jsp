@@ -55,7 +55,7 @@ h1{
 				<c:if test="${product_info.send_way == 'delivery' }">
 					<td>택배거래</td>
 				</c:if>
-				<c:if test="${product_info.send_way == 'direct delivery' }">
+				<c:if test="${product_info.send_way == 'direct delivery ' }">
 					<td>직거래(${product_info.direct_area }), 택배거래</td>
 				</c:if>
 			</tr>
