@@ -258,12 +258,17 @@ input[type=button]{
 					<td class="OHC_cont"><img src="${myLikeProd.represent_image }" class="represent_img"></td>
 					<td class="OHC_cont">${myLikeProd.prod_title }</td>
 					<td class="OHC_cont">
-						<c:if test="${myLikeProd.reused_yn == 'n' and myLikeProd.flea_yn == 'n' and (myLikeProd.auction_yn == 'y' or myLikeProd.auction_yn == 'w' or myLikeProd.auction_yn == 'f') }"> <!-- 경매면 경매 최고 입찰액 표시 -->
+					<c:choose>
+						<c:when test="${myLikeProd.reused_yn == 'n' and (myLikeProd.auction_yn == 'y' or myLikeProd.auction_yn == 'w' or myLikeProd.auction_yn == 'f') }"> <!-- 경매만 진행 -->
 							<fmt:formatNumber value="${myLikeProd.auction_bid }" type="number" />원
-						</c:if>
-						<c:if test="${myLikeProd.auction_yn == 'n' or (myLikeProd.auction_yn == 'f' and (myLikeProd.reused_yn == 'y' or myLikeProd.flea_yn == 'y')) }"> <!-- 경매가 아니면 상품 가격 표시 -->
+						</c:when>
+						<c:when test="${myLikeProd.reused_yn == 'y' and (myLikeProd.auction_yn == 'y' or myLikeProd.auction_yn == 'w' or myLikeProd.auction_yn == 'f') }"> <!-- 경매와 중고 진행 -->
+							<fmt:formatNumber value="${myLikeProd.auction_bid }" type="number" />원
+						</c:when>
+						<c:when test="${myLikeProd.reused_yn == 'y' or myLikeProd.flea_yn == 'y' }"> <!-- 플리마켓이거나 중고 가격 표시 -->
 							<fmt:formatNumber value="${myLikeProd.prod_price }" type="number" />원
-						</c:if>
+						</c:when>
+					</c:choose>
 					</td>
 					<td class="OHC_cont">
 					<c:if test="${myLikeProd.send_way == 'direct'}">
@@ -272,8 +277,11 @@ input[type=button]{
 					<c:if test="${myLikeProd.send_way == 'delivery'}">
 						택배거래
 					</c:if>
-					<c:if test="${myLikeProd.send_way == 'direct delivery'}">
+					<c:if test="${myLikeProd.send_way == 'direct delivery '}">
 						직거래<br>택배거래
+					</c:if>
+					<c:if test="${myLikeProd.send_way == 'receipt'}">
+						현장수령
 					</c:if>
 					</td>
 
