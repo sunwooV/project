@@ -32,6 +32,10 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 	@Autowired
 	B_P001_D003VO b_p001_d003VO;
 	@Autowired
+	C_P001_D001VO c_p001_d001VO;
+	@Autowired
+	S_P001_D002VO s_p001_d002VO;
+	@Autowired
 	private HttpSession session;
 
 	// 장바구니 상품 조회
@@ -77,14 +81,30 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 	// 장바구니 제품 추가
 	@Override
 	@RequestMapping(value = "/addCart.do", method = { RequestMethod.GET, RequestMethod.POST })
-	@ResponseBody
-	public Map<String, Object> addCart(@ModelAttribute S_P001_D002VO product, @ModelAttribute C_P001_D001VO member,
+	public void addCart(@ModelAttribute S_P001_D002VO product, @ModelAttribute C_P001_D001VO member,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("itf-8");
+		request.setCharacterEncoding("utf-8");
 
+		String memberid = (String) session.getAttribute("memberid");
+		String prodNum = (String) session.getAttribute("prod_number");
+		String cartCount = (String) session.getAttribute("prod_amount");
+		System.out.println("장바구니 제품 추가의 1"+memberid);
+		System.out.println("장바구니 제품 추가의 제품"+prodNum);
+		System.out.println("장바구니 제품 추가의 수량"+cartCount);
+		
+		String prod = product.getProd_number();
+		System.out.println("장바구니 제품 추가의 "+ prod);
+		String data = request.getParameter("insertCartInfo");
+		
+		System.out.println(data);
+	
+		
 		Map<String, Object> dataMap = new HashMap<String, Object>();
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		return resultMap;
+		dataMap.put("memberid", memberid);
+		dataMap.put("prod_number", prod);
+		
+		b_p001_d003Service.insertCart(dataMap);
+		
 	}
 
 	// 장바구니 목록 삭제
@@ -93,7 +113,7 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 	@ResponseBody
 	public Map<String, Object> delCart(@ModelAttribute C_P001_D001VO member, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("itf-8");
+		request.setCharacterEncoding("utf-8");
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		return resultMap;

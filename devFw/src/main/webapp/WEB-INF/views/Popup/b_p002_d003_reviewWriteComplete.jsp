@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>금도끼은도끼|리뷰작성완료</title>
+<title>MIU|리뷰작성완료</title>
 <style type="text/css">
 .contentText {
 	padding-top: 29%;
@@ -33,8 +33,8 @@
 }
 
 .StyleOfButton {
-	position: relative;
-  //display:block;
+  position: relative;
+  display:block;
   height: 45px;
   width: 150px;
   margin: 10px 7px;
@@ -97,8 +97,7 @@ function goToReviewList(){
 	if(window.opener && !window.opener.closed){ //부모창이 존재하고 닫혀있지 않을때 
 		window.opener.location = "./mypageQA.do"; // 부모창에서 해당주소로 이동해라 -> 내가 쓴 게시글 보기
 		window.close(); //그리고 열려있는 창을 닫아라
-		}
-	
+	}
 }
 </script>
 </head>
@@ -108,10 +107,8 @@ function goToReviewList(){
 			리뷰작성이 완료되었습니다.<br> <br>
 		</div>
 		<div id="button_ToOtherPage">
-			<input type="button" id="StyleOfButton" class="StyleOfButton" value="메인화면"
-				onClick="goToMain()">
-			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="button" class="StyleOfButton"
-				id="StyleOfButton" value="내가 쓴 리뷰보기" onClick="goToReviewList()">
+			<input type="button" id="StyleOfButton" class="StyleOfButton" value="메인화면" onClick="goToMain()">
+			 <input type="button" class="StyleOfButton" id="StyleOfButton" value="내가 쓴 리뷰보기" onClick="goToReviewList()">
 		</div>
 	</div>
 </body>
