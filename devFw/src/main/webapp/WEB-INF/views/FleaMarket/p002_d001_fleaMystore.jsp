@@ -761,7 +761,7 @@ $(document).ready(function(){
          </c:forEach>
 		
 	<br>
-	 <div class="layout-split half">
+	 <div class="layout-split half" style="margin-left: 15px;">
 	 <c:forEach var="flea" items="${searchList}" > 
 	  <section class="cardlist_section">
    		 <div class="ui_title--sub">

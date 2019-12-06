@@ -474,17 +474,13 @@ layout-split:after {
     text-indent: 0px;
 }
 
-.prod_story_wrap {
-    width: 99%;
-    background: #f9f9f9;
-    margin-top: 2%;
-    border: 1px solid #ddd;
-    padding: 30px 29px;
-}
-
 #prod_story_text {
     width: 100%;
     height: 140px;
+}
+textarea {
+    overflow: auto;
+    resize: vertical;
 }
 
 #buy, #bidding {
@@ -495,6 +491,7 @@ layout-split:after {
     background: #dd5850;
     color: #fff;
 }
+
 #cart {
     font-size: 16px;
     padding: 0 24px;
@@ -503,10 +500,18 @@ layout-split:after {
     background: #fff;
     color: #dd5850;
 }
+
+.prod_story_wrap {
+    width: 99%;
+    background: #f9f9f9;
+    margin-top: 2%;
+    border: 1px solid #ddd;
+    padding: 30px 29px;
+}
+
 .btn_area {
     text-align: center;
 }
-
 
 </style>
 <head>
@@ -655,55 +660,49 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click', '.enrollstory', function(){
-	
-	alert("::::등록 확인:::::");
-		var flea_code = $("#flea_code").val();
-		var memberid = $("#memberid").val();
-		var story_number = $("#story_number").val();
-		var story_write_date = $("#story_write_date").val();
-		var story_title = $("#story_title").val();
-		var story_cotent = $("#story_cotent").val();
-		var heart_count = $("#heart_count").val();
-		var command = "insert";
-	
-		alert("ajax 확인!!!!!");
+		alert("====story 등록 클릭 시 =====");
+		var story_cotent = $('#prod_story_text').val();
+		var story_title = $('.story_title_text').val();
+		var command = 'insert';
 		
-		var storydata = {
-				flea_code: flea_code, 
-				memberid: memberid,
-				story_number: story_number,
-				story_write_date: story_write_date,
+		alert(story_cotent + "/" + story_title + "/" + command);
+		
+		var data = {
 				story_title: story_title,
 				story_cotent: story_cotent,
-				heart_count: heart_count,
 				command: command
 		}
-		alert(storydata + ":::" + story_title + ":::" + story_cotent);
 		
 		$.ajax({
 			type: "post",
-			dataType: "text",
 			async: false,
-			url: "/devFw/insertStory.do",
-			data: storydata,
+			url: "/devFw/storyComment.do",
+			data: data,
+			dataType : 'text',
 			success: function(responseData){
-				alert("확인하자!!!");
-				document.getElementById("prod_story_text").value="";
+				var test = document.getElementById("prod_story_text").value = "";
+			
+				
 				var data = JSON.parse(responseData);
-				alert(data);
 				
+	            /* if(jsonInfo.error.error_yn == 'Y'){
+	        	   alert(jsonInfo.error.error_text);
+	        	   return;
+	            } */
+	            //console.log(data.length);
+				var list = '';
 				
-				if(!data){
-					alert("데이터가 존재하지 않습니다!!");
-					return false;
+
+				for(var i=0;i<data.length;i++){
+					list += '<div class="cont_box">'
+					 +	'<span class="inquiry_prod">'+ story_title + '</span>';
+					
+					list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + story_cotent + '</span>';
+
+					list += '</div>' 
+						+ '</li>';
 				}
-				
-				var html = '';
-				html += '<li><a href="javascript:void(0)" class="story_comment" id="'+data[i].story_number+'">' + + '<input type="hidden" id="story_memberId" value="' + data[i].memberId + '">';
-				html += '<div class="cont_box">' + '<span class="inquiry_prod">'+ prod_title + '</span>';
-				html += '<span class="story_text" id="text" style="font-weight:bold;">' + data[i].story_cotent + '</span>';
-				html += '</div>' 
-					+ '</li>';
+			$(".masonry-grid").html(list);
 			},
 			error: function(data, textStatus){
 				alert("다시 시도해주세요.");
@@ -711,8 +710,11 @@ $(document).ready(function(){
 			complete : function (data, textstatus){
 			}
 		});
+		
+		
 	});
-
+	
+	
 });
 </script>
 <script>
@@ -734,9 +736,11 @@ $.ratePicker("#rating-2", {
     <form method="post" id="new_message" action="/devFw/participantsInsert.do" enctype="multipart/form-data">    
         <p><label for="flea_name">회원 검색&nbsp;</label><input type="text" size="30" name="memberid" id="memberid" /></p>
         <p><input type="submit" value="확인" name="commit" id="message_submit"/><a class="close" href="/">Cancel</a></p>
+        <!--  
         <c:forEach var="flea" items="${searchList}" > 
         	<input type="hidden" name="flea_code" value="${flea.flea_code}">
         </c:forEach>
+        -->
     </form>
     
 
@@ -759,7 +763,7 @@ $.ratePicker("#rating-2", {
 						<i class="fa fa-user-plus pa-5x"></i>
 			         </div>
 		             -->
-		            <c:forEach var="flea" items="${searchList}" > 
+		             <c:forEach var="flea" items="${searchList}" > 
 				             <div class="profile-picture big-profile-picture clear">
 				                 <img width="120px" height="120px" alt="no picture" src="${flea.profile_photo}" />
 					             <!-- 
@@ -781,8 +785,7 @@ $.ratePicker("#rating-2", {
 				              <div class="profile-description">
 				                 <c:out value="${flea.intro_cotent}"/>
 							  </div>
-				   </c:forEach>
-	               
+				   </c:forEach>    
          </div> 
              <fieldset class="ui-field border-row">
                 <div id="chat-header">
@@ -837,11 +840,11 @@ $.ratePicker("#rating-2", {
 		            <dt>좋아하는 사람</dt>
 		            <dd>
 		                <a href="#t" data-modal-trigger="user-list" data-modal="open" data-type="favorite" data-title="좋아하는 사람"><span id="like-count">
-		                 <!--  
+		                 
 		                  <c:forEach var="flea" items="${searchList}" > 
 		              		 <c:out value="${flea.flea_like_count}"/>
 		               	  </c:forEach>
-		               	  -->
+		               	  
 		                  </span><em>명</em>
 		                </a>
 		            </dd>
@@ -862,47 +865,6 @@ $.ratePicker("#rating-2", {
     	<br><br><br><br>
   	</aside>  
 	
-	<!--  
-	  <section class="cardlist_section" style="margin: 24px;">
-   		 <div class="ui_title--sub">
-             <h3 class="ui_title__txt" style="font-size: 26px;"><a href="/devFw/fleaReview.do">구매후기</a></h3>
-         </div>
-         <ul class="split-cardlist">
-            <li class="ui_grid__item">
-            <div class="ui_card--side">
-                <div class="ui_card__inner">
-                    <div class="ui_card__imgcover">
-                        <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" class="ui_card__img" aria-label="수제마카롱 30여종" target="_blank" style="background-image: url(https://image.idus.com/image/files/7c7e4972cbdc49b0a43cdb03973786e4_512.png)"></a>
-                    </div>
-                    <div class="ui_card__txtarea">
-                        <div class="ui_card__info">
-                            <a href="${contextPath}/FleaMarket/P002/D002/searchList.do" aria-label="수제마카롱 30여종" target="_blank" class="ui_card__title">수제마카롱 30여종</a>
-                            <span class="ui_card__para">
-                               	 포장이 너무 잘되어서 오고 너무 맛있어용??                            
-                            </span>
-                        </div>
-                        <div class="ui_card__rating">
-                            <div class="ui_card__vcenter">
-                                <div class="ui_rating" data-ui="rating" data-value="5">
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <span>&nbsp;| 김연주</span>
-                                </div>
-                            </div>
-                            <input name="paging_param" type="hidden" value="1571719189000">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li> 
-      </ul>
-    </section>
-  </div>
-  </div>
-  -->
    <div class="cardlist_section" style="margin: 24px; width:50%; ">
    		 <div class="ui_title--sub">
              <h3 class="ui_title__txt"><a href="/devFw/fleaReview.do">스토리</a>
@@ -914,95 +876,113 @@ $.ratePicker("#rating-2", {
           
          </div>
          
-<div class="prod_story_wrap" style="width:200%;">
-		<h4>스토리 쓰기</h4>
-		<br>
-		<div class="text_title">
-			<input type="text" placeholder="스토리 제목을 입력해 주세요" style="width:100%;" />
-		</div>
-		<div class="text_area_wrap">
-				 <!-- 로그인했을 경우 -->
-				<label for="prod_story_text" style="" data-placeholder="전화번호, 주소, 이메일, 계좌번호 등의 개인정보는 타인에 의해 도용된 위험이 있으니, 
-스토리 작성 시 입력하지 않도록 주의해 주시기 바랍니다." data-placeholder-for="textarea"></label>
-									<textarea name="prod_story_text" id="prod_story_text" style="resize: none;" placeholder="전화번호, 주소, 이메일, 계좌번호 등의 개인정보는 타인에 의해 도용된 위험이 있으니, 
-스토리 작성 시 입력하지 않도록 주의해 주시기 바랍니다."></textarea>
-								
-							
-		</div>
-		<br>
-		<div class="secretBox">
-			<input type="checkbox" name="secret" id="secretSelect" value="n"><label for="secretSelect">비밀글</label>
+         <div class="prod_story_wrap" style="width:200%;">
+			<h4>스토리 작성</h4>
+			
+			<input class="story_title_text" type="text" placeholder="스토리 제목을 입력해주세요." value="" style="width:100%;">
+			
+			<div class="text_area_wrap">
+							<c:choose>
+								<c:when test="${member.getMemberid() == null }"> <!-- 로그인 하지 않았을 경우 -->
+									<label for="prod_story_text" style="" data-placeholder="로그인 후 글을 남길 수 있습니다." data-placeholder-for="textarea"></label>
+									<textarea name="prod_story_text" id="prod_story_text" style="resize: none;" placeholder="로그인 후 글을 남길 수 있습니다."></textarea>
+								</c:when>
+								<c:otherwise> <!-- 로그인했을 경우 -->
+									<label for="prod_story_text" style="" data-placeholder="전화번호, 주소, 이메일, 계좌번호 등의 개인정보는 타인에 의해 도용된 위험이 있으니, &#13;&#10;스토리 작성 시 입력하지 않도록 주의해 주시기 바랍니다." data-placeholder-for="textarea"></label>
+									<textarea name="prod_story_text" id="prod_story_text" style="resize: none;" placeholder="전화번호, 주소, 이메일, 계좌번호 등의 개인정보는 타인에 의해 도용된 위험이 있으니, &#13;&#10;스토리 작성 시 입력하지 않도록 주의해 주시기 바랍니다."></textarea>
+								</c:otherwise>
+							</c:choose>
+						</div>
+			<br>
+			<div class="secretBox">
+				<input type="checkbox" name="secret" id="secretSelect" value="n"><label for="secretSelect">비밀글</label>
+			</div>
+			<div class="btn_area">
+				<input type="button" class="enrollstory" id="buy" value="등록">
+				<input type="button" class="cancelstory" id="cart" value="취소">
+			</div>
 		</div>
 		
-		<div class="btn_area">
-			<input type="button" class="enrollstory" id="buy" value="등록">
-			<input type="button" class="cancelstory" id="cart" value="취소">
-		</div>
-		</div>
-    <br>
-    
-   <div class="title_area clear" data-review="sort" style="display: block; width: 200%;">
-      <div class="total-sort">
-        <span class="active" data-outputtype="1">전체</span><i style="display: inline-block;">|</i>
-        <span data-outputtype="2" style="display: inline-block;">포토<em data-review="photoCount">(8)</em></span>
-      </div>
-   </div>
-     <br>
-         
-  	<!-- 
-            <div class="ui_title hide-m">
-                <h2 class="ui_title__txt">구매후기</h2>
-            </div> -->
-
+		<br><br>
+<!--  
    <ul class="masonry-grid x2" data-col="2" style="position: relative; height: 2221.64px;">
-        <c:forEach var="story" items="${storyList }">   
            <li class="card-style story" style="position: absolute; left: 0px; top: 0px;">
             <div class="bordering">
-				
+
                 <input name="time_stamp" type="hidden" value="1575262761000">
-                <input type="hidden" id="command" name="command" value="">
-                <input type="hidden" id="flea_code" value="${story.flea_code }">
-                <input type="hidden" id="memberid" value="${story.memberid }">
-                <input type="hidden" id="story_number" value="${story.story_number }">
-                <input type="hidden" id="story_write_date" value="${story.story_write_date }">
-                <input type="hidden" id="story_title" value="${story.story_title}">
-                <input type="hidden" id="story_cotent" value="${story.story_cotent }">
-                <input type="hidden" id="heart_count" value="${story.heart_count }">
-                
                 <div class="area-txt">
                     <div class="area-rating">
                         <div class="img-bg" style="background-image: url(https://image.idus.com/image/files/d6c74ae706ad40f1b6f83af3d5b1334d_512.jpg)"></div>
-                        <a href="#" class="title ellipsis">${story.story_}</a>
-                        <div class="ui_rating" data-ui="rating" data-value="5">
-                            <i class="ui_icon--star-fill" data-state="active"></i>
-                            <i class="ui_icon--star-fill" data-state="active"></i>
-                            <i class="ui_icon--star-fill" data-state="active"></i>
-                            <i class="ui_icon--star-fill" data-state="active"></i>
-                            <i class="ui_icon--star-fill" data-state="active"></i>
-                        </div>
+                        <a href="#" class="title ellipsis">크리스마스강추🔥눈꽃송이귀걸이/귀찌</a>
                     </div>
 
                     <a href="#" target="_blank">
                         <div class="split-hard">
                             <span class="split crop-circ" style="background-image: url(https://image.idus.com/image/files/37cec8c9f8bd47458facc5bdacfb0b24.jpg)"> </span>
                             <div class="split">
-                           
-                                <span class="txt-strong">${story.memberid}</span>
-                                <span class="txt">${story.story_write_date}</span>
+    	
+                                <span class="txt-strong">뽀또</span>
+                                <span class="txt">2019년 12월 02일</span>
                             </div>
                         </div>
-                        <p class="desc">${story.story_cotent}</p>
-						
-                     <br>
+                        
+                        <p class="desc">실제로 받아 보니까 더 예뻤어요!
+							진주 눈꽃송이 등의 조합이라서 옷차림도 안 타고 웬만한 코디에 다 잘어울릴거 같아요ㅎㅎ
+							귀찌 변경했는데 잘 착용하고 있어요!♡
+							321은 배송도 빠르게 해주시고 귀찌 가능제품들도 많아서 졸아요 ㅠ_ㅠ 사장님의 친절함은 말모..! 감사합니다 💛
+						</p>
+                        <br>
                    </a>
                 </div>
             </div>
         </li>
-        </c:forEach>
      </ul>
+-->
+  <!--스토리  -->
+ 
+   <ul class="masonry-grid x2" data-col="2" style="position: relative; height: 2221.64px;">
+           <li class="card-style story" style="position: absolute; left: 0px; top: 0px;">
+            <c:forEach var="story" items="${storyList}" > 
+            <div class="bordering">
+
+                <input name="time_stamp" type="hidden" value="1575262761000">
+                <div class="area-txt">
+                    <div class="area-rating">
+                        <div class="img-bg" style="background-image: url(https://image.idus.com/image/files/d6c74ae706ad40f1b6f83af3d5b1334d_512.jpg)"></div>
+                        <a href="#" class="title ellipsis">${story.story_title}</a>
+                    </div>
+
+                    <a href="#" target="_blank">
+                        <div class="split-hard">
+                            <span class="split crop-circ" style="background-image: url(https://image.idus.com/image/files/37cec8c9f8bd47458facc5bdacfb0b24.jpg)"> </span>
+                            <div class="split">
+				          	
+                            	
+                                <span class="txt-strong">${story.memberid}</span>
+                                <span class="txt">${story.story_write_date}</span>
+                            </div>
+                        </div>
+                        
+                        <p class="desc">${story.story_cotent }</p>
      
-     
-     
+                        
+                        <br>
+                 
+
+                   </a>
+                </div>
+            </div>
+            </c:forEach>
+        </li>
+     </ul>
+
+	   
+	   
+
+  
+   
+         
+ 
     </div>
   </div>
   </div>

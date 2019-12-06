@@ -10,7 +10,7 @@ public class F_P002_D003VO {
 	private String flea_code = "";
 	private String memberid = "";
 	private String story_number = "";
-	private Date story_write_date;
+	private String story_write_date = "";
 	private String story_title = "";
 	private String story_cotent = "";
 	private String heart_count = "";
@@ -51,13 +51,23 @@ public class F_P002_D003VO {
 	}
 
 
-	public Date getStory_write_date() {
+	public String getStory_write_date() {
 		return story_write_date;
 	}
 
 
-	public void setStory_write_date(Date story_write_date) {
+	public void setStory_write_date(String story_write_date) {
 		this.story_write_date = story_write_date;
+	}
+
+
+	public String getStory_title() {
+		return story_title;
+	}
+
+
+	public void setStory_title(String story_title) {
+		this.story_title = story_title;
 	}
 
 
@@ -81,16 +91,7 @@ public class F_P002_D003VO {
 	}
 
 
-	public String getStory_title() {
-		return story_title;
-	}
-
-
-	public void setStory_title(String story_title) {
-		this.story_title = story_title;
-	}
-
-
+	
 	
 	
 

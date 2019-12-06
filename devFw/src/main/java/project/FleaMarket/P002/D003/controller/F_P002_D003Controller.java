@@ -12,6 +12,5 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 public interface F_P002_D003Controller {
 	public ModelAndView fleaStory(String p_id, String flea_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public void insertStory(HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	public void storyComment(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

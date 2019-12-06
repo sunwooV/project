@@ -21,7 +21,7 @@ public class F_P002_D002VO {
 	
 	
 	public F_P002_D002VO() {
-		System.out.println("MemberVO »ı¼ºÀÚ È£Ãâ");
+		System.out.println("MemberVO ìƒì„±ì í˜¸ì¶œ");
 	}
 
 
