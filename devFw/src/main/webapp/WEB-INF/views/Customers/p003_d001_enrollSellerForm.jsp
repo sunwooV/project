@@ -9,8 +9,18 @@
 <title>Insert title here</title>
 </head>
 <script>
+var now = window.location.href;
+
+$(document).ready(function(){
+	if($("#msg").val() != ""){
+		alert($("#msg").val());
+	}
+})
+
 //일반 판매자 등록
 $(document).on('click', '#basicSeller', function(){
+	
+	document.getElementsByName("redirectURL")[0].value=now;
 	var frm = document.selectSeller;
 	
 	frm.method="POST";
@@ -20,6 +30,8 @@ $(document).on('click', '#basicSeller', function(){
 
 //전문 판매자 등록
 $(document).on('click', '#specialSeller', function(){
+	
+	document.getElementsByName("redirectURL")[0].value=now;
 	var frm = document.selectSeller;
 	
 	frm.method="POST";
@@ -75,6 +87,14 @@ $(document).on('click', '#specialSeller', function(){
 </style>
 <body>
 <form name="selectSeller">
+<c:set var="msg" value="${msg }" />
+<c:if test="${msg == null }">
+	<input type="hidden" id="msg" value="">
+</c:if>
+<c:if test="${msg != null }">
+	<input type="hidden" id="msg" value="${msg }">
+</c:if>
+<input type="hidden" name="redirectURL" value="">
 <div class="container">
 	<br><br>
 	<h1>판매자 등록</h1>

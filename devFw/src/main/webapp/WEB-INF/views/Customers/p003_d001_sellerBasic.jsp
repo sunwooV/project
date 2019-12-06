@@ -14,12 +14,15 @@
 		var bank = $("#seller_bank").val();
 		var name = document.getElementById("seller_name").value;
 		var account = document.getElementById("seller_account_number").value;
+		var mustCheck = document.getElementById("mustCheck");
 		
 		for(var i=0;i<agreeCheck.length;i++){
 			if(agreeCheck[i].checked == true){
 				var chk = agreeCheck[i].value;
 			}
 		}
+		
+		
 		
 		//유효성 확인
 		if(chk == '미동의'){
@@ -42,7 +45,15 @@
 			document.getElementById("seller_account_number").focus();
 			return false;
 		}
+		if(!$("#mustCheck").is(":checked")){
+			alert("필수 이용약관에 동의해주세요.");
+			document.getElementById("mustCheck").focus();
+			return false;
+		}
 		
+		frm.method="POST";
+		frm.action="./insertSellerInfo.do";
+		frm.submit();
 		
 	}
 	
@@ -184,18 +195,25 @@ input[type="number"]::-webkit-inner-spin-button {
        <input id="seller_account_number" name="seller_account_number" type="number" spellcheck="false" value="" maxlength="255" tabindex="4" placeholder="숫자만 입력해주세요.">
     </div>
   </div>
-    
+  <br>
+  <hr>
+  <br>
+  
+    <div>
+    <input type="checkbox" name="mustCheck" value="확인" id="mustCheck"><label for="mustCheck">본인은 현재 사업자 등록을 하지 않은 사실을 확인합니다.(필수)</label>
+  	<span><br>단, 사업자 등록을 하신분은 <span style="color:orange">SELLER PLUS</span>으로 가입해주세요</span>
+  </div>
 
   
   </div>
-</form>
+
 <br>
 
 <div style="text-align:center;">
 	<input type="button" id="saveForm" name="saveForm" value="등록" onclick="frm_check()"/>
 	<input type="hidden" name="command" value="insertMember">
-    <input type="hidden" name="memberid" value="${member.getMemberid() }" />
+    <input type="hidden" name="memberId" value="${member.getMemberid() }" />
 </div>
-
+</form>
 </body>
 </html>

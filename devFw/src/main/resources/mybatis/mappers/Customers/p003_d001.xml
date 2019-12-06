@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Customers.p003_d001">
+	
+	<!-- seller로 등록 -->
+	<update id="updateSeller" parameterType="java.util.Map">
+	<![CDATA[
+			UPDATE member
+			SET seller_group='y'
+	 ]]>
+	 <where>
+	 <![CDATA[
+			memberid=#{memberId}
+	 ]]>
+	 </where>
+	</update>
+
+	<!-- seller 정보 등록 -->
+	<insert id="insertSellerInfo" parameterType="java.util.Map">
+	<![CDATA[
+		INSERT INTO sellerInfo 
+		VALUES (#{memberId}, #{seller_bank}, #{seller_name}, #{seller_account_number})
+	 ]]>			
+	</insert>
+	
+	
+</mapper>
