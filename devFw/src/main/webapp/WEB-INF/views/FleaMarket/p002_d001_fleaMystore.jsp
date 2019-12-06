@@ -761,7 +761,7 @@ $(document).ready(function(){
          </c:forEach>
 		
 	<br>
-	 <div class="layout-split half">
+	 <div class="layout-split half" style="margin-left: 15px;">
 	 <c:forEach var="flea" items="${searchList}" > 
 	  <section class="cardlist_section">
    		 <div class="ui_title--sub">
@@ -810,13 +810,13 @@ $(document).ready(function(){
      
      <section class="cardlist_section">
    <div class="ui_title--sub">
-             <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaStory.do">스토리</a></font></h3>
+             <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaStory.do?flea_code=${flea.flea_code}">스토리</a></font></h3>
          </div>
                 <ul class="split-cardlist lines5">
-                                                <li class="ui_card--side">
+                        <li class="ui_card--side">
                             <div class="ui_card__inner">
                                                                 <div class="ui_card__imgcover">
-                                    <a href="/w/story/a2318646-a0ca-4322-ac8b-da222ec885f6" class="ui_card__img" style="background-image: url(https://image.idus.com/image/files/4b1b9b058f5046d99b0ade714ecdc0c4_720.jpg)"></a>
+                                    <a href="#" class="ui_card__img" style="background-image: url(https://image.idus.com/image/files/4b1b9b058f5046d99b0ade714ecdc0c4_720.jpg)"></a>
                                 </div>
                                                                 <div class="ui_card__txtarea ">
                                     <div class="ui_card__info">
@@ -830,7 +830,7 @@ $(document).ready(function(){
                                 </div>
                             </div>
                         </li>
-                                            </ul>
+         		</ul>
      </section>
      </c:forEach>
 </div>

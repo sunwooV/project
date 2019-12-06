@@ -1,74 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import= "java.util.*, project.FleaMarket.*"
-    isELIgnored="false"  %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>    
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  /> 
+   	isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>  
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>  
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
 <%
- request.setCharacterEncoding("utf-8");
- List list = (List)request.getAttribute("searchList");
- String flea_id = request.getParameter("flea_name");
- String intro_content = request.getParameter("intro_content");
- System.out.println("플리마켓 아이디="+flea_id);
- System.out.println("플리마켓 소개글=" + intro_content);
+request.setCharacterEncoding("utf-8");
+String flea_code = request.getParameter("flea_code");
+System.out.println(":::::flea_code" + flea_code);
 %>
+
 <!DOCTYPE html>
 <html>
 <style>
-ul {
- list-style-type: none;
- margin: 0;
- padding-left: 0;
+.center-flea{
+	margin:0 500px;
+	max-width: 60%;
 }
-.ui_title__txt{
-  color: #333;
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 24px;
-  padding-bottom: 4px;
-  padding-left: 2px;
-  border-bottom: 1px solid #d9d9d9;
+.row-left{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-top: 19px;
 }
-.wrap{
-  width: 30%;
-  position: absolute;
-  top: 50%;
-  left: 40%;
-  transform: translate(-50%, -50%);
+.artist-area {
+    padding: 15px 16px 16px;
+    border: 1px solid #d9d9d9;
+    border-top: 0 none;
+    padding-bottom: 18px;
+    text-align: center;
+    width: 213px;
+    height: 700px;
 }
- .left-images, .left-categories-list {
-   float: left;
-}
-.categories-list li {
-    display: block;
-    line-height: normal;
-    margin: 0;
-    padding: 5px 0;
-}
-.categories-list li :hover{
-  background:inherit !important;
-}
-.left-images > p {
-    background: none repeat scroll 0 0 #ff7f50;
-    display: block;
-    font-size: 18px;
-    line-height: normal;
-    margin: 0;
-    padding: 5px 14px;
-}
-.categories-list span {
-    font-size: 18px;
-    padding-bottom: 5px;
-    text-transform: uppercase;
-}
-.mm-view-more{
- background: none repeat scroll 0 0 #ff7f50;
-    color: #fff;
-    display: inline !important;
-    line-height: normal;
-    padding: 5px 8px !important;
- margin-top:10px;
-}
+.addmember{
+	text-align: right;
+} 
+ 
+.addmember > a:link{
+	color: #513926;
+} 
+.addmember > a:visited{
+	color: #513926;
+} 
+.addmember > a:hover{
+	color: #7F593C;
+} 
 .profile-picture {
  border-radius: 100%;
  overflow: hidden;
@@ -83,71 +63,26 @@ ul {
  width: 120px;
  height: 120px;
 }
-.add-button .icon {
- float: right;
- line-height: 18px;
- width: 23px;     
- border: 2px solid;
- border-radius: 100%;
- font-size: 18px;
- text-align: center;
- margin: 10px;     
+.profile-setting{
+	margin-top: -5%;
+    margin-left: 20%;
 }
-.add-button .icon:hover {
- color: #e64c65;
- border-color: #e64c65;
+#img-full{
+	width: 1000px;
+	height: 300px;
 }
-<%--
-.user-name {
- margin-left: 50px;
+.carousel{
+	padding-left: 10px;
 }
---%>
+
 .profile-description .user_name{
  text-align: center;
 }
-.ui_card, .ui_card--flex-orientation, .ui_card--side, .ui_card--white {
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    background: #f8f9fb;
-    border-radius: 4px;
-    border: 1px solid #d9d9d9;
-    font-size: 12px;
-    box-shadow: 0 1px 3px 0 hsla(0,0%,86.3%,.3);
+
+.profile-description{
+	font-size: 12px;
 }
-element.style {
-       background-image: url(https://image.idus.com/image/files/7c7e4972cbdc49b0a43cdb03973786e4_512.png);
-}
-.ui_card__img {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: auto;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    transition: transform .5s ease-in-out;
-}
-.ui_card__img:after {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-}
-.nav-links {
-    border: 2px solid #555;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    padding: 16px;
-}
-.nav-links a {
-    display: inline-block;
-    width: 100%;
-    font-size: 12px;
-    color: #666;
-    margin-top: 4px;
-    vertical-align: middle;
-}
+
 .border-row:before {
     content: '';
     display: block;
@@ -156,106 +91,16 @@ element.style {
     border-top: 1px solid #d9d9d9;
     margin-top: 16px;
 }
-dt { 
- float:left;
- width:50%;
-} 
-  
-dd { 
- float:left; 
- width:50%; 
-}
-layout-split:after {
-    content: '';
-    display: block;
-    clear: both;
-}
-<%-- 구매후기 왼쪽 --%>
-.layout-split.half>*:first-child {
-    margin-left: 0;
-}
-.layout-split.half>* {
-    width: 48%;
-    margin-left: 4%;
-    float: left;
-}
-.ui_card--side .ui_card__title {
-    display: block;
-    display: -webkit-box;
-    height: 21px;
-    font-size: 14px;
-    line-height: 1.5;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 15px 0;
-    font-weight: 700;
-}
-.ui_card--side .ui_card__inner {
-    display: table;
-}
-.ui_card__inner {
-    width: 100%;
-    display: block;
-    position: relative;
-}
-.ui_card--flex-orientation>*, .ui_card--side>*, .ui_card--white>*, .ui_card>* {
-    text-align: left;
-    box-sizing: border-box;
-}
-.cardlist_section .split-cardlist .ui_card--side {
-    width: 100%;
-}
-.ui_card, .ui_card--flex-orientation, .ui_card--side, .ui_card--white {
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    background: #f8f9fb;
-    border-radius: 4px;
-    border: 1px solid #d9d9d9;
+
+.artist-area .nav-links {
+    border: 2px solid #555;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    padding: 16px;
     font-size: 12px;
-    box-shadow: 0 1px 3px 0 hsla(0,0%,86.3%,.3);
 }
-.ui_card--flex-orientation>*, .ui_card--side>*, .ui_card--white>*, .ui_card>* {
-    text-align: left;
-    box-sizing: border-box;
-}
-.ui_card, .ui_card--flex-orientation, .ui_card--side, .ui_card--white {
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    background: #f8f9fb;
-    border-radius: 4px;
-    border: 1px solid #d9d9d9;
-    font-size: 12px;
-    box-shadow: 0 1px 3px 0 hsla(0,0%,86.3%,.3);
-}
-.ui_card__img {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: auto;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    transition: transform .5s ease-in-out;
-}
-<!-- 스토리 오른쪽 -->
-.layout-split>* {
-    float: left;
-    margin-left: 24px;
-    width: 336px;
-}
-.artist-area {
-    padding: 32px 16px 16px;
-    border: 1px solid #d9d9d9;
-    border-top: 0 none;
-    padding-bottom: 18px;
-    text-align: center;
-    width: 250px;
-    height: 700px;
-}
+
 .user-name {
     margin-top: 16px;
     margin-bottom: 8px;
@@ -267,40 +112,6 @@ layout-split:after {
     color: #333;
     word-break: break-word;
 }
-.row-left{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-    margin-top: 19px;
-}
- 
-.addmember{
-	text-align: right;
-} 
- 
-.addmember > a:link{
-	color: #513926;
-} 
-.addmember > a:visited{
-	color: #513926;
-} 
-.addmember > a:hover{
-	color: #7F593C;
-} 
-.center-flea{
-	margin:0 300px;
-}
-.profile-setting{
-	margin-top: -5%;
-    margin-left: 20%;
-}
-
-#img-full{
-	width:100%;
-}
 
 <%--프로필 수정 팝업--%>
 a.selected {
@@ -309,18 +120,25 @@ a.selected {
   z-index:100;
 }
 
+a.selected2 {
+  background-color:#1F75CC;
+  color:white;
+  z-index:100;
+}
+
 .messagepop {
-  background-color:#FFFFFF;
-  border:1px solid #999999;
-  cursor:default;
-  display:none;
-  margin-top: 10%;
-  margin-left: 40%;
-  position:absolute;
-  text-align:left;
-  width:500px;
-  z-index:50;
-  padding: 25px 25px 20px;
+    border: 1px solid #999999;
+    cursor: default;
+    display: none;
+    position: absolute;
+    text-align: left;
+    width: 50%;
+    z-index: 50;
+    background: #fff;
+    padding: 25px 25px 20px;
+    margin: 100px auto;
+    margin-left: 25%;
+  
 }
 
 label {
@@ -343,21 +161,460 @@ label {
 .img_wrap img{
 	max-width: 100%;
 }
- 
+#sale_price {
+    color: #BDBDBD;
+    font-size: medium;
+    text-decoration: line-through;
+}
+
+
+
+ul {
+ list-style-type: none;
+ margin: 0;
+ padding-left: 0;
+}
+.ui_title__txt{
+  color: #333;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  padding-bottom: 4px;
+  padding-left: 2px;
+  border-bottom: 1px solid #d9d9d9;
+  width: 200%;
+}
+
+
+dt { 
+ float:left;
+ width:50%;
+} 
+  
+dd { 
+ float:left; 
+ width:50%; 
+}
+layout-split:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+layout-split:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+<%-- 구매후기 왼쪽 --%>
+.layout-split.half>*:first-child {
+    margin-left: 0;
+}
+.layout-split.half>* {
+    width: 48%;
+    margin-left: 4%;
+    float: left;
+}
+.cardlist_section .split-cardlist .ui_card--side {
+    width: 100%;
+}
+.ui_title__txt{
+  color: #333;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  padding-bottom: 4px;
+  padding-left: 2px;
+  border-bottom: 1px solid #d9d9d9;
+}
+.cardlist_section .split-cardlist .ui_card--side {
+    width: 100%;
+}
+
+.list-def{
+	font-size: 12px;
+}
+
+/*pop-header*/
+#pop-header{
+	width:100%;
+	height:50px;
+	text-align:center;
+	vertical-align:middle;
+	/*
+	border-bottom : 1px solid #C1CEF3;
+	*/
+}
+
+#pop-header>div{
+	display:inline-block;
+	width:initial;
+	font-family : nanumEB;
+	font-size:1.5em;	
+}
+
+ /*pop-up*/
+#user-add{
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  display:none;
+  z-index:150;
+}
+
+#pop-up{
+  margin: 100px auto;
+  padding:20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 50%;
+  position: relative;
+}
+
+ /*chat-header*/
+  #chat-header{
+     justify-content : space-between;
+     align-items:center;   
+  }
+#chat-header>i{
+	width:initial;
+	height:initial;
+	margin-right:15px;
+	color:#8da5ee;
+	border-radius:50%;
+}
+
+#chat-header>i:hover{
+	color:#6780cc;	
+}
+	
+#pop-close {
+   float: right;
+   font-size: 30px;
+   font-weight: bold;
+   text-decoration: none;
+   color: #333;
+}
+
+#pop-search>input[type=text] {
+    padding: 5px;
+    width: 70%;
+    height: 30px;
+    border: none;
+    background-color: rgba(100, 100, 100, 0.1);
+    border-radius: 5px;
+}
+
+#pop-search>input[type=button] {
+    width: 50px;
+    margin-left: 10px;
+    border-radius: 20px;
+    border: none;
+    background-color: #B9C9F8;
+}
+
+#pop-search>input[type=button]:hover,#pop-footer>input:hover{
+		background-color:#8da5ee;	
+	}	
+
+#pop-search {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#pop-footer {
+    display: flex;
+    flex-flow: row-reverse;
+    margin-top: 10px;
+}
+
+#pop-footer>input {
+    border: none;
+    width: 20%;
+    height: 35px;
+    border-radius: 5px;
+    background-color: #B9C9F8;
+}
+
+.card-style.story .bordering {
+    border: 1px solid #d9d9d9;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 12px;
+    -webkit-transition: border-color 0.3s ease;
+    -o-transition: border-color 0.3s ease;
+    -moz-transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(220,220,220,0.3);
+    -moz-box-shadow: 0 1px 3px 0 rgba(220,220,220,0.3);
+    box-shadow: 0 1px 3px 0 rgba(220,220,220,0.3);
+}
+
+.card-style .area-rating {
+    overflow: hidden;
+    padding-bottom: 16px;
+    margin-bottom: 16px !important;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.masonry-grid .card-style.story .desc {
+    display: block;
+    height: auto;
+    overflow: hidden;
+    -o-text-overflow: initial;
+    text-overflow: initial;
+    max-height: 170px;
+}
+
+.deal_buy_review{
+    position: relative;
+    padding: 30px 0 30px 58px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.first-part{
+   width: 200%;
+}
+
+.review_btn_area {
+    width: 160px;
+    position: absolute;
+    top: 50%;
+    right: 45px;
+    margin-top: -25px;
+    font-size: 16px;
+    padding: 0 24px;
+    line-height: 46px;
+    border-color: transparent;
+    background: #e55;;
+    color: #fff;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.btns_sys.red_big_d {
+    background-position: 100% -729px;
+    line-height: 48px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.rv_count {
+    display: inline-block;
+    margin: 4px 0 0 5px;
+    font-size: 14px;
+    line-height: 17px;
+    color: #999;
+    font-family: tahoma;
+    vertical-align: top;
+}
+
+.list_type>li {
+    position: relative;
+    padding-left: 6px;
+    color: #999;
+}
+
+.desc_cont .title_area.clear .total-sort span {
+    cursor: pointer;
+}
+
+.title_area .sort {
+    float: right;
+}
+
+.desc_cont .title_area.clear .sort .selbox_comm {
+    width: 86px;
+}
+.selbox_comm.v2 {
+    height: 30px;
+    padding: 4px 12px 0px 14px;
+}
+.selbox_comm {
+    float: left;
+    position: relative;
+    z-index: 10;
+    width: auto;
+    height: 36px;
+    padding: 0 12px 0 8px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+}
+.desc_cont .title_area.clear {
+    min-height: 32px;
+    margin-bottom: 15px;
+}
+
+.content_main .selbox_comm.on .btn_option:after, .ui-dialog .selbox_comm.on .btn_option:after {
+    background-position: -190px -139px;
+}
+
+.selbox_comm.v2 .list_option a {
+    line-height: 19px;
+    padding-top: 2px;
+}
+.selbox_comm .list_option a {
+    display: block;
+    line-height: 34px;
+    padding-top: 2px;
+    color: #666;
+    text-decoration: none;
+    text-indent: 0px;
+}
+
+#prod_story_text {
+    width: 100%;
+    height: 140px;
+}
+textarea {
+    overflow: auto;
+    resize: vertical;
+}
+
+#buy, #bidding {
+    font-size: 16px;
+    padding: 0 24px;
+    line-height: 46px;
+    border-color: transparent;
+    background: #dd5850;
+    color: #fff;
+}
+
+#cart {
+    font-size: 16px;
+    padding: 0 24px;
+    line-height: 46px;
+    border-color: #dd5850;
+    background: #fff;
+    color: #dd5850;
+}
+
+.prod_story_wrap {
+    width: 99%;
+    background: #f9f9f9;
+    margin-top: 2%;
+    border: 1px solid #ddd;
+    padding: 30px 29px;
+}
+
+.btn_area {
+    text-align: center;
+}
+
 </style>
 <head>
-<meta charset="UTF-8">
-<title>금도끼은도끼| 플리마켓</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  
+  <title>금도끼은도끼| 플리마켓</title>
+ 
+   <!-- Bootstrap core CSS -->
+  <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+  <!-- Custom styles for this template -->
+  <link href="${contextPath}/resources/css/shop-homepage.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- 별점 -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css" integrity="sha256-OlSbjYBfrJGGd2zbT3qCsAZsPGxRwKOSGjqqfjF8aiY= sha512-1aDUINxj8c9UXJ76eIMAkG2/ofIjG8FBW4drgHUglwY/rGn+YWUtm8iSkrpAOtwZ9b9LEva02KPrTDx3M5ib3w==" crossorigin="anonymous">
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+  <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca839997c3bd98863fdc033319b76889&libraries=services"></script>
+<!-- Jquery Rate Picker-->
+<script type="text/javascript" src="${contextPath}/resources/js/jquery-rate-picker.js"></script>
 <script>
 $(document).ready(function(){
+	$("#chat-header>i").on("click",addMember);
+	
+	function addMember(){
+		$('#user-add').fadeIn();
+	}
+	
+	//팝업 이벤트
+    $("#chat-header>i").on("click",showPopup);
+	$("#pop-close").on("click",closePopup);	 
+	
+	//팝업 검색
+	$("#pop-search>input[type=text]").on("keydown",function(event){
+		if(event.keyCode==13){
+			popSearch();
+		}
+	});		
+	$("#pop-search>input[type=button]").on("click",function(){
+		alert("aa");
+		popSearch();
+	});
+	
+	function popSearch(/*웹소켓 객체*/){
+		alert("확인;;;");
+		$('#pop-footer>input').prop('disabled',false);
+		var input=$('#pop-search>input[type=text]').toArray()[0];
+		//입력값으로 select날려서 결과받아 뿌리기
+		var contents={
+			keyword : $(input).val()
+		}
+		sendText(ws,"search_member",contents);
+	}
+	
+	function showPopup(){
+		$('#pop-list').empty();
+		$('#user-add').css('display','block');
+		$('#pop-footer>input').prop('disabled',true);		
+	}
+	
+	function closePopup(){
+		$('#user-add').css('display','none');
+	}
+	
+	function filter(){
+		alert("타는지 확인");
+        var value, name, item, i;
+
+        value = document.getElementById("value").value.toUpperCase();
+        item = document.getElementsByClassName("item");
+
+        for(i=0;i<item.length;i++){
+          name = item[i].getElementsByClassName("name");
+          if(name[0].innerHTML.toUpperCase().indexOf(value) > -1){
+            item[i].style.display = "flex";
+          }else{
+            item[i].style.display = "none";
+          }
+        }
+      }
+	
+	
+	
 	
 	function deselect(e) {
 	  $('.pop').slideFadeToggle(function() {
 	    e.removeClass('selected');
 	  });    
 	}
+	
+	function deselect2(e) {
+		  $('.pop2').slideFadeToggle(function() {
+		    e.removeClass('selected2');
+		  });    
+		}
 
 	$(function() {
 	  $('#contact').on('click', function() {
@@ -375,249 +632,362 @@ $(document).ready(function(){
 	    return false;
 	  });
 	});
+	
+	$(function() {
+		  $('#participants_add').on('click', function() {
+		    if($(this).hasClass('selected2')) {
+		      deselect2($(this));               
+		    } else {
+		      $(this).addClass('selected2');
+		      $('.pop2').slideFadeToggle();
+		    }
+		    return false;
+		  });
+
+		  $('.close2').on('click', function() {
+		    deselect2($('#participants_add'));
+		    return false;
+		  });
+		});
 
 	$.fn.slideFadeToggle = function(easing, callback) {
 	  return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
 	};
 	
+	$(".selbox_comm").click(function(){
+		alert("ssss");
+		$(".selbox_comm").attr('class', 'selbox_comm v2 on ');
+	});
+	
+	$(document).on('click', '.enrollstory', function(){
+		alert("====story 등록 클릭 시 =====");
+		var story_cotent = $('#prod_story_text').val();
+		var story_title = $('.story_title_text').val();
+		var command = 'insert';
+		
+		alert(story_cotent + "/" + story_title + "/" + command);
+		
+		var data = {
+				story_title: story_title,
+				story_cotent: story_cotent,
+				command: command
+		}
+		
+		$.ajax({
+			type: "post",
+			async: false,
+			url: "/devFw/storyComment.do",
+			data: data,
+			dataType : 'text',
+			success: function(responseData){
+				var test = document.getElementById("prod_story_text").value = "";
+			
+				
+				var data = JSON.parse(responseData);
+				
+	            /* if(jsonInfo.error.error_yn == 'Y'){
+	        	   alert(jsonInfo.error.error_text);
+	        	   return;
+	            } */
+	            //console.log(data.length);
+				var list = '';
+				
+
+				for(var i=0;i<data.length;i++){
+					list += '<div class="cont_box">'
+					 +	'<span class="inquiry_prod">'+ story_title + '</span>';
+					
+					list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + story_cotent + '</span>';
+
+					list += '</div>' 
+						+ '</li>';
+				}
+			$(".masonry-grid").html(list);
+			},
+			error: function(data, textStatus){
+				alert("다시 시도해주세요.");
+			},
+			complete : function (data, textstatus){
+			}
+		});
+		
+		
+	});
+	
+	
 });
 </script>
 <script>
-	var cnt=1;
-	function fn_addFile(){
-		$("#d_file").append("<br>"+"<input  type='file' name='file"+cnt+"' />");
-		cnt++;
-	}
-	var m_cnt=1;
-	function fn_m_addFile(){
-		$("#m_file").append("<br>"+"<input  type='file' name='m_file"+cnt+"' />");
-		m_cnt++;
-	}
+$.ratePicker("#rating-2", {
+    rate : function (stars){
+        alert('Sample 3\'s Rate is ' + stars);
+    }
+});
 </script>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>Shop Homepage - Start Bootstrap Template</title>
-   <!-- Bootstrap core CSS -->
-  <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
-  <!-- Custom styles for this template -->
-  <link href="${contextPath}/resources/css/shop-homepage.css" rel="stylesheet">
-</head>
-<body>
-<!-- 
-<table border='1' width='800' align='center'>
-   <tr align='center' bgcolor='#FFFF66'> 
-     <td>플리마켓 코드</td>
-     <td>멤버아이디</td>
-     <td>플리마켓이름</td>
-     <td >소개글</td>
-     <td>좋아요 수</td>
-     <td>프로필 사진</td>
-     <td>메인 사진</td>
-     <td>플리 그룹</td>
-</tr>
-  <c:forEach var="flea" items="${searchList}" > 
-  <c:url var="url"  value="searchMod.do"  >
-    <c:param  name="p_mod_id" value="${member.id}" />
-  </c:url>     
-     <tr align=center>
-       <td>${flea.flea_code}</td>
-       <td>${flea.memberid}</td>
-       <td>${flea.flea_name}</td>
-       <td>${flea.intro_cotent}</td>
-       <td>${flea.flea_like_count}</td>
-       <td>${flea.profile_photo}</td>
-       <td>${flea.main_photo}</td>
-       <td>${flea.flea_group}</td>
-     </tr>
-  </c:forEach>
-</table>
- -->
 
-<!-- Page Content -->
-  
-  
+</head>
+
+<body>
+
+
 <!-- 프로필 수정 팝업창 -->
- <div class="messagepop pop">
- 	<h2>프로필 설정</h2>
-    <form method="post" id="new_message" action="/devFw/fleaProfileEdit.do" enctype="multipart/form-data">
-        <p><label for="flea_name">플리마켓 스토어명&nbsp;</label><input type="text" size="30" name="flea_name" id="flea_name" /></p>
-        <p><label for="intro_cotent">소개글</label><br><textarea rows="6" name="intro_cotent" id="intro_cotent" cols="35"></textarea></p>
- 		
- 		<p><label for="profile_photo">프로필 이미지</label><br>
-        	<!--  <input type="file" id="profile_photo" name="profile_photo">
-        	<input type="submit" value="사진 업로드"></p>-->
-        	<input type="button" value="이미지 파일 추가" onClick="fn_addFile()" /><br>
-        </p>
-        	<div id="d_file">
-        	</div>
-        	
-        <p><label for="profile_photo">메인 이미지</label><br>
-        	<!--  <input type="file" id="profile_photo" name="profile_photo">
-        	<input type="submit" value="사진 업로드"></p>-->
-        	<input type="button" value="이미지 파일 추가" onClick="fn_m_addFile()" /><br>
-        </p>
-        	<div id="m_file">
-        	</div>
-        	
+ <div class="messagepop pop2">
+ 	<h2>참여자 추가</h2>
+    <form method="post" id="new_message" action="/devFw/participantsInsert.do" enctype="multipart/form-data">    
+        <p><label for="flea_name">회원 검색&nbsp;</label><input type="text" size="30" name="memberid" id="memberid" /></p>
         <p><input type="submit" value="확인" name="commit" id="message_submit"/><a class="close" href="/">Cancel</a></p>
+        <!--  
+        <c:forEach var="flea" items="${searchList}" > 
+        	<input type="hidden" name="flea_code" value="${flea.flea_code}">
+        </c:forEach>
+        -->
     </form>
     
 
 </div>
 
-  
- 	<div class="center-flea">
+
+<div class="center-flea">
      <div class="row-left">
       <aside class="artist-area">
         <div class="user-info card-style-profile "> <!-- PROFILE (MIDDLE-CONTAINER) -->
-   
-		             <p class="addmember"><a target="_blank" href="/devFw/FleaMarket/P001/D001/JoinForm.do?id=1"><i class="fas fa-user-plus pa-5x"></i></a></p>
-		                <c:forEach var="flea" items="${searchList}" > 
-		               		<c:out value="${flea.profile_photo}"/>
-		              
+   	<!--  
+   	<p><a href="/devFw/fleaCreateStoreApproval.do">플리마켓 관리자(임시)</a></p>
+   	-->
+   	<p><a href="/devFw/fleaSearchInit.do">플리마켓 마이페이지(임시)</a></p>
+					 
+		             <p class="addmember"><a target="_blank" href="#" id="participants_add"><i class="fa fa-user-plus pa-5x"></i></a></p>
+		            <!-- 
+		            <div id="chat-header">
+						<div id="user-info"></div>
+						<i class="fa fa-user-plus pa-5x"></i>
+			         </div>
+		             -->
+		             <c:forEach var="flea" items="${searchList}" > 
 				             <div class="profile-picture big-profile-picture clear">
-				                 <img width="120px" height="120px" alt="Anne Hathaway picture" src= "${contextPath}/resources/img/profile_ex.jpg" >
-				             <!-- 
-				              <img width="120px" height="120px" alt="Anne Hathaway picture" src= "<c:url value="/img/${file.profile_photo }" />" >
-				             -->
+				                 <img width="120px" height="120px" alt="no picture" src="${flea.profile_photo}" />
+					             <!-- 
+					              <img width="120px" height="120px" alt="Anne Hathaway picture" src= "<c:url value="/img/${file.profile_photo }" />" >
+					             -->
 				             </div>
 				             
 				             <!-- 프로필 수정 아이콘 버튼-->
 				             <div class="profile-setting">
-				             	<a href="#" id="contact">
+				             	<a href="" id="contact" onclick="window.open('./editProfile.do?flea_code=${flea.flea_code}', 'window팝업', 'width=520, height=620, menubar=no, status=no, toolbar=no')">
 				                 <i class="fa fa-cog pa-5x"></i>
-				                 </a>
+				                </a>
 				             </div>
-				            
-				             
+				   
 				              <div class="user-name"><font size="3">
-				            
-				               <c:out value="${flea.flea_name}"/>
-				              
+				                 <c:out value="${flea.flea_name}"/>
 				              </font></div>
 				              
-				              <div class="profile-description"><font size="2">
-				           
-				               <c:out value="${flea.intro_cotent}"/>
-							</font></div>
-				          </c:forEach>
-		             
+				              <div class="profile-description">
+				                 <c:out value="${flea.intro_cotent}"/>
+							  </div>
+				   </c:forEach>    
+         </div> 
+             <fieldset class="ui-field border-row">
+                <div id="chat-header">
+					<div id="user-info"></div>
+					<i class="fa fa-user-plus pa-5x">참가 신청</i>
+		         </div>
+		       
+              <div id="chat-header">
+               <div id="user-info"></div>
+       			 <button type="button" class="btn btn-m btn-white pseudo-ico-share" data-ui="url-copy" data-ui-option="short" data-icon-event="hover" data-clipboard-text="#">
+			     	<i class="fa fa-user-plus pa-5x"></i>참가 신청<br>
+			     </button>  
+			     
+		      </div>
 
-              </div> 
-         
-         
-         <fieldset class="ui-field border-row">
-        <button type="button" class="btn btn-s btn-white toggle-heart detail-like pseudo-ico-love" data-name="starred-toolbar" data-starred-type="artist" data-init="" data-starred="" data-target-id="b20eee2f-b3eb-4fee-bc81-735f1e2318d6">
-            <i class="ico-img">
-                <span class="sp-icon icon-heart"></span>
-                <span class="sp-icon icon-heart active"></span>
-            </i>
-            <em class="txt"><i class="ui_icon--heart"></i>스토어 찜하기</em>
-        </button>
-   <br>
-        <a href="/w/message/b20eee2f-b3eb-4fee-bc81-735f1e2318d6" class="btn btn-s btn-white pseudo-ico-message">
-        <i class="fa fa-envelope"></i>&nbsp;메세지</a>
-        <br>
-        <button type="button" class="btn btn-m btn-white pseudo-ico-share" data-ui="url-copy" data-ui-option="short" data-icon-event="hover" data-clipboard-text="https://www.idus.com/w/artist/b20eee2f-b3eb-4fee-bc81-735f1e2318d6" data-clipboard-message="작가님 URL이 복사되었습니다.">
-        <i class="ico-img"><span class="sp-icon icon-shareproduct"></span></i>
-        공유하기<br></button>
-    </fieldset>
-  <div class="border-row">
-         <nav class="nav-links">
-         <!--  
-                         <a class="active" href="/w/artist/b20eee2f-b3eb-4fee-bc81-735f1e2318d6">
-                 <i class="ui_icon--home"></i>
-                 <span>홈</span>
-             </a>
-             -->
-             <span>홈<br></span>
-             <span>스토리<br></span>
-             <span>판매 작품<br></span>
-             <span>구매 후기<br></span>
-         </nav>
-     </div>
-  <div class="list-def border-row">
-        <strong class="caption">활동정보</strong>
-        <dl class="list">
-            <dt><font size="2">
-                좋아하는 사람</font>
-            </dt>
-            <dd>
+       			 <button type="button" class="btn btn-s btn-white toggle-heart detail-like pseudo-ico-love" data-name="starred-toolbar" data-starred-type="artist" data-init="" data-starred="" data-target-id="b20eee2f-b3eb-4fee-bc81-735f1e2318d6">
+	             <i class="ico-img">
+	                <span class="sp-icon icon-heart"></span>
+	                <span class="sp-icon icon-heart active"></span>
+	             </i>
+                 <em class="txt"><i class="fa fa-heart"></i>스토어 찜하기</em>
+                 </button><br>
+              
+		        <a href="#" class="btn btn-s btn-white pseudo-ico-message">
+		        <i class="fa fa-envelope"></i>&nbsp;메세지</a><br>
+		      	<button type="button" class="btn btn-m btn-white pseudo-ico-share" data-ui="url-copy" data-ui-option="short" data-icon-event="hover" data-clipboard-text="#">
+			    <i class="fa fa-share-alt"></i>
+			        공유하기<br></button>
+			     
+            </fieldset>
             
-            
-                <a href="/w/artist/b20eee2f-b3eb-4fee-bc81-735f1e2318d6/favorite/list" data-modal-trigger="user-list" data-modal="open" data-type="favorite" data-title="좋아하는 사람"><span id="like-count">
-                  <c:forEach var="flea" items="${searchList}" > 
-               <c:out value="${flea.flea_like_count}"/>
-               </c:forEach>
-                 </span><em>명</em>
-                </a>
-            </dd>
-            <dt><font size="2">
-                판매중인 작품</font></dt>
-            <dd>
-                <a href="/w/artist/b20eee2f-b3eb-4fee-bc81-735f1e2318d6/product">11<em>개</em></a>
-            </dd>
-            <dt><font size="2"><a href="/devFw/fleaReview.do">구매후기</a></font></dt>
-            <dd>
-                <a href="/w/artist/b20eee2f-b3eb-4fee-bc81-735f1e2318d6/review">124<em>개</em></a>
-            </dd>
-        </dl>
-    </div>
-      </aside>
-      <!-- /.col-lg-3 -->
-     <div class="col-lg-9">
-
-<!--스토리  -->
- <div class="layout-split half">
-     <section class="cardlist_section">
-   <div class="ui_title--sub">
-             <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaStory.do">스토리</a></font></h3>
+            <div class="border-row">
+		         <nav class="nav-links">
+		         <!--  
+		                         <a class="active" href="/w/artist/b20eee2f-b3eb-4fee-bc81-735f1e2318d6">
+		                 <i class="ui_icon--home"></i>
+		                 <span>홈</span>
+		             </a>
+		             -->
+	             <span><i class="fa fa-home pa-5x"></i>홈<br></span>
+	             <span><i class="fa fa-book pa-5x"></i>스토리<br></span>
+	             <span><i class="fas fa-store"></i>판매 작품<br></span>
+	             <span><i class="fa fa-edit pa-5x"></i>구매 후기<br></span>
+		         </nav>
+		     </div>
+		     
+		   <div class="list-def border-row">
+		        <!--  
+		        <strong class="caption"><font size="3">활동정보</font></strong>
+		        -->
+		        <dl class="list">
+		            <dt>좋아하는 사람</dt>
+		            <dd>
+		                <a href="#t" data-modal-trigger="user-list" data-modal="open" data-type="favorite" data-title="좋아하는 사람"><span id="like-count">
+		                 
+		                  <c:forEach var="flea" items="${searchList}" > 
+		              		 <c:out value="${flea.flea_like_count}"/>
+		               	  </c:forEach>
+		               	  
+		                  </span><em>명</em>
+		                </a>
+		            </dd>
+		            <dt>판매중인 작품</dt>
+		            <dd>
+		                <a href="#">11<em>개</em></a>
+		            </dd>
+		            <dt><a href="/devFw/fleaReview.do">구매후기</a></dt>
+		            <dd>
+		                <a href="#">124<em>개</em></a>
+		            </dd>
+       		  </dl>
+       		</div>
+       		<br><br><br><br><br><br><br><br>
+       		
+   		   
+   		   
+    	<br><br><br><br>
+  	</aside>  
+	
+   <div class="cardlist_section" style="margin: 24px; width:50%; ">
+   		 <div class="ui_title--sub">
+             <h3 class="ui_title__txt"><a href="/devFw/fleaReview.do">스토리</a>
+                <span class="rv_count" data-review="count">
+					(<em class="num">10</em>)
+				</span>
+             
+             </h3>
+          
          </div>
-                <ul class="split-cardlist lines5">
-                                                <li class="ui_card--side">
-                            <div class="ui_card__inner">
-                                                                <div class="ui_card__imgcover">
-                                    <a href="/w/story/a2318646-a0ca-4322-ac8b-da222ec885f6" class="ui_card__img" style="background-image: url(https://image.idus.com/image/files/4b1b9b058f5046d99b0ade714ecdc0c4_720.jpg)"></a>
-                                </div>
-                                                                <div class="ui_card__txtarea ">
-                                    <div class="ui_card__info">
-                                        <a href="${contextPath}/FleaMarket/P002/D003/searchList.do" class="ui_card__title">2019년 10월 17일</a>
-                                        <span class="ui_card__para">안녕하세요. ??마카롱에 빠진날??입니다. <br>
-           <br>
-           마카롱, 수제청으로 디저트를 만들기 시작한지 어느덧 <br>
-           10여년이 되었네요.^^<br>
-           </span>
-                                    </div>
-                                </div>
+         
+         <div class="prod_story_wrap" style="width:200%;">
+			<h4>스토리 작성</h4>
+			
+			<input class="story_title_text" type="text" placeholder="스토리 제목을 입력해주세요." value="" style="width:100%;">
+			
+			<div class="text_area_wrap">
+							<c:choose>
+								<c:when test="${member.getMemberid() == null }"> <!-- 로그인 하지 않았을 경우 -->
+									<label for="prod_story_text" style="" data-placeholder="로그인 후 글을 남길 수 있습니다." data-placeholder-for="textarea"></label>
+									<textarea name="prod_story_text" id="prod_story_text" style="resize: none;" placeholder="로그인 후 글을 남길 수 있습니다."></textarea>
+								</c:when>
+								<c:otherwise> <!-- 로그인했을 경우 -->
+									<label for="prod_story_text" style="" data-placeholder="전화번호, 주소, 이메일, 계좌번호 등의 개인정보는 타인에 의해 도용된 위험이 있으니, &#13;&#10;스토리 작성 시 입력하지 않도록 주의해 주시기 바랍니다." data-placeholder-for="textarea"></label>
+									<textarea name="prod_story_text" id="prod_story_text" style="resize: none;" placeholder="전화번호, 주소, 이메일, 계좌번호 등의 개인정보는 타인에 의해 도용된 위험이 있으니, &#13;&#10;스토리 작성 시 입력하지 않도록 주의해 주시기 바랍니다."></textarea>
+								</c:otherwise>
+							</c:choose>
+						</div>
+			<br>
+			<div class="secretBox">
+				<input type="checkbox" name="secret" id="secretSelect" value="n"><label for="secretSelect">비밀글</label>
+			</div>
+			<div class="btn_area">
+				<input type="button" class="enrollstory" id="buy" value="등록">
+				<input type="button" class="cancelstory" id="cart" value="취소">
+			</div>
+		</div>
+		
+		<br><br>
+<!--  
+   <ul class="masonry-grid x2" data-col="2" style="position: relative; height: 2221.64px;">
+           <li class="card-style story" style="position: absolute; left: 0px; top: 0px;">
+            <div class="bordering">
+
+                <input name="time_stamp" type="hidden" value="1575262761000">
+                <div class="area-txt">
+                    <div class="area-rating">
+                        <div class="img-bg" style="background-image: url(https://image.idus.com/image/files/d6c74ae706ad40f1b6f83af3d5b1334d_512.jpg)"></div>
+                        <a href="#" class="title ellipsis">크리스마스강추🔥눈꽃송이귀걸이/귀찌</a>
+                    </div>
+
+                    <a href="#" target="_blank">
+                        <div class="split-hard">
+                            <span class="split crop-circ" style="background-image: url(https://image.idus.com/image/files/37cec8c9f8bd47458facc5bdacfb0b24.jpg)"> </span>
+                            <div class="split">
+    	
+                                <span class="txt-strong">뽀또</span>
+                                <span class="txt">2019년 12월 02일</span>
                             </div>
-                        </li>
-                                            </ul>
-     </section>
-</div>
-
-      </div>
-      <!-- /.col-lg-9 -->
-    </div>
-    </div>
-    <!-- /.row -->
-
-  <!-- /.container -->
-  <!-- Footer 
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-  </footer>
+                        </div>
+                        
+                        <p class="desc">실제로 받아 보니까 더 예뻤어요!
+							진주 눈꽃송이 등의 조합이라서 옷차림도 안 타고 웬만한 코디에 다 잘어울릴거 같아요ㅎㅎ
+							귀찌 변경했는데 잘 착용하고 있어요!♡
+							321은 배송도 빠르게 해주시고 귀찌 가능제품들도 많아서 졸아요 ㅠ_ㅠ 사장님의 친절함은 말모..! 감사합니다 💛
+						</p>
+                        <br>
+                   </a>
+                </div>
+            </div>
+        </li>
+     </ul>
 -->
-  <!-- Bootstrap core JavaScript -->
-  <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-  <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!--스토리  -->
  
- <script src="https://kit.fontawesome.com/af7787acb6.js" crossorigin="anonymous"></script>
+   <ul class="masonry-grid x2" data-col="2" style="position: relative; height: 2221.64px;">
+           <li class="card-style story" style="position: absolute; left: 0px; top: 0px;">
+            <c:forEach var="story" items="${storyList}" > 
+            <div class="bordering">
 
+                <input name="time_stamp" type="hidden" value="1575262761000">
+                <div class="area-txt">
+                    <div class="area-rating">
+                        <div class="img-bg" style="background-image: url(https://image.idus.com/image/files/d6c74ae706ad40f1b6f83af3d5b1334d_512.jpg)"></div>
+                        <a href="#" class="title ellipsis">${story.story_title}</a>
+                    </div>
+
+                    <a href="#" target="_blank">
+                        <div class="split-hard">
+                            <span class="split crop-circ" style="background-image: url(https://image.idus.com/image/files/37cec8c9f8bd47458facc5bdacfb0b24.jpg)"> </span>
+                            <div class="split">
+				          	
+                            	
+                                <span class="txt-strong">${story.memberid}</span>
+                                <span class="txt">${story.story_write_date}</span>
+                            </div>
+                        </div>
+                        
+                        <p class="desc">${story.story_cotent }</p>
+     
+                        
+                        <br>
+                 
+
+                   </a>
+                </div>
+            </div>
+            </c:forEach>
+        </li>
+     </ul>
+
+	   
+	   
+
+  
+   
+         
+ 
+    </div>
+  </div>
+  </div>
+
+
+  
 </body>
-
-</html> 
+</html>

@@ -6,8 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="http://code.jquery.com/jquery-latest.js"
-	type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
 <!-- <script src="prettyPhoto_compressed_3.1.6/js/jquery.js" type="text/javascript" charset="utf-8"></script>
@@ -800,24 +799,20 @@ img {
 	max-height: 750px;
 	float: left;
 }
-
-.description {
+.description{
 	margin-left: 2%;
-	float: left;
+	float:left;
 }
-
-.price {
-	color: red;
-	font-size: xx-large;
-	font-weight: bold;
+.price{
+	color:red;
+	font-size:xx-large; 
+	font-weight:bold;
 }
-
-.content {
-	color: black;
-	font-size: medium;
+.content{
+	color:black;
+	font-size:medium;
 }
-
-.pay {
+.pay{
 	display: inline-block;
 	padding: 0;
 	vertical-align: top;
@@ -826,17 +821,9 @@ img {
 	margin-left: 4px;
 	width: 123px;
 }
-
-.tab-content {
+.tab-content{
 	width: 758px;
-	margin: 0px auto;
-}
-
-.tag {
-	color: #dd5850;
-	padding: 3px;
-	font-weight: bold;
-	cursor: pointer;
+    margin: 0px auto;
 }
 
 .alarm {
@@ -844,11 +831,10 @@ img {
 	font-weight: bold;
 	font-size: large;
 }
-
-#panels {
-	margin: 10px 20px 10px 0px;
-	font-size: 1.2em;
-	line-height: 1.5em;
+.alarm{
+	color:red;
+	font-weight:bold;
+	font-size:large;
 }
 
 #cart {

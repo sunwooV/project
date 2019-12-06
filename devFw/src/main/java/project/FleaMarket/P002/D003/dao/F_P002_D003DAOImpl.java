@@ -28,6 +28,22 @@ public class F_P002_D003DAOImpl implements F_P002_D003DAO {
 	}
 	
 	@Override
+	public List<F_P002_D003VO> storyList(Map<String, Object> searchMap) throws DataAccessException {
+		List<F_P002_D003VO> list = sqlSession.selectList("FleaMarket.p002_d003.storyList", searchMap);
+		for(int i = 0; i < list.size(); i++)
+		{
+			System.out.println(list.get(i));
+		}
+		return list;
+	}
+	
+	@Override
+	public void insertStoryComment(Map<String, Object> datahMap) throws DataAccessException {
+		sqlSession.update("FleaMarket.p002_d003.insertStoryComment", datahMap);
+	}
+	
+	
+	@Override
 	public List<F_P002_D003VO> searchMod(Map<String, Object> searchMap) throws DataAccessException {
 		List<F_P002_D003VO> list = sqlSession.selectList("hm.F_P002_D003.searchMod", searchMap);
 		return list;
