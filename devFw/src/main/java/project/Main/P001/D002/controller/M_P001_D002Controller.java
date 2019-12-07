@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface M_P001_D002Controller {
 
-	public ModelAndView autionList(HttpServletRequest request, HttpServletResponse response) throws Exception ;
-
+	public ModelAndView eachMain(String command, String category, HttpServletRequest request, HttpServletResponse response) throws Exception ;
+	public ModelAndView eachsearchProduct(String searchVal, String command, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView auctionMain(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
