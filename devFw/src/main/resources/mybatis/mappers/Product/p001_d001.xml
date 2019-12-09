@@ -75,10 +75,13 @@
 				    </if>
 				    <if test="send_way != null">
 				    	<if test="send_way == 'direct delivery'">
-				    		and p.send_way IN (#{send_way}, 'direct', 'delivery')
+				    		and p.send_way IN ('direct delivery ', 'direct', 'delivery')
 				    	</if>
-				    	<if test="send_way != 'direct delivery'">
-				    		and p.send_way = #{send_way}
+				    	<if test="send_way == 'direct'">
+				    		and p.send_way IN (#{send_way}, 'direct delivery ')
+				    	</if>
+				    	<if test="send_way == 'delivery'">
+				    		and p.send_way IN (#{send_way}, 'direct delivery ')
 				    	</if>
 				    </if>
 		    	</otherwise>

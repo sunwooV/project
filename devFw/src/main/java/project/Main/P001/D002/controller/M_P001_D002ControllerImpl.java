@@ -83,7 +83,7 @@ public class M_P001_D002ControllerImpl implements M_P001_D002Controller{
 	
 	@Override
 	@RequestMapping(value = "/eachsearchProduct.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView eachsearchProduct(@RequestParam(value="searchVal", required=false) String searchVal, @RequestParam(value="division", required=false) String command,HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView eachsearchProduct(@RequestParam(value="searchVal", required=false) String searchVal, @RequestParam(value="division", required=false) String division,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		
 		Map<String, Object> searchMap = new HashMap<String, Object>();
@@ -96,16 +96,16 @@ public class M_P001_D002ControllerImpl implements M_P001_D002Controller{
 		ModelAndView mav = new ModelAndView("Product/p001_d001_searchProduct");
 		
 		//상세 검색 했을 경우
-		if(command != null) {
+		if(division != null) {
 			
 			int Ccnt = 0;
 			int Gcnt = 0;
 			int Scnt = 0;
 			
-			if(command.equals("reused")) {
+			if(division.equals("reused")) {
 				cc = "중고";
 			}
-			if(command.equals("auction")) {
+			if(division.equals("auction")) {
 				cc = "경매";
 			}
 			mav.addObject("eachSearch", cc);

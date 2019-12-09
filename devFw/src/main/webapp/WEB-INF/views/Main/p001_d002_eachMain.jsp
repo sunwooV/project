@@ -19,10 +19,11 @@ $(document).on('keypress', '#eachsearchbar', function() {
 });
 
 function clickEvent() {
-	var searchVal = $("#eachsearchbar").val();
+	var searchVal = $("#searchbar").val();
+	var eachsearchVal = $("#eachsearchbar").val();
 	var frm = document.searchform;
 	//검색어 유효성 검사
-	if (searchVal == "") {
+	if (eachsearchVal == "" && searchbar == "") {
 		alert("검색어를 입력해주세요.");
 		return false;
 	}
@@ -129,6 +130,14 @@ function clickEvent() {
 .right{
 	float: left;
     margin-right: 6%;
+}
+#left{
+	margin-left:15px;
+}
+#right{
+    float: right;
+    margin-top: -33px;
+    margin-right: 15px;
 }
 #subRight{
 	margin-left:100px;
@@ -239,10 +248,18 @@ label{
 		</ul>
 	</div>
 	<br><br><br><br><br><br><br>
-	<p>홈
+	<p id="left">홈
 	<c:if test="${highCategoryName != null }">
 		> ${highCategoryName } > <span style="color:tomato;">${middleCategoryName }</span>
 	</c:if></p>
+	<div id="right">
+	<select id="prodOption" name="prodOption">
+		<option value="정렬방법" selected="selected">--정렬방법--</option>
+		<option value="신제품순">신제품순</option>
+		<option value="최저가순">최저가순</option>
+		<option value="최고가순">최고가순</option>
+	</select>
+	</div>
 	<hr><hr>
 	<br>
 	<div class="row">

@@ -26,7 +26,7 @@ public class P_P001_D001ControllerImpl implements P_P001_D001Controller {
 	
 	@Override
 	@RequestMapping(value = "/searchProduct.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView searchProduct(@RequestParam(value="searchVal", required=false) String searchVal, @RequestParam(value="command", required=false) String command,HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView searchProduct(@RequestParam(value="searchVal", required=false) String searchVal, @RequestParam(value="command", required=false) String command, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		
 		Map<String, Object> searchMap = new HashMap<String, Object>();
@@ -39,30 +39,14 @@ public class P_P001_D001ControllerImpl implements P_P001_D001Controller {
 		
 		//상세 검색 했을 경우
 		if(command != null) {
-			int Ccnt = 0;
+
 			int Gcnt = 0;
 			int Scnt = 0;
 			
-//			String[] category_select = request.getParameterValues("category_select");
 			String[] group_select = request.getParameterValues("group_select");
 			String[] send_way_select =request.getParameterValues("send_way_select");
 			
 			
-			//상세 검색에서 체크된게 있다면
-//			if(category_select != null) {
-//				Ccnt = category_select.length;
-//				searchMap.put("Ccnt", Ccnt);
-//				for(int i=0;i<Ccnt;i++) {
-//					category.add(category_select[i]);
-//				}
-//				searchMap.put("category", category);
-//				
-//				List selectMiddleCategory = P_P001_D001Service.searchMiddleCategory(searchMap);
-//				
-//				System.out.println("detail Category search:: " + selectMiddleCategory);
-//				mav.addObject("command", "categoryDetail");
-//				mav.addObject("selectMiddleCategory", selectMiddleCategory);
-//			}
 			if(group_select != null) {
 				Gcnt = group_select.length;
 				
@@ -104,16 +88,10 @@ public class P_P001_D001ControllerImpl implements P_P001_D001Controller {
 		} else {
 			System.out.println(searchVal);
 			List searchProduct = P_P001_D001Service.searchProduct(searchMap);
-			//List searchHighCategory = P_P001_D001Service.searchHighCategory(searchMap);
-			
-			//searchMap.put("high_category", searchHighCategory);
-			//List searchMiddleCategory = P_P001_D001Service.searchMiddleCategory(searchMap);
-			
-			//System.out.println("slslslslslsl" + ((P_P001_D001VO)searchMiddleCategory.get(0)).getCategory_name());
+
 			
 			mav.addObject("searchProduct", searchProduct);
-			//mav.addObject("searchHighCategory", searchHighCategory);
-			//mav.addObject("searchMiddleCategory", searchMiddleCategory);
+
 			mav.addObject("searchVal", searchVal);
 			mav.addObject("size", searchProduct.size());
 		}
