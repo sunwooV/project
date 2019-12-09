@@ -394,6 +394,28 @@ layout-split:after {
 	width: 390px;
 }
 
+.ui_btn--large{
+	margin-left: 25%;
+    width: 200px;
+	font-size: 14px;
+	line-height: 46px;
+	box-shadow: 0 1px 3px 0 hsla(0,0%,86.3%,.3);
+    font-weight: 400;
+    box-sizing: border-box;
+    display: inline-block;
+    border-radius: 2px;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    vertical-align: middle;
+    transition: background-color .2s cubic-bezier(.075,.82,.165,1);
+    transition: border-color .2s cubic-bezier(.075,.82,.165,1);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
 
 </style>
 <head>
@@ -807,6 +829,7 @@ $(document).ready(function(){
           </div>
            </c:if>
          </c:forEach>
+         <a href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>" class="ui_btn--large" style="margin-left:50%;">더보기</a>
 	<br>
 	 <div class="layout-split half" style="margin-left: 15px;">
 	  <section class="cardlist_section">
@@ -854,8 +877,10 @@ $(document).ready(function(){
 		        </li>
 	</c:forEach>	      
         </ul>
-       
+     
+     	<a href="/devFw/fleaReview.do?flea_code=<%=flea_code%>" class="ui_btn--large" style="margin-left:25%;">더보기</a>
      </section>
+     
      
      <section class="cardlist_section">
         <c:forEach var="story" items="${storyList}" > 
@@ -879,6 +904,7 @@ $(document).ready(function(){
 	                        </li>
 	         		</ul>
 	    </c:forEach>
+	    <a href="/devFw/fleaStory.do?flea_code=<%=flea_code%>" class="ui_btn--large" style="margin-left:25%;">더보기</a>
      </section>
 
 </div>
