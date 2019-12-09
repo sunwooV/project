@@ -252,14 +252,14 @@ label{
 	<c:if test="${highCategoryName != null }">
 		> ${highCategoryName } > <span style="color:tomato;">${middleCategoryName }</span>
 	</c:if></p>
-	<div id="right">
-	<select id="prodOption" name="prodOption">
-		<option value="정렬방법" selected="selected">--정렬방법--</option>
-		<option value="신제품순">신제품순</option>
-		<option value="최저가순">최저가순</option>
-		<option value="최고가순">최고가순</option>
-	</select>
-	</div>
+<!-- 	<div id="right"> -->
+<!-- 	<select id="prodOption" name="prodOption"> -->
+<!-- 		<option value="정렬방법" selected="selected">--정렬방법--</option> -->
+<!-- 		<option value="신제품순">신제품순</option> -->
+<!-- 		<option value="최저가순">최저가순</option> -->
+<!-- 		<option value="최고가순">최고가순</option> -->
+<!-- 	</select> -->
+<!-- 	</div> -->
 	<hr><hr>
 	<br>
 	<div class="row">
