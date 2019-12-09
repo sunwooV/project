@@ -1,5 +1,6 @@
 package project.Buy.P001.D003.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import project.Buy.P001.D003.service.B_P001_D003Service;
 import project.Buy.P001.D003.vo.B_P001_D003VO;
 import project.Customers.P001.D001.vo.C_P001_D001VO;
+import project.Customers.P002.D014.vo.C_P002_D014VO;
 import project.Sell.P001.D002.vo.S_P001_D002VO;
 
 @Controller("B_P001_D003Controller")
@@ -41,41 +43,45 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 	// 장바구니 상품 조회
 	@Override
 	@RequestMapping(value = "/cart.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView selectCart(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ModelAndView selectCart(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		String memberId =  (String)session.getAttribute("memberid");
+		String memberId = (String) session.getAttribute("memberid");
 		System.out.println(memberId);
-		
-		
-		//검색조건을 담음
-		Map<String, Object> searchMap = new HashMap<String, Object>(); //  Map
+
+		// 검색조건을 담음
+		Map<String, Object> searchMap = new HashMap<String, Object>(); // Map
 		searchMap.put("memberid", memberId);
-		
+
 		ModelAndView mav = new ModelAndView("Buy/p001_d003_cart");// view
-		System.out.println("장바구니 검색조건 담기"+searchMap);
-		
-		//검색하고 나온 결과를 받아서 리턴!!
-		List dataList = b_p001_d003Service.selectCart(searchMap); //List
-		System.out.println("장바구니 리스트"+dataList);
-	
+		System.out.println("장바구니 검색조건 담기" + searchMap);
+
+		// 검색하고 나온 결과를 받아서 리턴!!
+		List dataList = b_p001_d003Service.selectCart(searchMap); // List
+		System.out.println("장바구니 리스트" + dataList);
+
 		mav.addObject("dataList", dataList); // data
-		System.out.println("cart"+dataList);
+		System.out.println("cart" + dataList);
 		return mav;
 
 	}
-	
+
 	// 장바구니 옵션 수정
 	@Override
 	@RequestMapping(value = "/editCart.do", method = { RequestMethod.GET, RequestMethod.POST })
-	@ResponseBody
-	public Map<String, Object> editCart(@ModelAttribute C_P001_D001VO member, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		Map<String, Object> dataMap = new HashMap<String, Object>();
+
+	public void editCart(@ModelAttribute S_P001_D002VO product, @ModelAttribute C_P001_D001VO member,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String memberId = (String) session.getAttribute("memberid");
+		String prod = product.getProd_number();
+		String prodCnt = product.getProd_amount();
+
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		
-		
-		return resultMap;
+		resultMap.put("memberid", memberId);
+		resultMap.put("prod_number", prod);
+		resultMap.put("cart_count", prodCnt);
+
+		b_p001_d003Service.updateCart(resultMap);
+
 	}
 
 	// 장바구니 제품 추가
@@ -84,39 +90,65 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 	public void addCart(@ModelAttribute S_P001_D002VO product, @ModelAttribute C_P001_D001VO member,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-
+		System.out.println("장바구니 제품 추가 들어옴");
 		String memberid = (String) session.getAttribute("memberid");
-		String prodNum = (String) session.getAttribute("prod_number");
-		String cartCount = (String) session.getAttribute("prod_amount");
-		System.out.println("장바구니 제품 추가의 1"+memberid);
-		System.out.println("장바구니 제품 추가의 제품"+prodNum);
-		System.out.println("장바구니 제품 추가의 수량"+cartCount);
-		
 		String prod = product.getProd_number();
-		System.out.println("장바구니 제품 추가의 "+ prod);
-		String data = request.getParameter("insertCartInfo");
-		
-		System.out.println(data);
-	
-		
+		String prodCnt = product.getProd_amount();
+
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		dataMap.put("memberid", memberid);
 		dataMap.put("prod_number", prod);
-		
+		dataMap.put("cart_count", prodCnt);
+
 		b_p001_d003Service.insertCart(dataMap);
-		
+
 	}
 
 	// 장바구니 목록 삭제
 	@Override
 	@RequestMapping(value = "/delCart.do", method = { RequestMethod.GET, RequestMethod.POST })
-	@ResponseBody
-	public Map<String, Object> delCart(@ModelAttribute C_P001_D001VO member, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+
+	public void delCart(@ModelAttribute S_P001_D002VO product, @ModelAttribute C_P001_D001VO member,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		Map<String, Object> dataMap = new HashMap<String, Object>();
+		String memberId = (String) session.getAttribute("memberid");
+		String prod = product.getProd_number();
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		return resultMap;
+		resultMap.put("memberid", memberId);
+		resultMap.put("prod_number", prod);
+
+		b_p001_d003Service.deleteCart(resultMap);
+
+	}
+
+	@Override
+	@RequestMapping(value = "/checkCartList.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public void checkEqlProd(@ModelAttribute S_P001_D002VO product, HttpServletRequest request,
+			HttpServletResponse response) {
+
+		System.out.println("장바구니 제품 체크 들어옴");
+		String memberId = (String) session.getAttribute("memberid");
+		String prod = product.getProd_number();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("memberid", memberId);
+		resultMap.put("prod_number", prod);
+		int result2 = b_p001_d003Service.checkEqlProd(resultMap);
+
+		String result = "";
+
+		result += "{";
+		result += "\"data\":\"" + result2 + "\"";
+
+		result += "}";
+
+		System.out.println("result" + result);
+
+		try {
+			response.getWriter().print(result);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

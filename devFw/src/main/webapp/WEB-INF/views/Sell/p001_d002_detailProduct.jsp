@@ -19,6 +19,7 @@
 		var num = 0;
 		
 		
+		
 		//관심 상품 등록하기
 		$(document).on('click', '#heart', function(){
 			if(loginCheck == null || loginCheck == "") { //로그인 안되어 있을 때
@@ -685,68 +686,135 @@
 		}
 	}
 
+	
 	//장바구니 클릭시 
 	$(document).on('click','#cart', function(){
 		
+		var memberId = $("#memberId").val();
+		var amount = $("#prod_amount").val();
+		var product = $('#prod_number').val();
+		alert("prod_amount 출력 = "+amount);
 		
-		var frm = document.detail;
-		alert(count);
-		
+		var command ='insert';
 		//로그인 안했을 때 로그인 창으로
 		if(memberId == null || memberId == ''){
 			location.href ="${contextPath}/loginInit.do";
-		}else if(memberId !=null && count == null){
+		}else if(memberId !=null && amount == null){
 			alert("옵션을 선택해주세요.");
 			 
 		}else{
 			
-			var insertCartInfo{
-				
-				}
-			
-			
-			
+			var insertCartInfo = {
+					memberId:memberId,
+					prod_number:product,
+					prod_amount:amount,
+					command:command
+				};
+					
 			$.ajax({
-				type: "post",
-				async: false,
-				url: "/devFw/detailAnswer.do",
-				data: insertCartInfo,
-				dataType : 'text',
+				type: "get",
+				async:false,
+				url: "/devFw/checkCartList.do",
+				data: {
+					memberId:memberId,
+					prod_number:product
+				},
+				dataType :'text',
 				success: function(responseData){
-	
-					var div = document.createElement('div');
+					//문제지점
+					var parsingData = JSON.parse(responseData);
 					
-					div.className = 'successInsert';
+					alert(parsingData.data);
 					
-					div.innerHTML = '<div class ="successNoticeBox"><p>상품이 성공적으로 장바구니에 담겼습니다.<br><br><br>'
-					+'<input type="button" id ="noticeButton" value="창닫기" onClick="closeNotice()">'
-					+'<input type="button" id ="noticeButton" value="장바구니로 이동" onClick="moveToCart()">'
-					+'</p></div>';
-			
+					if(parsingData.data == 1){
+					
+						$.ajax({
+							type:"get",
+							async:false,
+							url:"/devFw/editCart.do",
+							data :insertCartInfo,
+							dataType:"text",
+							
+							success: function(responseData){
+								closeNotice();							
+							},
+							error:function(data, textStatus){
+								alert("장바구니에 수정 실패")
+							},
+							complete : function(data, textStatus){
+								alert("장바구니에 상품 옵션 수정완료!")				
+							} // end of second ajax complete
+						});
+										
+					}else{
+						
+						$.ajax({
+							type:"get",
+							async:false,
+							url:"/devFw/addCart.do",
+							data :insertCartInfo,
+							dataType:"text",
+							
+							success: function(responseData){
+								closeNotice();
 				
-					$(#noticeButton).addClass(noticeButton);
+							},
+							error:function(data, textStatus){
+								alert("장바구니에 상품담기 실패")
+							},
+							complete : function(data, textStatus){
+									alert("장바구니 담기 성공")
+							}
+							
+							 // end of second ajax complete
+							
+					});//end of ajax
+						
+						
+					}
+					
+					
+				
+					
 					
 				},
 				error: function(data, textStatus){
 					alert("오류가 발생하였습니다.");
 				},
 				complete : function (data, textstatus){
+					
 				}
 				
-			}
-			});
 			
-	function moveToCart(){
-		
-	}
-		
-	function closeNotice(){
-		
-	}
+				}); // ajax 끝
+			} //else 끝
 			
-	});//장바구니 클릭 끝
-
 	
+			
+		
+		
+		}); // 장바구니 클릭 함수 끝
+		
+	
+		// 장바구니로 이동
+		function moveToCart(){
+			window.location.href="/devFw/cart.do";
+
+		};
+	
+		//장바구니 성공 시 뜨는 div 닫는 함수 
+		function closeNotice(){
+			var checkType = $('#successNoticeBox').is(':visible');
+			var styleOfPopup = document.getElementById("#successNoticeBox");
+			if(checkType == false){
+		
+				$("#successNoticeBox").css("display", "block");
+				
+			}else{
+				$("#successNoticeBox").css("display", "none");
+			}
+		};
+		
 
 	 
 </script>
@@ -1181,44 +1249,56 @@ textarea {
 	border: 2px solid lightgray;
 }
 
+#successNoticeBox{
+display:none;
+}
+
+#SNBContent {
+border: 2px solid darkgray;
+text-align:center;
+padding:3%;
+width:fit-content;
+
+}
+
 /*장바구니 담김완료 CSS*/
 .noticeButton {
-	border: "2px solid #e5baff";
-	position: "relative";
-	display: "block";
-	height: "45px";
-	width: "150px";
-	margin: "10px 7px";
-	padding: "5px 5px";
-	font-weight: "700";
-	font-size: "15px";
-	letter-spacing: "2px";
-	color: "#383736";
-	border-radius: "4px";
-	text-transform: "uppercase";
-	outline: "0";
-	overflow: "hidden";
-	background: "none";
-	z-index: "1";
-	cursor: "pointer";
-	transition: "0.08s ease-in";
-	-o-transition: "0.08s ease-in";
-	-ms-transition: "0.08s ease-in";
-	-moz-transition: "0.08s ease-in";
-	-webkit-transition: "0.08s ease-in";
+	
+	position: relative;
+	display: block;
+	height: 45px;
+	width: 150px;
+	margin: 10px 7px;
+	padding: 5px 5px;
+	font-weight: 700;
+	font-size: 15px;
+	letter-spacing: 2px;
+	color: #383736;
+	border-radius: 4px;
+	text-transform: uppercase;
+	outline: 0;
+	overflow: hidden;
+	background: none;
+	z-index: 1;
+	cursor: pointer;
+	transition: 0.08s ease-in;
+	-o-transition: 0.08s ease-in;
+	-ms-transition: 0.08s ease-in;
+	-moz-transition: 0.08s ease-in;
+	-webkit-transition: 0.08s ease-in;
 }
-;
+
 </style>
 </head>
 <body>
+
 	<c:set var="fleaName" value="${fleaName }" />
 	<form name="detail">
 		<div id="wrap">
 			<input type="hidden" id="command" name="command" value="">
-			<c:forEach var="product" items="${detail }" varStatus="status">
+			<c:forEach var="product" items="${detail}" varStatus="status">
 				<input type="hidden" id="prod_memberId" value="${product.memberId }">
-				<input type="hidden" id="prod_number" name="prod_number"
-					value="${product.prod_number }">
+				<input type="hidden" id="prod_number" name="prod_number" value="${product.prod_number }">
 				<div class="category">
 					<c:forEach var="high_category" items="${high_category }">
 				${high_category.category_name }
@@ -1351,13 +1431,13 @@ textarea {
 
 						<br>
 						<h3 id="gray-text">
-							<span class="heart">${product.heart }</span>명의 회원이 관심을 보였어요!
+							<span class="heart">${product.heart}</span>명의 회원이 관심을 보였어요!
 						</h3>
 						<br>
 
-						<c:set var="likeProd" value="${likeProd }" />
+						<c:set var="likeProd" value="${likeProd}" />
 
-						<c:if test="${likeProd == null }">
+						<c:if test="${likeProd == null}">
 							<div id="heart" name="n">
 								<img src="${contextPath }/resources/img/detailProduct/heart.png"
 									style="width: 30px; height: 30px;"> 관심 상품
@@ -1381,30 +1461,21 @@ textarea {
 						<br>
 						<div class="content">
 							<c:choose>
-								<c:when test="${product.auction_yn == 'y' }">
-									<!-- 경매일 경우 수량은 한 상품 당 1개 -->
-							수량: <input type="number" id="prod_amount"
-										style="width: 4%; height: auto; text-align: right;" value="1"
-										readonly>
-								</c:when>
-								<c:otherwise>
+						<c:when test="${product.auction_yn == 'y'}"><!-- 경매일 경우 수량은 한 상품 당 1개 -->
+							수량: <input type="number" id="prod_amount" style="width:4%; height:auto; text-align:right;" value="1" readonly>
+						</c:when>
+						<c:otherwise>
 							max수량: ${product.prod_amount }
 							<br>
 							수량: 
-							<input type="button" onclick="abuttonClick('minus');" value="-">
-									<input type="number" id="prod_amount" min="1"
-										max="${product.prod_amount}"
-										style="width: 4%; height: auto; text-align: right;" value="">
-									<input type="button" onclick="abuttonClick('plus');" value="+">
-									<br>
+							<input type="button" onClick="abuttonClick('minus')" value="-"><input type="number" id="prod_amount" min="1" max="${product.prod_amount }" style="width:4%; height:auto; text-align:right;" value=""><input type="button" onClick="abuttonClick('plus')" value="+">
+							<br>
 							총 금액: <span id="total"></span>원
 						</c:otherwise>
-							</c:choose>
-
-
+					</c:choose>
 							<input type="hidden" id="total_price" value=""> <br>
 							<br>
-							<div>
+							<div id ="deliveryTypeSection">
 								<c:choose>
 									<c:when test="${product.send_way == 'direct' }">
 										<input type="radio" name="way_check" value="direct"
@@ -1430,6 +1501,11 @@ textarea {
 										<label for="delivery">택배거래</label>
 									</c:otherwise>
 								</c:choose>
+								<div class ="successNoticeBox" id="successNoticeBox" style="display:none;"><p id ="SNBContent">장바구니 담기 혹은 수정 성공!<br><br>
+								<input type="button" id ="noticeButton" value="창닫기" onClick="closeNotice();">&nbsp&nbsp&nbsp
+								<input type="button" id ="noticeButton" value="장바구니" onClick="moveToCart()">
+								</p></div>
+			
 							</div>
 							<br>
 							<div id="pay">

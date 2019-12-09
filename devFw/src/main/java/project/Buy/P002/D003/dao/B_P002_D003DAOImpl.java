@@ -13,7 +13,7 @@ import project.Buy.P001.D003.vo.B_P001_D003VO;
 
 
 
-
+//리뷰작성완료
 @Repository("B_P002_D003DAO")
 public class B_P002_D003DAOImpl implements B_P002_D003DAO {
 	@Autowired
@@ -27,19 +27,6 @@ public class B_P002_D003DAOImpl implements B_P002_D003DAO {
 		return list;
 	}
 
-//	@Override
-//	public List<B_P001_D003VO> searchMod(Map<String, Object> searchMap) throws DataAccessException {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<B_P001_D003VO> searchAdd() throws DataAccessException {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
-	
 	
 
 }

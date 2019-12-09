@@ -24,25 +24,32 @@ public class B_P001_D003ServiceImpl implements B_P001_D003Service{
 		List<B_P001_D003VO> list = b_p001_d003DAO.selectCart(searchMap);
 		return list;
 	}
+	
+	//장바구니 동일 품목 있는지 조회
+	@Override
+	public int checkEqlProd (Map<String, Object> searchMap) throws DataAccessException{		
+		return b_p001_d003DAO.checkEqlProd(searchMap);
+		
+	}
 
 	//장바구니에 품목 추가
 	@Override
-	public void insertCart(Map<String, Object> searchMap) throws DataAccessException {
-		// TODO Auto-generated method stub
+	public void insertCart(Map<String, Object> searchMap) throws DataAccessException {		
+		b_p001_d003DAO.insertCart(searchMap); 
 		
 	}
 
 	//장바구니 상품 수정
 	@Override
 	public void updateCart(Map<String, Object> searchMap) throws DataAccessException {
-		// TODO Auto-generated method stub
+		b_p001_d003DAO.updateCart(searchMap);
 		
 	}
 
 	//장바구니 상품 삭제
 	@Override
 	public void deleteCart(Map<String, Object> searchMap) throws DataAccessException {
-		// TODO Auto-generated method stub
+		b_p001_d003DAO.deleteCart(searchMap);
 		
 	}
 }
