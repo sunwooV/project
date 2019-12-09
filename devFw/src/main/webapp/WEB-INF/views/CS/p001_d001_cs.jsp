@@ -120,6 +120,12 @@
 				<li><a href="#">회원정보조회/수정</a></li>
 				<li><a href="#">ID조회/비밀번호 찾기</a></li>
 			</div>
+			<div class="table" id="sidebar1">
+			<h1 style="font-size: 19px;">게시판</h1>
+			  <c:forEach var="board" items="${boardlist}" >
+				<li><a href="${contextPath}/privateInit.do?board_num=${board.board_num }">${board.board_name }</a></li>
+				</c:forEach>
+			</div>
 		</div>
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->
 		<div class="col-sm-10" id="csmain">

@@ -94,8 +94,8 @@ $(document).ready(function(){
 				     + '<tr>'
 				     + '<td id="answer">답변</td>'
 				     + '<td align="center" class="inquiry_text" id="text" style="font-weight:bold;">'+data[i].private_answer_content+'<td>'
-				     + '<td id ="mid" align="center" class="member'+data[i].answer_num+'">'+ data[i].private_answer_memberid +'<td>'
-				     + '<td id ="mdate" align="center">'+data[i].private_answer_date +'</td>';
+				     + '<td id ="id" align="center" class="member'+data[i].answer_num+'">'+ data[i].private_answer_memberid +'<td>'
+				     + '<td id ="date" align="center">'+data[i].private_answer_date +'</td>';
 			
 					if(verify == 'Y'){
 						list += '<td id ="commentdelete" align ="center"><p class="delete_qna" id="' + data[i].answer_num +'"><u>삭제</u></p></td>';
@@ -160,8 +160,8 @@ $(document).ready(function(){
 					     + '<tr>'
 					     + '<td id="answer">답변</td>'
 					     + '<td align="center" class="inquiry_text" id="text" style="font-weight:bold;">'+data[i].private_answer_content+'<td>'
-					     + '<td id ="mid" align="center" class="member'+data[i].answer_num+'">'+ data[i].private_answer_memberid +'<td>'
-					     + '<td id ="mdate" align="center">'+data[i].private_answer_date +'</td>';
+					     + '<td id ="id" align="center" class="member'+data[i].answer_num+'">'+ data[i].private_answer_memberid +'<td>'
+					     + '<td id ="date" align="center">'+data[i].private_answer_date +'</td>';
 					
 					
 						if(verify == 'Y'){
@@ -396,10 +396,11 @@ width: 100px;
 td{
 width: 600px;
 }
-td#mid{
+td#id{
 width: 100px;
 }
-td#mdate{
+
+td#date{
 width: 150px;
 }
 td#commentdelete{
@@ -464,15 +465,15 @@ background-color:#faf5f1;
 <input type="hidden" id="private_qna_num" value="${list.private_qna_num}" >
 <input type="hidden" id="memberid" value="${member.getMemberid() }" />
 <input type="hidden" id="verify" value="${member.verify }" />
+</c:forEach>
 <div class="iqry_comments_area">
 
 	<c:if test="${member.verify =='Y' }">
 <div class="prod_inquiry_wrap">
 
 						<h4>답변</h4>
-						<div class="text_area_wrap">
-									
-									<textarea name="prod_inquiry_text" id="prod_inquiry_text" style="resize: none;" placeholder="답변을달아주세요."  ></textarea>
+						<div class="text_area_wrap">	
+						<textarea name="prod_inquiry_text" id="prod_inquiry_text" style="resize: none;" placeholder="답변을달아주세요."  ></textarea>
 						</div>
 						<br>
 
@@ -483,7 +484,7 @@ background-color:#faf5f1;
 				</div>
 			</c:if>
 			</div>
-			</c:forEach>
+			
 			</div>
 					<div id="commentlist">
 							<ul class="list_comment_inqury">
@@ -492,22 +493,19 @@ background-color:#faf5f1;
                      <table class="orderHistoryTable" id="orderHistoryTable">                     
                                 <tr>
                                    <td id="answer">답변</td>
-                                    <td align="center" class="inquiry_text" id="text" style="font-weight:bold;">${prodQnA.private_answer_content }</td>
-                                   <td id ="mid" align="center" class="member${prodQnA.answer_num }">${prodQnA.private_answer_memberid }</td>
-                                    <td id ="mdate" align="center"> ${prodQnA.private_answer_date }</td>
+                                   <td align="center" class="inquiry_text" id="text" style="font-weight:bold;">${prodQnA.private_answer_content }</td>
+                                   <td id ="id" align="center" class="member${prodQnA.answer_num }">${prodQnA.private_answer_memberid }</td>
+                                    <td id ="date" align="center"> ${prodQnA.private_answer_date }</td>
                                     <c:if test="${member.verify =='Y' }"><!-- 자신이 쓴 q&a 내용 삭제할 수 있음 -->
 									<td id ="commentdelete" align ="center"><p class="delete_qna" id="${prodQnA.answer_num }"><u>삭제</u></p>
 									</td>
 									</c:if>
-                                   
                                 </tr>
                               </table>
-                              </a>
 								</c:forEach>
 
 							</ul>
-							</div>
-						
+							</div>	
 		</form>
 </body>
 </html>

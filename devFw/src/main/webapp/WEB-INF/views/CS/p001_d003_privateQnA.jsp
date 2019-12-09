@@ -13,8 +13,12 @@
 
 <style>
 h2{
-    text-align: center;
-     margin-top:100px;
+  margin-left:290px;
+}
+
+span.title{
+  margin-bottom: 25px;
+  margin-left:290px;
 }
 * {
     font-family: "Noto Sans KR",sans-serif;
@@ -25,7 +29,6 @@ h2{
 }
 
 .orderHistoryHeader {
-	padding-top: 3%;
 	margin-left: 15%;
 }
 
@@ -53,9 +56,28 @@ background-color:#faf5f1;
 	margin-left:-100px;
 
 }
+#write{
+	background: black;
+    color: white;
+    border: 2px solid black;
+    margin-left: 58%;
+}
+#write:hover{
+	background:lightgray;
+	color:black;
+	border: 2px solid lightgray;
+}
 </style>
 <body>
-<h2>1:1 문의 게시판</h2>
+<c:forEach var="boardlist" items="${boardlist}" >
+<h2 style="margin-top:100px;">${boardlist.board_name }</h2>
+    <span class="title"><a href="${contextPath}/cs.do">고객센터</a> > <b>${boardlist.board_name }</b></span>
+    	<c:set var="member" value="${member }" />
+				<c:if test="${ member != null}">
+    <a href="${contextPath}/csWrite.do?board_num=${boardlist.board_num }">
+    <input type="button" id="write" value="글쓰기">
+    </a>
+    	</c:if>
 			    	<br>
 			    	   <div class="orderHistoryHeader"></div>
 	<div class="orderHistoryContainer">
@@ -85,7 +107,7 @@ background-color:#faf5f1;
                             <c:forEach var="row" items="${list}" >
                                 <tr>
                                     <td align="center">${row.private_qna_num}</td>
-                                   <td align="center"><a href="${contextPath}/privatdetail.do?private_qna_num=${row.private_qna_num }">${row.private_qna_title}</a></td>
+                                   <td align="center"><a href="${contextPath}/privatdetail.do?private_qna_num=${row.private_qna_num }&board_num=${boardlist.board_num }">${row.private_qna_title}</a></td>
                                     <td align="center">${row.private_memberid}</td>
                                     <td align="center">
                                     <fmt:formatDate value="${row.private_qna_date}" pattern="yyyy-MM-dd HH:mm" />
@@ -96,5 +118,6 @@ background-color:#faf5f1;
                     </c:choose>
 		</table>
 	</div>
+	</c:forEach>
 </body>
 </html>

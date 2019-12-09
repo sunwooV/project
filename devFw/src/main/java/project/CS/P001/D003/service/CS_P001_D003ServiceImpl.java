@@ -30,9 +30,9 @@ public class CS_P001_D003ServiceImpl implements CS_P001_D003Service {
 
     
 	@Override
-	public List privatelist(PagingVO vo) throws DataAccessException {
+	public List privatelist(Map<String, Object> searchMap) throws DataAccessException {
 		List privatelist = null;
-		privatelist = cs_p001_d003_DAO.privatelist(vo);
+		privatelist = cs_p001_d003_DAO.privatelist(searchMap);
 		return privatelist;
 	}
 
@@ -65,6 +65,12 @@ public class CS_P001_D003ServiceImpl implements CS_P001_D003Service {
 	@Override
 	public List<CS_P001_D003VO> selectcomment(Map<String, Object> searchMap) throws DataAccessException {
 		List<CS_P001_D003VO> list =  cs_p001_d003_DAO.selectcomment(searchMap); 
+		return list;
+	}
+	
+	@Override
+	public List<CS_P001_D003VO> selectboard(Map<String, Object> searchMap) throws DataAccessException {
+		List<CS_P001_D003VO> list =  cs_p001_d003_DAO.selectboard(searchMap); 
 		return list;
 	}
 	

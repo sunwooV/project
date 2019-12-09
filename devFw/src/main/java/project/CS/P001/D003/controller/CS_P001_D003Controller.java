@@ -14,13 +14,13 @@ public interface CS_P001_D003Controller {
 	
 
 
-	public ModelAndView privateInit(PagingVO vo, @RequestParam(value = "nowPage", required = false) String nowPage,
-			@RequestParam(value = "cntPerPage", required = false) String cntPerPage, HttpServletRequest request,
-			HttpServletResponse response) throws Exception;
 	
-	public ModelAndView eventDetail(@RequestParam("private_qna_num") String private_qna_num, PagingVO vo, @RequestParam(value = "nowPage", required = false) String nowPage,
-			@RequestParam(value = "cntPerPage", required = false) String cntPerPage,HttpServletRequest request,
+	public ModelAndView eventDetail(String private_qna_num, PagingVO vo, String board_num, String nowPage,
+			String cntPerPage,HttpServletRequest request,
 		HttpServletResponse response) throws Exception;
 
 	public void managecomment(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	ModelAndView privateInit(PagingVO vo, String nowPage, String cntPerPage, String board_num, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
 }

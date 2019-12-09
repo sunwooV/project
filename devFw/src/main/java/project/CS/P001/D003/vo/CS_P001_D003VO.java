@@ -17,6 +17,8 @@ public class CS_P001_D003VO {
 	private String answer_num;
 	private String private_answer_memberid;
 	private String private_answer_yn;
+	private String board_num;
+	private String board_name;
 	
 	
 	
@@ -80,7 +82,23 @@ public class CS_P001_D003VO {
 	public void setPrivate_answer_yn(String private_answer_yn) {
 		this.private_answer_yn = private_answer_yn;
 	}
+	public String getBoard_num() {
+		return board_num;
+	}
+	public void setBoard_num(String board_num) {
+		this.board_num = board_num;
+	}
+	public String getBoard_name() {
+		return board_name;
+	}
+	public void setBoard_name(String board_name) {
+		this.board_name = board_name;
+	}
+	@Override
+	public String toString() {
+		return "CS_P001_D003VO [board_num=" + board_num + ", board_name=" + board_name + "]";
+	}
 	
-
-
+	
 }
+

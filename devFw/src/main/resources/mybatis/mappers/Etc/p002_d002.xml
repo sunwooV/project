@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Ect.boarManage">
+	<resultMap id="e_p002_d002Result" type="E_P002_D002VO">
+		<result property="board_num" column="board_num" />
+		<result property="board_name" column="board_name" />
+		<result property="board_use" column="board_use" />
+	</resultMap>
+	
+		<select id="searchList" resultMap="e_p002_d002Result" parameterType="java.util.Map"> 
+      <![CDATA[
+         select board_num, board_name, board_use
+         from   board
+      ]]>
+      	<if test=" board_num != ''  and  board_num != null">
+      	<where>
+				board_num = #{board_num} 
+				</where>
+			</if>
+	</select>  
+	
+	
+	<update id="updateData" parameterType="java.util.Map">
+		update board
+		set  board_num = #{board_num}, board_name = #{board_name}, board_use = #{board_use}
+		where board_num = #{board_num}
+	</update>	
+	
+	
+	<delete id="deleteData" parameterType="java.util.Map">
+		delete board
+		where board_num = #{board_num}
+	</delete>	
+	
+	 <insert id="insertData" parameterType="java.util.Map">
+      <![CDATA[
+         INSERT INTO board (board_num,board_name, board_use)
+         values(#{board_num},#{board_name}, #{board_use})
+       ]]>
+   </insert>
+
+	
+</mapper>

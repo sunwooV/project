@@ -1,6 +1,7 @@
 package project.CS.P001.D001.vo;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Component("CS_P001_D001VO")
 public class CS_P001_D001VO {
@@ -85,5 +86,8 @@ public class CS_P001_D001VO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
+
+
+	
 
 }

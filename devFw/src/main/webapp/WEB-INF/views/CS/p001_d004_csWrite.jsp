@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="Path" value="${pageContext.request.contextPath}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,30 +59,46 @@
 	<div id="csWriteHeader" class="csWriteHeader">
 		<h2>문의 상세내역 작성</h2>
 	</div>
+	<form name="frn2" method="post" action="${contextPath}/insertboard.do">
+	<input type="hidden" id="private_memberid" name ="private_memberid" value="${member.getMemberid() }" />
 	<div class="csWriteTitle">
 		글 제목 :
-		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-		<input type="text" id="input_csWriteTitle" class="input_csWriteTitle">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<c:set var="meprivateWritember" value="${privateWrite }" />
+
+<input type="text" id="private_qna_title" name="private_qna_title" class="input_csWriteTitle" value="1:1문의합니다♡" required>
+			
+		
 	</div>
 	<div class="selectOption" id="selectOption">
-		문의 유형을 선택하세요: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
-		<select name="QType" class="selectQuestionType" id="selectQuestionType">
-			<option value="OneToOne">1:1문의</option>
-			<option value="changeAndRefund">교환 및 환불</option>
-			<option value="shipping">배송문의</option>
-			<option value="others">기타</option>
+		문의 유형을 선택하세요: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		<select name="board_num" class="selectQuestionType" id="selectQuestionType" required>
+		<c:forEach var="boardlist" items="${board}" >
+		<c:if test="${boardlist.board_num == boardlist.board_num }">
+			<option id="board_num" value="${boardlist.board_num }" selected="selected">${boardlist.board_name }</option>
+</c:if>
+			</c:forEach>
 		</select>
 	</div>
 	<div id="csWrite" class="csWrite">
-		<textarea id="csWriteDetail" class="csWriteDetail"
-			placeholder="문의 내용을 자세하게 작성해주세요.">
+
+		<textarea id="private_qna_content" class="csWriteDetail"  name="private_qna_content" required>
+		
+- 주문 번호     :
+- 주문자 성함   :
+		
+--문의 사항--
+=>
 </textarea>
 	</div>
 	<div class="csWriteSubmitButton" id="csWriteSubmitButton">
-		<button onClick="submitCsWrite()">작성 완료</button>
-		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+	<button type="submit" id=findBtn2>작성완료</button>
+
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<button onClick="cancelCsWrite()">작성 취소하기</button>
 	</div>
+	</form>
 
 </body>
 </html>

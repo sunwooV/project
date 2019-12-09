@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,9 +47,10 @@ public class CS_P001_D003ControllerImpl implements CS_P001_D003Controller{
 	   @Override
 		@RequestMapping(value = "/privateInit.do", method = { RequestMethod.GET, RequestMethod.POST })
 		public ModelAndView privateInit(PagingVO vo, @RequestParam(value = "nowPage", required = false) String nowPage,
-				@RequestParam(value = "cntPerPage", required = false) String cntPerPage, HttpServletRequest request,
+				@RequestParam(value = "cntPerPage", required = false) String cntPerPage, @RequestParam(value="board_num", required=false) String board_num, HttpServletRequest request,
 				HttpServletResponse response) throws Exception {
-			
+	
+	
 			int total = cs_p001_d003_service.countBoard();
 			System.out.println("33333333333333333333333333333333333333333" + total);
 			if (nowPage == null && cntPerPage == null) {
@@ -62,15 +63,25 @@ public class CS_P001_D003ControllerImpl implements CS_P001_D003Controller{
 			}
 
 			vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			Map<String, Object> searchMap = new HashMap();
+			Map<String, Object> dataMap = new HashMap();
+			dataMap.put("board_num", board_num);
+			searchMap.put("vo", vo);
+			searchMap.put("board_num", board_num);
+			
+			System.out.println("board_num은???" + searchMap);
 
-			List privatelist = cs_p001_d003_service.privatelist(vo);
-		
-			System.out.println("공지사항리스트" + privatelist);
+			List privatelist = cs_p001_d003_service.privatelist(searchMap);
+			
+			List<CS_P001_D003VO> boardlist = cs_p001_d003_service.selectboard(dataMap);
+
+			System.out.println("공지사항리스트" + boardlist.toString());
 
 			ModelAndView mav = new ModelAndView("CS/p001_d003_privateQnA");
 			mav.addObject("Paging", vo);
 			mav.addObject("list", privatelist);
 			mav.addObject("listSize", privatelist.size());
+			mav.addObject("boardlist", boardlist);
 		
 			return mav;
 
@@ -78,7 +89,7 @@ public class CS_P001_D003ControllerImpl implements CS_P001_D003Controller{
 
 		@Override
 		@RequestMapping(value = "/privatdetail.do", method = { RequestMethod.GET, RequestMethod.POST })
-		public ModelAndView eventDetail(@RequestParam("private_qna_num") String private_qna_num, PagingVO vo, @RequestParam(value = "nowPage", required = false) String nowPage,
+		public ModelAndView eventDetail(@RequestParam("private_qna_num") String private_qna_num, PagingVO vo, @RequestParam(value="board_num", required=false) String board_num, @RequestParam(value = "nowPage", required = false) String nowPage,
 				@RequestParam(value = "cntPerPage", required = false) String cntPerPage,HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 			request.setCharacterEncoding("utf-8");
@@ -86,7 +97,9 @@ public class CS_P001_D003ControllerImpl implements CS_P001_D003Controller{
 			Map<String, Object> dataMap = new HashMap();
 			String memberid = (String) session.getAttribute("memberid");
 
+			System.out.println("입니다아아아아아아아앙===="+private_qna_num);
 			dataMap.put("private_qna_num", private_qna_num);
+			dataMap.put("board_num", board_num);
 			dataMap.put("memberid", memberid);
 			List<Map<String, Object>> private_detail = cs_p001_d003_service.selectBoardDetail(dataMap);
 			List<CS_P001_D003VO> prodQnA = cs_p001_d003_service.selectcomment(dataMap);
@@ -103,14 +116,22 @@ public class CS_P001_D003ControllerImpl implements CS_P001_D003Controller{
 
 			vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 
-			List privatelist = cs_p001_d003_service.privatelist(vo);
-	
+			Map<String, Object> searchMap = new HashMap();
+
+			dataMap.put("board_num", board_num);
+			searchMap.put("vo", vo);
+			searchMap.put("board_num", board_num);
+
+			List privatelist = cs_p001_d003_service.privatelist(searchMap);
+			
+
 			
 			System.out.println("고객번호111111111111111111111111111111111111" + private_detail);
 			ModelAndView mav = new ModelAndView("CS/p001_d003_privateDetail");
 			mav.addObject("private_detail", private_detail.get(0));
 			mav.addObject("list", privatelist);
 			mav.addObject("prodQnA", prodQnA);
+			
 			mav.addObject("prodQnASize", prodQnA.size());
 			return mav;/* 공지사항 리스트 */
 		}	

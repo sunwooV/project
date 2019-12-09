@@ -23,9 +23,9 @@ public class CS_P001_D003DAOImpl implements CS_P001_D003DAO{
 	
 	
 	@Override
-	public List privatelist(PagingVO vo) throws DataAccessException {
+	public List privatelist(Map<String, Object> searchMap) throws DataAccessException {
 		List<CS_P001_D003DAO> privatelist = null;
-		privatelist = sqlSession.selectList("CS.private.privatelist");
+		privatelist = sqlSession.selectList("CS.private.privatelist", searchMap);
 		System.out.println("privatelist" + privatelist);
 		return privatelist;
 	}
@@ -57,6 +57,13 @@ public class CS_P001_D003DAOImpl implements CS_P001_D003DAO{
 	@Override
 	public List<CS_P001_D003VO> selectcomment(Map<String, Object> searchMap) throws DataAccessException {
 		List<CS_P001_D003VO> list = sqlSession.selectList("CS.private.selectcomment", searchMap);
+		return list;
+	}
+
+
+	@Override
+	public List<CS_P001_D003VO> selectboard(Map<String, Object> searchMap) throws DataAccessException {
+		List<CS_P001_D003VO> list = sqlSession.selectList("CS.private.selectboard",searchMap);
 		return list;
 	}
 		

@@ -172,7 +172,6 @@ input[type=text]#id, #email, #name, #approval_status {
 	<form name="update">
 		<!--  Process  -->
 		<div id="home-process-section">
-
 			<div class="w-col w-col-12">
 				<h1 style="padding-left:12%;">내 정보</h1>
 				<div class="w-tabs" data-duration-in="300" data-duration-out="100" style="margin-top: -4%;">

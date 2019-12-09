@@ -1,12 +1,9 @@
 package project.CS.P001.D004.dao;
 
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.dao.DataAccessException;
-
-import project.Buy.P001.D003.vo.B_P001_D003VO;
+import project.CS.P001.D004.vo.CS_P001_D004VO;
 
 public interface CS_P001_D004DAO {
+	
+	public int insertboard(CS_P001_D004VO board) throws Exception;
 
 }

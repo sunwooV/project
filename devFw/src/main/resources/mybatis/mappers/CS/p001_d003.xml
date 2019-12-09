@@ -11,6 +11,7 @@
         <result property="private_qna_title" column="private_qna_title" />
         <result property="private_qna_date" column="private_qna_date" />
         <result property="private_memberid" column="private_memberid" />
+        <result property="board_num" column="board_num" />
        
 	</resultMap>
 	
@@ -24,17 +25,21 @@
 	</resultMap>
 
 	
+		<resultMap id="Result02" type="CS_P001_D003VO">
+		<result property="board_num" column="board_num" />
+		<result property="board_name" column="board_name" />
+	</resultMap>
+
 	
-	<select id="privatelist" resultMap="result">
-      <![CDATA[
-         	
-      
-  	                 
- SELECT  *
-						FROM private_qna
-						WHERE rownum <= 5
-      	
+	
+	<select id="privatelist" resultMap="result"  parameterType="java.util.Map">
+      <![CDATA[  
+		SELECT  *
+		FROM private_qna
+		WHERE rownum <= 5
+		AND board_num=#{board_num }
       ]]>
+      
 
 	</select>
 	<!-- 리스트 불러오기 -->
@@ -53,6 +58,7 @@
  SELECT  *
 						FROM private_qna
 						WHERE private_qna_num=#{private_qna_num}
+					
 	]]>
 	</select>
 	
@@ -98,6 +104,18 @@
 			ORDER BY answer_num DESC
 		]]>
 	</select>
+	
+      	<select id="selectboard" resultMap="Result02" parameterType="String"> 
+      <![CDATA[
+         select board_num, board_name
+         from   board
+      ]]>
+      	<if test= "board_num != ''  and  board_num != null">
+      	<where>
+				board_num = #{board_num} 
+				</where>
+			</if>
+	</select>  
 
 	
 </mapper>
