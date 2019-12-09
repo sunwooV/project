@@ -33,12 +33,15 @@ import project.Main.P001.D001.service.M_P001_D001Service;
 import project.FleaMarket.P002.D001.dao.F_P002_D001DAO;
 import project.FleaMarket.P002.D001.service.F_P002_D001Service;
 import project.FleaMarket.P002.D001.vo.F_P002_D001VO;
+import project.FleaMarket.P002.D003.service.F_P002_D003Service;
 
 @Controller("F_P002_D001Controller")
 public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 	private static final Logger logger = LoggerFactory.getLogger(F_P002_D001ControllerImpl.class);
 	@Autowired
 	M_P001_D001Service M_P001_D001Service;
+	@Autowired
+	F_P002_D003Service d003Service;
 	@Autowired
 	F_P002_D001Service d001Service;
 	@Autowired
@@ -62,6 +65,7 @@ public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 		
 		List list = d001Service.searchList(searchMap);
 		List newProduct = M_P001_D001Service.newProduct(searchMap);
+		List storyList = d003Service.storyList(searchMap);
 		
 		System.out.println("list="+list);
 		for(int i = 0; i < list.size(); i++)
@@ -69,9 +73,17 @@ public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 			System.out.println(list.get(i));
 		}
 		System.out.println("확인 필요");
+		System.out.println("storyList="+storyList);
+		for(int i = 0; i < storyList.size(); i++)
+		{
+			System.out.println(storyList.get(i));
+		}
+		
+		
 		ModelAndView mav = new ModelAndView("FleaMarket/p002_d001_fleaMystore");
 		mav.addObject("newProduct", newProduct);
 		mav.addObject("searchList", list);
+		mav.addObject("storyList", storyList);
 		
 		System.out.println("===마지막===");
 		return mav;

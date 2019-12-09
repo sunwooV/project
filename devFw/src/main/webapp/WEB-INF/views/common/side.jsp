@@ -46,7 +46,7 @@ a{
 	</a>
 	</div>
 	<div id="openFlea">
-	<a href="./fleaCreateStoreType.do">
+	<a href="./fleaCreateStoreForm.do">
 		<img id="side" src="${contextPath }/resources/img/side/openFlea.png">
 		<p id="sideP" style="margin:0px;">스토어등록</p>
 	</a>
