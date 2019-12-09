@@ -73,7 +73,7 @@
 	});
 </script>
 <style>
-.faq_open1, .faq_open2, .faq_open3, .faq_open4 {
+.faq_open1, .faq_open2, .faq_open3, .faq_open4, .notice{
 	cursor: pointer;
 }
 </style>
@@ -127,7 +127,7 @@
 
 			<div class="row" id="cscs">
 				<div class="container" id="cs2">
-					<h3 style="padding-bottom: 2%;">
+					<h3 class="notice" style="padding-bottom: 2%;">
 						🔔공지사항🔔 <span class="glyphicon glyphicon-plus"
 							style="padding-left: 76%;"
 							onclick="location.href='./csnotice.do'"></span>

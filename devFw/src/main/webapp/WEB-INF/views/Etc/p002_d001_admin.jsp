@@ -93,7 +93,7 @@
 			<div class="myshopMain_sub3">
 				<div id="list">
 					<h3>
-						<a href="/myshop/deposits/historyList.html"><strong>게시판
+						<a href="./noticeManage.do"><strong>게시판
 								관리</strong></a>
 					</h3>
 					<p style="font-size: 11px;">

@@ -95,6 +95,8 @@
 					href="${contextPath}/cart.do">장바구니</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="${contextPath}/cs.do">고객센터</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="${contextPath}/detail1.do">ABOUT US</a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0" id="searchform" name="searchform" action="./searchProduct.do">
 				<input class="form-control mr-sm-2" type="text" id="searchbar" name="searchVal" value="" placeholder="검색어를 입력하세요♡"> 
