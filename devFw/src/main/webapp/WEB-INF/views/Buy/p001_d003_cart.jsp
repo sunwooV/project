@@ -92,11 +92,10 @@
 							id="checkProd" value="">
 							<input type="hidden" name="prod_number" value="${cartList.prod_number}"></td>
 						<td class="OHC_cont"><img src="${cartList.represent_image}"
-							name="represent_image"></td>
-						<td class="OHC_cont">${cartList.prod_title}
-							</td>
+							name="represent_image" style="width:100px; height:125px;"></td>
+						<td class="OHC_cont">${cartList.prod_title}</td>
 						<td class="OHC_cont">${cartList.cart_count}</td>
-						<td class="OHC_cont"></td>
+						<td class="OHC_cont">${cartList.prod_price}</td>
 						<td class="OHC_cont"><span class="shippingFee"
 							name="shippingFee"></span></td>
 					</tr>

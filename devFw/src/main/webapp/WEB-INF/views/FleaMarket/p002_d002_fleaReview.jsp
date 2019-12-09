@@ -869,16 +869,13 @@ $.ratePicker("#rating-2", {
                 <span class="active" data-outputtype="1">전체</span><i style="display: inline-block;">|</i>
                 <span data-outputtype="2" style="display: inline-block;">포토<em data-review="photoCount">(8)</em></span>
               </div>
-              <div class="sort">
-                <div class="selbox_comm v2" data-container="reviewSelectSort">
-                  <a href="javascript:void(0);" class="btn_option ico" data-sortcd="3" data-index="0">베스트순</a>
-                  <ul class="list_option" data-selectbox="list">
-                    <li><a href="javascript:void(0);" data-sortcd="3" data-index="0">베스트순</a></li>
-                    <li><a href="javascript:void(0);" data-sortcd="2" data-index="1">최신순</a></li>
-                  </ul>
-                </div>
-              </div>
-   </div>
+            <select id="fleamarke_sort" name="fleamarket_sort" style="float:right;">
+				<option value="" selected="selected">--베스트순--</option>
+			  	<option value="베스트순" id="best">베스트순</option>
+			  	<option value="최신순" id="newest">최신순</option>
+
+			</select>
+ </div>
      <br>
          
   	<!-- 
@@ -894,7 +891,7 @@ $.ratePicker("#rating-2", {
                 <div class="area-txt">
                     <div class="area-rating">
                         <div class="img-bg" style="background-image: url(https://image.idus.com/image/files/d6c74ae706ad40f1b6f83af3d5b1334d_512.jpg)"></div>
-                        <a href="#" class="title ellipsis">크리스마스강추🔥눈꽃송이귀걸이/귀찌</a>
+                        <a href="#" class="title ellipsis">${review.review_title}</a>
                         <div class="ui_rating" data-ui="rating" data-value="5">
                             <i class="ui_icon--star-fill" data-state="active"></i>
                             <i class="ui_icon--star-fill" data-state="active"></i>
@@ -909,7 +906,7 @@ $.ratePicker("#rating-2", {
                             <span class="split crop-circ" style="background-image: url(https://image.idus.com/image/files/37cec8c9f8bd47458facc5bdacfb0b24.jpg)"> </span>
                             <div class="split">
                             
-                            	 <c:forEach var="review" items="${reviewList}" > 
+                            	 
 					               	 <span id="rating-1" style="cursor: pointer;" data-stars="4">
 					               	 	<input name="rating-1" type="hidden" value="${review.review_score}">
 					               	 	 	<c:forEach var="i" begin="1" end="${review.review_score}">
@@ -919,7 +916,7 @@ $.ratePicker("#rating-2", {
 					               	 			<i class="fa fa-star" style="color: rgb(236, 240, 241);"></i>
 					               	 		</c:forEach>
 					               	 </span>
-				          		</c:forEach>
+				          	
                             	
                                 <span class="txt-strong">뽀또</span>
                                 <span class="txt">2019년 12월 02일</span>

@@ -26,6 +26,17 @@ public class F_P002_D003ServiceImpl implements F_P002_D003Service {
 	}
 
 	@Override
+	public List<F_P002_D003VO> storyList(Map<String, Object> searchMap) throws DataAccessException {
+		List<F_P002_D003VO> list =  d003DAO.storyList(searchMap); 
+		return list;
+	}
+
+	@Override
+	public void inserStoryComment(Map<String, Object> datahMap) throws Exception {
+		d003DAO.insertStoryComment(datahMap);
+	}
+	
+	@Override
 	public List<F_P002_D003VO> searchMod(Map<String, Object> searchMap) throws DataAccessException {
 		List<F_P002_D003VO> list =  d003DAO.searchMod(searchMap);
 		return list;

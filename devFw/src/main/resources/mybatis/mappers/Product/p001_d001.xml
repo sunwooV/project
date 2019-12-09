@@ -42,44 +42,52 @@
 		            or t.tag4 like '%' ||  #{searchVal} || '%'
 		            or t.tag5 like '%' ||  #{searchVal} || '%')
 		    </if>
-		    <if test="reused != null and action == null and flea == null">
-		    	and p.reused_yn = 'y'
-		    </if>
-		    <if test="reused == null and auction != null and flea == null">
-		    	and p.auction_yn = 'y'
-		    </if>
-		    <if test="reused == null and auction == null and flea != null">
-		    	and p.flea_yn = 'y'
-		    </if>
-		    <if test="reused != null and auction != null and flea = null">
-		    	and (p.reused_yn = 'y' or p.auction_yn = 'y')
-		    </if>
-		    <if test="reused != null and auction == null and flea != null">
-		    	and (p.reused_yn = 'y' or p.flea_yn = 'y')
-		    </if>
-		    <if test="reused == null and auction != null and flea != null">
-		    	and (p.auction_yn = 'y' or p.flea_yn = 'y')
-		    </if>
-		    <if test="reused != null and auction != null and flea != null">
-		    	and (p.reused_yn = 'y' or p.auction_yn = 'y' or p.flea_yn = 'y')
-		    </if>
-		    <if test="send_way != null">
-		    	<if test="send_way == 'direct delivery'">
-		    		and p.send_way IN (#{send_way}, 'direct', 'delivery')
-		    	</if>
-		    	<if test="send_way != 'direct delivery'">
-		    		and p.send_way = #{send_way}
-		    	</if>
-		    </if>
-<!-- 		    <if test="Ccnt != null"> -->
-<!-- 		    and p.prod_category_code IN (select category_code -->
-<!-- 		                            FROM category c -->
-<!-- 		                            where high_category IN -->
-<!-- 		    	<foreach collection="category" item="item" open="(" close=")" separator="," index="index"> -->
-<!-- 		    		 #{item} -->
-<!-- 		    	</foreach> -->
-<!-- 		    	) -->
-<!-- 		    </if> -->
+		    <choose>
+		    	<when test="eachSearch != null">
+		    		<if test="division == reused">
+		    			and p.reused_yn == 'y'
+		    		</if>
+		    		<if test="division == auction">
+		    			and p.auction_yn == 'y'
+		    		</if>
+		    	</when>
+		    	<otherwise>
+		    		<if test="reused != null and action == null and flea == null">
+				    	and p.reused_yn = 'y'
+				    </if>
+				    <if test="reused == null and auction != null and flea == null">
+				    	and p.auction_yn = 'y'
+				    </if>
+				    <if test="reused == null and auction == null and flea != null">
+				    	and p.flea_yn = 'y'
+				    </if>
+				    <if test="reused != null and auction != null and flea = null">
+				    	and (p.reused_yn = 'y' or p.auction_yn = 'y')
+				    </if>
+				    <if test="reused != null and auction == null and flea != null">
+				    	and (p.reused_yn = 'y' or p.flea_yn = 'y')
+				    </if>
+				    <if test="reused == null and auction != null and flea != null">
+				    	and (p.auction_yn = 'y' or p.flea_yn = 'y')
+				    </if>
+				    <if test="reused != null and auction != null and flea != null">
+				    	and (p.reused_yn = 'y' or p.auction_yn = 'y' or p.flea_yn = 'y')
+				    </if>
+				    <if test="send_way != null">
+				    	<if test="send_way == 'direct delivery'">
+				    		and p.send_way IN ('direct delivery ', 'direct', 'delivery')
+				    	</if>
+				    	<if test="send_way == 'direct'">
+				    		and p.send_way IN (#{send_way}, 'direct delivery ')
+				    	</if>
+				    	<if test="send_way == 'delivery'">
+				    		and p.send_way IN (#{send_way}, 'direct delivery ')
+				    	</if>
+				    </if>
+		    	</otherwise>
+		    </choose>
+		    
+
 		</where>
 	</select>
 

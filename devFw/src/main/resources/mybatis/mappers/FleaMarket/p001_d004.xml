@@ -24,7 +24,7 @@
 
 	<select id="searchList" resultMap="p0001Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         select * from joinflea order by flea_code
+         select * from joinflea order by to_number(flea_code) ASC
       ]]>
 	</select>
 	

@@ -41,6 +41,16 @@
 		if(radio_prepayment_value == "예") join_prepayment_yn[0].value = 'y';
 		else join_prepayment_yn[0].value = 'n';
 	
+		var memberidCheck = $('#memberid').val();
+		
+		if(memberidCheck == "")
+		{
+			alert("로그인을 먼저 해주시기 바랍니다.");
+			frmCheck.method ="post";
+			frmCheck.action ="${contextPath}/loginInit.do";
+			frmCheck.submit();
+			return false;
+		}	
 		
 		if(frmCheck.join_name.value == "")
 		{
@@ -289,8 +299,8 @@ select {
 
 <div style="text-align:center;">
 	<input type="button" id="saveForm" name="saveForm" value="등록" onclick="frm_check()"/>
-	<input type="hidden" name="command" value="insertMember">
-    <input type="hidden" name="memberid" value="${member.getMemberid() }" />
+	<input type="hidden" id="command" name="command" value="insertMember">
+    <input type="hidden" id="memberid" name="memberid" value="${member.getMemberid() }" />
 </div>
 
 </body>

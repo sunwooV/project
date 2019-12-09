@@ -95,10 +95,12 @@
 					href="${contextPath}/cart.do">장바구니</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="${contextPath}/cs.do">고객센터</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="${contextPath}/detail1.do">ABOUT US</a></li>
 			</ul>
-			<form class="form-inline my-2 my-lg-0" id="searchform" name="searchform">
+			<form class="form-inline my-2 my-lg-0" id="searchform" name="searchform" action="./searchProduct.do">
 				<input class="form-control mr-sm-2" type="text" id="searchbar" name="searchVal" value="" placeholder="검색어를 입력하세요♡"> 
-				<input type="button" class="btn btn-secondary my-2 my-sm-0" id="btnsearch" value="Search" onclick="SearchProduct()">
+				<input type="submit" class="btn btn-secondary my-2 my-sm-0" id="btnsearch" value="Search">
 			</form>
 
 		</div>
@@ -106,52 +108,55 @@
 	<!--  -->
 	<div class="menubar">
 		<ul>
-			<li><a href="${contextPath}/aution.do" id="current">중고
+			<li><a href="${contextPath}/eachMain.do?command=reused" id="current">중고
 					거래</a>
-				<ul>
-					<li><a href="#">패션의류</a></li>
-					<li><a href="#">뷰티 잡화</a></li>
-					<li><a href="#">유아 용품</a></li>
-					<li><a href="#">가구 생활</a></li>
-					<li><a href="#">취미 컬렉션</a></li>
-					<li><a href="#">디지털</a></li>
-					<li><a href="#">컴퓨터</a></li>
-					<li><a href="#">스포츠 레저</a></li>
-					<li><a href="#">뷰티</a></li>
-					<li><a href="#">생활 가전</a></li>
-					<li><a href="#">자동차 공구</a></li>
-					<li><a href="#">도서 기타</a></li>
-				</ul></li>
-			<li><a href="#" id="current">경&nbsp&nbsp&nbsp&nbsp&nbsp매</a>
-				<ul>
-					<li><a href="#">패션의류</a></li>
-					<li><a href="#">뷰티 잡화</a></li>
-					<li><a href="#">유아 용품</a></li>
-					<li><a href="#">가구 생활</a></li>
-					<li><a href="#">취미 컬렉션</a></li>
-					<li><a href="#">디지털</a></li>
-					<li><a href="#">컴퓨터</a></li>
-					<li><a href="#">스포츠 레저</a></li>
-					<li><a href="#">뷰티</a></li>
-					<li><a href="#">생활 가전</a></li>
-					<li><a href="#">자동차 공구</a></li>
-					<li><a href="#">도서 기타</a></li>
-				</ul></li>
+<!-- 				<ul> -->
+<!-- 					<li><a href="#">패션의류</a></li> -->
+<!-- 					<li><a href="#">뷰티 잡화</a></li> -->
+<!-- 					<li><a href="#">유아 용품</a></li> -->
+<!-- 					<li><a href="#">가구 생활</a></li> -->
+<!-- 					<li><a href="#">취미 컬렉션</a></li> -->
+<!-- 					<li><a href="#">디지털</a></li> -->
+<!-- 					<li><a href="#">컴퓨터</a></li> -->
+<!-- 					<li><a href="#">스포츠 레저</a></li> -->
+<!-- 					<li><a href="#">뷰티</a></li> -->
+<!-- 					<li><a href="#">생활 가전</a></li> -->
+<!-- 					<li><a href="#">자동차 공구</a></li> -->
+<!-- 					<li><a href="#">도서 기타</a></li> -->
+<!-- 				</ul> -->
+				</li>
+			<li><a href="${contextPath}/eachMain.do?command=auction" id="current">경&nbsp&nbsp&nbsp&nbsp&nbsp매</a>
+<!-- 				<ul> -->
+<!-- 					<li><a href="#">패션의류</a></li> -->
+<!-- 					<li><a href="#">뷰티 잡화</a></li> -->
+<!-- 					<li><a href="#">유아 용품</a></li> -->
+<!-- 					<li><a href="#">가구 생활</a></li> -->
+<!-- 					<li><a href="#">취미 컬렉션</a></li> -->
+<!-- 					<li><a href="#">디지털</a></li> -->
+<!-- 					<li><a href="#">컴퓨터</a></li> -->
+<!-- 					<li><a href="#">스포츠 레저</a></li> -->
+<!-- 					<li><a href="#">뷰티</a></li> -->
+<!-- 					<li><a href="#">생활 가전</a></li> -->
+<!-- 					<li><a href="#">자동차 공구</a></li> -->
+<!-- 					<li><a href="#">도서 기타</a></li> -->
+<!-- 				</ul> -->
+				</li>
 			<li><a href="/devFw/fleaMain.do" id="current">플리 마켓</a>
-				<ul>
-					<li><a href="#">패션의류</a></li>
-					<li><a href="#">뷰티 잡화</a></li>
-					<li><a href="#">유아 용품</a></li>
-					<li><a href="#">가구 생활</a></li>
-					<li><a href="#">취미 컬렉션</a></li>
-					<li><a href="#">디지털</a></li>
-					<li><a href="#">컴퓨터</a></li>
-					<li><a href="#">스포츠 레저</a></li>
-					<li><a href="#">뷰티</a></li>
-					<li><a href="#">생활 가전</a></li>
-					<li><a href="#">자동차 공구</a></li>
-					<li><a href="#">도서 기타</a></li>
-				</ul></li>
+<!-- 				<ul> -->
+<!-- 					<li><a href="#">패션의류</a></li> -->
+<!-- 					<li><a href="#">뷰티 잡화</a></li> -->
+<!-- 					<li><a href="#">유아 용품</a></li> -->
+<!-- 					<li><a href="#">가구 생활</a></li> -->
+<!-- 					<li><a href="#">취미 컬렉션</a></li> -->
+<!-- 					<li><a href="#">디지털</a></li> -->
+<!-- 					<li><a href="#">컴퓨터</a></li> -->
+<!-- 					<li><a href="#">스포츠 레저</a></li> -->
+<!-- 					<li><a href="#">뷰티</a></li> -->
+<!-- 					<li><a href="#">생활 가전</a></li> -->
+<!-- 					<li><a href="#">자동차 공구</a></li> -->
+<!-- 					<li><a href="#">도서 기타</a></li> -->
+<!-- 				</ul> -->
+				</li>
 		</ul>
 	</div>
 </body>

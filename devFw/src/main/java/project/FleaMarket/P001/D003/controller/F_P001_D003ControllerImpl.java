@@ -50,7 +50,6 @@ public class F_P001_D003ControllerImpl implements F_P001_D003Controller {
 		ModelAndView mav = new ModelAndView("FleaMarket/p001_d003_fleaCreateStoreProgress");
 		mav.addObject("searchList", list);
 		return mav;
-		
 	}	
 	
 }

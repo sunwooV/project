@@ -114,7 +114,7 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 						<div class="col-sm-3">
 							<div class="thumbnail">
 								<h4>중고상품</h4>
-								<img src="./img/케익.jpg" width=230, height=240 alt="...">
+								<img src="${contextPath }/resources/img/케익.jpg" width=230, height=240 alt="...">
 								<div class="caption">
 									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
 									<p id="p">7000원</p>

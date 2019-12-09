@@ -81,7 +81,7 @@ public class B_P002_D002ControllerImpl implements B_P002_D002Controller {
 		return resEnt;
 	}
 	
-	//DB에 있는 리뷰 화면에 뿌리기
+	
 
 
 	

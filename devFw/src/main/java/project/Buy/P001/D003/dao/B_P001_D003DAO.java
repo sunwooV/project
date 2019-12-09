@@ -13,5 +13,6 @@ public interface B_P001_D003DAO {
 	 public void insertCart(Map<String, Object> searchMap) throws DataAccessException;
 	 public void updateCart(Map<String, Object> searchMap) throws DataAccessException;
 	 public void deleteCart(Map<String, Object> searchMap) throws DataAccessException;
+	 public int checkEqlProd(Map<String, Object> searchMap) throws DataAccessException;
 
 }

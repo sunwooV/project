@@ -26,6 +26,11 @@ public class S_P001_D005DAOImpl implements S_P001_D005DAO{
 	
 	//상품 삭제
 	@Override
+	public void deleteBid(Map<String, Object> datahMap) throws DataAccessException {
+		sqlSession.update("Sell.p001_d005.deleteBid", datahMap);
+	}
+	
+	@Override
 	public void deleteTag(Map<String, Object> datahMap) throws DataAccessException {
 		sqlSession.update("Sell.p001_d005.deleteTag", datahMap);
 	}

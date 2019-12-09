@@ -13,9 +13,25 @@
 	$(document).on('click', '#detailSearch' , function(){
 		var frm = document.searchForm;
 		
-		frm.method="get";
-		frm.action="./searchProduct.do";
-		frm.submit();
+		if($("#eachSearch").val() == '중고'){
+			document.getElementById("eachSearch").value="중고";
+			document.getElementById("command").value="reused";
+			
+			frm.method="get";
+			frm.action="./eachsearchProduct.do";
+			frm.submit();
+		} else if($("#eachSearch").val() == '경매'){
+			document.getElementById("eachSearch").value="경매";
+			
+			document.getElementById("command").value="auction";
+			frm.method="get";
+			frm.action="./eachsearchProduct.do";
+			frm.submit();
+		} else{
+			frm.method="get";
+			frm.action="./searchProduct.do";
+			frm.submit();
+		}
 	});
 </script>
 <style>
@@ -109,21 +125,67 @@ label{
 .right li:hover ul {
 	display:block;   /* 마우스 커서 올리면 서브메뉴 보이게 하기 */
 }
+
+.eachTitle{
+	margin-left:50px;
+}
+#search {
+    position: absolute;
+    top: 180px;
+    left: 700px;
+    width: 700px;
+}
+#eachsearchbar {
+    width: 65%;
+}
 </style>
 <script src="//code.jquery.com/jquery.min.js"></script>
 </head>
 <body>
-<form name="searchForm">
+
+<c:set var="eachSearch" value="${eachSearch }"/>
 <c:set var="searchVal" value="${searchVal }"/>
 <c:set var="size" value="${size }"/>
 <c:set var="command" value="${command }"/>
 <input type="hidden" name="searchVal" value="${searchVal }">
 <div class="container">
-<br>
+<br><br>
 
+<c:if test="${eachSearch != null }">
+	<c:if test="${eachSearch == '중고' }">
+		<h1><a class="eachTitle" href="./eachMain.do?command=reused" style="text-decoration: none;">중고</a></h1><br>
+		<form class="form-inline my-2 my-lg-0" id="search" name="searchform" method="get" action="./eachsearchProduct.do">
+			<input class="form-control mr-sm-2" type="text" id="eachsearchbar" name="searchVal" value="" placeholder="검색어를 입력하세요♡"> 
+			<input type="submit" class="btn btn-secondary my-2 my-sm-0" id="btneachsearch" value="Search">
+			<input type="hidden" id="division" name="division" value="reused">
+			<input type="hidden" id="eachSearch" name="eachSearch" value="중고">
+		</form>
+	</c:if>
+	<c:if test="${eachSearch == '경매' }">
+		<h1><a class="eachTitle" href="./eachMain.do?command=auction" style="text-decoration:none;">경매</a></h1><br>
+		<form class="form-inline my-2 my-lg-0" id="search" name="searchform" method="get" action="./eachsearchProduct.do">
+			<input class="form-control mr-sm-2" type="text" id="eachsearchbar" name="searchVal" value="" placeholder="검색어를 입력하세요♡"> 
+			<input type="submit" class="btn btn-secondary my-2 my-sm-0" id="btneachsearch" value="Search">
+			<input type="hidden" id="division" name="division" value="auction">
+			<input type="hidden" id="eachSearch" name="eachSearch" value="경매">
+		</form>
+	</c:if>
+</c:if>
 <hr>
+<form name="searchForm">
+<div>
 	<div class="detailSearch">
-		<input type="hidden" name="command" value="detailSearch">
+		<input type="hidden" id="command" name="command" value="detailSearch">
+		<input type="hidden" id="searchVal" name="searchVal" value="${searchVal }">
+		<c:if test="${eachSearch == '중고' }">
+			<input type="hidden" id="division" name="division" value="reused">
+			<input type="hidden" id="eachSearch" name="eachSearch" value="중고">
+		</c:if>
+		<c:if test="${eachSearch == '경매' }">
+			<input type="hidden" id="division" name="division" value="auction">
+			<input type="hidden" id="eachSearch" name="eachSearch" value="경매">
+
+		</c:if>
 		
 		<div class="title">
 			<a href="./main.do">홈</a> > <span id="accent">"${searchVal }"</span> <span style="color:black;">검색 결과</span> : <span id="group">전체 </span>(<span id="accent"><fmt:formatNumber value="${size }" type="number"/></span>개의 상품)
@@ -161,34 +223,37 @@ label{
 			</div>
 		</div>
 		<hr> --%>
+
 		<c:set var="reused" value="${reused }"/>
 		<c:set var="auction" value="${auction }"/>
 		<c:set var="flea" value="${flea }"/>
 		<c:set var="send_way" value="${send_way }"/>
-		<div class="groupSearch">
-			<div class="left"><h3>판매그룹</h3></div>
-			<div class="right">
-				<c:if test="${reused != null }">
-					<div id="subRight"><input type="checkbox" name="group_select" id="reused" value="reused" checked="checked"><label for="reused">중고상품</label></div>
-				</c:if>
-				<c:if test="${reused == null }">
-					<div id="subRight"><input type="checkbox" name="group_select" id="reused" value="reused"><label for="reused">중고상품</label></div>
-				</c:if>
-				<c:if test="${auction != null }">
-					<div id="subRight"><input type="checkbox" name="group_select" id="auction" value="auction" checked="checked"><label for="auction">경매상품</label></div>
-				</c:if>
-				<c:if test="${auction == null }">
-					<div id="subRight"><input type="checkbox" name="group_select" id="auction" value="auction"><label for="auction">경매상품</label></div>
-				</c:if>
-				<c:if test="${flea != null }">
-					<div id="subRight"><input type="checkbox" name="group_select" id="flea" value="flea" checked="checked"><label for="flea">플리마켓상품</label></div>
-				</c:if>
-				<c:if test="${flea == null }">
-					<div id="subRight"><input type="checkbox" name="group_select" id="flea" value="flea"><label for="flea">플리마켓상품</label></div>
-				</c:if>
-				
+		<c:if test="${eachSearch == null }">
+			<div class="groupSearch">
+				<div class="left"><h3>판매그룹</h3></div>
+				<div class="right">
+					<c:if test="${reused != null }">
+						<div id="subRight"><input type="checkbox" name="group_select" id="reused" value="reused" checked="checked"><label for="reused">중고상품</label></div>
+					</c:if>
+					<c:if test="${reused == null }">
+						<div id="subRight"><input type="checkbox" name="group_select" id="reused" value="reused"><label for="reused">중고상품</label></div>
+					</c:if>
+					<c:if test="${auction != null }">
+						<div id="subRight"><input type="checkbox" name="group_select" id="auction" value="auction" checked="checked"><label for="auction">경매상품</label></div>
+					</c:if>
+					<c:if test="${auction == null }">
+						<div id="subRight"><input type="checkbox" name="group_select" id="auction" value="auction"><label for="auction">경매상품</label></div>
+					</c:if>
+					<c:if test="${flea != null }">
+						<div id="subRight"><input type="checkbox" name="group_select" id="flea" value="flea" checked="checked"><label for="flea">플리마켓상품</label></div>
+					</c:if>
+					<c:if test="${flea == null }">
+						<div id="subRight"><input type="checkbox" name="group_select" id="flea" value="flea"><label for="flea">플리마켓상품</label></div>
+					</c:if>
+					
+				</div>
 			</div>
-		</div>
+		</c:if>
 		<hr>
 		<div class="send_way">
 			<div class="left"><h3>거래방법</h3></div>
@@ -211,8 +276,16 @@ label{
 				</c:if>
 			</div>
 		</div>
-		<center><input type="button" name="detailSearch" id="detailSearch" value="상세검색"></center>
-
+		<c:if test="${eachSearch == null }">
+			<center><input type="button" name="detailSearch" id="detailSearch" value="상세검색"></center>
+		</c:if>
+		<c:if test="${eachSearch == '중고' }">
+			<center><input type="button" name="detailSearch" id="detailSearch" value="상세검색"></center>
+		</c:if>
+		<c:if test="${eachSearch == '경매' }">
+			<center><input type="button" name="detailSearch" id="detailSearch" value="상세검색"></center>
+		</c:if>
+		
 		<hr>
 	</div>
 	<br>
@@ -286,5 +359,7 @@ label{
 	</div>
 </div>
 </form>
+</div>
+
 </body>
 </html>

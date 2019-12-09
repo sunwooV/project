@@ -5,31 +5,44 @@
 
 <mapper namespace="FleaMarket.p002_d003">
 	<resultMap id="p002_d003_Result01" type="F_P002_D003VO"> 
-		<result property="seller_memberid" column="seller_memberid" />
-		<result property="review_group" column="review_group" />
-		<result property="review_number" column="review_number" />
-		<result property="prod_number" column="prod_number" />
-		<result property="buyer_memberid" column="buyer_memberid" />
-		<result property="review_score" column="review_score" />
-		<result property="review_title" column="review_title" />
-		<result property="review_photo" column="review_photo" />
-		<result property="review_content" column="review_content" />
-		<result property="review_date" column="review_date" />
-		<result property="flea_code" column="flea_code" />
+		<result property="flea_code" column="seller_memberid" />
+		<result property="memberid" column="review_group" />
+		<result property="story_number" column="review_number" />
+		<result property="story_write_date" column="prod_number" />
+		<result property="story_title" column="buyer_memberid" />
+		<result property="story_cotent" column="review_score" />
+		<result property="heart_count" column="heart_count" />
+
 		
 	</resultMap>
-
-	<select id="searchList" resultMap="p002_d003_Result01" parameterType="java.util.Map"> 
+	
+	<select id="storyList" resultMap="p002_d003_Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         select seller_memberid, review_group, review_number, prod_number, buyer_memberid, review_score, review_title, utl_raw.cast_to_varchar2(review_photo), review_content, review_date, flea_code      
-         from review
+         select *
+         from fleastory
       ]]>
-		<where>
-			<if test=" p_id != ''  and  p_id != null">
-				review_number = #{p_id}
+      <where>
+			<if test=" flea_code != ''  and  flea_code != null">
+				flea_code = #{flea_code}
 			</if>
 		</where>
 	</select>
+
+	<!-- Story Comment -->
+	<insert id="insertStoryComment" parameterType="java.util.Map">
+		<selectKey keyProperty="story_number" resultType="string" order="BEFORE">
+		<![CDATA[
+			SELECT nvl2((max(story_number) + 1), (max(story_number) + 1), 1)
+			FROM fleastory
+			WHERE story_number = #{story_number}
+		 ]]>
+		</selectKey>
+		<![CDATA[
+			INSERT INTO fleastory (flea_code, memberid, story_number, story_write_date, story_title, story_cotent, heart_count)
+			VALUES(#{flea_code}, #{memberid}, #{story_number}, sysdate, #{story_title}, #{story_cotent}, '0')
+		 ]]>
+	</insert>
+
 
 	<select id="searchMod" resultMap="p002_d003_Result01" parameterType="java.util.Map"> 
       <![CDATA[

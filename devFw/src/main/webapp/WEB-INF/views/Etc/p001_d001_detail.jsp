@@ -26,9 +26,9 @@
 				style="font-size: 13px; border: 1px solid black;">
 				<h1 style="font-size: 21px;">✔이용 안내</h1>
 				<li><a href="${contextPath}/detail1.do">회사 소개</a></li>
-				<li><a href="${contextPath}/detail2.do">중고거래</a></li>
-				<li><a href="${contextPath}/detail3.do">경매</a></li>
-				<li><a href="${contextPath}/detail4.do">플리마켓</a></li>
+				<li><a href="${contextPath}/detail2.do">고객보호서비스</a></li>
+				<li><a href="${contextPath}/detail3.do">안전하게 이용하기</a></li>
+				<li><a href="${contextPath}/detail4.do">이용방법</a></li>
 			</div>
 		</div>
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->
