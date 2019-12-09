@@ -13,9 +13,25 @@
 	$(document).on('click', '#detailSearch' , function(){
 		var frm = document.searchForm;
 		
-		frm.method="get";
-		frm.action="./searchProduct.do";
-		frm.submit();
+		if($("#eachSearch").val() == '중고'){
+			document.getElementById("eachSearch").value="중고";
+			document.getElementById("command").value="reused";
+			
+			frm.method="get";
+			frm.action="./eachsearchProduct.do";
+			frm.submit();
+		} else if($("#eachSearch").val() == '경매'){
+			document.getElementById("eachSearch").value="경매";
+			
+			document.getElementById("command").value="auction";
+			frm.method="get";
+			frm.action="./eachsearchProduct.do";
+			frm.submit();
+		} else{
+			frm.method="get";
+			frm.action="./searchProduct.do";
+			frm.submit();
+		}
 	});
 </script>
 <style>
@@ -134,6 +150,7 @@ label{
 <input type="hidden" name="searchVal" value="${searchVal }">
 <div class="container">
 <br><br>
+
 <c:if test="${eachSearch != null }">
 	<c:if test="${eachSearch == '중고' }">
 		<h1><a class="eachTitle" href="./eachMain.do?command=reused" style="text-decoration: none;">중고</a></h1><br>
@@ -141,7 +158,7 @@ label{
 			<input class="form-control mr-sm-2" type="text" id="eachsearchbar" name="searchVal" value="" placeholder="검색어를 입력하세요♡"> 
 			<input type="submit" class="btn btn-secondary my-2 my-sm-0" id="btneachsearch" value="Search">
 			<input type="hidden" id="division" name="division" value="reused">
-			<input type="hidden" id="eachSearch" name="eachSearch" value="중고"> 
+			<input type="hidden" id="eachSearch" name="eachSearch" value="중고">
 		</form>
 	</c:if>
 	<c:if test="${eachSearch == '경매' }">
@@ -150,7 +167,7 @@ label{
 			<input class="form-control mr-sm-2" type="text" id="eachsearchbar" name="searchVal" value="" placeholder="검색어를 입력하세요♡"> 
 			<input type="submit" class="btn btn-secondary my-2 my-sm-0" id="btneachsearch" value="Search">
 			<input type="hidden" id="division" name="division" value="auction">
-			<input type="hidden" id="eachSearch" name="eachSearch" value="경매"> 
+			<input type="hidden" id="eachSearch" name="eachSearch" value="경매">
 		</form>
 	</c:if>
 </c:if>
@@ -158,9 +175,17 @@ label{
 <form name="searchForm">
 <div>
 	<div class="detailSearch">
-		<input type="hidden" name="command" value="detailSearch">
-		
-		
+		<input type="hidden" id="command" name="command" value="detailSearch">
+		<input type="hidden" id="searchVal" name="searchVal" value="${searchVal }">
+		<c:if test="${eachSearch == '중고' }">
+			<input type="hidden" id="division" name="division" value="reused">
+			<input type="hidden" id="eachSearch" name="eachSearch" value="중고">
+		</c:if>
+		<c:if test="${eachSearch == '경매' }">
+			<input type="hidden" id="division" name="division" value="auction">
+			<input type="hidden" id="eachSearch" name="eachSearch" value="경매">
+
+		</c:if>
 		
 		<div class="title">
 			<a href="./main.do">홈</a> > <span id="accent">"${searchVal }"</span> <span style="color:black;">검색 결과</span> : <span id="group">전체 </span>(<span id="accent"><fmt:formatNumber value="${size }" type="number"/></span>개의 상품)
@@ -251,8 +276,16 @@ label{
 				</c:if>
 			</div>
 		</div>
-		<center><input type="button" name="detailSearch" id="detailSearch" value="상세검색"></center>
-
+		<c:if test="${eachSearch == null }">
+			<center><input type="button" name="detailSearch" id="detailSearch" value="상세검색"></center>
+		</c:if>
+		<c:if test="${eachSearch == '중고' }">
+			<center><input type="button" name="detailSearch" id="detailSearch" value="상세검색"></center>
+		</c:if>
+		<c:if test="${eachSearch == '경매' }">
+			<center><input type="button" name="detailSearch" id="detailSearch" value="상세검색"></center>
+		</c:if>
+		
 		<hr>
 	</div>
 	<br>

@@ -11,6 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 public interface F_P002_D004Controller {
-	public ModelAndView fleaProduct(String p_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	public ModelAndView fleaProduct(String flea_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 }

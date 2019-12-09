@@ -22,7 +22,7 @@
 		style="padding-left: 16%; padding-top: 3%; margin-right: -4%;">
 		<div class="col-sm-2" id="col">
 
-			<div class="table" id="sidebar"
+		<div class="table" id="sidebar"
 				style="font-size: 13px; border: 1px solid black;">
 				<h1 style="font-size: 21px;">✔이용 안내</h1>
 				<li><a href="${contextPath}/detail1.do">회사 소개</a></li>
@@ -34,26 +34,34 @@
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->
 		<div class="col-sm-10" style="padding-left: 3%; font-size: 37px;">
 			<h1 style="padding-bottom: 2%;">
-				<span class="glyphicon glyphicon-briefcase"></span> 회사소개
+				<span class="glyphicon glyphicon-map-marker"></span> 이용방법
 			</h1>
 
 
 			<div class="row">
-				<img id="img" src="${contextPath }/resources/img/logo.jpg" />
 				<div class="jumbotron"
-					style="margin-left: 3%; background-color: #d3d3d363; width: 86%;">
-					<p>금도끼은도끼는 중고거래,경매,플리마켓을 한번에 이용하는 MULTI IN 1 마켓입니다</p>
-					<h6>또한 구매자와 판매자가 안전거래를 할 수 있도록 안전거래 방식을 이용 합니다</h6>
+					style="margin-left: 3%; background-color: #d3d3d363; width: 86%; height:auto;">
+					<h2>☝ 구매자로서 '마켓인유' 이용하기</h2>
 					<br>
-					<p>★고객 환급 방법★</p>
-					<h6>판매자가 상품을 발송함과 동시에 구매자의 마이페이지에는 구매완료 버튼이 생성됩니다</h6>
-					<h6>구매자가 상품수령 후 구매완료 버튼을 클릭하면 상품금액은 사이트로 입금 되었다가 매월 말일 환급을 받을
-						수 있습니다</h6>
+					<h4>◎ '마켓인유'회원이면 자유롭게 물건을 구매할 수 있습니다.</h4>
 
-
+					
+					<br><br>
+					
+					<h2>✌ 판매자로서 '마켓인유' 이용하기</h2>
+					<br>
+					<h4>◎ '마켓인유'의 판매자 유형은 2가지(SELLER BASIC, SPECIAL PLUS)가 있습니다.</h4>
+					<br>
+					<h4>⇒SELLER BASIC은 (중고 + 경매)에 물품을 자유롭게 등록할 수 있습니다.</h4>
+					<h4>⇒SPECIAL PLUS는 (중고 + 경매 or 플리마켓)에 물품을 자유롭게 등록할 수 있습니다.</h4>
+					<br>
+					<h4>(SELLER BASIC판매자가 플리마켓을 운영하길 원한다면 스토어 등록을 통해 SPECIAL PLUS판매자가 될 수 있습니다.)</h4>
 				</div>
 			</div>
+
+
 		</div>
 	</div>
+	
 </body>
 </html>

@@ -34,25 +34,32 @@
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->
 		<div class="col-sm-10" style="padding-left: 3%; font-size: 37px;">
 			<h1 style="padding-bottom: 2%;">
-				<span class="glyphicon glyphicon-briefcase"></span> 회사소개
+				<span class="glyphicon glyphicon-refresh"></span> 고객보호 서비스
 			</h1>
 
 
 			<div class="row">
-				<img id="img" src="${contextPath }/resources/img/logo.jpg" />
 				<div class="jumbotron"
-					style="margin-left: 3%; background-color: #d3d3d363; width: 86%;">
-					<p>금도끼은도끼는 중고거래,경매,플리마켓을 한번에 이용하는 MULTI IN 1 마켓입니다</p>
-					<h6>또한 구매자와 판매자가 안전거래를 할 수 있도록 안전거래 방식을 이용 합니다</h6>
+					style="margin-left: 3%; background-color: #d3d3d363; width: 86%; height: auto;">
+					
+					<h2>☝ 안전거래 보장 서비스</h2>
 					<br>
-					<p>★고객 환급 방법★</p>
-					<h6>판매자가 상품을 발송함과 동시에 구매자의 마이페이지에는 구매완료 버튼이 생성됩니다</h6>
-					<h6>구매자가 상품수령 후 구매완료 버튼을 클릭하면 상품금액은 사이트로 입금 되었다가 매월 말일 환급을 받을
-						수 있습니다</h6>
+					<h4>◎ 구매자가 상품을 받기 전까지 결제 대금은 '마켓인유'에서 안전하게 보관합니다.</h4>
+					<h4>◎ 구매자가 상품을 받은 후 구매확정을 하면 판매자에게 결제 대금이 지급됩니다.</h4>
+					
+					<br><br>
+					
+					<h2>✌ 회원 인증 서비스</h2>
+					<br>
+					<h4>◎ '마켓인유'는 판매, 구매 모두 인증된 회원만 이용이 가능합니다.</h4>
+					<h4>◎ 인증 서비스로 이메일 인증 서비스를 제공합니다.</h4>
 
 
 				</div>
 			</div>
+
+
+		
 		</div>
 	</div>
 </body>

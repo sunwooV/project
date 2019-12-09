@@ -17,6 +17,8 @@
 		<result property="join_offline_time" column="join_offline_time" />
 		<result property="join_offline_location" column="join_offline_location" />
 		<result property="join_prepayment_yn" column="join_prepayment_yn" />
+		<result property="recruit_yn" column="recruit_yn" />
+		<result property="date_check" column="date_check" />
 	</resultMap>
 
 	<select id="searchList" resultMap="p0001Result01" parameterType="java.util.Map"> 

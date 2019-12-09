@@ -31,10 +31,13 @@ import org.springframework.web.servlet.ModelAndView;
 import project.FleaMarket.P002.D004.dao.F_P002_D004DAO;
 import project.FleaMarket.P002.D004.service.F_P002_D004Service;
 import project.FleaMarket.P002.D004.vo.F_P002_D004VO;
+import project.Main.P001.D001.service.M_P001_D001Service;
 
 @Controller("F_P002_D004Controller")
 public class F_P002_D004ControllerImpl implements F_P002_D004Controller {
 	private static final Logger logger = LoggerFactory.getLogger(F_P002_D004ControllerImpl.class);
+	@Autowired
+	M_P001_D001Service M_P001_D001Service;
 	@Autowired
 	F_P002_D004Service d004Service;
 	@Autowired
@@ -42,22 +45,34 @@ public class F_P002_D004ControllerImpl implements F_P002_D004Controller {
 	
 	@Override
 	@RequestMapping(value = "/fleaProduct.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView fleaProduct(@RequestParam(value="p_id", required=false) String p_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView fleaProduct(@RequestParam(value="flea_code", required=false) String flea_code, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> searchMap = new HashMap<String, Object>();
-		searchMap.put("p_id", p_id);	 
-		System.out.println("p_id =" + p_id);
+		searchMap.put("flea_code", flea_code);	 
+		System.out.println("flea_code =" +flea_code);
 		
+		System.out.println("====F_P002_D003(flea_code)==="+ flea_code);
+		List newProduct = M_P001_D001Service.newProduct(searchMap);
 		List list = d004Service.searchList(searchMap);
 		
 		for(int i = 0; i < list.size(); i++)
 		{
 			System.out.println(list.get(i));
 		}
+		System.out.println(":::::판매상품::::::");
+		for(int i = 0; i < newProduct.size(); i++)
+		{
+			System.out.println(newProduct.get(i));
+		}
 		
 		ModelAndView mav = new ModelAndView("FleaMarket/p002_d004_fleaProduct");
 		mav.addObject("searchList", list);
+		mav.addObject("newProduct", newProduct);
+		
 		return mav;
 	}
+	
+	
+	
 
 }

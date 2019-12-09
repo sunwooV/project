@@ -17,7 +17,7 @@ public class E_P001_D002ControllerImpl implements E_P001_D002Controller{
 	@RequestMapping(value = "/detail2.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView detail2(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		ModelAndView mav = new ModelAndView("Etc/p001_d002_detail");
+		ModelAndView mav = new ModelAndView("Etc/p001_d002_detail2");
 		return mav;
 	}
 }
