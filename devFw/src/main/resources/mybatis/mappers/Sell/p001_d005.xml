@@ -143,5 +143,16 @@
 		]]>
 		</where>
 	</delete>
+	
+	<delete id="deleteBid" parameterType="java.util.Map">
+		<![CDATA[
+			DELETE FROM auction_bid
+		]]>
+		<where>
+		<![CDATA[
+			prod_number = #{prod_number}
+		]]>
+		</where>
+	</delete>
 
 </mapper>
