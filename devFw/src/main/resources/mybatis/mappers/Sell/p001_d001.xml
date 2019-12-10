@@ -79,7 +79,7 @@
 	<insert id="enrollProduct" parameterType="java.util.Map">
 		<selectKey keyProperty="prod_number" resultType="int" order="BEFORE">
 		<![CDATA[
-			SELECT nvl2((max(prod_number) + 1), (max(prod_number) + 1), 1)
+			SELECT nvl2((max(to_number(prod_number)) + 1), (max(to_number(prod_number)) + 1), 1)
 			FROM product
 		 ]]>
 		</selectKey>
@@ -96,7 +96,7 @@
 				VALUES (#{prod_number}, #{reused_yn}, #{auction_yn}, #{flea_yn}, #{auction_price}, #{auction_price}, #{auction_date}, sysdate, sysdate+#{auction_date}, #{prod_category_code}, #{memberId}, #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{images})
 			 ]]>
 			</when>
-			<when test="flea_yn == y"> <!-- 플리마켓 체크했을 때 -->
+			<when test='flea_yn.equals("y")'> <!-- 플리마켓 체크했을 때 -->
 			<![CDATA[
 				INSERT INTO product (prod_number, reused_yn, auction_yn, flea_yn, prod_category_code, memberId, prod_price, prod_amount, prod_title, send_way, post_date, sale_percent, buy_price, direct_area, editor, represent_image, fleamarket)
 				VALUES (#{prod_number}, #{reused_yn}, #{auction_yn}, #{flea_yn}, #{prod_category_code}, #{memberId}, #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{images}, #{fleamarket})

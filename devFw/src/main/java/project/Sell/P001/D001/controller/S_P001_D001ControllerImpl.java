@@ -123,6 +123,8 @@ public class S_P001_D001ControllerImpl implements S_P001_D001Controller {
 			System.out.println(dataMap);
 		}
 		
+		System.out.println("dataMap 확인 !!!!__!_!_!_!_!_ " + dataMap);
+		
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders(); // 헤더변경 시 사용

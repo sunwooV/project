@@ -24,7 +24,7 @@
 	<insert id="insertQnA" parameterType="java.util.Map">
 		<selectKey keyProperty="qna_number" resultType="int" order="BEFORE">
 		<![CDATA[
-			SELECT nvl2((max(qna_number) + 1), (max(qna_number) + 1), 1)
+			SELECT nvl2((max(to_number(qna_number)) + 1), (max(to_number(qna_number)) + 1), 1)
 			FROM prodQnA
 			WHERE prod_number = #{prod_number}
 		 ]]>
@@ -58,7 +58,7 @@
 		]]>
 		</where>
 		<![CDATA[
-			ORDER BY qna_number DESC
+			ORDER BY to_number(qna_number) DESC
 		]]>
 	</select>
 

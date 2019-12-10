@@ -18,8 +18,6 @@
 		var loginCheck = document.getElementById("memberId").value;
 		var num = 0;
 		
-		
-		
 		//관심 상품 등록하기
 		$(document).on('click', '#heart', function(){
 			if(loginCheck == null || loginCheck == "") { //로그인 안되어 있을 때
@@ -1801,12 +1799,17 @@ width:fit-content;
 															</c:if>
 														</c:otherwise>
 													</c:choose>
-
 												</div></li>
 										</c:forEach>
 									</ul>
+			
 								</div>
-								<div class="paging_comm"></div>
+								<c:set var="qnaCnt" value="${qnaCnt }"/>
+								<div class="paging_comm">
+									<c:forEach var="i" begin="1" end="${qnaCnt/10 + 1 }" step="1">
+									    <p><c:out value="${i }" /></p>
+									</c:forEach>
+								</div>
 							</div>
 						</div>
 						<div id="review" class="tab-pane fade">

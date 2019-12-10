@@ -50,6 +50,7 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		Map<String, Object> searchMap2 = new HashMap<String, Object>();
 
+		Map<String, Object> paging = new HashMap<String, Object>();
 		String memberId = (String) session.getAttribute("memberid");
 		
 		searchMap.put("prod_number", prod_number);
@@ -61,6 +62,8 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		List tags = S_P001_D002Service.tagList(searchMap);
 
 		String flea_code = ((S_P001_D002VO)list.get(0)).getFleamarket();
+		
+		System.out.println("문제??" + flea_code);
 
 		if(flea_code != null) {
 			searchMap.put("flea_code", flea_code);
@@ -89,7 +92,9 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		List auction_left_date = S_P001_D002Service.auction_left_date(searchMap);
 
 		List prodQnA = S_P001_D003Service.selectQnA(searchMap); //Q&A List		
+		int qnaCnt = prodQnA.size();
 		
+		paging = paging(qnaCnt, 1, "start");
 		
 		System.out.println("tag 들 :::: " + tags);
 		
@@ -101,6 +106,10 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		mav.addObject("high_category", high_category);
 		mav.addObject("middle_category", middle_category);
 		mav.addObject("prodQnA", prodQnA);
+		
+		mav.addObject("paging", paging);
+		
+		System.out.println(paging);
 	
 		if(auction_left_date != null) {
 			mav.addObject("auction_left_date", auction_left_date);
@@ -186,5 +195,96 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 			e.printStackTrace();
 		}
 	}	
+	
+	public Map<String, Object> paging(int cnt, int nowPage, String startDivision){
+		Map<String, Object> paging = new HashMap<String, Object>();
+		int totalPage = 0;  // 전체 페이지 갯수
+		int startPage = 0;    //시작페이지
+		int endPage = 0; //종료페이지
+		int totalBlock = 0; //전체 페이지 블럭 갯수
+		int blockPageNum = 0; //한페이지에 나올 블럭갯수
+		int rowsByPage = 0;//한페이지에 나올 리스트갯수
+		int totalCount = cnt;//전체 리스트갯수
+		int block = 0; //현재 페이지가 어느 블럭에 포함되어있는지
+		int page = nowPage; //현재 페이지
+		
+		if(cnt<=10) {
+			totalPage = 1;
+			endPage = 1;
+		} else if(cnt > 10) {
+			if(cnt%10 == 0) {
+				totalPage = cnt/10;
+			} else if(cnt%10 != 0) {
+				totalPage = cnt/10 + 1;
+			}
+			
+			if(totalPage<=10) {
+				endPage = totalPage;
+			} else if (totalPage > 10){
+
+			}
+		}
+		
+		if(startDivision.equals("start")) { //처음 로딩시 페이지 1이 default
+			startPage = 1;
+			nowPage = 1;
+		} else if(!startDivision.equals("start")) {
+
+		}
+		if(nowPage%10 == 0) {
+			endPage = nowPage/10;
+		} else if(nowPage%10 != 10) {
+			if(cnt == 0) { //리스트 뽑을게 아무것도 없으면
+				endPage = 1;
+			} else if (cnt != 0){
+				if(cnt <= 10) {
+					endPage = 1;
+				} else if(cnt > 10) {
+					if(cnt%10 == 0) {
+						endPage = cnt/10;
+					} else if(cnt%10 != 0) {
+						endPage = cnt/10 + 1;
+					}
+				}
+			}
+			
+		}
+//		if(nowPage%10 == 0) {
+//			block = nowPage/10;
+//		} else if(nowPage%10 != 0) {
+//			block = nowPage/10 + 1;
+//		}
+//		
+//		
+//		
+//		if(cnt%10 == 0) { //10으로 나누어떨어지면 종료 페이지 나눈 값
+//			endPage = cnt/10;
+//		} else if(cnt%10 != 0) {
+//			endPage = (cnt/10) + 1;
+//		}
+//		
+//		if(cnt >= 10) {
+//			rowsByPage = 10;
+//			blockPageNum = 10;
+//
+//		} else if(cnt < 10) {
+//			rowsByPage = cnt;
+//			blockPageNum = endPage;
+//		}
+		
+		
+		
+		paging.put("startPage", startPage);
+		paging.put("endPage", endPage);
+		paging.put("totalPage", totalPage);
+		paging.put("blockPageNum", blockPageNum);
+		paging.put("rowsByPage", rowsByPage);
+		paging.put("totalCount", totalCount);
+		paging.put("block", block);
+		paging.put("page", page);
+		
+		return paging;
+		
+	}
 	
 }
