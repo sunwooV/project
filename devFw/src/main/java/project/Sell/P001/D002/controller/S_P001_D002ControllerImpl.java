@@ -91,10 +91,12 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		
 		List auction_left_date = S_P001_D002Service.auction_left_date(searchMap);
 
+		searchMap.put("start", 1);
+		searchMap.put("end", 10);
 		List prodQnA = S_P001_D003Service.selectQnA(searchMap); //Q&A List		
 		int qnaCnt = prodQnA.size();
-		
-		paging = paging(qnaCnt, 1, "start");
+//		
+//		paging = paging(qnaCnt, 1, "start");
 		
 		System.out.println("tag 들 :::: " + tags);
 		
@@ -106,8 +108,9 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		mav.addObject("high_category", high_category);
 		mav.addObject("middle_category", middle_category);
 		mav.addObject("prodQnA", prodQnA);
-		
+		mav.addObject("qnaCnt", qnaCnt);
 		mav.addObject("paging", paging);
+		mav.addObject("currentPage", 1);
 		
 		System.out.println(paging);
 	
@@ -196,95 +199,168 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		}
 	}	
 	
-	public Map<String, Object> paging(int cnt, int nowPage, String startDivision){
-		Map<String, Object> paging = new HashMap<String, Object>();
-		int totalPage = 0;  // 전체 페이지 갯수
-		int startPage = 0;    //시작페이지
-		int endPage = 0; //종료페이지
-		int totalBlock = 0; //전체 페이지 블럭 갯수
-		int blockPageNum = 0; //한페이지에 나올 블럭갯수
-		int rowsByPage = 0;//한페이지에 나올 리스트갯수
-		int totalCount = cnt;//전체 리스트갯수
-		int block = 0; //현재 페이지가 어느 블럭에 포함되어있는지
-		int page = nowPage; //현재 페이지
+	@Override
+	@RequestMapping(value = "/paging.do", method = { RequestMethod.POST, RequestMethod.POST })
+	public void paging(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		Map<String, Object> searchMap = new HashMap<String, Object>();
+		List prodQnA = null;
 		
-		if(cnt<=10) {
-			totalPage = 1;
-			endPage = 1;
-		} else if(cnt > 10) {
-			if(cnt%10 == 0) {
-				totalPage = cnt/10;
-			} else if(cnt%10 != 0) {
-				totalPage = cnt/10 + 1;
-			}
-			
-			if(totalPage<=10) {
-				endPage = totalPage;
-			} else if (totalPage > 10){
+		System.out.println("paging.do 들어옴");
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>(); //insert data
+		Enumeration enu = request.getParameterNames();
+		String result = "";
 
-			}
+		while (enu.hasMoreElements()) { 
+			String name = (String)enu.nextElement();
+			String value = request.getParameter(name);
+			dataMap.put(name, value);
+			System.out.println("야야야야야" + dataMap);
 		}
-		
-		if(startDivision.equals("start")) { //처음 로딩시 페이지 1이 default
-			startPage = 1;
-			nowPage = 1;
-		} else if(!startDivision.equals("start")) {
 
-		}
-		if(nowPage%10 == 0) {
-			endPage = nowPage/10;
-		} else if(nowPage%10 != 10) {
-			if(cnt == 0) { //리스트 뽑을게 아무것도 없으면
-				endPage = 1;
-			} else if (cnt != 0){
-				if(cnt <= 10) {
-					endPage = 1;
-				} else if(cnt > 10) {
-					if(cnt%10 == 0) {
-						endPage = cnt/10;
-					} else if(cnt%10 != 0) {
-						endPage = cnt/10 + 1;
-					}
-				}
-			}
+		int currentPage = Integer.parseInt((String)dataMap.get("currentPage"));
+		String prod_number = (String) dataMap.get("prod_number");
+		
+		searchMap.put("prod_number", prod_number);
+	
+		searchMap.put("start", (currentPage-1)*10+1);
+		searchMap.put("end", (currentPage)*10);
+		prodQnA = S_P001_D003Service.selectQnA(searchMap);
+		System.out.println(prodQnA);
+		
+		result += "[";
+		for(int i=0;i<prodQnA.size();i++) {
+			result += "{";
+			result += "\"prod_number\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getProd_number() + "\",";
+			result += "\"qna_number\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getQna_number() + "\",";
+			result += "\"qna_content\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getQna_content() + "\",";
+			result += "\"qna_date\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getQna_date() + "\",";
+			result += "\"memberId\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getMemberId() + "\",";
+			result += "\"secretMember\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getSecretMember() + "\",";
+			result += "\"answer_yn\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getAnswer_yn() + "\",";
+			result += "\"answer_date\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getAnswer_date() + "\",";
+			result += "\"answer_content\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getAnswer_content() + "\",";
+			result += "\"secret_yn\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getSecret_yn() + "\",";
+			result += "\"currentPage\":\"" + currentPage + "\"";
+		
 			
+			result += "}";
+			if(i != prodQnA.size() -1) {
+				result += ", ";
+			}
 		}
-//		if(nowPage%10 == 0) {
-//			block = nowPage/10;
-//		} else if(nowPage%10 != 0) {
-//			block = nowPage/10 + 1;
-//		}
-//		
-//		
-//		
-//		if(cnt%10 == 0) { //10으로 나누어떨어지면 종료 페이지 나눈 값
-//			endPage = cnt/10;
-//		} else if(cnt%10 != 0) {
-//			endPage = (cnt/10) + 1;
-//		}
-//		
-//		if(cnt >= 10) {
-//			rowsByPage = 10;
-//			blockPageNum = 10;
-//
-//		} else if(cnt < 10) {
-//			rowsByPage = cnt;
-//			blockPageNum = endPage;
-//		}
+		result += "]";
+		System.out.println("result ::::: " + result);
+		//String personJson = "[{\"id\":\""+"0" +"\",\"name\":\""+"dd" +"\",\"password\":\""+"bb" +"\",\"email\":\""+"pp"+"\"}, {\"id\":\""+"123" +"\",\"name\":\""+"dd" +"\",\"password\":\""+"bb" +"\",\"email\":\""+"pp"+"\"}]";
+		//System.out.println(personJson);
 		
-		
-		
-		paging.put("startPage", startPage);
-		paging.put("endPage", endPage);
-		paging.put("totalPage", totalPage);
-		paging.put("blockPageNum", blockPageNum);
-		paging.put("rowsByPage", rowsByPage);
-		paging.put("totalCount", totalCount);
-		paging.put("block", block);
-		paging.put("page", page);
-		
-		return paging;
-		
+		try {	
+			response.getWriter().print(result);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
+	
+	
+//	public Map<String, Object> paging(int cnt, int nowPage, String startDivision){
+//		Map<String, Object> paging = new HashMap<String, Object>();
+//		int totalPage = 0;  // 전체 페이지 갯수
+//		
+//		int startPage = 0;    //시작페이지
+//		int endPage = 0; //종료페이지
+//		
+//		int totalBlock = 0; //전체 페이지 블럭 갯수
+//		int blockPageNum = 0; //한페이지에 나올 블럭갯수
+//		
+//		int rowsByPage = 0;//한페이지에 나올 리스트갯수
+//		int totalCount = cnt;//전체 리스트갯수
+//		
+//		int block = 1; //현재 페이지가 어느 블럭에 포함되어있는지
+//		int page = nowPage; //현재 페이지
+//		
+//		if(page < 10) {
+//			totalBlock = totalPage;
+//		}
+//		
+//		if(cnt<=10) {
+//			totalPage = 1;
+//			endPage = 1;
+//		} else if(cnt > 10) {
+//			if(cnt%10 == 0) {
+//				totalPage = cnt/10;
+//			} else if(cnt%10 != 0) {
+//				totalPage = cnt/10 + 1;
+//			}
+//			
+//			if(totalPage<=10) {
+//				endPage = totalPage;
+//			} else if (totalPage > 10){
+//				endPage = block * 10;
+//			}
+//		}
+//		
+//		if(startDivision.equals("start")) { //처음 로딩시 페이지 1이 default
+//			startPage = 1;
+//			nowPage = 1;
+//		} else if(!startDivision.equals("start")) {
+//
+//		}
+//		if(nowPage%10 == 0) {
+//			endPage = nowPage/10;
+//		} else if(nowPage%10 != 10) {
+//			if(cnt == 0) { //리스트 뽑을게 아무것도 없으면
+//				endPage = 1;
+//			} else if (cnt != 0){
+//				if(cnt <= 10) {
+//					endPage = 1;
+//				} else if(cnt > 10) {
+//					if(cnt%10 == 0) {
+//						endPage = cnt/10;
+//					} else if(cnt%10 != 0) {
+//						endPage = cnt/10 + 1;
+//					}
+//				}
+//			}
+//			
+//		}
+////		if(nowPage%10 == 0) {
+////			block = nowPage/10;
+////		} else if(nowPage%10 != 0) {
+////			block = nowPage/10 + 1;
+////		}
+////		
+////		
+////		
+////		if(cnt%10 == 0) { //10으로 나누어떨어지면 종료 페이지 나눈 값
+////			endPage = cnt/10;
+////		} else if(cnt%10 != 0) {
+////			endPage = (cnt/10) + 1;
+////		}
+////		
+////		if(cnt >= 10) {
+////			rowsByPage = 10;
+////			blockPageNum = 10;
+////
+////		} else if(cnt < 10) {
+////			rowsByPage = cnt;
+////			blockPageNum = endPage;
+////		}
+//		
+//		
+//		
+//		paging.put("startPage", startPage);
+//		paging.put("endPage", endPage);
+//		paging.put("totalPage", totalPage);
+//		paging.put("blockPageNum", blockPageNum);
+//		paging.put("rowsByPage", rowsByPage);
+//		paging.put("totalCount", totalCount);
+//		paging.put("block", block);
+//		paging.put("page", page);
+//		
+//		return paging;
+//		
+//	}
 	
 }

@@ -13,10 +13,144 @@
 <link rel="stylesheet" href="prettyPhoto_compressed_3.1.6/css/prettyPhoto.css" type="text/css" media="screen" charset="utf-8" />
 <script src="prettyPhoto_compressed_3.1.6/js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script> -->
 <script type="text/javascript" charset="utf-8">
-	$(document).ready(function(){
+	$(document).ready(function(){ 
 		var now = window.location.href;
 		var loginCheck = document.getElementById("memberId").value;
 		var num = 0;
+		
+		//paging
+		$(document).on('click', '#paging a', function(){ 
+            var $item = $(this);
+            var $id = $item.attr("id");
+            var selectedPage = $item.text();
+            
+            if($id == "next")    selectedPage = next;
+            if($id == "prev")    selectedPage = prev;
+            
+            var prod_number = $("#prod_number").val();
+            var prod_title = $("#prod_title").val();
+			var memberId = $("#memberId").val(); //로그인한 아이디
+			var prod_memberId = $("#prod_memberId").val() //상품 글쓴이
+			var qnaCnt = $("#qnaCnt").val();
+            
+            var page={
+            		currentPage:selectedPage,
+            		prod_number:prod_number
+            }
+            
+            $.ajax({
+				type: "post",
+				async: false,
+				url: "/devFw/paging.do",
+				data: page,
+				dataType : 'text',
+				success: function(responseData){
+					var data = JSON.parse(responseData);
+				
+					var list = "";
+					for(var i=0;i<data.length;i++){
+						list += '<li><a href="javascript:void(0)" class="faq_open" id="' + data[i].qna_number + '" name="' + data[i].secret_yn + '">'
+							 + '<input type="hidden" id="qna_memberId" value="' + data[i].memberId + '">';
+							if(data[i].answer_yn == 'y'){
+								list += '<div class="cate id="cate'+ data[i].qna_number + '">답변 완료</div>';
+							}
+							else {
+								list += '<div class="cate id="cate'+ data[i].qna_number + '"><p id="waitAnswer">답변 대기</p></div>';
+							}
+							
+							list += '<div class="cont_box">'
+							 +	'<span class="inquiry_prod">'+ prod_title + '</span>';
+							 
+							if(data[i].secret_yn == 'y'){ //비밀글일경우
+								if(memberId == prod_memberId || memberId == data[i].memberId){ //글 작성자이거나 해당 상품 게시자인 경우
+									list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + data[i].qna_content + '</span>';
+								} else { //제 3자의 경우
+									list += '<span class="inquiry_text" id="secret_text" style="font-weight:bold;">비밀글입니다.<img src="${contextPath }/resources/img/detailProduct/secret.png" style="width:20px;"></span>';
+								}
+							} else{ //비밀글이 아닐 경우
+								list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + data[i].qna_content + '</span>';
+							}
+							 
+							list += '</div>'
+							+ '<div class="user">'
+							+	'<span class="ff">' + data[i].secretMember + '</span>'
+							+ '</div>'
+							+ '<div class="date">'
+							+	'<span>' + data[i].qna_date + '</span>'
+							+ '</div>'
+							+ '</a>'
+							+ '<div class="faq_cont" style="display:none;" data-qna="listContents" data-open="open" id="a' + data[i].qna_number + '">'
+							+ '<div class="question">'+ data[i].qna_content + '</div>';
+
+							if(data[i].memberId == memberId){
+								list += '<p class="delete_qna" id="deleteQuestion"><u>삭제</u></p>';
+								
+							}
+							if(data[i].answer_yn == 'y'){
+								if(memberId == prod_memberId){
+									list += '<div class="answer" id="answer'+data[i].qna_number+'" style="display:block;">'
+										+	'<span class="ico asw">답변</span>'
+										
+										+	'<span class="tit_asw">판매자'
+										+		'<span>'+data[i].answer_date+'</span></span>'
+										+  data[i].answer_content + '<p class="delete_qna" id="deleteAnswer"><u>삭제</u></p>'
+										 + '</div>';
+										 
+			
+								}else{
+									list += '<div class="answer" id="answer'+data[i].qna_number+'" style="display:block;">'
+										+	'<span class="ico asw">답변</span>'
+										
+										+	'<span class="tit_asw">판매자'
+										+		'<span>'+data[i].answer_date+'</span></span>'
+										+  data[i].answer_content
+										 + '</div>';
+								}
+								
+							} else {
+								if(memberId == prod_memberId){
+									list += '<div class="answer" id="answer'+ data[i].qna_number + '"'
+										 +  'style="display: block;">'
+										 + '<span class="ico asw">답변</span> <span class="tit_asw">판매자'
+										 +	'<textarea id="answer_write" style="resize: none;"></textarea>'
+										 +	'<input type="button" id="answer_enroll"'
+										 + 	'class="answer_enroll" value="답변달기">'
+										 + '</span></div>';
+								}
+								else{
+									list += '<div class="answer" style="display:none;">'
+										+	'<span class="ico asw">답변</span>'
+										
+										+	'<span class="tit_asw">판매자'
+										+		'<span>'+data[i].answer_date+'</span></span>'
+										+  data[i].answer_content
+										 + '</div>';
+								}
+									 
+								
+							}
+							list += '</div>' 
+								+ '</li>';
+						}
+					$(".list_comment_inqury").html(list);
+					
+					var list2 = "";
+					for(var i=1;i<=qnaCnt/10+1;i++){
+						if(i == data[0].currentPage){
+							list2 += '<a style="color:orange;">' + i + '</a>';
+						} else{
+							list2 += '<a>' + i + '</a>';
+						}
+					}
+					$("#paging").html(list2);
+				},
+				error: function(data, textStatus){
+					alert("다시 시도해주세요.");
+				},
+				complete : function (data, textstatus){
+				}
+			});
+        });
 		
 		//관심 상품 등록하기
 		$(document).on('click', '#heart', function(){
@@ -63,7 +197,6 @@
 						complete : function (data, textstatus){
 						}
 					});
-
 				} else{ //관심 상품 해제
 					var heart = document.getElementById("heart");
 					$(this).html('<img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px;"> 관심 상품  ');
@@ -104,7 +237,6 @@
 				
 			}
 		});
-		
 		
 		//질문 적기
 		$(document).on('click', '#prod_inquiry_text', function(){
@@ -323,6 +455,7 @@
 					+ '<p class="delete_qna" id="deleteAnswer"><u>삭제</u></p>';
 					
 				
+					console.log(answerString);
 		            var answer_number = data.qna_number;
 
 		        	$("#answer"+answer_number).html(answerString);
@@ -814,7 +947,7 @@
 		};
 		
 
-	 
+		
 </script>
 <meta charset="UTF-8">
 <title>상품 상세</title>
@@ -1286,6 +1419,13 @@ width:fit-content;
 	-webkit-transition: 0.08s ease-in;
 }
 
+#paging{
+	text-align: center;
+    margin-top: 15px;
+}
+#paging > a{
+	padding-right:5px;
+}
 </style>
 </head>
 <body>
@@ -1805,11 +1945,22 @@ width:fit-content;
 			
 								</div>
 								<c:set var="qnaCnt" value="${qnaCnt }"/>
-								<div class="paging_comm">
-									<c:forEach var="i" begin="1" end="${qnaCnt/10 + 1 }" step="1">
-									    <p><c:out value="${i }" /></p>
-									</c:forEach>
-								</div>
+								<c:set var="currentPage" value="${currentPage }"/>
+								<input type="hidden" id="qnaCnt" value="${qnaCnt }">
+								<c:if test="${qnaCnt != 0 }">
+									<div class="paging_comm" id="paging">
+										<c:forEach var="i" begin="1" end="${qnaCnt/10 + 1 }" step="1">
+										
+											<c:if test="${i == currentPage }">
+											 	 <a style="color:orange;"><c:out value="${i }" /></a>
+											</c:if>
+											<c:if test="${i != currentPage }">
+												 <a><c:out value="${i }" /></a>
+											</c:if>
+										   
+										</c:forEach>
+									</div>
+								</c:if>
 							</div>
 						</div>
 						<div id="review" class="tab-pane fade">
