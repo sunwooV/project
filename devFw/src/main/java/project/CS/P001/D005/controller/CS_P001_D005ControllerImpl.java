@@ -27,13 +27,11 @@ public class CS_P001_D005ControllerImpl implements CS_P001_D005Controller{
 
 	@Override
 	@RequestMapping(value = "/csWriteComplete.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView csWriteComplete(HttpServletRequest request, HttpServletResponse response, @RequestParam("board_num") String board_num) throws Exception {
+	public ModelAndView csWriteComplete(HttpServletRequest request, HttpServletResponse response, @RequestParam(value="board_num", required = false) String board_num) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		Map<String, Object> dataMap = new HashMap();
-		dataMap.put("board_num", board_num);
-		List<CS_P001_D003VO> boardlist = cs_p001_d003_service.selectboard(dataMap);
+		System.out.println("board_num11111111111111111"+board_num);
 		ModelAndView mav = new ModelAndView("CS/p001_d005_csWriteComplete");
-		mav.addObject("boardlist", boardlist);
+		mav.addObject("board_num",board_num);
 		return mav;
 	}
 }

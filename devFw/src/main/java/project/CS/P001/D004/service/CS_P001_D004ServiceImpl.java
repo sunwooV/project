@@ -22,5 +22,11 @@ public class CS_P001_D004ServiceImpl implements CS_P001_D004Service{
 		return CS_p001_d004DAO.insertboard(board);
 	}
 
+	@Override
+	public int deleteboard(CS_P001_D004VO board) throws Exception {
+		return CS_p001_d004DAO.deleteboard(board);
+		
+	}
+
 
 	}

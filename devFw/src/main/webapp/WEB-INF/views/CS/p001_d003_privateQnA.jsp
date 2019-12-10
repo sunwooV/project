@@ -67,6 +67,12 @@ background-color:#faf5f1;
 	color:black;
 	border: 2px solid lightgray;
 }
+.contents{
+color: black;
+    border-bottom: 1px solid lightgray;
+    height: 55px;
+}
+    }
 </style>
 <body>
 <c:forEach var="boardlist" items="${boardlist}" >
@@ -86,11 +92,12 @@ background-color:#faf5f1;
 			<!-- 주문 상품 정보 테이블 상단 제목   -->
 			<thead class="orderHistoryTableTitles">
 				<tr class="OHtableTitle">
-					<th class="OHT_ttl"><span>게시판 번호<br>
+					<th class="OHT_ttl"><span>게시글 번호<br>
 					</span></th>
 					<th class="OHT_ttl"><span>제목</span></th>
 					<th class="OHT_ttl"><span>작성자</span></th>
 					<th class="OHT_ttl"><span>작성일</span></th>
+					<th class="OHT_ttl"><span>답변</span></th>
 				</tr>
 			</thead>
 	
@@ -105,13 +112,25 @@ background-color:#faf5f1;
                         </c:when>
                         <c:otherwise>
                             <c:forEach var="row" items="${list}" >
-                                <tr>
+                                <tr class="contents">
                                     <td align="center">${row.private_qna_num}</td>
+                                    <c:if test="${member.memberid == row.private_memberid}">
                                    <td align="center"><a href="${contextPath}/privatdetail.do?private_qna_num=${row.private_qna_num }&board_num=${boardlist.board_num }">${row.private_qna_title}</a></td>
+                                   </c:if>
+                                    <c:if test="${member.memberid != row.private_memberid}">
+                                   <td align="center">${row.private_qna_title}</td>
+                                   </c:if>
                                     <td align="center">${row.private_memberid}</td>
                                     <td align="center">
                                     <fmt:formatDate value="${row.private_qna_date}" pattern="yyyy-MM-dd HH:mm" />
                                      </td>
+                                     <c:if test="${row.private_answer_yn =='N' }">
+                                      <td align="center">답변대기</td>
+                                     </c:if>
+                                       <c:if test="${row.private_answer_yn =='Y' }">
+                                      <td align="center">답변완료</td>
+                                     </c:if>
+                                    
                                 </tr>
                             </c:forEach>
                         </c:otherwise> 

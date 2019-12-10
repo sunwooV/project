@@ -49,7 +49,9 @@
 </style>
 </head>
 <body>
-<c:forEach var="board" items="${boardlist}" >
+<c:set var="board_num" value="${board_num }"/>
+<input type="hidden" id="board_num" name="board_num" value="${board_num }">
+
 <div id="ttl_content_csWriteComplete">
 		<div class="contentText">
 			문의 접수가 완료되었습니다.<br> <br>
@@ -59,9 +61,8 @@
 				onClick="location.href='${Path}/main.do'">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			 <input type="button"
-				id="StyleOfButton" value="목록보기" onClick="location.href='${Path}/privateInit.do?board_num=${board.board_num }'">
+				id="StyleOfButton" value="목록보기" onClick="location.href='${Path}/privateInit.do?board_num=${board_num }'">
 		</div>
 	</div>
-	</c:forEach>
 </body>
 </html>

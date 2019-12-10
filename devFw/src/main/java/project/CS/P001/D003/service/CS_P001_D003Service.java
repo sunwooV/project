@@ -17,6 +17,7 @@ public interface CS_P001_D003Service {
 	List<CS_P001_D003VO> selectcomment(Map<String, Object> searchMap) throws DataAccessException;
 	void deletecomment(Map<String, Object> datahMap) throws Exception;
 	List<CS_P001_D003VO> selectboard(Map<String, Object> datahMap) throws DataAccessException;
+	public void updateYN(Map<String, Object> dataMap);
 
 
 }

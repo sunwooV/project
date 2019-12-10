@@ -12,6 +12,8 @@
         <result property="private_qna_date" column="private_qna_date" />
         <result property="private_memberid" column="private_memberid" />
         <result property="board_num" column="board_num" />
+        <result property="private_answer_yn" column="private_answer_yn" />
+        
        
 	</resultMap>
 	
@@ -22,6 +24,7 @@
 		<result property="private_answer_content" column="private_answer_content" />
 		<result property="private_answer_date" column="private_answer_date" />
 		 <result property="private_answer_yn" column="private_answer_yn"/>
+		 <result property="board_num" column="board_num" />
 	</resultMap>
 
 	
@@ -36,8 +39,7 @@
       <![CDATA[  
 		SELECT  *
 		FROM private_qna
-		WHERE rownum <= 5
-		AND board_num=#{board_num }
+		WHERE board_num=#{board_num }
       ]]>
       
 
@@ -58,6 +60,7 @@
  SELECT  *
 						FROM private_qna
 						WHERE private_qna_num=#{private_qna_num}
+						AND board_num=#{board_num}
 					
 	]]>
 	</select>
@@ -69,14 +72,27 @@
 		<![CDATA[
 			SELECT nvl2((max(answer_num) + 1), (max(answer_num) + 1), 1)
 			FROM private_answer
-			WHERE private_qna_num = #{private_qna_num}
+			WHERE private_qna_num = #{private_qna_num} AND board_num=#{board_num}
 		 ]]>
 		</selectKey>
 		<![CDATA[
-			INSERT INTO private_answer (private_qna_num, answer_num, private_answer_memberid, private_answer_date, private_answer_content,  private_answer_yn)
-			VALUES(#{private_qna_num}, #{answer_num}, #{private_answer_memberid}, sysdate, #{private_answer_content}, 'Y')
+			INSERT INTO private_answer (private_qna_num, answer_num,board_num,private_answer_memberid, private_answer_date, private_answer_content)
+			VALUES(#{private_qna_num}, #{answer_num}, #{board_num}, #{private_answer_memberid}, sysdate, #{private_answer_content})
 		 ]]>
 	</insert>
+	
+		<update id="updateYN" parameterType="java.util.Map">
+	<![CDATA[
+			UPDATE private_qna
+			SET private_answer_yn='Y'
+	 ]]>
+	 <where>
+	 <![CDATA[
+			private_qna_num=#{private_qna_num}
+			AND board_num=#{board_num }
+	 ]]>
+	 </where>
+	 </update>
 	
 	<delete id="deletecomment" parameterType="java.util.Map">
 		<![CDATA[
@@ -85,19 +101,20 @@
 		 <where>
 		 <![CDATA[
 		 	private_qna_num = #{private_qna_num}
-		 	AND answer_num = #{answer_num}
+		 	AND answer_num = #{answer_num} AND board_num = #{board_num}
 		 ]]>
 		 </where>
 	</delete>
 	
 	<select id="selectcomment" resultMap="Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         SELECT private_qna_num, answer_num, private_answer_memberid, TO_CHAR(private_answer_date, 'yyyy-mm-dd HH24:MI') as private_answer_date, private_answer_content, private_answer_yn
+         SELECT private_qna_num, answer_num, board_num, private_answer_memberid, TO_CHAR(private_answer_date, 'yyyy-mm-dd HH24:MI') as private_answer_date, private_answer_content
          FROM   private_answer
       ]]>
 		<where>
 		<![CDATA[
 			private_qna_num = #{private_qna_num}
+			AND board_num = #{board_num}
 		]]>
 		</where>
 		<![CDATA[

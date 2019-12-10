@@ -82,6 +82,7 @@ public class CS_P001_D003ControllerImpl implements CS_P001_D003Controller{
 			mav.addObject("list", privatelist);
 			mav.addObject("listSize", privatelist.size());
 			mav.addObject("boardlist", boardlist);
+			
 		
 			return mav;
 
@@ -131,7 +132,8 @@ public class CS_P001_D003ControllerImpl implements CS_P001_D003Controller{
 			mav.addObject("private_detail", private_detail.get(0));
 			mav.addObject("list", privatelist);
 			mav.addObject("prodQnA", prodQnA);
-			
+			mav.addObject("board_number", board_num);
+			mav.addObject("private_qna_num", private_qna_num);
 			mav.addObject("prodQnASize", prodQnA.size());
 			return mav;/* 공지사항 리스트 */
 		}	
@@ -156,12 +158,16 @@ public class CS_P001_D003ControllerImpl implements CS_P001_D003Controller{
 			}
 			
 			String private_qna_num = (String)dataMap.get("private_qna_num");
+			String board_num = (String)dataMap.get("board_num");
+			System.out.println("보드넘입니다======"+private_qna_num);
 			String command = (String) dataMap.get("command");
 			searchMap.put("private_qna_num", private_qna_num);
+			searchMap.put("board_num", board_num);
 			
 		
 			if(command.equals("insert")) { //질문사항 등록일 경우
 				cs_p001_d003_service.insertcomment(dataMap);
+				cs_p001_d003_service.updateYN(dataMap);
 			} else { //질문사항 삭제일 경우
 				cs_p001_d003_service.deletecomment(dataMap);
 			}
@@ -187,6 +193,7 @@ public class CS_P001_D003ControllerImpl implements CS_P001_D003Controller{
 					result += ", ";
 				}
 			}
+			
 			result += "]";
 			System.out.println("result ::::: " + result);
 			//String personJson = "[{\"id\":\""+"0" +"\",\"name\":\""+"dd" +"\",\"password\":\""+"bb" +"\",\"email\":\""+"pp"+"\"}, {\"id\":\""+"123" +"\",\"name\":\""+"dd" +"\",\"password\":\""+"bb" +"\",\"email\":\""+"pp"+"\"}]";
