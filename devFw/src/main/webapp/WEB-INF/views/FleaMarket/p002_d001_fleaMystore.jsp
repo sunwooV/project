@@ -788,7 +788,6 @@ $(document).ready(function(){
   <div class="ui_title__txt"><font size="2"><a href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>">판매 상품</a></font></div>
         <div class="row">
          <c:forEach var="newProduct" items="${newProduct}">
-          <c:if test="${newProduct.flea_yn == 'y' }">
           <div class="col-lg-4 col-md-6 mb-4">
           
             <div class="card h-100">
@@ -827,14 +826,14 @@ $(document).ready(function(){
               </div>
             </div>
           </div>
-           </c:if>
          </c:forEach>
+         
          <a href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>" class="ui_btn--large" style="margin-left:50%;">더보기</a>
 	<br>
 	 <div class="layout-split half" style="margin-left: 15px;">
 	  <section class="cardlist_section">
    		 <div class="ui_title--sub">
-             <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaReview.do?flea_code=${flea.flea_code}">구매후기</a></font></h3>
+             <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaReview.do?flea_code=<%=flea_code%>">구매후기</a></font></h3>
          </div>
          <ul class="split-cardlist">
            <c:forEach var="bestStore" items="${searchList}">
@@ -883,10 +882,11 @@ $(document).ready(function(){
      
      
      <section class="cardlist_section">
+        <div class="ui_title--sub">
+             <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaStory.do?flea_code=<%=flea_code%>">스토리</a></font></h3>
+        </div>
         <c:forEach var="story" items="${storyList}" > 
-	  		<div class="ui_title--sub">
-	             <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaStory.do?flea_code=${flea.flea_code}">스토리</a></font></h3>
-	         </div>
+	  		
 	                <ul class="split-cardlist lines5">
 	                        <li class="ui_card--side">
 	                            <div class="ui_card__inner">

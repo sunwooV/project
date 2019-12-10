@@ -664,14 +664,19 @@ $(document).ready(function(){
 		var story_cotent = $('#prod_story_text').val();
 		var story_title = $('.story_title_text').val();
 		var command = 'insert';
+		var flea_code = <%=flea_code%>;
+		var memberId = $("#memberId").val();
 		
-		alert(story_cotent + "/" + story_title + "/" + command);
+		alert(story_cotent + "/" + story_title + "/" + command + "/" + flea_code + "/" + memberId);
 		
 		var data = {
 				story_title: story_title,
 				story_cotent: story_cotent,
-				command: command
+				command: command,
+				flea_code: flea_code,
+				memberId: memberId
 		}
+		
 		
 		$.ajax({
 			type: "post",
@@ -681,28 +686,19 @@ $(document).ready(function(){
 			dataType : 'text',
 			success: function(responseData){
 				var test = document.getElementById("prod_story_text").value = "";
-			
-				
 				var data = JSON.parse(responseData);
-				
-	            /* if(jsonInfo.error.error_yn == 'Y'){
-	        	   alert(jsonInfo.error.error_text);
-	        	   return;
-	            } */
-	            //console.log(data.length);
+				alert(data);
 				var list = '';
-				
-
+			
 				for(var i=0;i<data.length;i++){
+					list += '<li><a href="javascript:void(0)" class="faq_open" id="' + data[i].qna_number + '">'
 					list += '<div class="cont_box">'
 					 +	'<span class="inquiry_prod">'+ story_title + '</span>';
-					
-					list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + story_cotent + '</span>';
-
+					list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + data[i].story_cotent + '</span>';
 					list += '</div>' 
 						+ '</li>';
 				}
-			$(".masonry-grid").html(list);
+			$(".list_comment_inqury").html(list);
 			},
 			error: function(data, textStatus){
 				alert("다시 시도해주세요.");
@@ -871,7 +867,7 @@ $.ratePicker("#rating-2", {
                 <span class="rv_count" data-review="count">
 					(<em class="num">10</em>)
 				</span>
-             
+             <input type="hidden" id="memberId" value="${member.getMemberid() }" /> <br>
              </h3>
           
          </div>
@@ -900,6 +896,32 @@ $.ratePicker("#rating-2", {
 			<div class="btn_area">
 				<input type="button" class="enrollstory" id="buy" value="등록">
 				<input type="button" class="cancelstory" id="cart" value="취소">
+			</div>
+			<div class="listWrapper">
+					<div class="iqry_comments_area">
+						<ul class="list_comment_inqury">
+						 <c:forEach var="story" items="${storyList}" > 
+								<li><a href="javascript:void(0)" class="faq_open" id="${story.story_number }">
+										<input type="hidden" id="story_memberId" value="${story.memberid }">
+							
+										<div class="cont_box">
+											<span class="inquiry_prod">${story.story_title }</span>
+												
+												
+										</div>
+										
+										<div class="user">
+											<span class="member${story.story_number }">${story.secretMember }</span>
+										</div>
+										<div class="date">
+											<span>${story.story_write_date }</span>
+										</div>
+									</a>
+								</li>
+							</c:forEach>
+						</ul>
+					</div>
+					<div class="paging_comm"></div>
 			</div>
 		</div>
 		
@@ -975,17 +997,9 @@ $.ratePicker("#rating-2", {
             </c:forEach>
         </li>
      </ul>
-
-	   
-	   
-
-  
-   
-         
- 
     </div>
   </div>
-  </div>
+</div>
 
 
   

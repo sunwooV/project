@@ -60,7 +60,7 @@ public class F_P001_D002ControllerImpl implements F_P001_D002Controller {
 		return mav;
 	}
 	
-	@Scheduled(fixedRate = 10000)
+	@Scheduled(fixedRate = 500000)
 	public void date_check() throws Exception {
 		System.out.println("=============모집 기간 확인=============");
 		Map<String, Object> dataMap = new HashMap<String, Object>();

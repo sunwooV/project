@@ -10,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import project.FleaMarket.P002.D003.vo.F_P002_D003VO;
+import project.Sell.P001.D003.vo.S_P001_D003VO;
 
 
 @Repository("F_P002_D003DAO")
@@ -55,6 +56,13 @@ public class F_P002_D003DAOImpl implements F_P002_D003DAO {
 		return null;
 	}
 
+	@Override
+	public List<F_P002_D003VO> selectStory(Map<String, Object> searchMap) throws DataAccessException {
+		List<F_P002_D003VO> list = sqlSession.selectList("FleaMarket.p002_d003.selectStory", searchMap);
+		System.out.println(":::요기가 F_P002_D003DAO 확인::::");
+		return list;
+	}
+	
 	@Override
 	public void updateMember(Map<String, Object> datahMap) throws DataAccessException {
 		sqlSession.update("hm.F_P002_D003.updateMember", datahMap);

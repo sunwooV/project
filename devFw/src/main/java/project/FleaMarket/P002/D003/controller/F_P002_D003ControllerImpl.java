@@ -44,6 +44,8 @@ public class F_P002_D003ControllerImpl implements F_P002_D003Controller {
 	F_P002_D001Service d001Service;
 	@Autowired
 	F_P002_D003VO d003VO;
+	@Autowired
+	private HttpSession session;
 	
 	@Override
 	@RequestMapping(value = "/fleaStory.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -51,8 +53,9 @@ public class F_P002_D003ControllerImpl implements F_P002_D003Controller {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		
-		searchMap.put("p_id", p_id);	 
-		System.out.println("p_id=" + p_id);
+		String memberId = (String) session.getAttribute("memberid");
+		System.out.println("memberid = "+ memberId);
+		searchMap.put("memberId", memberId);
 		
 		searchMap.put("flea_code", flea_code);	 
 		System.out.println("flea_code =" +flea_code);
@@ -74,7 +77,7 @@ public class F_P002_D003ControllerImpl implements F_P002_D003Controller {
 		
 		ModelAndView mav = new ModelAndView("FleaMarket/p002_d003_fleaStory");
 		mav.addObject("searchList", list);
-		mav.addObject("reviewList", storyList);
+		mav.addObject("storyList", storyList);
 		return mav;
 	}
 
@@ -83,8 +86,11 @@ public class F_P002_D003ControllerImpl implements F_P002_D003Controller {
 	public void storyComment(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
+		Map<String, Object> searchMap = new HashMap<String, Object>(); //select data
 		List commentList = null;
 		String result = "";
+		
+		System.out.println("왜 안뜨지지이이이이!!!!!!!!");
 		
 		Map<String, Object> dataMap = new HashMap<String, Object>(); //insert data
 		Enumeration enu = request.getParameterNames();
@@ -98,47 +104,45 @@ public class F_P002_D003ControllerImpl implements F_P002_D003Controller {
 		
 		System.out.println("===============storyComment:::::");
 		
+		String flea_code = (String) dataMap.get("flea_code");
 		String command = (String) dataMap.get("command");
-		System.out.println("===========storyComment:::command:::"+command);
-		
+		System.out.println("===========storyComment:::command:::" + command + "/" + flea_code);
+		searchMap.put("flea_code", flea_code);
 		
 		if(command.equals("insert")) { //질문사항 등록일 경우
 			System.out.println("====INSERT====");
 			d003Service.inserStoryComment(dataMap);
 		} 
+		
+	//	commentList = d003Service.selectStory(searchMap);
+		//System.out.println(commentList);
+	
 		/*
-		//else { //질문사항 삭제일 경우
-		//	d003Service.deleteQnA(dataMap);
-		//}
-		
-		prodQnA = S_P001_D003Service.selectQnA(searchMap);
-		System.out.println(prodQnA);
-		
 		result += "[";
-		for(int i=0;i<prodQnA.size();i++) {
+		for(int i=0;i<commentList.size();i++) {
 			result += "{";
-			result += "\"prod_number\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getProd_number() + "\",";
-			result += "\"qna_number\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getQna_number() + "\",";
-			result += "\"qna_content\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getQna_content() + "\",";
-			result += "\"qna_date\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getQna_date() + "\",";
-			result += "\"memberId\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getMemberId() + "\",";
-			result += "\"secretMember\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getSecretMember() + "\",";
-			result += "\"answer_yn\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getAnswer_yn() + "\",";
-			result += "\"answer_date\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getAnswer_date() + "\",";
-			result += "\"answer_content\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getAnswer_content() + "\",";
-			result += "\"secret_yn\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getSecret_yn() + "\"";
-			
+			result += "\"prod_number\":\"" + ((F_P002_D003VO)commentList.get(i)).getFlea_code() + "\",";
+			result += "\"qna_number\":\"" + ((F_P002_D003VO)commentList.get(i)).getMemberid() + "\",";
+			result += "\"qna_content\":\"" + ((F_P002_D003VO)commentList.get(i)).getStory_number() + "\",";
+			result += "\"qna_date\":\"" + ((F_P002_D003VO)commentList.get(i)).getStory_write_date() + "\",";
+			result += "\"memberId\":\"" + ((F_P002_D003VO)commentList.get(i)).getStory_title() + "\",";
+			result += "\"secretMember\":\"" + ((F_P002_D003VO)commentList.get(i)).getStory_cotent() + "\",";
+			result += "\"answer_yn\":\"" + ((F_P002_D003VO)commentList.get(i)).getHeart_count() + "\",";
+			result += "\"answer_date\":\"" + ((F_P002_D003VO)commentList.get(i)).getSecretMember() + "\",";
+
 			result += "}";
-			if(i != prodQnA.size() -1) {
+			if(i != commentList.size() -1) {
 				result += ", ";
 			}
 		}
 		result += "]";
 		System.out.println("result ::::: " + result);
+		
+		*/
+		
 		//String personJson = "[{\"id\":\""+"0" +"\",\"name\":\""+"dd" +"\",\"password\":\""+"bb" +"\",\"email\":\""+"pp"+"\"}, {\"id\":\""+"123" +"\",\"name\":\""+"dd" +"\",\"password\":\""+"bb" +"\",\"email\":\""+"pp"+"\"}]";
 		//System.out.println(personJson);
 		
-		*/
 		try {	
 			response.getWriter().print(result);
 		} catch(IOException e) {
