@@ -13,5 +13,5 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public interface C_P002_D006Controller {
 	
 	ModelAndView mypageQnA(HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	public void mypageDeleteqna(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
