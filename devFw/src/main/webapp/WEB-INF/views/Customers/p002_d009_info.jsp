@@ -2,9 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	session.removeAttribute("member");
-%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -33,9 +30,21 @@
 		window.open("${contextPath}/out_pw_check.do", "a",
 				"width=400, height=300, left=100, top=50");
 	}
-	$(function() {
-		if ($("#pwForm").submit(function() {
-			if ($("#pw").val() !== $("#pw2").val()) {
+
+	function update_info() {
+		var frm = document.update;
+		frm.method = "POST";
+		frm.action = "./update.do";
+		alert("수정 완료.");
+		frm.submit();
+	}
+	
+
+	$(document).on('click', '#pwForm', function(){
+	
+		var frm = document.update;
+		
+		if ($("#pw").val() !== $("#pw2").val()) {
 				alert("비밀번호가 다릅니다.");
 				$("#pw").val("").focus();
 				$("#pw2").val("");
@@ -44,20 +53,26 @@
 				alert("비밀번호는 8자 이상으로 설정해야 합니다.");
 				$("#pw").val("").focus();
 				return false;
-			} else if ($.trim($("#pw").val()) !== $("#pw").val()) {
-				alert("공백은 입력이 불가능합니다.");
-				return false;
-			}
-		}))
-			;
-	})
-	function update_info() {
-		var frm = document.update;
-		frm.method = "POST";
-		frm.action = "./update.do";
-		alert("수정 완료.");
+			} 
+			
+// 			else if ($.trim($("#pw").val()) !== $("#pw").val()) {
+// 				alert("공백은 입력이 불가능합니다.");
+// 				return false;
+// 			}
+	
+	
+		frm.method="post";
+		frm.action="./modify.do";
 		frm.submit();
-	}
+	});
+	$(document).on('keypress', '.pw', function(event){
+		if(event.which == 32){
+			alert("공백은 입력 불가합니다.");
+			event.preventDefault();
+			
+			
+		}
+	})
 </script>
 
 <style type="text/css">
@@ -170,7 +185,7 @@ input[type=text]#id, #email, #name, #approval_status {
 						style="width: 1200px; background-color: #ffffff00;">
 						<div class="w-tab-pane w--tab-active" data-w-tab="Tab 1">
 							<p>
-							<form id="pwForm" action="./modify.do" method="post">
+							
 								<table class="type05">
 
 
@@ -183,14 +198,13 @@ input[type=text]#id, #email, #name, #approval_status {
 									<tr>
 										<th scope="row">비밀번호</th>
 										<td><label>현재 비밀번호</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											<input id="old_pw" name="old_pw" type="password" required><br>
+											<input class="pw" id="old_pw" name="old_pw" type="password" required><br>
 											<br> <label>신규 비밀번호</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-											id="pw" name="pw" type="password" required><br>
-											<br> <label>신규 비밀번호 다시 입력</label>&nbsp; <input
+											id="pw"  class="pw" name="pw" type="password" required><br>
+											<br> <label>신규 비밀번호 다시 입력</label>&nbsp; <input  class="pw"
 											type="password" id="pw2" type="password" required>
-											<button type="submit" class="btn btn-dark"
-												style="margin-left: 2%;">비밀번호 변경</button></td>
+											<input type="button" id="pwForm" class="btn btn-dark" style="margin-left: 2%;" value="비밀번호 변경">
 									</tr>
 									<tr>
 										<th scope="row">이메일</th>
@@ -323,13 +337,12 @@ input[type=text]#id, #email, #name, #approval_status {
 									type="button" class="btn btn-dark" id="out"
 									onclick="showPopup();" value="탈퇴하기">
 
-							</form>
 							</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>
+</form>
 </body>
 </html>

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -28,6 +31,7 @@
 		frm.action="./updateboard.do";
 		frm.submit();
 	});
+	
 </script>
 <style type="text/css">
 .csWrite {
@@ -55,6 +59,12 @@
 	background-color: darkgray;
 	color: white;
 }
+#modify{
+width: 100px;
+	height: 30px;
+	background-color: darkgray;
+	color: white;
+}
 
 .selectOption, .csWriteTitle {
 	text-align: left;
@@ -68,6 +78,48 @@
 </style>
 </head>
 <body>
+<form name="privatedetail">
+<c:set var="command" value="${command }" />
+	<c:if test="${command == 'modify' }">
+<div id="csWriteHeader" class="csWriteHeader">
+		<h2>문의 상세내역 작성</h2>
+	</div>
+	<c:forEach var="boardinfo" items="${boardinfo}" >
+	<input type="hidden" id="private_memberid" name ="private_memberid" value="${member.getMemberid() }" />
+	<input type="hidden" id="private_qna_num" name ="private_qna_num" value="${boardinfo.private_qna_num}" />
+		<div class="csWriteTitle">
+		글 제목 :
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" id="private_qna_title" name="private_qna_title" class="input_csWriteTitle" value="${boardinfo.private_qna_title }" required>
+	</div>
+
+	<div class="selectOption" id="selectOption">
+		문의 유형을 선택하세요: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		<c:forEach var="boardnumlist" items="${boardnumlist}" >
+		<select name="board_num" class="selectQuestionType" id="selectQuestionType" required>
+			<option id="board_num" value="${boardnumlist.board_num }" selected="selected">${boardnumlist.board_name }</option>
+		</select>
+		</c:forEach>
+	</div>
+	
+	<div id="csWrite" class="csWrite">
+		<textarea id="private_qna_content" class="csWriteDetail"  name="private_qna_content" required>
+		${boardinfo.private_qna_content }
+		</textarea>
+	</div>
+	
+	<div class="csWriteSubmitButton" id="csWriteSubmitButton">
+	<input type="button" id="modify" value="수정">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button onClick="cancelCsWrite()">작성 취소하기</button>
+	</div>
+	</c:forEach>
+	</c:if>
+	</form>
+	
+
+
+	<c:if test="${command != 'modify' }">
 	<div id="csWriteHeader" class="csWriteHeader">
 		<h2>문의 상세내역 작성</h2>
 	</div>
@@ -102,12 +154,12 @@
 	
 	<div class="csWriteSubmitButton" id="csWriteSubmitButton">
 	<button type="submit" id="submitCsWrite">작성완료</button>
-
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<button onClick="cancelCsWrite()">작성 취소하기</button>
 	</div>
 	</form>
 	</c:forEach>
+	</c:if>
 
 </body>
 </html>

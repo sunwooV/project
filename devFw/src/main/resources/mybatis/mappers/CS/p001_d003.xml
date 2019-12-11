@@ -39,10 +39,15 @@
       <![CDATA[  
 		SELECT  *
 		FROM private_qna
-		WHERE board_num=#{board_num }
-      ]]>
-      
-
+	  ]]>
+	  <where>
+	  <![CDATA[
+		 board_num=#{board_num }
+		 ]]>
+	  </where>
+		<![CDATA[
+			ORDER BY private_qna_num DESC
+		]]>
 	</select>
 	<!-- 리스트 불러오기 -->
 	

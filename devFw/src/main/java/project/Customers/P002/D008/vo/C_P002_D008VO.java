@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 public class C_P002_D008VO {
 	private String member_point_code;
 	private String memberid;
-	private int point_number;
 	private int useable_point;
 	private int disappear_point;
 	private int use_point;
@@ -34,12 +33,6 @@ public class C_P002_D008VO {
 
 	public void setMemberid(String memberid) {
 		this.memberid = memberid;
-	}
-	public int getPoint_number() {
-		return point_number;
-	}
-	public void setPoint_number(int point_number) {
-		this.point_number = point_number;
 	}
 	public int getUseable_point() {
 		return useable_point;
