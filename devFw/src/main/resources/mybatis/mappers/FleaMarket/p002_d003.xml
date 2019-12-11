@@ -38,8 +38,8 @@
 		 ]]>
 		</selectKey>
 		<![CDATA[
-			INSERT INTO fleastory (flea_code, memberid, story_number, story_write_date, story_title, story_cotent, heart_count)
-			VALUES(#{flea_code}, #{memberid}, #{story_number}, sysdate, #{story_title}, #{story_cotent}, '0')
+			INSERT INTO fleastory (flea_code, memberId, story_number, story_write_date, story_title, story_cotent, heart_count)
+			VALUES(#{flea_code}, #{memberId}, #{story_number}, sysdate, #{story_title}, #{story_cotent}, '0')
 		 ]]>
 	</insert>
 

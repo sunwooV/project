@@ -113,22 +113,22 @@ public class F_P002_D003ControllerImpl implements F_P002_D003Controller {
 			System.out.println("====INSERT====");
 			d003Service.inserStoryComment(dataMap);
 		} 
-		
-	//	commentList = d003Service.selectStory(searchMap);
-		//System.out.println(commentList);
 	
-		/*
+		commentList = d003Service.selectStory(searchMap);
+		System.out.println("selectStory:::"+commentList);
+	
+		
 		result += "[";
 		for(int i=0;i<commentList.size();i++) {
 			result += "{";
-			result += "\"prod_number\":\"" + ((F_P002_D003VO)commentList.get(i)).getFlea_code() + "\",";
-			result += "\"qna_number\":\"" + ((F_P002_D003VO)commentList.get(i)).getMemberid() + "\",";
-			result += "\"qna_content\":\"" + ((F_P002_D003VO)commentList.get(i)).getStory_number() + "\",";
-			result += "\"qna_date\":\"" + ((F_P002_D003VO)commentList.get(i)).getStory_write_date() + "\",";
-			result += "\"memberId\":\"" + ((F_P002_D003VO)commentList.get(i)).getStory_title() + "\",";
-			result += "\"secretMember\":\"" + ((F_P002_D003VO)commentList.get(i)).getStory_cotent() + "\",";
-			result += "\"answer_yn\":\"" + ((F_P002_D003VO)commentList.get(i)).getHeart_count() + "\",";
-			result += "\"answer_date\":\"" + ((F_P002_D003VO)commentList.get(i)).getSecretMember() + "\",";
+			result += "\"flea_code\":\"" + ((F_P002_D003VO)commentList.get(i)).getFlea_code() + "\",";
+			result += "\"memberid\":\"" + ((F_P002_D003VO)commentList.get(i)).getMemberid() + "\",";
+			result += "\"story_number\":\"" + ((F_P002_D003VO)commentList.get(i)).getStory_number() + "\",";
+			result += "\"story_write_date\":\"" + ((F_P002_D003VO)commentList.get(i)).getStory_write_date() + "\",";
+			result += "\"story_title\":\"" + ((F_P002_D003VO)commentList.get(i)).getStory_title() + "\",";
+			result += "\"story_cotent\":\"" + ((F_P002_D003VO)commentList.get(i)).getStory_cotent() + "\",";
+			result += "\"heart_count\":\"" + ((F_P002_D003VO)commentList.get(i)).getHeart_count() + "\",";
+			result += "\"secretMember\":\"" + ((F_P002_D003VO)commentList.get(i)).getSecretMember() + "\"";
 
 			result += "}";
 			if(i != commentList.size() -1) {
@@ -138,7 +138,6 @@ public class F_P002_D003ControllerImpl implements F_P002_D003Controller {
 		result += "]";
 		System.out.println("result ::::: " + result);
 		
-		*/
 		
 		//String personJson = "[{\"id\":\""+"0" +"\",\"name\":\""+"dd" +"\",\"password\":\""+"bb" +"\",\"email\":\""+"pp"+"\"}, {\"id\":\""+"123" +"\",\"name\":\""+"dd" +"\",\"password\":\""+"bb" +"\",\"email\":\""+"pp"+"\"}]";
 		//System.out.println(personJson);
