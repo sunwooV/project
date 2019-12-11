@@ -67,7 +67,7 @@ public class C_P003_D001ControllerImpl implements C_P003_D001Controller {
 			searchMap.put("memberId", loginChk);
 			String checkSeller = S_P001_D001Service.checkSeller(searchMap); //seller check
 			if(Integer.parseInt(checkSeller) == 0) { //seller가 아니면
-				ModelAndView mav = new ModelAndView("Customers/sellerBasic.do");
+				ModelAndView mav = new ModelAndView("Customers/p003_d001_sellerBasic");
 
 				return mav;
 			} else { //seller면

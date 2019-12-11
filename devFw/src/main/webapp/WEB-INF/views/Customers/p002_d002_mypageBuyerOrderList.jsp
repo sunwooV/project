@@ -57,52 +57,164 @@
 </script>
 </head>
 <body>
-	<!-- 주문내역 상단 -->
-	<div class="orderHistoryHeader">
-		<h3>주문 내역 조회</h3>
-	</div>
-	<div class="orderHistoryContainer">
-		<!-- 주문 상품 정보 테이블 시작  -->
-		<table class="orderHistoryTable" id="orderHistoryTable">
-			<!-- 주문 상품 정보 테이블 상단 제목   -->
-			<thead class="orderHistoryTableTitles">
-				<tr class="OHtableTitle">
-					<th class="OHT_ttl"><span>주문일자<br>[주문번호]
-					</span></th>
-					<th class="OHT_ttl"><span>상품이미지</span></th>
-					<th class="OHT_ttl"><span>상품정보</span></th>
-					<th class="OHT_ttl"><span>수량</span></th>
-					<th class="OHT_ttl"><span>상품구매금액</span></th>
-					<th class="OHT_ttl"><span>주문처리상태</span></th>
-					<th class="OHT_ttl"><span>제품상태처리</span></th>
-				</tr>
-			</thead>
-			<tbody>
-				<!-- 첫 번째 상품 내용 -->
-				<tr class="orderHistoryContents">
-					<td class="OHC_cont"><span class="orderDate" id="orderDate">2019-11-20</span>
-						<br> <a href="#" class="orderNum" id="orderNum">[20191120-0000000]</a></td>
 
-					<td class="OHC_cont"><span class="prod_1st_img"
-						id="prod_1st_img">이미지</span></td>
-					<td class="OHC_cont"><span class="prod_short_detail"
-						id="prod_short_detail">상품 정보 설명들어감 제목 + 선택한 옵션</span></td>
-					<td class="OHC_cont"><span class="prod_cnt" id="prod_cnt">2</span></td>
-					<td class="OHC_cont"><span class="ttl_eachProd_price"
-						id="ttl_eachProd_price">29,000원</span></td>
-					<td class="OHC_cont"><span class="order_state"
-						id="order_state">배송준비중</span></td>
+<div class="container">
+<br><br>
+<h1>상품 조회</h1>
+<br><hr><br>
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#buyProd">구매 상품</a></li>
+		<li><a data-toggle="tab" href="#sellProd">판매 상품</a></li>
+		<li><a data-toggle="tab" href="#auctionProd">경매 상품</a></li>
+	</ul>
+	<div class="tab-content">
+		<div id="buyProd" class="tab-pane fade in active">
+		<br><br>
+			<!-- 주문내역 상단 -->
+			<h3>주문 내역 조회</h3>
+				<!-- 주문 상품 정보 테이블 시작  -->
+				<table class="orderHistoryTable" id="orderHistoryTable">
+					<!-- 주문 상품 정보 테이블 상단 제목   -->
+					<thead class="orderHistoryTableTitles">
+						<tr class="OHtableTitle">
+							<th class="OHT_ttl"><span>주문일자<br>[주문번호]
+							</span></th>
+							<th class="OHT_ttl"><span>상품이미지</span></th>
+							<th class="OHT_ttl"><span>상품정보</span></th>
+							<th class="OHT_ttl"><span>수량</span></th>
+							<th class="OHT_ttl"><span>상품구매금액</span></th>
+							<th class="OHT_ttl"><span>주문처리상태</span></th>
+							<th class="OHT_ttl"><span>제품상태처리</span></th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- 첫 번째 상품 내용 -->
+						<tr class="orderHistoryContents">
+							<td class="OHC_cont"><span class="orderDate" id="orderDate">2019-11-20</span>
+								<br> <a href="#" class="orderNum" id="orderNum">[20191120-0000000]</a></td>
+		
+							<td class="OHC_cont"><span class="prod_1st_img"
+								id="prod_1st_img">이미지</span></td>
+							<td class="OHC_cont"><span class="prod_short_detail"
+								id="prod_short_detail">상품 정보 설명들어감 제목 + 선택한 옵션</span></td>
+							<td class="OHC_cont"><span class="prod_cnt" id="prod_cnt">2</span></td>
+							<td class="OHC_cont"><span class="ttl_eachProd_price"
+								id="ttl_eachProd_price">29,000원</span></td>
+							<td class="OHC_cont"><span class="order_state"
+								id="order_state">배송준비중</span></td>
+		
+							<td class="OHC_cont"><input type="button" value="취소신청 및 교환 신청"
+								class="orderButton" id="cancel_order" onClick="changeProdPopup()">
+								<br> <input type="button" value="리뷰쓰기" class="orderButton"
+								id="review_order" onClick="reviewPopup()"> <br> <input
+								type="button" value="구매확정하기" class="orderButton"
+								id="confirmBuy_order" onClick="confirmBuyPopup()"></td>
+						</tr>
+						<!-- 2번째 상품 내용 -->
+					</tbody>
+				</table>
 
-					<td class="OHC_cont"><input type="button" value="취소신청 및 교환 신청"
-						class="orderButton" id="cancel_order" onClick="changeProdPopup()">
-						<br> <input type="button" value="리뷰쓰기" class="orderButton"
-						id="review_order" onClick="reviewPopup()"> <br> <input
-						type="button" value="구매확정하기" class="orderButton"
-						id="confirmBuy_order" onClick="confirmBuyPopup()"></td>
-				</tr>
-				<!-- 2번째 상품 내용 -->
-			</tbody>
-		</table>
+		</div>
+		<div id="sellProd" class="tab-pane fade">
+			<br><br>
+			<!-- 주문내역 상단 -->
+			<h3>판매 내역 조회</h3>
+				<!-- 주문 상품 정보 테이블 시작  -->
+				<table class="orderHistoryTable" id="orderHistoryTable">
+					<!-- 주문 상품 정보 테이블 상단 제목   -->
+					<thead class="orderHistoryTableTitles">
+						<tr class="OHtableTitle">
+							<th class="OHT_ttl"><span>주문일자<br>[주문번호]
+							</span></th>
+							<th class="OHT_ttl"><span>상품이미지</span></th>
+							<th class="OHT_ttl"><span>상품정보</span></th>
+							<th class="OHT_ttl"><span>수량</span></th>
+							<th class="OHT_ttl"><span>상품구매금액</span></th>
+							<th class="OHT_ttl"><span>주문처리상태</span></th>
+							<th class="OHT_ttl"><span>제품상태처리</span></th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- 첫 번째 상품 내용 -->
+						<tr class="orderHistoryContents">
+							<td class="OHC_cont"><span class="orderDate" id="orderDate">2019-11-20</span>
+								<br> <a href="#" class="orderNum" id="orderNum">[20191120-0000000]</a></td>
+		
+							<td class="OHC_cont"><span class="prod_1st_img"
+								id="prod_1st_img">이미지</span></td>
+							<td class="OHC_cont"><span class="prod_short_detail"
+								id="prod_short_detail">상품 정보 설명들어감 제목 + 선택한 옵션</span></td>
+							<td class="OHC_cont"><span class="prod_cnt" id="prod_cnt">2</span></td>
+							<td class="OHC_cont"><span class="ttl_eachProd_price"
+								id="ttl_eachProd_price">29,000원</span></td>
+							<td class="OHC_cont"><span class="order_state"
+								id="order_state">배송준비중</span></td>
+		
+							<td class="OHC_cont"><input type="button" value="취소신청 및 교환 신청"
+								class="orderButton" id="cancel_order" onClick="changeProdPopup()">
+								<br> <input type="button" value="리뷰쓰기" class="orderButton"
+								id="review_order" onClick="reviewPopup()"> <br> <input
+								type="button" value="구매확정하기" class="orderButton"
+								id="confirmBuy_order" onClick="confirmBuyPopup()"></td>
+						</tr>
+						<!-- 2번째 상품 내용 -->
+					</tbody>
+				</table>
+			
+		</div>
+		<div id="auctionProd" class="tab-pane fade">
+			<br><br>
+			<!-- 주문내역 상단 -->
+			<h3>경매 내역 조회</h3>
+			<p>참여한 경매에 대한 입찰, 낙찰 내역/결제를 보여줍니다.</p>
+				<!-- 주문 상품 정보 테이블 시작  -->
+				<table class="orderHistoryTable" id="orderHistoryTable">
+					<!-- 주문 상품 정보 테이블 상단 제목   -->
+					<thead class="orderHistoryTableTitles">
+						<tr class="OHtableTitle">
+							<th class="OHT_ttl"><span>주문일자<br>[주문번호]
+							</span></th>
+							<th class="OHT_ttl"><span>상품이미지</span></th>
+							<th class="OHT_ttl"><span>상품정보</span></th>
+							<th class="OHT_ttl"><span>수량</span></th>
+							<th class="OHT_ttl"><span>상품구매금액</span></th>
+							<th class="OHT_ttl"><span>주문처리상태</span></th>
+							<th class="OHT_ttl"><span>제품상태처리</span></th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- 첫 번째 상품 내용 -->
+						<tr class="orderHistoryContents">
+							<td class="OHC_cont"><span class="orderDate" id="orderDate">2019-11-20</span>
+								<br> <a href="#" class="orderNum" id="orderNum">[20191120-0000000]</a></td>
+		
+							<td class="OHC_cont"><span class="prod_1st_img"
+								id="prod_1st_img">이미지</span></td>
+							<td class="OHC_cont"><span class="prod_short_detail"
+								id="prod_short_detail">상품 정보 설명들어감 제목 + 선택한 옵션</span></td>
+							<td class="OHC_cont"><span class="prod_cnt" id="prod_cnt">2</span></td>
+							<td class="OHC_cont"><span class="ttl_eachProd_price"
+								id="ttl_eachProd_price">29,000원</span></td>
+							<td class="OHC_cont"><span class="order_state"
+								id="order_state">배송준비중</span></td>
+		
+							<td class="OHC_cont"><input type="button" value="취소신청 및 교환 신청"
+								class="orderButton" id="cancel_order" onClick="changeProdPopup()">
+								<br> <input type="button" value="리뷰쓰기" class="orderButton"
+								id="review_order" onClick="reviewPopup()"> <br> <input
+								type="button" value="구매확정하기" class="orderButton"
+								id="confirmBuy_order" onClick="confirmBuyPopup()"></td>
+						</tr>
+						<!-- 2번째 상품 내용 -->
+					</tbody>
+				</table>
+		</div>
 	</div>
+</div>	
+	
+	
+	
+	
+	
 </body>
 </html>
