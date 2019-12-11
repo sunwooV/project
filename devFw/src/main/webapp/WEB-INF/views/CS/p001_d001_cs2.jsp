@@ -46,52 +46,35 @@
 	<div class="container-fluid"
 		style="padding-left: 16%; padding-top: 3%; margin-right: -4%;">
 		<div class="col-sm-2" id="col">
-			<div class="table" id="sidebar">
-				<ul class="nav nav-tabs">
-					<h1 style="padding-bottom: 6%; font-size: 18px;">FAQ/자주묻는질문</h1>
-					<li class="active"><a data-toggle="tab" href="#home" id="tab">구매관련</a></li>
-					<li><a data-toggle="tab" href="#menu1" id="tab">판매관련</a></li>
-				</ul>
-
-				<div class="tab-content" style="font-size: 13px;">
-					<div id="home" class="tab-pane fade in active">
-						<li><a href="#">배송문의</a></li>
-						<li><a href="#">교환/환불/반품/AS</a></li>
-						<li><a href="#">주문/결제/입금</a></li>
-						<li><a href="#">영수증</a></li>
-						<li><a href="#">이벤트/할인쿠폰</a></li>
-						<li><a href="#">안전거래</a></li>
-						<li><a href="#">자동로그인</a></li>
-
-					</div>
-					<div id="menu1" class="tab-pane fade">
-						<li><a href="#">배송문의</a></li>
-						<li><a href="#">교환/환불/반품/AS</a></li>
-						<li><a href="#">주문/결제/입금</a></li>
-						<li><a href="#">영수증</a></li>
-						<li><a href="#">이벤트/할인쿠폰</a></li>
-						<li><a href="#">안전거래</a></li>
-						<li><a href="#">자동로그인</a></li>
-					</div>
-				</div>
+			<div class="list-group">
+				<!-- <h1 style="padding-bottom: 3%; font-size: 21px;">마이페이지</h1> -->
+				<a href="#" class="list-group-item list-group-item-action active">
+					마이페이지 </a> <a href="#" class="list-group-item list-group-item-action">포인트
+					조회 </a> <a href="#" class="list-group-item list-group-item-action">회원정보조회/수정
+				</a> <a href="#" class="list-group-item list-group-item-action">ID조회/비밀번호
+					찾기 </a>
 			</div>
 
-			<div class="table" id="sidebar1">
-				<h1 style="font-size: 19px;">마이페이지</h1>
-				<li><a href="#">포인트 조회</a></li>
-				<li><a href="#">회원정보조회/수정</a></li>
-				<li><a href="#">ID조회/비밀번호 찾기</a></li>
+
+
+			<div class="list-group">
+				<a href="#" class="list-group-item list-group-item-action active">
+					게시판 </a> <a href="#" class="list-group-item list-group-item-action">1:1게시판
+				</a> <a href="#" class="list-group-item list-group-item-action">교환 및
+					환불 </a> <a href="#" class="list-group-item list-group-item-action">배송문의
+				</a> <a href="#" class="list-group-item list-group-item-action">기타 </a>
 			</div>
+
 		</div>
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->
 		<div class="col-sm-10" id="csmain">
 			<h1 style="font-size: 37px;">고객센터</h1>
 
 			<div class="row" id="cscs1">
-				<h2 style="padding-bottom: 2%;">🗣공지사항</h2>
+				<h2 style="font-size: 23px; padding-bottom: 2%;">🔔공지사항🔔</h2>
 				<table class="table table-hover" style="width: 98%;">
 					<tr>
-						<th>제목</th>
+						<th style="width: 78%;">제목</th>
 						<th>게시일</th>
 					</tr>
 

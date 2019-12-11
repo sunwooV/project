@@ -72,7 +72,10 @@ color: black;
     border-bottom: 1px solid lightgray;
     height: 55px;
 }
-    }
+    #waitAnswer {
+	color: #BDBDBD;
+}
+    
 </style>
 <body>
 <c:forEach var="boardlist" items="${boardlist}" >
@@ -114,18 +117,18 @@ color: black;
                             <c:forEach var="row" items="${list}" >
                                 <tr class="contents">
                                     <td align="center">${row.private_qna_num}</td>
-                                    <c:if test="${member.memberid == row.private_memberid}">
+                                    <c:if test="${member.memberid == row.private_memberid or member.verify =='Y' }">
                                    <td align="center"><a href="${contextPath}/privatdetail.do?private_qna_num=${row.private_qna_num }&board_num=${boardlist.board_num }">${row.private_qna_title}</a></td>
                                    </c:if>
-                                    <c:if test="${member.memberid != row.private_memberid}">
-                                   <td align="center">${row.private_qna_title}</td>
+                                    <c:if test="${member.memberid != row.private_memberid and member.verify =='N'}">
+                                   <td align="center"><img src="${contextPath }/resources/img/detailProduct/secret.png" style="width: 20px;">${row.private_qna_title}</td>
                                    </c:if>
                                     <td align="center">${row.private_memberid}</td>
                                     <td align="center">
                                     <fmt:formatDate value="${row.private_qna_date}" pattern="yyyy-MM-dd HH:mm" />
                                      </td>
                                      <c:if test="${row.private_answer_yn =='N' }">
-                                      <td align="center">답변대기</td>
+                                      <td id ="waitAnswer" align="center">답변대기</td>
                                      </c:if>
                                        <c:if test="${row.private_answer_yn =='Y' }">
                                       <td align="center">답변완료</td>

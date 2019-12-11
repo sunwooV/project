@@ -4,23 +4,42 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="C_P002_D006">
-		<resultMap id="C_P002_D006Result01" type="C_P002_D006VO">
+	<resultMap id="C_P002_D006Result01" type="C_P002_D006VO">
 	   <result property="prod_number" column="prod_number" />
-        <result property="qna_content" column="qna_content" />
-        <result property="answer_YN" column="answer_YN" />
-
+	   <result property="qna_number" column="qna_number" />
+       <result property="qna_content" column="qna_content" />
+       <result property="qna_date" column="qna_date" />
+       <result property="answer_yn" column="answer_yn" />
+	   <result property="answer_date" column="answer_date" />
+	   <result property="answer_content" column="answer_content" />
+	   <result property="secret_yn" column="secret_yn"/>
+	   <result property="represent_image" column="represent_image" />
 	</resultMap> 
 	
 		<select id="selectAllqnaList" resultMap="C_P002_D006Result01"  parameterType="String">
       <![CDATA[
-         	
-      
-			select prod_number, qna_content, answer_YN,answer_content
-			from prodqna
-			where memberid = #{memberid}
-      	
+			select q.prod_number, q.qna_number, q.qna_content, to_char(q.qna_date, 'yyyy-mm-dd') as qna_date, q.answer_yn, to_char(q.answer_date, 'yyyy-mm-dd') as answer_date, q.answer_content, p.represent_image
+			from prodqna q, product p	
       ]]>
+      <where>
+      <![CDATA[
+			q.memberId = #{memberid}
+			and p.prod_number = q.prod_number
+      ]]>
+      </where>
 
 	</select>
+	
+	<delete id="deleteQna" parameterType="java.util.Map">
+	 <![CDATA[
+			delete from prodqna
+      ]]>
+      <where>
+      <![CDATA[
+			prod_number = #{prod_number}
+			and qna_number = #{qna_number}
+      ]]>
+      </where>
+	</delete>
 	
 </mapper>

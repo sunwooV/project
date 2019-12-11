@@ -28,7 +28,10 @@ public class C_P002_D006DAOImpl implements C_P002_D006DAO {
 		return qnaList;
 	}
 
-	
+	@Override
+	public void deleteQna(Map<String, Object> datahMap) throws DataAccessException {
+		sqlSession.update("C_P002_D006.deleteQna", datahMap);
+	}
 	
 	
 	

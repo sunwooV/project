@@ -27,4 +27,5 @@ public class C_P002_D008DAOImpl implements C_P002_D008DAO{
         return sqlsession.selectList("Customers.memberpoint.point_check",memberid); 
     }
 
+
 }

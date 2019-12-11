@@ -193,20 +193,36 @@ background-color:#faf5f1;
 	float:left;
 	margin:30px 13%;
 }
-
+div.seller{
+    margin: 48px;
+    text-align: center;
+}
+a#enroll{
+  color:red;
+}
 </style>
 <body>
 
 <h2 style="margin: 45px;">포인트 조회</h2>
   
-<div class="xans-element- xans-myshop xans-myshop-summary ec-base-box gHalf"><ul>
+<div class="xans-element- xans-myshop xans-myshop-summary ec-base-box gHalf">
+<ul>
+<c:set var="checkSeller" value="${checkSeller }" />
 <li class="">
 <strong class="title">총 포인트</strong> <span class="data"><span id="xans_myshop_summary_total_mileage">${point.total_point }point</span>&nbsp;</span>
 </li>
             <li class="">
-           <div class="mainImg"> <!-- 상품 대표 이미지 -->
-				<a href="${grad.grade_img }" rel="prettyPhoto" title="This is the description"><img src="" alt="This is the title" /></a>	
+            <c:if test="${checkSeller==1 }">
+           <div class="mainImg">
+				<a href="${grad.grade_img }" rel="prettyPhoto" title="This is the description"></a>	
 			</div>
+			</c:if>
+			 <c:if test="${checkSeller==0 }">
+			 <div class="seller">
+				판매자 등급은 판매자 등록시 이용 가능 합니다.
+				<br><a id="enroll" href="${contextPath}./enrollSeller.do">판매자 등록하러가기</a>
+			</div>
+			</c:if>
 
 </li>
             <li class="">

@@ -43,14 +43,13 @@
   	                 
  SELECT  no_title, no_writedate, no_contents
 						FROM notice
-						WHERE rownum <= 5
+						WHERE rownum <= 7
       	
       ]]>
 
 	</select>
 	<!-- 리스트 불러오기 -->
-	
-	<update id="updateCnt" parameterType="java.util.HashMap">
+		<update id="updateCnt" parameterType="java.util.HashMap">
 	<![CDATA[
         update notice
         set
@@ -64,17 +63,22 @@
 	<![CDATA[
 	SELECT COUNT(*) FROM notice
 	]]>
-	</select>
+	</select>  
 	
 	<!-- 배송문의 -->
 	<select id="selectAlldeliveryList" resultMap="CS_P001_D001Result02">
       <![CDATA[
          	
       
-select  division,title,contents
-from fnq
-where division in '배송문의'
-order by title
+SELECT  division,title,contents
+FROM 
+ (
+  SELECT   division,title,contents
+  FROM fnq	
+  where division in '배송문의'
+ )
+WHERE ROWNUM <= 7
+
       	
       ]]>
 
@@ -85,10 +89,16 @@ order by title
       <![CDATA[
          	
       
-select  division,title,contents
-from fnq
-where division in '반품/교환/환불'
-order by title
+SELECT  division,title,contents
+FROM 
+ (
+  SELECT   division,title,contents
+  FROM fnq	
+  where division in '반품/교환/환불'
+ )
+WHERE ROWNUM <= 7
+
+
       	
       ]]>
 
@@ -99,10 +109,14 @@ order by title
       <![CDATA[
          	
       
-select  title,contents
-from fnq	
-where division in '자주묻는질문'
-order by title
+SELECT  title,contents
+FROM 
+ (
+  SELECT  title,contents
+  FROM fnq	
+  where division in '자주묻는질문'
+ )
+WHERE ROWNUM <= 7
       	
       ]]>
 
@@ -115,6 +129,7 @@ order by title
   	                 
  SELECT  no_title, no_writedate, no_contents
 						FROM notice
+						WHERE rownum <= 5
       	
       ]]>
 

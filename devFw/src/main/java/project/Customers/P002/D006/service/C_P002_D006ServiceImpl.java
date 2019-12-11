@@ -30,4 +30,10 @@ public class C_P002_D006ServiceImpl implements C_P002_D006Service {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public void deleteQna(Map<String, Object> datahMap) throws Exception {
+		c_p002_d006DAO.deleteQna(datahMap);
+	}
+	
 }

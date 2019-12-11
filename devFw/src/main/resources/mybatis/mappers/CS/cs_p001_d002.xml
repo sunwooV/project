@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CS.P001.D002">
+	<resultMap id="CS_P001_D002Result01" type="CS_P001_D002VO">
+      <result property="division" column="division" />
+        <result property="title" column="title" />
+        <result property="contents" column="contents" />
+	</resultMap>
+		<resultMap id="CS_P001_D002Result02" type="CS_P001_D002VO">
+      <result property="division" column="division" />
+        <result property="title" column="title" />
+        <result property="contents" column="contents" />
+	</resultMap>
+		<resultMap id="CS_P001_D002Result03" type="CS_P001_D002VO">
+      <result property="division" column="division" />
+        <result property="title" column="title" />
+        <result property="contents" column="contents" />
+	</resultMap>
+		<resultMap id="CS_P001_D002Result04" type="CS_P001_D002VO">
+      <result property="division" column="division" />
+        <result property="title" column="title" />
+        <result property="contents" column="contents" />
+	</resultMap>
+		<resultMap id="CS_P001_D002Result05" type="CS_P001_D002VO">
+      <result property="division" column="division" />
+        <result property="title" column="title" />
+        <result property="contents" column="contents" />
+	</resultMap>
+	 
+	
+	
+     <!-- 자주묻는질문 -->
+	<select id="detailAllfaqList" resultMap="CS_P001_D002Result01">
+      <![CDATA[
+         	
+      
+  select  title,contents
+  from fnq	
+  where division in '자주묻는질문'
+
+      	
+      ]]>
+
+	</select>
+	
+		
+     <!-- 반품/교환/환불 -->
+	<select id="detailAllrefuList" resultMap="CS_P001_D002Result02">
+      <![CDATA[
+         	
+      
+  select title,contents
+ from fnq	
+  where division in '반품/교환/환불'
+
+      	
+      ]]>
+
+	</select>
+	
+		
+     <!-- 배송문의-->
+	<select id="detailAlldelivList" resultMap="CS_P001_D002Result03">
+      <![CDATA[
+         	
+      
+  SELECT  title,contents
+  FROM fnq	
+  where division in '배송문의'
+
+      	
+      ]]>
+
+	</select>
+	
+		
+     <!-- 이벤트/할인쿠폰 -->
+	<select id="detailAllcouponList" resultMap="CS_P001_D002Result04">
+      <![CDATA[
+         	
+      
+  SELECT  title,contents
+  FROM fnq	
+  where division in '이벤트/할인쿠폰'
+
+      	
+      ]]>
+
+	</select>
+	
+		
+     <!-- 주문결제 -->
+	<select id="detailAllpayList" resultMap="CS_P001_D002Result05">
+      <![CDATA[
+         	
+      
+  SELECT  title,contents
+  FROM fnq	
+  where division in '주문결제'
+
+      	
+      ]]>
+
+	</select>
+	
+</mapper>

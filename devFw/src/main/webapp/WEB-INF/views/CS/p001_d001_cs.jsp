@@ -73,7 +73,7 @@
 	});
 </script>
 <style>
-.faq_open1, .faq_open2, .faq_open3, .faq_open4, .notice{
+.faq_open1, .faq_open2, .faq_open3, .faq_open4, .notice {
 	cursor: pointer;
 }
 </style>
@@ -84,46 +84,25 @@
 	<div class="container-fluid"
 		style="padding-left: 16%; padding-top: 3%; margin-right: -4%;">
 		<div class="col-sm-2" id="col">
-			<div class="table" id="sidebar">
-				<ul class="nav nav-tabs">
-					<h1 style="padding-bottom: 6%; font-size: 18px;">FAQ/자주묻는질문</h1>
-					<li class="active"><a data-toggle="tab" href="#home" id="tab">구매관련</a></li>
-					<li><a data-toggle="tab" href="#menu1" id="tab">판매관련</a></li>
-				</ul>
 
-				<div class="tab-content" style="font-size: 13px;">
-					<div id="home" class="tab-pane fade in active">
-						<li><a href="#">배송문의</a></li>
-						<li><a href="#">교환/환불/반품/AS</a></li>
-						<li><a href="#">주문/결제/입금</a></li>
-						<li><a href="#">영수증</a></li>
-						<li><a href="#">이벤트/할인쿠폰</a></li>
-						<li><a href="#">안전거래</a></li>
-						<li><a href="#">자동로그인</a></li>
 
-					</div>
-					<div id="menu1" class="tab-pane fade">
-						<li><a href="#">배송문의</a></li>
-						<li><a href="#">교환/환불/반품/AS</a></li>
-						<li><a href="#">주문/결제/입금</a></li>
-						<li><a href="#">영수증</a></li>
-						<li><a href="#">이벤트/할인쿠폰</a></li>
-						<li><a href="#">안전거래</a></li>
-						<li><a href="#">자동로그인</a></li>
-					</div>
-				</div>
+			<div class="list-group">
+				<!-- <h1 style="padding-bottom: 3%; font-size: 21px;">마이페이지</h1> -->
+				<a href="#" class="list-group-item list-group-item-action active">
+					마이페이지 </a> <a href="#" class="list-group-item list-group-item-action">포인트
+					조회 </a> <a href="#" class="list-group-item list-group-item-action">회원정보조회/수정
+				</a> <a href="#" class="list-group-item list-group-item-action">ID조회/비밀번호
+					찾기 </a>
 			</div>
 
-			<div class="table" id="sidebar1">
-				<h1 style="font-size: 19px;">마이페이지</h1>
-				<li><a href="#">포인트 조회</a></li>
-				<li><a href="#">회원정보조회/수정</a></li>
-				<li><a href="#">ID조회/비밀번호 찾기</a></li>
-			</div>
-			<div class="table" id="sidebar1">
-			<h1 style="font-size: 19px;">게시판</h1>
-			  <c:forEach var="board" items="${boardlist}" >
-				<li><a href="${contextPath}/privateInit.do?board_num=${board.board_num }">${board.board_name }</a></li>
+
+
+			<div class="list-group">
+			<a href="#" class="list-group-item list-group-item-action active">
+					게시판 </a>
+				<c:forEach var="board" items="${boardlist}">
+					<a class="list-group-item list-group-item-action"
+						href="${contextPath}/privateInit.do?board_num=${board.board_num }">${board.board_name }</a>
 				</c:forEach>
 			</div>
 		</div>
@@ -133,13 +112,12 @@
 
 			<div class="row" id="cscs">
 				<div class="container" id="cs2">
-					<h3 class="notice" style="padding-bottom: 2%;">
+					<h2 class="notice" style="padding-bottom: 2%; font-size: 23px;">
 						🔔공지사항🔔 <span class="glyphicon glyphicon-plus"
-							style="padding-left: 76%;"
 							onclick="location.href='./csnotice.do'"></span>
-					</h3>
-					<table class="table table-hover" style="padding-left: 7%;">
-						<tr>
+					</h2>
+					<table class="table table-hover">
+						<tr class="table-active">
 							<th>제목</th>
 							<th>게시일</th>
 						</tr>
@@ -182,7 +160,7 @@
 					<div class="myshopMain_sub6">
 						<img src="${contextPath }/resources/img/환급.png"
 							style="padding-top: 13%; padding-left: 23%; width: 78%;" />
-						<h3 style="padding-top: 7%; font-size: 17px;">
+						<h3 style="padding-top: 11%; font-size: 16px;">
 							<a href="/myshop/coupon/coupon.html"><strong>판매자
 									입금절차 </strong></a>
 						</h3>
@@ -211,15 +189,18 @@
 							질문</a></li>
 					<li><a data-toggle="tab" href="#FAQ2">교환/환불</a></li>
 					<li><a data-toggle="tab" href="#FAQ3">배송문의</a></li>
-					<li><a data-toggle="tab" href="#FAQ4">공지사항</a></li>
+					<li><a data-toggle="tab" href="#FAQ4">이벤트/할인쿠폰</a></li>
+					<li><a data-toggle="tab" href="#FAQ5">주문결제</a></li>
 				</ul>
 			</div>
 			<div class="tab-content">
 				<!--컨텐츠  -->
 				<div id="FAQ1" class="tab-pane fade in active">
 					<table class="table table-hover">
-						<tr>
-							<th>제목</th>
+						<tr class="table-active">
+							<th>자주 묻는 질문 <span class="glyphicon glyphicon-plus"
+								onclick="location.href='./cslist1.do'"
+								style="padding-left: 83%;"></span></th>
 						</tr>
 
 						<c:forEach var="top" items="${topList}" varStatus='FAQ1'>
@@ -235,9 +216,11 @@
 				</div>
 				<div id="FAQ2" class="tab-pane fade">
 					<table class="table table-hover">
-						<tr>
-							<th>분류</th>
-							<th>제목</th>
+						<tr class="table-active">
+							<th style="width: 12%;">분류</th>
+							<th>제목<span class="glyphicon glyphicon-plus"
+								onclick="location.href='./cslist2.do'"
+								style="padding-left: 91%;"></span></th>
 						</tr>
 
 						<c:forEach var="refund" items="${refundList}" varStatus='FAQ2'>
@@ -253,9 +236,11 @@
 				</div>
 				<div id="FAQ3" class="tab-pane fade">
 					<table class="table table-hover">
-						<tr>
-							<th>분류</th>
-							<th>제목</th>
+						<tr class="table-active">
+							<th style="width: 12%;">분류</th>
+							<th>제목<span class="glyphicon glyphicon-plus"
+								onclick="location.href='./cslist3.do'"
+								style="padding-left: 91%;"></span></th>
 						</tr>
 
 						<c:forEach var="deilvery" items="${deliveryList}" varStatus='FAQ3'>
@@ -273,66 +258,57 @@
 
 
 				<div id="FAQ4" class="tab-pane fade">
-					<%-- 		<div style="float: right;">
-						<select id="cntPerPage" name="sel" onchange="selChange()">
-							<option value="5"
-								<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄
-								보기</option>
-							<option value="10"
-								<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10줄
-								보기</option>
-							<option value="15"
-								<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15줄
-								보기</option>
-							<option value="20"
-								<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄
-								보기</option>
-						</select>
-					</div> --%>
-					<!-- 옵션선택 끝 -->
 					<table class="table table-hover">
-						<tr>
-
-							<th>제목</th>
-							<th>게시일</th>
-
+						<tr class="table-active">
+							<th style="width: 12%;">분류</th>
+							<th>제목<span class="glyphicon glyphicon-plus"
+								onclick="location.href='./cslist3.do'"
+								style="padding-left: 91%;"></span></th>
 						</tr>
 
-						<c:forEach var="event" items="${eventList}" varStatus='index'>
-							<tr>
-
-								<td>${event.no_title}</td>
-
-								<td>${event.no_writedate}</td>
-
+						<c:forEach var="deilvery" items="${deliveryList}" varStatus='FAQ3'>
+							<tr id=${FAQ3.count } class="faq_open3">
+								<td>${deilvery.division}</td>
+								<td>${deilvery.title}</td>
+							</tr>
+							<tr style="display: none;" id="c${FAQ3.count }">
+								<td colspan="2">${deilvery.contents}</td>
 							</tr>
 						</c:forEach>
 					</table>
 
-					<div style="display: block; text-align: center;">
-						<c:if test="${paging.startPage != 1 }">
-							<a
-								href="${contextPath}/event.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-						</c:if>
-						<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
-							var="p">
-							<c:choose>
-								<c:when test="${p == paging.nowPage }">
-									<b>${p }</b>
-								</c:when>
-								<c:when test="${p != paging.nowPage }">
-									<a
-										href="${contextPath}/event.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-								</c:when>
-							</c:choose>
-						</c:forEach>
-						<c:if test="${paging.endPage != paging.lastPage}">
-							<a
-								href="${contextPath}/event.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-						</c:if>
-					</div>
-
 				</div>
+
+				<div id="FAQ5" class="tab-pane fade">
+					<table class="table table-hover">
+						<tr class="table-active">
+							<th style="width: 12%;">분류</th>
+							<th>제목<span class="glyphicon glyphicon-plus"
+								onclick="location.href='./cslist3.do'"
+								style="padding-left: 91%;"></span></th>
+						</tr>
+
+						<c:forEach var="deilvery" items="${deliveryList}" varStatus='FAQ3'>
+							<tr id=${FAQ3.count } class="faq_open3">
+								<td>${deilvery.division}</td>
+								<td>${deilvery.title}</td>
+							</tr>
+							<tr style="display: none;" id="c${FAQ3.count }">
+								<td colspan="2">${deilvery.contents}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+
+
+
+
+
+
+
+
+
+
 			</div>
 		</div>
 	</div>

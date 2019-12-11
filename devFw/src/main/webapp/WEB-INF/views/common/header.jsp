@@ -20,7 +20,6 @@
 	href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Do+Hyeon|Merriweather|Noto+Sans+KR&display=swap&subset=korean"
 	rel="stylesheet">
 <script type="text/javascript">
-	
 	$('.tree-toggle').click(function() {
 		$(this).parent().children('ul.tree').toggle(200);
 	});
@@ -35,9 +34,9 @@
 			return false;
 		}
 	});
-	
+
 	//search 눌렀을 때 처리
-	function SearchProduct(){
+	function SearchProduct() {
 		clickEvent();
 	};
 
@@ -60,8 +59,8 @@
 		id="navbartop">
 		<!-- 상단바 -->
 		<a class="navbar-brand" href="./main.do"><img
-			src="${contextPath }/resources/img/logo.jpg" width=180px;
-			height=50px; /></a>
+			src="${contextPath }/resources/img/lolo.png"
+			style="width: 296px; height: 54px;" /></a>
 		<button class="navbar-toggler collapsed" type="button"
 			data-toggle="collapse" data-target="#navbarColor03"
 			aria-controls="navbarColor03" aria-expanded="false"
@@ -98,9 +97,12 @@
 				<li class="nav-item"><a class="nav-link"
 					href="${contextPath}/detail1.do">ABOUT US</a></li>
 			</ul>
-			<form class="form-inline my-2 my-lg-0" id="searchform" name="searchform" action="./searchProduct.do">
-				<input class="form-control mr-sm-2" type="text" id="searchbar" name="searchVal" value="" placeholder="검색어를 입력하세요♡"> 
-				<input type="submit" class="btn btn-secondary my-2 my-sm-0" id="btnsearch" value="Search">
+			<form class="form-inline my-2 my-lg-0" id="searchform"
+				name="searchform" action="./searchProduct.do">
+				<input class="form-control mr-sm-2" type="text" id="searchbar"
+					name="searchVal" value="" placeholder="검색어를 입력하세요♡"> <input
+					type="submit" class="btn btn-secondary my-2 my-sm-0" id="btnsearch"
+					value="Search">
 			</form>
 
 		</div>
@@ -108,55 +110,30 @@
 	<!--  -->
 	<div class="menubar">
 		<ul>
-			<li><a href="${contextPath}/eachMain.do?command=reused" id="current">중고
-					거래</a>
-<!-- 				<ul> -->
-<!-- 					<li><a href="#">패션의류</a></li> -->
-<!-- 					<li><a href="#">뷰티 잡화</a></li> -->
-<!-- 					<li><a href="#">유아 용품</a></li> -->
-<!-- 					<li><a href="#">가구 생활</a></li> -->
-<!-- 					<li><a href="#">취미 컬렉션</a></li> -->
-<!-- 					<li><a href="#">디지털</a></li> -->
-<!-- 					<li><a href="#">컴퓨터</a></li> -->
-<!-- 					<li><a href="#">스포츠 레저</a></li> -->
-<!-- 					<li><a href="#">뷰티</a></li> -->
-<!-- 					<li><a href="#">생활 가전</a></li> -->
-<!-- 					<li><a href="#">자동차 공구</a></li> -->
-<!-- 					<li><a href="#">도서 기타</a></li> -->
-<!-- 				</ul> -->
-				</li>
-			<li><a href="${contextPath}/eachMain.do?command=auction" id="current">경&nbsp&nbsp&nbsp&nbsp&nbsp매</a>
-<!-- 				<ul> -->
-<!-- 					<li><a href="#">패션의류</a></li> -->
-<!-- 					<li><a href="#">뷰티 잡화</a></li> -->
-<!-- 					<li><a href="#">유아 용품</a></li> -->
-<!-- 					<li><a href="#">가구 생활</a></li> -->
-<!-- 					<li><a href="#">취미 컬렉션</a></li> -->
-<!-- 					<li><a href="#">디지털</a></li> -->
-<!-- 					<li><a href="#">컴퓨터</a></li> -->
-<!-- 					<li><a href="#">스포츠 레저</a></li> -->
-<!-- 					<li><a href="#">뷰티</a></li> -->
-<!-- 					<li><a href="#">생활 가전</a></li> -->
-<!-- 					<li><a href="#">자동차 공구</a></li> -->
-<!-- 					<li><a href="#">도서 기타</a></li> -->
-<!-- 				</ul> -->
-				</li>
-			<li><a href="/devFw/fleaMain.do" id="current">플리 마켓</a>
-<!-- 				<ul> -->
-<!-- 					<li><a href="#">패션의류</a></li> -->
-<!-- 					<li><a href="#">뷰티 잡화</a></li> -->
-<!-- 					<li><a href="#">유아 용품</a></li> -->
-<!-- 					<li><a href="#">가구 생활</a></li> -->
-<!-- 					<li><a href="#">취미 컬렉션</a></li> -->
-<!-- 					<li><a href="#">디지털</a></li> -->
-<!-- 					<li><a href="#">컴퓨터</a></li> -->
-<!-- 					<li><a href="#">스포츠 레저</a></li> -->
-<!-- 					<li><a href="#">뷰티</a></li> -->
-<!-- 					<li><a href="#">생활 가전</a></li> -->
-<!-- 					<li><a href="#">자동차 공구</a></li> -->
-<!-- 					<li><a href="#">도서 기타</a></li> -->
-<!-- 				</ul> -->
-				</li>
+			<li><a href="${contextPath}/eachMain.do?command=reused"
+				id="current">중고 거래</a> <!-- 				<ul> --> <!-- 					<li><a href="#">패션의류</a></li> -->
+				<!-- 					<li><a href="#">뷰티 잡화</a></li> --> <!-- 					<li><a href="#">유아 용품</a></li> -->
+				<!-- 					<li><a href="#">가구 생활</a></li> --> <!-- 					<li><a href="#">취미 컬렉션</a></li> -->
+				<!-- 					<li><a href="#">디지털</a></li> --> <!-- 					<li><a href="#">컴퓨터</a></li> -->
+				<!-- 					<li><a href="#">스포츠 레저</a></li> --> <!-- 					<li><a href="#">뷰티</a></li> -->
+				<!-- 					<li><a href="#">생활 가전</a></li> --> <!-- 					<li><a href="#">자동차 공구</a></li> -->
+				<!-- 					<li><a href="#">도서 기타</a></li> --> <!-- 				</ul> --></li>
+			<li><a href="${contextPath}/eachMain.do?command=auction"
+				id="current">경&nbsp&nbsp&nbsp&nbsp&nbsp매</a> <!-- 				<ul> --> <!-- 					<li><a href="#">패션의류</a></li> -->
+				<!-- 					<li><a href="#">뷰티 잡화</a></li> --> <!-- 					<li><a href="#">유아 용품</a></li> -->
+				<!-- 					<li><a href="#">가구 생활</a></li> --> <!-- 					<li><a href="#">취미 컬렉션</a></li> -->
+				<!-- 					<li><a href="#">디지털</a></li> --> <!-- 					<li><a href="#">컴퓨터</a></li> -->
+				<!-- 					<li><a href="#">스포츠 레저</a></li> --> <!-- 					<li><a href="#">뷰티</a></li> -->
+				<!-- 					<li><a href="#">생활 가전</a></li> --> <!-- 					<li><a href="#">자동차 공구</a></li> -->
+				<!-- 					<li><a href="#">도서 기타</a></li> --> <!-- 				</ul> --></li>
+			<li><a href="/devFw/fleaMain.do" id="current">플리 마켓</a> <!-- 				<ul> -->
+				<!-- 					<li><a href="#">패션의류</a></li> --> <!-- 					<li><a href="#">뷰티 잡화</a></li> -->
+				<!-- 					<li><a href="#">유아 용품</a></li> --> <!-- 					<li><a href="#">가구 생활</a></li> -->
+				<!-- 					<li><a href="#">취미 컬렉션</a></li> --> <!-- 					<li><a href="#">디지털</a></li> -->
+				<!-- 					<li><a href="#">컴퓨터</a></li> --> <!-- 					<li><a href="#">스포츠 레저</a></li> -->
+				<!-- 					<li><a href="#">뷰티</a></li> --> <!-- 					<li><a href="#">생활 가전</a></li> -->
+				<!-- 					<li><a href="#">자동차 공구</a></li> --> <!-- 					<li><a href="#">도서 기타</a></li> -->
+				<!-- 				</ul> --></li>
 		</ul>
 	</div>
 </body>
