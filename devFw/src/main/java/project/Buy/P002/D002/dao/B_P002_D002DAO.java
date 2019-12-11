@@ -10,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 
 public interface B_P002_D002DAO {
 	 public void insertReview(Map<String, Object> searchMap) throws DataAccessException;
+	 public void updateReview(Map<String, Object> dataMap);
 	 
 
 }

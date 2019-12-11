@@ -7,4 +7,5 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface C_P002_D014Controller {
 	public ModelAndView MyLikeProd(String command, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public void delMyLikeProd(String command, HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

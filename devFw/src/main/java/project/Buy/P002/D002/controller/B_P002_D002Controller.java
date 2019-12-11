@@ -15,4 +15,8 @@ public interface B_P002_D002Controller {
 		public ModelAndView review(HttpServletRequest request) throws IOException;
 		//쓴 리뷰 내용 DB insert
 		public ResponseEntity insertReview(HttpServletRequest request, HttpServletResponse response) throws Exception;
+		//리뷰 삭제
+		public void delReiview(HttpServletRequest request, HttpServletResponse response) throws Exception;
+		//리뷰 내용 수정 
+		public ResponseEntity updateReview(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

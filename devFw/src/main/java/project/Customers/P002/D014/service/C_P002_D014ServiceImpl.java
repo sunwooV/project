@@ -23,5 +23,9 @@ public class C_P002_D014ServiceImpl implements C_P002_D014Service {
 		List<C_P002_D014VO> list =  C_P002_D014DAO.myLikeProd(searchMap); 
 		return list;
 	}
+	@Override
+	public void delLikeProd(Map<String, Object> searchMap) throws DataAccessException{
+		
+	}
 
 }

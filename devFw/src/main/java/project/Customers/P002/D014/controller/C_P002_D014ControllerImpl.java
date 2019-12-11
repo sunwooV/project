@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import project.Buy.P001.D003.service.B_P001_D003Service;
 import project.Customers.P002.D014.service.C_P002_D014Service;
 import project.Sell.P001.D002.service.S_P001_D002Service;
 
@@ -24,6 +25,8 @@ public class C_P002_D014ControllerImpl implements C_P002_D014Controller {
 	S_P001_D002Service S_P001_D002Service;
 	@Autowired
 	C_P002_D014Service C_P001_D014Service;
+	@Autowired
+	B_P001_D003Service b_p001_d003Service;
 	@Autowired
 	private HttpSession session;
 	
@@ -59,6 +62,13 @@ public class C_P002_D014ControllerImpl implements C_P002_D014Controller {
 		mav.addObject("size", myLikeProd.size());
 
 		return mav;
+	}
+
+	@Override
+	public void delMyLikeProd(String command, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		
 	}
 	
 }

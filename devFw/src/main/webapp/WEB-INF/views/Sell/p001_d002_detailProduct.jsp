@@ -574,10 +574,7 @@
 					},
 					complete : function (data, textstatus){
 					}
-				});
-			
-				
-				
+				});				
 
 			} else{ //아니오 선택
 				return false;

@@ -30,4 +30,8 @@
 		(#{review_number}, #{review_score}, #{review_content})
 	  ]]>
 	</insert>
+	
+	<update id="updateReview" parameterType="java.util.Map">
+	
+	</update>
 </mapper>

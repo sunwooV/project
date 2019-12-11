@@ -15,11 +15,12 @@
 		<result property="prod_price" column="prod_price" />
 		<result property="auction_bid" column="auction_bid" />
 		<result property="sale_percent" column="sale_percent" />
+		<result property="prod_amount" column="prod_amount" />
 	</resultMap>
 
 	<select id="myLikeProd" resultMap="C_P002_D014Result01" parameterType="java.util.Map"> 
       <![CDATA[
-        SELECT p.prod_number, p.reused_yn, p.auction_yn, p.flea_yn, p.send_way, p.represent_image, p.prod_title, p.prod_price, p.auction_bid, p.sale_percent
+        SELECT p.prod_number, p.reused_yn, p.auction_yn, p.flea_yn, p.send_way, p.represent_image, p.prod_title, p.prod_price, p.auction_bid, p.sale_percent, p.prod_amount
 		FROM product p, likeProd l
       ]]>
 		<where>

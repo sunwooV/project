@@ -14,6 +14,71 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="text/javascript">
+
+
+/* function calcTtlPrice(){
+	var orderTotal = document.getElementById("").value();
+}
+
+function updateCount(param){
+	var count = document.getElementById('cart_count').value;
+	var memberId = document.getElementById('memberId').value;
+	var prod_number = document.getElementById('prod_number').value;
+	var amount = document.getElementById('prod_amount').value;
+	
+	
+	
+	if(param == 'minus'){
+		if(count>0|| count <= amount){
+			count = count--;
+			var updateCartInfo ={
+					memberId:memberId,
+					cart_count:count,
+					prod_number:product
+			}
+			
+			$.ajax({
+				type:"post",
+				async:false,
+				url:"/devFw/editCart.do",
+				data: updateCartInfo,
+				dataType:"text",
+				success: function(responseData){
+					
+					
+				},
+				error:function(data, textStatus){
+					alert("장바구니 품목 수량 수정 실패.")
+				},
+				complete(data, textStaus){
+					
+				}
+				
+			})//ajax end
+			}else{
+					return false;
+			}
+		
+	}else{
+		if(count>0|| count  amount)
+		count = count++;
+		
+	}
+	
+	
+} */
+
+function moveToPayInfo(){
+	var frm = document.Mycart;
+	
+	frm.method="post";
+	frm.submit();
+	frm.action ="/devFw/payInfo.do";
+	
+}
+
+</script>
 
 <style type="text/css">
 .orderHistoryContainer {
@@ -56,13 +121,11 @@
 	padding: 5%;
 }
 </style>
-<script type="text/javascript">
 
-</script>
 </head>
 <body>
-	<input type="hidden" id="memberId" value="${member.getMemberid()}">
 
+	<input type="hidden" id="memberId" value="${member.getMemberid()}">
 	<form name = "Mycart">
 	<!-- 장바구니 상단 -->
 	<div class="orderHistoryHeader">
@@ -78,54 +141,46 @@
 					<th class="OHT_ttl"><span>상품이미지</span></th>
 					<th class="OHT_ttl"><span>상품정보</span></th>
 					<th class="OHT_ttl"><span>수량</span></th>
-					<th class="OHT_ttl"><span>상품금액</span></th>
-					<th class="OHT_ttl"><span>배송비</span></th>
+					<th class="OHT_ttl"><span>단가</span></th>
+					<th class="OHT_ttl"><span>총 상품 금액</span></th>
 				</tr>
 			</thead>
 			<tbody>
 				<!-- 상품 내용 cif 처리하기 -->
-				
+				<c:set var ="total" value="0" />
 				<c:forEach var="cartList" items="${dataList}">
 				<input type="hidden" id="prod_price" value="${cartList.prod_price}">
 					<tr class="orderHistoryContents">
-						<td class="OHC_cont"><input type="checkbox" name="checkProd"
-							id="checkProd" value="">
+						<td class="OHC_cont"><input type="checkbox" name="checkProd" id="checkProd" value="">
 							<input type="hidden" name="prod_number" value="${cartList.prod_number}"></td>
 						<td class="OHC_cont"><img src="${cartList.represent_image}"
 							name="represent_image" style="width:100px; height:125px;"></td>
-						<td class="OHC_cont">${cartList.prod_title}</td>
-						<td class="OHC_cont">${cartList.cart_count}</td>
-						<td class="OHC_cont">${cartList.prod_price}</td>
-						<td class="OHC_cont"><span class="shippingFee"
-							name="shippingFee"></span></td>
+						<td class="OHC_cont">${cartList.prod_title}<input type="hidden" name="prod_title" value="${prod_title}"></td>
+						<td class="OHC_cont"><span id="cart_count">
+						<input type="button" id="minus" onClick="updateCount('minus')" value="-"><input type="number" id="cart_count" min="1" max="${product.prod_amount}" style="width:8%; height:auto; text-align:right;" value="${cartList.cart_count}"><input type="button"  id="plus" onClick="updateCount('plus')" value="+">
+						</span></td>
+						<td class="OHC_cont" id="prod_price"><fmt:formatNumber value="${cartList.prod_price}" />원</td>
+						<td class="OHC_cont"><span id="prod_ttl_price"><fmt:formatNumber value="${cartList.prod_price * cartList.cart_count}" />원</span>
+						</td>
+						
 					</tr>
+					<c:set var ="total" value="${total+ cartList.prod_price*cartList.cart_count}" />
 				</c:forEach>
-				<!-- 2번째 상품 내용 -->
+				<tr>
+				<td class="OHC_cont" colspan="6" style="height:100px; font-size:35px; text-align:right;" >
+				예상 결제 금액 = <span id="subTotal"><c:out value="${total}" />원</span>
+				<input type="hidden" name="totalPrice" value="${total}">
+				</td>
+				
+				</tr>
+		
 			</tbody>
 		</table>
 	</div>
-	<div class="orderHistoryContainer">
-		<div class="cartExpectCost" id="cartExpectCost">
-			<table class="expectCost">
-				<tbody>
-					<tr class="OHtableTitle">
-						<th class="OHT_ttl">총 상품금액</th>
-						<th class="OHT_ttl">배송비</th>
-						<th class="OHT_ttl"><strong>총 금액</strong></th>
-					</tr>
-					<tr>
-						<td class="OHC_cont" id="subtotal"></td>
-						<td class="OHC_cont" id="shippingFee"></td>
-						<td class="OHC_cont" id="orderTotal"></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
 		<div class="goToPayButton">
 			<button class="cta" onClick="moveToPayInfo()">주문하기</button>
 		</div>
-	</div>
-
+	
 	<!-- End Content -->
 	</form>
 </body>

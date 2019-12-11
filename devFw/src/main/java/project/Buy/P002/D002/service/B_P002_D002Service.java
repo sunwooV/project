@@ -9,4 +9,8 @@ import project.Buy.P002.D002.vo.B_P002_D002VO;
 
 public interface B_P002_D002Service {
 	 public void insertReview(Map<String, Object> searchMap) throws DataAccessException;
+	public void updateReview(Map<String, Object> dataMap) throws DataAccessException;
+	public void delReview(Map<String, Object> dataMap);
+	
+	
 }

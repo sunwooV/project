@@ -40,7 +40,6 @@ public class B_P002_D002ControllerImpl implements B_P002_D002Controller {
 	@RequestMapping(value="/review.do", method= {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView review(HttpServletRequest request) throws IOException {
 		request.setCharacterEncoding("utf-8");
-
 		ModelAndView mav = new ModelAndView("Popup/b_p002_d002_reviewWrite");
 		return mav;
 	}
@@ -74,6 +73,51 @@ public class B_P002_D002ControllerImpl implements B_P002_D002Controller {
 			message = " <script>";
 			message += " alert('오류 발생!!');";
 			message += " location.href='" + request.getContextPath() + "/insertReview.do'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
+			e.printStackTrace();
+		}		
+		return resEnt;
+	}
+
+	@Override
+	public void delReiview(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		b_p002_d002Service.delReview(dataMap);
+		
+	}
+
+	@Override
+	@RequestMapping(value="/updateReview.do", method= {RequestMethod.GET,RequestMethod.POST})
+	@ResponseBody
+	public ResponseEntity updateReview(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	
+		request.setCharacterEncoding("utf-8");
+		System.out.println("Review update 들어옴");
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		Enumeration enu = request.getParameterNames();
+		while (enu.hasMoreElements()) {
+			String name = (String)enu.nextElement();
+			String value = request.getParameter(name);
+			dataMap.put(name, value);
+			System.out.println(dataMap);
+		}
+		
+		String review_number = (String)dataMap.get("review_number"); 
+		String message;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders(); // 헤더변경 시 사용
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+		try {
+			b_p002_d002Service.updateReview(dataMap);
+		
+			
+			response.sendRedirect("/devFw/review.do?review_number=" + review_number);
+
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해 주세요');";
+			message += " location.href='" + request.getContextPath() + "/review.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
 			e.printStackTrace();

@@ -22,7 +22,16 @@ public class B_P002_D002ServiceImpl implements B_P002_D002Service{
 	@Override
 	public void insertReview(Map<String, Object> searchMap) throws DataAccessException {
 		b_p002_d002DAO.insertReview(searchMap);
-	
+	}
+
+	@Override
+	public void updateReview(Map<String, Object> dataMap) throws DataAccessException {
+		b_p002_d002DAO.updateReview(dataMap);	
+	}
+
+	@Override
+	public void delReview(Map<String, Object> dataMap) {
+		b_p002_d002DAO.updateReview(dataMap);
 	}
 
 	

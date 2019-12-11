@@ -5,17 +5,32 @@
 
 <mapper namespace="Buy.P001.D004">
 	<resultMap id="B_P001_D004Result01" type="B_P001_D004VO">
-		<result property="orderNum" column="orderNum" />
-		<result property="payMethod" column="payMethod" />
-		<result property="payPrice" column="payPrice" />
-		<result property="payGroup" column="payGroup" />
-		<result property="accountTransferYN" column="accountTransferYN" />
+		<!-- order_num은 3 테이블 공통 사용-->
+		<result property="order_num" column="order_num" />
+		<!-- order -->
+		<result property="seller_memberid" column="seller_memberid" />
+		<result property="buyer_memberid" column="buyer_memberid" />
+		<result property="order_date" column="order_date" />
+		<result property="total_price" column="total_price" />
+		<result property="order_fix_yn" column="order_fix_yn" />
+		<result property="order_state" column="order_state" />
+		<result property="order_want" column="order_want" />	
+		<!-- orderitems -->
+		<result property="prod_number" column="prod_number" />
+		<result property="quantity" column="quantity" />
+		<result property="item_price" column="item_price" />
+		<result property="get_method" column="get_method" />	
+		<!-- pay -->
+		<result property="pay_method" column="pay_method" />
+		<result property="pay_price" column="pay_price" />
+		<result property="pay_group" column="pay_group" />
+		<result property="pay_date" column="pay_date" />
 	</resultMap>
 
-	<select id="insertPaymentInfo" resultMap="B_P001_D004Result01" parameterType="java.util.Map"> 
+	<insert id="insertOrder" > 
       <![CDATA[
-         select prod_number, cart_count, option_number
-         from   cart 
+         insert into ()
+            cart 
 	  ]]>	
-	</select>
+	</insert>
 </mapper>

@@ -24,7 +24,8 @@
 		<where>
 			<![CDATA[ 
 			 c.prod_number = p.prod_number
-			and m.memberid = #{memberid}	
+			and m.memberid = #{memberid}
+			and c.memberid= m.memberid	
 	]]>
 		</where>
 	</select>

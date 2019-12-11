@@ -16,7 +16,14 @@ public class C_P002_D014VO {
 	private String prod_price;
 	private String auction_bid;
 	private String sale_percent;
+	private String prod_amount;
 	
+	public String getProd_amount() {
+		return prod_amount;
+	}
+	public void setProd_amount(String prod_amount) {
+		this.prod_amount = prod_amount;
+	}
 	public String getProd_number() {
 		return prod_number;
 	}

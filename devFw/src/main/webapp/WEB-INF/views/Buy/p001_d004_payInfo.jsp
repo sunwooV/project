@@ -2,35 +2,45 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="Path" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
 <style type="text/css">
-.headerForPayInfo {
-    margin-left: 10%;
-    padding-top: 2%;
-}
-.tableTr th{
-width:150px;
-height: 28px;
-padding:2%;
-font-size:18px;
+orderHistoryContainer {
+	/* padding: 위 오른쪽 아래 왼쪽;*/
+	padding: 1% 15% 10% 15%;
 }
 
-.tableTr td{
-width:500px;
-height: 28px;
-padding:2%;
-font-size:18px;
+.orderHistoryHeader {
+	padding-top: 3%;
+	margin-left: 15%;
 }
-.payForOrder{
-text-align:center;
-font-size:15px;
+
+.OHT_ttl, .OHC_cont {
+	font-size: 13px;
+	padding: 0.5%;
+	text-align: center;
+	border-bottom: 1px solid lightgray;
 }
+
+.orderHistoryTable {
+	text-align: center;
+	width: -webkit-fill-available;
+	border-top: 1px solid lightgray;
+	border-collapse: collapse;
+}
+
+.OHtableTitle {
+	background-color: #f9f9f9;
+}
+
+
 </style>
 <script type="text/javascript">
 function kakaopayPC(){
+	
 	var url="http://localhost:8090/devFw/kakaopay.do/oauth";
 	var name="카카오페이";
 	var option ="width = 500, height = 500, top = 100, left = 200, location = no"
@@ -40,20 +50,21 @@ function kakaopayPC(){
 </script>
 </head>
 <body>
-<!-- css 손보기 table 내부 간격 수정 필요 -->
-	<div class="headerForPayInfo">
-		<h1>주문정보 입력</h1>
-		<br> <br> <br>
-		<!--배송정보 테이블  -->
+
+<input type="hidden" id="memberId" value="${member.getMemberid()}">
+	<div class="orderHistoryHeader">
+		<h3>주문 및 결제 정보</h3>
 	</div>
 
 	<div class="shipping" style="margin-left: 30%">
 		<h2>배송지 정보</h2>
 		<br>
+		<!-- 배송정보 테이블 -->
 		<table class="shipInfoTable">
 			<tr class="tableTr">
 				<th>배송지 선택</th>
-				<td><input type="select" id="selectShipAddress"  width="200px"/></td>
+				<td><input type="select" id="selectShipAddress"  width="200px">
+				</td>
 				<td><input type="button" value="새로운 주소+" id="input_new_Address"></td>
 			</tr>
 

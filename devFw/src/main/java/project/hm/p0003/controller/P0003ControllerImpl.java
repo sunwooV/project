@@ -91,7 +91,7 @@ public class P0003ControllerImpl implements P0003Controller {
 	@RequestMapping(value = "/hm/p0003/updateMember.do", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
 	public ResponseEntity updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("controller수정확인");
+		System.out.println("controller");
 		
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> dataMap = new HashMap<String, Object>();
@@ -101,7 +101,7 @@ public class P0003ControllerImpl implements P0003Controller {
 			String value = request.getParameter(name);
 			dataMap.put(name, value);
 		}
-		System.out.println("dateMap전:"+dataMap);
+		System.out.println("dateMap:"+dataMap);
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -115,7 +115,7 @@ public class P0003ControllerImpl implements P0003Controller {
 			dispatch.forward(request, response);
 		} catch (Exception e) {
 			message = " <script>";
-			message += " alert('오류가 발생했습니다. 다시 시도해 주세요');";
+			message += " alert('');";
 			message += " location.href='" + request.getContextPath() + "/hm/p0003/searchInit.do'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);

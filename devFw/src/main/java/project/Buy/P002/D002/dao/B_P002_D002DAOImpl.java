@@ -30,4 +30,10 @@ public class B_P002_D002DAOImpl implements B_P002_D002DAO {
 	 sqlSession.update("Buy.P002.D002.insertReview", searchMap);
 	}
 
+	@Override
+	public void updateReview(Map<String, Object> dataMap) {
+		sqlSession.update("Buy.P002.D002.updateReview", dataMap);
+		
+	}
+
 }

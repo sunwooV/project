@@ -150,6 +150,79 @@
 		frm.submit();
 	});
 	
+	//장바구니 담기 - 상품에서 바로 장바구니 담기 누를 때
+	$(document).on('click','#basket', function(){
+		var product = $('#checkProd').val();
+		alert(product);
+		var memberId = $('#memberId').val();
+		alert(memberId);
+		
+		var checkData ={
+				prod_number:product,
+				memberId:memberId
+		}
+		
+		$.ajax({
+			type:"post",
+			async:false,
+			url: "/devFw/checkCartList.do",
+			data: checkData,
+			dataType : 'text',
+			
+			success:function(responseData){
+				if(responseData == 1){
+					alert("동일한 상품이 장바구니에 담겨있습니다.");
+				}else{
+					showChooseOptionTr();
+				}//else end
+			},
+			error:function(data, textStatus){
+				alert("오류가 발생했습니다.")
+			},
+			complete:function(data, textStatus){
+				
+			} // complete end
+			
+			
+		})//ajax end
+			
+	})// 장바구니 담기 처리 끝
+	
+	//tr show&hide
+	function showChooseOptionTr(){
+		$('#selectOption').css("display","block");
+	}
+	
+	//+, - 버튼 눌렀을 때 수량 변경
+	function abuttonClick(pm){ 
+		
+ 		
+ 		
+		var amount = document.getElementById("cartCount").value;
+	
+		if(pm == 'minus'){
+			if(amount.value == amount.min){ 
+				return false;
+			}else{
+				amount.value--;
+			}
+		} else { //plus 버튼 눌렀을 때
+			if(amount.value == amount.max){ //재고 수량보다 더 많이 주문할 수 없도록 설정
+				return false;
+			}else{
+				amount.value++;
+			}
+		}
+	}
+	
+	//장바구니 수량 체크 후 담기 눌렀을 떄 최종적으로 addCart
+	$(document).on('click','#finalGoToCart', function(){
+		
+		
+		
+		
+	})//function end
+	
 </script>
 <style type="text/css">
 .orderHistoryContainer {
@@ -290,10 +363,11 @@ input[type=button]{
 						<br>
 						<input type="button" value="장바구니담기" class="orderButton" id="basket"> 
 						<br> 
-						<input type="button" value="X 삭제" class="orderButton" id="delete" name="${myLikeProd.prod_number }">
+						<input type="button" value="X 삭제" class="orderButton" id="delete" name="${myLikeProd.prod_number}">
 					</td>
 				</tr>
 				</c:forEach>
+				
 			</tbody>
 		</table>
 		<div id="buttons">
@@ -302,7 +376,6 @@ input[type=button]{
 			<input type="button" class="left" id="checkBasket" value="장바구니 담기">
 			<input type="button" class="right" id="allDelete" value="관심상품 비우기">
 			<input type="button" class="right" id="allOrder" value="전체상품주문">
-			
 		</div>
 	</div>
 </form>
