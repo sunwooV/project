@@ -1,29 +1,66 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
-<mapper namespace="Customers.orderList">
-	<resultMap id="C_P002_D002VOResult01" type="C_P002_D002VO">
-	<!-- product로 부터 -->
-	<result property="prod_title" column="prod_title" />
-	
-	<!-- review table로 부터-->	
-	<result property="seller_memberid" column="seller_memberid" />
-	<result property="buyer_memberId" column="buyer_memberId" />
-	<result property="review_group" column="review_group" />
-	<result property="flea_code" column="flea_code" />
-	<result property="review_score" column="review_score" />
-	<result property="review_content" column="review_content" />
-	<result property="review_date" column="review_date" />
-	
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Customers.p002_d002">
+	<resultMap id="C_P002_D002Result01" type="C_P002_D002VO">
+		<result property="prod_number" column="prod_number" />
+		<result property="bid_number" column="bid_number" />
+		<result property="bid_amount" column="bid_amount" />
+		<result property="bid_price" column="bid_price" />
+		<result property="bid_date" column="bid_date" />
+		<result property="memberId" column="memberId" />
+		<result property="represent_image" column="represent_image" />
+		<result property="auction_end_date" column="auction_end_date" />
+		<result property="cnt" column="cnt" />
+		<result property="endChk" column="endChk" />
 	</resultMap>
 	
-	<select id="selectOrder" parameterType="java.util.Map" resultMap="C_P002_D002VOResult01">
-	    <![CDATA[
-			
-	    ]]>
+
+	<select id="myBidList" resultMap="C_P002_D002Result01" parameterType="java.util.Map"> 
+      <![CDATA[
+         	select a.*
+			    , p.represent_image
+			    , p.auction_end_date
+			    ,(select count(*)
+			        from auction_bid
+			        where bid_number = (select max(bid_number)
+			                            from auction_bid
+			                            where prod_number = a.prod_number
+			                            group by prod_number)
+			        and memberId = #{memberId}
+			        and prod_number = a.prod_number) as cnt
+			    , sign(p.auction_end_date - sysdate) as endChk
+			from auction_bid a, product p
+      ]]>
+		<where>
+		<![CDATA[
+			a.prod_number = p.prod_number
+			and a.memberId = #{memberId}
+			and a.bid_number = (select max(bid_number)
+			                    from auction_bid
+			                    where memberId=#{memberId}
+			                    and prod_number = a.prod_number)
+		]]>
+		</where>	
 	</select>
-
-
+	
+	<select id="progressChk" resultMap="C_P002_D002Result01" parameterType="java.util.Map">
+	<![CDATA[
+		select count(*) as cnt
+		from auction_bid
+	]]>
+	<where>
+	<![CDATA[
+		bid_number = (select max(bid_number)
+		                    from auction_bid
+		                    where prod_number = #{prod_number}
+		                    group by prod_number)
+		and memberId = #{memberId}
+		and prod_number = #{prod_number}
+	]]>
+	</where>
+	</select>
+	
 </mapper>
