@@ -64,27 +64,24 @@
 					환불 </a> <a href="#" class="list-group-item list-group-item-action">배송문의
 				</a> <a href="#" class="list-group-item list-group-item-action">기타 </a>
 			</div>
-
 		</div>
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->
 		<div class="col-sm-10" id="csmain">
 			<h1 style="font-size: 37px;">고객센터</h1>
 
 			<div class="row" id="cscs1">
-				<h2 style="font-size: 23px; padding-bottom: 2%;">🔔공지사항🔔</h2>
+				<h2 style="font-size: 23px;padding-bottom: 2%;">🔔자주묻는질문🔔</h2>
 				<table class="table table-hover" style="width: 98%;">
 					<tr>
 						<th style="width: 78%;">제목</th>
-						<th>게시일</th>
 					</tr>
 
-					<c:forEach var="event" items="${noticeList}" varStatus='notice'>
-						<tr id=${notice.count } class="faq_open">
-							<td>${event.no_title}</td>
-							<td>${event.no_writedate}</td>
+					<c:forEach var="event" items="${faqList}" varStatus='faq'>
+						<tr id=${faq.count } class="faq_open">
+							<td>${event.title}</td>
 						</tr>
-						<tr style="display: none;" id="n${notice.count }">
-							<td colspan="2">${event.no_contents}</td>
+						<tr style="display: none;" id="n${faq.count }">
+							<td colspan="2">${event.contents}</td>
 						</tr>
 					</c:forEach>
 				</table>

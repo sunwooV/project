@@ -56,7 +56,7 @@
 		<typeAlias type="project.Customers.P008.D001.vo.C_P008_D001VO" alias="C_P008_D001VO" />
 		
 		<typeAlias type="project.CS.P001.D001.vo.CS_P001_D001VO" alias="CS_P001_D001VO" />
-		<typeAlias type="project.CS.P001.D001.vo.CS_P001_D001VO" alias="CS_P001_D001VO" />
+		<typeAlias type="project.CS.P001.D002.vo.CS_P001_D002VO" alias="CS_P001_D002VO" />
 		<typeAlias type="project.CS.P001.D003.vo.CS_P001_D003VO" alias="CS_P001_D003VO" />
 		<typeAlias type="project.CS.P001.D004.vo.CS_P001_D004VO" alias="CS_P001_D004VO" />
 		<typeAlias type="project.CS.P001.D001.vo.PagingVO" alias="PagingVO" />

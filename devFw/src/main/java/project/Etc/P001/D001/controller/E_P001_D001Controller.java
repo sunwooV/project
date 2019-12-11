@@ -13,5 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public interface E_P001_D001Controller {
 	
 	ModelAndView detail1(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 
 }

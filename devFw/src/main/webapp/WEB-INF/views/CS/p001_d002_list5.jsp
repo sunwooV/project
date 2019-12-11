@@ -46,7 +46,7 @@
 	<div class="container-fluid"
 		style="padding-left: 16%; padding-top: 3%; margin-right: -4%;">
 		<div class="col-sm-2" id="col">
-			<div class="list-group">
+					<div class="list-group">
 				<!-- <h1 style="padding-bottom: 3%; font-size: 21px;">마이페이지</h1> -->
 				<a href="#" class="list-group-item list-group-item-action active">
 					마이페이지 </a> <a href="#" class="list-group-item list-group-item-action">포인트
@@ -55,8 +55,6 @@
 					찾기 </a>
 			</div>
 
-
-
 			<div class="list-group">
 				<a href="#" class="list-group-item list-group-item-action active">
 					게시판 </a> <a href="#" class="list-group-item list-group-item-action">1:1게시판
@@ -64,27 +62,24 @@
 					환불 </a> <a href="#" class="list-group-item list-group-item-action">배송문의
 				</a> <a href="#" class="list-group-item list-group-item-action">기타 </a>
 			</div>
-
 		</div>
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->
 		<div class="col-sm-10" id="csmain">
 			<h1 style="font-size: 37px;">고객센터</h1>
 
 			<div class="row" id="cscs1">
-				<h2 style="font-size: 23px; padding-bottom: 2%;">🔔공지사항🔔</h2>
+				<h2 style="font-size: 23px;padding-bottom: 2%;">🔔주문결제🔔</h2>
 				<table class="table table-hover" style="width: 98%;">
 					<tr>
 						<th style="width: 78%;">제목</th>
-						<th>게시일</th>
 					</tr>
 
-					<c:forEach var="event" items="${noticeList}" varStatus='notice'>
-						<tr id=${notice.count } class="faq_open">
-							<td>${event.no_title}</td>
-							<td>${event.no_writedate}</td>
+					<c:forEach var="event" items="${payList}" varStatus='pay'>
+						<tr id=${pay.count } class="faq_open">
+							<td>${event.title}</td>
 						</tr>
-						<tr style="display: none;" id="n${notice.count }">
-							<td colspan="2">${event.no_contents}</td>
+						<tr style="display: none;" id="n${pay.count }">
+							<td colspan="2">${event.contents}</td>
 						</tr>
 					</c:forEach>
 				</table>
