@@ -28,6 +28,7 @@ public class M_P001_D001VO {
 	private String tag_list;
 	private String represent_image;
 	private String auction_price;
+	private String fleamarket;
 	
 	public M_P001_D001VO(){
 		System.out.println("S_P001_D002_VO ȣ��");
@@ -179,5 +180,13 @@ public class M_P001_D001VO {
 	public void setAuction_price(String auction_price) {
 		this.auction_price = auction_price;
 	}
+	public String getFleamarket() {
+		return fleamarket;
+	}
+	public void setFleamarket(String fleamarket) {
+		this.fleamarket = fleamarket;
+	}
+	
+	
 	
 }

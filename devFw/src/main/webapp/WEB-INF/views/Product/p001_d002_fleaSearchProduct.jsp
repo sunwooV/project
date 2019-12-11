@@ -182,6 +182,8 @@ ul {
   padding-bottom: 4px;
   padding-left: 2px;
   border-bottom: 1px solid #d9d9d9;
+  width: 200%;
+  margin-left: 15px;
 }
 
 
@@ -342,79 +344,184 @@ layout-split:after {
     background-color: #B9C9F8;
 }
 
-.ui_card__img {
-    position: relative;
-    display: block;
-    width: 85%;
-    height: auto;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    transition: transform .5s ease-in-out;
+.card-style.story .bordering {
+    border: 1px solid #d9d9d9;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 12px;
+    -webkit-transition: border-color 0.3s ease;
+    -o-transition: border-color 0.3s ease;
+    -moz-transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(220,220,220,0.3);
+    -moz-box-shadow: 0 1px 3px 0 rgba(220,220,220,0.3);
+    box-shadow: 0 1px 3px 0 rgba(220,220,220,0.3);
 }
-.ui_card__img, .ui_card__imgcover {
+
+.card-style .area-rating {
     overflow: hidden;
+    padding-bottom: 16px;
+    margin-bottom: 16px !important;
+    border-bottom: 1px solid #d9d9d9;
 }
-.ui_card, .ui_card--flex-orientation, .ui_card--side, .ui_card--white {
-   overflow: hidden;
-   position: relative;
-   display: inline-block;
-   background: #f8f9fb;
-   border-radius: 4px;
-   border: 1px solid #d9d9d9;
-   font-size: 12px;
-   box-shadow: 0 1px 3px 0 hsla(0,0%,86.3%,.3);
+
+.masonry-grid .card-style.story .desc {
+    display: block;
+    height: auto;
+    overflow: hidden;
+    -o-text-overflow: initial;
+    text-overflow: initial;
+    max-height: 170px;
 }
-.ui_card--side .ui_card__imgcover {
-    width: 40%;
+
+.deal_buy_review{
+    position: relative;
+    padding: 30px 0 30px 58px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
 }
-.ui_card--side .ui_card__inner>* {
-    display: table-cell;
+
+.first-part{
+   width: 200%;
+}
+
+.review_btn_area {
+    width: 160px;
+    position: absolute;
+    top: 50%;
+    right: 45px;
+    margin-top: -25px;
+    font-size: 16px;
+    padding: 0 24px;
+    line-height: 46px;
+    border-color: transparent;
+    background: #e55;;
+    color: #fff;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.btns_sys.red_big_d {
+    background-position: 100% -729px;
+    line-height: 48px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.rv_count {
+    display: inline-block;
+    margin: 4px 0 0 5px;
+    font-size: 14px;
+    line-height: 17px;
+    color: #999;
+    font-family: tahoma;
     vertical-align: top;
 }
-.ui_card__img, .ui_card__imgcover {
-    overflow: hidden;
-}
-.cardlist_section .split-cardlist .ui_card--side {
-    width: 100%;
-}
-.ui_grid__item{
-	width: 500px;
-	margin-bottom: 12px;
-	cursor: pointer;
-	float: left;
-    margin-right: 50px;
-}
-.ui_card__txtarea{
-	padding: 15px;
+
+.list_type>li {
+    position: relative;
+    padding-left: 6px;
+    color: #999;
 }
 
-.ui_card__inner{
-	height: 135px;
-	width: 390px;
-}
-
-.ui_btn--large{
-	margin-left: 25%;
-    width: 200px;
-	font-size: 14px;
-	line-height: 46px;
-	box-shadow: 0 1px 3px 0 hsla(0,0%,86.3%,.3);
-    font-weight: 400;
-    box-sizing: border-box;
-    display: inline-block;
-    border-radius: 2px;
-    background: #fff;
-    border: 1px solid #d9d9d9;
-    vertical-align: middle;
-    transition: background-color .2s cubic-bezier(.075,.82,.165,1);
-    transition: border-color .2s cubic-bezier(.075,.82,.165,1);
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    text-decoration: none;
-    color: #333;
+.desc_cont .title_area.clear .total-sort span {
     cursor: pointer;
+}
+
+.title_area .sort {
+    float: right;
+}
+
+.desc_cont .title_area.clear .sort .selbox_comm {
+    width: 86px;
+}
+.selbox_comm.v2 {
+    height: 30px;
+    padding: 4px 12px 0px 14px;
+}
+.selbox_comm {
+    float: left;
+    position: relative;
+    z-index: 10;
+    width: auto;
+    height: 36px;
+    padding: 0 12px 0 8px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+}
+.desc_cont .title_area.clear {
+    min-height: 32px;
+    margin-bottom: 15px;
+}
+
+.content_main .selbox_comm.on .btn_option:after, .ui-dialog .selbox_comm.on .btn_option:after {
+    background-position: -190px -139px;
+}
+
+.selbox_comm.v2 .list_option a {
+    line-height: 19px;
+    padding-top: 2px;
+}
+.selbox_comm .list_option a {
+    display: block;
+    line-height: 34px;
+    padding-top: 2px;
+    color: #666;
+    text-decoration: none;
+    text-indent: 0px;
+}
+
+#prod_story_text {
+    width: 100%;
+    height: 140px;
+}
+textarea {
+    overflow: auto;
+    resize: vertical;
+}
+
+#buy, #bidding {
+    font-size: 16px;
+    padding: 0 24px;
+    line-height: 46px;
+    border-color: transparent;
+    background: #dd5850;
+    color: #fff;
+}
+
+#cart {
+    font-size: 16px;
+    padding: 0 24px;
+    line-height: 46px;
+    border-color: #dd5850;
+    background: #fff;
+    color: #dd5850;
+}
+
+.prod_story_wrap {
+    width: 99%;
+    background: #f9f9f9;
+    margin-top: 2%;
+    border: 1px solid #ddd;
+    padding: 30px 29px;
+}
+
+.btn_area {
+    text-align: center;
+}
+
+.ui_title__txt{
+  color: #333;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  padding-bottom: 4px;
+  padding-left: 2px;
+  border-bottom: 1px solid #d9d9d9;
 }
 
 </style>
@@ -431,11 +538,19 @@ layout-split:after {
   <!-- Custom styles for this template -->
   <link href="${contextPath}/resources/css/shop-homepage.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- 별점 -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css" integrity="sha256-OlSbjYBfrJGGd2zbT3qCsAZsPGxRwKOSGjqqfjF8aiY= sha512-1aDUINxj8c9UXJ76eIMAkG2/ofIjG8FBW4drgHUglwY/rGn+YWUtm8iSkrpAOtwZ9b9LEva02KPrTDx3M5ib3w==" crossorigin="anonymous">
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
   <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca839997c3bd98863fdc033319b76889&libraries=services"></script>
+<!-- Jquery Rate Picker-->
+<script type="text/javascript" src="${contextPath}/resources/js/jquery-rate-picker.js"></script>
 <script>
 $(document).ready(function(){
 	$("#chat-header>i").on("click",addMember);
@@ -550,8 +665,77 @@ $(document).ready(function(){
 	  return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
 	};
 	
+	$(".selbox_comm").click(function(){
+		alert("ssss");
+		$(".selbox_comm").attr('class', 'selbox_comm v2 on ');
+	});
+	
+	$(document).on('click', '.enrollstory', function(){
+		alert("====story 등록 클릭 시 =====");
+		var story_cotent = $('#prod_story_text').val();
+		var story_title = $('.story_title_text').val();
+		var command = 'insert';
+		
+		alert(story_cotent + "/" + story_title + "/" + command);
+		
+		var data = {
+				story_title: story_title,
+				story_cotent: story_cotent,
+				command: command
+		}
+		
+		$.ajax({
+			type: "post",
+			async: false,
+			url: "/devFw/storyComment.do",
+			data: data,
+			dataType : 'text',
+			success: function(responseData){
+				var test = document.getElementById("prod_story_text").value = "";
+			
+				
+				var data = JSON.parse(responseData);
+				
+	            /* if(jsonInfo.error.error_yn == 'Y'){
+	        	   alert(jsonInfo.error.error_text);
+	        	   return;
+	            } */
+	            //console.log(data.length);
+				var list = '';
+				
+
+				for(var i=0;i<data.length;i++){
+					list += '<div class="cont_box">'
+					 +	'<span class="inquiry_prod">'+ story_title + '</span>';
+					
+					list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + story_cotent + '</span>';
+
+					list += '</div>' 
+						+ '</li>';
+				}
+			$(".masonry-grid").html(list);
+			},
+			error: function(data, textStatus){
+				alert("다시 시도해주세요.");
+			},
+			complete : function (data, textstatus){
+			}
+		});
+		
+		
+	});
+	
+	
 });
 </script>
+<script>
+$.ratePicker("#rating-2", {
+    rate : function (stars){
+        alert('Sample 3\'s Rate is ' + stars);
+    }
+});
+</script>
+
 </head>
 
 <body>
@@ -563,9 +747,11 @@ $(document).ready(function(){
     <form method="post" id="new_message" action="/devFw/participantsInsert.do" enctype="multipart/form-data">    
         <p><label for="flea_name">회원 검색&nbsp;</label><input type="text" size="30" name="memberid" id="memberid" /></p>
         <p><input type="submit" value="확인" name="commit" id="message_submit"/><a class="close" href="/">Cancel</a></p>
+        <!--  
         <c:forEach var="flea" items="${searchList}" > 
         	<input type="hidden" name="flea_code" value="${flea.flea_code}">
         </c:forEach>
+        -->
     </form>
     
 
@@ -573,7 +759,7 @@ $(document).ready(function(){
 
 
 <div class="center-flea">
-     <div class="row-left">
+     <div class="row-left" style="width:125%;">
       <aside class="artist-area">
         <div class="user-info card-style-profile "> <!-- PROFILE (MIDDLE-CONTAINER) -->
    	<!--  
@@ -588,7 +774,7 @@ $(document).ready(function(){
 						<i class="fa fa-user-plus pa-5x"></i>
 			         </div>
 		             -->
-		                <c:forEach var="flea" items="${searchList}" > 
+		             <c:forEach var="flea" items="${searchList}" > 
 				             <div class="profile-picture big-profile-picture clear">
 				                 <img width="120px" height="120px" alt="no picture" src="${flea.profile_photo}" />
 					             <!-- 
@@ -610,7 +796,7 @@ $(document).ready(function(){
 				              <div class="profile-description">
 				                 <c:out value="${flea.intro_cotent}"/>
 							  </div>
-				        </c:forEach>
+				   </c:forEach>    
          </div> 
              <fieldset class="ui-field border-row">
                 <div id="chat-header">
@@ -661,14 +847,15 @@ $(document).ready(function(){
 		        <!--  
 		        <strong class="caption"><font size="3">활동정보</font></strong>
 		        -->
-		        <c:forEach var="flea" items="${searchList}" > 
 		        <dl class="list">
 		            <dt>좋아하는 사람</dt>
 		            <dd>
 		                <a href="#t" data-modal-trigger="user-list" data-modal="open" data-type="favorite" data-title="좋아하는 사람"><span id="like-count">
-		                  
+		                 
+		                  <c:forEach var="flea" items="${searchList}" > 
 		              		 <c:out value="${flea.flea_like_count}"/>
-		               	 
+		               	  </c:forEach>
+		               	  
 		                  </span><em>명</em>
 		                </a>
 		            </dd>
@@ -680,293 +867,95 @@ $(document).ready(function(){
 		            <dd>
 		                <a href="#">124<em>개</em></a>
 		            </dd>
-       		    </dl>
-       		    </c:forEach>
+       		  </dl>
        		</div>
        		<br><br><br><br><br><br><br><br>
        		
    		   
    		   
     	<br><br><br><br>
-  	</aside>  
-		     
-	<!-- /.col-lg-3 -->
-     <div class="col-lg-9">
-        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-        <!-- 
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          </ol>
-           -->
-          <div class="carousel-inner" role="listbox">
-          <!--  
-           <c:forEach var="flea" items="${searchList}" > 
-            <div class="carousel-item active">
-              <img class="d-block img-fluid" id="img-full" src="${flea.main_photo}" alt="First slide">
-            </div>
-           </c:forEach>
-           -->
-           <!--  
-            <div class="carousel-item">
-              <img class="d-block img-fluid" id="img-full" src="http://placehold.it/900x350" alt="Second slide">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block img-fluid" id="img-full" src="http://placehold.it/900x350" alt="Third slide">
-            </div>
-          </div>
-          -->
-          <!--  
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-          -->
-        </div>	     
-		
-  <!-- 플리마켓 맵 
-   	<div class="fleaMap">
-    	<a href="/devFw/fleaMap.do" id="fleaMap">
-       	   <i class="fa fa-map-marker-alt pa-5x">오프라인 맵<br></i>
-        </a>
-    </div>
-    -->
-     <div class="ui_title__txt"><font size="2">오프라인 플리마켓 정보</font></div>
- 	 <!-- 플리 맵 추가 -->
-     <div id="map" style="width:100%;height:250px;"></div>
-	   
-	  	   
-  	<script>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		    mapOption = {
-		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-		        level: 3 // 지도의 확대 레벨
-		    };  
-		
-		// 지도를 생성합니다    
-		var map = new kakao.maps.Map(mapContainer, mapOption); 
-		
-		// 주소-좌표 변환 객체를 생성합니다
-		var geocoder = new kakao.maps.services.Geocoder();
-		
-		<c:forEach var="addressList" items="${searchList}">
-		
-		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch('${addressList.join_offline_location}', function(result, status) {
-		
-		    // 정상적으로 검색이 완료됐으면 
-		     if (status === kakao.maps.services.Status.OK) {
-		
-		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		
-		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        var marker = new kakao.maps.Marker({
-		            map: map,
-		            position: coords
-		        });
-		
-		        // 인포윈도우로 장소에 대한 설명을 표시합니다
-		        var infowindow = new kakao.maps.InfoWindow({
-		            content: '<div style="width:150px;text-align:center;padding:6px 0;">일자:  <c:out value="${addressList.join_offline_date}"/><br>시간: <i class="fas fa-clock"></i><c:out value="${addressList.join_offline_time}"/><br><i class="fas fa-map-marker-alt"></i>장소: <c:out value="${addressList.join_offline_location}"/><br></div>'
-		        });
-		        infowindow.open(map, marker);
-		
-		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-		        map.setCenter(coords);
-		    } 
-		});   
-		</c:forEach>
-	</script>
-		
-		<br>
-		<c:set var="flea_code" value="${flea_code }"/>
-  <div class="ui_title__txt"><font size="2"><a href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>">판매 상품</a></font></div>
-        <div class="row">
-         <c:forEach var="newProduct" items="${newProduct}">
-         	<c:if test="${newProduct.flea_yn == 'y'}">
-         		<c:if test="${newProduct.fleamarket == flea_code}">
-          <div class="col-lg-4 col-md-6 mb-4">
-          
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="${newProduct.represent_image }" alt="..." onclick="location.href='./detail.do?prod_number=${newProduct.prod_number }'"></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#"><font size="3">${newProduct.prod_title }
-	                  <c:if test="${newProduct.sale_percent != null }">
-						[${newProduct.sale_percent }%]
-				 	  </c:if>
-                  </font></a>
-                </h4>
-                <h5>
-                	<c:if test="${newProduct.sale_percent != null }">
-						<p>
-							<span id="p"><fmt:formatNumber
-									value="${newProduct.prod_price * (1-(newProduct.sale_percent*0.01)) }"
-									type="number" />원</span> <span id="sale_price"
-								style="margin-bottom: 1re;"><fmt:formatNumber
-									value="${newProduct.prod_price }" type="number" />원</span>
-						</p>
-					</c:if>
-					<c:if test="${newProduct.sale_percent == null }">
+  	</aside>
+  	
+ <div class="cardlist_section" style="margin: 24px; width: 70%;" > 	
+  	<div class="row">
+
+  	 	<h3 class="ui_title__txt"><a href="/devFw/fleaReview.do">판매 상품</a>
+            <span class="rv_count" data-review="count">
+				(<em class="num">10</em>)
+			</span>
+    		<form class="form-inline my-2 my-lg-0" id="search" name="searchform" method="POST" action="./fleaSearchProduct.do?flea_code=<%=flea_code %>" style="float:right; ">
+				<input class="form-control mr-sm-2" type="text" id="eachsearchbar" name="searchVal" value="" placeholder="검색어를 입력하세요♡"> 
+				<input type="submit" class="btn btn-secondary my-2 my-sm-0" id="btneachsearch" value="Search" style="background:orange;" >
+				<input type="hidden" id="division" name="division" value="reused">
+			</form>	
+         
+    	
+    	</h3>
+        
+     
+  	<c:set var="flea_code" value="${flea_code }"/>
+		<c:forEach var="product" items="${searchProduct}" varStatus="status">
+			
+			<div class="col-sm-3">
+				<div class="thumbnail">
+					
+					<img src="${product.represent_image }"
+						style="width: 230px; height: 240px;" alt="..."
+						onclick="location.href='./detail.do?prod_number=${product.prod_number }'">
+					<div class="caption">
+						<h3>${product.prod_title }
+							<c:if test="${product.sale_percent != null }">
+							[${product.sale_percent }%]
+						</c:if>
+						</h3>
+						<c:choose>
+							<c:when test="${product.auction_yn == 'y' }">
+								<p id="p">
+									<fmt:formatNumber value="${product.auction_bid }"
+										type="number" />
+									원 
+								</p>
+							</c:when>
+							<c:when test="${((product.auction_yn == 'f' or product.auction_yn == 'w') and product.reused_yn == 'n' and product.flea_yn == 'n') or product.prod_amount == 0}">
+								<p id="p" style="color:red; font-weight:bold">품절</p>
+							</c:when>
+							<c:otherwise>
+								<c:if test="${product.sale_percent != null }">
+									<p>
+										<span id="p"><fmt:formatNumber
+												value="${product.prod_price * (1-(product.sale_percent*0.01)) }"
+												type="number" />원</span> <span id="sale_price"
+											style="margin-bottom: 1re;"><fmt:formatNumber
+												value="${product.prod_price }" type="number" />원</span>
+									</p>
+								</c:if>
+								<c:if test="${product.sale_percent == null }">
+									<p id="p">
+										<fmt:formatNumber value="${product.prod_price }"
+											type="number" />
+										원
+									</p>
+								</c:if>
+							</c:otherwise>
+						</c:choose>
+
+
 						<p id="p">
-							<fmt:formatNumber value="${newProduct.prod_price }"
-								type="number" />
-							원
+							<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
+							<a href="${contextPath}/payInfo.do" class="btn btn-default"
+								id="ttt4" role="button">구매하기</a>
 						</p>
-					</c:if>
-                </h5>
-                <!-- 상품 간략 설명 -->
-                <p class="card-text"><font size="2"><br></font></p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-           </c:if>
-          </c:if>
-         </c:forEach>
-         <a href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>" class="ui_btn--large" style="margin-left:35.5%;">더보기</a>
-	<br>
-	 <div class="layout-split half" style="margin-left: 15px;">
-	  <section class="cardlist_section">
-   		 <div class="ui_title--sub">
-             <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaReview.do?flea_code=<%=flea_code%>">구매후기</a></font></h3>
-         </div>
-         <ul class="split-cardlist">
-           <c:forEach var="bestStore" items="${searchList}">
-				<li class="ui_grid__item" style="width: 400px;">
-		            <div class="ui_card--side">
-		                <div class="ui_card__inner">
-		                    <div class="ui_card__imgcover">
-		                    	<img src="${bestStore.profile_photo}" class="ui_card__img"
-									style="width: 230; height: 240; " alt="..." onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code }'">
-		                       <!--  <a href="#" class="ui_card__img" target="_blank" style="background-image: url('${bestStore.profile_photo}')">-->
-		                    </div>
-		
-		                    <div class="ui_card__txtarea">
-		                        <div class="ui_card__info">
-		                            <a href="#" target="_blank" class="ui_card__title">${bestStore.flea_name }</a>
-		                            <br>
-		                            <span class="ui_card__para">
-		                            	${bestStore.intro_cotent }
-		                            </span>
-		                        </div>
-		                        
-		                        <div class="ui_card__rating">
-		                            <div class="ui_card__vcenter">
-		                                <div class="ui_rating" data-ui="rating" data-value="5">
-		                                    <i class="ui_icon--star-fill" data-state="active"></i>
-		                                    <i class="ui_icon--star-fill" data-state="active"></i>
-		                                    <i class="ui_icon--star-fill" data-state="active"></i>
-		                                    <i class="ui_icon--star-fill" data-state="active"></i>
-		                                    <i class="ui_icon--star-fill" data-state="active"></i>
-		                                    <span>&nbsp;| ${bestStore.memberid }</span>
-		                                </div>
-		                            </div>
-		                            <input name="paging_param" type="hidden" value="1574744451000">
-		                        </div>
-		                       
-		                        
-		                    </div>
-		                </div>
-		            </div>
-		        </li>
-	</c:forEach>	      
-        </ul>
-     
-     	<a href="/devFw/fleaReview.do?flea_code=<%=flea_code%>" class="ui_btn--large" style="margin-left:25%;">더보기</a>
-     </section>
-     
-     
-     <section class="cardlist_section">
-        <div class="ui_title--sub">
-             <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaStory.do?flea_code=<%=flea_code%>">스토리</a></font></h3>
-        </div>
-        <c:forEach var="story" items="${storyList}" > 
-	  		
-	                <ul class="split-cardlist lines5">
-	                        <li class="ui_card--side">
-	                            <div class="ui_card__inner">
-	                                                                <div class="ui_card__imgcover">
-	                                    <a href="#" class="ui_card__img" style="background-image: url(https://image.idus.com/image/files/4b1b9b058f5046d99b0ade714ecdc0c4_720.jpg)"></a>
-	                                </div>
-	                                                                <div class="ui_card__txtarea ">
-	                                    <div class="ui_card__info">
-	                                        <a href="${contextPath}/FleaMarket/P002/D003/searchList.do" class="ui_card__title">${story.story_title }</a>
-	                                        <span class="ui_card__para">${story.story_cotent }</span>
-	       									   
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </li>
-	         		</ul>
-	    </c:forEach>
-	    <a href="/devFw/fleaStory.do?flea_code=<%=flea_code%>" class="ui_btn--large" style="margin-left:25%;">더보기</a>
-     </section>
-
-</div>
-
-      </div>
-      <!-- /.col-lg-9 -->
-    </div>
-    </div>
-    <!-- /.row -->
-       
+					</div>
+				</div>
+			</div>
+	
+		</c:forEach>
+	</div>
+	</div>
+  	  
+  </div>
   </div>
 
-</div>
-
-<div id="user-add">
-		<div id="pop-up">
-		  <form method="post" id="new_message" action="/devFw/participantsInsert.do" enctype="multipart/form-data">    
-			<div id="pop-header">
-				<div>참여자 신청</div>
-				<a id="pop-close">&times;</a>			
-			</div>
-			<div id="pop-search">
-				<input onkeyup="filter()" type="text" placeholder="새로운 유저 검색"/>
-				<input type="submit" id="value" value="검색">
-			</div>
-			<div id="pop-list"></div>
-			<div id="pop-footer">
-				<input type="button" value="선택">			
-			</div>
-		   <c:forEach var="flea" items="${searchList}" > 
-       	     <input type="hidden" name="flea_code" value="${flea.flea_code}">
-       	   </c:forEach>
-		  </form>
-		</div>
-	</div>
-	
-<script type="text/javascript">
-      function filter(){
-        var value, name, item, i;
-        var addressArray = [];
-        
-        
-        
-        /*
-        value = document.getElementById("value").value.toUpperCase();
-        item = document.getElementsByClassName("item");
-
-        for(i=0;i<item.length;i++){
-          name = item[i].getElementsByClassName("name");
-          if(name[0].innerHTML.toUpperCase().indexOf(value) > -1){
-            item[i].style.display = "flex";
-          }else{
-            item[i].style.display = "none";
-          }
-        }
-        */
-      }
-</script>
-         
+  
 </body>
 </html>

@@ -883,18 +883,20 @@ $.ratePicker("#rating-2", {
             <span class="rv_count" data-review="count">
 				(<em class="num">10</em>)
 			</span>
-    		<form class="form-inline my-2 my-lg-0" id="search" name="searchform" method="POST" action="./fleaSearchProduct.do" style="float:right; ">
+    		<form class="form-inline my-2 my-lg-0" id="search" name="searchform" method="POST" action="./fleaSearchProduct.do?flea_code=<%=flea_code %>" style="float:right; ">
 				<input class="form-control mr-sm-2" type="text" id="eachsearchbar" name="searchVal" value="" placeholder="검색어를 입력하세요♡"> 
 				<input type="submit" class="btn btn-secondary my-2 my-sm-0" id="btneachsearch" value="Search" style="background:orange;" >
 				<input type="hidden" id="division" name="division" value="reused">
-			</form>			
+			</form>	
          
     	
     	</h3>
         
      
-  	
+  	<c:set var="flea_code" value="${flea_code }"/>
 		<c:forEach var="product" items="${newProduct }" varStatus="status">
+			<c:if test="${product.flea_yn == 'y'}">
+         		<c:if test="${product.fleamarket == flea_code}">
 			<div class="col-sm-3">
 				<div class="thumbnail">
 					
@@ -947,6 +949,8 @@ $.ratePicker("#rating-2", {
 					</div>
 				</div>
 			</div>
+			</c:if>
+		  </c:if>
 		</c:forEach>
 	</div>
 	</div>
