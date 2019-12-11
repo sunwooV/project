@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 public interface P_P001_D002Controller {
-	public ModelAndView searchProduct(String searchVal, String command, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView searchProduct(String flea_code, String searchVal, String command, HttpServletRequest request, HttpServletResponse response) throws Exception;
 } 

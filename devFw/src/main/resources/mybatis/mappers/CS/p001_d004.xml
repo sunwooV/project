@@ -19,7 +19,7 @@
 
 	<!-- Q&A -->
 	<insert id="insertboard" parameterType="CS_P001_D004VO">
-	 <selectKey keyProperty="private_qna_num" resultType="int" order="BEFORE">
+	 <selectKey keyProperty="private_qna_num" resultType="String" order="BEFORE">
       <![CDATA[
          SELECT nvl2((max(private_qna_num) + 1), (max(private_qna_num) + 1), 1)
          FROM private_qna

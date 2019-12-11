@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component("CS_P001_D004VO")
 public class CS_P001_D004VO {
-	private int private_qna_num;
+	private String private_qna_num;
 	private String private_qna_content;
 	private String private_qna_title;
 	private Date private_qna_date;
@@ -16,10 +16,10 @@ public class CS_P001_D004VO {
 	private String board_name;
 	private String board_use;
 	
-	public int getPrivate_qna_num() {
+	public String getPrivate_qna_num() {
 		return private_qna_num;
 	}
-	public void setPrivate_qna_num(int private_qna_num) {
+	public void setPrivate_qna_num(String private_qna_num) {
 		this.private_qna_num = private_qna_num;
 	}
 	public String getPrivate_qna_content() {

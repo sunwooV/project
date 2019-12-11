@@ -25,16 +25,9 @@
 	</select>
 	
 	   <insert id="insertData" parameterType="java.util.Map">
-      <selectKey keyProperty="point_number" resultType="int" order="BEFORE">
       <![CDATA[
-         SELECT nvl2((max(point_number) + 1), (max(point_number) + 1), 1)
-         FROM point
-         WHERE point_code = #{point_code}
-       ]]>
-      </selectKey>
-      <![CDATA[
-         INSERT INTO point (point_number,point_code, point_content, point_score, point_group)
-         values(#{point_number},#{point_code}, #{point_content}, #{point_score}, #{point_group})
+         INSERT INTO point (point_code, point_content, point_score, point_group)
+         values(#{point_code}, #{point_content}, #{point_score}, #{point_group})
 
        ]]>
    </insert>

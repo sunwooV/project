@@ -68,6 +68,7 @@ public class F_P002_D004ControllerImpl implements F_P002_D004Controller {
 		ModelAndView mav = new ModelAndView("FleaMarket/p002_d004_fleaProduct");
 		mav.addObject("searchList", list);
 		mav.addObject("newProduct", newProduct);
+		mav.addObject("flea_code", flea_code);
 		
 		return mav;
 	}

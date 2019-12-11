@@ -737,7 +737,7 @@ $(document).ready(function(){
         </a>
     </div>
     -->
-     <div class="ui_title__txt"><font size="2"><a href="#">오프라인 플리마켓 정보</a></font></div>
+     <div class="ui_title__txt"><font size="2">오프라인 플리마켓 정보</font></div>
  	 <!-- 플리 맵 추가 -->
      <div id="map" style="width:100%;height:250px;"></div>
 	   
@@ -785,9 +785,12 @@ $(document).ready(function(){
 	</script>
 		
 		<br>
+		<c:set var="flea_code" value="${flea_code }"/>
   <div class="ui_title__txt"><font size="2"><a href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>">판매 상품</a></font></div>
         <div class="row">
          <c:forEach var="newProduct" items="${newProduct}">
+         	<c:if test="${newProduct.flea_yn == 'y'}">
+         		<c:if test="${newProduct.fleamarket == flea_code}">
           <div class="col-lg-4 col-md-6 mb-4">
           
             <div class="card h-100">
@@ -826,9 +829,10 @@ $(document).ready(function(){
               </div>
             </div>
           </div>
+           </c:if>
+          </c:if>
          </c:forEach>
-         
-         <a href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>" class="ui_btn--large" style="margin-left:50%;">더보기</a>
+         <a href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>" class="ui_btn--large" style="margin-left:35.5%;">더보기</a>
 	<br>
 	 <div class="layout-split half" style="margin-left: 15px;">
 	  <section class="cardlist_section">

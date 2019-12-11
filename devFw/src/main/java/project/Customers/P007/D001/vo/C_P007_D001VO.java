@@ -8,7 +8,7 @@ public class C_P007_D001VO {
 	private String point_group;
 	private String point_code;
 	private String point_content;
-	private int point_score;
+	private String point_score;
 
 	
 	
@@ -30,10 +30,10 @@ public class C_P007_D001VO {
 	public void setPoint_content(String point_content) {
 		this.point_content = point_content;
 	}
-	public int getPoint_score() {
+	public String getPoint_score() {
 		return point_score;
 	}
-	public void setPoint_score(int point_score) {
+	public void setPoint_score(String point_score) {
 		this.point_score = point_score;
 	}
 	

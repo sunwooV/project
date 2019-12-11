@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Product.p001_d002">
+	<resultMap id="P_P001_D002Result01" type="P_P001_D002VO">
+		<result property="prod_number" column="prod_number" />
+		<result property="prod_amount" column="prod_amount" />
+		<result property="reused_yn" column="reused_yn" />
+		<result property="auction_yn" column="auction_yn" />
+		<result property="flea_yn" column="flea_yn" />
+		<result property="memberId" column="memberId" />
+		<result property="prod_price" column="prod_price" />
+		<result property="prod_title" column="prod_title" />
+		<result property="sale_percent" column="sale_percent" />
+		<result property="direct_area" column="direct_area" />
+		<result property="auction_bid" column="auction_bid" />
+		<result property="represent_image" column="represent_image" />
+		<result property="auction_price" column="auction_price" />
+	</resultMap>
+	<resultMap id="P_P001_D002Result02" type="P_P001_D002VO">
+		<result property="category_code" column="category_code" />
+		<result property="category_name" column="category_name" />
+		<result property="high_category" column="high_category" />
+		<result property="b_cnt" column="b_cnt" />
+		<result property="m_cnt" column="m_cnt" />
+	</resultMap>
+
+	<select id="searchProduct" resultMap="P_P001_D002Result01" parameterType="java.util.Map"> 
+      <![CDATA[
+         SELECT p.prod_number, p.prod_amount, p.reused_yn, p.auction_yn, p.flea_yn, p.memberId, p.prod_price, p.prod_title, p.sale_percent, p.direct_area, p.auction_bid, p.represent_image, p.auction_price
+		 FROM product p, tag t
+      ]]>
+		<where>
+			<if test="searchVal != null">
+				p.prod_number = t.prod_number
+		        and (p.prod_title like '%' ||  #{searchVal} || '%'
+		            or t.tag1 like '%' ||  #{searchVal} || '%'
+		            or t.tag2 like '%' ||  #{searchVal} || '%'
+		            or t.tag3 like '%' ||  #{searchVal} || '%'
+		            or t.tag4 like '%' ||  #{searchVal} || '%'
+		            or t.tag5 like '%' ||  #{searchVal} || '%')
+		    </if>
+		</where>
+	</select>
+
+<!-- 	<select id="searchHighCategory" resultMap="P_P001_D001Result02" parameterType="java.util.Map"> -->
+<!-- 	<![CDATA[ -->
+<!-- 	select category_code, category_name, a.cnt as b_cnt -->
+<!-- 	from category c, (select c.high_category, count(c.high_category) as cnt -->
+<!-- 	                from category c,( -->
+<!-- 	                    select p.prod_category_code -->
+<!-- 	                    from product p, category c, tag t -->
+<!-- 	                    where p.prod_category_code = c.category_code -->
+<!-- 	                    and  p.prod_number = t.prod_number -->
+<!-- 	                    and (p.prod_title like '%' ||  #{searchVal} || '%' -->
+<!-- 	                                or t.tag1 like '%' ||  #{searchVal} || '%' -->
+<!-- 	                                or t.tag2 like '%' ||  #{searchVal} || '%' -->
+<!-- 	                                or t.tag3 like '%' ||  #{searchVal} || '%' -->
+<!-- 	                                or t.tag4 like '%' ||  #{searchVal} || '%' -->
+<!-- 	                                or t.tag5 like '%' ||  #{searchVal} || '%' -->
+<!-- 	                                ))k  -->
+<!-- 	                where c.category_code in k.prod_category_code -->
+<!-- 	                group by c.high_category -->
+<!-- 	                order by cnt desc)a -->
+<!-- 	]]> -->
+<!-- 	<where> -->
+<!-- 	<![CDATA[ -->
+<!-- 	c.category_code in a.high_category -->
+<!-- 	]]> -->
+<!-- 	</where> -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="searchMiddleCategory" resultMap="P_P001_D001Result02" parameterType="java.util.Map"> -->
+<!-- 	<![CDATA[ -->
+<!-- 	select category_code, category_name, high_category, k.cnt_category as m_cnt -->
+<!-- 	from category c -->
+<!-- 	    , (select p.prod_category_code, count(c.category_code) as cnt_category -->
+<!-- 	        from product p, category c, tag t -->
+<!-- 	        where p.prod_category_code = c.category_code -->
+<!-- 	        and  p.prod_number = t.prod_number -->
+<!-- 	        and (p.prod_title like '%' ||  #{searchVal} || '%' -->
+<!-- 	                    or t.tag1 like '%' ||  #{searchVal} || '%' -->
+<!-- 	                    or t.tag2 like '%' ||  #{searchVal} || '%' -->
+<!-- 	                    or t.tag3 like '%' ||  #{searchVal} || '%' -->
+<!-- 	                    or t.tag4 like '%' ||  #{searchVal} || '%' -->
+<!-- 	                    or t.tag5 like '%' ||  #{searchVal} || '%' -->
+<!-- 	                    ) -->
+<!-- 	        group by p.prod_category_code -->
+<!-- 	        order by cnt_category)k -->
+<!-- 	]]> -->
+<!-- 	<where> -->
+<!-- 	<![CDATA[ -->
+<!-- 	c.category_code = k.prod_category_code -->
+<!-- 	]]> -->
+<!-- 	<if test="Ccnt != null"> -->
+<!-- 		    and high_category IN  -->
+<!-- 		    	<foreach collection="category" item="item" open="(" close=")" separator="," index="index"> -->
+<!-- 		    		 #{item} -->
+<!-- 		    	</foreach> -->
+<!-- 	</if> -->
+<!-- 	</where> -->
+<!-- 	</select> -->
+
+</mapper>

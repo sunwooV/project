@@ -1,6 +1,10 @@
 package project.Customers.P002.D006.controller;
 
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +22,7 @@ import project.CS.P001.D001.service.CS_P001_D001Service;
 import project.CS.P001.D001.vo.CS_P001_D001VO;
 import project.Customers.P002.D006.service.C_P002_D006Service;
 import project.Customers.P002.D006.vo.C_P002_D006VO;
+import project.Customers.P002.D014.vo.C_P002_D014VO;
 
 @Controller("C_P002_D006Controller")
 public class C_P002_D006ControllerImpl implements C_P002_D006Controller {
@@ -26,8 +31,6 @@ public class C_P002_D006ControllerImpl implements C_P002_D006Controller {
 	@Autowired
 	C_P002_D006Service c_p002_d006Service;
 
-	@Autowired
-	C_P002_D006VO c_p002_d006VO;
 
 	@Autowired
 	private HttpSession session;
@@ -48,4 +51,58 @@ public class C_P002_D006ControllerImpl implements C_P002_D006Controller {
 		return mav;
 
 	}
+	
+	@Override
+	@RequestMapping(value = "/mypageDeleteqna.do", method = { RequestMethod.POST, RequestMethod.POST })
+	public void mypageDeleteqna(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>(); //insert data
+		Enumeration enu = request.getParameterNames();
+		String result = "";
+		
+		while (enu.hasMoreElements()) { 
+			String name = (String)enu.nextElement();
+			String value = request.getParameter(name);
+			dataMap.put(name, value);
+			System.out.println(dataMap);
+		}
+		
+		c_p002_d006Service.deleteQna(dataMap);
+		
+		String memberId = (String) session.getAttribute("memberid");
+
+		List qnaList = c_p002_d006Service.listQna(memberId);
+		
+		result += "[";
+		for(int i=0;i<qnaList.size();i++) {
+			result += "{";
+			result += "\"memberId\":\"" + memberId + "\",";
+			result += "\"prod_number\":\"" + ((C_P002_D006VO)qnaList.get(i)).getProd_number() + "\",";
+			result += "\"qna_number\":\"" + ((C_P002_D006VO)qnaList.get(i)).getQna_number() + "\",";
+			result += "\"qna_date\":\"" + ((C_P002_D006VO)qnaList.get(i)).getQna_date() + "\",";
+			result += "\"answer_date\":\"" + ((C_P002_D006VO)qnaList.get(i)).getAnswer_date() + "\",";
+			result += "\"secret_yn\":\"" + ((C_P002_D006VO)qnaList.get(i)).getSecret_yn() + "\",";
+			result += "\"represent_image\":\"" + ((C_P002_D006VO)qnaList.get(i)).getRepresent_image() + "\",";
+			result += "\"answer_yn\":\"" + ((C_P002_D006VO)qnaList.get(i)).getAnswer_yn() + "\",";
+			result += "\"qna_content\":\"" + ((C_P002_D006VO)qnaList.get(i)).getQna_content() + "\",";
+			result += "\"answer_content\":\"" + ((C_P002_D006VO)qnaList.get(i)).getAnswer_content() + "\"";
+			
+			result += "}";
+			if(i != qnaList.size() -1) {
+				result += ", ";
+			}
+		}
+		result += "]";
+
+		
+		System.out.println("result" + result);
+		
+		try {	
+			response.getWriter().print(result);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}	
 }

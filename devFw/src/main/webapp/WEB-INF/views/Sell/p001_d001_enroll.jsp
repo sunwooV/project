@@ -743,6 +743,7 @@
 				<c:if test="${flea_seller_group == 'n' }"> <!-- 플리마켓 셀러 아닌 경우 플리마켓 체크 못 하게 -->
 					<input type="checkbox" name="prod_group" value="플리" class="checkSelect1" id="flea" disabled="disabled" /><label for="flea">플리마켓</label>
 					<span style="color:blue"> ▶ 플리마켓 참여 후 이용 가능</span> 
+					<input type="hidden" name="fleamarket" id="fleamarket" value=""/>
 				</c:if> 
 				<c:if test="${flea_seller_group == 'y' }"> 
 					<input type="checkbox" name="prod_group" value="플리" class="checkSelect1" id="flea" /><label for="flea">플리마켓</label>
@@ -959,6 +960,7 @@
 							<input type="checkbox" name="prod_group" value="플리" class="checkSelect1" id="flea" disabled="disabled"/>
 							<label for="flea">플리마켓</label><span style="color:blue"> ▶ 플리마켓 참여 후 이용 가능</span>
 							<input type="hidden" name="flea_yn" id="flea_yn" value="${modifyProd.flea_yn }"/>
+							<input type="hidden" name="fleamarket" id="fleamarket" value=""/>
 						</c:if> 
 						<c:if test="${flea_seller_group == 'y' }"> 
 							<input type="checkbox" name="prod_group" value="플리" class="checkSelect1" id="flea"/>
@@ -975,7 +977,7 @@
 						</c:if>
 						
 					</c:if>
-				</span>
+
 
 				<br>
 

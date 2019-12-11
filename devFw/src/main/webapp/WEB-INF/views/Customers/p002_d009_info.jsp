@@ -2,9 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	session.removeAttribute("member");
-%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -13,28 +10,18 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Do+Hyeon|Merriweather|Noto+Sans+KR&display=swap&subset=korean"
 	rel="stylesheet">
-<!-- <link rel="stylesheet"
-	href="https://www.seedlogix.com/hubs/themes/clients/powerleads/enterprise/assets/css/normalize.css">
-<link rel="stylesheet"
-	href="https://www.seedlogix.com/hubs/themes/clients/powerleads/enterprise/assets/css/components.css">
-<link rel="stylesheet"
-	href="https://www.seedlogix.com/hubs/themes/clients/powerleads/enterprise/assets/css/style.css">
-<link rel="stylesheet"
-	href="https://www.seedlogix.com/hubs/themes/clients/psg/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://www.seedlogix.com/hubs/themes/clients/psg/pixons/style.css"> -->
-<script
+<!-- <script
 	src="https://seedlogix.com/hubs/themes/clients/powerleads/enterprise/assets/js/jquery.min.js"
 	type="text/javascript" charset="utf-8"></script>
 <script
 	src="https://www.seedlogix.com/hubs/themes/clients/powerleads/enterprise/assets/js/averon.js"
-	type="text/javascript" charset="utf-8"></script>
-<script
+	type="text/javascript" charset="utf-8"></script> -->
+<!-- <script
 	src="https://www.seedlogix.com/hubs/themes/clients/powerleads/enterprise/assets/js/webfont.js"
-	type="text/javascript" charset="utf-8"></script>
-<script
+	type="text/javascript" charset="utf-8"></script> -->
+<!-- <script
 	src="https://www.seedlogix.com/hubs/themes/clients/powerleads/enterprise/assets/js/main.js"
-	type="text/javascript" charset="utf-8"></script>
+	type="text/javascript" charset="utf-8"></script> -->
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <head>
 
@@ -43,9 +30,21 @@
 		window.open("${contextPath}/out_pw_check.do", "a",
 				"width=400, height=300, left=100, top=50");
 	}
-	$(function() {
-		if ($("#pwForm").submit(function() {
-			if ($("#pw").val() !== $("#pw2").val()) {
+
+	function update_info() {
+		var frm = document.update;
+		frm.method = "POST";
+		frm.action = "./update.do";
+		alert("수정 완료.");
+		frm.submit();
+	}
+	
+
+	$(document).on('click', '#pwForm', function(){
+	
+		var frm = document.update;
+		
+		if ($("#pw").val() !== $("#pw2").val()) {
 				alert("비밀번호가 다릅니다.");
 				$("#pw").val("").focus();
 				$("#pw2").val("");
@@ -54,20 +53,26 @@
 				alert("비밀번호는 8자 이상으로 설정해야 합니다.");
 				$("#pw").val("").focus();
 				return false;
-			} else if ($.trim($("#pw").val()) !== $("#pw").val()) {
-				alert("공백은 입력이 불가능합니다.");
-				return false;
-			}
-		}))
-			;
-	})
-	function update_info() {
-		var frm = document.update;
-		frm.method = "POST";
-		frm.action = "./update.do";
-		alert("수정 완료.");
+			} 
+			
+// 			else if ($.trim($("#pw").val()) !== $("#pw").val()) {
+// 				alert("공백은 입력이 불가능합니다.");
+// 				return false;
+// 			}
+	
+	
+		frm.method="post";
+		frm.action="./modify.do";
 		frm.submit();
-	}
+	});
+	$(document).on('keypress', '.pw', function(event){
+		if(event.which == 32){
+			alert("공백은 입력 불가합니다.");
+			event.preventDefault();
+			
+			
+		}
+	})
 </script>
 
 <style type="text/css">
@@ -173,13 +178,14 @@ input[type=text]#id, #email, #name, #approval_status {
 		<!--  Process  -->
 		<div id="home-process-section">
 			<div class="w-col w-col-12">
-				<h1 style="padding-left:12%;">내 정보</h1>
-				<div class="w-tabs" data-duration-in="300" data-duration-out="100" style="margin-top: -4%;">
+				<h1 style="padding-left: 12%;">내 정보</h1>
+				<div class="w-tabs" data-duration-in="300" data-duration-out="100"
+					style="margin-top: 1%;">
 					<div class="gray tabs-content w-tab-content"
 						style="width: 1200px; background-color: #ffffff00;">
 						<div class="w-tab-pane w--tab-active" data-w-tab="Tab 1">
 							<p>
-							<form id="pwForm" action="./modify.do" method="post">
+							
 								<table class="type05">
 
 
@@ -192,14 +198,13 @@ input[type=text]#id, #email, #name, #approval_status {
 									<tr>
 										<th scope="row">비밀번호</th>
 										<td><label>현재 비밀번호</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											<input id="old_pw" name="old_pw" type="password" required><br>
+											<input class="pw" id="old_pw" name="old_pw" type="password" required><br>
 											<br> <label>신규 비밀번호</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-											id="pw" name="pw" type="password" required><br>
-											<br> <label>신규 비밀번호 다시 입력</label>&nbsp; <input
-											type="password" id="pw2" type="password" required><br>
-											<br>
-											<button type="submit" class="btn btn-dark">비밀번호 변경</button></td>
+											id="pw"  class="pw" name="pw" type="password" required><br>
+											<br> <label>신규 비밀번호 다시 입력</label>&nbsp; <input  class="pw"
+											type="password" id="pw2" type="password" required>
+											<input type="button" id="pwForm" class="btn btn-dark" style="margin-left: 2%;" value="비밀번호 변경">
 									</tr>
 									<tr>
 										<th scope="row">이메일</th>
@@ -222,9 +227,10 @@ input[type=text]#id, #email, #name, #approval_status {
 										<th scope="row">배송지 관리</th>
 										<td><input type="text" id="address" name="address"
 											value="<%=session.getAttribute("address")%>" required>
-											<input type="button" class="btn btn-dark" onclick="sample4_execDaumPostcode()"
-											value="우편번호 찾기"><br> <br> <input
-											type="text" id="roadAddress" name="roadAddress"
+											<input type="button" class="btn btn-dark"
+											onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+											<br> <input type="text" id="roadAddress"
+											name="roadAddress"
 											value="<%=session.getAttribute("roadAddress")%>" required>
 											<input type="text" id="jibunAddress" name="jibunAddress"
 											value="<%=session.getAttribute("jibunAddress")%>" required><br>
@@ -326,17 +332,17 @@ input[type=text]#id, #email, #name, #approval_status {
 											placeholder="990101형식으로 입력해주세요." required></td>
 									</tr>
 								</table>
-								<input type="button" class="btn btn-dark" id="update" value="변경하기"
-									onclick="update_info()">&emsp;&emsp; <input
-									type="button" class="btn btn-dark" id="out" onclick="showPopup();" value="탈퇴하기">
+								<input type="button" class="btn btn-dark" id="update"
+									value="변경하기" onclick="update_info()">&emsp;&emsp; <input
+									type="button" class="btn btn-dark" id="out"
+									onclick="showPopup();" value="탈퇴하기">
 
-							</form>
 							</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>
+</form>
 </body>
 </html>

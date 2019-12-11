@@ -84,6 +84,7 @@ public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 		mav.addObject("newProduct", newProduct);
 		mav.addObject("searchList", list);
 		mav.addObject("storyList", storyList);
+		mav.addObject("flea_code", flea_code);
 		
 		System.out.println("===마지막===");
 		return mav;

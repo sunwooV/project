@@ -685,20 +685,21 @@ $(document).ready(function(){
 			data: data,
 			dataType : 'text',
 			success: function(responseData){
-				var test = document.getElementById("prod_story_text").value = "";
+				alert("등록 클릭 시 success");
 				var data = JSON.parse(responseData);
 				alert(data);
 				var list = '';
 			
 				for(var i=0;i<data.length;i++){
-					list += '<li><a href="javascript:void(0)" class="faq_open" id="' + data[i].qna_number + '">'
-					list += '<div class="cont_box">'
-					 +	'<span class="inquiry_prod">'+ story_title + '</span>';
-					list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + data[i].story_cotent + '</span>';
-					list += '</div>' 
-						+ '</li>';
+					list += '<div class="bordering style="width: 200%; margin-bottom: 10px;"><input name="time_stamp" type="hidden" value="1575262761000">';
+					list +=	'<div class="area-txt"><div class="area-rating"><div class="img-bg" style="background-image: url(https://image.idus.com/image/files/d6c74ae706ad40f1b6f83af3d5b1334d_512.jpg)"></div>';
+					list +=	'<a href="#" class="title ellipsis">' + data[i].story_title + '</a></div>';	
+					list += '<a href="#" target="_blank"><div class="split-hard"><span class="split crop-circ" style="background-image: url(https://image.idus.com/image/files/37cec8c9f8bd47458facc5bdacfb0b24.jpg)"> </span>';
+					list += '<div class="split"><span class="txt-strong">' + data[i].memberid + '</span><span class="txt">' + data[i].story_write_date + '</span> </div></div>';
+					list += '<p class="desc">' + data[i].story_cotent + '</p><br></a></div></div>';
+              
 				}
-			$(".list_comment_inqury").html(list);
+			$("#storyAdd").html(list);
 			},
 			error: function(data, textStatus){
 				alert("다시 시도해주세요.");
@@ -889,40 +890,12 @@ $.ratePicker("#rating-2", {
 								</c:otherwise>
 							</c:choose>
 						</div>
-			<br>
-			<div class="secretBox">
-				<input type="checkbox" name="secret" id="secretSelect" value="n"><label for="secretSelect">비밀글</label>
-			</div>
 			<div class="btn_area">
 				<input type="button" class="enrollstory" id="buy" value="등록">
 				<input type="button" class="cancelstory" id="cart" value="취소">
 			</div>
-			<div class="listWrapper">
-					<div class="iqry_comments_area">
-						<ul class="list_comment_inqury">
-						 <c:forEach var="story" items="${storyList}" > 
-								<li><a href="javascript:void(0)" class="faq_open" id="${story.story_number }">
-										<input type="hidden" id="story_memberId" value="${story.memberid }">
-							
-										<div class="cont_box">
-											<span class="inquiry_prod">${story.story_title }</span>
-												
-												
-										</div>
-										
-										<div class="user">
-											<span class="member${story.story_number }">${story.secretMember }</span>
-										</div>
-										<div class="date">
-											<span>${story.story_write_date }</span>
-										</div>
-									</a>
-								</li>
-							</c:forEach>
-						</ul>
-					</div>
-					<div class="paging_comm"></div>
-			</div>
+		
+			
 		</div>
 		
 		<br><br>
@@ -963,9 +936,9 @@ $.ratePicker("#rating-2", {
   <!--스토리  -->
  
    <ul class="masonry-grid x2" data-col="2" style="position: relative; height: 2221.64px;">
-           <li class="card-style story" style="position: absolute; left: 0px; top: 0px;">
+           <li class="card-style story" id="storyAdd" style="position: absolute; left: 0px; top: 0px;">
             <c:forEach var="story" items="${storyList}" > 
-            <div class="bordering">
+            <div class="bordering" style="width: 200%; margin-bottom: 10px;">
 
                 <input name="time_stamp" type="hidden" value="1575262761000">
                 <div class="area-txt">

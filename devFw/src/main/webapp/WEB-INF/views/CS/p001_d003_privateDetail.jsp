@@ -429,10 +429,9 @@ background-color:#faf5f1;
 </style>
 <body>
 <form name="privatedetail">
+<input type="hidden" id="command" name="command" value="modify">
 	<div id="private">
-<h3 style="
-    margin-top: 25px;
-">1:1문의</h3>
+<h3 style="margin-top: 25px;">1:1문의</h3>
     <span class="title">고객센터 > <b>1:1문의</b></span>
 <table class="type05">
 <c:set var="private_detail" value="${private_detail }" />

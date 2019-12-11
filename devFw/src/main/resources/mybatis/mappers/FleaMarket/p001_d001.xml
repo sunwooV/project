@@ -6,6 +6,7 @@
 <mapper namespace="FleaMarket.p001_d001">
 	<resultMap id="p0001Result01" type="F_P001_D001VO"> 
 		<result property="flea_code" column="flea_code" />
+		<result property="memberid" column="memberid" />
 		<result property="join_name" column="join_name" />
 		<result property="join_phonenumber" column="join_phonenumber" />
 		<result property="join_email" column="join_email" />
@@ -13,18 +14,20 @@
 		<result property="join_product" column="join_product" />
 		<result property="join_sns" column="join_sns" />
 		<result property="join_etc" column="join_etc" />
-		<result property="join_date" column="join_date" />
-		<result property="join_status" column="join_status" />
+		<result property="join_offline_date" column="join_offline_date" />
+		<result property="join_offline_time" column="join_offline_time" />
+		<result property="join_offline_location" column="join_offline_location" />
+		<result property="join_prepayment_yn" column="join_prepayment_yn" />
 	</resultMap>
 
 	<select id="searchList" resultMap="p0001Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         select flea_code, memberid, flea_name, intro_cotent, flea_like_count, utl_raw.cast_to_varchar2(profile_photo), utl_raw.cast_to_varchar2(main_photo)
-         from flea
+         select *
+         from joinflea
       ]]>
 		<where>
-			<if test=" p_id != ''  and  p_id != null">
-				flea_code = #{p_id}
+			<if test=" flea_code != ''  and  flea_code != null">
+				flea_code = #{flea_code}
 			</if>
 		</where>
 	</select>
