@@ -18,5 +18,6 @@ public interface CS_P001_D003DAO {
 	public void insertcomment(Map<String, Object> datahMap) throws DataAccessException;
 	public List<CS_P001_D003VO> selectcomment(Map<String, Object> searchMap) throws DataAccessException;
 	public List<CS_P001_D003VO> selectboard(Map<String, Object> searchMap) throws DataAccessException ;
+	public void updateYN(Map<String, Object> dataMap);
 
 }

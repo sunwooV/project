@@ -32,17 +32,31 @@
 	<insert id="insertStoryComment" parameterType="java.util.Map">
 		<selectKey keyProperty="story_number" resultType="string" order="BEFORE">
 		<![CDATA[
-			SELECT nvl2((max(story_number) + 1), (max(story_number) + 1), 1)
+			SELECT nvl2((max(story_number) + 1), (max(story_number) + 1), 1) 
 			FROM fleastory
-			WHERE story_number = #{story_number}
+			WHERE flea_code = #{flea_code}
 		 ]]>
 		</selectKey>
 		<![CDATA[
-			INSERT INTO fleastory (flea_code, memberid, story_number, story_write_date, story_title, story_cotent, heart_count)
-			VALUES(#{flea_code}, #{memberid}, #{story_number}, sysdate, #{story_title}, #{story_cotent}, '0')
+			INSERT INTO fleastory (flea_code, memberId, story_number, story_write_date, story_title, story_cotent, heart_count)
+			VALUES(#{flea_code}, #{memberId}, #{story_number}, sysdate, #{story_title}, #{story_cotent}, '0')
 		 ]]>
 	</insert>
 
+	<select id="selectStory" resultMap="p002_d003_Result01" parameterType="java.util.Map"> 
+		<![CDATA[
+         SELECT flea_code, memberid, story_number, TO_CHAR(story_write_date, 'yyyy-mm-dd HH24:MI') as story_write_date, story_title, story_cotent, heart_count,  replace(memberId, substr(memberId,-3), '***') as secretMember 
+         FROM   fleastory
+      ]]>
+		<where>
+		<![CDATA[
+			flea_code = #{flea_code}
+		]]>
+		</where>
+		<![CDATA[
+			ORDER BY story_number DESC
+		]]>
+	</select>
 
 	<select id="searchMod" resultMap="p002_d003_Result01" parameterType="java.util.Map"> 
       <![CDATA[

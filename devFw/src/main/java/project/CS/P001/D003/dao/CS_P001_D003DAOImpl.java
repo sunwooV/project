@@ -66,7 +66,11 @@ public class CS_P001_D003DAOImpl implements CS_P001_D003DAO{
 		List<CS_P001_D003VO> list = sqlSession.selectList("CS.private.selectboard",searchMap);
 		return list;
 	}
-		
-		
 
+
+	@Override
+	public void updateYN(Map<String, Object> dataMap) {
+		sqlSession.update("CS.private.updateYN", dataMap);
+		
+	}
 }

@@ -41,6 +41,7 @@ $(document).ready(function(){
 		
 		var content = $("#prod_inquiry_text").val();
 		var private_qna_num = $("#private_qna_num").val();
+		var board_num = $("#board_num").val();
 		var memberid = $("#memberid").val();
 		var verify=$("#verify").val();
 		var command = "insert";
@@ -61,6 +62,7 @@ $(document).ready(function(){
 		var qna = {
 				private_answer_content: content,
 				private_qna_num: private_qna_num,
+				board_num: board_num,
 				private_answer_memberid: memberid,
 				command: command
 		}
@@ -93,7 +95,7 @@ $(document).ready(function(){
 				     +  '<table class="orderHistoryTable" id="orderHistoryTable">'
 				     + '<tr>'
 				     + '<td id="answer">답변</td>'
-				     + '<td align="center" class="inquiry_text" id="text" style="font-weight:bold;">'+data[i].private_answer_content+'<td>'
+				     + '<td align="center" class="inquiry_text" style="font-weight:bold;">'+data[i].private_answer_content+'<td>'
 				     + '<td id ="id" align="center" class="member'+data[i].answer_num+'">'+ data[i].private_answer_memberid +'<td>'
 				     + '<td id ="date" align="center">'+data[i].private_answer_date +'</td>';
 			
@@ -120,6 +122,7 @@ $(document).ready(function(){
 		//삭제 확인
 		if(confirm("해당 답변을 삭제하시겠습니까?\n")){ //네 선택
 			var product = $("#private_qna_num").val();
+		var board_num=$("#board_num").val();
 			var memberid = $("#memberid").val();
 			var verify=$("#verify").val();
 			
@@ -128,6 +131,7 @@ $(document).ready(function(){
 
 			var deleteInfo = {
 					private_qna_num:product,
+					board_num:board_num,
 					answer_num:num,
 					command:command
 			}
@@ -159,7 +163,7 @@ $(document).ready(function(){
 					     +  '<table class="orderHistoryTable" id="orderHistoryTable">'
 					     + '<tr>'
 					     + '<td id="answer">답변</td>'
-					     + '<td align="center" class="inquiry_text" id="text" style="font-weight:bold;">'+data[i].private_answer_content+'<td>'
+					     + '<td align="center" class="inquiry_text" style="font-weight:bold;">'+data[i].private_answer_content+'<td>'
 					     + '<td id ="id" align="center" class="member'+data[i].answer_num+'">'+ data[i].private_answer_memberid +'<td>'
 					     + '<td id ="date" align="center">'+data[i].private_answer_date +'</td>';
 					
@@ -196,7 +200,7 @@ $(document).ready(function(){
 		var frm = document.privatedetail;
 	
 	
-		frm.method="post";
+		frm.method="get";
 		frm.action="./privateInit.do";
 		frm.submit();
 	});
@@ -207,8 +211,8 @@ $(document).ready(function(){
 		var frm = document.privatedetail;
 	
 	
-		frm.method="post";
-		frm.action="./modifyProduct.do";
+		frm.method="get";
+		frm.action="./modifyboard.do";
 		frm.submit();
 	});
 
@@ -216,9 +220,9 @@ $(document).ready(function(){
 	$(document).on('click', '#delete', function(){
 		var frm = document.privatedetail;
 		
-		if(confirm("해당 상품을 삭제하시겠습니까?\n")){
-			frm.method="post";
-			frm.action="./deleteProduct.do";
+		if(confirm("해당 글을 삭제하시겠습니까?\n")){
+			frm.method="get";
+			frm.action="./deleteboard.do";
 			frm.submit();
 		} else{
 			return false;
@@ -381,7 +385,7 @@ textarea{
 
 .orderHistoryTable {
     width:1390px;
-	border-top:1px solid gray;
+	border-top:1px solid lightgray;
 	border-collapse: separate;
     border-spacing: 1px;
     text-align: center;
@@ -461,11 +465,16 @@ background-color:#faf5f1;
     </c:if>
 </div>
 <div id= "comment">
-<c:forEach var="list" items="${list}" >
-<input type="hidden" id="private_qna_num" value="${list.private_qna_num}" >
+<c:set var="board_number" value="${board_number }"/>
+<c:set var="private_qna_num" value="${private_qna_num }"/>
+<input type="hidden" id="board_num" name="board_num" value="${board_number }">
+<input type="hidden" id="private_qna_num" name="private_qna_num" value="${private_qna_num }">
+
+
 <input type="hidden" id="memberid" value="${member.getMemberid() }" />
 <input type="hidden" id="verify" value="${member.verify }" />
-</c:forEach>
+
+
 <div class="iqry_comments_area">
 
 	<c:if test="${member.verify =='Y' }">
@@ -491,9 +500,9 @@ background-color:#faf5f1;
 								<c:forEach var="prodQnA" items="${prodQnA }">
 								<input type="hidden" id="private_answer_memberid" value="${prodQnA.private_answer_memberid }">
                      <table class="orderHistoryTable" id="orderHistoryTable">                     
-                                <tr>
-                                   <td id="answer">답변</td>
-                                   <td align="center" class="inquiry_text" id="text" style="font-weight:bold;">${prodQnA.private_answer_content }</td>
+                                <tr class="">
+                                   <td id="answer">답변 => </td>
+                                   <td align="center" class="inquiry_text" style="font-weight:bold;">${prodQnA.private_answer_content }</td>
                                    <td id ="id" align="center" class="member${prodQnA.answer_num }">${prodQnA.private_answer_memberid }</td>
                                     <td id ="date" align="center"> ${prodQnA.private_answer_date }</td>
                                     <c:if test="${member.verify =='Y' }"><!-- 자신이 쓴 q&a 내용 삭제할 수 있음 -->

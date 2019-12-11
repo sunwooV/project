@@ -42,7 +42,7 @@
        		and prod_category_code = #{category}
        </if>
       </where>
-      order by prod_number desc
+      order by to_number(prod_number) desc
 	</select>
 	
 	<select id="auctionList" resultMap="M_P001_D002Result01" parameterType="java.util.Map">
@@ -58,7 +58,7 @@
        		and prod_category_code = #{category}
        </if>
       </where>
-      order by prod_number desc
+      order by to_number(prod_number) desc
 	</select>
 
 

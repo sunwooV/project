@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import project.FleaMarket.P002.D003.dao.F_P002_D003DAO;
 import project.FleaMarket.P002.D003.vo.F_P002_D003VO;
+import project.Sell.P001.D003.vo.S_P001_D003VO;
 
 @Service("F_P002_D003Service")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -34,6 +35,13 @@ public class F_P002_D003ServiceImpl implements F_P002_D003Service {
 	@Override
 	public void inserStoryComment(Map<String, Object> datahMap) throws Exception {
 		d003DAO.insertStoryComment(datahMap);
+	}
+	
+	@Override
+	public List<F_P002_D003VO> selectStory(Map<String, Object> searchMap) throws DataAccessException {
+		List<F_P002_D003VO> list =  d003DAO.selectStory(searchMap); 
+		System.out.println(":::요기가 F_P002_D003Service::::");
+		return list;
 	}
 	
 	@Override

@@ -24,7 +24,7 @@
 			p.prod_number = a.prod_number
 			AND p.prod_number = ${prod_number}
 		</where>
-		ORDER BY a.bid_number desc
+		ORDER BY to_number(a.bid_number) desc
 	</select>
 
 </mapper>

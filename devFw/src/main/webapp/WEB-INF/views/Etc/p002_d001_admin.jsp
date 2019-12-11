@@ -93,9 +93,9 @@
          <div class="myshopMain_sub3">
             <div id="list">
                <h3>
-                  <a href="./noticeManage.do"><strong>게시판
+                  <a href="${contextPath }/boardsearchInit.do"><strong>게시판
                         관리</strong></a>
-               </h3>
+               </h 3>
                <p style="font-size: 11px;">
                   <a href="/myshop/deposits/historyList.html">환불금액등으로 적립된 예치금으로
                      상품구매가 가능합니다<br>예치된 금액은 현금으로 환불이 가능합니다.

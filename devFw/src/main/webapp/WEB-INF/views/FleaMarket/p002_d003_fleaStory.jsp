@@ -664,14 +664,19 @@ $(document).ready(function(){
 		var story_cotent = $('#prod_story_text').val();
 		var story_title = $('.story_title_text').val();
 		var command = 'insert';
+		var flea_code = <%=flea_code%>;
+		var memberId = $("#memberId").val();
 		
-		alert(story_cotent + "/" + story_title + "/" + command);
+		alert(story_cotent + "/" + story_title + "/" + command + "/" + flea_code + "/" + memberId);
 		
 		var data = {
 				story_title: story_title,
 				story_cotent: story_cotent,
-				command: command
+				command: command,
+				flea_code: flea_code,
+				memberId: memberId
 		}
+		
 		
 		$.ajax({
 			type: "post",
@@ -680,29 +685,21 @@ $(document).ready(function(){
 			data: data,
 			dataType : 'text',
 			success: function(responseData){
-				var test = document.getElementById("prod_story_text").value = "";
-			
-				
+				alert("등록 클릭 시 success");
 				var data = JSON.parse(responseData);
-				
-	            /* if(jsonInfo.error.error_yn == 'Y'){
-	        	   alert(jsonInfo.error.error_text);
-	        	   return;
-	            } */
-	            //console.log(data.length);
+				alert(data);
 				var list = '';
-				
-
+			
 				for(var i=0;i<data.length;i++){
-					list += '<div class="cont_box">'
-					 +	'<span class="inquiry_prod">'+ story_title + '</span>';
-					
-					list += '<span class="inquiry_text" id="contText" style="font-weight:bold;">' + story_cotent + '</span>';
-
-					list += '</div>' 
-						+ '</li>';
+					list += '<div class="bordering style="width: 200%; margin-bottom: 10px;"><input name="time_stamp" type="hidden" value="1575262761000">';
+					list +=	'<div class="area-txt"><div class="area-rating"><div class="img-bg" style="background-image: url(https://image.idus.com/image/files/d6c74ae706ad40f1b6f83af3d5b1334d_512.jpg)"></div>';
+					list +=	'<a href="#" class="title ellipsis">' + data[i].story_title + '</a></div>';	
+					list += '<a href="#" target="_blank"><div class="split-hard"><span class="split crop-circ" style="background-image: url(https://image.idus.com/image/files/37cec8c9f8bd47458facc5bdacfb0b24.jpg)"> </span>';
+					list += '<div class="split"><span class="txt-strong">' + data[i].memberid + '</span><span class="txt">' + data[i].story_write_date + '</span> </div></div>';
+					list += '<p class="desc">' + data[i].story_cotent + '</p><br></a></div></div>';
+              
 				}
-			$(".masonry-grid").html(list);
+			$("#storyAdd").html(list);
 			},
 			error: function(data, textStatus){
 				alert("다시 시도해주세요.");
@@ -871,7 +868,7 @@ $.ratePicker("#rating-2", {
                 <span class="rv_count" data-review="count">
 					(<em class="num">10</em>)
 				</span>
-             
+             <input type="hidden" id="memberId" value="${member.getMemberid() }" /> <br>
              </h3>
           
          </div>
@@ -893,14 +890,12 @@ $.ratePicker("#rating-2", {
 								</c:otherwise>
 							</c:choose>
 						</div>
-			<br>
-			<div class="secretBox">
-				<input type="checkbox" name="secret" id="secretSelect" value="n"><label for="secretSelect">비밀글</label>
-			</div>
 			<div class="btn_area">
 				<input type="button" class="enrollstory" id="buy" value="등록">
 				<input type="button" class="cancelstory" id="cart" value="취소">
 			</div>
+		
+			
 		</div>
 		
 		<br><br>
@@ -941,9 +936,9 @@ $.ratePicker("#rating-2", {
   <!--스토리  -->
  
    <ul class="masonry-grid x2" data-col="2" style="position: relative; height: 2221.64px;">
-           <li class="card-style story" style="position: absolute; left: 0px; top: 0px;">
+           <li class="card-style story" id="storyAdd" style="position: absolute; left: 0px; top: 0px;">
             <c:forEach var="story" items="${storyList}" > 
-            <div class="bordering">
+            <div class="bordering" style="width: 200%; margin-bottom: 10px;">
 
                 <input name="time_stamp" type="hidden" value="1575262761000">
                 <div class="area-txt">
@@ -975,17 +970,9 @@ $.ratePicker("#rating-2", {
             </c:forEach>
         </li>
      </ul>
-
-	   
-	   
-
-  
-   
-         
- 
     </div>
   </div>
-  </div>
+</div>
 
 
   

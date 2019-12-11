@@ -24,7 +24,7 @@
 	<insert id="insertQnA" parameterType="java.util.Map">
 		<selectKey keyProperty="qna_number" resultType="int" order="BEFORE">
 		<![CDATA[
-			SELECT nvl2((max(qna_number) + 1), (max(qna_number) + 1), 1)
+			SELECT nvl2((max(to_number(qna_number)) + 1), (max(to_number(qna_number)) + 1), 1)
 			FROM prodQnA
 			WHERE prod_number = #{prod_number}
 		 ]]>
@@ -49,17 +49,22 @@
 	
 	<select id="selectQnA" resultMap="S_P001_D003Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         SELECT prod_number, qna_number, qna_content, TO_CHAR(qna_date, 'yyyy-mm-dd HH24:MI') as qna_date, memberId, replace(memberId, substr(memberId,-3), '***') as secretMember, answer_yn, TO_CHAR(answer_date, 'yyyy-mm-dd HH24:MI') as answer_date, answer_content, secret_yn
-         FROM   prodQnA
+        select prod_number, qna_number, qna_content, TO_CHAR(qna_date, 'yyyy-mm-dd HH24:MI') as qna_date, memberId, replace(memberId, substr(memberId,-3), '***') as secretMember, answer_yn, TO_CHAR(answer_date, 'yyyy-mm-dd HH24:MI') as answer_date, answer_content, secret_yn
+		from (select rownum as rn, k.* 
+		        from(select * 
+		                from prodQnA 
+		                where prod_number = #{prod_number } 
+		                order by to_number(qna_number) desc)k
+		        )
       ]]>
 		<where>
 		<![CDATA[
-			prod_number = #{prod_number}
+			rn between #{start} and #{end}
 		]]>
 		</where>
-		<![CDATA[
-			ORDER BY qna_number DESC
-		]]>
+<!-- 		<![CDATA[ -->
+<!-- 			ORDER BY to_number(qna_number) DESC -->
+<!-- 		]]> -->
 	</select>
 
 	<!-- Q&A answer -->

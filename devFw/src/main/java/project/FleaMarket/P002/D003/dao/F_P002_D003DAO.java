@@ -11,6 +11,7 @@ public interface F_P002_D003DAO {
 	 public List<F_P002_D003VO> storyList(Map<String, Object> searchMap) throws DataAccessException;
 	 public List<F_P002_D003VO> searchMod(Map<String, Object> searchMap) throws DataAccessException;
 	 public List<F_P002_D003VO> searchAdd() throws DataAccessException;
+	 public List<F_P002_D003VO> selectStory(Map<String, Object> searchMap) throws DataAccessException;
 	 
 	 public void insertStoryComment(Map<String, Object> datahMap) throws DataAccessException;
 	 public void updateMember(Map<String, Object> datahMap) throws DataAccessException;

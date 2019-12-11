@@ -73,6 +73,12 @@ public class CS_P001_D003ServiceImpl implements CS_P001_D003Service {
 		List<CS_P001_D003VO> list =  cs_p001_d003_DAO.selectboard(searchMap); 
 		return list;
 	}
+
+	@Override
+	public void updateYN(Map<String, Object> dataMap) {
+		cs_p001_d003_DAO.updateYN(dataMap);
+		
+	}
 	
 
 	

@@ -60,6 +60,8 @@ public class S_P001_D003ControllerImpl implements S_P001_D003Controller {
 			S_P001_D003Service.deleteQnA(dataMap);
 		}
 		
+		searchMap.put("start", 1);
+		searchMap.put("end", 10);
 		prodQnA = S_P001_D003Service.selectQnA(searchMap);
 		System.out.println(prodQnA);
 		

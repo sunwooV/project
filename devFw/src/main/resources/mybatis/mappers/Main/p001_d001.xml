@@ -48,14 +48,14 @@
 		select P.*
 		FROM (SELECT * 
 		    FROM product 
-		    ORDER BY prod_number desc)P
+		    ORDER BY to_number(prod_number) desc)P
       ]]>
       <where>
        <![CDATA[
        	ROWNUM <= 8
        ]]>
       </where>
-      order by prod_number desc
+      order by to_number(prod_number) desc
 	</select>
 
 

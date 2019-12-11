@@ -14,7 +14,7 @@ public class F_P002_D003VO {
 	private String story_title = "";
 	private String story_cotent = "";
 	private String heart_count = "";
-	
+	private String secretMember;
 	
 	public F_P002_D003VO() {
 		System.out.println("MemberVO 생성자 호출");
@@ -88,6 +88,15 @@ public class F_P002_D003VO {
 
 	public void setHeart_count(String heart_count) {
 		this.heart_count = heart_count;
+	}
+
+
+	public String getSecretMember() {
+		return secretMember;
+	}
+
+	public void setSecretMember(String secretMember) {
+		this.secretMember = secretMember;
 	}
 
 

@@ -23,5 +23,11 @@ public class CS_P001_D004DAOImpl implements CS_P001_D004DAO {
 		return sqlsession.insert("CS.boardWrite.insertboard", board);
 	}
 	
+	@Override
+	@Transactional
+	public int deleteboard(CS_P001_D004VO board) throws Exception{
+		return sqlsession.delete("CS.boardWrite.deleteboard", board);
+	}
+	
 
 }

@@ -759,7 +759,7 @@ $.ratePicker("#rating-2", {
 
 
 <div class="center-flea">
-     <div class="row-left">
+     <div class="row-left" style="width:125%;">
       <aside class="artist-area">
         <div class="user-info card-style-profile "> <!-- PROFILE (MIDDLE-CONTAINER) -->
    	<!--  
@@ -876,7 +876,7 @@ $.ratePicker("#rating-2", {
     	<br><br><br><br>
   	</aside>
   	
- <div class="cardlist_section" style="margin: 24px;" > 	
+ <div class="cardlist_section" style="margin: 24px; width: 70%;" > 	
   	<div class="row">
 
   	 	<h3 class="ui_title__txt"><a href="/devFw/fleaReview.do">판매 상품</a>
