@@ -53,7 +53,7 @@
 				alert("비밀번호는 8자 이상으로 설정해야 합니다.");
 				$("#pw").val("").focus();
 				return false;
-			} 
+			}
 			
 // 			else if ($.trim($("#pw").val()) !== $("#pw").val()) {
 // 				alert("공백은 입력이 불가능합니다.");
@@ -172,6 +172,9 @@ input[type=text]#id, #email, #name, #approval_status {
 	border: none;
 	border-bottom: 1px solid black;
 }
+span.title{
+ margin-left: 185px;
+}
 </style>
 <body>
 	<form name="update">
@@ -179,6 +182,7 @@ input[type=text]#id, #email, #name, #approval_status {
 		<div id="home-process-section">
 			<div class="w-col w-col-12">
 				<h1 style="padding-left: 12%;">내 정보</h1>
+				<span class="title"><a href="${contextPath}/mypage.do">마이페이지</a> > <b>포인트 조회</b></span>
 				<div class="w-tabs" data-duration-in="300" data-duration-out="100"
 					style="margin-top: 1%;">
 					<div class="gray tabs-content w-tab-content"

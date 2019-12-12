@@ -40,6 +40,18 @@
 #nonhover:hover{
 	background:white;
 }
+#paging{
+	text-align: center;
+    margin-top: 15px;
+}
+#paging > a{
+	padding-right:5px;
+	cursor:pointer;
+}
+
+#minTable{
+	    min-height: 989px;
+}
 </style>
 <script>
 
@@ -134,6 +146,78 @@
 		
 	});		
 	
+	
+	//paging
+	$(document).on('click', '#paging a', function(){ 
+        var $item = $(this);
+        var $id = $item.attr("id");
+        var selectedPage = $item.text();
+        
+        if($id == "next")    selectedPage = next;
+        if($id == "prev")    selectedPage = prev;
+        
+		var memberId = $("#memberId").val(); //로그인한 아이디
+		var qnaCnt = $("#qnaCnt").val();
+        
+        var page={
+        		currentPage:selectedPage
+        }
+        
+        $.ajax({
+			type: "post",
+			async: false,
+			url: "/devFw/pagingMyqna.do",
+			data: page,
+			dataType : 'text',
+			success: function(responseData){
+				var data = JSON.parse(responseData);
+			
+				var list = "";
+				
+					list += '<tr id="nonhover">'
+						 + '<th>상품</th>'
+						 + '<th>내용</th>'
+						 + '<th>작성일</th>'
+						 + '<th>답변여부</th>'
+						 + '<th>삭제</th>'
+						 + '</tr>';
+
+					for(var i=0;i<data.length;i++){
+						list += '<tr class="question" id="'+data[i].prod_number + ' ' + data[i].qna_number + '">'
+							 + '<td><a href="./detail.do?prod_number='+ data[i].prod_number + '"><img src="'+ data[i].represent_image + '" width="75px" height="75px"></a></td>'
+							 + 	'<td style="width: 43%;">'+ data[i].qna_content + '</td>'
+							 + 	'<td>'+ data[i].qna_date + '</td>'
+							 + 	'<td>';
+							 if(data[i].answer_yn == 'y'){
+								 list += 'O';
+							 } else {
+								 list += 'X';
+							 }
+							 list += '</td>'
+							 	  + '<td style="width: 9%;"><a class="delete" id="'+ data[i].prod_number + ','+ data[i].qna_number + '" data-deleteyn="no">삭제</a></td>'
+								  + '</tr>';
+					}
+				
+					$("#event_td").html(list);
+				
+				var list2 = "";
+				for(var i=1;i<=qnaCnt/10+1;i++){
+					if(i == data[0].currentPage){
+						list2 += '<a style="color:orange;">' + i + '</a>';
+					} else{
+						list2 += '<a>' + i + '</a>';
+					}
+				}
+				$("#paging").html(list2);
+			},
+			error: function(data, textStatus){
+				alert("다시 시도해주세요.");
+			},
+			complete : function (data, textstatus){
+			}
+		});
+    });
+	
 </script>
 </head>
 <body>
@@ -168,7 +252,10 @@
 					</ul>
 					<div class="tab-content">
 						<div id="qna" class="tab-pane fade in active">
-						<br><br>
+						<br>
+						<h3>상품 Q&A</h3>
+						<br>
+						<div id="minTable">
 							<table class="table table-hover" id="event_td">
 								<tr id="nonhover">
 									<th>상품</th>
@@ -201,64 +288,66 @@
 								</c:forEach>
 							</table>
 						</div>
-						<div id="review" class="tab-pane fade">
-							
+						<c:set var="qnaCnt" value="${qnaCnt }"/>
+						<c:set var="currentPage" value="${currentPage }"/>
+						<input type="hidden" id="qnaCnt" value="${qnaCnt }">
+							<c:if test="${qnaCnt != 0 }">
+								<div class="paging_comm" id="paging">
+									<c:forEach var="i" begin="1" end="${qnaCnt/10 + 1 }" step="1">
+									
+										<c:if test="${i == currentPage }">
+										 	 <a style="color:orange;"><c:out value="${i }" /></a>
+										</c:if>
+										<c:if test="${i != currentPage }">
+											 <a><c:out value="${i }" /></a>
+										</c:if>
+									   
+									</c:forEach>
+								</div>
+							</c:if>
 						</div>
-<!-- 					<table class="table table-hover" id="evnet_td"> -->
-<!-- 						<tr> -->
-<!-- 							<th>상품번호</th> -->
-<!-- 							<th>내용</th> -->
-<!-- 							<th>답변여부</th> -->
-<!-- 						</tr> -->
-
-<%-- 						<c:forEach var="qna" items="${qnaList}" varStatus='index'> --%>
-<!-- 							<tr> -->
-<%-- 								<td>${qna.prod_number}</td> --%>
-<%-- 								<td>${qna.qna_content}</td> --%>
-<%-- 								<td>${qna.answer_YN}</td> --%>
-
-<!-- 							</tr> -->
-<%-- 						</c:forEach> --%>
-<!-- 					</table> -->
-
-
-<!-- 					<div style="padding-left: 46%; font-size: 12px;"> -->
-<%-- 						<c:if test="${paging.startPage != 1 }"> --%>
-<!-- 							<a -->
-<%-- 								href="${contextPath}/event.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}"><span --%>
-<!-- 								class="glyphicon glyphicon-triangle-left" aria-hidden="true"> -->
-<!-- 							</span></a> -->
-<%-- 						</c:if> --%>
-<%-- 						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" --%>
-<%-- 							var="p"> --%>
-<%-- 							<c:choose> --%>
-<%-- 								<c:when test="${p == paging.nowPage }"> --%>
-<%-- 									<b>${p }</b> --%>
-<%-- 								</c:when> --%>
-<%-- 								<c:when test="${p != paging.nowPage }"> --%>
-<!-- 									<a -->
-<%-- 										href="${contextPath}/event.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a> --%>
-<%-- 								</c:when> --%>
-<%-- 							</c:choose> --%>
-<%-- 						</c:forEach> --%>
-<%-- 						<c:if test="${paging.endPage != paging.lastPage}"> --%>
-<!-- 							<a -->
-<%-- 								href="${contextPath}/event.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a> --%>
-<%-- 						</c:if> --%>
-<!-- 					</div> -->
-
-
-
+						
+						<!-------------------------------------------------------------------------------->
+						
+						<!-- 상품 후기 -->
+						<div id="review" class="tab-pane fade">
+							<br>
+						<h3>상품 후기</h3>
+						<br>
+							<table class="table table-hover" id="event_td">
+								<tr id="nonhover">
+									<th>상품</th>
+									<th>내용</th>
+									<th>작성일</th>
+									<th>별점</th>
+									<th>삭제</th>
+								</tr>
+		
+								<c:forEach var="qna" items="${qnaList}" varStatus='index'>
+									<!-- 질문 -->
+									<tr class="question" id="${qna.prod_number } ${qna.qna_number}">
+										<td><a  href="./detail.do?prod_number=${qna.prod_number }"><img src="${qna.represent_image}" width="75px" height="75px"></a></td>
+										<td style="width: 43%;">${qna.qna_content}</td>
+										<td>${qna.qna_date}</td>
+										<td><c:if test="${qna.answer_yn == 'y' }">O</c:if><c:if test="${qna.answer_yn == 'n' }">X</c:if></td>
+										<td style="width: 9%;"><a class="delete" id="${qna.prod_number },${qna.qna_number }" data-deleteyn="no">삭제</a></td>
+									</tr>
+									<!-- 답변 -->
+								 	<tr style="border-bottom:1px solid lightgray; display:none;" id="a${qna.prod_number }${qna.qna_number}" data-oc="close">
+										<c:if test="${qna.answer_yn == 'y' }">
+											<td colspan="4" id="answer">└<span style="background:gray; color:white; width:fit-content;">답변</span><span id="answer_content">${qna.answer_content }</span></td>
+											<td>${qna.answer_date }</td>
+										</c:if>
+										<c:if test="${qna.answer_yn == 'n' }">
+											<td colspan="5" id="answer"><span id="answer_content">아직 답변이 없습니다.</span></td>
+										
+										</c:if>
+									</tr>
+								</c:forEach>
+							</table>
+						</div>
 				</div>
 			</form>
-<!-- 		</div> -->
 	</div>
 </body>
-<script>
-	function selChange() {
-		var sel = document.getElementById('cntPerPage').value;
-		location.href = "${contextPath}/event.do?nowPage=${paging.nowPage}&cntPerPage="
-				+ sel;
-	}
-</script>
 </html>

@@ -18,13 +18,17 @@
 	
 		<select id="selectAllqnaList" resultMap="C_P002_D006Result01"  parameterType="String">
       <![CDATA[
-			select q.prod_number, q.qna_number, q.qna_content, to_char(q.qna_date, 'yyyy-mm-dd') as qna_date, q.answer_yn, to_char(q.answer_date, 'yyyy-mm-dd') as answer_date, q.answer_content, p.represent_image
-			from prodqna q, product p	
+			select *
+			from(select rownum as rn, k.*
+					from (select q.prod_number, q.qna_number, q.qna_content, to_char(q.qna_date, 'yyyy-mm-dd') as qna_date, q.answer_yn, to_char(q.answer_date, 'yyyy-mm-dd') as answer_date, q.answer_content, p.represent_image
+						from prodqna q, product p	
+						where q.memberId = #{memberId}
+						and p.prod_number = q.prod_number
+			            order by to_number(prod_number) desc, to_number(qna_number) desc) k)
       ]]>
       <where>
       <![CDATA[
-			q.memberId = #{memberid}
-			and p.prod_number = q.prod_number
+			rn between #{start} and #{end}
       ]]>
       </where>
 

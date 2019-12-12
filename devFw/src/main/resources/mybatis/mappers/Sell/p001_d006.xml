@@ -8,8 +8,9 @@
 	<insert id="insertBid" parameterType="java.util.Map">
 		<selectKey keyProperty="bid_number" resultType="int" order="BEFORE">
 		<![CDATA[
-			SELECT nvl2((max(bid_number) + 1), (max(bid_number) + 1), 1)
+			SELECT nvl2((max(to_number(bid_number)) + 1), (max(to_number(bid_number)) + 1), 1)
 			FROM auction_bid
+			where prod_number = #{prod_number}
 		 ]]>
 		</selectKey>
 		<![CDATA[

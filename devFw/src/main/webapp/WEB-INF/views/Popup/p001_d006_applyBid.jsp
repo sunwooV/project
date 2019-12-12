@@ -122,8 +122,9 @@
 			</tr>
 			<tr>
 				<td style="background:#FAFAFA; padding-top: 30px;">입찰금액</td>
-				<td>현재 <fmt:formatNumber value="${bidProduct.auction_bid + Math.pow(10, (fn:length(bidProduct.auction_price) - 2 ))}" type="number" />원 부터 입찰하실 수 있습니다.<br><input type="number" id="bid_price" name="bid_price" value="0">원 (콤마(",")없이 100원 단위로 입력하세요.)</td>
-				<input type="hidden" id="minPrice" value="${bidProduct.auction_bid + Math.pow(10, (fn:length(bidProduct.auction_price) - 2 ))}"/>
+				<td>현재 <fmt:formatNumber value="${bidProduct.auction_bid + Math.pow(10, (fn:length(bidProduct.auction_bid) - 2 ))}" type="number" />원 부터 입찰하실 수 있습니다.<br><input type="number" id="bid_price" name="bid_price" value="0">원 (콤마(",")없이 100원 단위로 입력하세요.)</td>
+				<input type="hidden" id="minPrice" value="${bidProduct.auction_bid + Math.pow(10, (fn:length(bidProduct.auction_bid) - 2 ))}"/>
+				
 				<!-- 천원 단위면 -> 100원 단위로 오르고, 만원 단위면 -> 1,000원 단위로 오르고.... -->
 			</tr>
 		</table>

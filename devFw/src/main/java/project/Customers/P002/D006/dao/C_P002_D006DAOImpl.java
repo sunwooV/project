@@ -21,9 +21,9 @@ public class C_P002_D006DAOImpl implements C_P002_D006DAO {
 
 
 	@Override
-	public List selectAllqnaList(String memberid) throws DataAccessException {
+	public List selectAllqnaList(Map<String, Object> searchMap) throws DataAccessException {
 		List<C_P002_D006VO> qnaList = null;
-		qnaList = sqlSession.selectList("C_P002_D006.selectAllqnaList", memberid);/* xml 아이디값.select id 값*/
+		qnaList = sqlSession.selectList("C_P002_D006.selectAllqnaList", searchMap);/* xml 아이디값.select id 값*/
 		System.out.println("마이페이지qnaList" + qnaList);
 		return qnaList;
 	}

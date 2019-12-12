@@ -9,7 +9,7 @@
 	<update id="updateSeller" parameterType="java.util.Map">
 	<![CDATA[
 			UPDATE member
-			SET seller_group='y'
+			SET seller_group='y', rank_code=(select rank_code from SELLER_RANK where rank_code='1')
 	 ]]>
 	 <where>
 	 <![CDATA[

@@ -9,4 +9,6 @@ public interface C_P002_D008DAO {
 	
 	public List<C_P002_D008VO> boardList(String memberid) throws Exception;
 
+	public C_P002_D008VO grade_check(String memberid) throws Exception;
+
 }

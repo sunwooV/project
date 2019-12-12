@@ -19,9 +19,9 @@ public class C_P002_D006ServiceImpl implements C_P002_D006Service {
 	private C_P002_D006DAO c_p002_d006DAO;
 
 	@Override
-	public List listQna(String memberid) {
+	public List listQna(Map<String, Object> searchMap) {
 		List qnaList = null;
-		qnaList = c_p002_d006DAO.selectAllqnaList(memberid);
+		qnaList = c_p002_d006DAO.selectAllqnaList(searchMap);
 		return qnaList;
 	}
 	

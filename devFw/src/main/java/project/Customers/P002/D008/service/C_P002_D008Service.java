@@ -10,4 +10,5 @@ public interface C_P002_D008Service {
 
 	public C_P002_D008VO point_check(String memberid, HttpServletResponse response) throws Exception;
 	public List<C_P002_D008VO> boardList(String memberid) throws Exception ;
+	public C_P002_D008VO grade_check(String memberid, HttpServletResponse response) throws Exception;
 }

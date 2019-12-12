@@ -48,7 +48,7 @@ public class C_P008_D001ControllerImpl implements C_P008_D001Controller{
 			Map<String, Object> resultMap = new HashMap<String, Object>(); // 조회결과
 			
 			// 검색조건설정
-			searchMap.put("point_code", request.getParameter("point_code"));
+			searchMap.put("rank_code", request.getParameter("rank_code"));
 			
 			//�ㄷ데이터 조회
 			List<C_P008_D001VO> data = c_p008_d001service.searchList(searchMap);

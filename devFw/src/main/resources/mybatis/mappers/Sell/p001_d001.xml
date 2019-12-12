@@ -120,7 +120,7 @@
 	
 	<select id="selectProdNumber" resultType="String">
 	 <![CDATA[
-         select max(prod_number) as prod_number
+         select max(to_number(prod_number)) as prod_number
          from   product	
       ]]>
 	</select>
