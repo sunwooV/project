@@ -7,7 +7,7 @@
 	<resultMap id="B_P001_D004Result01" type="B_P001_D004VO">
 		<!-- order_num은 3 테이블 공통 사용-->
 		<result property="order_num" column="order_num" />
-		<!-- order -->
+		<!-- order 1번으로 insert -->
 		<result property="seller_memberid" column="seller_memberid" />
 		<result property="buyer_memberid" column="buyer_memberid" />
 		<result property="order_date" column="order_date" />
@@ -15,12 +15,12 @@
 		<result property="order_fix_yn" column="order_fix_yn" />
 		<result property="order_state" column="order_state" />
 		<result property="order_want" column="order_want" />	
-		<!-- orderitems -->
+		<!-- orderitems  2번 insert -->
 		<result property="prod_number" column="prod_number" />
 		<result property="quantity" column="quantity" />
 		<result property="item_price" column="item_price" />
 		<result property="get_method" column="get_method" />	
-		<!-- pay -->
+		<!-- pay 3번 insert-->
 		<result property="pay_method" column="pay_method" />
 		<result property="pay_price" column="pay_price" />
 		<result property="pay_group" column="pay_group" />
@@ -33,4 +33,5 @@
             cart 
 	  ]]>	
 	</insert>
+
 </mapper>

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import project.Buy.P001.D004.service.B_P001_D004Service;
 import project.Buy.P001.D004.vo.B_P001_D004VO;
+import project.Customers.P002.D009.service.C_P002_D009Service;
 
 
 @Controller("B_P001_D004Controller")
@@ -23,6 +24,8 @@ public class B_P001_D004ControllerImpl implements B_P001_D004Controller{
 	B_P001_D004Service b_p001_d004Service;
 	@Autowired
 	B_P001_D004VO b_p001_d004VO;
+	@Autowired
+	C_P002_D009Service c_p002_d009Service;
 
 	@Override
 	@RequestMapping(value = "/payInfo.do", method = { RequestMethod.GET, RequestMethod.POST })
