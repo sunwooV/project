@@ -498,6 +498,20 @@ $(document).ready(function(){
         }
       }
 	
+	function frm_Logincheck(){
+		var memberidCheck = $('#memberid').val();
+		alert(memberidCheck);
+		if(memberidCheck == "")
+		{
+			alert("로그인을 먼저 해주시기 바랍니다.");
+			frmCheck.method ="post";
+			frmCheck.action ="${contextPath}/loginInit.do";
+			frmCheck.submit();
+			return false;
+		}	
+		
+		
+	}
 	
 	
 	
@@ -562,8 +576,12 @@ $(document).ready(function(){
  <div class="messagepop pop2">
  	<h2>참여자 추가</h2>
     <form method="post" id="new_message" action="/devFw/participantsInsert.do" enctype="multipart/form-data">    
-        <p><label for="flea_name">회원 검색&nbsp;</label><input type="text" size="30" name="memberid" id="memberid" /></p>
-        <p><input type="submit" value="확인" name="commit" id="message_submit"/><a class="close" href="/">Cancel</a></p>
+        <p><label for="flea_name">본인 아이디:&nbsp;</label><input type="text" size="30" name="memberid" id="memberid" /></p>
+        <p>
+        	 <input type="hidden" id="memberid" name="memberid" value="${member.getMemberid() }" />
+        	<input type="submit" value="확인" name="commit" id="message_submit" onsubmit="return frm_Logincheck();" />
+        	<a class="close" href="/">Cancel</a>
+        </p>
         <c:forEach var="flea" items="${searchList}" > 
         	<input type="hidden" name="flea_code" value="${flea.flea_code}">
         </c:forEach>

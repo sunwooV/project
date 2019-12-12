@@ -11,6 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 public interface F_P002_D006Controller {
-	public ResponseEntity participantsInsert(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ResponseEntity participantsInsert(String flea_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	}

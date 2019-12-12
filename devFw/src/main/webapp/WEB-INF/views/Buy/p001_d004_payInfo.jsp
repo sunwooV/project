@@ -1,21 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"
+	isELIgnored ="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="Path" value="${pageContext.request.contextPath}" />
-
+<% 
+request.setCharacterEncoding("UTF-8"); 
+int ttlPrice =  Integer.parseInt(request.getParameter("totalPrice"));
+String title = (String) request.getParameter("prod_title");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
 <style type="text/css">
-orderHistoryContainer {
-	/* padding: 위 오른쪽 아래 왼쪽;*/
-	padding: 1% 15% 10% 15%;
+.orderHistoryHeader{
+
+padding:5%;
+margin-left:%;}
+.headerForPayInfo {
+	margin-left: 10%;
+	padding-top: 2%;y
 }
 
-.orderHistoryHeader {
-	padding-top: 3%;
-	margin-left: 15%;
+.tableTr th {
+	width: 150px;
+	height: 28px;
+	padding: 2%;
+	font-size: 18px;
+}
+
+.tableTr td {
+	width: 500px;
+	height: 28px;
+	padding: 2%;
+	font-size: 18px;
+}
+
+.payForOrder {
+	text-align: center;
+	font-size: 15px;
 }
 
 .OHT_ttl, .OHC_cont {
@@ -24,135 +47,155 @@ orderHistoryContainer {
 	text-align: center;
 	border-bottom: 1px solid lightgray;
 }
-
-.orderHistoryTable {
-	text-align: center;
-	width: -webkit-fill-available;
-	border-top: 1px solid lightgray;
-	border-collapse: collapse;
-}
-
-.OHtableTitle {
-	background-color: #f9f9f9;
-}
-
-
 </style>
+<!-- jQuery -->
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- iamport.payment.js -->	
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
-function kakaopayPC(){
+	function requestPay() {
+		var name = document.getElementById('buyerName').value; // 주문자 이름
+		var postCode= document.getElementById('postcode').value; // 우편번호
+		var detailAddr = document.getElementById('detailAddr').value; //상세주소
+		var email= document.getElementById('email').value; //주문자 이메일
+		var phoneNum = document.getElementById('buyerPhone').value; //주문자 연락처
+		var product = document.getElementById('title').value;
+		
+		var finalPrice = document.getElementById('prod_price').value;
+		
+		alert(finalPrice);
+		
+		  // IMP.request_pay(param, callback) 호출
+	    IMP.init("imp43398102"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
+	    IMP.request_pay({ // param
+	        pg: "inicis",
+	        pay_method: "card",
+	        merchant_uid: "ORD20180131-0000012",
+	        name: name,
+	        amount: 100,
+	        buyer_email: email,
+	        buyer_name: name,
+	        buyer_tel: phoneNum,
+	        buyer_addr: detailAddr,
+	        buyer_postcode: postCode
+	    }, function (rsp) { // callback
+	        if (rsp.success) {
+	        	var msg = '결제가 완료되었습니다.';
+	            msg += '고유ID : ' + rsp.imp_uid;
+	            msg += '상점 거래ID : ' + rsp.merchant_uid;
+	            msg += '결제 금액 : ' + rsp.paid_amount;
+	            msg += '카드 승인번호 : ' + rsp.apply_num;
+	        } else {
+	        	var msg = '결제에 실패하였습니다.';
+	            msg += '에러내용 : ' + rsp.error_msg;
+	        }
+	        alert(msg);
+	    });
+	}
 	
-	var url="http://localhost:8090/devFw/kakaopay.do/oauth";
-	var name="카카오페이";
-	var option ="width = 500, height = 500, top = 100, left = 200, location = no"
-	
-	window.open(url,name,option);
-}
+	function calcFinalPrice(){
+		var form = document.payInfo;
+		var prod_price = document.getElementById("prod_price").value;
+		console.log(prod_price);
+		
+		var ttlPrice = document.getElementById("total_price");
+		ttlPrice.value = prod_price+2500;
+		return ttlPrice.value;
+	}
 </script>
 </head>
 <body>
 
-<input type="hidden" id="memberId" value="${member.getMemberid()}">
-	<div class="orderHistoryHeader">
-		<h3>주문 및 결제 정보</h3>
-	</div>
+	<input type="hidden" id="memberId" value="${member.getMemberid()}">
+	<form name="payInfo">
+		<div class="orderHistoryHeader">
+			<h2>주문 및 결제 정보</h2>
+		</div>
 
-	<div class="shipping" style="margin-left: 30%">
-		<h2>배송지 정보</h2>
-		<br>
-		<!-- 배송정보 테이블 -->
-		<table class="shipInfoTable">
-			<tr class="tableTr">
-				<th>배송지 선택</th>
-				<td><input type="select" id="selectShipAddress"  width="200px">
-				</td>
-				<td><input type="button" value="새로운 주소+" id="input_new_Address"></td>
-			</tr>
+		<div class=orderHistoryContainer style="margin-left: 30%">
+			<h3>배송지 정보</h3>
+			<!-- 배송정보 테이블 -->
+			
+			<input type="hidden" id="email" name="email" value=<%=session.getAttribute("email") %> >
+				<table class="orderHistoryTable" id="orderHistoryTable">
+					<tr class="tableTr">
+						<th class="OHT_ttl">배송지 선택</th>
+						
+						<td class="OHC_cont"><input type="button" value="새로운 주소+"
+							id="input_new_Address" onClick="newAddress()"></td>
+					</tr>
 
-			<tr class="tableTr">
-				<th>이름</th>
-				<td>신주연</td>
-			</tr>
+					<tr class="tableTr">
+						<th class="OHT_ttl">이름</th>
+						<td class="OHC_cont"><span id="buyerName"><%=session.getAttribute("name") %></span></td>
+					</tr>
 
-			<tr class="tableTr">
-				<th>연락처</th>
-				<td>000-0000-0000</td>
-			</tr>
+					<tr class="tableTr">
+						<th class="OHT_ttl">연락처</th>
+						<td class="OHC_cont"><span id="buyerPhone"><%=session.getAttribute("phonenumber") %></span></td>
+					</tr>
 
-			<tr class="tableTr">
-				<th>주소</th>
-				<td>(00000)00시 00구 00로 00길(00동 00아파트) 000동 000호</td>
-			</tr>
+					<tr class="tableTr">
+						<th class="OHT_ttl">주소</th>
+						<td class="OHC_cont"><span id="postcode">(<%=session.getAttribute("address")%>)</span><span id="detailAddr"> <%=session.getAttribute("roadAddress")%> <%=session.getAttribute("detailAddress") %></span></td></tr>
+					<tr class="tableTr">
+						<th class="OHT_ttl">배송메모</th>
+						<td class="OHC_cont"><input type="text" placeholder="배송메모를 작성해주세요.(200자이내)"></td>
+					</tr>
+			</table>
+		</div>
+		<br> <br> <br> <br> <br> <br>
+		<div class="paymentChoice" style="margin-left: 30%">
+			<!--결제하기 포인트 적용-->
+			<h3>결제 수단 선택</h3>
+			<br>
+			<table class="paymentChoice">
+				<tr class="tableTr">
+					<th class="OHT_ttl">결제 수단</th>
+					<td>&nbsp&nbsp<input type="radio" name="size" id="size_1"
+						value="small" /> <label for="size_1">카카오페이</label>&nbsp&nbsp&nbsp&nbsp
+						<input type="radio" name="size" id="size_2" value="small" /> <label
+						for="size_2">신용카드</label>&nbsp&nbsp&nbsp&nbsp <input type="radio"
+						name="size" id="size_3" value="small" /> <label for="size_3">핸드폰
+							결제</label>
+					</td>
+				</tr>
 
-			<tr class="tableTr">
-				<th>배송메모</th>
-				<td>
-				<input type="text"
-					placeholder="배송메모를 선택해주세요"></td>
-			</tr>
-		</table>
-	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<div class="paymentChoice" style="margin-left: 30%">
-		<!--결제하기 포인트 적용-->
-		<h2>결제 수단 선택</h2>
-		<br>
-		<table class="paymentChoice">
-			<tr class="tableTr">
-				<th>결제 수단</th>
-				<td>&nbsp&nbsp<input type="radio" name="size" id="size_1"
-					value="small" /> <label for="size_1">카카오페이</label>&nbsp&nbsp&nbsp&nbsp
-					<input type="radio" name="size" id="size_2" value="small" /> <label
-					for="size_2">무통장입금</label>&nbsp&nbsp&nbsp&nbsp <input type="radio"
-					name="size" id="size_3" value="small" /> <label for="size_3">핸드폰
-						결제</label>
-				</td>
-			</tr>
+				<tr class="tableTr">
+					<th class="OHT_ttl">포인트</th>
+					<td><input type="number" id="custPoint">&nbsp&nbspP</td>
+				</tr>
 
-			<tr class="tableTr">
-				<th>포인트</th>
-				<td><input type="number" id="custPoint">&nbsp&nbspP</td>
-			</tr>
-
-		</table>
-	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<!-- 주문상품 정보 -->
-	<div class="custOrderItem" style="margin-left: 30%">
-	<h2>주문 상품 정보</h2>
-	<br>
-		<table class="orderItems">
-			<tr class="tableTr">
-				<th><img></th>
-				<td>00</td>
-			</tr>
-			<tr class="tableTr">
-			<th>상품 금액</th>
-			<td id="prod_price">원</td>
-			</tr>
-			<tr class="tableTr">
-			<th>배송비</th>
-			<td id="discount_price">원</td>
-			</tr>
-			<tr class="tableTr">
-			<th>총 주문 금액</th>
-			<td id="total_price">원</td>
-			</tr>
-		</table>
-	</div>
-	<br>
-	<br>
-	<div class="payForOrder" style="margin-left: 30%"> 
-	<input type="button" value="결제하기" onClick="kakaopayPC()">
-	</div>
+			</table>
+		</div>
+		<br> <br> <br> <br> <br> <br>
+		<!-- 주문상품 정보 -->
+		<div class="custOrderItem" style="margin-left: 30%">
+			<h2>주문 상품 정보</h2>
+			<br>
+			<table class="orderItems">
+				<tr class="tableTr">
+					<th>상품정보</th>
+					<td id="title"><%=title %></td>
+				</tr>
+				<tr class="tableTr">
+					<th>상품 금액</th>
+					<td id="prod_price"><%=ttlPrice %>원</td>
+				</tr>
+				</tr>
+				<tr class="tableTr">
+					<th>총 주문 금액</th>
+					<td id="finalPrice"></td>
+				</tr>
+			</table>
+		</div>
+		<br> <br>
+		<div class="payForOrder" style="margin-left: 30%">
+			<input type="button" value="결제하기" onClick="requestPay()">
+		</div>
+		<!-- End Content -->
+	</form>
 </body>
 </html>

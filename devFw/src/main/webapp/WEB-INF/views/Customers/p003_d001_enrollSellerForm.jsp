@@ -35,7 +35,7 @@ $(document).on('click', '#specialSeller', function(){
 	var frm = document.selectSeller;
 	
 	frm.method="POST";
-	frm.action="./specialSeller.do";
+	frm.action="./fleaCreateStoreForm.do";
 	frm.submit();
 });
 </script>

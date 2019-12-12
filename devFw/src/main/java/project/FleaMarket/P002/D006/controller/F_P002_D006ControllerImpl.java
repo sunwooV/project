@@ -64,7 +64,7 @@ public class F_P002_D006ControllerImpl implements F_P002_D006Controller {
 	@Override
 	@RequestMapping(value = "/participantsInsert.do", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
-	public ResponseEntity participantsInsert(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ResponseEntity participantsInsert(@RequestParam(value="flea_code", required=false) String flea_code, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		Enumeration enu = request.getParameterNames();
@@ -87,8 +87,8 @@ public class F_P002_D006ControllerImpl implements F_P002_D006Controller {
 			dispatch.forward(request, response);
 		} catch (Exception e) {
 			message = " <script>";
-			message += " alert('오류가 발생하였습니다.');";
-			message += " location.href='" + request.getContextPath() + "/fleaMystore.do'; ";
+			message += " alert('로그인 후 팜여형 플리마켓을 진행해주시기 바랍니다.');";
+			message += " location.href='" + request.getContextPath() + "/fleaMystore.do?flea_code=" + flea_code +"'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
 			e.printStackTrace();

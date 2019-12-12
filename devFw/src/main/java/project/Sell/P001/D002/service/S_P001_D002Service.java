@@ -17,6 +17,7 @@ public interface S_P001_D002Service {
 	public String likeProd(Map<String, Object> searchMap) throws DataAccessException;
 	public String heart(Map<String, Object> searchMap) throws DataAccessException;
 	public String fleaName(Map<String, Object> searchMap) throws DataAccessException;
+	public String qnaSize(Map<String, Object> searchMap) throws DataAccessException;
 	
 	public void insertLikeProd(Map<String, Object> datahMap) throws Exception;
 	public void deleteLikeProd(Map<String, Object> datahMap) throws Exception;

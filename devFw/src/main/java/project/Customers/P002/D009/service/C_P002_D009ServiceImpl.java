@@ -74,4 +74,9 @@ public class C_P002_D009ServiceImpl implements C_P002_D009Service{
 		}
 	}
 
+	@Override
+	public C_P002_D009VO check(String memberid, HttpServletResponse response) throws Exception {
+		return c_p002_d009_DAO.check(memberid);
+	}
+
 }

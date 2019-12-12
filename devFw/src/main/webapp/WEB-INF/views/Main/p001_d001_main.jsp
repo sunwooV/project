@@ -55,139 +55,86 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 		<div class="row">
 			<!-- 컨텐츠 -->
 			<ul class="nav nav-tabs">
-				<li class="active"><a data-toggle="tab" href="#home">주간
-						TOP5</a></li>
+				<li class="active"><a data-toggle="tab" href="#home">TOP 8</a></li>
 				<li><a data-toggle="tab" href="#new">신제품</a></li>
-				<li><a data-toggle="tab" href="#recommend">오늘의 추천상품</a></li>
+<!-- 				<li><a data-toggle="tab" href="#recommend">오늘의 추천상품</a></li> -->
 				<li><a data-toggle="tab" href="#good_store">우수등급 스토어</a></li>
 			</ul>
 			<div class="tab-content">
 				<!--컨텐츠  -->
 				<div id="home" class="tab-pane fade in active">
 					<div class="row">
-						<div class="col-sm-3">
-							<div class="thumbnail">
-								<h4>중고상품</h4>
-								<img src="${contextPath }/resources/img/케익.jpg" width=230, height=240 alt="...">
-								<div class="caption">
-									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-									<p id="p">7000원</p>
+						<c:forEach var="popularProduct" items="${popularProduct}">
+							<div class="col-sm-3">
+								<div class="thumbnail">
+									<c:if test="${popularProduct.reused_yn == 'y' }">
+										<!-- 상품 판매 카테고리 -->
+										<span class="group">중고</span>
+									</c:if>
+									<c:if
+										test="${popularProduct.auction_yn == 'y' or popularProduct.auction_yn == 'w' or popularProduct.auction_yn == 'f'}">
+										<span class="group">경매</span>
+									</c:if>
+									<c:if test="${popularProduct.flea_yn == 'y' }">
+										<span class="group">플리</span>
+									</c:if>
+									<c:if test="${popularProduct.auction_yn == 'y' }">
+										<span class="group" style="color: red;">(경매 진행 중)</span>
+									</c:if>
+									<img src="${popularProduct.represent_image }"
+										style="width: 230px; height: 240px;" alt="..."
+										onclick="location.href='./detail.do?prod_number=${popularProduct.prod_number }'">
+									<div class="caption">
+										<h3>${popularProduct.prod_title }
+											<c:if test="${popularProduct.sale_percent != null }">
+											[${popularProduct.sale_percent }%]
+										</c:if>
+										</h3>
+										<c:choose>
+											<c:when test="${popularProduct.auction_yn == 'y' }">
+												<p id="p">
+													<fmt:formatNumber value="${popularProduct.auction_bid }"
+														type="number" />
+													원
+												</p>
+											</c:when>
+											<c:when
+												test="${((popularProduct.auction_yn == 'f' or popularProduct.auction_yn == 'w') and popularProduct.reused_yn == 'n' and popularProduct.flea_yn == 'n') or popularProduct.prod_amount == 0 }">
+												<p id="p" style="color: red; font-weight: bold">품절</p>
+											</c:when>
+											<c:otherwise>
+												<c:if test="${popularProduct.sale_percent != null }">
+													<p>
+														<span id="p"><fmt:formatNumber
+																value="${popularProduct.prod_price * (1-(popularProduct.sale_percent*0.01)) }"
+																type="number" />원</span> <span id="sale_price"
+															style="margin-bottom: 1re;"><fmt:formatNumber
+																value="${popularProduct.prod_price }" type="number" />원</span>
+													</p>
+												</c:if>
+												<c:if test="${popularProduct.sale_percent == null }">
+													<p id="p">
+														<fmt:formatNumber value="${popularProduct.prod_price }"
+															type="number" />
+														원
+													</p>
+												</c:if>
+											</c:otherwise>
+										</c:choose>
 
-									<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-									<input type="hidden" name="item_num" id="goToCart"> <a
-										href="${contextPath}/payInfo.do" class="btn btn-default"
-										id="ttt4" role="button">구매하기</a>
 
+										<p id="p">
+											<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
+											<a href="${contextPath}/payInfo.do" class="btn btn-default"
+												id="ttt4" role="button">구매하기</a>
+										</p>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumbnail">
-								<h4>중고상품</h4>
-								<img src="${contextPath }/resources/img/케익.jpg" width=230, height=240 alt="...">
-								<div class="caption">
-									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-									<p id="p">7000원</p>
-									<p id="p">
-										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="${contextPath}/payInfo.do" class="btn btn-default"
-											id="ttt4" role="button">구매하기</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumbnail">
-								<h4>중고상품</h4>
-								<img src="${contextPath }/resources/img/케익.jpg" width=230, height=240 alt="...">
-								<div class="caption">
-									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-									<p id="p">7000원</p>
-									<p id="p">
-										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="${contextPath}/payInfo.do" class="btn btn-default"
-											id="ttt4" role="button">구매하기</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumbnail">
-								<h4>중고상품</h4>
-								<img src="${contextPath }/resources/img/케익.jpg" width=230, height=240 alt="...">
-								<div class="caption">
-									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-									<p id="p">7000원</p>
-									<p id="p">
-										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="${contextPath}/payInfo.do" class="btn btn-default"
-											id="ttt4" role="button">구매하기</a>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="thumbnail">
-								<h4>중고상품</h4>
-								<img src="./img/케익.jpg" width=230, height=240 alt="...">
-								<div class="caption">
-									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-									<p id="p">7000원</p>
-									<p id="p">
-										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="${contextPath}/payInfo.do" class="btn btn-default"
-											id="ttt4" role="button">구매하기</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumbnail">
-								<h4>중고상품</h4>
-								<img src="./img/케익.jpg" width=230, height=240 alt="...">
-								<div class="caption">
-									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-									<p id="p">7000원</p>
-									<p id="p">
-										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="${contextPath}/payInfo.do" class="btn btn-default"
-											id="ttt4" role="button">구매하기</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumbnail">
-								<h4>중고상품</h4>
-								<img src="./img/케익.jpg" width=230, height=240 alt="...">
-								<div class="caption">
-									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-									<p id="p">7000원</p>
-									<p id="p">
-										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="${contextPath}/payInfo.do" class="btn btn-default"
-											id="ttt4" role="button">구매하기</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumbnail">
-								<h4>중고상품</h4>
-								<img src="./img/케익.jpg" width=230, height=240 alt="...">
-								<div class="caption">
-									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-									<p id="p">7000원</p>
-									<p id="p">
-										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="${contextPath}/payInfo.do" class="btn btn-default"
-											id="ttt4" role="button">구매하기</a>
-									</p>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
+							
+					
+						
 					</div>
 				</div>
 				<div id="new" class="tab-pane fade">
@@ -262,70 +209,70 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 						</c:forEach>
 					</div>
 				</div>
-				<div id="recommend" class="tab-pane fade">
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="thumbnail">
-								<h4>중고상품</h4>
-								<img src="./img/케익.jpg" width=230, height=240 alt="...">
-								<div class="caption">
-									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-									<p id="p">7000원</p>
-									<p id="p">
-										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="${contextPath}/payInfo.do" class="btn btn-default"
-											id="ttt4" role="button">구매하기</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumbnail">
-								<h4>중고상품</h4>
-								<img src="./img/케익.jpg" width=230, height=240 alt="...">
-								<div class="caption">
-									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-									<p id="p">7000원</p>
-									<p id="p">
-										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="${contextPath}/payInfo.do" class="btn btn-default"
-											id="ttt4" role="button">구매하기</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumbnail">
-								<h4>중고상품</h4>
-								<img src="./img/케익.jpg" width=230, height=240 alt="...">
-								<div class="caption">
-									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-									<p id="p">7000원</p>
-									<p id="p">
-										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="${contextPath}/payInfo.do" class="btn btn-default"
-											id="ttt4" role="button">구매하기</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumbnail">
-								<h4>중고상품</h4>
-								<img src="./img/케익.jpg" width=230, height=240 alt="...">
-								<div class="caption">
-									<h3>입점할인❤️생일케이크 캔들[10%]</h3>
-									<p id="p">7000원</p>
-									<p id="p">
-										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-										<a href="${contextPath}/payInfo.do" class="btn btn-default"
-											id="ttt4" role="button">구매하기</a>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+<!-- 				<div id="recommend" class="tab-pane fade"> -->
+<!-- 					<div class="row"> -->
+<!-- 						<div class="col-sm-3"> -->
+<!-- 							<div class="thumbnail"> -->
+<!-- 								<h4>중고상품</h4> -->
+<!-- 								<img src="./img/케익.jpg" width=230, height=240 alt="..."> -->
+<!-- 								<div class="caption"> -->
+<!-- 									<h3>입점할인❤️생일케이크 캔들[10%]</h3> -->
+<!-- 									<p id="p">7000원</p> -->
+<!-- 									<p id="p"> -->
+<!-- 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a> -->
+<%-- 										<a href="${contextPath}/payInfo.do" class="btn btn-default" --%>
+<!-- 											id="ttt4" role="button">구매하기</a> -->
+<!-- 									</p> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-sm-3"> -->
+<!-- 							<div class="thumbnail"> -->
+<!-- 								<h4>중고상품</h4> -->
+<!-- 								<img src="./img/케익.jpg" width=230, height=240 alt="..."> -->
+<!-- 								<div class="caption"> -->
+<!-- 									<h3>입점할인❤️생일케이크 캔들[10%]</h3> -->
+<!-- 									<p id="p">7000원</p> -->
+<!-- 									<p id="p"> -->
+<!-- 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a> -->
+<%-- 										<a href="${contextPath}/payInfo.do" class="btn btn-default" --%>
+<!-- 											id="ttt4" role="button">구매하기</a> -->
+<!-- 									</p> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-sm-3"> -->
+<!-- 							<div class="thumbnail"> -->
+<!-- 								<h4>중고상품</h4> -->
+<!-- 								<img src="./img/케익.jpg" width=230, height=240 alt="..."> -->
+<!-- 								<div class="caption"> -->
+<!-- 									<h3>입점할인❤️생일케이크 캔들[10%]</h3> -->
+<!-- 									<p id="p">7000원</p> -->
+<!-- 									<p id="p"> -->
+<!-- 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a> -->
+<%-- 										<a href="${contextPath}/payInfo.do" class="btn btn-default" --%>
+<!-- 											id="ttt4" role="button">구매하기</a> -->
+<!-- 									</p> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-sm-3"> -->
+<!-- 							<div class="thumbnail"> -->
+<!-- 								<h4>중고상품</h4> -->
+<!-- 								<img src="./img/케익.jpg" width=230, height=240 alt="..."> -->
+<!-- 								<div class="caption"> -->
+<!-- 									<h3>입점할인❤️생일케이크 캔들[10%]</h3> -->
+<!-- 									<p id="p">7000원</p> -->
+<!-- 									<p id="p"> -->
+<!-- 										<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a> -->
+<%-- 										<a href="${contextPath}/payInfo.do" class="btn btn-default" --%>
+<!-- 											id="ttt4" role="button">구매하기</a> -->
+<!-- 									</p> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 				<div id="good_store" class="tab-pane fade">
 					<div class="row">
 						<c:forEach var="bestStore" items="${bestStore}">

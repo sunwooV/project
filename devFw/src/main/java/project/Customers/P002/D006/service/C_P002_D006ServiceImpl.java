@@ -36,4 +36,10 @@ public class C_P002_D006ServiceImpl implements C_P002_D006Service {
 		c_p002_d006DAO.deleteQna(datahMap);
 	}
 	
+	@Override
+	public String qnaSize(Map<String, Object> searchMap) {
+		String qnaSize = c_p002_d006DAO.qnaSize(searchMap);
+		return qnaSize;
+	}
+	
 }
