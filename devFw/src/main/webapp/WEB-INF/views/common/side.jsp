@@ -17,8 +17,6 @@
 }
 
 #sideP {
-	font-size: x-small;
-	margin: 0px;
 	text-align: center;
 }
 
@@ -49,25 +47,25 @@ a {
 		<div id="seller">
 			<a href="./enrollSeller.do"> <img id="side"
 				src="${contextPath }/resources/img/side/shop.png">
-				<p id="sideP" style="margin: 0px;">판매자등록</p>
+				<h6 id="sideP" style="margin: 0px;">판매자등록</h6>
 			</a>
 		</div>
 		<div id="openFlea">
 			<a href="./fleaCreateStoreForm.do"> <img id="side"
 				src="${contextPath }/resources/img/side/open.png">
-				<p id="sideP" style="margin: 0px;">스토어등록</p>
+				<h6 id="sideP" style="margin: 0px;">스토어등록</h6>
 			</a>
 		</div>
 		<div id="enrollProduct">
 			<a href="./enroll.do"> <img id="side"
 				src="${contextPath }/resources/img/side/online-shop.png">
-				<p id="sideP" style="margin: 0px;">상품등록</p>
+				<h6 id="sideP" style="margin: 0px;">상품등록</h6>
 			</a>
 		</div>
-		<div id="chat">
+		<div id="chat1">
 			<a href="./chatInit.do"> <img id="side"
 				src="${contextPath }/resources/img/side/message.png">
-				<p id="sideP" style="margin: 0px;">채팅하기</p>
+				<h6 id="sideP" style="margin: 0px;">채팅하기</h6>
 			</a>
 		</div>
 	</div>

@@ -79,7 +79,7 @@
 				</c:if>
 
 				<c:if test="${ member.verify == 'Y'}">
-					<li class="nav-item"><a class="nav-link" href="./admin.do">Administrate<br>&nbsp;(${ member.nickname}님)
+					<li class="nav-item"><a class="nav-link" href="./admin.do">Administrator&nbsp;(${ member.nickname}님)
 					</a></li>
 				</c:if>
 

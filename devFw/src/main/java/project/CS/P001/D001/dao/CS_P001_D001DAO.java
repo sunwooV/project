@@ -25,6 +25,10 @@ public interface CS_P001_D001DAO {
 	 public void updateCNT(Map<String, Object> dataMap) throws DataAccessException;
 	 public int countBoard();
 
+	public List selectAllcouList() throws DataAccessException;
+
+	public List selectAllordList() throws DataAccessException;
+
 
 
 }

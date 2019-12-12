@@ -19,16 +19,17 @@
 <body>
 	<!-- 메뉴사이드바랑 컨텐츠 ------------------------------------------------------------------------------------------------------------------------------------------>
 	<div class="container-fluid"
-		style="padding-left: 16%; padding-top: 3%; margin-right: -4%;">
+		style="padding-left: 19%;padding-top: 3%;margin-right: -3%;">
 		<div class="col-sm-2" id="col">
 
-			<div class="table" id="sidebar"
-				style="font-size: 13px; border: 1px solid black;">
-				<h1 style="font-size: 21px;">✔이용 안내</h1>
-				<li><a href="${contextPath}/detail1.do">회사 소개</a></li>
-				<li><a href="${contextPath}/detail2.do">중고거래</a></li>
-				<li><a href="${contextPath}/detail3.do">경매</a></li>
-				<li><a href="${contextPath}/detail4.do">플리마켓</a></li>
+		<div class="list-group">
+				<a href="#" class="list-group-item list-group-item-action active">
+					이용안내
+					
+					 </a> <a href="${contextPath}/detail1.do" class="list-group-item list-group-item-action">회사 소개 </a>
+			 <a href="${contextPath}/detail2.do" class="list-group-item list-group-item-action">고객보호서비스 </a>
+				<a href="${contextPath}/detail3.do" class="list-group-item list-group-item-action">안전하게 이용하기 </a>
+				<a href="${contextPath}/detail4.do" class="list-group-item list-group-item-action">이용방법 </a>
 			</div>
 		</div>
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->

@@ -31,9 +31,9 @@
                <h3>
                   <a href="${contextPath }/fleaCreateStoreApproval.do"><strong>플리마켓 자체검사</strong></a>
                </h3>
-               <p style="font-size: 11px;">
-                  <a href="${contextPath }/fleaCreateStoreApproval.do">플리마켓 개설검사 </a>
-               </p>
+               <h6 >
+                  <a href="${contextPath }/fleaCreateStoreApproval.do">-플리마켓 개설여부 확인 페이지</a>
+               </h6>
             </div>
          </div>
          <div class="myshopMain_sub2">
@@ -41,9 +41,9 @@
                <h3>
                   <a href="/member/modify.html"><strong>블랙리스트 관리</strong></a>
                </h3>
-               <p style="font-size: 11px;">
-                  <a href="/member/modify.html">회원 블랙 관리 </a>
-               </p>
+               <h6 >
+                  <a href="/member/modify.html">-블랙리스트 회원 관리 페이지</a>
+               </h6>
             </div>
          </div>
          <div class="myshopMain_sub3">
@@ -51,9 +51,9 @@
                <h3>
                   <a href="${contextPath }/outsearchInit.do"><strong>탈퇴 회원관리</strong></a>
                </h3>
-               <p style="font-size: 11px;">
-                  <a href="${contextPath }/outsearchInit.do">탈퇴기록</a>
-               </p>
+                <h6 >
+                  <a href="${contextPath }/outsearchInit.do">-탈퇴한 회원 정보 관리 페이지</a>
+               </h6>
             </div>
          </div>
          <div class="myshopMain_sub4">
@@ -62,9 +62,9 @@
                   <a href="${contextPath }/gradesearchInit.do"><strong>판매자
                         등급 관리</strong></a>
                </h3>
-               <p style="font-size: 11px;">
-                  <a href="${contextPath }/gradesearchInit.do">등급 </a>
-               </p>
+                <h6 >
+                  <a href="${contextPath }/gradesearchInit.do">-판매자 등급 처리 페이지</a>
+               </h6>
             </div>
          </div>
          <div class="myshopMain_sub3">
@@ -73,9 +73,9 @@
                   <a href="${contextPath }/pointsearchInit.do"><strong>포인트
                         관리</strong></a>
                </h3>
-               <p style="font-size: 11px;">
-                  <a href="${contextPath }/pointsearchInit.do">포인트 지급 </a>
-               </p>
+            <h6 >
+                  <a href="${contextPath }/pointsearchInit.do">-포인트 지급페이지 </a>
+               </h6>
             </div>
          </div>
          <div class="myshopMain_sub4">
@@ -84,10 +84,9 @@
                   <a href="/myshop/coupon/coupon.html"><strong>판매자 점수
                         관리</strong></a>
                </h3>
-               <p style="font-size: 11px;">
-                  <a href="/myshop/coupon/coupon.html">고객님이 보유하고 계신 쿠폰내역을
-                     보여드립니다.</a>
-               </p>
+                <h6 >
+                  <a href="/myshop/coupon/coupon.html">-판매자 개별 점수 확인 페이지</a>
+               </h6>
             </div>
          </div>
          <div class="myshopMain_sub3">
@@ -95,12 +94,11 @@
                <h3>
                   <a href="${contextPath }/boardsearchInit.do"><strong>게시판
                         관리</strong></a>
-               </h 3>
-               <p style="font-size: 11px;">
-                  <a href="/myshop/deposits/historyList.html">환불금액등으로 적립된 예치금으로
-                     상품구매가 가능합니다<br>예치된 금액은 현금으로 환불이 가능합니다.
+               </h3>
+                 <h6 >
+                  <a href="/myshop/deposits/historyList.html">-게시판 수정,삭제,추가 페이지
                   </a>
-               </p>
+               </h6>
             </div>
          </div>
          <div class="myshopMain_sub4">
@@ -108,10 +106,9 @@
                <h3>
                   <a href="${contextPath }/searchInit.do"><strong>회원 관리</strong></a>
                </h3>
-               <p style="font-size: 11px;">
-                  <a href="${contextPath }/searchInit.do">고객님이 보유하고 계신 쿠폰내역을
-                     보여드립니다.</a>
-               </p>
+                <h6 >
+                  <a href="${contextPath }/searchInit.do">-전체 회원 관리 페이지</a>
+               </h6>
             </div>
          </div>
          <div class="myshopMain_sub5">
@@ -120,10 +117,9 @@
                   <a href="/myshop/coupon/coupon.html"><strong>상품 배송 조회
                         리스트</strong></a>
                </h3>
-               <p style="font-size: 11px;">
-                  <a href="/myshop/coupon/coupon.html">고객님이 보유하고 계신 쿠폰내역을
-                     보여드립니다.</a>
-               </p>
+               <h6 >
+                  <a href="/myshop/coupon/coupon.html">-상품 배송 현황 페이지</a>
+               </h6>
             </div>
          </div>
          <div class="myshopMain_sub6">
@@ -132,10 +128,9 @@
                   <a href="/myshop/coupon/coupon.html"><strong>플리마켓 개설
                         승인</strong></a>
                </h3>
-               <p style="font-size: 11px;">
-                  <a href="/myshop/coupon/coupon.html">고객님이 보유하고 계신 쿠폰내역을
-                     보여드립니다.</a>
-               </p>
+             <h6>
+                  <a href="/myshop/coupon/coupon.html">-플리마켓 개설 승인페이지</a>
+               </h6>
             </div>
          </div>
       </div>

@@ -44,25 +44,24 @@
 
 	<!-- 메뉴사이드바랑 컨텐츠 ------------------------------------------------------------------------------------------------------------------------------------------>
 	<div class="container-fluid"
-		style="padding-left: 16%; padding-top: 3%; margin-right: -4%;">
+		style="padding-left: 18%; padding-top: 3%; margin-right: -4%;">
 		<div class="col-sm-2" id="col">
+
 			<div class="list-group">
-				<!-- <h1 style="padding-bottom: 3%; font-size: 21px;">마이페이지</h1> -->
 				<a href="#" class="list-group-item list-group-item-action active">
-					마이페이지 </a> <a href="#" class="list-group-item list-group-item-action">포인트
-					조회 </a> <a href="#" class="list-group-item list-group-item-action">회원정보조회/수정
-				</a> <a href="#" class="list-group-item list-group-item-action">ID조회/비밀번호
-					찾기 </a>
+					마이페이지 </a> <a href="#" class="list-group-item list-group-item-action"><h6>포인트
+						조회</h6></a> <a href="#" class="list-group-item list-group-item-action"><h6>회원정보조회/수정</h6>
+				</a> <a href="#" class="list-group-item list-group-item-action"><h6>ID조회/비밀번호
+						찾기</h6></a>
 			</div>
 
-
-
 			<div class="list-group">
 				<a href="#" class="list-group-item list-group-item-action active">
-					게시판 </a> <a href="#" class="list-group-item list-group-item-action">1:1게시판
-				</a> <a href="#" class="list-group-item list-group-item-action">교환 및
-					환불 </a> <a href="#" class="list-group-item list-group-item-action">배송문의
-				</a> <a href="#" class="list-group-item list-group-item-action">기타 </a>
+					게시판 </a> <a href="#" class="list-group-item list-group-item-action"><h6>1:1게시판</h6>
+				</a> <a href="#" class="list-group-item list-group-item-action"><h6>교환
+						및 환불</h6></a> <a href="#" class="list-group-item list-group-item-action"><h6>배송문의</h6>
+				</a> <a href="#" class="list-group-item list-group-item-action"><h6>기타</h6>
+				</a>
 			</div>
 		</div>
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->
@@ -70,18 +69,18 @@
 			<h1 style="font-size: 37px;">고객센터</h1>
 
 			<div class="row" id="cscs1">
-				<h2 style="font-size: 23px;padding-bottom: 2%;">🔔이벤트/할인쿠폰🔔</h2>
+				<h2 style="font-size: 23px; padding-bottom: 2%;">🔔이벤트/할인쿠폰🔔</h2>
 				<table class="table table-hover" style="width: 98%;">
-					<tr>
+					<tr class="table-active">
 						<th style="width: 78%;">제목</th>
 					</tr>
 
 					<c:forEach var="event" items="${couponList}" varStatus='coupon'>
 						<tr id=${coupon.count } class="faq_open">
-							<td>${event.title}</td>
+							<td><h6>${event.title}</h6></td>
 						</tr>
 						<tr style="display: none;" id="n${coupon.count }">
-							<td colspan="2">${event.contents}</td>
+							<td colspan="2"><h6>${event.contents}</h6></td>
 						</tr>
 					</c:forEach>
 				</table>

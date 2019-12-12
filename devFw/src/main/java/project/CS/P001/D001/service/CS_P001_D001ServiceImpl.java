@@ -100,6 +100,32 @@ public class CS_P001_D001ServiceImpl implements CS_P001_D001Service {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List listCou() {
+		List couList = null;
+		couList = cs_p001_d001DAO.selectAllcouList();
+		return couList;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectAllcouList(Map<String, Object> dataMap) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List listOrd() {
+		List ordList = null;
+		ordList = cs_p001_d001DAO.selectAllordList();
+		return ordList;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectAllordList(Map<String, Object> dataMap) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	
