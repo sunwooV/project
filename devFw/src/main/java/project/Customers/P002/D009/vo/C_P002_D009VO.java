@@ -12,10 +12,10 @@ public class C_P002_D009VO {
 	private String email;
 	private String name;
 	private String birth;
-	private String address;
-	private String roadAddress;
-	private String jibunAddress;
-	private String detailAddress;
+	private String address; //postcode
+	private String roadAddress; // 도로명
+	private String jibunAddress; //지번
+	private String detailAddress; // 상세주소
 	private String extraAddress;
 	private String nickname;
 	private String phonenumber;

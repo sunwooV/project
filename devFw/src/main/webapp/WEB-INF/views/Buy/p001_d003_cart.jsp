@@ -126,7 +126,7 @@ function moveToPayInfo(){
 <body>
 
 	<input type="hidden" id="memberId" value="${member.getMemberid()}">
-	<form name = "Mycart">
+	<form name = "Mycart" method="post" action="./payInfo.do">
 	<!-- 장바구니 상단 -->
 	<div class="orderHistoryHeader">
 		<h3>장바구니</h3>
@@ -148,14 +148,17 @@ function moveToPayInfo(){
 			<tbody>
 				<!-- 상품 내용 cif 처리하기 -->
 				<c:set var ="total" value="0" />
-				<c:forEach var="cartList" items="${dataList}">
+				<c:set var ="firstTitle" value="0"/>
+				<c:set var = "countProd" value="0" />
+				<c:forEach var="cartList" items="${dataList}" varStatus="status">
 				<input type="hidden" id="prod_price" value="${cartList.prod_price}">
 					<tr class="orderHistoryContents">
 						<td class="OHC_cont"><input type="checkbox" name="checkProd" id="checkProd" value="">
 							<input type="hidden" name="prod_number" value="${cartList.prod_number}"></td>
 						<td class="OHC_cont"><img src="${cartList.represent_image}"
 							name="represent_image" style="width:100px; height:125px;"></td>
-						<td class="OHC_cont">${cartList.prod_title}<input type="hidden" name="prod_title" value="${prod_title}"></td>
+						<td class="OHC_cont">${cartList.prod_title}<input type="hidden" name="prod_title" value="${prod_title}">
+						<input type="hidden" ></td>
 						<td class="OHC_cont"><span id="cart_count">
 						<input type="button" id="minus" onClick="updateCount('minus')" value="-"><input type="number" id="cart_count" min="1" max="${product.prod_amount}" style="width:8%; height:auto; text-align:right;" value="${cartList.cart_count}"><input type="button"  id="plus" onClick="updateCount('plus')" value="+">
 						</span></td>
@@ -164,7 +167,9 @@ function moveToPayInfo(){
 						</td>
 						
 					</tr>
+					<c:if test="" />
 					<c:set var ="total" value="${total+ cartList.prod_price*cartList.cart_count}" />
+					
 				</c:forEach>
 				<tr>
 				<td class="OHC_cont" colspan="6" style="height:100px; font-size:35px; text-align:right;" >

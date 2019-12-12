@@ -8,7 +8,8 @@ public interface C_P002_D009Service {
 	
 	public C_P002_D009VO update(C_P002_D009VO member,HttpServletResponse response) throws Exception;
 	public C_P002_D009VO modify(C_P002_D009VO member, String old_pw, HttpServletResponse response) throws Exception;
-	
+	 public C_P002_D009VO check(String memberid,HttpServletResponse response) throws Exception;
+      
 	public boolean out(C_P002_D009VO member, HttpServletResponse response) throws Exception;
 
 }

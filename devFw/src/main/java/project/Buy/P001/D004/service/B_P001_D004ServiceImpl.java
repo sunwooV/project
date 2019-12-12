@@ -26,4 +26,6 @@ public class B_P001_D004ServiceImpl implements B_P001_D004Service{
 		List<B_P001_D004VO> list = b_p001_d004DAO.insertPaymentInfo(searchMap);
 		return list;
 	}
+	
+	
 }
