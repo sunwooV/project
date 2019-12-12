@@ -563,6 +563,17 @@ $(document).ready(function(){
 		popSearch();
 	});
 	
+	//paging
+	$(document).on('click', '#paging a', function(){ 
+		 var $item = $(this);
+         var $id = $item.attr("id");
+         var selectedPage = $item.text();
+         
+         alter()
+         
+	});
+	
+	
 	function popSearch(/*웹소켓 객체*/){
 		alert("확인;;;");
 		$('#pop-footer>input').prop('disabled',false);
@@ -970,6 +981,25 @@ $.ratePicker("#rating-2", {
             </c:forEach>
         </li>
      </ul>
+     
+     <c:set var="qnaCnt" value="${qnaCnt }"/>
+		<c:set var="currentPage" value="${currentPage }"/>
+		<input type="hidden" id="qnaCnt" value="${qnaCnt }">
+		<c:if test="${qnaCnt != 0 }">
+			<div class="paging_comm" id="paging">
+				<c:forEach var="i" begin="1" end="${qnaCnt/10 + 1 }" step="1">
+				
+					<c:if test="${i == currentPage }">
+					 	 <a style="color:orange;"><c:out value="${i }" /></a>
+					</c:if>
+					<c:if test="${i != currentPage }">
+						 <a><c:out value="${i }" /></a>
+					</c:if>
+				   
+				</c:forEach>
+			</div>
+		</c:if>
+     
     </div>
   </div>
 </div>

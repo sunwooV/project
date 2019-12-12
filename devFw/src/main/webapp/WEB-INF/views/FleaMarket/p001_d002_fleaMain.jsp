@@ -19,6 +19,16 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Do+Hyeon|Merriweather|Noto+Sans+KR&display=swap&subset=korean"
 	rel="stylesheet">
+<!-- 별점 -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css" integrity="sha256-OlSbjYBfrJGGd2zbT3qCsAZsPGxRwKOSGjqqfjF8aiY= sha512-1aDUINxj8c9UXJ76eIMAkG2/ofIjG8FBW4drgHUglwY/rGn+YWUtm8iSkrpAOtwZ9b9LEva02KPrTDx3M5ib3w==" crossorigin="anonymous">
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+  <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <style>
 ol, ul {
@@ -163,7 +173,7 @@ ul li {list-style-type: none;}
 			<section id="banner">
 				<div class="banner_content">
 				<span class="MarketMain__Quotes-c10k9n-5 byKpAP">"</span>
-					<h1>Ipsum sed lorem</h1>
+					<h1 style="color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; font-weight: bold; margin-top: -64px;">Welcome! Flea Market</h1>
 					<p>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod<br />sed arcu cras consecuat lorem ipsum dolor sit amet.</p>
 					<ul class="actions">
 						<li><a href="#one" class="button scrolly">Get Started</a></li>
@@ -403,7 +413,7 @@ ul li {list-style-type: none;}
 
 		<!-- 컨텐츠 -->
 		<div class="row">
-			<p style="padding-left: 3%; padding-bottom: 0%; font-size: 23px;">지금까지 2개의 마켓이 열렸고, 1개의 마켓이 셀러를 기다리고 있습니다:)</p>
+			<p style="padding-left: 3%; padding-bottom: 0%; font-size: 23px;">지금까지 5개의 마켓이 열렸고, 3개의 마켓이 셀러를 기다리고 있습니다:)</p>
 		</div>
 		<!-- 플리마켓 맵
         <div class="fleaMap">
@@ -499,14 +509,17 @@ ul li {list-style-type: none;}
 
                         <div class="ui_card__rating">
                             <div class="ui_card__vcenter">
-                                <div class="ui_rating" data-ui="rating" data-value="5">
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
-                                    <i class="ui_icon--star-fill" data-state="active"></i>
+                                    <span id="rating-1" style="cursor: pointer;" data-stars="5">
+					               	 	<input name="rating-1" type="hidden" value="5">
+			               	 	 		<i class="fa fa-star" style="color: rgb(241, 196, 15);"></i>
+			               	 	 		<i class="fa fa-star" style="color: rgb(241, 196, 15);"></i>
+			               	 	 		<i class="fa fa-star" style="color: rgb(241, 196, 15);"></i>
+			               	 			<i class="fa fa-star" style="color: rgb(241, 196, 15);"></i>
+			               	 			<i class="fa fa-star" style="color: rgb(241, 196, 15);"></i>		
+				               		</span>
+                                   
                                     <span>&nbsp;| ${bestStore.memberid }</span>
-                                </div>
+                              
                             </div>
                             <input name="paging_param" type="hidden" value="1574744451000">
                         </div>

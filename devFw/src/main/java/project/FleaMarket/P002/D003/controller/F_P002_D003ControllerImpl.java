@@ -108,6 +108,8 @@ public class F_P002_D003ControllerImpl implements F_P002_D003Controller {
 		String command = (String) dataMap.get("command");
 		System.out.println("===========storyComment:::command:::" + command + "/" + flea_code);
 		searchMap.put("flea_code", flea_code);
+		searchMap.put("start", 1);
+		searchMap.put("end", 10);
 		
 		if(command.equals("insert")) { //질문사항 등록일 경우
 			System.out.println("====INSERT====");

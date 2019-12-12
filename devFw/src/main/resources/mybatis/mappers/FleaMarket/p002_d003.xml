@@ -46,16 +46,18 @@
 	<select id="selectStory" resultMap="p002_d003_Result01" parameterType="java.util.Map"> 
 		<![CDATA[
          SELECT flea_code, memberid, story_number, TO_CHAR(story_write_date, 'yyyy-mm-dd HH24:MI') as story_write_date, story_title, story_cotent, heart_count,  replace(memberId, substr(memberId,-3), '***') as secretMember 
-         FROM   fleastory
+         from(select rownum as rn, k.* 
+	        from(select * 
+	            from fleastory 
+	            where flea_code = '#{flea_code}'
+	            order by to_number(story_number) desc)k
+	        )
       ]]>
-		<where>
+      	<where>
 		<![CDATA[
-			flea_code = #{flea_code}
+			rn between #{start} and #{end}
 		]]>
 		</where>
-		<![CDATA[
-			ORDER BY story_number DESC
-		]]>
 	</select>
 
 	<select id="searchMod" resultMap="p002_d003_Result01" parameterType="java.util.Map"> 

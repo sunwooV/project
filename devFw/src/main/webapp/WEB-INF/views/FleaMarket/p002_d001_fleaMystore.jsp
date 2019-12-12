@@ -26,6 +26,7 @@ System.out.println(":::::flea_code" + flea_code);
     margin-right: -15px;
     margin-left: -15px;
     margin-top: 19px;
+    width: 1095px;
 }
 .artist-area {
     padding: 15px 16px 16px;
@@ -214,7 +215,7 @@ layout-split:after {
     float: left;
 }
 .cardlist_section .split-cardlist .ui_card--side {
-    width: 100%;
+    width: 97%;
 }
 .ui_title__txt{
   color: #333;
@@ -661,7 +662,7 @@ $(document).ready(function(){
 		        <!--  
 		        <strong class="caption"><font size="3">활동정보</font></strong>
 		        -->
-		        <c:forEach var="flea" items="${searchList}" > 
+		        <c:forEach var="flea" items="${searchList}" begin="0" end="3"> 
 		        <dl class="list">
 		            <dt>좋아하는 사람</dt>
 		            <dd>
@@ -889,7 +890,7 @@ $(document).ready(function(){
         <div class="ui_title--sub">
              <h3 class="ui_title__txt"><font size="2"><a href="/devFw/fleaStory.do?flea_code=<%=flea_code%>">스토리</a></font></h3>
         </div>
-        <c:forEach var="story" items="${storyList}" > 
+        <c:forEach var="story" items="${storyList}" begin="0" end="3"> 
 	  		
 	                <ul class="split-cardlist lines5">
 	                        <li class="ui_card--side">
