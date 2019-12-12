@@ -3,6 +3,7 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,14 +32,13 @@
 
 
 h2{
-    text-align: center;
-    
-
+       margin-left: 240px;
 }
 .ec-base-box.gHalf {
     position: relative;
     padding: 20px 0;
-       width: 1510px;
+    width: 1420px;
+    margin-top: 25px
 
 }
 
@@ -197,24 +197,36 @@ div.seller{
     margin: 48px;
     text-align: center;
 }
-a#enroll{
+a#enroll, span#strong{
   color:red;
+  font-weight:bold;
+}
+div.mainImg{
+    text-align: center;
+}
+span.title{
+  margin-left:240px;
 }
 </style>
 <body>
 
-<h2 style="margin: 45px;">포인트 조회</h2>
+<h2 style="margin-top: 45px; margin-left: 240px;">포인트 조회</h2>
+<span class="title"><a href="${contextPath}/mypage.do">마이페이지</a> > <b>포인트 조회</b></span>
   
 <div class="xans-element- xans-myshop xans-myshop-summary ec-base-box gHalf">
 <ul>
 <c:set var="checkSeller" value="${checkSeller }" />
+<c:set var="grade" value="${grade }" />
 <li class="">
 <strong class="title">총 포인트</strong> <span class="data"><span id="xans_myshop_summary_total_mileage">${point.total_point }point</span>&nbsp;</span>
 </li>
             <li class="">
             <c:if test="${checkSeller==1 }">
            <div class="mainImg">
-				<a href="${grad.grade_img }" rel="prettyPhoto" title="This is the description"></a>	
+				<a><img src="${grade.grade_photo }" ></a>
+				<br>
+				판매자 점수는<span id="strong"> ${grade.rank_score}점, </span>
+				등급은<span id="strong">${grade.rank_group}</span>	입니다.
 			</div>
 			</c:if>
 			 <c:if test="${checkSeller==0 }">

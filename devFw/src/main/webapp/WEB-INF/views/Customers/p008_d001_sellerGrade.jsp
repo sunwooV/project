@@ -27,6 +27,7 @@
 		initSheet.Cols = [
 			{Header:"상태",Type:"Status",SaveName:"STATUS",MinWidth:50, Align:"Center"},
 			{Header:"삭제",Type:"DelCheck",SaveName:"DEL_CHK",MinWidth:50},
+			{Header:"등급 코드",Type:"Text",SaveName:"rank_code",MinWidth:150},
 			{Header:"등급 이미지",Type:"Image",SaveName:"grade_photo",MinWidth:150},
 			{Header:"등급 이름",Type:"Text",SaveName:"rank_group",MinWidth:150},
 			{Header:"등급 점수",Type:"Int",SaveName:"rank_score",MinWidth:150}

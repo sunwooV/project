@@ -14,8 +14,8 @@
 	
 		<select id="grade_check" parameterType="String" resultType="C_P002_D008VO">
 	<![CDATA[
-		select * from seller_rank where MEMBERID = #{memberid}
-			  ]]>
+		select sr.* from seller_rank sr where sr.rank_code IN(select m.rank_code from member m where m.MEMBERID = #{memberid})
+		  ]]>
 	</select>
 	
 	

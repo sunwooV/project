@@ -14,6 +14,7 @@ public class C_P002_D008DAOImpl implements C_P002_D008DAO{
 	@Autowired
 	SqlSession sqlsession = null;
 	
+	@Override
 	@Transactional
 	public C_P002_D008VO point_check(String memberid) throws Exception{
 		System.out.println("dao");
@@ -21,11 +22,20 @@ public class C_P002_D008DAOImpl implements C_P002_D008DAO{
 		return sqlsession.selectOne("Customers.memberpoint.point_check", memberid);
 	}
 
+	@Override
 	@Transactional
 	public List<C_P002_D008VO> boardList(String memberid) throws Exception {
 		System.out.println("dao입니다만========"+memberid);
         return sqlsession.selectList("Customers.memberpoint.point_check",memberid); 
     }
+	
+	@Override
+	@Transactional
+	public C_P002_D008VO grade_check(String memberid) throws Exception{
+		System.out.println("dao");
+		System.out.println("dao입니다만========"+memberid);
+		return sqlsession.selectOne("Customers.memberpoint.grade_check", memberid);
+	}
 
 
 }

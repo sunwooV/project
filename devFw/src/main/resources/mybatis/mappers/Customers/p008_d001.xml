@@ -5,6 +5,7 @@
 
 <mapper namespace="Customers.rank">
 	<resultMap id="c_p008_d001Result" type="C_P008_D001VO">
+	 <result property="rank_code" column="rank_code" />
 	    <result property="rank_group" column="rank_group" />
 		<result property="grade_photo" column="grade_photo" />
 		<result property="rank_score" column="rank_score" />
@@ -12,7 +13,7 @@
 
 	<select id="searchList" resultMap="c_p008_d001Result" parameterType="java.util.Map"> 
       <![CDATA[
-         select rank_group, grade_photo, rank_score
+         select *
          from   seller_rank
       ]]>
 		<where>
@@ -25,8 +26,8 @@
 	   <insert id="insertData" parameterType="java.util.Map">
   
       <![CDATA[
-         INSERT INTO seller_rank (rank_group,grade_photo, rank_score)
-         values(#{rank_group},#{grade_photo}, #{rank_score})
+         INSERT INTO seller_rank (rank_code,rank_group,grade_photo, rank_score)
+         values(#{rank_code},#{rank_group},#{grade_photo}, #{rank_score})
 
        ]]>
    </insert>
@@ -34,13 +35,13 @@
 	
 	<update id="updateData" parameterType="java.util.Map">
 		update seller_rank
-		set  rank_group = #{rank_group}, grade_photo =#{grade_photo},rank_score = #{rank_score}
-		where rank_group = #{rank_group}
+		set  rank_code = #{rank_code}, rank_group = #{rank_group}, grade_photo =#{grade_photo},rank_score = #{rank_score}
+		where rank_code = #{rank_code}
 	</update>	
 	
 	
 	<delete id="deleteData" parameterType="java.util.Map">
 		delete seller_rank
-		where rank_group = #{rank_group}
+		where rank_code = #{rank_code}
 	</delete>	
 </mapper>

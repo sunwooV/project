@@ -46,15 +46,18 @@ public class C_P002_D008ControllerImpl implements C_P002_D008Controller {
 	      String memberid = (String)session.getAttribute("memberid");
 	      System.out.println(memberid);
 	       point=c_p002_d008_Service.point_check(memberid,response);
-	       List<C_P002_D008VO> list = c_p002_d008_Service.boardList(memberid); 
 	       
-	   
+	       C_P002_D008VO grade = (C_P002_D008VO)c_p002_d008_Service.grade_check(memberid, response);
+	       
+	       List<C_P002_D008VO> list = c_p002_d008_Service.boardList(memberid);
 	       Map<String, Object> searchMap = new HashMap<String, Object>();
 	       searchMap.put("memberId", memberid);
 	       String checkSeller = s_p001_d001_Service.checkSeller(searchMap);
            System.out.println("checkSeller="+checkSeller);
 		   System.out.println("아이디입니다아아아아아앙"+list);
 	      ModelAndView mav = new ModelAndView("Customers/p002_d008_point");
+	      
+	      mav.addObject("grade", grade);
 	      mav.addObject("point", point);
 	      mav.addObject("list", list);
 	      mav.addObject("listSize", list.size());

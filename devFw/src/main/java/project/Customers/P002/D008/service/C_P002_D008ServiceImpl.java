@@ -31,5 +31,15 @@ public class C_P002_D008ServiceImpl implements C_P002_D008Service{
     public List<C_P002_D008VO> boardList(String memberid) throws Exception {
         return c_p002_d008_DAO.boardList(memberid); 
     }
+    
+	@Override
+	public C_P002_D008VO grade_check(String memberid, HttpServletResponse response) throws Exception {
+		return c_p002_d008_DAO.grade_check(memberid);
+//		System.out.println();
+//		PrintWriter out = response.getWriter();
+//		out.println(c_p002_d008_DAO.point_check(memberid));
+//		out.close();
+	}
+	
 
 }

@@ -67,6 +67,7 @@ public class C_P002_D009ControllerImpl implements C_P002_D009Controller {
    @RequestMapping(value = "/modify.do",  method = { RequestMethod.GET, RequestMethod.POST })
    public String modify(@ModelAttribute C_P002_D009VO member, @RequestParam("old_pw") String old_pw, HttpSession session, HttpServletResponse response, RedirectAttributes rttr) throws Exception{
       session.setAttribute("member", c_p002_d009_Service.modify(member, old_pw, response));
+     System.out.println("비밀번호=="+member.getPw());
       return "redirect: ./InfoInit.do";
    }
    
