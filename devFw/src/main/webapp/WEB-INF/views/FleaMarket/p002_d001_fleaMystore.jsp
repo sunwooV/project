@@ -871,7 +871,7 @@ $(document).ready(function(){
 		
 		                    <div class="ui_card__txtarea">
 		                        <div class="ui_card__info">
-		                            <a href="#" target="_blank" class="ui_card__title">${bestStore.flea_name }</a>
+		                            <a href="#" target="_blank" class="ui_card__title" style="font-size: medium;">${bestStore.flea_name }</a>
 		                            <br>
 		                            <span class="ui_card__para">
 		                            	${bestStore.intro_cotent }

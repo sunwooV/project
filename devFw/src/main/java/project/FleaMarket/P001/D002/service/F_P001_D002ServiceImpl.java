@@ -44,6 +44,12 @@ public class F_P001_D002ServiceImpl implements F_P001_D002Service {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public String likeFlea(Map<String, Object> searchMap) throws DataAccessException {
+		String likeFlea =  d002DAO.likeFlea(searchMap); 
+		return likeFlea;
+	}
 
 	@Override
 	public void updateMember(Map<String, Object> datahMap) throws Exception {

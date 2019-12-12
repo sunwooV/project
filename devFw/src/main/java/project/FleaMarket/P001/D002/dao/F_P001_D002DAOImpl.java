@@ -48,6 +48,12 @@ public class F_P001_D002DAOImpl implements F_P001_D002DAO {
 	}
 
 	@Override
+	public String likeFlea(Map<String, Object> searchMap) throws DataAccessException {
+		String likeFlea = sqlSession.selectOne("FleaMarket.p001_d002.likeFlea", searchMap);
+		return likeFlea;
+	}
+	
+	@Override
 	public void updateMember(Map<String, Object> datahMap) throws DataAccessException {
 		sqlSession.update("hm.F_P001_D002.updateMember", datahMap);
 	}
