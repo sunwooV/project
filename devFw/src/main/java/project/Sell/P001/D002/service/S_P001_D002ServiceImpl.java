@@ -69,6 +69,12 @@ public class S_P001_D002ServiceImpl implements S_P001_D002Service {
 	}
 	
 	@Override
+	public String qnaSize(Map<String, Object> searchMap) throws DataAccessException {
+		String qnaSize =  S_P001_D002DAO.qnaSize(searchMap); 
+		return qnaSize;
+	}
+	
+	@Override
 	public void insertLikeProd(Map<String, Object> datahMap) throws Exception {
 		S_P001_D002DAO.insertLikeProd(datahMap);
 	}

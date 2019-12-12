@@ -47,11 +47,12 @@ public class C_P002_D006ControllerImpl implements C_P002_D006Controller {
 		searchMap.put("start", 1);
 		searchMap.put("end", 10);
 		List qnaList = c_p002_d006Service.listQna(searchMap);
+		String qnaSize = c_p002_d006Service.qnaSize(searchMap);
 
 		System.out.println("QNA" + qnaList);
 		ModelAndView mav = new ModelAndView("Customers/p002_d006_QNA");
 
-		mav.addObject("qnaCnt", qnaList.size());
+		mav.addObject("qnaCnt", qnaSize);
 		mav.addObject("currentPage", 1);
 		mav.addObject("qnaList", qnaList);
 		return mav;
@@ -142,10 +143,11 @@ public class C_P002_D006ControllerImpl implements C_P002_D006Controller {
 		String memberId = (String) session.getAttribute("memberid");
 		searchMap.put("memberId", memberId);
 		List qnaList = c_p002_d006Service.listQna(searchMap);
+		String qnaSize = c_p002_d006Service.qnaSize(searchMap);
 		System.out.println(qnaList);
 		
 		result += "[";
-		for(int i=0;i<qnaList.size();i++) {
+		for(int i=0;i<Integer.parseInt(qnaSize);i++) {
 			result += "{";
 			result += "\"memberId\":\"" + ((C_P002_D006VO)qnaList.get(i)).getMemberID() + "\",";
 			result += "\"prod_number\":\"" + ((C_P002_D006VO)qnaList.get(i)).getProd_number() + "\",";
@@ -161,7 +163,7 @@ public class C_P002_D006ControllerImpl implements C_P002_D006Controller {
 		
 			
 			result += "}";
-			if(i != qnaList.size() -1) {
+			if(i != Integer.parseInt(qnaSize) -1) {
 				result += ", ";
 			}
 		}

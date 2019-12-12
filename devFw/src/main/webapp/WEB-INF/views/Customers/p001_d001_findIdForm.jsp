@@ -11,32 +11,33 @@
 </head>
 <body>
 	<div class="w3-content w3-container w3-margin-top">
-		<div class="w3-container w3-card-4">
+		<div class="container"
+			style="padding-top: 3%; margin-top: 1%; width: 37%; margin: auto;">
 			<form action="./find_id.do" method="post">
 				<div class="w3-center w3-large w3-margin-top">
-					<h3>아이디 찾기</h3>
+					<h2 style="margin-top: -8%; padding-bottom: 8%;">🔐아이디 찾기</h2>
 				</div>
 				<div>
 					<p>
-						<label>Name</label>
+						<label>이름</label>
 						<input class="w3-input" type="text" id="name" name="name" required>
 					</p>
 					<p>
-						<label>Email</label>
+						<label>이메일</label>
 						<input class="w3-input" type="text" id="email" name="email" required>
 					</p>
 					<p>
-						<label>Birth</label>
+						<label>생년월일</label>
 						<input class="w3-input" type="text" id="birth" name="birth" required  placeholder="990101형식으로 입력해주세요.">
 					</p>
 					<p>
-						<label>Phonenumber</label>
+						<label>전화번호</label>
 						<input class="w3-input" type="text" id="phonenumber" name="phonenumber" required  placeholder="-없이 입력해주세요.">
 					</p>
 				
 					<p class="w3-center">
-						<button type="submit" id=findBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">find</button>
-						<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">Cancel</button>
+						<button type="submit" id=findBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">찾기</button>
+						<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button>
 					</p>
 				</div>
 			</form>

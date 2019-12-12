@@ -24,4 +24,11 @@ public class M_P001_D001ServiceImpl implements M_P001_D001Service {
 		return list;
 	}
 	
+	@Override
+	public List<M_P001_D001VO> popularProduct(Map<String, Object> searchMap) throws DataAccessException {
+		List<M_P001_D001VO> list =  M_P001_D001DAO.popularProduct(searchMap); 
+		return list;
+	}
+	
+	
 }

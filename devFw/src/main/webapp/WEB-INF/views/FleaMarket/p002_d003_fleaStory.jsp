@@ -513,6 +513,18 @@ textarea {
     text-align: center;
 }
 
+
+#paging{
+	text-align: center;
+    margin-top: 15px;
+}
+#paging > a{
+	padding-right:5px;
+	cursor:pointer;
+}
+.boardering{
+	float:left;
+}
 </style>
 <head>
   <meta charset="UTF-8">
@@ -563,6 +575,7 @@ $(document).ready(function(){
 		popSearch();
 	});
 	
+
 	function popSearch(/*웹소켓 객체*/){
 		alert("확인;;;");
 		$('#pop-footer>input').prop('disabled',false);
@@ -712,6 +725,79 @@ $(document).ready(function(){
 	});
 	
 	
+});
+
+
+//paging
+$(document).on('click', '#paging a', function(){ 
+    var $item = $(this);
+    var $id = $item.attr("id");
+    var selectedPage = $item.text();
+    
+    if($id == "next")    selectedPage = next;
+    if($id == "prev")    selectedPage = prev;
+    
+	var memberId = $("#memberId").val(); //로그인한 아이디
+	var qnaCnt = $("#qnaCnt").val();
+	var flea_code = <%=flea_code%>;
+    
+    var page={
+    		currentPage:selectedPage,
+    		flea_code:flea_code
+    }
+    
+    $.ajax({
+		type: "post",
+		async: false,
+		url: "/devFw/pagingStory.do",
+		data: page,
+		dataType : 'text',
+		success: function(responseData){
+			var data = JSON.parse(responseData);
+		
+			var list = "";
+			
+			for(var i=0;i<data.length;i++){
+				list += '<div class="bordering" style="width: 386px; margin-bottom: 10px; float:left;">'
+					 +  '<input name="time_stamp" type="hidden" value="1575262761000">'
+					 +	'<div class="area-txt"><div class="area-rating">'
+					 +	' <div class="img-bg" style="background-image: url(https://image.idus.com/image/files/d6c74ae706ad40f1b6f83af3d5b1334d_512.jpg)"></div>'
+					 +	'<a href="#" class="title ellipsis">'+ data[i].story_title + '</a></div>'
+					 +	'<a href="#" class="title ellipsis">'+ data[i].story_title + '</a>'
+					 +	'   </div>'
+
+					 +	'  <a href="#" target="_blank">'
+					 +	'        <div class="split-hard">'
+					 +	'          <span class="split crop-circ" style="background-image: url(https://image.idus.com/image/files/37cec8c9f8bd47458facc5bdacfb0b24.jpg)"> </span>'
+					 +	'           <div class="split">   	'
+					 +	'              <span class="txt-strong">'+ data[i].memberId + '</span>'
+					 +	'               <span class="txt">'+ data[i].story_write_date + '</span>'
+					 +	'          </div>'
+					 +	'       </div>    '   
+					 +	'      <p class="desc">'+ data[i].story_content + '</p>'
+					 +	'     <br>'
+					 +	'  </a>'
+					 +	' </div>'
+					 +	'  </div>';
+			}
+			$("#storyAdd").html(list);
+			
+			var list2 = "";
+			for(var i=1;i<=qnaCnt/10+1;i++){
+				if(i == data[0].currentPage){
+					list2 += '<a style="color:orange;">' + i + '</a>';
+				} else{
+					list2 += '<a>' + i + '</a>';
+				}
+			}
+			$("#paging").html(list2);
+		},
+		error: function(data, textStatus){
+			alert("다시 시도해주세요.");
+		},
+		complete : function (data, textstatus){
+		}
+	});
 });
 </script>
 <script>
@@ -938,7 +1024,7 @@ $.ratePicker("#rating-2", {
    <ul class="masonry-grid x2" data-col="2" style="position: relative; height: 2221.64px;">
            <li class="card-style story" id="storyAdd" style="position: absolute; left: 0px; top: 0px;">
             <c:forEach var="story" items="${storyList}" > 
-            <div class="bordering" style="width: 200%; margin-bottom: 10px;">
+            <div class="bordering" style="width: 386px; margin-bottom: 10px; float:left;">
 
                 <input name="time_stamp" type="hidden" value="1575262761000">
                 <div class="area-txt">
@@ -970,6 +1056,41 @@ $.ratePicker("#rating-2", {
             </c:forEach>
         </li>
      </ul>
+     
+     <c:set var="qnaCnt" value="${storyCnt }"/>
+		<c:set var="currentPage" value="${currentPage }"/>
+		<input type="hidden" id="qnaCnt" value="${storyCnt }">
+		<c:if test="${qnaCnt != 0 }">
+			<div class="paging_comm" id="paging">
+				<c:choose>
+					<c:when test="${qnaCnt%10 == 0 }">
+						<c:forEach var="i" begin="1" end="${qnaCnt/10 }" step="1">
+					
+							<c:if test="${i == currentPage }">
+							 	 <a style="color:orange;"><c:out value="${i }" /></a>
+							</c:if>
+							<c:if test="${i != currentPage }">
+								 <a><c:out value="${i }" /></a>
+							</c:if>
+						   
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="i" begin="1" end="${qnaCnt/10 + 1 }" step="1">
+					
+							<c:if test="${i == currentPage }">
+							 	 <a style="color:orange;"><c:out value="${i }" /></a>
+							</c:if>
+							<c:if test="${i != currentPage }">
+								 <a><c:out value="${i }" /></a>
+							</c:if>
+						   
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</c:if>
+     
     </div>
   </div>
 </div>

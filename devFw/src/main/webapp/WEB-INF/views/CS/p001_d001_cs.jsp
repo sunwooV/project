@@ -71,9 +71,22 @@
 		}
 
 	});
+	$(document).on('click', '.faq_open5', function() {
+		var num = $(this).attr("id");
+
+		var target = document.getElementById("d" + num);
+
+		if (target.style.display == 'none') { //접혀있는데 눌렀을 경우
+			$('#d' + num).css("display", "");
+		} else { //펴져있는데 눌렀을 경우
+			$('#d' + num).css("display", "none");
+		}
+
+	});
+	
 </script>
 <style>
-.faq_open1, .faq_open2, .faq_open3, .faq_open4, .notice {
+.faq_open1, .faq_open2, .faq_open3, .faq_open4, .faq_open5, .notice {
 	cursor: pointer;
 }
 </style>
@@ -82,27 +95,24 @@
 
 	<!-- 메뉴사이드바랑 컨텐츠 ------------------------------------------------------------------------------------------------------------------------------------------>
 	<div class="container-fluid"
-		style="padding-left: 16%; padding-top: 3%; margin-right: -4%;">
+		style="padding-left: 18%; padding-top: 3%; margin-right: -4%;">
 		<div class="col-sm-2" id="col">
 
 
 			<div class="list-group">
-				<!-- <h1 style="padding-bottom: 3%; font-size: 21px;">마이페이지</h1> -->
 				<a href="#" class="list-group-item list-group-item-action active">
-					마이페이지 </a> <a href="#" class="list-group-item list-group-item-action">포인트
-					조회 </a> <a href="#" class="list-group-item list-group-item-action">회원정보조회/수정
-				</a> <a href="#" class="list-group-item list-group-item-action">ID조회/비밀번호
-					찾기 </a>
+					마이페이지 </a> <a href="#" class="list-group-item list-group-item-action"><h6>포인트
+					조회 </h6></a> <a href="#" class="list-group-item list-group-item-action"><h6>회원정보조회/수정</h6>
+				</a> <a href="#" class="list-group-item list-group-item-action"><h6>ID조회/비밀번호
+					찾기 </h6></a>
 			</div>
-
-
 
 			<div class="list-group">
 			<a href="#" class="list-group-item list-group-item-action active">
 					게시판 </a>
 				<c:forEach var="board" items="${boardlist}">
 					<a class="list-group-item list-group-item-action"
-						href="${contextPath}/privateInit.do?board_num=${board.board_num }">${board.board_name }</a>
+						href="${contextPath}/privateInit.do?board_num=${board.board_num }"><h6>${board.board_name }</h6></a>
 				</c:forEach>
 			</div>
 		</div>
@@ -124,8 +134,8 @@
 
 						<c:forEach var="event" items="${eventList}" varStatus='notice'>
 							<tr id=${notice.count } class="faq_open4">
-								<td>${event.no_title}</td>
-								<td>${event.no_writedate}</td>
+								<td><h6>${event.no_title}</h6></td>
+								<td><h6>${event.no_writedate}</h6></td>
 							</tr>
 							<tr style="display: none;" id="d${notice.count }">
 								<td colspan="2">${event.no_contents}</td>
@@ -205,10 +215,10 @@
 
 						<c:forEach var="top" items="${topList}" varStatus='FAQ1'>
 							<tr id=${FAQ1.count } class="faq_open1">
-								<td>❓${top.title}</td>
+								<td><h6>❓${top.title}</h6></td>
 							</tr>
 							<tr style="display: none;" id="a${FAQ1.count }">
-								<td colspan="2">☞${top.contents}</td>
+								<td colspan="2"><h6>☞${top.contents}</h6></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -225,11 +235,11 @@
 
 						<c:forEach var="refund" items="${refundList}" varStatus='FAQ2'>
 							<tr id=${FAQ2.count } class="faq_open2">
-								<td>${refund.division}</td>
-								<td>${refund.title}</td>
+								<td><h6>${refund.division}</h6></td>
+								<td><h6>❓${refund.title}</h6></td>
 							</tr>
 							<tr style="display: none;" id="b${FAQ2.count }">
-								<td colspan="2">${refund.contents}</td>
+								<td colspan="2"><h6>${refund.contents}</h6></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -245,11 +255,11 @@
 
 						<c:forEach var="deilvery" items="${deliveryList}" varStatus='FAQ3'>
 							<tr id=${FAQ3.count } class="faq_open3">
-								<td>${deilvery.division}</td>
-								<td>${deilvery.title}</td>
+								<td><h6>${deilvery.division}</h6></td>
+								<td><h6>❓${deilvery.title}</h6></td>
 							</tr>
 							<tr style="display: none;" id="c${FAQ3.count }">
-								<td colspan="2">${deilvery.contents}</td>
+								<td colspan="2"><h6>${deilvery.contents}</h6></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -260,19 +270,19 @@
 				<div id="FAQ4" class="tab-pane fade">
 					<table class="table table-hover">
 						<tr class="table-active">
-							<th style="width: 12%;">분류</th>
+							<th style="width: 16%;">분류</th>
 							<th>제목<span class="glyphicon glyphicon-plus"
-								onclick="location.href='./cslist3.do'"
+								onclick="location.href='./cslist4.do'"
 								style="padding-left: 91%;"></span></th>
 						</tr>
 
-						<c:forEach var="deilvery" items="${deliveryList}" varStatus='FAQ3'>
-							<tr id=${FAQ3.count } class="faq_open3">
-								<td>${deilvery.division}</td>
-								<td>${deilvery.title}</td>
+						<c:forEach var="coupon" items="${couList}" varStatus='FAQ4'>
+							<tr id=${FAQ4.count } class="faq_open4">
+								<td><h6>${coupon.division}</h6></td>
+								<td><h6>❓${coupon.title}</h6></td>
 							</tr>
-							<tr style="display: none;" id="c${FAQ3.count }">
-								<td colspan="2">${deilvery.contents}</td>
+							<tr style="display: none;" id="c${FAQ4.count }">
+								<td colspan="2"><h6>${coupon.contents}</h6></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -284,30 +294,21 @@
 						<tr class="table-active">
 							<th style="width: 12%;">분류</th>
 							<th>제목<span class="glyphicon glyphicon-plus"
-								onclick="location.href='./cslist3.do'"
+								onclick="location.href='./cslist5.do'"
 								style="padding-left: 91%;"></span></th>
 						</tr>
 
-						<c:forEach var="deilvery" items="${deliveryList}" varStatus='FAQ3'>
-							<tr id=${FAQ3.count } class="faq_open3">
-								<td>${deilvery.division}</td>
-								<td>${deilvery.title}</td>
+						<c:forEach var="order" items="${ordList}" varStatus='FAQ5'>
+							<tr id=${FAQ5.count } class="faq_open5">
+								<td><h6>${order.division}</h6></td>
+								<td><h6>❓${order.title}</h6></td>
 							</tr>
-							<tr style="display: none;" id="c${FAQ3.count }">
-								<td colspan="2">${deilvery.contents}</td>
+							<tr style="display: none;" id="c${FAQ5.count }">
+								<td colspan="2"><h6>${order.contents}</h6></td>
 							</tr>
 						</c:forEach>
 					</table>
 				</div>
-
-
-
-
-
-
-
-
-
 
 			</div>
 		</div>

@@ -33,7 +33,11 @@ public class C_P002_D006DAOImpl implements C_P002_D006DAO {
 		sqlSession.update("C_P002_D006.deleteQna", datahMap);
 	}
 	
-	
+	@Override
+	public String qnaSize(Map<String, Object> searchMap) throws DataAccessException {
+		String qnaSize = sqlSession.selectOne("C_P002_D006.qnaSize", searchMap);/* xml 아이디값.select id 값*/
+		return qnaSize;
+	}
 	
 
 }

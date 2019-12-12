@@ -15,23 +15,24 @@
 </head>
 <body>
 	<div class="w3-content w3-container w3-margin-top">
-		<div class="w3-container w3-card-4">
+				<div class="container"
+			style="padding-top: 3%; margin-top: 1%; width: 37%; margin: auto;">
 			<div class="w3-center w3-large w3-margin-top">
-				<h3>비밀번호 찾기</h3>
+				<h2 style="margin-top: -8%; padding-bottom: 8%;">🔐비밀번호 찾기</h2>
 			</div>
 			<div>
 			<form name="frn" method="post" action="${contextPath}/find_pw.do">
 				<p>
-					<label>ID</label>
+					<label>아이디</label>
 					<input class="w3-input" type="text" id="memberid" name="memberid" required>
 				</p>
 				<p>
-					<label>Email</label>
+					<label>이메일</label>
 					<input class="w3-input" type="text" id="email" name="email" required>
 				</p>
 				<p class="w3-center">
-					<button type="submit" id=findBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">find</button>
-					<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">Cancel</button>
+					<button type="submit" id=findBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">찾기</button>
+					<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button>
 				</p>
 				</form>
 			</div>

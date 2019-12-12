@@ -9,4 +9,5 @@ import project.Main.P001.D001.vo.M_P001_D001VO;
 
 public interface M_P001_D001DAO {
 	public List<M_P001_D001VO> newProduct(Map<String, Object> searchMap) throws DataAccessException;
+	public List<M_P001_D001VO> popularProduct(Map<String, Object> searchMap) throws DataAccessException;
 }

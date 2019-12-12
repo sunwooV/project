@@ -64,6 +64,12 @@ public class F_P002_D003DAOImpl implements F_P002_D003DAO {
 	}
 	
 	@Override
+	public String storySize(Map<String, Object> searchMap) throws DataAccessException {
+		String list = sqlSession.selectOne("FleaMarket.p002_d003.storySize", searchMap);
+		return list;
+	}
+	
+	@Override
 	public void updateMember(Map<String, Object> datahMap) throws DataAccessException {
 		sqlSession.update("hm.F_P002_D003.updateMember", datahMap);
 	}

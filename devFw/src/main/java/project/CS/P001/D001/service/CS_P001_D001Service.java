@@ -23,6 +23,12 @@ public interface CS_P001_D001Service {
 	public List listTop() throws DataAccessException;
     public List<Map<String, Object>> selectAlltopList(Map<String, Object> dataMap) throws DataAccessException;
 	
-    public List listNotice();
+    public List listNotice() throws DataAccessException;
     public List<Map<String, Object>> selectAllnoticeList(Map<String, Object> dataMap) throws DataAccessException;
+    
+	public List listCou() throws DataAccessException;
+	  public List<Map<String, Object>> selectAllcouList(Map<String, Object> dataMap) throws DataAccessException;
+	  
+	public List listOrd() throws DataAccessException;
+	 public List<Map<String, Object>> selectAllordList(Map<String, Object> dataMap) throws DataAccessException;
 }

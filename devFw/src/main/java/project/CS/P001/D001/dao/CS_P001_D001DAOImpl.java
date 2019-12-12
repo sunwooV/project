@@ -82,4 +82,20 @@ public class CS_P001_D001DAOImpl implements CS_P001_D001DAO {
 		System.out.println("noticeList" + noticeList);
 		return noticeList;
 	}
+
+	@Override
+	public List selectAllcouList() throws DataAccessException {
+		List<CS_P001_D001VO> couList = null;
+		couList = sqlSession.selectList("CS.P001.D001.selectAllcouList");/* xml 아이디값.select id 값 */
+		System.out.println("couList" + couList);
+		return couList;
+	}
+
+	@Override
+	public List selectAllordList() throws DataAccessException {
+		List<CS_P001_D001VO> ordList = null;
+		ordList = sqlSession.selectList("CS.P001.D001.selectAllordList");/* xml 아이디값.select id 값 */
+		System.out.println("ordList" + ordList);
+		return ordList;
+	}
 }

@@ -32,10 +32,12 @@ public class M_P001_D001ControllerImpl implements M_P001_D001Controller {
 		searchMap.put("command", command);	 
 		
 		List newProduct = M_P001_D001Service.newProduct(searchMap);
+		List popularProduct = M_P001_D001Service.popularProduct(searchMap);
 		List bestStore = F_P002_D001Service.searchList(searchMap);
 
 		ModelAndView mav = new ModelAndView("Main/p001_d001_main");
 		mav.addObject("newProduct", newProduct);
+		mav.addObject("popularProduct", popularProduct);
 		mav.addObject("bestStore", bestStore);
 		return mav;
 	}

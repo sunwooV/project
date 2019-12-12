@@ -34,6 +34,19 @@
 
 	</select>
 	
+	<select id="qnaSize" resultType="String"  parameterType="java.util.Map">
+      <![CDATA[
+			select count(*) as cnt
+			from prodQnA
+      ]]>
+      <where>
+      <![CDATA[
+			memberId = #{memberId}
+      ]]>
+      </where>
+
+	</select>
+	
 	<delete id="deleteQna" parameterType="java.util.Map">
 	 <![CDATA[
 			delete from prodqna

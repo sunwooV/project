@@ -57,6 +57,20 @@
       </where>
       order by to_number(prod_number) desc
 	</select>
+	
+	<select id="popularProduct" resultMap="M_P001_D001Result01" parameterType="java.util.Map">
+	<![CDATA[
+		select K.*
+		FROM (SELECT * 
+		    FROM product 
+		    ORDER BY to_number(heart) desc, to_number(prod_number) desc)K
+      ]]>
+      <where>
+       <![CDATA[
+       	ROWNUM <= 8
+       ]]>
+      </where>
+	</select>
 
 
 </mapper>

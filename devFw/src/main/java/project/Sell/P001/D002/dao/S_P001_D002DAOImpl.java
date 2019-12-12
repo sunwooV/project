@@ -68,6 +68,12 @@ public class S_P001_D002DAOImpl implements S_P001_D002DAO {
 	}
 	
 	@Override
+	public String qnaSize(Map<String, Object> searchMap) throws DataAccessException {
+		String fleaName = sqlSession.selectOne("Sell.p001_d003.qnaSize", searchMap);
+		return fleaName;
+	}
+	
+	@Override
 	public void insertLikeProd(Map<String, Object> datahMap) throws DataAccessException {
 		sqlSession.update("Sell.p001_d002.insertLikeProd", datahMap);
 	}

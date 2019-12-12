@@ -33,6 +33,18 @@
         <result property="no_writedate" column="no_writedate" />
 	</resultMap> 
 	
+	<resultMap id="CS_P001_D001Result06" type="CS_P001_D001VO">
+  <result property="division" column="division" />
+        <result property="title" column="title" />
+        <result property="contents" column="contents" />
+	</resultMap> 
+	
+	<resultMap id="CS_P001_D001Result07" type="CS_P001_D001VO">
+  <result property="division" column="division" />
+        <result property="title" column="title" />
+        <result property="contents" column="contents" />
+	</resultMap> 
+	
 	
 	
 
@@ -41,7 +53,7 @@
          	
       
   	                 
- SELECT  no_title, no_writedate, no_contents
+ SELECT  no_title, to_char(no_writedate,'YYYY/MM/DD'), no_contents
 						FROM notice
 						WHERE rownum <= 7
       	
@@ -109,10 +121,10 @@ WHERE ROWNUM <= 7
       <![CDATA[
          	
       
-SELECT  title,contents
+SELECT  division,title,contents
 FROM 
  (
-  SELECT  title,contents
+  SELECT division,title,contents
   FROM fnq	
   where division in '자주묻는질문'
  )
@@ -127,13 +139,66 @@ WHERE ROWNUM <= 7
          	
       
   	                 
- SELECT  no_title, no_writedate, no_contents
+ SELECT  no_title, to_char(no_writedate,'YYYY/MM/DD'), no_contents
 						FROM notice
 						WHERE rownum <= 5
       	
       ]]>
 
 	</select>
+	
+	
+	
+	<!-- 이벤트 -->
+			<select id="selectAllcouList" resultMap="CS_P001_D001Result06">
+      <![CDATA[
+         	
+      
+SELECT division,title,contents
+FROM 
+ (
+  SELECT  division,title,contents
+  FROM fnq	
+  where division in '이벤트/할인쿠폰'
+ )
+WHERE ROWNUM <= 7
+      	
+      ]]>
+
+	</select>
+	<!-- 주문결제 -->
+			<select id="selectAllordList" resultMap="CS_P001_D001Result07">
+      <![CDATA[
+         	
+      
+SELECT  division,title,contents
+FROM 
+ (
+  SELECT  division,title,contents
+  FROM fnq	
+  where division in '주문결제'
+ )
+WHERE ROWNUM <= 7
+      	
+      ]]>
+
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

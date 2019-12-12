@@ -72,56 +72,34 @@ public class CS_P001_D001ControllerImpl implements CS_P001_D001Controller {
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		List<CS_P001_D003VO> boardlist = cs_p001_d003_service.selectboard(dataMap);
 
+		
+		
+		
+		
 		List eventList = cs_p001_d001Service.listEvent(vo);
 		List deliveryList = cs_p001_d001Service.listDelivery();
 		List refundList = cs_p001_d001Service.listRefund();
 		List topList = cs_p001_d001Service.listTop();
+		List couList = cs_p001_d001Service.listCou();
+		List ordList = cs_p001_d001Service.listOrd();
 		System.out.println("공지사항리스트" + eventList);
 		System.out.println("배송문의리스트" + deliveryList);
 		System.out.println("교환환불리스트" + ((CS_P001_D001VO) refundList.get(0)).getContents());
 		System.out.println("자주묻는질문" + ((CS_P001_D001VO) topList.get(0)).getContents());
+		System.out.println("이벤트/할인쿠폰" + ((CS_P001_D001VO) couList.get(0)).getContents());
+		System.out.println("주문결제" + ((CS_P001_D001VO) ordList.get(0)).getContents());
 		ModelAndView mav = new ModelAndView("CS/p001_d001_cs");
 		mav.addObject("Paging", vo);
 		mav.addObject("eventList", eventList);
 		mav.addObject("deliveryList", deliveryList);
 		mav.addObject("refundList", refundList);
 		mav.addObject("topList", topList);
+		mav.addObject("couList", couList);
+		mav.addObject("ordList", ordList);
 		mav.addObject("boardlist", boardlist);
 		return mav;
 
 	}
-
-//	  
-//	@Override
-//	@RequestMapping(value="/event.do" ,method = {RequestMethod.GET, RequestMethod.POST})
-//	public ModelAndView listEvent(PagingVO vo 
-//			, @RequestParam(value="nowPage", required=false)String nowPage
-//			, @RequestParam(value="cntPerPage", required=false)String cntPerPage, 
-//			HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		String viewName = "event";
-//		
-//		int total = cs_p001_d001Service.countBoard();
-//		System.out.println("33333333333333333333333333333333333333333"+total);
-//		if (nowPage == null && cntPerPage == null) {
-//			nowPage = "1";
-//			cntPerPage = "5";
-//		} else if (nowPage == null) {
-//			nowPage = "1";
-//		} else if (cntPerPage == null) { 
-//			cntPerPage = "5";
-//		}
-//
-//		
-//			vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-//			
-//		
-//		List eventList = cs_p001_d001Service.listEvent(vo);
-//		System.out.println("5555555555555555555555555555555555555555555555555555"+eventList);
-//		ModelAndView mav = new ModelAndView(viewName);
-//		mav.addObject("paging", vo);    
-//		mav.addObject("eventList", eventList);
-//		return mav;
-//	}
 
 	@Override
 	@RequestMapping(value = "/csnotice.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -129,7 +107,6 @@ public class CS_P001_D001ControllerImpl implements CS_P001_D001Controller {
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 
-		
 		List noticeList = cs_p001_d001Service.listNotice();
 
 		System.out.println("공지사항리스트" + ((CS_P001_D001VO) noticeList.get(0)).getNo_title());
@@ -138,18 +115,4 @@ public class CS_P001_D001ControllerImpl implements CS_P001_D001Controller {
 		mav.addObject("noticeList", noticeList);
 		return mav;
 	}
-	/*
-	 * @Override
-	 * 
-	 * @RequestMapping(value = "/delivery.do", method = { RequestMethod.GET,
-	 * RequestMethod.POST }) public ModelAndView delivery(@RequestParam("division")
-	 * String division, HttpServletRequest request, HttpServletResponse response)
-	 * throws Exception { request.setCharacterEncoding("utf-8"); Map<String, Object>
-	 * dataMap = new HashMap(); Map<String, Object> deliveryList = new HashMap();
-	 * dataMap.put("division", division); List<Map<String, Object>> dataList =
-	 * cs_p001_d001Service.selectAlldeliveryList(dataMap); deliveryList =
-	 * dataList.get(0); System.out.println("제발배달문의" + dataList); ModelAndView mav =
-	 * new ModelAndView("CS/p001_d001_cs"); mav.addObject("deliveryList",
-	 * deliveryList); return mav; 배달문의 리스트 }
-	 */
 }

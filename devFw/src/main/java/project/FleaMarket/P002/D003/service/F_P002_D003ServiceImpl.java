@@ -45,6 +45,12 @@ public class F_P002_D003ServiceImpl implements F_P002_D003Service {
 	}
 	
 	@Override
+	public String storySize(Map<String, Object> searchMap) throws DataAccessException {
+		String storySize =  d003DAO.storySize(searchMap); 
+		return storySize;
+	}
+	
+	@Override
 	public List<F_P002_D003VO> searchMod(Map<String, Object> searchMap) throws DataAccessException {
 		List<F_P002_D003VO> list =  d003DAO.searchMod(searchMap);
 		return list;
