@@ -16,4 +16,6 @@ public interface C_P002_D006Service {
     public List<Map<String, Object>> selectAllqnaList(Map<String, Object> dataMap) throws DataAccessException;
 	
     public void deleteQna(Map<String, Object> datahMap) throws Exception;
+    
+    public String qnaSize(Map<String, Object> searchMap) throws DataAccessException;
 }

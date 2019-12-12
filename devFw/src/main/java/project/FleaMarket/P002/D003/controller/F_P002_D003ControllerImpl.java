@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import project.Customers.P002.D006.vo.C_P002_D006VO;
 import project.FleaMarket.P002.D001.service.F_P002_D001Service;
 import project.FleaMarket.P002.D003.dao.F_P002_D003DAO;
 import project.FleaMarket.P002.D003.service.F_P002_D003Service;
@@ -61,13 +62,18 @@ public class F_P002_D003ControllerImpl implements F_P002_D003Controller {
 		System.out.println("flea_code =" +flea_code);
 		
 		List list = d001Service.searchList(searchMap);
+		
+		searchMap.put("start", 1);
+		searchMap.put("end", 10);
+		
 		List storyList = d003Service.storyList(searchMap);
+		String storySize = d003Service.storySize(searchMap);
 		
 		for(int i = 0; i < list.size(); i++)
 		{
 			System.out.println(list.get(i));
 		}
-		System.out.println("===========================storyList:::");
+		System.out.println("===========================storyList:::" + (int)storyList.size());
 		
 		for(int i = 0; i < storyList.size(); i++)
 		{
@@ -76,6 +82,8 @@ public class F_P002_D003ControllerImpl implements F_P002_D003Controller {
 		System.out.println("ddddd");
 		
 		ModelAndView mav = new ModelAndView("FleaMarket/p002_d003_fleaStory");
+		mav.addObject("storyCnt", storySize);
+		mav.addObject("currentPage", 1);
 		mav.addObject("searchList", list);
 		mav.addObject("storyList", storyList);
 		return mav;
@@ -151,6 +159,65 @@ public class F_P002_D003ControllerImpl implements F_P002_D003Controller {
 		}
 	}
 	
-	
+	@Override
+	@RequestMapping(value = "/pagingStory.do", method = { RequestMethod.POST, RequestMethod.POST })
+	public void pagingStory(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		Map<String, Object> searchMap = new HashMap<String, Object>();
+		
+		System.out.println("paging.do 들어옴");
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>(); //insert data
+		Enumeration enu = request.getParameterNames();
+		String result = "";
+
+		while (enu.hasMoreElements()) { 
+			String name = (String)enu.nextElement();
+			String value = request.getParameter(name);
+			dataMap.put(name, value);
+			System.out.println("야야야야야" + dataMap);
+		}
+
+		int currentPage = Integer.parseInt((String)dataMap.get("currentPage"));
+		String flea_code = (String) dataMap.get("flea_code");
+		searchMap.put("flea_code", flea_code);
+		searchMap.put("start", (currentPage-1)*10+1);
+		searchMap.put("end", (currentPage)*10);
+		
+		List storyList = d003Service.storyList(searchMap);
+		String storySize = d003Service.storySize(searchMap);
+		
+		System.out.println("ssssssssssssssssssss::" + storySize);
+		
+		result += "[";
+		for(int i=0;i<storyList.size();i++) {
+			result += "{";
+			result += "\"flea_code\":\"" + ((F_P002_D003VO)storyList.get(i)).getFlea_code() + "\",";
+			result += "\"memberId\":\"" + ((F_P002_D003VO)storyList.get(i)).getMemberid() + "\",";
+			result += "\"story_number\":\"" + ((F_P002_D003VO)storyList.get(i)).getStory_number() + "\",";
+			result += "\"story_write_date\":\"" + ((F_P002_D003VO)storyList.get(i)).getStory_write_date() + "\",";
+			result += "\"story_title\":\"" + ((F_P002_D003VO)storyList.get(i)).getStory_title() + "\",";
+			result += "\"story_content\":\"" + ((F_P002_D003VO)storyList.get(i)).getStory_cotent() + "\",";
+			result += "\"heart_count\":\"" + ((F_P002_D003VO)storyList.get(i)).getHeart_count() + "\",";
+			result += "\"currentPage\":\"" + currentPage + "\"";
+		
+			
+			result += "}";
+			if(i != storyList.size() -1) {
+				result += ", ";
+			}
+		}
+		result += "]";
+		System.out.println("result ::::: " + result);
+		//String personJson = "[{\"id\":\""+"0" +"\",\"name\":\""+"dd" +"\",\"password\":\""+"bb" +"\",\"email\":\""+"pp"+"\"}, {\"id\":\""+"123" +"\",\"name\":\""+"dd" +"\",\"password\":\""+"bb" +"\",\"email\":\""+"pp"+"\"}]";
+		//System.out.println(personJson);
+		
+		try {	
+			response.getWriter().print(result);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

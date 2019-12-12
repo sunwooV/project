@@ -94,8 +94,8 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		searchMap.put("start", 1);
 		searchMap.put("end", 10);
 		List prodQnA = S_P001_D003Service.selectQnA(searchMap); //Q&A List		
-		int qnaCnt = prodQnA.size();
-//		
+		String qnaCnt = S_P001_D002Service.qnaSize(searchMap);
+		System.out.println("test입니당" + prodQnA.size());
 //		paging = paging(qnaCnt, 1, "start");
 		
 		System.out.println("tag 들 :::: " + tags);
@@ -229,9 +229,10 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		searchMap.put("end", (currentPage)*10);
 		prodQnA = S_P001_D003Service.selectQnA(searchMap);
 		System.out.println(prodQnA);
+		String qnaCnt = S_P001_D002Service.qnaSize(searchMap);
 		
 		result += "[";
-		for(int i=0;i<prodQnA.size();i++) {
+		for(int i=0;i<Integer.parseInt(qnaCnt);i++) {
 			result += "{";
 			result += "\"prod_number\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getProd_number() + "\",";
 			result += "\"qna_number\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getQna_number() + "\",";
@@ -247,7 +248,7 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		
 			
 			result += "}";
-			if(i != prodQnA.size() -1) {
+			if(i != Integer.parseInt(qnaCnt) -1) {
 				result += ", ";
 			}
 		}

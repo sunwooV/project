@@ -62,9 +62,18 @@
 			rn between #{start} and #{end}
 		]]>
 		</where>
-<!-- 		<![CDATA[ -->
-<!-- 			ORDER BY to_number(qna_number) DESC -->
-<!-- 		]]> -->
+	</select>
+	
+	<select id="qnaSize" resultType="String" parameterType="java.util.Map">
+	 <![CDATA[
+        select count(*) as cnt
+        from prodQnA
+      ]]>
+      <where>
+      <![CDATA[
+			prod_number = #{prod_number}
+		]]>
+      </where>
 	</select>
 
 	<!-- Q&A answer -->

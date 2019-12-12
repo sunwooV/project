@@ -20,4 +20,10 @@ public class M_P001_D001DAOImpl implements M_P001_D001DAO {
 		List<M_P001_D001VO> list = sqlSession.selectList("Main.p001_d001.newProduct", searchMap);
 		return list;
 	}
+	
+	@Override
+	public List<M_P001_D001VO> popularProduct(Map<String, Object> searchMap) throws DataAccessException {
+		List<M_P001_D001VO> list = sqlSession.selectList("Main.p001_d001.popularProduct", searchMap);
+		return list;
+	}
 }

@@ -293,16 +293,32 @@
 						<input type="hidden" id="qnaCnt" value="${qnaCnt }">
 							<c:if test="${qnaCnt != 0 }">
 								<div class="paging_comm" id="paging">
-									<c:forEach var="i" begin="1" end="${qnaCnt/10 + 1 }" step="1">
-									
-										<c:if test="${i == currentPage }">
-										 	 <a style="color:orange;"><c:out value="${i }" /></a>
-										</c:if>
-										<c:if test="${i != currentPage }">
-											 <a><c:out value="${i }" /></a>
-										</c:if>
-									   
-									</c:forEach>
+									<c:choose>
+											<c:when test="${qnaCnt%10 == 0 }">
+												<c:forEach var="i" begin="1" end="${qnaCnt/10 }" step="1">
+											
+													<c:if test="${i == currentPage }">
+													 	 <a style="color:orange;"><c:out value="${i }" /></a>
+													</c:if>
+													<c:if test="${i != currentPage }">
+														 <a><c:out value="${i }" /></a>
+													</c:if>
+												   
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+												<c:forEach var="i" begin="1" end="${qnaCnt/10 + 1 }" step="1">
+											
+													<c:if test="${i == currentPage }">
+													 	 <a style="color:orange;"><c:out value="${i }" /></a>
+													</c:if>
+													<c:if test="${i != currentPage }">
+														 <a><c:out value="${i }" /></a>
+													</c:if>
+												   
+												</c:forEach>
+											</c:otherwise>
+										</c:choose>
 								</div>
 							</c:if>
 						</div>
