@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"
 	isELIgnored ="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="Path" value="${pageContext.request.contextPath}" />
 <% 
 request.setCharacterEncoding("UTF-8"); 
@@ -73,7 +74,7 @@ margin-left:%;}
 	        pg: "inicis",
 	        pay_method: "card",
 	        merchant_uid: "ORD20180131-0000012",
-	        name: name,
+	        name: product,
 	        amount: 100,
 	        buyer_email: email,
 	        buyer_name: name,
@@ -82,11 +83,14 @@ margin-left:%;}
 	        buyer_postcode: postCode
 	    }, function (rsp) { // callback
 	        if (rsp.success) {
+	        	        	
 	        	var msg = '결제가 완료되었습니다.';
 	            msg += '고유ID : ' + rsp.imp_uid;
 	            msg += '상점 거래ID : ' + rsp.merchant_uid;
 	            msg += '결제 금액 : ' + rsp.paid_amount;
 	            msg += '카드 승인번호 : ' + rsp.apply_num;
+	            
+	            
 	        } else {
 	        	var msg = '결제에 실패하였습니다.';
 	            msg += '에러내용 : ' + rsp.error_msg;
@@ -154,11 +158,10 @@ margin-left:%;}
 			<table class="paymentChoice">
 				<tr class="tableTr">
 					<th class="OHT_ttl">결제 수단</th>
-					<td>&nbsp&nbsp<input type="radio" name="size" id="size_1"
-						value="small" /> <label for="size_1">카카오페이</label>&nbsp&nbsp&nbsp&nbsp
-						<input type="radio" name="size" id="size_2" value="small" /> <label
-						for="size_2">신용카드</label>&nbsp&nbsp&nbsp&nbsp <input type="radio"
-						name="size" id="size_3" value="small" /> <label for="size_3">핸드폰
+					<td>&nbsp&nbsp<input type="radio" name="size" id="size_1" value="small" />
+						<label for="size_1">카카오페이</label>&nbsp&nbsp&nbsp&nbsp
+						<input type="radio" name="size" id="size_2" value="small" /> <label for="size_2">신용카드</label>&nbsp&nbsp&nbsp&nbsp 
+						<input type="radio" name="size" id="size_3" value="small" /> <label for="size_3">핸드폰
 							결제</label>
 					</td>
 				</tr>
