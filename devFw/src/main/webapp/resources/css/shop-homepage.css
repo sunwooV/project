@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 .center-flea {
 	margin: 0 500px;
 	max-width: 60%;
@@ -13,6 +14,11 @@
 	margin-left: -15px;
 	margin-top: 19px;
 	width: 1095px;
+}
+
+#flea {
+	padding-left: 13%;
+	padding-top: 1%;
 }
 
 .artist-area {
@@ -94,7 +100,6 @@
 	font-size: 12px;
 	width: 94%;
 }
-
 
 .user-name {
 	margin-top: 16px;
@@ -200,9 +205,8 @@ layout-split:after {
 	clear: both;
 }
 
-#re{
-	width:50%
-	
+#re {
+	width: 50%
 }
 
 .cardlist_section .split-cardlist .ui_card--side {

@@ -20,8 +20,6 @@
 <meta name="author" content="">
 
 <title>금도끼은도끼| 플리마켓</title>
-<link rel="stylesheet"
-	href="${contextPath }/resources/css/main.css">
 <!-- Bootstrap core CSS -->
 <link
 	href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css"
@@ -182,23 +180,15 @@
 	</div>
 
 
-	<div class="container-fluid ">
-		<div class="row">
+	<div class="row" id="flea">
 		<div class=".col-sm-4">
 			<aside class="artist-area">
 				<div class="user-info card-style-profile ">
-					<!-- PROFILE (MIDDLE-CONTAINER) -->
-					<!--  
-   	<p><a href="/devFw/fleaCreateStoreApproval.do">플리마켓 관리자(임시)</a></p>
-   	-->
-					<p>
+					<h4>
 						<a href="/devFw/fleaSearchInit.do">플리마켓 마이페이지(임시)</a>
-					</p>
+					</h4>
 
-					<p class="addmember">
-						<a target="_blank" href="#" id="participants_add"><i
-							class="fa fa-user-plus pa-5x"></i></a>
-					</p>
+
 					<!-- 
 		            <div id="chat-header">
 						<div id="user-info"></div>
@@ -223,9 +213,15 @@
 						</div>
 
 						<div class="user-name">
-							<font size="3"> <c:out value="${flea.flea_name}" />
+							<font size="3"> <c:out value="${flea.flea_name}" /> <a
+								target="_blank" href="#" id="participants_add"><i
+									class="fa fa-user-plus pa-5x"></i></a>
 							</font>
 						</div>
+						<!-- <p class="addmember"> -->
+						<!-- 	<a target="_blank" href="#" id="participants_add"><i
+								class="fa fa-user-plus pa-5x"></i></a> -->
+						<!-- </p> -->
 
 						<div class="profile-description">
 							<c:out value="${flea.intro_cotent}" />
@@ -311,22 +307,13 @@
 						</dl>
 					</c:forEach>
 				</div>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br> <br>
-				<br>
-				<br>
-				<br>
+				<br> <br> <br> <br> <br> <br> <br>
+				<br> <br> <br> <br> <br>
 			</aside>
 		</div>
 
 		<!-- /.col-lg-3 -->
-		<div class=".col-sm-8">
+		<div class=".col-sm-8" style="width: 68%;">
 			<!--   <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel"> -->
 			<!-- 
           <ol class="carousel-indicators">
@@ -484,7 +471,7 @@
 					</c:if>
 				</c:forEach>
 				<a href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>"
-					class="ui_btn--large" style="margin-left: 35.5%;">더보기</a> <br>
+					class="btn btn-dark">더보기</a> <br>
 				<div class="layout-split half" style="margin-left: 15px;">
 					<section class="cardlist_section">
 						<div class="ui_title--sub">
@@ -577,7 +564,6 @@
 			</div>
 		</div>
 	</div>
-</div>
 
 	<div id="user-add">
 		<div id="pop-up">
