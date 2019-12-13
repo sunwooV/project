@@ -74,12 +74,25 @@
 	$(document).on('click', '.faq_open5', function() {
 		var num = $(this).attr("id");
 
-		var target = document.getElementById("d" + num);
+		var target = document.getElementById("e" + num);
 
 		if (target.style.display == 'none') { //접혀있는데 눌렀을 경우
-			$('#d' + num).css("display", "");
+			$('#e' + num).css("display", "");
 		} else { //펴져있는데 눌렀을 경우
-			$('#d' + num).css("display", "none");
+			$('#e' + num).css("display", "none");
+		}
+
+	});
+	
+	$(document).on('click', '.notice', function() {
+		var num = $(this).attr("id");
+
+		var target = document.getElementById("f" + num);
+
+		if (target.style.display == 'none') { //접혀있는데 눌렀을 경우
+			$('#f' + num).css("display", "");
+		} else { //펴져있는데 눌렀을 경우
+			$('#f' + num).css("display", "none");
 		}
 
 	});
@@ -133,11 +146,11 @@
 						</tr>
 
 						<c:forEach var="event" items="${eventList}" varStatus='notice'>
-							<tr id=${notice.count } class="faq_open4">
+							<tr id=${notice.count } class="notice">
 								<td><h6>${event.no_title}</h6></td>
 								<td><h6>${event.no_writedate}</h6></td>
 							</tr>
-							<tr style="display: none;" id="d${notice.count }">
+							<tr style="display: none;" id="f${notice.count }">
 								<td colspan="2">${event.no_contents}</td>
 							</tr>
 						</c:forEach>
@@ -281,7 +294,7 @@
 								<td><h6>${coupon.division}</h6></td>
 								<td><h6>❓${coupon.title}</h6></td>
 							</tr>
-							<tr style="display: none;" id="c${FAQ4.count }">
+							<tr style="display: none;" id="d${FAQ4.count }">
 								<td colspan="2"><h6>${coupon.contents}</h6></td>
 							</tr>
 						</c:forEach>
@@ -303,7 +316,7 @@
 								<td><h6>${order.division}</h6></td>
 								<td><h6>❓${order.title}</h6></td>
 							</tr>
-							<tr style="display: none;" id="c${FAQ5.count }">
+							<tr style="display: none;" id="e${FAQ5.count }">
 								<td colspan="2"><h6>${order.contents}</h6></td>
 							</tr>
 						</c:forEach>
