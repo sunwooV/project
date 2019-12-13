@@ -112,16 +112,16 @@
 		<div class="subtitle">입찰하기</div>
 		<table class="table" id="Ptable" style="width:90%; text-align:left; margin:0px auto; border:1px solid lightgray;">
 			<tr>
-				<td style="background:#FAFAFA">현재가</td>
+				<td style="background:#FAFAFA; width: 80px;">현재가</td>
 				<td>${bidProduct.auction_bid }</td>
 				<input type="hidden" id="now_price" value="${bidProduct.auction_bid }"/> <!-- 현재가 -->
 			</tr>
 			<tr>
-				<td style="background:#FAFAFA">입찰수량</td>
-				<td><input type="number" id="amount" name="bid_amount" value="1" max="${bidProduct.prod_amount }">개</td>
+				<td style="background:#FAFAFA; width: 80px;">입찰수량</td>
+				<td><input type="hidden" id="amount" name="bid_amount" value="1">1 개</td>
 			</tr>
 			<tr>
-				<td style="background:#FAFAFA; padding-top: 30px;">입찰금액</td>
+				<td style="background:#FAFAFA; padding-top: 30px; width: 80px;">입찰금액</td>
 				<td>현재 <fmt:formatNumber value="${bidProduct.auction_bid + Math.pow(10, (fn:length(bidProduct.auction_bid) - 2 ))}" type="number" />원 부터 입찰하실 수 있습니다.<br><input type="number" id="bid_price" name="bid_price" value="0">원 (콤마(",")없이 100원 단위로 입력하세요.)</td>
 				<input type="hidden" id="minPrice" value="${bidProduct.auction_bid + Math.pow(10, (fn:length(bidProduct.auction_bid) - 2 ))}"/>
 				

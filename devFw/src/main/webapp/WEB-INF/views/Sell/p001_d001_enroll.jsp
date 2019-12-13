@@ -564,7 +564,7 @@
 
 	//checkbox 하나만 체크되도록 검사
 	function oneCheckbox(a) { 
-		var obj = document.getElementsByName("auctionDay");
+		var obj = document.getElementsByName("auction_date");
 		for (var i = 0; i < obj.length; i++) {
 			if (obj[i] != a) {
 				obj[i].checked = false;
@@ -763,10 +763,10 @@
 
 				<div id="auctionDaySelect" style="display: none">
 					<a>경매 일자 * &nbsp&nbsp</a> 
-						<input type="checkbox" name="auction_date" value="10" class="checkSelect2" onclick="oneCheckbox(this)" id="test"/>1분(test) 
-						<input type="checkbox" name="auction_date" value="3" class="checkSelect2" onclick="oneCheckbox(this)" />3일 
-						<input type="checkbox" name="auction_date" value="5" class="checkSelect2" onclick="oneCheckbox(this)" />5일 
-						<input type="checkbox" name="auction_date" value="7" class="checkSelect2" onclick="oneCheckbox(this)" />7일 
+						<input type="checkbox" name="auction_date" value="10" class="checkSelect2" onclick="oneCheckbox(this)" id="test"/><label for="test">1분(test)</label> 
+						<input type="checkbox" name="auction_date" value="3" class="checkSelect2" onclick="oneCheckbox(this)" id="three"/><label for="three">3일</label> 
+						<input type="checkbox" name="auction_date" value="5" class="checkSelect2" onclick="oneCheckbox(this)" id="five"/><label for="five">5일</label> 
+						<input type="checkbox" name="auction_date" value="7" class="checkSelect2" onclick="oneCheckbox(this)" id="seven"/><label for="seven">7일</label> 
 						<br>
 					<div style="color: red; font-size: 12px;">
 					※경매 포함 중복 체크 시 경매에 선택 일자동안 게시된 후 판매되지 않은 상품만 중고로 넘어갑니다.※</div>

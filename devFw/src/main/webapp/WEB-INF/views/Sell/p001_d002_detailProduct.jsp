@@ -1435,6 +1435,16 @@ width:fit-content;
 				<input type="hidden" id="prod_memberId" value="${product.memberId }">
 				<input type="hidden" id="prod_number" name="prod_number" value="${product.prod_number }">
 				<div class="category">
+				<c:if test="${product.flea_yn == 'y' }">
+					<a href="./fleaMain.do">플리마켓</a>
+				</c:if>
+				<c:if test="${product.auction_yn == 'y' }">
+					<a href="./eachMain.do?command=auction">경매</a>
+				</c:if>
+				<c:if test="${product.reused_yn == 'y' }">
+					<a href="./eachMain.do?command=reused">중고</a>
+				</c:if>
+					>
 					<c:forEach var="high_category" items="${high_category }">
 				${high_category.category_name }
 				<input type="hidden" name="high_category"
@@ -1506,7 +1516,7 @@ width:fit-content;
 							value="${product.prod_title }">
 						<c:if test="${product.flea_yn == 'y' }">
 							<!-- 플리마켓에 올라온 상품인 경우 플리마켓명도 함께 표시 -->
-							<h3 id="gray-text">${fleaName }(${product.memberId })</h3>
+							<h3 id="gray-text"><a href="./fleaMystore.do?flea_code=${product.fleamarket}">${fleaName }</a>(${product.memberId })</h3>
 						</c:if>
 						<c:if test="${product.flea_yn == 'n' }">
 							<h3 id="gray-text">${product.memberId }</h3>
@@ -1597,7 +1607,7 @@ width:fit-content;
 						<div class="content">
 							<c:choose>
 						<c:when test="${product.auction_yn == 'y'}"><!-- 경매일 경우 수량은 한 상품 당 1개 -->
-							수량: <input type="number" id="prod_amount" style="width:4%; height:auto; text-align:right;" value="1" readonly>
+<!-- 							수량: <input type="hidden" id="prod_amount" style="width:4%; height:auto; text-align:right;" value="1"> 1 -->
 						</c:when>
 						<c:otherwise>
 							max수량: ${product.prod_amount }

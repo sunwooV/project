@@ -147,7 +147,7 @@ public class C_P002_D006ControllerImpl implements C_P002_D006Controller {
 		System.out.println(qnaList);
 		
 		result += "[";
-		for(int i=0;i<Integer.parseInt(qnaSize);i++) {
+		for(int i=0;i<qnaList.size();i++) {
 			result += "{";
 			result += "\"memberId\":\"" + ((C_P002_D006VO)qnaList.get(i)).getMemberID() + "\",";
 			result += "\"prod_number\":\"" + ((C_P002_D006VO)qnaList.get(i)).getProd_number() + "\",";
@@ -163,7 +163,7 @@ public class C_P002_D006ControllerImpl implements C_P002_D006Controller {
 		
 			
 			result += "}";
-			if(i != Integer.parseInt(qnaSize) -1) {
+			if(i != qnaList.size() -1) {
 				result += ", ";
 			}
 		}

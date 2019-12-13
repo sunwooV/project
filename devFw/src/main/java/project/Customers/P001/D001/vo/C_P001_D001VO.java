@@ -26,6 +26,8 @@ public class C_P001_D001VO {
 	private String approval_key;
 	private String verify;
 	private int member_point_code;
+	private String seller_group;
+	private String flea_seller_group;
 	
 	public String getMemberid() {
 		return memberid;
@@ -134,6 +136,18 @@ public class C_P001_D001VO {
 	}
 	public void setMember_point_code(int member_point_code) {
 		this.member_point_code = member_point_code;
+	}
+	public String getSeller_group() {
+		return seller_group;
+	}
+	public void setSeller_group(String seller_group) {
+		this.seller_group = seller_group;
+	}
+	public String getFlea_seller_group() {
+		return flea_seller_group;
+	}
+	public void setFlea_seller_group(String flea_seller_group) {
+		this.flea_seller_group = flea_seller_group;
 	}
 
 	

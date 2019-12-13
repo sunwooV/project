@@ -52,9 +52,30 @@
 		frm.action = "./searchProduct.do";
 		frm.submit();
 	}
+	
+	$(document).ready(function(){
+
+		$('#hoverimg').hover(function() {
+			$("#hover").css('display', '');
+			}, function(){
+				$("#hover").css('display', 'none');
+		});
+	})
+	
+	
+
 </script>
+<style>
+#hover{
+	float: left;
+    left: 597px;
+    top: -28px;
+    position: relative;
+}
+</style>
 </head>
 <body>
+<c:set var="member" value="${member }" />
 	<nav class="navbar navbar-expand-lg navbar-light "
 		id="navbartop">
 		<!-- 상단바 -->
@@ -67,10 +88,28 @@
 			aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
+		<c:if test="${member != null }">
+			<div id="memberImg">
+				<c:choose>
+					<c:when test="${member.verify == 'Y' }">			
+						<div><img src="${contextPath }/resources/img/memberDivision/admin.png" width="20px" height="20px" id="hoverimg"></div>
+					</c:when>
+					<c:when test="${member.getSeller_group() == 'y  ' and member.getFlea_seller_group() != 'y  ' }">			
+						<div><img src="${contextPath }/resources/img/memberDivision/sellerMember.png" width="20px" height="20px" id="hoverimg"></div>
+					</c:when>
+					<c:when test="${member.getFlea_seller_group() == 'y  ' }">			
+						<div><img src="${contextPath }/resources/img/memberDivision/fleaMember.png" width="20px" height="20px" id="hoverimg"></div>
+					</c:when>
+					<c:otherwise>			
+						<div><img src="${contextPath }/resources/img/memberDivision/buyerMember.png" width="20px" height="20px" id="hoverimg"></div>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</c:if>
 		<div class="navbar-collapse collapse" id="navbarColor03" style="">
 			<ul class="navbar-nav mr-auto">
 
-				<c:set var="member" value="${member }" />
+				
 				<c:if test="${ member == null}">
 					<li class="nav-item"><a class="nav-link" href="./joinInit.do">회원가입</a></li>
 				</c:if>
@@ -79,6 +118,7 @@
 				</c:if>
 
 				<c:if test="${ member.verify == 'Y'}">
+					
 					<li class="nav-item"><a class="nav-link" href="./admin.do">Administrator&nbsp;(${ member.nickname}님)
 					</a></li>
 				</c:if>
@@ -106,8 +146,27 @@
 			</form>
 
 		</div>
+		
 	</nav>
 	<!--  -->
+	<c:if test="${member != null }">
+			<div id="memberImg">
+				<c:choose>
+					<c:when test="${member.verify == 'Y' }">			
+						<div id="hover" style="display:none;">관리자</div>
+					</c:when>
+					<c:when test="${member.getSeller_group() == 'y  ' and member.getFlea_seller_group() != 'y  ' }">			
+						<div id="hover" style="display:none;">일반판매자</div>
+					</c:when>
+					<c:when test="${member.getFlea_seller_group() == 'y  ' }">			
+						<div id="hover" style="display:none;">플리판매자</div>
+					</c:when>
+					<c:otherwise>			
+						<div id="hover" style="display:none;">일반회원</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</c:if>
 	<div class="menubar">
 		<ul>
 			<li><a href="${contextPath}/eachMain.do?command=reused"

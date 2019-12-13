@@ -43,25 +43,33 @@ a {
 
 </style>
 <body>
+<c:set var="member" value="${member }" />
+<c:if test="${member != null }">
 	<div class="side">
+		<c:if test="${member.getSeller_group() == 'n  ' or member.getSeller_group() == 'N  ' }">
 		<div id="seller">
 			<a href="./enrollSeller.do"> <img id="side"
 				src="${contextPath }/resources/img/side/shop.png">
 				<h6 id="sideP" style="margin: 0px;">판매자등록</h6>
 			</a>
 		</div>
+		</c:if>
+		<c:if test="${member.getFlea_seller_group() == 'n  ' or member.getFlea_seller_group() == 'N  '}">
 		<div id="openFlea">
 			<a href="./fleaCreateStoreForm.do"> <img id="side"
 				src="${contextPath }/resources/img/side/open.png">
 				<h6 id="sideP" style="margin: 0px;">스토어등록</h6>
 			</a>
 		</div>
+		</c:if>
+		<c:if test="${member.getSeller_group() != 'n  ' or member.getSeller_group() != 'N  '}">
 		<div id="enrollProduct">
 			<a href="./enroll.do"> <img id="side"
 				src="${contextPath }/resources/img/side/online-shop.png">
 				<h6 id="sideP" style="margin: 0px;">상품등록</h6>
 			</a>
 		</div>
+		</c:if>
 		<div id="chat1">
 			<a href="./chatInit.do"> <img id="side"
 				src="${contextPath }/resources/img/side/message.png">
@@ -69,5 +77,6 @@ a {
 			</a>
 		</div>
 	</div>
+</c:if>
 </body>
 </html>
