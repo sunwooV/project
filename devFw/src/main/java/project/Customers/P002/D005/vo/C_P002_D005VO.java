@@ -15,6 +15,7 @@ public class C_P002_D005VO {
 	private String contents;
 	private Date send_date;
 	private String me_at;
+	private String prod_number;
 	
 	
 
@@ -54,4 +55,12 @@ public class C_P002_D005VO {
 	public void setMe_at(String me_at) {
 		this.me_at = me_at;
 	}
+	public String getProd_number() {
+		return prod_number;
+	}
+	public void setProd_number(String prod_number) {
+		this.prod_number = prod_number;
+	}
+	
+	
 }

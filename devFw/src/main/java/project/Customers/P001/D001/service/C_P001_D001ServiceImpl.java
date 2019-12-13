@@ -59,19 +59,16 @@ public class C_P001_D001ServiceImpl implements C_P001_D001Service {
 	
 	@Override
 	public void join_point(C_P001_D001VO member, HttpServletResponse response) throws Exception {
-		
 		System.out.println("service아이디=="+member.getMemberid());
 		PrintWriter out = response.getWriter();
 		out.println(c_p001_d001_DAO.join_point(member));
 		out.close();
-		
 	}
 	
 	@Override
 	public void check_join(String userId, HttpServletResponse response) throws Exception{
 		PrintWriter out = response.getWriter();
 		 if((c_p001_d001_DAO.check_join(userId)) == null) {
-			 System.out.println("2222222222222222222222222222222222222222222222222222222");
 			 out.println("<script>");
 				out.println("location.href='http://localhost:8090/devFw/kakao_joinInit.do';");
 				out.println("</script>");
@@ -198,7 +195,6 @@ public class C_P001_D001ServiceImpl implements C_P001_D001Service {
 				msg += "<input type='button'>";
 				msg += "<input type='submit' value='로그인하기'></form><br/></div>";
 			}else{
-				System.out.println("오잉 메일이 보내졌내????");
 				subject = "MARKET IN U 축하합니다 고객님.";
 				msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
 				msg += "<h3 style='color: blue;'>";
