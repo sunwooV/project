@@ -267,16 +267,7 @@
 
 				<div class="border-row">
 					<nav class="nav-links">
-						<!--  
-		                         <a class="active" href="/w/artist/b20eee2f-b3eb-4fee-bc81-735f1e2318d6">
-		                 <i class="ui_icon--home"></i>
-		                 <span>홈</span>
-		             </a>
-		             -->
-						<span><i class="fa fa-home pa-5x"></i>홈<br></span> <span><i
-							class="fa fa-book pa-5x"></i>스토리<br></span> <span><i
-							class="fas fa-store"></i>판매 작품<br></span> <span><i
-							class="fa fa-edit pa-5x"></i>구매 후기<br></span>
+						<span>🏠홈<br></span> <span>📜스토리<br></span> <span>🧸판매 작품<br></span> <span>✍️구매 후기<br></span>
 					</nav>
 				</div>
 
@@ -313,7 +304,8 @@
 		</div>
 
 		<!-- /.col-lg-3 -->
-		<div class=".col-sm-8" style="width: 68%;">
+		<div class=".col-sm-8"
+			style="width: 68%; border-left: 1px solid lightgray; padding-left: 1%;">
 			<!--   <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel"> -->
 			<!-- 
           <ol class="carousel-indicators">
@@ -360,7 +352,7 @@
     </div>
     -->
 			<div class="ui_title__txt">
-				<font size="2">오프라인 플리마켓 정보</font>
+				<font size="3">📌오프라인 플리마켓 정보</font>
 			</div>
 			<!-- 플리 맵 추가 -->
 			<div id="map" style="width: 100%; height: 250px;"></div>
@@ -417,14 +409,14 @@
 			<br>
 			<c:set var="flea_code" value="${flea_code }" />
 			<div class="ui_title__txt">
-				<font size="2"><a
-					href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>">판매 상품</a></font>
+				<font size="3"><a
+					href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>">🎁판매 상품</a></font>
 			</div>
 			<div class="row">
 				<c:forEach var="newProduct" items="${newProduct}">
 					<c:if test="${newProduct.flea_yn == 'y'}">
 						<c:if test="${newProduct.fleamarket == flea_code}">
-							<div class="col-lg-4 col-md-6 mb-4">
+							<div class="col-lg-3 col-md-5 mb-3">
 
 								<div class="card h-100">
 									<a href="#"><img class="card-img-top"
@@ -458,7 +450,7 @@
 										</h5>
 										<!-- 상품 간략 설명 -->
 										<p class="card-text">
-											<font size="2"><br></font>
+											<font size="3"><br></font>
 										</p>
 									</div>
 									<div class="card-footer">
@@ -470,100 +462,101 @@
 						</c:if>
 					</c:if>
 				</c:forEach>
-				<a href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>"
-					class="btn btn-dark">더보기</a> <br>
-				<div class="layout-split half" style="margin-left: 15px;">
-					<section class="cardlist_section">
-						<div class="ui_title--sub">
-							<h3 class="ui_title__txt">
-								<font size="2"><a
-									href="/devFw/fleaReview.do?flea_code=<%=flea_code%>">구매후기</a></font>
-							</h3>
-						</div>
-						<ul class="split-cardlist">
-							<c:forEach var="bestStore" items="${searchList}">
-								<li class="ui_grid__item" style="width: 400px;">
-									<div class="ui_card--side">
-										<div class="ui_card__inner">
-											<div class="ui_card__imgcover">
-												<img src="${bestStore.profile_photo}" class="ui_card__img"
-													style="width: 230; height: 240;" alt="..."
-													onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code }'">
-												<!--  <a href="#" class="ui_card__img" target="_blank" style="background-image: url('${bestStore.profile_photo}')">-->
-											</div>
-
-											<div class="ui_card__txtarea">
-												<div class="ui_card__info">
-													<a href="#" target="_blank" class="ui_card__title">${bestStore.flea_name }</a>
-													<br> <span class="ui_card__para">
-														${bestStore.intro_cotent } </span>
-												</div>
-
-												<div class="ui_card__rating">
-													<div class="ui_card__vcenter">
-														<div class="ui_rating" data-ui="rating" data-value="5">
-															<i class="ui_icon--star-fill" data-state="active"></i> <i
-																class="ui_icon--star-fill" data-state="active"></i> <i
-																class="ui_icon--star-fill" data-state="active"></i> <i
-																class="ui_icon--star-fill" data-state="active"></i> <i
-																class="ui_icon--star-fill" data-state="active"></i> <span>&nbsp;|
-																${bestStore.memberid }</span>
-														</div>
-													</div>
-													<input name="paging_param" type="hidden"
-														value="1574744451000">
-												</div>
-
-
-											</div>
-										</div>
-									</div>
-								</li>
-							</c:forEach>
-						</ul>
-
-						<a href="/devFw/fleaReview.do?flea_code=<%=flea_code%>"
-							class="ui_btn--large" style="margin-left: 25%;">더보기</a>
-					</section>
-
-
-					<section class="cardlist_section">
-						<div class="ui_title--sub">
-							<h3 class="ui_title__txt">
-								<font size="2"><a
-									href="/devFw/fleaStory.do?flea_code=<%=flea_code%>">스토리</a></font>
-							</h3>
-						</div>
-						<c:forEach var="story" items="${storyList}" begin="0" end="3">
-
-							<ul class="split-cardlist lines5">
-								<li class="ui_card--side">
+			</div>
+			<a href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>" class="ui_btn--large" style="margin-top: 2%;margin-left: 41%;">더보기</a>
+			<br>
+			<div class="row">
+				<div id="cardlist_section">
+					<div class="ui_title--sub">
+						<h3 class="ui_title__txt">
+							<font size="3"><a
+								href="/devFw/fleaReview.do?flea_code=<%=flea_code%>">✏️구매후기</a></font>
+						</h3>
+					</div>
+					<ul class="split-cardlist">
+						<c:forEach var="bestStore" items="${searchList}">
+							<li class="ui_grid__item" style="width: 400px;">
+								<div class="ui_card--side">
 									<div class="ui_card__inner">
 										<div class="ui_card__imgcover">
-											<a href="#" class="ui_card__img"
-												style="background-image: url(https://image.idus.com/image/files/4b1b9b058f5046d99b0ade714ecdc0c4_720.jpg)"></a>
+											<img src="${bestStore.profile_photo}" class="ui_card__img"
+												style="width: 230; height: 240;" alt="..."
+												onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code }'">
+											<!--  <a href="#" class="ui_card__img" target="_blank" style="background-image: url('${bestStore.profile_photo}')">-->
 										</div>
-										<div class="ui_card__txtarea ">
-											<div class="ui_card__info">
-												<a href="${contextPath}/FleaMarket/P002/D003/searchList.do"
-													class="ui_card__title">${story.story_title }</a> <span
-													class="ui_card__para">${story.story_cotent }</span>
 
+										<div class="ui_card__txtarea">
+											<div class="ui_card__info">
+												<a href="#" target="_blank" class="ui_card__title">${bestStore.flea_name }</a>
+												<br> <span class="ui_card__para">
+													${bestStore.intro_cotent } </span>
 											</div>
+
+											<div class="ui_card__rating">
+												<div class="ui_card__vcenter">
+													<div class="ui_rating" data-ui="rating" data-value="5">
+														<i class="ui_icon--star-fill" data-state="active"></i> <i
+															class="ui_icon--star-fill" data-state="active"></i> <i
+															class="ui_icon--star-fill" data-state="active"></i> <i
+															class="ui_icon--star-fill" data-state="active"></i> <i
+															class="ui_icon--star-fill" data-state="active"></i> <span>&nbsp;|
+															${bestStore.memberid }</span>
+													</div>
+												</div>
+												<input name="paging_param" type="hidden"
+													value="1574744451000">
+											</div>
+
+
 										</div>
 									</div>
-								</li>
-							</ul>
+								</div>
+							</li>
 						</c:forEach>
-						<a href="/devFw/fleaStory.do?flea_code=<%=flea_code%>"
-							class="ui_btn--large" style="margin-left: 25%;">더보기</a>
-					</section>
+					</ul>
 
+					<a href="/devFw/fleaReview.do?flea_code=<%=flea_code%>"
+						class="ui_btn--large" style="margin-left: 32%;">더보기</a>
 				</div>
 
+
+				<div id="cardlist_section">
+					<div class="ui_title--sub">
+						<h3 class="ui_title__txt">
+							<font size="3"><a
+								href="/devFw/fleaStory.do?flea_code=<%=flea_code%>">📝스토리</a></font>
+						</h3>
+					</div>
+					<c:forEach var="story" items="${storyList}" begin="0" end="3">
+
+						<ul class="split-cardlist lines5">
+							<li class="ui_card--side">
+								<div class="ui_card__inner">
+									<div class="ui_card__imgcover">
+										<a href="#" class="ui_card__img"
+											style="background-image: url(https://image.idus.com/image/files/4b1b9b058f5046d99b0ade714ecdc0c4_720.jpg)"></a>
+									</div>
+									<div class="ui_card__txtarea ">
+										<div class="ui_card__info">
+											<a href="${contextPath}/FleaMarket/P002/D003/searchList.do"
+												class="ui_card__title">${story.story_title }</a> <span
+												class="ui_card__para">${story.story_cotent }</span>
+
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</c:forEach>
+					<a href="/devFw/fleaStory.do?flea_code=<%=flea_code%>"
+						class="ui_btn--large" style="margin-left: 32%;">더보기</a>
+				</div>
+			
 			</div>
+
 		</div>
 	</div>
+
 
 	<div id="user-add">
 		<div id="pop-up">

@@ -25,7 +25,6 @@
 	text-align: center;
 	width: 94%;
 	height: 700px;
-	border-right: 1px solid #d9d9d9;
 }
 
 .addmember {
@@ -209,10 +208,6 @@ layout-split:after {
 	width: 50%
 }
 
-.cardlist_section .split-cardlist .ui_card--side {
-	width: 97%;
-}
-
 .ui_title__txt {
 	color: #333;
 	font-size: 20px;
@@ -221,10 +216,6 @@ layout-split:after {
 	padding-bottom: 4px;
 	padding-left: 2px;
 	border-bottom: 1px solid #d9d9d9;
-}
-
-.cardlist_section .split-cardlist .ui_card--side {
-	width: 100%;
 }
 
 .list-def {
@@ -247,6 +238,11 @@ layout-split:after {
 	width: initial;
 	font-family: nanumEB;
 	font-size: 1.5em;
+}
+
+#cardlist_section {
+	width: 50%;
+    padding: 2%;
 }
 
 /*pop-up*/
@@ -397,8 +393,8 @@ layout-split:after {
 }
 
 .ui_card__inner {
-	height: 135px;
-	width: 390px;
+	height: 166px;
+    width: 507px;
 }
 
 .ui_btn--large {
