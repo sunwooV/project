@@ -29,6 +29,28 @@
   <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
   <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+<script>
+$(document).ready(function(){
+	var loginCheck = document.getElementById("memberid").value;
+	
+	$(document).on('click', '#heart', function(){
+		alert(loginCheck);
+		if(loginCheck == null || loginCheck == "") { //로그인 안되어 있을 때
+			if(confirm("로그인 후 관심스토어를 등록할 수 있습니다..\n로그인 하시겠습니까?")){
+				window.location.href="./loginInit.do?redirect=" + now;
+			} else{
+				return false;
+			}
+		} else { //로그인 되어있을 때 => 관심 스토어 등록
+			var flea = document.getElementById("heart");
+			var fleapart = flea.dataset.flea;
+			alert(fleapart);
+		}
+	});
+	
+});
+</script>
+
 </head>
 <style>
 ol, ul {
@@ -490,19 +512,19 @@ ul li {list-style-type: none;}
                             <c:set var="likeProd" value="${likeProd}" />
 
 							<c:if test="${likeProd == null}">
-								<div id="heart" name="n">
+								<div id="heart" name="n" data-flea="${bestStore.flea_code }">
 									<img src="${contextPath }/resources/img/detailProduct/heart.png"
 										style="width: 30px; height: 30px; float:right; margin-top:-24px;">
 								</div>
 							</c:if>
 							<c:if test="${likeProd == '0' }">
-								<div id="heart" name="n">
+								<div id="heart" name="n" data-flea="${bestStore.flea_code }">
 									<img src="${contextPath }/resources/img/detailProduct/heart.png"
 										style="width: 30px; height: 30px; float:right; margin-top:-24px;">
 								</div>
 							</c:if>
 							<c:if test="${likeProd == '1' }">
-								<div id="heart" name="y">
+								<div id="heart" name="y" data-flea="${bestStore.flea_code }">
 									<img
 										src="${contextPath }/resources/img/detailProduct/fillheart.png"
 										style="width: 30px; height: 30px; float:right; margin-top:-24px;">
