@@ -168,13 +168,13 @@ public class C_P001_D001ServiceImpl implements C_P001_D001Service {
 
 			// 보내는 사람 EMail, 제목, 내용
 			String fromEmail = "wpsl76@naver.com";
-			String fromName = "Spring Homepage";
+			String fromName = "MIU";
 			String subject = "";
 			String msg = "";
 
 			// 회원가입 메일 내용
 			if(div.equals("join")) {
-			subject = "Spring Homepage 회원가입 인증 메일입니다.";
+			subject = "MARKET IN U 회원가입 인증 메일입니다.";
 			msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
 			msg += "<h3 style='color: blue;'>";
 			msg += member.getMemberid() + "님 회원가입을 환영합니다.</h3>";
@@ -185,7 +185,7 @@ public class C_P001_D001ServiceImpl implements C_P001_D001Service {
 			msg += "<input type='hidden' name='approval_key' value='" + member.getApproval_key() + "'>";
 			msg += "<input type='submit' value='인증'></form><br/></div>";
 		    }else if(div.equals("find_pw")) {
-				subject = "금도끼 은도끼 비밀번호 입니다.";
+				subject = "MARKET IN U 비밀번호 찾기.";
 				msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
 				msg += "<h3 style='color: blue;'>";
 				msg += member.getMemberid() + "님의 비밀번호 입니다.</h3>";
@@ -197,6 +197,21 @@ public class C_P001_D001ServiceImpl implements C_P001_D001Service {
 				msg += "<input type='hidden' name='email' value='" + member.getEmail() + "'>";
 				msg += "<input type='button'>";
 				msg += "<input type='submit' value='로그인하기'></form><br/></div>";
+			}else{
+				System.out.println("오잉 메일이 보내졌내????");
+				subject = "MARKET IN U 축하합니다 고객님.";
+				msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+				msg += "<h3 style='color: blue;'>";
+				msg += member.getMemberid() + "님 축하합니다 낙찰되셨습니다.</h3>";
+				msg += "<p>'";
+				msg += member.getName()+ "' 상품 경매에 낙찰되셨습니다.♥ 결제를 완료해주세요.</p>";
+				msg += "<div style='font-size: 130%'>";
+				msg += "하단의  버튼 클릭 시 홈페이지로 돌아갑니다.</div><br/>";
+				msg += "<form method='post' action='http://localhost:8090/devFw/main.do'>";
+				msg += "<input type='hidden' name='email' value='" + member.getEmail() + "'>";
+				msg += "<input type='button'>";
+				msg += "<input type='submit' value='홈페이지가기'></form><br/></div>";
+				
 			}
 	
 			// 받는 사람 E-Mail 주소

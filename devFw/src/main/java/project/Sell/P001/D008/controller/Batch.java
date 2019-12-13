@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import project.Customers.P001.D001.service.C_P001_D001Service;
+import project.Customers.P001.D001.vo.C_P001_D001VO;
 import project.Sell.P001.D008.service.S_P001_D008Service;
 import project.Sell.P001.D008.vo.S_P001_D008VO;
 
@@ -15,6 +17,8 @@ import project.Sell.P001.D008.vo.S_P001_D008VO;
 public class Batch {
 	@Autowired
 	S_P001_D008Service S_P001_D008Service;
+	@Autowired
+	C_P001_D001Service c_p001_d001Service;
 	
 	//1분마다 경매 시간 체크해서 시간 다 되면 => 낙찰 or 삭제
 	@Scheduled(fixedRate = 10000)
@@ -45,8 +49,22 @@ public class Batch {
 					S_P001_D008Service.failAuction(dataMap);
 					System.out.println("failAuction");
 				} else { //낙찰자가 있으면
-					S_P001_D008Service.winAuction(dataMap);
 					System.out.println("winAuction");
+					
+					S_P001_D008Service.winAuction(dataMap);
+			
+					String memberid = S_P001_D008Service.winAuctionMember(dataMap);
+					
+					dataMap.put("memberid", memberid);
+
+					String email = S_P001_D008Service.memberEmail(dataMap);
+					String title = S_P001_D008Service.prodTitle(dataMap);
+					C_P001_D001VO member = new C_P001_D001VO();
+			
+					member.setMemberid(memberid);
+					member.setEmail(email);
+					member.setName(title);
+					c_p001_d001Service.send_mail(member,"win");
 				}
 			}
 			

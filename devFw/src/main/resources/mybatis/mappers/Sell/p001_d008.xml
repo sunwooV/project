@@ -38,5 +38,45 @@
 			prod_number = #{prod_number}
 		</where>
 	</update>
+	
+	<select id="winAuctionMember" resultType="String" parameterType="java.util.Map">
+	<![CDATA[
+		select memberid
+		from(select a.*
+		        , p.represent_image
+		        , p.auction_end_date
+		        ,(select count(*)
+		            from auction_bid
+		            where bid_number = (select max(bid_number)
+		                                from auction_bid
+		                                where prod_number = a.prod_number
+		                                group by prod_number)
+		            and prod_number = a.prod_number) as cnt
+		        , sign(p.auction_end_date - sysdate) as endChk
+		    from auction_bid a, product p
+		    where a.prod_number = p.prod_number
+		    and a.bid_number = (select max(bid_number)
+		                        from auction_bid
+		                        where prod_number = a.prod_number)
+		    and a.prod_number = #{prod_number})
+	]]>
+	</select>
+	
+	<select id="memberEmail" resultType="String" parameterType="java.util.Map">
+	<![CDATA[
+		select email
+		from member
+		where memberid=#{memberid}
+		]]>
+	</select>
+	
+	<select id="prodTitle" resultType="String" parameterType="java.util.Map">
+	<![CDATA[
+		select prod_title
+		from product
+		where prod_number=#{prod_number}
+		]]>
+	</select>
+	
 
 </mapper>

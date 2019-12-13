@@ -33,10 +33,21 @@
 		</where>
 	</select>
 	
+	<!-- 관심 상품 -->
+	<select id="likeFlea" resultType="String" parameterType="java.util.Map">
+		SELECT  count(*) as cnt
+		FROM likeFlea
+		<where>
+			flea_code = #{flea_code}
+			and memberId = #{memberId}
+		</where>
+	</select>
+	
 	<insert id="insertMember" parameterType="java.util.Map"> 
         insert into flea(flea_code, memberid, flea_group) values(#{memberid}, #{flea_code}, #{flea_group})
 	</insert>
-
+	
+	
 	<select id="searchMod" resultMap="p0001Result01" parameterType="java.util.Map"> 
       <![CDATA[
          select id, pwd, name, email, joinDate

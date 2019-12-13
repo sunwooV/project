@@ -159,6 +159,7 @@ ul li {list-style-type: none;}
   100% { background-color: #B20000; }
 }
 
+
 </style>
 
 
@@ -481,11 +482,34 @@ ul li {list-style-type: none;}
 							style="width: 230; height: 240; " alt="..." onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code }'">
                        <!--  <a href="#" class="ui_card__img" target="_blank" style="background-image: url('${bestStore.profile_photo}')">-->
                     </div>
-
+					
                     <div class="ui_card__txtarea">
                         <div class="ui_card__info">
-                            <a href="#" target="_blank" class="ui_card__title">${bestStore.flea_name }</a>
+                            <a href="#" target="_blank" class="ui_card__title" style="font-size: medium;">${bestStore.flea_name }</a>
                             <br>
+                            <c:set var="likeProd" value="${likeProd}" />
+
+							<c:if test="${likeProd == null}">
+								<div id="heart" name="n">
+									<img src="${contextPath }/resources/img/detailProduct/heart.png"
+										style="width: 30px; height: 30px; float:right; margin-top:-24px;">
+								</div>
+							</c:if>
+							<c:if test="${likeProd == '0' }">
+								<div id="heart" name="n">
+									<img src="${contextPath }/resources/img/detailProduct/heart.png"
+										style="width: 30px; height: 30px; float:right; margin-top:-24px;">
+								</div>
+							</c:if>
+							<c:if test="${likeProd == '1' }">
+								<div id="heart" name="y">
+									<img
+										src="${contextPath }/resources/img/detailProduct/fillheart.png"
+										style="width: 30px; height: 30px; float:right; margin-top:-24px;">
+								</div>
+							</c:if>
+                            
+                            
                             <span class="ui_card__para">
                             	${bestStore.intro_cotent }
                             </span>
@@ -495,29 +519,19 @@ ul li {list-style-type: none;}
 					          <div class="bdycMe">
 					             <div class="gFsGXG">
 					             	일시: ${bestStore.join_offline_date}
+			                        <i class="fas fa-clock">${bestStore.join_offline_time}</i>
 					             <!-- 
 					                 <time datetime="1576162800000">12.13</time>&nbsp;~&nbsp;<time datetime="1577804400000">01.01</time>&nbsp;</div>
 					             -->
 					                    <div class="iGGFft">장소:${bestStore.join_offline_location}</div>
-					                       <div class="fQIbEE">
-					                           <i class="fas fa-clock">${bestStore.join_offline_time}</i>
-					                       </div>
+					                       
 					             </div>
 					          </div>
 					      </div>
 
 
                         <div class="ui_card__rating">
-                            <div class="ui_card__vcenter">
-                                    <span id="rating-1" style="cursor: pointer;" data-stars="5">
-					               	 	<input name="rating-1" type="hidden" value="5">
-			               	 	 		<i class="fa fa-star" style="color: rgb(241, 196, 15);"></i>
-			               	 	 		<i class="fa fa-star" style="color: rgb(241, 196, 15);"></i>
-			               	 	 		<i class="fa fa-star" style="color: rgb(241, 196, 15);"></i>
-			               	 			<i class="fa fa-star" style="color: rgb(241, 196, 15);"></i>
-			               	 			<i class="fa fa-star" style="color: rgb(241, 196, 15);"></i>		
-				               		</span>
-                                   
+                            <div class="ui_card__vcenter">        
                                     <span>&nbsp;| ${bestStore.memberid }</span>
                               
                             </div>
@@ -527,6 +541,8 @@ ul li {list-style-type: none;}
                         
                         <p id="ppp">
 								<a href="#" class="btn btn-primary" id="ttt3" role="button">메세지 보내기</a>
+								
+							
 								
 								<c:if test="${bestStore.recruit_yn == 'n'}">
 									<a href="#" class="btn btn-default" id="ttt4" role="button">모집종료</a>
