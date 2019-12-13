@@ -474,7 +474,6 @@
 							</div>
 						</div>
 					</c:if>
-<<<<<<< HEAD
 				</c:if>
 			</c:forEach>
 			<a href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>"
@@ -482,7 +481,6 @@
 			<div class="layout-split half" style="margin-left: 15px;">
 				<section class="cardlist_section" id="re">
 					<div class="ui_title__txt">
-=======
 					<c:if test="${newProduct.sale_percent == null }">
 						<p id="p">
 							<fmt:formatNumber value="${newProduct.prod_price }"
@@ -499,9 +497,9 @@
               </div>
             </div>
           </div>
-           </c:if>
+  <%--          </c:if>
           </c:if>
-         </c:forEach>
+         </c:forEach> --%>
          <a href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>" class="ui_btn--large" style="margin-left:35.5%;">더보기</a>
 	<br>
 	 <div class="layout-split half" style="margin-left: 15px;">
