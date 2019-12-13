@@ -62,7 +62,7 @@ a {
 			</a>
 		</div>
 		</c:if>
-		<c:if test="${member.getSeller_group() != 'n  ' or member.getSeller_group() != 'N  '}">
+		<c:if test="${member.getSeller_group() == 'y  ' or member.getSeller_group() == 'Y  '}">
 		<div id="enrollProduct">
 			<a href="./enroll.do"> <img id="side"
 				src="${contextPath }/resources/img/side/online-shop.png">
@@ -76,6 +76,21 @@ a {
 				<h6 id="sideP" style="margin: 0px;">채팅하기</h6>
 			</a>
 		</div>
+		
+		<c:choose>
+					<c:when test="${member.verify == 'Y' }">			
+						<div id="hover" style="display:none;">관리자</div>
+					</c:when>
+					<c:when test="${member.getSeller_group() == 'y  ' and member.getFlea_seller_group() != 'y  ' }">			
+						<div id="hover" style="display:none;">일반판매자</div>
+					</c:when>
+					<c:when test="${member.getFlea_seller_group() == 'y  ' }">			
+						<div id="hover" style="display:none;">플리판매자</div>
+					</c:when>
+					<c:otherwise>			
+						<div id="hover" style="display:none;">일반회원</div>
+					</c:otherwise>
+				</c:choose>
 	</div>
 </c:if>
 </body>
