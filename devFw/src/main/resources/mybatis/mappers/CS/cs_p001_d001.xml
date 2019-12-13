@@ -53,7 +53,7 @@
          	
       
   	                 
- SELECT  no_title, to_char(no_writedate,'YYYY/MM/DD'), no_contents
+ SELECT  no_title, to_char(no_writedate,'YYYY-MM-DD'), no_contents
 						FROM notice
 						WHERE rownum <= 7
       	

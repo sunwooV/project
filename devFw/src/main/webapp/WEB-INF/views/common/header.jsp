@@ -55,7 +55,7 @@
 </script>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light"
+	<nav class="navbar navbar-expand-lg navbar-light "
 		id="navbartop">
 		<!-- 상단바 -->
 		<a class="navbar-brand" href="./main.do"><img
