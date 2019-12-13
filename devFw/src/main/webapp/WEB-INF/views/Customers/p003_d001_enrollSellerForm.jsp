@@ -109,13 +109,14 @@ $(document).on('click', '#specialSeller', function(){
 			<img src="${contextPath }/resources/img/write.png" width="75px" height="75px" id="WriteImg">
 			<h1 id="left">SELL BASIC</h1>
 			<h2 id="left">일반 판매자 등록</h2>
+			<h3 style="text-align:center; margin-top:15px;">중고 + 경매 + 플리마켓 참여 가능</h3>
 			<img id="right" src="${contextPath }/resources/img/right.png" width="65px" height="65px;">
 		</div>
 		<br>
 		<div class="explainSeller" id="left">
 			<h3>1. 일반 판매자란?</h3>
 			<p id="explain">'마켓인유'회원이면 누구나 5분정도의 짧은 시간만 있으면</p>
-			<p id="explain">중고와 경매에 물품을 등록할 수 있습니다.</p>
+			<p id="explain">중고와 경매 혹은 플리마켓에 참여해서 물품을 등록할 수 있습니다.</p>
 			<br>
 			<h3>2. 개인 물품 판매를 위한</h3>
 			<p id="explain">구형 노트북이나 스마트폰, 쓰지 않는 육아용품 등을</p>
@@ -136,13 +137,14 @@ $(document).on('click', '#specialSeller', function(){
 			<img src="${contextPath }/resources/img/write.png" width="75px" height="75px" id="WriteImg">
 			<h1 id="left">SPECIAL PLUS</h1>
 			<h2 id="left">전문 판매자 등록</h2>
+			<h3 style="text-align:center; margin-top:15px;">(일반 판매자) + 나만의 플리마켓 스토어 개설 가능</h3>
 			<img id="right" src="${contextPath }/resources/img/right.png" width="65px" height="65px;">
 		</div>
 		<br>
 		<div class="explainSeller" id="left">
 			<h3>1. 전문 판매자란?</h3>
-			<p id="explain">중고, 경매와 더불어 직접 플리마켓을 운영하거나</p>
-			<p id="explain">다른 플리마켓에 참여하여 물품을 등록할 수 있습니다.</p>
+			<p id="explain">중고, 경매, 플리마켓 참여와 더불어</p>
+			<p id="explain">나만의 플리마켓 스토어를 개설할 수 있습니다.</p>
 			<br>
 			<h3>2. 참여형 플리마켓</h3>
 			<p id="explain">플리마켓을 개최하고 참가자들을 모집하여

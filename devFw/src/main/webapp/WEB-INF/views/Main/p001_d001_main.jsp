@@ -66,6 +66,7 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 					<div class="row">
 						<c:forEach var="popularProduct" items="${popularProduct}">
 							<div class="col-sm-3">
+								<a href="./detail.do?prod_number=${popularProduct.prod_number }">
 								<div class="thumbnail">
 									<c:if test="${popularProduct.reused_yn == 'y' }">
 										<!-- 상품 판매 카테고리 -->
@@ -130,6 +131,7 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 										</p>
 									</div>
 								</div>
+								</a>
 							</div>
 						</c:forEach>
 							
@@ -141,6 +143,7 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 					<div class="row">
 						<c:forEach var="newProduct" items="${newProduct}">
 							<div class="col-sm-3">
+							<a href="./detail.do?prod_number=${newProduct.prod_number }">
 								<div class="thumbnail">
 									<c:if test="${newProduct.reused_yn == 'y' }">
 										<!-- 상품 판매 카테고리 -->
@@ -205,6 +208,7 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 										</p>
 									</div>
 								</div>
+								</a>
 							</div>
 						</c:forEach>
 					</div>
@@ -275,9 +279,12 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 <!-- 				</div> -->
 				<div id="good_store" class="tab-pane fade">
 					<div class="row">
+					
 						<c:forEach var="bestStore" items="${bestStore}">
+						<a href="./fleaMystore.do?flea_code=${bestStore.flea_code }">
 							<div class="col-sm-3">
 								<div class="thumbnail">
+								<br>
 									<img src=${bestStore.profile_photo
 										}
 										style="width: 230px; height: 240px;" alt="..."
@@ -295,7 +302,9 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 									</div>
 								</div>
 							</div>
+							</a>
 						</c:forEach>
+						
 					</div>
 				</div>
 			</div>

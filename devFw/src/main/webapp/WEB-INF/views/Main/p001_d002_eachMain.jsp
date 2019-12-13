@@ -266,22 +266,11 @@ label{
 		<c:forEach var="product" items="${prodList }" varStatus="status">
 			<div class="col-sm-3">
 				<div class="thumbnail">
-					<c:if test="${product.reused_yn == 'y' }">
-						<!-- 상품 판매 카테고리 -->
-						<span class="group">중고</span>
-					</c:if>
-					<c:if test="${product.auction_yn == 'y' or product.auction_yn == 'w' or product.auction_yn == 'f'}">
-						<span class="group">경매</span>
-					</c:if>
-					<c:if test="${product.flea_yn == 'y' }">
-						<span class="group">플리</span>
-					</c:if>
-					<c:if test="${product.auction_yn == 'y' }">
-						<span class="group" style="color:red;">(경매 진행 중)</span>
-					</c:if>
+					<br>
+					<a href="./detail.do?prod_number=${product.prod_number }">
 					<img src="${product.represent_image }"
 						style="width: 230px; height: 240px;" alt="..."
-						onclick="location.href='./detail.do?prod_number=${product.prod_number }'">
+						>
 					<div class="caption">
 						<h3>${product.prod_title }
 							<c:if test="${product.sale_percent != null }">
@@ -326,6 +315,7 @@ label{
 								id="ttt4" role="button">구매하기</a>
 						</p>
 					</div>
+					</a>
 				</div>
 			</div>
 		</c:forEach>
