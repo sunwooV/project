@@ -178,14 +178,11 @@
 					<td>&nbsp&nbsp<input type="radio" name="size" id="size_1" value="small" />
 						<label for="size_1">카카오페이</label>&nbsp&nbsp&nbsp&nbsp
 						<input type="radio" name="size" id="size_2" value="small" /> <label for="size_2">신용카드</label>&nbsp&nbsp&nbsp&nbsp 
-						<input type="radio" name="size" id="size_3" value="small" /> <label for="size_3">핸드폰
-
-							결제</label>
+						<input type="radio" name="size" id="size_3" value="small" /> <label for="size_3">핸드폰 결제</label>
 					</td>
 				</tr>
 
 				<tr class="table-active">
-
 					<th class="OHT_ttl">포인트</th>
 					<td class="OHC_cont"><input type="number" id="custPoint">&nbsp&nbspP</td>
 				</tr>

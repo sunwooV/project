@@ -142,45 +142,29 @@
 						<th class="OHT_ttl"><span>단가</span></th>
 						<th class="OHT_ttl"><span>총 상품 금액</span></th>
 					</tr>
-
-
-
-
-
-
 					<!-- 상품 내용 cif 처리하기 -->
 					<c:set var="total" value="0" />
 					<c:forEach var="cartList" items="${dataList}">
 						<input type="hidden" id="prod_price"
 							value="${cartList.prod_price}">
 						<tr class="orderHistoryContents">
-							<td class="OHC_cont"><input type="checkbox" name="checkProd"
-								id="checkProd" value=""> <input type="hidden"
-								name="prod_number" value="${cartList.prod_number}"></td>
-							<td class="OHC_cont"><img src="${cartList.represent_image}"
-								name="represent_image" style="width: 100px; height: 125px;"></td>
-							<td class="OHC_cont">${cartList.prod_title}<input
-								type="hidden" name="prod_title" value="${prod_title}"></td>
-							<td class="OHC_cont"><span id="cart_count"> <input
-									type="button" id="minus" onClick="updateCount('minus')"
-									value="-"><input type="number" id="cart_count" min="1"
-									max="${product.prod_amount}"
-									style="width: 8%; height: auto; text-align: right;"
-									value="${cartList.cart_count}"><input type="button"
-									id="plus" onClick="updateCount('plus')" value="+">
+							<td class="OHC_cont"><input type="checkbox" name="checkProd" id="checkProd" value=""> 
+								<input type="hidden" name="prod_number" value="${cartList.prod_number}"></td>
+							<td class="OHC_cont"><img src="${cartList.represent_image}" name="represent_image" style="width: 100px; height: 125px;"></td>
+							<td class="OHC_cont">${cartList.prod_title}<input type="hidden" name="prod_title" value="${prod_title}"></td>
+							<td class="OHC_cont"><span id="cart_count">
+							<input type="button" id="minus" onClick="updateCount('minus')" value="-">
+							<input type="number" id="cart_count" min="1" max="${product.prod_amount}" style="width: 8%; height: auto; text-align: right;" value="${cartList.cart_count}">
+							<input type="button" id="plus" onClick="updateCount('plus')" value="+">
 							</span></td>
-							<td class="OHC_cont" id="prod_price"><fmt:formatNumber
-									value="${cartList.prod_price}" />원</td>
-							<td class="OHC_cont"><span id="prod_ttl_price"><fmt:formatNumber
-										value="${cartList.prod_price * cartList.cart_count}" />원</span></td>
+							<td class="OHC_cont" id="prod_price"><fmt:formatNumber value="${cartList.prod_price}" />원</td>
+							<td class="OHC_cont"><span id="prod_ttl_price"><fmt:formatNumber value="${cartList.prod_price * cartList.cart_count}" />원</span></td>
 
 						</tr>
-						<c:set var="total"
-							value="${total+ cartList.prod_price*cartList.cart_count}" />
+						<c:set var="total" value="${total+ cartList.prod_price*cartList.cart_count}" />
 					</c:forEach>
 					<tr>
-						<td class="OHC_cont" colspan="6"
-							style="height: 100px; font-size: 35px; text-align: right;">
+						<td class="OHC_cont" colspan="6" style="height: 100px; font-size: 35px; text-align: right;">
 							<h3 style="color: #da2626;">
 								예상 결제 금액 = <span id="subTotal"><c:out value="${total}" />원</span>
 							</h3> <input type="hidden" name="totalPrice" value="${total}">
@@ -191,8 +175,7 @@
 			</table>
 		</div>
 		<div class="goToPayButton">
-			<button type="button" class="btn btn-dark" onClick="moveToPayInfo()"
-				style="font-size: 16px;">주문하기</button>
+			<button type="button" class="btn btn-dark" onClick="moveToPayInfo()" style="font-size: 16px;">주문하기</button>
 		</div>
 
 
