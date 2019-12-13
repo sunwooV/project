@@ -232,7 +232,7 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		String qnaCnt = S_P001_D002Service.qnaSize(searchMap);
 		
 		result += "[";
-		for(int i=0;i<Integer.parseInt(qnaCnt);i++) {
+		for(int i=0;i<prodQnA.size();i++) {
 			result += "{";
 			result += "\"prod_number\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getProd_number() + "\",";
 			result += "\"qna_number\":\"" + ((S_P001_D003VO)prodQnA.get(i)).getQna_number() + "\",";
@@ -248,7 +248,7 @@ public class S_P001_D002ControllerImpl implements S_P001_D002Controller {
 		
 			
 			result += "}";
-			if(i != Integer.parseInt(qnaCnt) -1) {
+			if(i != prodQnA.size() -1) {
 				result += ", ";
 			}
 		}
