@@ -61,11 +61,13 @@ public class F_P001_D002ControllerImpl implements F_P001_D002Controller {
 		
 		ModelAndView mav = new ModelAndView("FleaMarket/p001_d002_fleaMain");
 		System.out.println("memberId" + memberId);
+		/*
 		if(memberId != null) {
 			String likeFlea = d002Service.likeFlea(searchMap);
 			mav.addObject("likeFlea", likeFlea);
 			System.out.println("----likeFlea" + likeFlea);
 		}
+		*/
 		
 		mav.addObject("searchList", list);
 		return mav;
