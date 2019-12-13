@@ -24,10 +24,16 @@ public class C_P002_D005DAOImpl implements C_P002_D005DAO{
 		sqlSession.insert("Customers.chat.insertMessage",c_p002_d005vo);
 		
 	}
+	
+	@Override
+	public List<C_P001_D001VO> selectSeller(Map<String, Object> searchMap) throws Exception {
+		List<C_P001_D001VO> list = sqlSession.selectList("Customers.chat.selectSeller",searchMap);
+		return list;
+	}
 
 	@Override
-	public List<C_P001_D001VO> selectMemberList(String memberid) throws Exception {
-		List<C_P001_D001VO> list = sqlSession.selectList("Customers.chat.selectMemberList",memberid);
+	public List<C_P001_D001VO> selectMemberList(Map<String, Object> searchMap) throws Exception {
+		List<C_P001_D001VO> list = sqlSession.selectList("Customers.chat.selectMemberList",searchMap);
 		return list;
 	}
 
@@ -40,6 +46,13 @@ public class C_P002_D005DAOImpl implements C_P002_D005DAO{
 	@Override
 	public List<C_P001_D001VO> selectSearchList(Map<String, String> searchMap) throws Exception {
 		List<C_P001_D001VO> list=sqlSession.selectList("Customers.chat.selectSearchList", searchMap);
+		return list;
+	}
+	
+
+	@Override
+	public String sellerId(Map<String, Object> searchMap) throws Exception {
+		String list=sqlSession.selectOne("Customers.chat.sellerId", searchMap);
 		return list;
 	}
 

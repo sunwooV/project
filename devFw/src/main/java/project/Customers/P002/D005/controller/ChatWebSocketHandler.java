@@ -92,12 +92,15 @@ private static final Map<WebSocketSession, C_P001_D001VO> sessionList = new Hash
 	private void showChatList(C_P002_D005FormVO C_P002_D005FormVO,WebSocketSession session,C_P001_D001VO c_p001_d001vo,ObjectMapper mapper) throws Exception {
 		HashMap<String,Object> body = C_P002_D005FormVO.getBody();
 		String memberid= (String) body.get("memberid");
+		String prod_number=(String) body.get("prod_number");
 		
 		System.out.println("handler memberId :: ++++ " + memberid + ", sender :: " + c_p001_d001vo.getMemberid());
 
 		C_P002_D005VO c_p002_d005vo = c_p002_d005Provider.get();
 		c_p002_d005vo.setSender(c_p001_d001vo.getMemberid());
 		c_p002_d005vo.setReceiver(memberid);
+		c_p002_d005vo.setProd_number(prod_number);
+		System.out.println("///////////////////////////////////" + memberid);
 		List<C_P002_D005VO> msgResult = c_p002_d005service.selectMessageList(c_p002_d005vo);
 		body.clear();
 		body.put("result",msgResult);		
@@ -110,11 +113,14 @@ private static final Map<WebSocketSession, C_P001_D001VO> sessionList = new Hash
 		HashMap<String,Object> body = C_P002_D005FormVO.getBody();
 		String receiver=(String) body.get("receiver");
 		String message=(String) body.get("message");
+		String prod_number=(String) body.get("prod_number");
+	
 		
 		C_P002_D005VO c_p002_d005vo = c_p002_d005Provider.get();
 		c_p002_d005vo.setSender(c_p001_d001vo.getMemberid());
 		c_p002_d005vo.setReceiver(receiver);
 		c_p002_d005vo.setContents(message);
+		c_p002_d005vo.setProd_number(prod_number);
 		c_p002_d005vo.setSend_date(new Date(Calendar.getInstance().getTimeInMillis()));
 		c_p002_d005service.insertMessage(c_p002_d005vo);
 		

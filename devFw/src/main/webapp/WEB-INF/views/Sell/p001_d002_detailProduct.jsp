@@ -943,6 +943,10 @@
 			}
 		};
 		
+		$(document).on('click', '#message', function(){
+			
+			
+		});
 
 		
 </script>
@@ -1728,7 +1732,7 @@ width:fit-content;
 									<c:if test="${member.getMemberid() != product.memberId }">
 										<input type="button" class="pay" id="bidding" value="입찰하기"
 											onclick="window.open('./bidProduct.do?prod_number=${product.prod_number}', 'window팝업', 'width=520, height=620, menubar=no, status=no, toolbar=no')" />
-										<input type="button" class="pay" id="message" value="메시지로 문의" />
+										<input type="button" class="pay" id="message" value="메시지로 문의" onClick="location.href='./chatInit.do?prod_number=${product.prod_number }'">
 									</c:if>
 
 								</c:if>

@@ -10,16 +10,17 @@
 		<result property="receiver" column="receiver" />
 		<result property="contents" column="contents" />
 		<result property="send_date" column="send_date" />
-		<result property="me_at" column="me_at" />		
+		<result property="me_at" column="me_at" />	
+		<result property="prod_number" column="prod_number" />		
 	</resultMap>
 	<resultMap id="membersResult" type="C_P001_D001VO">
 		<result property="memberid" column="memberid" />
 		<result property="nickname" column="nickname" />
 	</resultMap>
 	
-	<select id="selectMemberList" parameterType="string" resultMap="membersResult">
+	<select id="selectMemberList" parameterType="java.util.Map" resultMap="membersResult">
 	    <![CDATA[
-			SELECT  memberid, name, nickname
+			SELECT  memberid, nickname
 			FROM member b1,
 			(
 			    SELECT other_id,MAX(chat_no) max_no
@@ -39,18 +40,28 @@
 			ORDER BY max_no DESC
 	    ]]>
 	</select>
+	
+	<select id="selectSeller" parameterType="java.util.Map" resultMap="membersResult">
+	    <![CDATA[
+			 select memberid, nickname
+            from member
+            where memberid=#{memberid}
+	    ]]>
+	</select>
+	
+	
 
 	<select id="selectMessageList" parameterType="C_P002_D005VO" resultMap="messagesResult">
 	    <![CDATA[
 			SELECT t.*
 			FROM
 			(
-			    SELECT chat_no,sender,receiver,contents,send_date,'true' me_at
+			    SELECT chat_no,sender,receiver,contents,send_date,'true' me_at,prod_number
 			    FROM chat_list
 			    WHERE sender=#{sender}
 			    AND receiver=#{receiver}
 			    UNION ALL
-			    SELECT chat_no,sender,receiver,contents,send_date,'false' me_at
+			    SELECT chat_no,sender,receiver,contents,send_date,'false' me_at,prod_number
 			    FROM chat_list
 			    WHERE sender=#{receiver}
 			    AND receiver=#{sender}
@@ -65,6 +76,12 @@
       INSERT INTO chat_list (CONTENTS, RECEIVER, SENDER, send_date, chat_no) 
       VALUES (#{contents}, #{receiver}, #{sender},#{send_date}, chat_list_seq.nextval)
        ]]>
+       <if test="prod_number != null">
+       <![CDATA[
+         INSERT INTO chat_list (CONTENTS, RECEIVER, SENDER, send_date, chat_no, prod_number) 
+          VALUES (#{contents}, #{receiver}, #{sender},#{send_date}, chat_list_seq.nextval,#{prod_number})
+        ]]>
+        </if>
    </insert>
    
 
@@ -76,6 +93,14 @@
 			FROM member
 			WHERE memberid != #{memberid}
 			AND ( memberid LIKE '%'||#{keyword}||'%' OR nickname LIKE '%'||#{keyword}||'%' )
+	    ]]>
+	</select>
+	
+	<select id="sellerId" parameterType="java.util.Map" resultType="String">
+	    <![CDATA[
+	    	SELECT memberid
+			FROM product
+			WHERE prod_number = #{prod_number}
 	    ]]>
 	</select>
 </mapper>

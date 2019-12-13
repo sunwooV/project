@@ -10,7 +10,9 @@ public interface C_P002_D005Service {
 
 	public List<C_P002_D005VO> selectMessageList(C_P002_D005VO c_p002_d005vo) throws Exception;
 	public void insertMessage(C_P002_D005VO c_p002_d005vo) throws Exception;
-	public List<C_P001_D001VO> selectMemberList(String memberid) throws Exception;
+	public List<C_P001_D001VO> selectMemberList(Map<String, Object> searchMap) throws Exception;
 	public List<C_P001_D001VO> selectSearchList(Map<String, String> searchMap) throws Exception;
-
+	public List<C_P001_D001VO> selectSeller(Map<String, Object> searchMap) throws Exception;
+	
+	public String sellerId(Map<String, Object> searchMap) throws Exception;
 }

@@ -29,14 +29,26 @@ public class C_P002_D005ServiceImpl implements C_P002_D005Service {
 	}
 
 	@Override
-	public List<C_P001_D001VO> selectMemberList(String memberid) throws Exception {
-		List<C_P001_D001VO> list=c_p002_d005_DAO.selectMemberList(memberid);		
+	public List<C_P001_D001VO> selectMemberList(Map<String, Object> searchMap) throws Exception {
+		List<C_P001_D001VO> list=c_p002_d005_DAO.selectMemberList(searchMap);		
+		return list;
+	}
+	
+	@Override
+	public List<C_P001_D001VO> selectSeller(Map<String, Object> searchMap) throws Exception {
+		List<C_P001_D001VO> list=c_p002_d005_DAO.selectSeller(searchMap);		
 		return list;
 	}
 
 	@Override
 	public List<C_P001_D001VO> selectSearchList(Map<String, String> searchMap) throws Exception {
 		List<C_P001_D001VO> list=c_p002_d005_DAO.selectSearchList(searchMap);		
+		return list;
+	}
+	
+	@Override
+	public String sellerId(Map<String, Object> searchMap) throws Exception {
+		String list=c_p002_d005_DAO.sellerId(searchMap);		
 		return list;
 	}
 }
