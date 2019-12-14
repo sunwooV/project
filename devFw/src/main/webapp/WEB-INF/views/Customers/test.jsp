@@ -73,6 +73,8 @@ $(document).ready(function(){
 		//유저 선택전  막기
 	    $("#chat-footer>input[type=button]").prop('disabled',true);
 	    
+		
+		
 		//유저목록 클릭이벤트
 		$(document).on("click",".discussion",function(){
 			if(!$(this).hasClass("clicked")){
@@ -86,6 +88,7 @@ $(document).ready(function(){
 			    $("#chat-footer>input[type=button]").prop('disabled',false);//전송버튼 사용가능
 				$('#chat-message').empty();//메시지 창 비우기
 				$('.discussion').removeClass("clicked");//이전에 선택된 노드의 클래스 제거
+				
 				$(this).addClass('clicked');//클래스 붙이기
 
 				if($(this).parent().is('#search-list')){//search의 discuss일경우 people-list에서도 변경
@@ -102,6 +105,7 @@ $(document).ready(function(){
 					memberid:$(this).find('div.memberid').text()
 				}
 				sendText(ws,"chat_list",contents);
+				
 			}//end if
 		});//end discussion event
 		
@@ -118,6 +122,7 @@ $(document).ready(function(){
 	    			receiver : other
 	    		}
 		    	sendText(ws,"send_message",contents);
+	    		
 	    	}
 	    });
 		
@@ -293,7 +298,7 @@ $(document).ready(function(){
         var msgDate = document.createElement("div");
         var msgprod = document.createElement("div");
         var today = new Date();
-        
+        var title = document.getElementById("prodTitle").value;
         
         if(meCheck=="true"){
 			$(msgBox).addClass("message-right");        	
@@ -310,7 +315,7 @@ $(document).ready(function(){
         $(msgBox).append(msgDate);
         $("#chat-message").append(msgBox);
         
-        $("#chat-footer>textarea").val('')
+        $("#chat-footer>textarea").val(title)
         
         //스크롤 밑으로 내리기
         var height=document.getElementById('chat-message').scrollHeight;
@@ -673,11 +678,7 @@ textarea {
 </head>   
 <body>
 <c:set var="prod_number" value="${prod_number }" />
-<c:forEach var="prodlist" items="${prodlist }">
-<c:if test="${prod_number != null }">
-<div class="title">${prodlist.prod_title } 문의 입니다.</div>
-</c:if>
-</c:forEach>
+
    <div class="msg-container">
       <div id="people">
          <div id="people-search">
@@ -685,7 +686,7 @@ textarea {
          </div>
          <div id="people-list">
          	<c:forEach var="memberVO" items="${memberList}">
-	         	<div class="discussion">
+	         	<div class="discussion" >
 	
 	         		<div class="info">
 	         			<div class="nickname">${memberVO.nickname}</div>
@@ -706,10 +707,18 @@ textarea {
 				쪽지를 확인할 대상을 선택해주세요
 			</div>
          </div>
+         
          <div id="chat-footer">
-            <textarea></textarea>
+            <textarea >
+			</textarea>
+			
             <input type="button" value="전송">
+            
+            
          </div>
+         <c:forEach var="prodlist" items="${prodList }">
+         <input type="hidden" id="prodTitle" value="${prodList.prod_title }"/>
+            </c:forEach>
       </div>
    </div>
    	<div id="user-add">
