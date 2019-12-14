@@ -123,12 +123,6 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 											</c:otherwise>
 										</c:choose>
 
-
-										<p id="p">
-											<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-											<a href="${contextPath}/payInfo.do" class="btn btn-default"
-												id="ttt4" role="button">구매하기</a>
-										</p>
 									</div>
 								</div>
 								</a>
@@ -199,13 +193,6 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 												</c:if>
 											</c:otherwise>
 										</c:choose>
-
-
-										<p id="p">
-											<a href="#" class="btn btn-primary" id="ttt3" role="button">장바구니</a>
-											<a href="${contextPath}/payInfo.do" class="btn btn-default"
-												id="ttt4" role="button">구매하기</a>
-										</p>
 									</div>
 								</div>
 								</a>

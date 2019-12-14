@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="${contextPath }/resources/css/main.css">
+
 
 <style type="text/css">
 .orderHistoryHeader {
@@ -76,17 +76,17 @@
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
+
+
 	function requestPay() {
+		
+		
 		var name = document.getElementById('buyerName').value; // 주문자 이름
 		var postCode = document.getElementById('postcode').value; // 우편번호
 		var detailAddr = document.getElementById('detailAddr').value; //상세주소
 		var email = document.getElementById('email').value; //주문자 이메일
 		var phoneNum = document.getElementById('buyerPhone').value; //주문자 연락처
 		var product = document.getElementById('title').value;
-
-		var finalPrice = document.getElementById('prod_price').value;
-
-		alert(finalPrice);
 
 		// IMP.request_pay(param, callback) 호출
 		IMP.init("imp43398102"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
@@ -95,7 +95,7 @@
 			pay_method : "card",
 			merchant_uid : "ORD20180131-0000012",
 			name : product,
-			amount : 100,
+			amount : finalPrice,
 			buyer_email : email,
 			buyer_name : name,
 			buyer_tel : phoneNum,
@@ -104,6 +104,8 @@
 		}, function(rsp) { // callback
 			if (rsp.success) {
 
+				
+				
 				var msg = '결제가 완료되었습니다.';
 				msg += '고유ID : ' + rsp.imp_uid;
 				msg += '상점 거래ID : ' + rsp.merchant_uid;
@@ -119,15 +121,34 @@
 
 	}
 
-	function calcFinalPrice() {
-		var form = document.payInfo;
-		var prod_price = document.getElementById("prod_price").value;
-		console.log(prod_price);
+	$(document).ready(function(){
 
-		var ttlPrice = document.getElementById("total_price");
-		ttlPrice.value = prod_price + 2500;
-		return ttlPrice.value;
-	}
+		Number.prototype.format = function(){
+		    if(this==0) return 0;
+		 
+		    var reg = /(^[+-]?\d+)(\d{3})/;
+		    var n = (this + '');
+		 
+		    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+		 
+		    return n;
+		};
+		 
+		// 문자열 타입에서 쓸 수 있도록 format() 함수 추가
+		String.prototype.format = function(){
+		    var num = parseFloat(this);
+		    if( isNaN(num) ) return "0";
+		 
+		    return num.format();
+		};
+		
+		var price = document.getElementById('finalPrice');
+		price.value = <%=ttlPrice+2500%>;
+
+		var finalPrice = price.value.format();
+	
+		
+	});
 </script>
 </head>
 <body>
@@ -138,7 +159,7 @@
 			<h3>배송지 정보</h3>
 			<!-- 배송정보 테이블 -->
 			<input type="hidden" id="email" name="email"
-				value=<%=session.getAttribute("email")%>>
+				value=<%=session.getAttribute("email")%> >
 			<table id="form">
 				<tr id="d1">
 					<th class="OHT_ttl">배송지 선택</th>
@@ -178,18 +199,12 @@
 			<table id="form">
 				<tr>
 					<th class="OHT_ttl">결제 수단</th>
-					<td>&nbsp&nbsp<input type="radio" name="size" id="size_1" value="small" />
-						<label for="size_1">카카오페이</label>&nbsp&nbsp&nbsp&nbsp
+					<td>&nbsp&nbsp<input type="radio" name="size" id="size_1" value="small" /><label for="size_1">카카오페이</label>&nbsp&nbsp&nbsp&nbsp
 						<input type="radio" name="size" id="size_2" value="small" /> <label for="size_2">신용카드</label>&nbsp&nbsp&nbsp&nbsp 
 						<input type="radio" name="size" id="size_3" value="small" /> <label for="size_3">핸드폰 결제</label>
 					</td>
 				</tr>
-
-
-<tr>
-				
-
-
+				<tr>
 					<th class="OHT_ttl">포인트</th>
 					<td class="OHC_cont"><input type="number" id="custPoint">&nbsp&nbspP</td>
 				</tr>
@@ -203,14 +218,13 @@
 			<br>
 			<table id="form">
 				<tr>
-
 					<th class="OHT_ttl">상품정보</th>
-					<td class="OHC_cont"><%=title%></td>
+					<td class="OHC_cont" id="title"><%=title%></td>
 				</tr>
 				<tr>
 
 					<th class="OHT_ttl">상품 금액</th>
-					<td class="OHC_cont" id="prod_price"><%=ttlPrice%>원</td>
+					<td class="OHC_cont" id="prod_price"><fmt:formatNumber value="<%=ttlPrice %>" />원</td>
 				</tr>
 				<tr>
 
