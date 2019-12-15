@@ -94,11 +94,15 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 		String memberid = (String) session.getAttribute("memberid");
 		String prod = product.getProd_number();
 		String prodCnt = product.getProd_amount();
+		String realPrice = product.getReal_prod_price();
 
+		System.out.println(realPrice);
+		
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		dataMap.put("memberid", memberid);
 		dataMap.put("prod_number", prod);
 		dataMap.put("cart_count", prodCnt);
+		dataMap.put("real_prod_price", realPrice);
 
 		b_p001_d003Service.insertCart(dataMap);
 

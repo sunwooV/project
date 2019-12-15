@@ -77,50 +77,7 @@
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 
-
-	function requestPay() {
-		
-		
-		var name = document.getElementById('buyerName').value; // 주문자 이름
-		var postCode = document.getElementById('postcode').value; // 우편번호
-		var detailAddr = document.getElementById('detailAddr').value; //상세주소
-		var email = document.getElementById('email').value; //주문자 이메일
-		var phoneNum = document.getElementById('buyerPhone').value; //주문자 연락처
-		var product = document.getElementById('title').value;
-
-		// IMP.request_pay(param, callback) 호출
-		IMP.init("imp43398102"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
-		IMP.request_pay({ // param
-			pg : "inicis",
-			pay_method : "card",
-			merchant_uid : "ORD20180131-0000012",
-			name : product,
-			amount : finalPrice,
-			buyer_email : email,
-			buyer_name : name,
-			buyer_tel : phoneNum,
-			buyer_addr : detailAddr,
-			buyer_postcode : postCode
-		}, function(rsp) { // callback
-			if (rsp.success) {
-
-				
-				
-				var msg = '결제가 완료되었습니다.';
-				msg += '고유ID : ' + rsp.imp_uid;
-				msg += '상점 거래ID : ' + rsp.merchant_uid;
-				msg += '결제 금액 : ' + rsp.paid_amount;
-				msg += '카드 승인번호 : ' + rsp.apply_num;
-
-			} else {
-				var msg = '결제에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
-			}
-			alert(msg);
-		});
-
-	}
-
+	//페이지 켜자마자 총 주문 금액 계산
 	$(document).ready(function(){
 
 		Number.prototype.format = function(){
@@ -143,16 +100,78 @@
 		};
 		
 		var price = document.getElementById('finalPrice');
-		price.value = <%=ttlPrice+2500%>;
+		price.value = <%=ttlPrice+2500 %>;
 
 		var finalPrice = price.value.format();
-	
+		
+		price.innerHTML = finalPrice+"원";
 		
 	});
+	
+	//결제하기 눌렀을 때 결제창 띄우기
+	function requestPay() {		
+		var name = document.getElementById('buyerName').value; // 주문자 이름
+		var buyerMemberId = document.getElementById('#memberId').value; //주문자 아이디
+		var postCode = document.getElementById('postcode').value; // 우편번호
+		var detailAddr = document.getElementById('detailAddr').value; //상세주소
+		var email = document.getElementById('email').value; //주문자 이메일
+		var phoneNum = document.getElementById('buyerPhone').value; //주문자 연락처
+		var product = <%=title%>;
+		var price = document.getElementById('finalPrice').value;
+		
+		var pay_method = $('input[name=size]:checked').val();
+		
+		
+		
+		
+		
+		
+		
+		
+		// IMP.request_pay(param, callback) 호출
+		IMP.init("imp43398102"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
+		IMP.request_pay({ // param
+			pg : "inicis",
+			pay_method : pay_method,
+			merchant_uid : 'merchant_' + new Date().getTime(),
+			name : product,
+			amount : price,
+			buyer_email : email,
+			buyer_name : name,
+			buyer_tel : phoneNum,
+			buyer_addr : detailAddr,
+			buyer_postcode : postCode
+			
+			
+		}, function(rsp) { // callback
+			if (rsp.success) {
+				var orderInfo ={
+						order_num:rsp.merchant_uid,
+						pay_method:pay_method,
+						
+						
+				}
+				
+				
+				var msg = '결제가 완료되었습니다.';
+				msg += '고유ID : ' + rsp.imp_uid;
+				msg += '상점 거래ID : ' + rsp.merchant_uid;
+				msg += '결제 금액 : ' + rsp.paid_amount;
+				msg += '카드 승인번호 : ' + rsp.apply_num;
+
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				msg += '에러내용 : ' + rsp.error_msg;
+			}
+			alert(msg);
+		});
+
+	}
 </script>
 </head>
 <body>
 	<input type="hidden" id="memberId" value="${member.getMemberid()}">
+
 	<form name="payInfo">
 		<h2 style="padding-left: 18%; padding-top: 4%;">주문 및 결제 정보</h2>
 		<div class="container" id="pay">
@@ -199,14 +218,17 @@
 			<table id="form">
 				<tr>
 					<th class="OHT_ttl">결제 수단</th>
-					<td>&nbsp&nbsp<input type="radio" name="size" id="size_1" value="small" /><label for="size_1">카카오페이</label>&nbsp&nbsp&nbsp&nbsp
-						<input type="radio" name="size" id="size_2" value="small" /> <label for="size_2">신용카드</label>&nbsp&nbsp&nbsp&nbsp 
-						<input type="radio" name="size" id="size_3" value="small" /> <label for="size_3">핸드폰 결제</label>
+					<td>&nbsp&nbsp<input type="radio" name="size" id="kakaopay" value="small" /><label for="size_1">카카오페이</label>&nbsp&nbsp&nbsp&nbsp
+						<input type="radio" name="size" id="card" value="small" /> <label for="size_2">신용카드</label>&nbsp&nbsp&nbsp&nbsp 
+						<input type="radio" name="size" id="samsungPay" value="small" /> <label for="size_3">삼성페이</label>&nbsp&nbsp&nbsp&nbsp
+						<input type="radio" name="size" id="LPay" value="small" /> <label for="size_3">L.Pay</label>&nbsp&nbsp&nbsp&nbsp
+						<input type="radio" name="size" id="SSGPay" value="small" /> <label for="size_3">SSGPay</label>&nbsp&nbsp&nbsp&nbsp
+						<input type="radio" name="size" id="PAYCO" value="small" /> <label for="size_3">PAYCO</label>
 					</td>
 				</tr>
 				<tr>
 					<th class="OHT_ttl">포인트</th>
-					<td class="OHC_cont"><input type="number" id="custPoint">&nbsp&nbspP</td>
+					<td class="OHC_cont"><input type="number" id="custPoint">&nbsp&nbspP&nbsp&nbsp&nbsp&nbsp보유포인트 </td>
 				</tr>
 
 			</table>

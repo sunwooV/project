@@ -69,6 +69,9 @@
 .goToPayButton {
 	padding-left: 48%;
 }
+.choiceOrder{
+margin-left: 15%
+}
 </style>
 
 </head>
@@ -115,13 +118,13 @@
 							<input type="number" id="cart_count" min="1" max="${product.prod_amount}" style="border: 1px solid white;width: 8%;height: auto;text-align: right;" value="${cartList.cart_count}">
 							<input type="button" id="plus" onClick="updateCount('plus')" value="+">
 							</span></td>
-							<td class="OHC_cont" id="prod_price"><fmt:formatNumber value="${cartList.prod_price}" />원
+							<td class="OHC_cont" id="prod_price"><fmt:formatNumber value="${cartList.real_prod_price}" />원
 							</td>
-							<td class="OHC_cont"><span id="prod_ttl_price"><fmt:formatNumber value="${cartList.prod_price * cartList.cart_count}" />원
+							<td class="OHC_cont"><span id="prod_ttl_price"><fmt:formatNumber value="${cartList.real_prod_price * cartList.cart_count}" />원
 							</span></td>
 
 						</tr>
-						<c:set var="total" value="${total + cartList.prod_price*cartList.cart_count}" />
+						<c:set var="total" value="${total + cartList.real_prod_price*cartList.cart_count}" />
 						
 					</c:forEach>
 					<tr>
@@ -135,6 +138,10 @@
 					</tr>
 				</tbody>
 			</table>
+		</div>
+		<div class ="choiceOrder">
+		<button class="btn btn-dark" id="delProd">선택상품 삭제하기</button>&nbsp&nbsp
+		<button class="btn btn-dark" id="gotoLikeprod">관심상품으로 이동</button>
 		</div>
 		<div class="goToPayButton">
 			<button type="button" class="btn btn-dark" onClick="moveToPayInfo()" style="font-size: 16px;">주문하기</button>

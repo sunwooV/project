@@ -16,10 +16,19 @@ public class B_P001_D003VO {
 	private int cart_count;
 	private int option_number;
 	private int cart_list_number;
+	private int real_prod_price;
 	
 	
 	
 	
+	public int getReal_prod_price() {
+		return real_prod_price;
+	}
+
+	public void setReal_prod_price(int real_prod_price) {
+		this.real_prod_price = real_prod_price;
+	}
+
 	public B_P001_D003VO() {
 		System.out.println("B_P001_D003VO 호출");
 	}

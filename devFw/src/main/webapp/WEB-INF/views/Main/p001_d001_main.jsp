@@ -177,8 +177,7 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 											<c:otherwise>
 												<c:if test="${newProduct.sale_percent != null }">
 													<p>
-														<span id="p"><fmt:formatNumber
-																value="${newProduct.prod_price * (1-(newProduct.sale_percent*0.01)) }"
+														<span id="p"><fmt:formatNumber value="${newProduct.prod_price * (1-(newProduct.sale_percent*0.01)) }"
 																type="number" />원</span> <span id="sale_price"
 															style="margin-bottom: 1re;"><fmt:formatNumber
 																value="${newProduct.prod_price }" type="number" />원</span>
