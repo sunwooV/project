@@ -1520,10 +1520,10 @@ width:fit-content;
 							value="${product.prod_title }">
 						<c:if test="${product.flea_yn == 'y' }">
 							<!-- 플리마켓에 올라온 상품인 경우 플리마켓명도 함께 표시 -->
-							<h3 id="gray-text"><a href="./fleaMystore.do?flea_code=${product.fleamarket}">${fleaName }</a>(${product.memberId })</h3>
+							<h3 id="gray-text"><a href="./fleaMystore.do?flea_code=${product.fleamarket}">${fleaName }</a><a href="./sellerPage.do?memberId=${product.memberId }">(${product.memberId })</a></h3>
 						</c:if>
 						<c:if test="${product.flea_yn == 'n' }">
-							<h3 id="gray-text">${product.memberId }</h3>
+							<h3 id="gray-text"><a href="./sellerPage.do?memberId=${product.memberId }">${product.memberId }</a></h3>
 						</c:if>
 						<br>
 						<c:choose>
