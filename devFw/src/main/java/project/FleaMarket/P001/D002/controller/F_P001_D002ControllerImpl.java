@@ -51,20 +51,37 @@ public class F_P001_D002ControllerImpl implements F_P001_D002Controller {
 	public ModelAndView fleaMain(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> searchMap = new HashMap<String, Object>();
+		Map<String, Object> like = new HashMap<String, Object>();
 		String memberId = (String) session.getAttribute("memberid");
 		searchMap.put("memberId", memberId);
 		System.out.println("요기이ㅣ이");
 		
 		List list = d002Service.searchList(searchMap);
-		
 		System.out.println("list="+list);
 		for(int i = 0; i < list.size(); i++)
 		{
 			System.out.println(list.get(i));
-		}	
+		}		
 		
 		ModelAndView mav = new ModelAndView("FleaMarket/p001_d002_fleaMain");
 		System.out.println("memberId" + memberId);
+		for(int i = 0; i < list.size(); i++)
+		{
+			if(memberId != null) {
+				System.out.println("플리메인 - 관심스토어 뿌리기!!");
+				String flea_code = ((F_P001_D002VO)list.get(i)).getFlea_code();
+				System.out.println("플리메인 flea_code=" + flea_code);
+				if(flea_code != null) {
+					searchMap.put("flea_code", flea_code);
+					String likeFlea = d002Service.likeFlea(searchMap);
+					//like.put("flea_code", flea_code);
+					//like.put("like", likeFlea);
+					System.out.println("----likeFlea" + likeFlea);
+					//mav.addObject("like", like);
+					mav.addObject("likeFlea", likeFlea);
+				}
+			}
+		}
 		
 		/*
 		if(memberId != null) {
@@ -74,9 +91,7 @@ public class F_P001_D002ControllerImpl implements F_P001_D002Controller {
 			System.out.println("----likeFlea" + likeFlea);
 		}
 		*/
-				
 		mav.addObject("searchList", list);
-		
 		return mav;
 	}
 	

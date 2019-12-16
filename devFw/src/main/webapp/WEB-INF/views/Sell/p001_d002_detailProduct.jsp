@@ -1693,7 +1693,7 @@ width:fit-content;
 										<input type="button" class="pay" id="cart" value="장바구니" />
 										<input type="button" class="pay" id="buy" value="바로 구매" />
 										<!-- 							<input type="button" class="pay" id="kakaoPay" value="kakaoPay" /> -->
-										<input type="button" class="pay" id="message" value="메시지로 문의" />
+										<input type="button" class="pay" id="message" value="메시지로 문의" onClick="location.href='./chatInit.do?prod_number=${product.prod_number }'">
 									</c:if>
 
 								</c:if>
