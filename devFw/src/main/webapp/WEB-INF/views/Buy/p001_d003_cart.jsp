@@ -73,26 +73,7 @@
 	
 			
 	//수량 옵션 클릭 시 up & down
-	function updateCount(param){
-		var count = document.getElementById("cart_count");
-		
-		if(param == 'minus'){ 
-			if(count.value == count.min){
-				return false;
-			}else{
-				var change = count.value--;
-				count.innerHTML = change;
-			}
-		}else{
-			if(count.value == count.max){
-				return false;
-			}else{
-				var change = count.value++;
-				count.innerHTML = change;
-			}
-		}
-		
-	}
+	$
 	//관심상품 이동 후 카트에서 삭제
 	
 			
