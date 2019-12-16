@@ -1,5 +1,7 @@
 package project.CS.P001.D001.vo;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -9,7 +11,7 @@ public class CS_P001_D001VO {
 	private String no_title;
 	private String no_contents;
 	private String no_writer;
-	private String no_writedate;
+	private Date no_writedate;
 	private String no_view_cnt;
 	private String division;
 	private String title;
@@ -47,11 +49,11 @@ public class CS_P001_D001VO {
 		this.no_writer = no_writer;
 	}
 
-	public String getNo_writedate() {
+	public Date getNo_writedate() {
 		return no_writedate;
 	}
 
-	public void setNo_writedate(String no_writedate) {
+	public void setNo_writedate(Date no_writedate) {
 		this.no_writedate = no_writedate;
 	}
 
@@ -87,7 +89,10 @@ public class CS_P001_D001VO {
 		this.contents = contents;
 	}
 
+	@Override
+	public String toString() {
+		return "CS_P001_D001VO [no_writer=" + no_writer + ", no_writedate=" + no_writedate + "]";
+	}
 
-	
 
 }
