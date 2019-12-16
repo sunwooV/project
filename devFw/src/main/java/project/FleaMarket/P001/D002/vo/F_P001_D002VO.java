@@ -21,6 +21,7 @@ public class F_P001_D002VO {
 	private String join_offline_location = "";
 	private String join_prepayment_yn = "";
 	private String date_check = "";
+	private Date join_date;
 	
 	public F_P001_D002VO() {
 		System.out.println("MemberVO 생성자 호출");
@@ -138,6 +139,13 @@ public class F_P001_D002VO {
 		this.date_check = date_check;
 	}
 
+	public Date getJoin_date() {
+		return join_date;
+	}
+
+	public void setJoin_date(Date join_date) {
+		this.join_date = join_date;
+	}	
 	
 	
 	

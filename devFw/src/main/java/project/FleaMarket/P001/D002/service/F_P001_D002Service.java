@@ -22,4 +22,8 @@ public interface F_P001_D002Service {
 	 public void updateMember(Map<String, Object> datahMap) throws Exception;
 	 public void insertMember(Map<String, Object> datahMap) throws Exception;
 	 public void deleteMember(Map<String, Object> datahMap) throws Exception;
+	 public String heart(Map<String, Object> searchMap) throws DataAccessException;
+	 public void insertLikeFlea(Map<String, Object> datahMap) throws Exception;
+	 public void deleteLikeFlea(Map<String, Object> datahMap) throws Exception;	 
+	 public void updateHeart(Map<String, Object> datahMap) throws Exception;
 }

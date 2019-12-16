@@ -23,12 +23,13 @@
 
 	<select id="searchList" resultMap="p0001Result01" parameterType="java.util.Map"> 
       <![CDATA[
-         select *
-         from flea
+         select flea.*, join_date
+         from flea, joinflea
       ]]>
 		<where>
+			flea.flea_code = joinflea.flea_code
 			<if test=" flea_code != ''  and  flea_code != null">
-				flea_code = #{flea_code}
+				and flea_code = #{flea_code}
 			</if>
 		</where>
 	</select>
@@ -39,7 +40,6 @@
 		FROM likeFlea
 		<where>
 			flea_code = #{flea_code}
-			and memberId = #{memberId}
 		</where>
 	</select>
 	
@@ -81,5 +81,46 @@
 		   , email = #{email}
 		where id = #{id}
 	</update>
+
+	<insert id="insertLikeFlea" parameterType="java.util.Map">
+		<![CDATA[
+			INSERT INTO likeFlea (flea_code, memberId)
+			VALUES(#{flea_code}, #{memberId})
+		 ]]>
+	</insert>
+	
+	<delete id="deleteLikeFlea" parameterType="java.util.Map">
+		<![CDATA[
+			DELETE FROM likeFlea 
+		 ]]>
+		<where>
+		 	flea_code = #{flea_code}
+		 </where>
+	</delete>
+	
+	<update id="updateHeart" parameterType="java.util.Map">
+		<![CDATA[
+			UPDATE flea
+		 ]]>
+		 <if test="heart == 'up'">
+		 	SET flea_like_count = flea_like_count + 1
+		 </if>
+		 <if test="heart == 'down'">
+		 	SET flea_like_count = flea_like_count - 1
+		 </if>
+		 
+		 <where>
+		 	flea_code = #{flea_code}
+		 </where>
+	</update>
+	
+	<select id="heart" resultType="String" parameterType="java.util.Map">
+		SELECT  flea_like_count
+		FROM flea
+		<where>
+		flea_code = #{flea_code}
+		</where>
+	</select>
+	
 
 </mapper>

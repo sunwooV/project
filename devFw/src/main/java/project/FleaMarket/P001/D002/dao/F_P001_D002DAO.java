@@ -17,5 +17,8 @@ public interface F_P001_D002DAO {
 	 public void updateMember(Map<String, Object> datahMap) throws DataAccessException;
 	 public void insertMember(Map<String, Object> datahMap) throws DataAccessException;
 	 public void deleteMember(Map<String, Object> datahMap) throws DataAccessException;
-	 
+	 public String heart(Map<String, Object> searchMap) throws DataAccessException;
+	 public void insertLikeFlea(Map<String, Object> datahMap) throws DataAccessException;
+	 public void deleteLikeFlea(Map<String, Object> datahMap) throws DataAccessException;
+	 public void updateHeart(Map<String, Object> datahMap) throws DataAccessException;	 
 }

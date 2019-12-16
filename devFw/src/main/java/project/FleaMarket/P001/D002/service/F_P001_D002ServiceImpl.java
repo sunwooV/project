@@ -70,5 +70,28 @@ public class F_P001_D002ServiceImpl implements F_P001_D002Service {
 	public void updateRecruit(Map<String, Object> datahMap) throws Exception {
 		d002DAO.updateRecruit(datahMap);
 	}
+	
+	@Override
+	public String heart(Map<String, Object> searchMap) throws DataAccessException {
+		String heart =  d002DAO.heart(searchMap); 
+		return heart;
+	}
+	
+	@Override
+	public void insertLikeFlea(Map<String, Object> datahMap) throws Exception {
+		System.out.println("===insertLikeFlea====");
+		d002DAO.insertLikeFlea(datahMap);
+	}
+	
+	@Override
+	public void deleteLikeFlea(Map<String, Object> datahMap) throws Exception {
+		d002DAO.deleteLikeFlea(datahMap);
+	}
+	
+	@Override
+	public void updateHeart(Map<String, Object> datahMap) throws Exception {
+		System.out.println("updateHeart 해써용");
+		d002DAO.updateHeart(datahMap);
+	}
 
 }
