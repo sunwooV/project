@@ -17,7 +17,9 @@
 }
 
 #flea {
-	padding-left: 13%;
+	padding-right: 4%;
+	width: 97%;
+	padding-left: 14%;
 	padding-top: 1%;
 }
 
@@ -173,13 +175,14 @@ ul {
 }
 
 .ui_title__txt {
+	width: 103%;
 	color: #333;
 	font-size: 20px;
 	font-weight: 700;
-	margin-bottom: 24px;
-	padding-bottom: 4px;
-	padding-left: 2px;
+	margin-bottom: 2%;
+	padding-left: 1%;
 	border-bottom: 1px solid #d9d9d9;
+	width: 203%;
 }
 
 dt {
@@ -242,7 +245,7 @@ layout-split:after {
 
 #cardlist_section {
 	width: 50%;
-    padding: 2%;
+	padding: 2%;
 }
 
 /*pop-up*/
@@ -394,7 +397,7 @@ layout-split:after {
 
 .ui_card__inner {
 	height: 166px;
-    width: 507px;
+	width: 507px;
 }
 
 .ui_btn--large {
@@ -418,4 +421,211 @@ layout-split:after {
 	text-decoration: none;
 	color: #333;
 	cursor: pointer;
+}
+
+.layout-split.half>*:first-child {
+	margin-left: 0;
+}
+
+.layout-split.half>* {
+	width: 48%;
+	margin-left: 4%;
+	float: left;
+}
+
+.cardlist_section .split-cardlist .ui_card--side {
+	width: 100%;
+}
+
+.cardlist_section .split-cardlist .ui_card--side {
+	width: 100%;
+}
+
+.card-style.story .bordering {
+	border: 1px solid #d9d9d9;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	padding: 12px;
+	-webkit-transition: border-color 0.3s ease;
+	-o-transition: border-color 0.3s ease;
+	-moz-transition: border-color 0.3s ease;
+	transition: border-color 0.3s ease;
+	-webkit-box-shadow: 0 1px 3px 0 rgba(220, 220, 220, 0.3);
+	-moz-box-shadow: 0 1px 3px 0 rgba(220, 220, 220, 0.3);
+	box-shadow: 0 1px 3px 0 rgba(220, 220, 220, 0.3);
+}
+
+.card-style .area-rating {
+	overflow: hidden;
+	padding-bottom: 16px;
+	margin-bottom: 16px !important;
+	border-bottom: 1px solid #d9d9d9;
+}
+
+.masonry-grid .card-style.story .desc {
+	display: block;
+	height: auto;
+	overflow: hidden;
+	-o-text-overflow: initial;
+	text-overflow: initial;
+	max-height: 170px;
+}
+
+.deal_buy_review {
+	position: relative;
+	padding: 30px 0 30px 58px;
+	border: 1px solid #ddd;
+	background-color: #f9f9f9;
+}
+
+.first-part {
+	width: 200%;
+}
+
+.review_btn_area {
+	width: 160px;
+	position: absolute;
+	top: 50%;
+	right: 45px;
+	margin-top: -25px;
+	font-size: 16px;
+	padding: 0 24px;
+	line-height: 46px;
+	border-color: transparent;
+	background: #4c4646;
+	color: #fff;
+	border-radius: 3px;
+	text-align: center;
+}
+
+.btns_sys.red_big_d {
+	background-position: 100% -729px;
+	line-height: 48px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.rv_count {
+	display: inline-block;
+	margin: 4px 0 0 5px;
+	font-size: 14px;
+	line-height: 17px;
+	color: #999;
+	font-family: tahoma;
+	vertical-align: top;
+}
+
+.list_type>li {
+	position: relative;
+	padding-left: 6px;
+	color: #999;
+}
+
+.desc_cont .title_area.clear .total-sort span {
+	cursor: pointer;
+}
+
+.title_area .sort {
+	float: right;
+}
+
+.desc_cont .title_area.clear .sort .selbox_comm {
+	width: 86px;
+}
+
+.selbox_comm.v2 {
+	height: 30px;
+	padding: 4px 12px 0px 14px;
+}
+
+.selbox_comm {
+	float: left;
+	position: relative;
+	z-index: 10;
+	width: auto;
+	height: 36px;
+	padding: 0 12px 0 8px;
+	border: 1px solid #ddd;
+	background-color: #fff;
+}
+
+}
+.desc_cont .title_area.clear {
+	min-height: 32px;
+	margin-bottom: 15px;
+}
+
+.content_main .selbox_comm.on .btn_option:after, .ui-dialog .selbox_comm.on .btn_option:after
+	{
+	background-position: -190px -139px;
+}
+
+.selbox_comm.v2 .list_option a {
+	line-height: 19px;
+	padding-top: 2px;
+}
+
+.selbox_comm .list_option a {
+	display: block;
+	line-height: 34px;
+	padding-top: 2px;
+	color: #666;
+	text-decoration: none;
+	text-indent: 0px;
+}
+
+#prod_story_text {
+	width: 100%;
+	height: 140px;
+}
+
+textarea {
+	overflow: auto;
+	resize: vertical;
+}
+
+#buy, #bidding {
+	font-size: 16px;
+	padding: 0 24px;
+	line-height: 46px;
+	border-color: transparent;
+	background: #dd5850;
+	color: #fff;
+}
+
+#cart {
+	font-size: 16px;
+	padding: 0 24px;
+	line-height: 46px;
+	border-color: #dd5850;
+	background: #fff;
+	color: #dd5850;
+}
+
+.prod_story_wrap {
+	width: 98%;
+	background: #f9f9f9;
+	margin-top: 2%;
+	border: 1px solid #ddd;
+	padding: 30px 29px;
+}
+
+.btn_area {
+	text-align: center;
+}
+
+#paging {
+	text-align: center;
+	margin-top: 15px;
+}
+
+#paging>a {
+	padding-right: 5px;
+	cursor: pointer;
+}
+
+.boardering {
+	float: left;
 }
