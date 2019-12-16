@@ -4,10 +4,8 @@ import org.springframework.stereotype.Component;
 
 @Component("C_P003_D002VO")
 public class C_P003_D002VO {
-	private String category_code;
-	private String category_name;
-	private String highCategory;
-	private String category_cnt;
+	private String seller_group;
+	private String flea_seller_group;
 	private String prod_number;
 	private String prod_title;
 	private String prod_price;
@@ -17,30 +15,20 @@ public class C_P003_D002VO {
 	private String auction_yn;
 	private String flea_yn;
 	private String represent_image;
+	private String prod_amount;
 	
-	public String getCategory_code() {
-		return category_code;
+
+	public String getSeller_group() {
+		return seller_group;
 	}
-	public void setCategory_code(String category_code) {
-		this.category_code = category_code;
+	public void setSeller_group(String seller_group) {
+		this.seller_group = seller_group;
 	}
-	public String getCategory_name() {
-		return category_name;
+	public String getFlea_seller_group() {
+		return flea_seller_group;
 	}
-	public void setCategory_name(String category_name) {
-		this.category_name = category_name;
-	}
-	public String getHighCategory() {
-		return highCategory;
-	}
-	public void setHighCategory(String highCategory) {
-		this.highCategory = highCategory;
-	}
-	public String getCategory_cnt() {
-		return category_cnt;
-	}
-	public void setCategory_cnt(String category_cnt) {
-		this.category_cnt = category_cnt;
+	public void setFlea_seller_group(String flea_seller_group) {
+		this.flea_seller_group = flea_seller_group;
 	}
 	public String getProd_number() {
 		return prod_number;
@@ -95,6 +83,12 @@ public class C_P003_D002VO {
 	}
 	public void setRepresent_image(String represent_image) {
 		this.represent_image = represent_image;
+	}
+	public String getProd_amount() {
+		return prod_amount;
+	}
+	public void setProd_amount(String prod_amount) {
+		this.prod_amount = prod_amount;
 	}
 	
 	

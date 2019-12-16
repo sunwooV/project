@@ -23,6 +23,8 @@ import project.CS.P001.D001.vo.CS_P001_D001VO;
 import project.Customers.P002.D006.service.C_P002_D006Service;
 import project.Customers.P002.D006.vo.C_P002_D006VO;
 import project.Customers.P002.D014.vo.C_P002_D014VO;
+import project.Customers.P003.D002.service.C_P003_D002Service;
+import project.Customers.P003.D002.vo.C_P003_D002VO;
 
 
 @Controller("C_P002_D006Controller")
@@ -31,6 +33,8 @@ public class C_P002_D006ControllerImpl implements C_P002_D006Controller {
 
 	@Autowired
 	C_P002_D006Service c_p002_d006Service;
+	@Autowired
+	C_P003_D002Service C_P003_D002Service;
 
 
 	@Autowired
@@ -44,13 +48,26 @@ public class C_P002_D006ControllerImpl implements C_P002_D006Controller {
 		
 		String memberId = (String) session.getAttribute("memberid");
 		searchMap.put("memberId", memberId);
+		searchMap.put("sellerId", memberId);
 		searchMap.put("start", 1);
 		searchMap.put("end", 10);
 		List qnaList = c_p002_d006Service.listQna(searchMap);
 		String qnaSize = c_p002_d006Service.qnaSize(searchMap);
-
 		System.out.println("QNA" + qnaList);
+		
+		List sellerCheck = C_P003_D002Service.sellerCheck(searchMap);
+		List sellerProduct = C_P003_D002Service.sellerProduct(searchMap);
+		
+		String seller_group = ((C_P003_D002VO)sellerCheck.get(0)).getSeller_group();
+		String flea_seller_group = ((C_P003_D002VO)sellerCheck.get(0)).getFlea_seller_group();
+		
 		ModelAndView mav = new ModelAndView("Customers/p002_d006_QNA");
+		
+		//작성한 상품
+		mav.addObject("sellerProduct", sellerProduct);
+		mav.addObject("sellerId", memberId);
+		mav.addObject("seller_group", seller_group);
+		mav.addObject("flea_seller_group", flea_seller_group);
 
 		mav.addObject("qnaCnt", qnaSize);
 		mav.addObject("currentPage", 1);
@@ -80,8 +97,11 @@ public class C_P002_D006ControllerImpl implements C_P002_D006Controller {
 		
 		String memberId = (String) session.getAttribute("memberid");
 
+		searchMap.put("start", 1);
+		searchMap.put("end", 10);
 		searchMap.put("memberId", memberId);
 		List qnaList = c_p002_d006Service.listQna(searchMap);
+
 		
 		result += "[";
 		for(int i=0;i<qnaList.size();i++) {

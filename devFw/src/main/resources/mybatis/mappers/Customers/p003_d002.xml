@@ -17,6 +17,23 @@
 		<result property="sale_percent" column="sale_percent" />
 		<result property="prod_amount" column="prod_amount" />
 	</resultMap>
+	<resultMap id="C_P003_D002Result02" type="C_P003_D002VO">
+		<result property="seller_group" column="seller_group" />
+		<result property="flea_seller_group" column="flea_seller_group" />
+	</resultMap>
+	
+	<!-- seller_group, flea_seller_group 구분 -->
+	<select id="sellerCheck" parameterType="java.util.Map" resultMap="C_P003_D002Result02">
+	<![CDATA[
+			select seller_group, flea_seller_group
+			from member
+	 ]]>
+	 <where>
+	 <![CDATA[
+			memberId = #{sellerId}
+	 ]]>
+	 </where>
+	</select>
 
 	<!-- seller 상품 검색 -->
 	<select id="sellerProduct" parameterType="java.util.Map" resultMap="C_P003_D002Result01">

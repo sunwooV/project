@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>    
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  /> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,62 +11,73 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
-	$(document).on('click', 'deleteProd', function(){
+	$(document).on('click', '.deleteProd', function(){
 		var id = $(this).attr('id');
 		var frm = document.SellerProduct;
-		
-		if(id == 'selectDelte'){
-			if($("#myProductCheck").val() == null){
+		var myProductCheck = $("input:checkbox[name='myProductCheck']").is(":checked");
+		var checkProd = document.getElementsByName("myProductCheck");
+
+		if(id == 'selectDelete'){
+			if(myProductCheck == false){
 				alert("선택된 상품이 없습니다.");
 				return false;
 			} else {
-				document.getElemetById("delteDivision").value = 'select';
-				
+				document.getElementById("division").value = id;
 			}
 		} else{
-			document.getElemetById("delteDivision").value = 'all';
+			//모두 체크해서 보내기
+			for(i=0; i < checkProd.length; i++) {
+				checkProd[i].checked = true;
+			}
+			document.getElementById("division").value = id;
 		}
 		
 		if(confirm("정말 삭제하시겠습니까?")){
-			var deleteInfo = {
-					
-			}
-			$.ajax({
-				type: "post",
-				async: false,
-				url: "/devFw/sellerProductDelete.do",
-				data: qna,
-				dataType : 'text',
-				success: function(responseData){
-					
-					var data = JSON.parse(responseData);
-		           
-				},
-				error: function(data, textStatus){
-					alert("다시 시도해주세요.");
-				},
-				complete : function (data, textstatus){
-				}
-			});
+			
+			
+			frm.method="post";
+			frm.action="/devFw/sellerPage.do";
+			frm.submit();
 
 		} else { //alert 취소 버튼 눌렀을 경우
 			return false;
 		}
 	});
 </script>
+<style>
+.rank{
+	border: 3px solid #8a8282;
+    border-radius: 70px;
+    padding: 7px;
+}
+</style>
 </head>
 <body>
 <form name="SellerProduct">
+<div class="container">
 <c:set var="sellerId" value="${sellerId }"/>
 <c:set var="seller" value="${seller }"/>
-	<br><br>
+<c:set var="seller_group" value="${seller_group }"/>
+<c:set var="flea_seller_group" value="${flea_seller_group }"/>
+<input type="hidden" name="memberId" value="${sellerId }"/>
+	<br><br><br>
 	<c:if test="${seller == 'yes' }"> <!-- seller 자신이 들어왔을 경우 -->
-		나의 판매 물품 관리
+		<h1>나의 판매 물품 관리</h1>
 	</c:if>
 	<c:if test="${seller == 'no' }">
-		<h1>${sellerId } 님의 판매 물품</h1>
+	<h1 style="text-align:center;">
+		<c:if test="${(seller_group == 'y  ' or seller_group == 'Y  ') and flea_seller_group == 'N  '}"> <!-- 일반 판매자 -->
+			<img class="rank" src="${contextPath }/resources/img/memberDivision/sellerMember.png" width="50px" height="50px">"${sellerId }" 님의 판매 물품
+		</c:if>
+		<c:if test="${(seller_group == 'y  ' or seller_group == 'Y  ') and flea_seller_group == 'y  '}"> <!-- 일반 판매자 -->
+			<img class="rank" src="${contextPath }/resources/img/memberDivision/fleaMember.png" width="50px" height="50px">"${sellerId }" 님의 판매 물품
+		</c:if>
+		<c:if test="${seller_group == 'n  ' or seller_group == 'N  '}"> <!-- 일반 판매자 -->
+			해당 회원은 판매자가 아닙니다.
+		</c:if>
+	</h1>
 	</c:if>
-	<br><hr><br>
+	<hr><br>
 	<div class="row">
 		<c:forEach var="product" items="${sellerProduct }" varStatus="status">
 			<div class="col-sm-3">
@@ -134,11 +145,16 @@
 	</div>
 	<c:if test="${seller == 'yes' }">
 		<div id="sellerButton">
+			<input type="hidden" class="division" name="division" id="division" value="">
 			<input type="button" class="deleteProd" id="selectDelete" value="선택상품삭제">
 			<input type="button" class="deleteProd" id="allDelete" value="전체상품삭제">
-			<input type="hidden" name="delteDivision" value="">
+
+			
 		</div>
+
+	
 	</c:if>
+</div>
 </form>
 </body>
 </html>
