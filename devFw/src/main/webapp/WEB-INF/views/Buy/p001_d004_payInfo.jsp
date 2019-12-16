@@ -111,7 +111,7 @@
 	//결제하기 눌렀을 때 결제창 띄우기
 	function requestPay() {		
 		var name = document.getElementById('buyerName').value; // 주문자 이름
-		var buyerMemberId = document.getElementById('#memberId').value; //주문자 아이디
+		var buyerMemberId = document.getElementById('memberId').value; //주문자 아이디
 		var postCode = document.getElementById('postcode').value; // 우편번호
 		var detailAddr = document.getElementById('detailAddr').value; //상세주소
 		var email = document.getElementById('email').value; //주문자 이메일
@@ -121,7 +121,7 @@
 		
 		var pay_method = $('input[name=size]:checked').val();
 		
-		
+
 		
 		
 		
@@ -170,20 +170,18 @@
 </script>
 </head>
 <body>
-	<input type="hidden" id="memberId" value="${member.getMemberid()}">
+	<input type="hidden" id="buyer_memberId" value="${member.getMemberid()}">
 
 	<form name="payInfo">
 		<h2 style="padding-left: 18%; padding-top: 4%;">주문 및 결제 정보</h2>
 		<div class="container" id="pay">
 			<h3>배송지 정보</h3>
 			<!-- 배송정보 테이블 -->
-			<input type="hidden" id="email" name="email"
-				value=<%=session.getAttribute("email")%> >
+			<input type="hidden" id="email" name="email" value=<%=session.getAttribute("email")%> >
 			<table id="form">
 				<tr id="d1">
 					<th class="OHT_ttl">배송지 선택</th>
-					<td class="OHC_cont"><input type="button"value="새로운 주소+"
-						id="input_new_Address" onClick="newAddress()"></td>
+					<td class="OHC_cont"><input type="button"value="새로운 주소+" id="input_new_Address" onClick="newAddress()"></td>
 				</tr>
 
 

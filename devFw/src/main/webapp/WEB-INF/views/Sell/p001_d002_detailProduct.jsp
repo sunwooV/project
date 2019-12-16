@@ -403,11 +403,7 @@
 				},
 				complete : function (data, textstatus){
 				}
-			});
-
-			
-			
-			
+			});			
 		});
 		
 		
@@ -795,8 +791,6 @@
 
 		document.getElementById("total").innerHTML = total.format(); //천단위 , 찍어서 표현
 		document.getElementById("total_price").value = total;
-
-		
 	}
 	 
 	
