@@ -80,6 +80,12 @@
 	//click 시 주문결제로~~
 	function moveToPayInfo() {
 		var frm = document.Mycart;
+		var cnt = $("input:checkbox[name=checkProd]:checked").length;
+		
+		var body = document.getElementsByTagName("body");
+		
+		body.innerHTML = "<input type='hidden' name='cnt' value='"+cnt+"'>";
+		
 		frm.method = "post";
 		frm.submit();
 		frm.action = "/devFw/payInfo.do";
@@ -189,7 +195,7 @@ margin-left: 15%
 					<tr>
 						<td class="OHC_cont" colspan="6" style="height: 100px; font-size: 35px; text-align: right;">
 							<h3 style="color: #da2626;">
-								예상 결제 금액 = <span id="subTotal"></span>
+								예상 결제 금액 = <span id="subTotal"><fmt:formatNumber value="${total}" />원</span>
 							</h3> 
 							
 						</td>

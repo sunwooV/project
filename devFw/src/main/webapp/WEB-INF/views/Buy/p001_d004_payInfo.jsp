@@ -7,6 +7,7 @@
 	request.setCharacterEncoding("UTF-8");
 	int ttlPrice = Integer.parseInt(request.getParameter("totalPrice"));
 	String title = (String) request.getParameter("prod_title");
+	int cnt = Integer.parseInt(request.getParameter("cnt"));
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -239,7 +240,7 @@
 			<table id="form">
 				<tr>
 					<th class="OHT_ttl">상품정보</th>
-					<td class="OHC_cont" id="title"><%=title%></td>
+					<td class="OHC_cont" id="title"><%=title%>외 <%=cnt-1 %>개의 상품</td>
 				</tr>
 				<tr>
 
