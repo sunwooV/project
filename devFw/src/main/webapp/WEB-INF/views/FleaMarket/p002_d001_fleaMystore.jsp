@@ -218,10 +218,6 @@
 									class="fa fa-user-plus pa-5x"></i></a>
 							</font>
 						</div>
-						<!-- <p class="addmember"> -->
-						<!-- 	<a target="_blank" href="#" id="participants_add"><i
-								class="fa fa-user-plus pa-5x"></i></a> -->
-						<!-- </p> -->
 
 						<div class="profile-description">
 							<c:out value="${flea.intro_cotent}" />
@@ -267,7 +263,9 @@
 
 				<div class="border-row">
 					<nav class="nav-links">
-						<span>🏠홈<br></span> <span>📜스토리<br></span> <span>🧸판매 작품<br></span> <span>✍️구매 후기<br></span>
+						<span>🏠홈<br></span> <span>📜스토리<br></span> <span>🧸판매
+							작품<br>
+						</span> <span>✍️구매 후기<br></span>
 					</nav>
 				</div>
 
@@ -305,7 +303,7 @@
 
 		<!-- /.col-lg-3 -->
 		<div class=".col-sm-8"
-			style="width: 68%; border-left: 1px solid lightgray; padding-left: 1%;">
+			style="width: 74%; border-left: 1px solid lightgray; padding-left: 1%;">
 			<!--   <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel"> -->
 			<!-- 
           <ol class="carousel-indicators">
@@ -351,7 +349,7 @@
         </a>
     </div>
     -->
-			<div class="ui_title__txt">
+			<div class="ui_title__txt" style="width: 101%;">
 				<font size="3">📌오프라인 플리마켓 정보</font>
 			</div>
 			<!-- 플리 맵 추가 -->
@@ -408,7 +406,9 @@
 
 			<br>
 			<c:set var="flea_code" value="${flea_code }" />
-			<div class="ui_title__txt">
+
+
+			<div class="ui_title__txt" style="width: 101%;">
 				<font size="3"><a
 					href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>">🎁판매 상품</a></font>
 			</div>
@@ -416,7 +416,7 @@
 				<c:forEach var="newProduct" items="${newProduct}">
 					<c:if test="${newProduct.flea_yn == 'y'}">
 						<c:if test="${newProduct.fleamarket == flea_code}">
-							<div class="col-lg-3 col-md-5 mb-3">
+							<div class="col-lg-3 col-md-4 mb-3">
 
 								<div class="card h-100">
 									<a href="#"><img class="card-img-top"
@@ -463,12 +463,13 @@
 					</c:if>
 				</c:forEach>
 			</div>
-			<a href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>" class="ui_btn--large" style="margin-top: 2%;margin-left: 41%;">더보기</a>
+			<a href="/devFw/fleaProduct.do?flea_code=<%=flea_code%>"
+				class="ui_btn--large" style="margin-top: 2%; margin-left: 41%;">더보기</a>
 			<br>
 			<div class="row">
 				<div id="cardlist_section">
 					<div class="ui_title--sub">
-						<h3 class="ui_title__txt">
+						<h3 class="ui_title__txt" style="width:100%;">
 							<font size="3"><a
 								href="/devFw/fleaReview.do?flea_code=<%=flea_code%>">✏️구매후기</a></font>
 						</h3>
@@ -522,7 +523,7 @@
 
 				<div id="cardlist_section">
 					<div class="ui_title--sub">
-						<h3 class="ui_title__txt">
+						<h3 class="ui_title__txt" >
 							<font size="3"><a
 								href="/devFw/fleaStory.do?flea_code=<%=flea_code%>">📝스토리</a></font>
 						</h3>
@@ -551,7 +552,7 @@
 					<a href="/devFw/fleaStory.do?flea_code=<%=flea_code%>"
 						class="ui_btn--large" style="margin-left: 32%;">더보기</a>
 				</div>
-			
+
 			</div>
 
 		</div>
