@@ -73,4 +73,24 @@ public class F_P001_D002DAOImpl implements F_P001_D002DAO {
 		sqlSession.update("FleaMarket.p001_d002.updateRecruit", datahMap);
 	}
 
+	@Override
+	public String heart(Map<String, Object> searchMap) throws DataAccessException {
+		String heart = sqlSession.selectOne("FleaMarket.p001_d002.heart", searchMap);
+		return heart;
+	}
+	
+	@Override
+	public void insertLikeFlea(Map<String, Object> datahMap) throws DataAccessException {
+		sqlSession.update("FleaMarket.p001_d002.insertLikeFlea", datahMap);
+	}
+	
+	@Override
+	public void deleteLikeFlea(Map<String, Object> datahMap) throws DataAccessException {
+		sqlSession.update("FleaMarket.p001_d002.deleteLikeFlea", datahMap);
+	}
+	
+	@Override
+	public void updateHeart(Map<String, Object> datahMap) throws DataAccessException {
+		sqlSession.update("FleaMarket.p001_d002.updateHeart", datahMap);
+	}
 }

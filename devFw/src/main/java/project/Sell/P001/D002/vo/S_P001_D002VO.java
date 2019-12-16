@@ -39,7 +39,14 @@ public class S_P001_D002VO {
 	private String left_second;
 	private String cnt;
 	private String fleamarket;
+	private String real_prod_price;
 	
+	public String getReal_prod_price() {
+		return real_prod_price;
+	}
+	public void setReal_prod_price(String real_prod_price) {
+		this.real_prod_price = real_prod_price;
+	}
 	public S_P001_D002VO(){
 		System.out.println("S_P001_D002_VO 호출");
 	}

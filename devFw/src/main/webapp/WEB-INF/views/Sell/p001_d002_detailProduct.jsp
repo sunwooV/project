@@ -403,11 +403,7 @@
 				},
 				complete : function (data, textstatus){
 				}
-			});
-
-			
-			
-			
+			});			
 		});
 		
 		
@@ -795,8 +791,6 @@
 
 		document.getElementById("total").innerHTML = total.format(); //천단위 , 찍어서 표현
 		document.getElementById("total_price").value = total;
-
-		
 	}
 	 
 	
@@ -821,6 +815,7 @@
 		var memberId = $("#memberId").val();
 		var amount = $("#prod_amount").val();
 		var product = $('#prod_number').val();
+		var real_prod_price =$('#prod_price').val();
 		alert("prod_amount 출력 = "+amount);
 		
 		var command ='insert';
@@ -836,6 +831,7 @@
 					memberId:memberId,
 					prod_number:product,
 					prod_amount:amount,
+					real_prod_price:real_prod_price,
 					command:command
 				};
 					
@@ -1520,10 +1516,10 @@ width:fit-content;
 							value="${product.prod_title }">
 						<c:if test="${product.flea_yn == 'y' }">
 							<!-- 플리마켓에 올라온 상품인 경우 플리마켓명도 함께 표시 -->
-							<h3 id="gray-text"><a href="./fleaMystore.do?flea_code=${product.fleamarket}">${fleaName }</a>(${product.memberId })</h3>
+							<h3 id="gray-text"><a href="./fleaMystore.do?flea_code=${product.fleamarket}">${fleaName }</a><a href="./sellerPage.do?memberId=${product.memberId }">(${product.memberId })</a></h3>
 						</c:if>
 						<c:if test="${product.flea_yn == 'n' }">
-							<h3 id="gray-text">${product.memberId }</h3>
+							<h3 id="gray-text"><a href="./sellerPage.do?memberId=${product.memberId }">${product.memberId }</a></h3>
 						</c:if>
 						<br>
 						<c:choose>
@@ -1549,17 +1545,17 @@ width:fit-content;
 								<c:if test="${product.sale_percent != null }">
 									<!-- 세일 퍼센트가 존재한다면 -->
 									<span class="price">${product.sale_percent}%</span>
-									<span class="price" id="sold_price"><fmt:formatNumber
+									<span class="price" id="sold_price" ><fmt:formatNumber
 											value="${product.prod_price * (1-(product.sale_percent*0.01)) }"
 											type="number" />원</span>
-									<span id="sale_price"><fmt:formatNumber
+									<span id="sale_price" name="sold_price"><fmt:formatNumber
 											value="${product.prod_price }" type="number" />원</span>
 									<c:if
 										test="${product.auction_yn == 'w' or product.auction_yn == 'f' }">
 										<a href="./bidRecord.do?prod_number=${product.prod_number }"
 											style="font-size: medium; padding: 5px;"><u>경매기록</u></a>
 									</c:if>
-									<input type="hidden" id="prod_price"
+									<input type="hidden" id="prod_price" name="sold_price"
 										value="${product.prod_price * (1-(product.sale_percent*0.01)) }">
 
 								</c:if>
@@ -1572,7 +1568,7 @@ width:fit-content;
 										<a href="./bidRecord.do?prod_number=${product.prod_number }"
 											style="font-size: medium; padding: 5px;"><u>경매기록</u></a>
 									</c:if>
-									<input type="hidden" id="prod_price"
+									<input type="hidden" id="prod_price" name="sold_price"
 										value="${product.prod_price }">
 								</c:if>
 							</c:otherwise>
@@ -1622,7 +1618,7 @@ width:fit-content;
 							총 금액: <span id="total"></span>원
 						</c:otherwise>
 					</c:choose>
-							<input type="hidden" id="total_price" value=""> <br>
+							<input type="hidden" id="total_price" name="total_price" value=""> <br>
 							<br>
 							<div id ="deliveryTypeSection">
 								<c:choose>

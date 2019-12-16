@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 
 @Component("B_P001_D004VO")
 public class B_P001_D004VO {
-	//3테이블 공통사용
+	//2테이블 공통사용
 	private String order_num; 
 	
-	//order
+	//order(pay통합)
 	private String seller_memberid;
 	private String buyer_memberid;
 	private Date order_date;
@@ -17,6 +17,10 @@ public class B_P001_D004VO {
 	private String order_fix_yn;
 	private String order_state;
 	private String order_want;
+	private String pay_method;
+	private String pay_price;
+	private String pay_group;
+	private Date pay_date;
 	
 	//orderitems
 	private String prod_number;
@@ -24,11 +28,7 @@ public class B_P001_D004VO {
 	private String item_price;
 	private String get_method;
 	
-	//pay 
-	private String pay_method;
-	private String pay_price;
-	private String pay_group;
-	private Date pay_date;
+	
 	
 	public B_P001_D004VO() {
 		System.out.println("B_P001_D004VO 생성자호출!!!!");

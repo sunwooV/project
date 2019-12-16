@@ -94,11 +94,15 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 		String memberid = (String) session.getAttribute("memberid");
 		String prod = product.getProd_number();
 		String prodCnt = product.getProd_amount();
+		String realPrice = product.getReal_prod_price();
 
+		System.out.println(realPrice);
+		
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		dataMap.put("memberid", memberid);
 		dataMap.put("prod_number", prod);
 		dataMap.put("cart_count", prodCnt);
+		dataMap.put("real_prod_price", realPrice);
 
 		b_p001_d003Service.insertCart(dataMap);
 
@@ -107,18 +111,22 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 	// 장바구니 목록 삭제
 	@Override
 	@RequestMapping(value = "/delCart.do", method = { RequestMethod.GET, RequestMethod.POST })
-
+	@ResponseBody
 	public void delCart(@ModelAttribute S_P001_D002VO product, @ModelAttribute C_P001_D001VO member,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String memberId = (String) session.getAttribute("memberid");
-		String prod = product.getProd_number();
+		String[]prod = request.getParameterValues("delProd[]");
+		System.out.println(prod);
+		
+		for(int i = 0; i<prod.length; i++) {
+			
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("memberid", memberId);
-		resultMap.put("prod_number", prod);
+		resultMap.put("prod_number", prod[i]);
 
 		b_p001_d003Service.deleteCart(resultMap);
-
+		}
 	}
 
 	@Override
