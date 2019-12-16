@@ -34,12 +34,18 @@
 		</where>
 	</select>
 	
+	<select id="totalFlea" resultType="String" parameterType="java.util.Map">
+		SELECT  count(*) as cnt
+		FROM flea
+	</select>
+	
 	<!-- 관심 상품 -->
 	<select id="likeFlea" resultType="String" parameterType="java.util.Map">
 		SELECT  count(*) as cnt
 		FROM likeFlea
 		<where>
 			flea_code = #{flea_code}
+			and memberId = #{memberId}
 		</where>
 	</select>
 	
