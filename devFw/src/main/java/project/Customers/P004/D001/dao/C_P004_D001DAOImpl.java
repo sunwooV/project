@@ -36,6 +36,9 @@ public class C_P004_D001DAOImpl implements C_P004_D001DAO {
 	
 	@Override
 	public void black_out(Map<String, String> row) throws DataAccessException {
+		sqlSession.delete("Customers.black.prod_out",row);
+		sqlSession.delete("Customers.black.chat_out",row);
+		sqlSession.delete("Customers.black.togetherlist_out",row);
 		sqlSession.delete("Customers.black.black_out",row);
 		
 	}

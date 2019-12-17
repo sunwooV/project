@@ -132,7 +132,7 @@ private static final Map<WebSocketSession, C_P001_D001VO> sessionList = new Hash
 				c_p002_d005vo.setMe_at("false");				
 				body.clear();
 				body.put("result", c_p002_d005vo);
-				body.put("sender_id", c_p001_d001vo.getMemberid());
+				body.put("sender_info", c_p001_d001vo);
 				String result=mapper.writeValueAsString(C_P002_D005FormVO);
 				recSession.sendMessage(new TextMessage(result));
 			}
