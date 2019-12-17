@@ -1,6 +1,7 @@
 package project.Buy.P001.D003.controller;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,16 +72,38 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 
 	public void editCart(@ModelAttribute S_P001_D002VO product, @ModelAttribute C_P001_D001VO member,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String memberId = (String) session.getAttribute("memberid");
-		String prod = product.getProd_number();
-		String prodCnt = product.getProd_amount();
+	
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		Enumeration enu = request.getParameterNames();
+		while (enu.hasMoreElements()) {
+			String name = (String)enu.nextElement();
+			String value = request.getParameter(name);
+			dataMap.put(name, value);
+			System.out.println(dataMap);
+			
+		}
+		
+		String command = (String) dataMap.get("command");
+		
+		if(command != null) {
+			b_p001_d003Service.updateCart(dataMap);
+		} else {
+			String memberId = (String) session.getAttribute("memberid");
+			String prod = product.getProd_number();
+			String prodCnt = product.getProd_amount();
 
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("memberid", memberId);
-		resultMap.put("prod_number", prod);
-		resultMap.put("cart_count", prodCnt);
+			Map<String, Object> resultMap = new HashMap<String, Object>();
+			resultMap.put("memberid", memberId);
+			resultMap.put("prod_number", prod);
+			resultMap.put("cart_count", prodCnt);
 
-		b_p001_d003Service.updateCart(resultMap);
+			b_p001_d003Service.updateCart(resultMap);
+		}
+		
+		
+		
+		
 
 	}
 

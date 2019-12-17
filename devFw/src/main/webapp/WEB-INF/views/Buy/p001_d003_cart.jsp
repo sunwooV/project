@@ -20,7 +20,7 @@
 
 	//check box 전체 선택 
 	$(document).ready(function(){
-		$("#allCheck").prop
+		
 		
 		$("#allCheck").click(function(){
 			if($("#allCheck").prop("checked")){
@@ -29,7 +29,37 @@
 				$("input[name=checkProd]").prop("checked",false);
 			}
 		})
+		
+		var checkProd = document.getElementsByName("checkProd");
 
+		//모두 체크해서 보내기
+		for(i=0; i < checkProd.length; i++) {
+			checkProd[i].checked = true;
+		}
+		document.getElementsByName("allCheck")[0].checked = true;
+		
+		$("#checkProd").click(function(){
+			for(i=0; i < checkProd.length; i++) {
+				if(checkProd[i].checked == false){
+					document.getElementsByName("allCheck")[0].checked = false;
+					checkProd[i].checked = false;
+				
+				}
+			}
+		})// end of checkProd click function
+
+		var cnt = $("input:checkbox[name=checkProd]:checked"); // 체크된 체크박스 가져오기
+		
+		var prodInfo=[];
+		var total;
+		cnt.each(function(i){
+			prodInfo[i] = cnt.children().children().children().children().children().text();
+			
+			total+=prodInfo[i];
+		})
+		var subTotal = document.getElementById("subTotal");
+		subTotal.innerHTML = total;
+		
 	});
 	
 	//선택 상품 삭제 
@@ -69,13 +99,6 @@
 		}//end of if
 		
 	})
-	//check된 값에 따라 가격 계산해주기
-	
-			
-	//수량 옵션 클릭 시 up & down
-	$
-	//관심상품 이동 후 카트에서 삭제
-	
 			
 	//click 시 주문결제로~~
 	function moveToPayInfo() {
@@ -84,13 +107,94 @@
 		
 		var body = document.getElementsByTagName("body");
 		
-		body.innerHTML = "<input type='hidden' name='cnt' value='"+cnt+"'>";
+		body.innerHTML = "<input type='hidden' id='cnt' name='cnt' value='"+cnt+"'>";
 		
 		frm.method = "post";
 		frm.submit();
 		frm.action = "/devFw/payInfo.do";
 
 	}
+	
+	//+, - 버튼 눌렀을 때 수량 변경
+	function abuttonClick(pm, num){ //pm:plus,minus / num: prod_number 
+ 		var price = $(".pri" + num).text();
+		var amount = document.getElementsByName("count" + num)[0];
+
+		if(pm == 'minus'){
+			if(amount.value == amount.min){ 
+				return false;
+			}else{
+				amount.value--;
+			}
+		} else { //plus 버튼 눌렀을 때
+			if(amount.value == amount.max){ //재고 수량보다 더 많이 주문할 수 없도록 설정
+				return false;
+			}else{
+				amount.value++;
+			}
+		}
+		var memberId=$('#memberId').val();
+		var command = $("#command").val();
+		var prod_number = num;
+		var editCount = 'a'+prod_number;
+		
+		var count = $("."+editCount).val();
+		
+	
+		var edit = {
+				command:command,
+				memberid:memberId,
+				prod_number:prod_number,
+				cart_count:count
+		}
+		$.ajax({
+			type:"get",
+			async:false,
+			url:"/devFw/editCart.do",
+			data :edit,
+			dataType:"text",
+			
+			success: function(responseData){
+				console.log('수량 변경 성공');		
+				
+			},
+			error:function(data, textStatus){
+				alert("장바구니에 수정 실패")
+			},
+			complete : function(data, textStatus){
+				alert("장바구니에 상품 옵션 수정완료!")				
+			} // end of second ajax complete
+		});//end of ajax
+	
+		// 숫자 타입에서 쓸 수 있도록 format() 함수 추가
+		Number.prototype.format = function(){
+		    if(this==0) return 0;
+		 
+		    var reg = /(^[+-]?\d+)(\d{3})/;
+		    var n = (this + '');
+		 
+		    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+		 
+		    return n;
+		};
+
+		// 문자열 타입에서 쓸 수 있도록 format() 함수 추가
+		String.prototype.format = function(){
+		    var num = parseFloat(this);
+		    if( isNaN(num) ) return "0";
+		 
+		    return num.format();
+		};
+
+		var total = amount.value * price;
+
+
+		document.getElementsByName("t"+num)[0].innerHTML = total.format(); //천단위 , 찍어서 표현
+		document.getElementsByName("t"+num)[0].value = total;
+	}
+
+	//관심상품 이동 후 카트에서 삭제
+	 
 
 </script>
 
@@ -141,7 +245,7 @@ margin-left: 15%
 
 </head>
 <body>
-
+	<input type="hidden" id="command" name="command" value="edit">
 	<input type="hidden" id="memberId" value="${member.getMemberid()}">
 	<form name="Mycart" method="post" action="./payInfo.do">
 		<!-- 장바구니 상단 -->
@@ -154,7 +258,7 @@ margin-left: 15%
 				<!-- 주문 상품 정보 테이블 상단 제목   -->
 				<thead class="orderHistoryTableTitles">
 					<tr class="OHtableTitle">
-						<th class="OHT_ttl"><input type="checkbox" id="allCheck" name="allCheck" ></th>
+						<th class="OHT_ttl"><input type="checkbox" id="allCheck" name="allCheck"></th>
 						<th class="OHT_ttl"><span>상품이미지</span></th>
 						<th class="OHT_ttl"><span>상품정보</span></th>
 						<th class="OHT_ttl"><span>수량</span></th>
@@ -167,7 +271,7 @@ margin-left: 15%
 					<c:forEach var="cartList" items="${dataList}" varStatus="status">
 						<input type="hidden" id="prod_price" value="${cartList.prod_price}">
 						<tr class="orderHistoryContents">
-							<td class="OHC_cont"><input type="checkbox" name="checkProd" id="checkProd" value="${cartList.prod_number}" > 
+							<td class="OHC_cont"><input type="checkbox" name="checkProd" id="checkProd" value="${cartList.prod_number}"> 
 				<%-- 			<input type="hidden" name="prod_number" value="${cartList.prod_number}"> --%>
 							</td>
 							<td class="OHC_cont"><a href ="${contextPath}/detail.do?prod_number=${cartList.prod_number}"><img src="${cartList.represent_image}" name="represent_image" style="width: 100px; height: 125px;">
@@ -176,26 +280,26 @@ margin-left: 15%
 							<c:if test="${status.index eq 0 }">
 							<c:set var="firstProdTitle" value="${cartList.prod_title}" />
 							</c:if>
-						<input type="hidden" name="prod_title" value="${firstProdTitle}">
+							<input type="hidden" name="prod_title" value="${firstProdTitle}">
 							</td>
-							<td class="OHC_cont"><span id="cart_count">
-							<input type="button" id="minus" onClick="updateCount('minus')" value="-">
-							<input type="number" id="cart_count" min="1" max="${product.prod_amount}" style="border: 1px solid white;width: 8%;height: auto;text-align: right;" value="${cartList.cart_count}">
-							<input type="button" id="plus" onClick="updateCount('plus')" value="+">
-							</span></td>
-							<td class="OHC_cont" id="prod_price">${cartList.real_prod_price}원
+							<td class="OHC_cont">
+							<input type="button" onClick="abuttonClick('minus',${cartList.prod_number })" value="-">
+							<input type="number" class="a${cartList.prod_number }" id="cart_count" name="count${cartList.prod_number }" min="1" max="${cartList.prod_amount}" style="text-align:center; border: 1px solid white;width: 20%; height: auto;text-align: right;" value="${cartList.cart_count}">
+							<input type="button" onClick="abuttonClick('plus',${cartList.prod_number })" class="${cartList.prod_number }" value="+">
+							
+
 							</td>
-							<td class="OHC_cont"><span id="prod_ttl_price"><fmt:formatNumber value="${cartList.real_prod_price * cartList.cart_count}" />원
-							</span></td>
+							<td class="OHC_cont" id="prod_price"><span class="pri${cartList.prod_number }">${cartList.real_prod_price}</span>원
+							</td>
+							<td class="OHC_cont"><span id="prod_ttl_price" name="t${cartList.prod_number }"><fmt:formatNumber value="${cartList.real_prod_price * cartList.cart_count}" />
+							</span>원</td>
 
 						</tr>
-						<c:set var="total" value="${total + cartList.real_prod_price*cartList.cart_count}" />
-						
 					</c:forEach>
 					<tr>
 						<td class="OHC_cont" colspan="6" style="height: 100px; font-size: 35px; text-align: right;">
 							<h3 style="color: #da2626;">
-								예상 결제 금액 = <span id="subTotal"><fmt:formatNumber value="${total}" />원</span>
+								예상 결제 금액 = <span id="subTotal"></span>
 							</h3> 
 							
 						</td>

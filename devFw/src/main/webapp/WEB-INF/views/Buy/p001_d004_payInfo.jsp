@@ -240,7 +240,7 @@
 			<table id="form">
 				<tr>
 					<th class="OHT_ttl">상품정보</th>
-					<td class="OHC_cont" id="title"><%=title%>외 <%=cnt-1 %>개의 상품</td>
+					<td class="OHC_cont" id="title"><%=title%>외 <%=cnt%>개의 상품</td>
 				</tr>
 				<tr>
 
