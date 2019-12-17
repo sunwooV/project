@@ -21,12 +21,13 @@
 <body>
 </head>
 <body>
-<div style="margin-top:5%;">
+
 	<div class="w3-content w3-container w3-margin-top">
-		<div class="container" style="padding-top: 3%;margin-top: 1%;width: 37%;margin: auto;" >
+		<div class="container"
+			style="padding-top: 3%; width: 37%; margin: auto;">
 
 
-			<h2 style="padding-left: 36%;margin-top: 3%;padding-bottom: 8%;">로그인</h2>
+			<h2 style="padding-left: 36%; margin-top: 3%; padding-bottom: 8%;">로그인</h2>
 
 			<div>
 				<form name="frm" method="post" action="${contextPath}/login.do">
@@ -62,6 +63,6 @@
 			</div>
 		</div>
 	</div>
-	</div>
+
 </body>
 </html>
