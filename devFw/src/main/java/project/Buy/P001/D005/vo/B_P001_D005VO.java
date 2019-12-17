@@ -6,212 +6,186 @@ import org.springframework.stereotype.Component;
 
 @Component("B_P001_D005VO")
 public class B_P001_D005VO {
-	
-	
-	//response 받을 데이터!
-    private String aid, tid, cid;
-    private String partner_order_id, partner_user_id, payment_method_type;
-    private AmountVO amount;
-    private CardVO card_info;
-    private String item_name, item_code, payload;
-    private Integer quantity, tax_free_amount, vat_amount;
-    private Date created_at, approved_at;
-    
-	
+	//2테이블 공통사용
+		private String order_num; 
 		
-	public B_P001_D005VO() {
-		System.out.println("B_P001_D005VO생성자호출!");
-	}
+		//order(pay통합)
+		private String seller_memberid;
+		private String buyer_memberid;
+		private Date order_date;
+		private String total_price;
+		private String order_fix_yn;
+		private String order_state;
+		private String order_want;
+		private String pay_method;
+		private String pay_price;
+		
+		
+		//orderitems
+		private String prod_number;
+		private	String quantity;
+		private String item_price;
+		private String get_method;
+		
+		//destination
+		private String destination_number;
+		private String destination_name;
+		private String desination_address;
+		private String recipient;
+		private String call_number;
+
+		
+		public String getDestination_number() {
+			return destination_number;
+		}
+
+		public void setDestination_number(String destination_number) {
+			this.destination_number = destination_number;
+		}
+
+		public String getDestination_name() {
+			return destination_name;
+		}
+
+		public void setDestination_name(String destination_name) {
+			this.destination_name = destination_name;
+		}
+
+		public String getDesination_address() {
+			return desination_address;
+		}
+
+		public void setDesination_address(String desination_address) {
+			this.desination_address = desination_address;
+		}
+
+		public String getRecipient() {
+			return recipient;
+		}
+
+		public void setRecipient(String recipient) {
+			this.recipient = recipient;
+		}
+
+		public String getCall_number() {
+			return call_number;
+		}
+
+		public void setCall_number(String call_number) {
+			this.call_number = call_number;
+		}
+
+		public String getOrder_num() {
+			return order_num;
+		}
+
+		public void setOrder_num(String order_num) {
+			this.order_num = order_num;
+		}
+
+		public String getSeller_memberid() {
+			return seller_memberid;
+		}
+
+		public void setSeller_memberid(String seller_memberid) {
+			this.seller_memberid = seller_memberid;
+		}
+
+		public String getBuyer_memberid() {
+			return buyer_memberid;
+		}
+
+		public void setBuyer_memberid(String buyer_memberid) {
+			this.buyer_memberid = buyer_memberid;
+		}
+
+		public Date getOrder_date() {
+			return order_date;
+		}
+
+		public void setOrder_date(Date order_date) {
+			this.order_date = order_date;
+		}
+
+		public String getTotal_price() {
+			return total_price;
+		}
 
+		public void setTotal_price(String total_price) {
+			this.total_price = total_price;
+		}
 
+		public String getOrder_fix_yn() {
+			return order_fix_yn;
+		}
 
-	public String getAid() {
-		return aid;
-	}
+		public void setOrder_fix_yn(String order_fix_yn) {
+			this.order_fix_yn = order_fix_yn;
+		}
 
+		public String getOrder_state() {
+			return order_state;
+		}
 
+		public void setOrder_state(String order_state) {
+			this.order_state = order_state;
+		}
 
-	public void setAid(String aid) {
-		this.aid = aid;
-	}
+		public String getOrder_want() {
+			return order_want;
+		}
 
+		public void setOrder_want(String order_want) {
+			this.order_want = order_want;
+		}
 
+		public String getProd_number() {
+			return prod_number;
+		}
 
-	public String getTid() {
-		return tid;
-	}
+		public void setProd_number(String prod_number) {
+			this.prod_number = prod_number;
+		}
 
+		public String getQuantity() {
+			return quantity;
+		}
 
+		public void setQuantity(String quantity) {
+			this.quantity = quantity;
+		}
 
-	public void setTid(String tid) {
-		this.tid = tid;
-	}
+		public String getItem_price() {
+			return item_price;
+		}
 
+		public void setItem_price(String item_price) {
+			this.item_price = item_price;
+		}
 
+		public String getGet_method() {
+			return get_method;
+		}
 
-	public String getCid() {
-		return cid;
-	}
+		public void setGet_method(String get_method) {
+			this.get_method = get_method;
+		}
 
+		public String getPay_method() {
+			return pay_method;
+		}
 
+		public void setPay_method(String pay_method) {
+			this.pay_method = pay_method;
+		}
 
-	public void setCid(String cid) {
-		this.cid = cid;
-	}
+		public String getPay_price() {
+			return pay_price;
+		}
 
-	public String getPartner_order_id() {
-		return partner_order_id;
-	}
+		public void setPay_price(String pay_price) {
+			this.pay_price = pay_price;
+		}
 
-
-	public void setPartner_order_id(String partner_order_id) {
-		this.partner_order_id = partner_order_id;
-	}
-
-
-
-	public String getPartner_user_id() {
-		return partner_user_id;
-	}
-
-
-
-	public void setPartner_user_id(String partner_user_id) {
-		this.partner_user_id = partner_user_id;
-	}
-
-
-
-	public String getPayment_method_type() {
-		return payment_method_type;
-	}
-
-
-
-	public void setPayment_method_type(String payment_method_type) {
-		this.payment_method_type = payment_method_type;
-	}
-
-
-
-	public AmountVO getAmount() {
-		return amount;
-	}
-
-
-
-	public void setAmount(AmountVO amount) {
-		this.amount = amount;
-	}
-
-
-
-	public CardVO getCard_info() {
-		return card_info;
-	}
-
-
-
-	public void setCard_info(CardVO card_info) {
-		this.card_info = card_info;
-	}
-
-
-
-	public String getItem_name() {
-		return item_name;
-	}
-
-
-
-	public void setItem_name(String item_name) {
-		this.item_name = item_name;
-	}
-
-
-
-	public String getItem_code() {
-		return item_code;
-	}
-
-
-
-	public void setItem_code(String item_code) {
-		this.item_code = item_code;
-	}
-
-
-
-	public String getPayload() {
-		return payload;
-	}
-
-
-
-	public void setPayload(String payload) {
-		this.payload = payload;
-	}
-
-
-
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-
-
-
-	public Integer getTax_free_amount() {
-		return tax_free_amount;
-	}
-
-
-
-	public void setTax_free_amount(Integer tax_free_amount) {
-		this.tax_free_amount = tax_free_amount;
-	}
-
-
-
-	public Integer getVat_amount() {
-		return vat_amount;
-	}
-
-
-
-	public void setVat_amount(Integer vat_amount) {
-		this.vat_amount = vat_amount;
-	}
-
-
-
-	public Date getCreated_at() {
-		return created_at;
-	}
-
-
-
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
-	}
-
-
-
-	public Date getApproved_at() {
-		return approved_at;
-	}
-
-
-
-	public void setApproved_at(Date approved_at) {
-		this.approved_at = approved_at;
-	}
-	
-	
 }
 	

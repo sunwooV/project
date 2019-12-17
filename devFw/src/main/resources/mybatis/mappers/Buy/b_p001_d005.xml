@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Buy.P001.D005">
+	<resultMap id="B_P001_D005Result01" type="B_P001_D005VO">
+		<!-- order_num은 2 테이블 공통 사용-->
+		<result property="order_num" column="order_num" />
+		<!-- order 1번으로 insert -->
+		<result property="seller_memberid" column="seller_memberid" />
+		<result property="buyer_memberid" column="buyer_memberid" />
+		<result property="order_date" column="order_date" />
+		<result property="total_price" column="total_price" />
+		<result property="order_fix_yn" column="order_fix_yn" />
+		<result property="order_state" column="order_state" />
+		<result property="order_want" column="order_want" />
+		<result property="pay_method" column="pay_method" />
+	
+		<!-- orderitems  2번 insert -->
+		<result property="prod_number" column="prod_number" />
+		<result property="quantity" column="quantity" />
+		<result property="item_price" column="item_price" />
+		<result property="get_method" column="get_method" />
+		<!-- destination-->
+		
+		<result property="prod_number" column="prod_number" />
+		<result property="quantity" column="quantity" />
+		<result property="item_price" column="item_price" />
+		<result property="get_method" column="get_method" />
+	</resultMap>
+	<insert id="insertOrder" parameterType="java.util.Map">
+		<![CDATA[
+         insert into orders(order_num, buyer_memberid, order_date, total_price, order_want)
+            values(#{order_num},#{buyer_memberid},sysdate,#{total_price},#{order_want})
+	  ]]>
+	</insert>
+	<insert id="insertOrderitems" >
+		<![CDATA[
+         insert into orderitmes()
+            values ()
+	  ]]>
+	</insert>
+	
+	<insert id="InsertDestination" parameterType="java.util.Map">
+	<!--order=before는 인서트하기전에 한당 -->
+		<selectKey order="BEFORE" resultType="int" keyProperty="destination_number">
+			<![CDATA[ 
+			SELECT nvl2((max(destination_number) + 1), (max(return_number) + 1), 1) 
+			FROM destination 
+			]]>
+		</selectKey>
+	 	<![CDATA[
+         insert into destination(recipient, destination_address, call_number, memberid)
+            values (#{recipient},#{destination_address},#{call_number},#{memberid})
+	  ]]>
+	
+	</insert>
+</mapper>

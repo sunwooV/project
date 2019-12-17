@@ -112,17 +112,19 @@
 	//결제하기 눌렀을 때 결제창 띄우기
 	function requestPay() {		
 		var name = document.getElementById('buyerName').value; // 주문자 이름
-		var buyerMemberId = document.getElementById('memberId').value; //주문자 아이디
+		var buyerMemberId = document.getElementById('buyer_memberId').value; //주문자 아이디
 		var postCode = document.getElementById('postcode').value; // 우편번호
 		var detailAddr = document.getElementById('detailAddr').value; //상세주소
 		var email = document.getElementById('email').value; //주문자 이메일
 		var phoneNum = document.getElementById('buyerPhone').value; //주문자 연락처
-		var product = <%=title%>;
+		var product = "<%=title%>";
 		var orderWant = document.getElementById('orderWant').value;
 		
 		var pay_method = $('input[name=size]:checked').val();
-				
+		console.log(pay_method);
 		var price = <%=ttlPrice %>;
+		
+		var addr = "("+postCode+")"+detailAddr;
 		
 		// IMP.request_pay(param, callback) 호출
 		IMP.init("imp43398102"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
@@ -147,32 +149,54 @@
 						pay_method:pay_method,
 						order_state: "결제완료",
 						buyer_memberId: buyerMemberId,
-						order_date: new Date(),
 						total_price: price,
 						order_want: orderWant
 				}
+				
+				var destInfo ={
+						recipient: name,
+						destination_address: addr,
+						call_number:phoneNum,
+						memberid:buyerMemberId
+				}
+				
 				$.ajax({
-					type:"get",
+					type:"post",
 					async:false,
-					url:"/devFw/editCart.do",
-					data :edit,
+					url:"/devFw/insertOrders.do",
+					data :orderInfo,
 					dataType:"text",
 					
 					success: function(responseData){
-						console.log('수량 변경 성공');		
+						console.log('결제성공');
+						//결제 성공 시 배송지 정보에 저장!
+						$.ajax({
+							type:"post",
+							async:false,
+							url:"/devFw/insertDest.do",
+							data :destInfo,
+							dataType:"text",
+							
+							success: function(responseData){
+								console.log('주문 정보 삽입 성공');		
+							},
+							error:function(data, textStatus){
+								console.log("주문 정보 삽입 실패")
+							},
+							complete : function(data, textStatus){
+										
+							}
+						})//end of ajax2
 						
 					},
 					error:function(data, textStatus){
-						alert("장바구니에 수정 실패")
+						alert("결제실패")
 					},
 					complete : function(data, textStatus){
-						console.log("장바구니에 상품 옵션 수정완료!");			
+					
 					}
 				})//end of ajax
-				
-				
-				
-				
+					
 				var msg = '결제가 완료되었습니다.';
 				msg += '고유ID : ' + rsp.imp_uid;
 				msg += '상점 거래ID : ' + rsp.merchant_uid;

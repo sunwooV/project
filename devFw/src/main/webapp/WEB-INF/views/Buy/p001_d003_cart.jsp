@@ -168,16 +168,16 @@
 		$.ajax({
 			type:"get",
 			async:false,
-			url:"/devFw/insertOrders.do",
+			url:"/devFw/editCart.do",
 			data :insertOrderInfo,
 			dataType:"text",
 			
 			success: function(responseData){
-				s
+				
 				
 			},
 			error:function(data, textStatus){
-				alert("장바구니에 수정 실패")
+				console.log("장바구니에 수정 실패");
 			},
 			complete : function(data, textStatus){
 				

@@ -30,16 +30,17 @@ public class B_P001_D005DAOImpl implements B_P001_D005DAO {
 	@Autowired
 	private SqlSession sqlSession;
 
+
 	@Override
-	public String kakaopayReady(Map<String, Object> searchMap) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+	public void insertOrders(Map<String, Object> dataMap) {
+		sqlSession.insert("Buy.P001.D005.insertOrder",dataMap);
+		
 	}
 
 	@Override
-	public B_P001_D005VO kakaopayInfo(String pg_token) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+	public void insertDest(Map<String, Object> dataMap) {
+		sqlSession.insert("Buy.P001.D005.InsertDestination",dataMap);
+		
 	}
 
 	
