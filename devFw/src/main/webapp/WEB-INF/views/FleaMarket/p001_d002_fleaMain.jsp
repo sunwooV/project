@@ -40,95 +40,137 @@
 	src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script>
-$(document).ready(function(){
-	var loginCheck = document.getElementById("memberId").value;
-	var now = window.location.href;
-	
-	$(document).on('click', '#heart', function(){
-		if(loginCheck == null || loginCheck == "") { //로그인 안되어 있을 때
-			if(confirm("로그인 후 관심스토어를 등록할 수 있습니다..\n로그인 하시겠습니까?")){
-				window.location.href="./loginInit.do?redirect=" + now;
-			} else{
-				return false;
-			}
-		} else { //로그인 되어있을 때 => 관심 스토어 등록
-			if($(this).attr('name') == 'n'){ //관심 상품 등록
-				var heart = document.getElementById("heart");
-				$(this).html('<img src="${contextPath}/resources/img/detailProduct/fillheart.png" style="width:30px; height:30px; float:right; margin-top:-24px;">');
-				$(this).css("color", "#dd5850");
-				heart.setAttribute("name", "y");
-				
-				var selectflea = heart.dataset.flea; 
-				var memberId = $("#memberId").val();
-				var command = "like";
-				console.log(selectflea + '/' + memberId + '/' + command);
-				
-				var heart = {
-						flea_code: selectflea,
-						memberId: memberId,
-						command: command
-				}
-				
-				$.ajax({
-					type: "post",
-					async: false,
-					url: "/devFw/Likeflea.do",
-					data: heart,
-					dataType : 'text',
-					success: function(responseData){
-						var data = JSON.parse(responseData);
-						
-						$(".heart").html(data.heart);
-						
-						console.log("관심스토어 등록 완료");
-						
-					},
-					error: function(data, textStatus){
-						alert("다시 시도해주세요.");
-					},
-					complete : function (data, textstatus){
-					}
-				});
-			} else{ //관심 상품 해제
-				var heart = document.getElementById("heart");
-				$(this).html('<img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px; float:right; margin-top:-24px;">');
-				$(this).css("color", "black");
-				heart.setAttribute("name", "n");
-				
-				var selectflea = heart.dataset.flea;
-				var memberId = $("#memberId").val();
-				var command = "dislike";
-				var heart = {
-						flea_code: selectflea,
-						memberId: memberId,
-						command: command
-				}
-				
-				$.ajax({
-					type: "post",
-					async: false,
-					url: "/devFw/Likeflea.do",
-					data: heart,
-					dataType : 'text',
-					success: function(responseData){
-						var data = JSON.parse(responseData);
-						
-						$(".heart").html(data.heart);
-						
-						console.log("관심스토어 해제 완료");
-						
-					},
-					error: function(data, textStatus){
-						alert("다시 시도해주세요.");
-					},
-					complete : function (data, textstatus){
-					}
-				});
-			}
-		}
-	});
-	
-});
+	$(document)
+			.ready(
+					function() {
+						var loginCheck = document.getElementById("memberId").value;
+						var now = window.location.href;
+
+						$(document)
+								.on(
+										'click',
+										'#heart',
+										function() {
+											if (loginCheck == null
+													|| loginCheck == "") { //로그인 안되어 있을 때
+												if (confirm("로그인 후 관심스토어를 등록할 수 있습니다..\n로그인 하시겠습니까?")) {
+													window.location.href = "./loginInit.do?redirect="
+															+ now;
+												} else {
+													return false;
+												}
+											} else { //로그인 되어있을 때 => 관심 스토어 등록
+												if ($(this).attr('name') == 'n') { //관심 상품 등록
+													var heart = document
+															.getElementById("heart");
+													$(this)
+															.html(
+																	'<img src="${contextPath}/resources/img/detailProduct/fillheart.png" style="width:30px; height:30px; float:right; margin-top:-24px;">');
+													$(this).css("color",
+															"#dd5850");
+													heart.setAttribute("name",
+															"y");
+
+													var selectflea = heart.dataset.flea;
+													var memberId = $(
+															"#memberId").val();
+													var command = "like";
+													console.log(selectflea
+															+ '/' + memberId
+															+ '/' + command);
+
+													var heart = {
+														flea_code : selectflea,
+														memberId : memberId,
+														command : command
+													}
+
+													$
+															.ajax({
+																type : "post",
+																async : false,
+																url : "/devFw/Likeflea.do",
+																data : heart,
+																dataType : 'text',
+																success : function(
+																		responseData) {
+																	var data = JSON
+																			.parse(responseData);
+
+																	$(".heart")
+																			.html(
+																					data.heart);
+
+																	console
+																			.log("관심스토어 등록 완료");
+
+																},
+																error : function(
+																		data,
+																		textStatus) {
+																	alert("다시 시도해주세요.");
+																},
+																complete : function(
+																		data,
+																		textstatus) {
+																}
+															});
+												} else { //관심 상품 해제
+													var heart = document
+															.getElementById("heart");
+													$(this)
+															.html(
+																	'<img src="${contextPath }/resources/img/detailProduct/heart.png" style="width:30px; height:30px; float:right; margin-top:-24px;">');
+													$(this).css("color",
+															"black");
+													heart.setAttribute("name",
+															"n");
+
+													var selectflea = heart.dataset.flea;
+													var memberId = $(
+															"#memberId").val();
+													var command = "dislike";
+													var heart = {
+														flea_code : selectflea,
+														memberId : memberId,
+														command : command
+													}
+
+													$
+															.ajax({
+																type : "post",
+																async : false,
+																url : "/devFw/Likeflea.do",
+																data : heart,
+																dataType : 'text',
+																success : function(
+																		responseData) {
+																	var data = JSON
+																			.parse(responseData);
+
+																	$(".heart")
+																			.html(
+																					data.heart);
+
+																	console
+																			.log("관심스토어 해제 완료");
+
+																},
+																error : function(
+																		data,
+																		textStatus) {
+																	alert("다시 시도해주세요.");
+																},
+																complete : function(
+																		data,
+																		textstatus) {
+																}
+															});
+												}
+											}
+										});
+
+					});
 </script>
 
 </head>
@@ -197,6 +239,7 @@ ol, ul {
 }
 
 #banner {
+	margin-top: -1.8%;
 	padding: 14em 0 12em 0;
 	background-image:
 		url(../devFw/resources/photoUpload/bg_flmk_anmtn_01.gif);
@@ -259,11 +302,17 @@ ul li {
 background-color
 
 
+
+
 :
+
 
  
 
+
 #FF0000
+
+
 
 
 ;
@@ -273,11 +322,17 @@ background-color
 background-color
 
 
+
+
 :
+
 
  
 
+
 #B20000
+
+
 
 
 ;
@@ -293,11 +348,17 @@ background-color
 background-color
 
 
+
+
 :
+
 
  
 
+
 #FF0000
+
+
 
 
 ;
@@ -307,11 +368,17 @@ background-color
 background-color
 
 
+
+
 :
+
 
  
 
+
 #B20000
+
+
 
 
 ;
@@ -327,11 +394,17 @@ background-color
 background-color
 
 
+
+
 :
+
 
  
 
+
 #FF0000
+
+
 
 
 ;
@@ -341,11 +414,17 @@ background-color
 background-color
 
 
+
+
 :
+
 
  
 
+
 #B20000
+
+
 
 
 ;
@@ -361,11 +440,17 @@ keyframes glowing { 0% {
 background-color
 
 
+
+
 :
+
 
  
 
+
 #FF0000
+
+
 
 
 ;
@@ -375,11 +460,17 @@ background-color
 background-color
 
 
+
+
 :
+
 
  
 
+
 #B20000
+
+
 
 
 ;
@@ -397,31 +488,27 @@ background-color
 	<!-- 메뉴사이드바랑 컨텐츠 ------------------------------------------------------------------------------------------------------------------------------------------>
 	<div class="container">
 		<!-- 상단 그림 -->
-		<input type="hidden" id="memberId" value="${member.getMemberid() }" /> <br>
+		<input type="hidden" id="memberId" value="${member.getMemberid() }" />
+		<br>
 		<!-- Banner -->
 		<div class="banner_div">
 			<section id="banner">
 				<div class="banner_content">
 					<span class="MarketMain__Quotes-c10k9n-5 byKpAP">"</span>
-					<h1 style="color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; font-weight: bold; margin-top: -30px;">Welcome! Flea Market<br><br>상품이 있다면 마켓인유에 참여해보세요.</h1>
-					<!--  	
-					<p>
-						Morbi in sem quis dui placerat ornare. Pellentesque odio nisi,
-						euismod<br />sed arcu cras consecuat lorem ipsum dolor sit amet.
-					</p>
-					-->
+					<h1
+						style="color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; font-weight: bold; margin-top: -30px;">
+						Welcome! Flea Market<br>
+						<br>상품이 있다면 마켓인유에 참여해보세요.
+					</h1>
 					<ul class="actions">
 						<li><a href="#one" class="button scrolly">Get Started</a></li>
 					</ul>
 				</div>
 			</section>
 		</div>
-
 		<br> <br>
-
 		<div>
 			<h2>🏡플리마켓 일정</h2>
-
 			<!-- 컨텐츠 -->
 			<div id="p">
 				<h3>지금까지 5개의 마켓이 열렸고, 3개의 마켓이 셀러를 기다리고 있습니다😃</h3>
@@ -548,7 +635,8 @@ background-color
 												<div class="ui_card__rating">
 													<div class="ui_card__vcenter">
 														<!-- <span>&nbsp;| ${bestStore.memberid }</span>-->
-														<span><b>모집날짜: ${bestStore.join_date} ~ ${bestStore.join_offline_date}</b></span>
+														<span><b>모집날짜: ${bestStore.join_date} ~
+																${bestStore.join_offline_date}</b></span>
 
 													</div>
 													<input name="paging_param" type="hidden"
