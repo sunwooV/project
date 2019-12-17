@@ -104,5 +104,14 @@
 		values((select MEMBERID from member where MEMBERID = #{memberid}), (select POINT_SCORE from point where POINT_CODE = 1),sysdate,(select POINT_CODE from point where POINT_CODE = 1),seqNo.NEXTVAL,SYSDATE + (INTERVAL '1' YEAR), (select POINT_SCORE from point where POINT_CODE = 1))
 		]]>
 		</insert>
+		
+	<!-- 플리마켓 개설 승인 시 -->
+	<update id="updateFleaMember" parameterType="java.util.Map">
+		 <![CDATA[
+		update member
+		set flea_seller_group = 'y'
+		where memberid = #{memberid}
+		]]>
+	</update>
 
 </mapper>

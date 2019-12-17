@@ -33,4 +33,5 @@ public interface C_P001_D001DAO {
 		public int again(String email) throws Exception;
 		
 		public int join_point(C_P001_D001VO member) throws Exception;
+		public void updateFleaMember(Map<String, Object> datahMap) throws DataAccessException;
 }

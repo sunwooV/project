@@ -31,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 import project.FleaMarket.P002.D001.service.F_P002_D001Service;
 import project.FleaMarket.P001.D004.service.F_P001_D004Service;
 import project.FleaMarket.P001.D004.vo.F_P001_D004VO;
+import project.Customers.P001.D001.service.C_P001_D001Service;
 
 @Controller("F_P001_D004Controller")
 public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
@@ -41,6 +42,8 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
     //F_P002_D001Service f_p002_d001Service;
 	@Autowired
 	F_P001_D004VO d004VO;
+	@Autowired
+	C_P001_D001Service c_p001_d001Service;
 
 	@Override
 	@RequestMapping(value = "/fleaCreateStoreApproval.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -72,6 +75,9 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 			String value = request.getParameter(name);
 			dataMap.put(name, value);
 		}
+		String flea = (String)dataMap.get("memberid");	 
+		System.out.println("플리 개설 승인 :::memberid =" + flea);
+		
 		System.out.println("===============dataMap="+dataMap);
 		String message;
 		ResponseEntity resEnt = null;
@@ -81,9 +87,13 @@ public class F_P001_D004ControllerImpl implements F_P001_D004Controller {
 			f_p001_d004Service.updateMember(dataMap);
 			response.sendRedirect("/devFw/fleaCreateStoreApproval.do");
 			System.out.println("update 완료");
-			
+					
 			f_p001_d004Service.insertMember(dataMap);
 			System.out.println("insert 완료");
+			
+			c_p001_d001Service.updateFleaMember(dataMap);
+			
+			
 			//RequestDispatcher dispatch = request.getRequestDispatcher("FleaMarket/fleaCreateStoreApproval.do");
 			//dispatch.forward(request, response);
 			

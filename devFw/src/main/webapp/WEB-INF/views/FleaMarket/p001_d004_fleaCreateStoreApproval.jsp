@@ -67,7 +67,13 @@
                <td>${member.join_offline_time}</td>
                <td>${member.join_offline_location}</td>
                <td>${member.join_prepayment_yn}</td>
-               <td><input type="button" value="개설 승인" id="approval_Y" onClick="location.href='${contextPath}/fleaApprovalStatusUpdate.do?flea_code=${member.flea_code}&memberid=${member.memberid}&join_name=${member.join_name }&join_offline_date=${member.join_offline_date}&join_offline_time=${member.join_offline_time}&join_offline_location=${member.join_offline_location}&join_prepayment_yn=${member.join_prepayment_yn}&join_date=${member.join_date}'" />
+               <td>
+               	<c:if test="${member.join_status == 'x' }">
+               	   <input type="button" value="개설 승인" id="approval_Y" onClick="location.href='${contextPath}/fleaApprovalStatusUpdate.do?flea_code=${member.flea_code}&memberid=${member.memberid}&join_name=${member.join_name }&join_offline_date=${member.join_offline_date}&join_offline_time=${member.join_offline_time}&join_offline_location=${member.join_offline_location}&join_prepayment_yn=${member.join_prepayment_yn}&join_date=${member.join_date}'" />
+                 </c:if>
+                 <c:if test="${member.join_status == 'o' }">
+                 	<input type="button" value="개설 승인" id="approval_Y" disabled="disabled" />
+                 </c:if>
                    <input type="hidden" id="join_status" value="${member.join_status}">
                    <input type="button" value="개설 불가" id="approval_N" /></td>
             </tr>
