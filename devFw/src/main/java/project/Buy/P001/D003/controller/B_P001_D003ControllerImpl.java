@@ -124,7 +124,7 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 		String command = request.getParameter("command");
 		
 		if(command !=null) {
-		
+			b_p001_d003Service.insertCart(dataMap);
 		}else {
 		String memberid = (String) session.getAttribute("memberid");
 		String prod = product.getProd_number();
