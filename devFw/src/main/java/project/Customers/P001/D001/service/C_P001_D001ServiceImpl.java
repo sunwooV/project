@@ -359,7 +359,11 @@ public class C_P001_D001ServiceImpl implements C_P001_D001Service {
 					return memberid;
 				}
 			}
-
+			
+			@Override
+			public void updateFleaMember(Map<String, Object> datahMap) throws Exception {
+				c_p001_d001_DAO.updateFleaMember(datahMap);
+			}
 	
 		}                                                                                                                                                                                                                                    
 

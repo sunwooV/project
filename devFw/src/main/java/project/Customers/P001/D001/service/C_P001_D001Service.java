@@ -30,4 +30,5 @@ public interface C_P001_D001Service {
 	public String find_id(HttpServletResponse response, C_P001_D001VO member) throws Exception;
 	public void again(String email, HttpServletResponse response) throws Exception;
 	public void join_point(C_P001_D001VO member, HttpServletResponse response) throws Exception;;
+	public void updateFleaMember(Map<String, Object> datahMap) throws Exception;
 }

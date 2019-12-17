@@ -18,7 +18,8 @@ import project.Customers.P002.D009.vo.C_P002_D009VO;
 
 @Repository("C_P001_D001DAO")
 public class C_P001_D001DAOImpl implements C_P001_D001DAO {
-	
+	@Autowired
+	private SqlSession sqlSession;
 	@Autowired
 	SqlSession sqlsession = null;
 	
@@ -96,6 +97,12 @@ public class C_P001_D001DAOImpl implements C_P001_D001DAO {
 			public int join_point(C_P001_D001VO member) throws Exception{
 				return sqlsession.insert("Customers.join.join_point", member);
 			}
+			
+			@Override
+			public void updateFleaMember(Map<String, Object> datahMap) throws DataAccessException {
+				sqlSession.update("Customers.join.updateFleaMember", datahMap);
+			}
+			
 	}
 
 
