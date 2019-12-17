@@ -80,8 +80,8 @@
 		id="navbartop">
 		<!-- 상단바 -->
 		<a class="navbar-brand" href="./main.do"><img
-			src="${contextPath }/resources/img/lolo.png"
-			style="width: 296px; height: 54px;" /></a>
+			src="${contextPath }/resources/img/main/mmm.PNG"
+			style="width: 144px; height: 54px;" /></a>
 		<button class="navbar-toggler collapsed" type="button"
 			data-toggle="collapse" data-target="#navbarColor03"
 			aria-controls="navbarColor03" aria-expanded="false"
