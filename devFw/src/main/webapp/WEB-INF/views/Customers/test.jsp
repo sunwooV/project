@@ -78,6 +78,9 @@ $(document).ready(function(){
 		//유저목록 클릭이벤트
 		$(document).on("click",".discussion",function(){
 			if(!$(this).hasClass("clicked")){
+				
+				var title = document.getElementById("prodTitle").value;
+				$("#chat-footer>textarea").val('<'+title+'>'+'에 대한 문의입니다.\r\n')
 				//채팅 header에 유저 정보 표시
 				$('#user-info').empty();
 				var information = $(this).children();
@@ -163,12 +166,13 @@ $(document).ready(function(){
 	}//end init
 	
 	function memberDivForm(desc,nickname,memberid){
+	
 		var result={
 			"desc" : desc,
 			"nickname" : nickname,
 			"memberid" : memberid
 		}
-		console.log(result.memberid);
+		console.log("123123"+result.nickname);
 		return result;
 	}
 	
@@ -189,6 +193,7 @@ $(document).ready(function(){
 		container.append(infoDiv);
 		infoDiv.append(nickDiv);
 		infoDiv.append(idDiv);
+		
 		return container;
 	};
 	
@@ -203,7 +208,8 @@ $(document).ready(function(){
 		}
 		
 		var newDiscussion=makeMemberDiv(data);
-		$('#people-list').prepend(newDiscussion);
+		//$('#people-list').prepend(newDiscussion);
+		
 	}
 	
 	function updateChat(recData){
@@ -211,9 +217,9 @@ $(document).ready(function(){
 		var divData;
 		
 		if(res.me_at=='true'){//보낸사람이 나면
-			divData = new memberDivForm('discussion',null,null,res.receiver);
+			divData = new memberDivForm('discussion',null,res.receiver);
 		}else{
-			divData = new memberDivForm('discussion',recData.body.sender_info.memberid,recData.body.sender_info.nickname,res.sender);
+			divData = new memberDivForm('discussion','jj',res.sender);
 		}
 		
 		prependMember(divData);
@@ -281,9 +287,9 @@ $(document).ready(function(){
 			$('#search-list').empty();
 			var discussions = $('#people-list>div.discussion').toArray();
 			for(var j=0; j<discussions.length; j++){
-				var nick = $(discussions[j]).find('div.nickname').toArray()[0];
+				var nickname = $(discussions[j]).find('div.nickname').toArray()[0];
 				var member = $(discussions[j]).find('div.memberid').toArray()[0];
-				if($(nick).text().indexOf(input)!==-1 || $(member).text().indexOf(input)!==-1 ){
+				if($(nickname).text().indexOf(input)!==-1 || $(member).text().indexOf(input)!==-1 ){
 					var discussClone=discussions[j].cloneNode(true);
 					document.getElementById('search-list').append(discussClone);
 				}
@@ -298,7 +304,8 @@ $(document).ready(function(){
         var msgDate = document.createElement("div");
         var msgprod = document.createElement("div");
         var today = new Date();
-        var title = document.getElementById("prodTitle").value;
+        
+        //alert(title);
         
         if(meCheck=="true"){
 			$(msgBox).addClass("message-right");        	
@@ -315,7 +322,7 @@ $(document).ready(function(){
         $(msgBox).append(msgDate);
         $("#chat-message").append(msgBox);
         
-        $("#chat-footer>textarea").val(title)
+        $("#chat-footer>textarea").val('')
         
         //스크롤 밑으로 내리기
         var height=document.getElementById('chat-message').scrollHeight;
@@ -700,7 +707,7 @@ textarea {
       <div id="chat">
          <div id="chat-header">
 			<div id="user-info"></div>
-			<i class="fas fa-user-plus fa-2x"></i>
+<!-- 			<i class="fas fa-user-plus fa-2x" style="display: table-column-group;"></i> -->
          </div>
          <div id="chat-message">
 			<div id="chat-main">
@@ -717,8 +724,8 @@ textarea {
             
          </div>
          <c:forEach var="prodlist" items="${prodList }">
-         <input type="hidden" id="prodTitle" value="${prodList.prod_title }"/>
-            </c:forEach>
+         		<input type="hidden" id="prodTitle" value="${prodlist.prod_title }"/>
+          </c:forEach>
       </div>
    </div>
    	<div id="user-add">

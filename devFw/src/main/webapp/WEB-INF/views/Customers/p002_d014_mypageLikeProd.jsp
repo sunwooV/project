@@ -115,8 +115,9 @@
 	//선택된 상품 삭제
 	$(document).on('click', '#checkDelete', function(){
 		var frm = document.mypageLikeProd;
-		
-		if($("#checkProd").val() == null){
+		var checkProd = $("input:checkbox[name='checkProd']").is(":checked");
+
+		if(checkProd == false){
 			alert("선택된 상품이 없습니다.");
 			return false;
 		}

@@ -58,6 +58,7 @@ $(document).ready(function(){
 					messageAdd(recMessage[i].contents,new Date(recMessage[i].send_date),recMessage[i].me_at);					
 				}
 			}else if(recData.header=="send_message"){
+				console.log(recData);
 				updateChat(recData);
 				var nowId=$('#chat-header .memberid').text();
 				if(nowId==recMessage.sender || nowId==recMessage.receiver){					
@@ -206,9 +207,9 @@ $(document).ready(function(){
 		var divData;
 		
 		if(res.me_at=='true'){//보낸사람이 나면
-			divData = new memberDivForm('discussion',null,null,res.receiver);
+			divData = new memberDivForm('discussion',null,res.receiver);
 		}else{
-			divData = new memberDivForm('discussion',recData.body.sender_info.memberid,recData.body.sender_info.nickname,res.sender);
+			divData = new memberDivForm('discussion',recData.body.sender_info.nickname,res.sender);
 		}
 		
 		prependMember(divData);

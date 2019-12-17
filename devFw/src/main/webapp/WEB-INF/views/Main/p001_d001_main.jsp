@@ -55,10 +55,10 @@ _<%@ page language="java" contentType="text/html; charset=UTF-8"
 		<div class="row">
 			<!-- 컨텐츠 -->
 			<ul class="nav nav-tabs">
-				<li class="active"><a data-toggle="tab" href="#home">TOP 8</a></li>
-				<li><a data-toggle="tab" href="#new">신제품</a></li>
+				<li class="active"><a data-toggle="tab" href="#home">👍TOP 8</a></li>
+				<li><a data-toggle="tab" href="#new">📢신제품</a></li>
 <!-- 				<li><a data-toggle="tab" href="#recommend">오늘의 추천상품</a></li> -->
-				<li><a data-toggle="tab" href="#good_store">우수등급 스토어</a></li>
+				<li><a data-toggle="tab" href="#good_store">🏩우수등급 스토어</a></li>
 			</ul>
 			<div class="tab-content">
 				<!--컨텐츠  -->

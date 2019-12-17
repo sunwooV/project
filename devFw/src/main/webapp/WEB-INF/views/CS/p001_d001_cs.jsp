@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -83,7 +84,7 @@
 		}
 
 	});
-	
+
 	$(document).on('click', '.notice', function() {
 		var num = $(this).attr("id");
 
@@ -96,7 +97,6 @@
 		}
 
 	});
-	
 </script>
 <style>
 .faq_open1, .faq_open2, .faq_open3, .faq_open4, .faq_open5, .notice {
@@ -115,13 +115,13 @@
 			<div class="list-group">
 				<a href="#" class="list-group-item list-group-item-action active">
 					마이페이지 </a> <a href="#" class="list-group-item list-group-item-action"><h6>포인트
-					조회 </h6></a> <a href="#" class="list-group-item list-group-item-action"><h6>회원정보조회/수정</h6>
+						조회</h6></a> <a href="#" class="list-group-item list-group-item-action"><h6>회원정보조회/수정</h6>
 				</a> <a href="#" class="list-group-item list-group-item-action"><h6>ID조회/비밀번호
-					찾기 </h6></a>
+						찾기</h6></a>
 			</div>
 
 			<div class="list-group">
-			<a href="#" class="list-group-item list-group-item-action active">
+				<a href="#" class="list-group-item list-group-item-action active">
 					게시판 </a>
 				<c:forEach var="board" items="${boardlist}">
 					<a class="list-group-item list-group-item-action"
@@ -131,12 +131,12 @@
 		</div>
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->
 		<div class="col-sm-10" id="csmain">
-			<h1 style="font-size: 37px;">고객센터</h1>
+			<h1 style="font-size: 37px;">🤝고객센터</h1>
 
 			<div class="row" id="cscs">
 				<div class="container" id="cs2">
 					<h2 class="notice" style="padding-bottom: 2%; font-size: 23px;">
-						🔔공지사항🔔 <span class="glyphicon glyphicon-plus"
+						👩‍🏫공지사항 <span class="glyphicon glyphicon-plus"
 							onclick="location.href='./csnotice.do'"></span>
 					</h2>
 					<table class="table table-hover">
@@ -148,7 +148,8 @@
 						<c:forEach var="event" items="${eventList}" varStatus='notice'>
 							<tr id=${notice.count } class="notice">
 								<td><h6>${event.no_title}</h6></td>
-								<td><h6>${event.no_writedate}</h6></td>
+								<td><h6><fmt:formatDate value="${event.no_writedate}" pattern="yyyy-MM-dd" />
+								</h6></td>
 							</tr>
 							<tr style="display: none;" id="f${notice.count }">
 								<td colspan="2">${event.no_contents}</td>

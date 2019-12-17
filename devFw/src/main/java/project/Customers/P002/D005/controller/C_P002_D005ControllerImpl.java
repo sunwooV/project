@@ -23,6 +23,7 @@ import project.Customers.P001.D001.vo.C_P001_D001VO;
 import project.Customers.P002.D005.service.C_P002_D005Service;
 import project.Customers.P002.D005.vo.C_P002_D005VO;
 import project.Sell.P001.D002.service.S_P001_D002Service;
+import project.Sell.P001.D002.vo.S_P001_D002VO;
 
 
 @Controller("C_P002_D005Controller")
@@ -68,6 +69,7 @@ public class C_P002_D005ControllerImpl implements C_P002_D005Controller{
 				List selectMember = c_p002_d005_Service.selectSeller(searchMap);
 				searchMap.put("prod_number", prod_number);
 				List prodList = s_p001_d002service.detailProduct(searchMap);
+				System.out.println("타이틀입니다요=="+((S_P001_D002VO)prodList.get(0)).getProd_title());
 				List initList = c_p002_d005_Service.selectMemberList(searchMap);
 				System.out.println("sellerId는???" + sellerId);
 				mav.addObject("memberList", selectMember);

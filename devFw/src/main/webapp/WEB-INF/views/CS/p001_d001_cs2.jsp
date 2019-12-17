@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 
 <!DOCTYPE html>
 <html>
@@ -67,10 +69,10 @@
 		</div>
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->
 		<div class="col-sm-10" id="csmain">
-			<h1 style="font-size: 37px;">고객센터</h1>
+			<h1 style="font-size: 37px;">🤝고객센터</h1>
 
 			<div class="row" id="cscs1">
-				<h2 style="font-size: 23px; padding-bottom: 2%;">🔔공지사항🔔</h2>
+				<h2 style="font-size: 23px; padding-bottom: 2%;">👩‍🏫공지사항</h2>
 				<table class="table table-hover" style="width: 98%;">
 					<tr  class="table-active">
 						<th style="width: 78%;">제목</th>
@@ -80,12 +82,13 @@
 					<c:forEach var="event" items="${noticeList}" varStatus='notice'>
 						<tr id=${notice.count } class="faq_open">
 							<td><h6>${event.no_title}</h6></td>
-							<td><h6>${event.no_writedate}</h6></td>
+							<td><h6><fmt:formatDate value="${event.no_writedate}" pattern="yyyy-MM-dd" /></h6></td>
 						</tr>
 						<tr style="display: none;" id="n${notice.count }">
 							<td colspan="2"><h6>${event.no_contents}</h6></td>
 						</tr>
 					</c:forEach>
+					
 				</table>
 
 			</div>

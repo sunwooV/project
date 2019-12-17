@@ -63,4 +63,22 @@ values((select MEMBERID from member where memberid=#{memberid}),(select PW from 
 	]]>
 	</insert>
 	
+	<delete id="prod_out" parameterType="java.util.Map">
+	<![CDATA[
+		delete from product where memberid = #{memberid}
+		 ]]>
+	</delete>
+	
+	<delete id="chat_out" parameterType="java.util.Map">
+	<![CDATA[
+		delete from chat_list where (sender = #{memberid} or receiver = #{memberid})
+		 ]]>
+	</delete>
+	
+	<delete id="togetherlist_out" parameterType="java.util.Map">
+	<![CDATA[
+		delete from togetherlist where memberid = #{memberid}
+		 ]]>
+	</delete>
+	
 </mapper>

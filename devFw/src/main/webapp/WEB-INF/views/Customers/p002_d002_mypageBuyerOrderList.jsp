@@ -36,20 +36,29 @@
 .OHtableTitle {
 	background-color: #ccc;
 }
+
+.orderButton {
+	width: 71%;
+	margin-bottom: 2%;
+	border: 1px solid gray;
+	border-radius: 6px;
+	padding: 2%;
+	background-color: white;
+	margin-bottom: 2%;
+}
 </style>
 <script type="text/javascript">
-
 	//취소 및 교환 신청 팝업 뜨게 하기
 	function changeProdPopup() {
 		window.open("${contextPath}/changeProduct.do", "a",
-		"width=800, height=600");
+				"width=800, height=600");
 	};
 
 	//리뷰 팝업 뜨게 하기
 	function reviewPopup() {
 		window.open("${contextPath}/review.do", "a", "width=700, height=700");
 	};
-	
+
 	//구매확정 팝업 뜨게 하기
 	function confirmBuyPopup() {
 		window.open("${contextPath}/confirmBuy.do", "a",
@@ -59,20 +68,22 @@
 </head>
 <body>
 
-<div class="container">
-<br><br>
-<h1>상품 조회</h1>
-<br><hr><br>
-	<ul class="nav nav-tabs">
-		<li class="active"><a data-toggle="tab" href="#buyProd">구매 상품</a></li>
-		<li><a data-toggle="tab" href="#sellProd">판매 상품</a></li>
-		<li><a data-toggle="tab" href="#auctionProd">경매 상품</a></li>
-	</ul>
-	<div class="tab-content">
-		<div id="buyProd" class="tab-pane fade in active">
-		<br><br>
-			<!-- 주문내역 상단 -->
-			<h3>주문 내역 조회</h3>
+	<div class="container">
+		<br> <br>
+		<h1>📦상품 조회</h1>
+		<hr>
+		<br>
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#buyProd">구매
+					상품</a></li>
+			<li><a data-toggle="tab" href="#sellProd">판매 상품</a></li>
+			<li><a data-toggle="tab" href="#auctionProd">경매 상품</a></li>
+		</ul>
+		<div class="tab-content">
+			<div id="buyProd" class="tab-pane fade in active">
+				<br> <br>
+				<!-- 주문내역 상단 -->
+				<h3>🗳️주문 내역 조회</h3>
 				<!-- 주문 상품 정보 테이블 시작  -->
 				<table class="orderHistoryTable" id="orderHistoryTable">
 					<!-- 주문 상품 정보 테이블 상단 제목   -->
@@ -93,7 +104,7 @@
 						<tr class="orderHistoryContents">
 							<td class="OHC_cont"><span class="orderDate" id="orderDate">2019-11-20</span>
 								<br> <a href="#" class="orderNum" id="orderNum">[20191120-0000000]</a></td>
-		
+
 							<td class="OHC_cont"><span class="prod_1st_img"
 								id="prod_1st_img">이미지</span></td>
 							<td class="OHC_cont"><span class="prod_short_detail"
@@ -103,23 +114,24 @@
 								id="ttl_eachProd_price">29,000원</span></td>
 							<td class="OHC_cont"><span class="order_state"
 								id="order_state">배송준비중</span></td>
-		
-							<td class="OHC_cont"><input type="button" value="취소신청 및 교환 신청"
-								class="orderButton" id="cancel_order" onClick="changeProdPopup()">
-								<br> <input type="button" value="리뷰쓰기" class="orderButton"
-								id="review_order" onClick="reviewPopup()"> <br> <input
-								type="button" value="구매확정하기" class="orderButton"
-								id="confirmBuy_order" onClick="confirmBuyPopup()"></td>
+
+							<td class="OHC_cont"><input type="button"
+								value="취소신청 및 교환 신청" class="orderButton" id="cancel_order"
+								onClick="changeProdPopup()"> <br> <input
+								type="button" value="리뷰쓰기" class="orderButton" id="review_order"
+								onClick="reviewPopup()"> <br> <input type="button"
+								value="구매확정하기" class="orderButton" id="confirmBuy_order"
+								onClick="confirmBuyPopup()"></td>
 						</tr>
 						<!-- 2번째 상품 내용 -->
 					</tbody>
 				</table>
 
-		</div>
-		<div id="sellProd" class="tab-pane fade">
-			<br><br>
-			<!-- 주문내역 상단 -->
-			<h3>판매 내역 조회</h3>
+			</div>
+			<div id="sellProd" class="tab-pane fade">
+				<br> <br>
+				<!-- 주문내역 상단 -->
+				<h3>💸판매 내역 조회</h3>
 				<!-- 주문 상품 정보 테이블 시작  -->
 				<table class="orderHistoryTable" id="orderHistoryTable">
 					<!-- 주문 상품 정보 테이블 상단 제목   -->
@@ -140,7 +152,7 @@
 						<tr class="orderHistoryContents">
 							<td class="OHC_cont"><span class="orderDate" id="orderDate">2019-11-20</span>
 								<br> <a href="#" class="orderNum" id="orderNum">[20191120-0000000]</a></td>
-		
+
 							<td class="OHC_cont"><span class="prod_1st_img"
 								id="prod_1st_img">이미지</span></td>
 							<td class="OHC_cont"><span class="prod_short_detail"
@@ -150,30 +162,32 @@
 								id="ttl_eachProd_price">29,000원</span></td>
 							<td class="OHC_cont"><span class="order_state"
 								id="order_state">배송준비중</span></td>
-		
-							<td class="OHC_cont"><input type="button" value="취소신청 및 교환 신청"
-								class="orderButton" id="cancel_order" onClick="changeProdPopup()">
-								<br> <input type="button" value="리뷰쓰기" class="orderButton"
-								id="review_order" onClick="reviewPopup()"> <br> <input
-								type="button" value="구매확정하기" class="orderButton"
-								id="confirmBuy_order" onClick="confirmBuyPopup()"></td>
+
+							<td class="OHC_cont"><input type="button"
+								value="취소신청 및 교환 신청" class="orderButton" id="cancel_order"
+								onClick="changeProdPopup()"> <br> <input
+								type="button" value="리뷰쓰기" class="orderButton" id="review_order"
+								onClick="reviewPopup()"> <br> <input type="button"
+								value="구매확정하기" class="orderButton" id="confirmBuy_order"
+								onClick="confirmBuyPopup()"></td>
 						</tr>
 						<!-- 2번째 상품 내용 -->
 					</tbody>
 				</table>
-			
-		</div>
-		<div id="auctionProd" class="tab-pane fade">
-			<br><br>
-			<!-- 주문내역 상단 -->
-			<h3>경매 내역 조회</h3>
-			<p>참여한 경매에 대한 입찰, 낙찰 내역/결제를 보여줍니다.</p>
+
+			</div>
+			<div id="auctionProd" class="tab-pane fade">
+				<br> <br>
+				<!-- 주문내역 상단 -->
+				<h3>💰경매 내역 조회</h3>
+				<p>참여한 경매에 대한 입찰, 낙찰 내역/결제를 보여줍니다.</p>
 				<!-- 주문 상품 정보 테이블 시작  -->
 				<table class="orderHistoryTable" id="orderHistoryTable">
 					<!-- 주문 상품 정보 테이블 상단 제목   -->
 					<thead class="orderHistoryTableTitles">
 						<tr class="OHtableTitle">
-							<th class="OHT_ttl"><span>상품<br>경매마감일자</span></th>
+							<th class="OHT_ttl"><span>상품<br>경매마감일자
+							</span></th>
 							<th class="OHT_ttl"><span>입찰일자</span></th>
 							<th class="OHT_ttl"><span>입찰수량</span></th>
 							<th class="OHT_ttl"><span>입찰금액</span></th>
@@ -183,55 +197,67 @@
 					</thead>
 					<tbody>
 						<c:forEach var="bidList" items="${myBidList }">
-						<tr class="orderHistoryContents">
-							<td class="OHC_cont"><span class="orderDate" id="orderDate"><a href="./detail.do?prod_number=${bidList.prod_number }"><img src="${bidList.represent_image }" width="100px" height="125px"></a></span>
-								<br><br>
-								<c:if test="${bidList.endChk != 1}"> <!-- 경매가 끝난 경우 -->
-									${bidList.auction_end_date } <span style="color:red;">(종료)</span>
-								</c:if>
-								<c:if test="${bidList.endChk == 1}"> <!-- 경매가 끝나지 않은 경우 -->
+							<tr class="orderHistoryContents">
+								<td class="OHC_cont"><span class="orderDate" id="orderDate"><a
+										href="./detail.do?prod_number=${bidList.prod_number }"><img
+											src="${bidList.represent_image }" width="100px"
+											height="125px"></a></span> <br> <br> <c:if
+										test="${bidList.endChk != 1}">
+										<!-- 경매가 끝난 경우 -->
+									${bidList.auction_end_date } <span style="color: red;">(종료)</span>
+									</c:if> <c:if test="${bidList.endChk == 1}">
+										<!-- 경매가 끝나지 않은 경우 -->
 									${bidList.auction_end_date }
-								</c:if>
-							</td>
-							<td class="OHC_cont"><span class="prod_1st_img"
-								id="prod_1st_img">${bidList.bid_date }</span></td>
-							<td class="OHC_cont"><span class="prod_1st_img"
-								id="prod_1st_img">${bidList.bid_amount }</span></td>
-							<td class="OHC_cont"><span class="prod_1st_img"
-								id="prod_1st_img"><fmt:formatNumber value="${bidList.bid_price }" type="number" /> 원</span></td>
-							<td class="OHC_cont"><span class="prod_short_detail"
-								id="prod_short_detail">
-								<c:if test="${bidList.endChk == 1 and bidList.cnt == 1 }"> <!-- 경매가 끝나지 않은 상태에서 가장 최고가 입찰액을 한 경우 -->
-									<span style="color:blue; font-weight:bold;">낙찰예정자</span>
-								</c:if>
-								<c:if test="${bidList.endChk == 1 and bidList.cnt != 1 }"> <!-- 경매가 끝나지 않은 상태에서 가장 최고가 입찰액을 하지 않은 경우 -->
+								</c:if></td>
+								<td class="OHC_cont"><span class="prod_1st_img"
+									id="prod_1st_img">${bidList.bid_date }</span></td>
+								<td class="OHC_cont"><span class="prod_1st_img"
+									id="prod_1st_img">${bidList.bid_amount }</span></td>
+								<td class="OHC_cont"><span class="prod_1st_img"
+									id="prod_1st_img"><fmt:formatNumber
+											value="${bidList.bid_price }" type="number" /> 원</span></td>
+								<td class="OHC_cont"><span class="prod_short_detail"
+									id="prod_short_detail"> <c:if
+											test="${bidList.endChk == 1 and bidList.cnt == 1 }">
+											<!-- 경매가 끝나지 않은 상태에서 가장 최고가 입찰액을 한 경우 -->
+											<span style="color: blue; font-weight: bold;">낙찰예정자</span>
+										</c:if> <c:if test="${bidList.endChk == 1 and bidList.cnt != 1 }">
+											<!-- 경매가 끝나지 않은 상태에서 가장 최고가 입찰액을 하지 않은 경우 -->
 									미낙찰자
-								</c:if>
-								<c:if test="${bidList.endChk != 1 and bidList.cnt == 1 }"> <!-- 경매가 끝나고 낙찰자인 경우 -->
-									<span style="color:red; font-weight:bold;">낙찰!!!<br>결제를 진행해주세요.</span>
-								</c:if>
-								<c:if test="${bidList.endChk != 1 and bidList.cnt != 1 }"> <!-- 경매가 끝나고 낙찰자가 아닌 경우 -->
+								</c:if> <c:if test="${bidList.endChk != 1 and bidList.cnt == 1 }">
+											<!-- 경매가 끝나고 낙찰자인 경우 -->
+											<span style="color: red; font-weight: bold;">낙찰!!!<br>결제를
+												진행해주세요.
+											</span>
+										</c:if> <c:if test="${bidList.endChk != 1 and bidList.cnt != 1 }">
+											<!-- 경매가 끝나고 낙찰자가 아닌 경우 -->
 									낙찰실패
 								</c:if>
 								</span></td>
-							
-		
-							<td class="OHC_cont">
-								<c:if test="${bidList.endChk != 1 and bidList.cnt == 1 }"> <!-- 경매가 끝나고 낙찰자인 경우 -->
-									<p style="color:red; font-weight:bold;">결제금액:<fmt:formatNumber value="${bidList.bid_price }" type="number" /> 원</p>
-									<input type="button" value="결제하기" class="orderButton" id="review_order" onClick="reviewPopup()">
-								</c:if></td>
-						</tr>
+
+
+								<td class="OHC_cont"><c:if
+										test="${bidList.endChk != 1 and bidList.cnt == 1 }">
+										<!-- 경매가 끝나고 낙찰자인 경우 -->
+										<p style="color: red; font-weight: bold;">
+											결제금액:
+											<fmt:formatNumber value="${bidList.bid_price }" type="number" />
+											원
+										</p>
+										<input type="button" value="결제하기" class="orderButton"
+											id="review_order" onClick="reviewPopup()">
+									</c:if></td>
+							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
+			</div>
 		</div>
 	</div>
-</div>	
-	
-	
-	
-	
-	
+
+
+
+
+
 </body>
 </html>

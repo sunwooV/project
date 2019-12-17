@@ -40,7 +40,7 @@
 <body>
 <!-- 주문내역 상단 -->
 	<div class="orderHistoryHeader">
-		<h3>주문 내역 조회</h3>
+		<h3>📦주문 내역 조회</h3>
 	</div>
 	<div class="orderHistoryContainer">
 		<!-- 주문 상품 정보 테이블 시작  -->

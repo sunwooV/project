@@ -17,9 +17,9 @@ public class C_P003_D002DAOImpl implements C_P003_D002DAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<C_P003_D002VO> miuCategory(Map<String, Object> searchMap) throws DataAccessException {
-		List<C_P003_D002VO> miuCategory = sqlSession.selectList("Customers.p003_d002.miuCategory", searchMap);
-		return miuCategory;
+	public List<C_P003_D002VO> sellerCheck(Map<String, Object> searchMap) throws DataAccessException {
+		List<C_P003_D002VO> sellerCheck = sqlSession.selectList("Customers.p003_d002.sellerCheck", searchMap);
+		return sellerCheck;
 	}
 
 	@Override

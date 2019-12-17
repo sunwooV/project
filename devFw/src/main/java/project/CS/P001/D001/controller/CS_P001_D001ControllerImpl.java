@@ -82,7 +82,7 @@ public class CS_P001_D001ControllerImpl implements CS_P001_D001Controller {
 		List topList = cs_p001_d001Service.listTop();
 		List couList = cs_p001_d001Service.listCou();
 		List ordList = cs_p001_d001Service.listOrd();
-		System.out.println("공지사항리스트" + eventList);
+		System.out.println("공지사항리스트11111111111111" + eventList);
 		System.out.println("배송문의리스트" + deliveryList);
 		System.out.println("교환환불리스트" + ((CS_P001_D001VO) refundList.get(0)).getContents());
 		System.out.println("자주묻는질문" + ((CS_P001_D001VO) topList.get(0)).getContents());
@@ -112,6 +112,7 @@ public class CS_P001_D001ControllerImpl implements CS_P001_D001Controller {
 		System.out.println("공지사항리스트" + ((CS_P001_D001VO) noticeList.get(0)).getNo_title());
 
 		ModelAndView mav = new ModelAndView("CS/p001_d001_cs2");
+		System.out.println("날짜입니다"+noticeList.toString());
 		mav.addObject("noticeList", noticeList);
 		return mav;
 	}

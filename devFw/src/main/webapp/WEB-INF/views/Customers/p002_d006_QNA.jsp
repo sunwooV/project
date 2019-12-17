@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,6 +52,16 @@
 #minTable{
 	    min-height: 989px;
 }
+#selectDelete{
+	background: #424242;
+    color: white;
+    border: 1px solid #424242;
+}
+#allDelete{
+	background: white;
+    color: #424242;
+    border: 1px solid #424242;
+}
 </style>
 <script>
 
@@ -91,7 +101,7 @@
 						 + '</tr>';
 
 					for(var i=0;i<data.length;i++){
-						list += '<tr class="question" id="'+data[i].prod_number + ' ' + data[i].qna_number + '">'
+						list += '<tr class="question" id="'+data[i].prod_number + ' ' + data[i].qna_number + '" data-oc="close">'
 							 + '<td><a href="./detail.do?prod_number='+ data[i].prod_number + '"><img src="'+ data[i].represent_image + '" width="75px" height="75px"></a></td>'
 							 + 	'<td style="width: 43%;">'+ data[i].qna_content + '</td>'
 							 + 	'<td>'+ data[i].qna_date + '</td>'
@@ -103,7 +113,17 @@
 							 }
 							 list += '</td>'
 							 	  + '<td style="width: 9%;"><a class="delete" id="'+ data[i].prod_number + ','+ data[i].qna_number + '" data-deleteyn="no">삭제</a></td>'
-								  + '</tr>';
+								  + '</tr>'
+							//답변
+								  + '<tr style="border-bottom:1px solid lightgray; display:none;" id="a'+ data[i].prod_number + data[i].qna_number + '" data-oc="close">';
+							if(data[i].answer_yn == 'y'){
+								list += '	<td colspan="4" id="answer">└<span style="background:gray; color:white; width:fit-content;">답변</span><span id="answer_content">${qna.answer_content }</span></td>'
+									  + '	<td>${qna.answer_date }</td>';
+							} else {
+								list += '	<td colspan="5" id="answer"><span id="answer_content">아직 답변이 없습니다.</span></td>';
+							}
+
+								list += '</tr>';
 					}
 				
 					$("#event_td").html(list);
@@ -183,7 +203,7 @@
 						 + '</tr>';
 
 					for(var i=0;i<data.length;i++){
-						list += '<tr class="question" id="'+data[i].prod_number + ' ' + data[i].qna_number + '">'
+						list += '<tr class="question" id="'+data[i].prod_number + ' ' + data[i].qna_number + '" data-oc="close">'
 							 + '<td><a href="./detail.do?prod_number='+ data[i].prod_number + '"><img src="'+ data[i].represent_image + '" width="75px" height="75px"></a></td>'
 							 + 	'<td style="width: 43%;">'+ data[i].qna_content + '</td>'
 							 + 	'<td>'+ data[i].qna_date + '</td>'
@@ -195,7 +215,17 @@
 							 }
 							 list += '</td>'
 							 	  + '<td style="width: 9%;"><a class="delete" id="'+ data[i].prod_number + ','+ data[i].qna_number + '" data-deleteyn="no">삭제</a></td>'
-								  + '</tr>';
+								  + '</tr>'
+							//답변
+								  + '<tr style="border-bottom:1px solid lightgray; display:none;" id="a'+ data[i].prod_number + data[i].qna_number + '" data-oc="close">';
+							if(data[i].answer_yn == 'y'){
+								list += '	<td colspan="4" id="answer">└<span style="background:gray; color:white; width:fit-content;">답변</span><span id="answer_content">${qna.answer_content }</span></td>'
+									  + '	<td>${qna.answer_date }</td>';
+							} else {
+								list += '	<td colspan="5" id="answer"><span id="answer_content">아직 답변이 없습니다.</span></td>';
+							}
+
+								list += '</tr>';
 					}
 				
 					$("#event_td").html(list);
@@ -218,40 +248,221 @@
 		});
     });
 	
+	$(document).on('click', '.deleteProd', function(){
+		var id = $(this).attr('id');
+		var frm = document.sellerProduct;
+		var myProductCheck = $("input:checkbox[name='myProductCheck']").is(":checked");
+		var checkProd = document.getElementsByName("myProductCheck");
+
+		if(id == 'selectDelete'){
+			if(myProductCheck == false){
+				alert("선택된 상품이 없습니다.");
+				return false;
+			} else {
+				document.getElementById("division").value = id;
+			}
+		} else{
+			//모두 체크해서 보내기
+			for(i=0; i < checkProd.length; i++) {
+				checkProd[i].checked = true;
+			}
+			document.getElementById("division").value = id;
+		}
+		
+		if(confirm("정말 삭제하시겠습니까?")){
+
+			frm.method="post";
+			frm.action="/devFw/sellerPage.do";
+			frm.submit();
+
+		} else { //alert 취소 버튼 눌렀을 경우
+			return false;
+		}
+	});
+	
 </script>
 </head>
 <body>
+<c:set var="sellerId" value="${sellerId }"/>
+<c:set var="seller" value="${seller }"/>
+<c:set var="seller_group" value="${seller_group }"/>
+<c:set var="flea_seller_group" value="${flea_seller_group }"/>
 
-	<!-- 메뉴사이드바랑 컨텐츠 ------------------------------------------------------------------------------------------------------------------------------------------>
-<!-- 	<div class="container-fluid" -->
-<!-- 		style="padding-left: 19%; padding-top: 3%; margin-right: -4%;"> -->
-<!-- 		<div class="col-sm-2" id="col"> -->
-
-<!-- 			<div class="table" id="sidebar" -->
-<!-- 				style="font-size: 13px; border: 1px solid black;"> -->
-<!-- 				<h1 style="font-size: 21px;">✔마이페이지</h1> -->
-<%-- 				<li><a href="${contextPath}/detail1.do">주문 조회</a></li> --%>
-<%-- 				<li><a href="${contextPath}/detail2.do">장바구니</a></li> --%>
-<%-- 				<li><a href="${contextPath}/detail3.do">포인트</a></li> --%>
-<%-- 				<li><a href="${contextPath}/detail4.do">관심상품</a></li> --%>
-<%-- 				<li><a href="${contextPath}/detail4.do">게시글 관리</a></li> --%>
-<%-- 				<li><a href="${contextPath}/detail4.do">탈퇴 하기</a></li> --%>
-<!-- 			</div> -->
-<!-- 		</div> -->
 		<!-- 사이드바------------------------------------------------------------------------------------------------------------------------ -->
 	<div class="container">
-<!-- 		<div class="col-sm-10" -->
-<!-- 			style="padding-right: 11%; padding-left: 2%; font-size: 37px;"> -->
+
 <br><br>
 			<h1>게시글 관리</h1>
 			<br><hr><br>
-			<form name="frm" method="post" encType="UTF-8">
+			<form name="sellerProduct" method="post" encType="UTF-8">
 					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#qna">상품 Q&A</a></li>
+						<c:if test="${seller_group == 'y  ' or seller_group == 'Y  ' }"> <!-- 판매자이면 -->
+							<li class="active"><a data-toggle="tab" href="#sellProd">판매 물품</a></li>
+							<li><a data-toggle="tab" href="#qna">상품 Q&A</a></li>
+						</c:if>
+						<c:if test="${seller_group == 'n  ' or seller_group == 'N  ' }">
+							<li class="active"><a data-toggle="tab" href="#qna">상품 Q&A</a></li>
+						</c:if>
 						<li><a data-toggle="tab" href="#review">상품 후기</a></li>
 					</ul>
 					<div class="tab-content">
-						<div id="qna" class="tab-pane fade in active">
+					<c:choose>
+						<c:when test="${seller_group == 'y  ' or seller_group == 'Y  ' }">
+							<!-- sellProd -->
+							<div id="sellProd" class="tab-pane fade in active">
+							<br>
+							<h3>판매 물품</h3>
+							<br>
+							<div class="row">
+									<c:forEach var="product" items="${sellerProduct }" varStatus="status">
+										<div class="col-sm-3">
+											<div class="thumbnail">
+												<input type="checkbox" name="myProductCheck" id="myProductCheck" value="${product.prod_number }">
+												
+												<c:if test="${product.reused_yn == 'y' }">
+													<!-- 상품 판매 카테고리 -->
+													<span class="group">중고</span>
+												</c:if>
+												<c:if test="${product.auction_yn == 'y' or product.auction_yn == 'w' or product.auction_yn == 'f'}">
+													<span class="group">경매</span>
+												</c:if>
+												<c:if test="${product.flea_yn == 'y' }">
+													<span class="group">플리</span>
+												</c:if>
+												<c:if test="${product.auction_yn == 'y' }">
+													<span class="group" style="color:red;">(경매 진행 중)</span>
+												</c:if>
+												<img src="${product.represent_image }"
+													style="width: 230px; height: 240px;" alt="..."
+													onclick="location.href='./detail.do?prod_number=${product.prod_number }'">
+												<div class="caption">
+													<h3>${product.prod_title }
+														<c:if test="${product.sale_percent != null }">
+														[${product.sale_percent }%]
+													</c:if>
+													</h3>
+													<c:choose>
+														<c:when test="${product.auction_yn == 'y' }">
+															<p id="p">
+																<fmt:formatNumber value="${product.auction_bid }"
+																	type="number" />
+																원 
+															</p>
+														</c:when>
+														<c:when test="${((product.auction_yn == 'f' or product.auction_yn == 'w') and product.reused_yn == 'n' and product.flea_yn == 'n') or product.prod_amount == 0}">
+															<p id="p" style="color:red; font-weight:bold">품절</p>
+														</c:when>
+														<c:otherwise>
+															<c:if test="${product.sale_percent != null }">
+																<p>
+																	<span id="p"><fmt:formatNumber
+																			value="${product.prod_price * (1-(product.sale_percent*0.01)) }"
+																			type="number" />원</span> <span id="sale_price"
+																		style="margin-bottom: 1re;"><fmt:formatNumber
+																			value="${product.prod_price }" type="number" />원</span>
+																</p>
+															</c:if>
+															<c:if test="${product.sale_percent == null }">
+																<p id="p">
+																	<fmt:formatNumber value="${product.prod_price }"
+																		type="number" />
+																	원
+																</p>
+															</c:if>
+														</c:otherwise>
+													</c:choose>
+							
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+								</div>
+				
+								<div id="sellerButton">
+									<input type="hidden" name="prev" value="mypage">
+									<input type="hidden" name="memberId" value="${sellerId }"/>
+									<input type="hidden" class="division" name="division" id="division" value="">
+									<input type="button" class="deleteProd" id="selectDelete" value="선택상품삭제">
+									<input type="button" class="deleteProd" id="allDelete" value="전체상품삭제">
+								</div>
+							</div>
+							<div id="qna" class="tab-pane fade">
+							<br>
+							<h3>상품 Q&A</h3>
+							<br>
+							<div id="minTable">
+								<table class="table table-hover" id="event_td">
+									<tr id="nonhover">
+										<th>상품</th>
+										<th>내용</th>
+										<th>작성일</th>
+										<th>답변여부</th>
+										<th>삭제</th>
+									</tr>
+			
+									<c:forEach var="qna" items="${qnaList}" varStatus='index'>
+										<!-- 질문 -->
+										<tr class="question" id="${qna.prod_number } ${qna.qna_number}">
+											<td><a  href="./detail.do?prod_number=${qna.prod_number }"><img src="${qna.represent_image}" width="75px" height="75px"></a></td>
+											<td style="width: 43%;">${qna.qna_content}</td>
+											<td>${qna.qna_date}</td>
+											<td><c:if test="${qna.answer_yn == 'y' }">O</c:if><c:if test="${qna.answer_yn == 'n' }">X</c:if></td>
+											<td style="width: 9%;"><a class="delete" id="${qna.prod_number },${qna.qna_number }" data-deleteyn="no">삭제</a></td>
+										</tr>
+										<!-- 답변 -->
+									 	<tr style="border-bottom:1px solid lightgray; display:none;" id="a${qna.prod_number }${qna.qna_number}" data-oc="close">
+											<c:if test="${qna.answer_yn == 'y' }">
+												<td colspan="4" id="answer">└<span style="background:gray; color:white; width:fit-content;">답변</span><span id="answer_content">${qna.answer_content }</span></td>
+												<td>${qna.answer_date }</td>
+											</c:if>
+											<c:if test="${qna.answer_yn == 'n' }">
+												<td colspan="5" id="answer"><span id="answer_content">아직 답변이 없습니다.</span></td>
+											
+											</c:if>
+										</tr>
+									</c:forEach>
+								</table>
+							</div>
+							<c:set var="qnaCnt" value="${qnaCnt }"/>
+							<c:set var="currentPage" value="${currentPage }"/>
+							<input type="hidden" id="qnaCnt" value="${qnaCnt }">
+								<c:if test="${qnaCnt != 0 }">
+									<div class="paging_comm" id="paging">
+										<c:choose>
+												<c:when test="${qnaCnt%10 == 0 }">
+													<c:forEach var="i" begin="1" end="${qnaCnt/10 }" step="1">
+												
+														<c:if test="${i == currentPage }">
+														 	 <a style="color:orange;"><c:out value="${i }" /></a>
+														</c:if>
+														<c:if test="${i != currentPage }">
+															 <a><c:out value="${i }" /></a>
+														</c:if>
+													   
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+													<c:forEach var="i" begin="1" end="${qnaCnt/10 + 1 }" step="1">
+												
+														<c:if test="${i == currentPage }">
+														 	 <a style="color:orange;"><c:out value="${i }" /></a>
+														</c:if>
+														<c:if test="${i != currentPage }">
+															 <a><c:out value="${i }" /></a>
+														</c:if>
+													   
+													</c:forEach>
+												</c:otherwise>
+											</c:choose>
+									</div>
+								</c:if>
+							</div>
+						</c:when>
+						
+						<c:otherwise>
+						
+						<!-- 상품 Q&A -->
+						<div id="qna" class="tab-pane fade">
 						<br>
 						<h3>상품 Q&A</h3>
 						<br>
@@ -322,6 +533,8 @@
 								</div>
 							</c:if>
 						</div>
+						</c:otherwise>
+					</c:choose>
 						
 						<!-------------------------------------------------------------------------------->
 						
@@ -330,39 +543,11 @@
 							<br>
 						<h3>상품 후기</h3>
 						<br>
-							<table class="table table-hover" id="event_td">
-								<tr id="nonhover">
-									<th>상품</th>
-									<th>내용</th>
-									<th>작성일</th>
-									<th>별점</th>
-									<th>삭제</th>
-								</tr>
-		
-								<c:forEach var="qna" items="${qnaList}" varStatus='index'>
-									<!-- 질문 -->
-									<tr class="question" id="${qna.prod_number } ${qna.qna_number}">
-										<td><a  href="./detail.do?prod_number=${qna.prod_number }"><img src="${qna.represent_image}" width="75px" height="75px"></a></td>
-										<td style="width: 43%;">${qna.qna_content}</td>
-										<td>${qna.qna_date}</td>
-										<td><c:if test="${qna.answer_yn == 'y' }">O</c:if><c:if test="${qna.answer_yn == 'n' }">X</c:if></td>
-										<td style="width: 9%;"><a class="delete" id="${qna.prod_number },${qna.qna_number }" data-deleteyn="no">삭제</a></td>
-									</tr>
-									<!-- 답변 -->
-								 	<tr style="border-bottom:1px solid lightgray; display:none;" id="a${qna.prod_number }${qna.qna_number}" data-oc="close">
-										<c:if test="${qna.answer_yn == 'y' }">
-											<td colspan="4" id="answer">└<span style="background:gray; color:white; width:fit-content;">답변</span><span id="answer_content">${qna.answer_content }</span></td>
-											<td>${qna.answer_date }</td>
-										</c:if>
-										<c:if test="${qna.answer_yn == 'n' }">
-											<td colspan="5" id="answer"><span id="answer_content">아직 답변이 없습니다.</span></td>
-										
-										</c:if>
-									</tr>
-								</c:forEach>
-							</table>
+							
 						</div>
-				</div>
+						
+						
+					</div>
 			</form>
 	</div>
 </body>
