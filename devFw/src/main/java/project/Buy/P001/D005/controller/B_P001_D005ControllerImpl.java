@@ -1,17 +1,19 @@
 package project.Buy.P001.D005.controller;
 
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import project.Buy.P001.D005.service.B_P001_D005Service;
 
@@ -29,29 +31,42 @@ public class B_P001_D005ControllerImpl implements B_P001_D005Controller{
 		Logger.debug("REST API Start");
 		
 		Map searchMap = new HashMap();
-		return b_p001_d005Service.kakaopayReady(searchMap);	   
+		//return b_p001_d005Service.kakaopayReady(searchMap);	 	
+		return null;
 	}
 	
+	//order에 넣기
 	@Override
-	@RequestMapping(value = "/kakaopaySuccess.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView kakaopaySuccess(HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/insertOrders.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public void insertOrders(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
 		
-		return null;
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		Enumeration enu = request.getParameterNames();
+		while (enu.hasMoreElements()) {
+			String name = (String)enu.nextElement();
+			String value = request.getParameter(name);
+			dataMap.put(name, value);
+			System.out.println(dataMap);
+		}
+		b_p001_d005Service.insertOrders(dataMap);
+
 	}
 
 	@Override
-	@RequestMapping(value = "/kakaopayFail.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView kakaopayFail(HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public void insertDest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		Enumeration enu = request.getParameterNames();
+		while (enu.hasMoreElements()) {
+			String name = (String) enu.nextElement();
+			String value = request.getParameter(name);
+			dataMap.put(name, value);
+			System.out.println(dataMap);
+		}
+		b_p001_d005Service.insertDest(dataMap);
+		
 	}
-
-	@Override
-	@RequestMapping(value = "/kakaopayCancel.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView kakaopayCancel(HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 }

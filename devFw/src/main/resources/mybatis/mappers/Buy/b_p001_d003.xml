@@ -18,7 +18,7 @@
 	<!-- 장바구니에 담은 상품 보여주기-->
 	<select id="cartList" resultMap="B_P001_D003Result01" parameterType="java.util.Map">
 		<![CDATA[
-         select c.prod_number, p.prod_title, c.real_prod_price, p.represent_image, c.cart_count
+         select c.prod_number, p.prod_title, p.prod_amount, c.real_prod_price, p.represent_image, c.cart_count
          from   cart c, product p, member m
 	  ]]>
 		<where>
@@ -36,7 +36,7 @@
 		from cart
 	]]>
 	<where>
-			<![CDATA[
+		<![CDATA[
 		 prod_number = #{prod_number}
 		and memberid = #{memberid}
 		]]>
@@ -72,7 +72,7 @@
 		<where>
 			<![CDATA[
 		 prod_number = #{prod_number}
-		and memberid = #{memberid} 
+	and memberid = #{memberid} 
 		]]>
 		</where>
 	</delete>

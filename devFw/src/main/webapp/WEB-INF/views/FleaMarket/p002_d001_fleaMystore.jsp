@@ -184,10 +184,11 @@
 		<div class=".col-sm-4">
 			<aside class="artist-area">
 				<div class="user-info card-style-profile ">
+					<!--  
 					<h4>
 						<a href="/devFw/fleaSearchInit.do">플리마켓 마이페이지(임시)</a>
 					</h4>
-
+-->
 
 					<!-- 
 		            <div id="chat-header">
@@ -234,8 +235,9 @@
 						<div id="user-info"></div>
 						<button type="button" class="btn btn-m btn-white pseudo-ico-share"
 							data-ui="url-copy" data-ui-option="short" data-icon-event="hover"
-							data-clipboard-text="#">
-							<i class="fa fa-user-plus pa-5x"></i>참가 신청<br>
+							data-clipboard-text="#" onclick="location.href='/devFw/fleaSearchInit.do'">
+							<i class="fa fa-user-plus pa-5x"></i>
+							참여자 리스트<br>
 						</button>
 
 					</div>

@@ -1098,6 +1098,7 @@
 					if (parsingData.data == 1) {
 
 						$.ajax({
+
 							type : "get",
 							async : false,
 							url : "/devFw/editCart.do",
@@ -1106,12 +1107,14 @@
 
 							success : function(responseData) {
 								closeNotice();
+								console.log("장바구니 수정 성공");	
 							},
 							error : function(data, textStatus) {
 								alert("장바구니에 수정 실패")
 							},
-							complete : function(data, textStatus) {
-								alert("장바구니에 상품 옵션 수정완료!")
+
+							complete : function(data, textStatus){
+		
 							} // end of second ajax complete
 						});
 
@@ -1126,13 +1129,14 @@
 
 							success : function(responseData) {
 								closeNotice();
+								console.log("장바구니 추가 성공");
+							},
 
+							error:function(data, textStatus){
+								alert("장바구니에 상품담기 실패");
 							},
-							error : function(data, textStatus) {
-								alert("장바구니에 상품담기 실패")
-							},
-							complete : function(data, textStatus) {
-								alert("장바구니 담기 성공")
+							complete : function(data, textStatus){
+							
 							}
 
 						// end of second ajax complete
@@ -2256,4 +2260,4 @@ textarea {
 		</div>
 	</form>
 </body>
-</html>
+</html>ㅍ

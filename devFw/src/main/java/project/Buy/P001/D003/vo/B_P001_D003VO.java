@@ -17,10 +17,21 @@ public class B_P001_D003VO {
 	private int option_number;
 	private int cart_list_number;
 	private int real_prod_price;
+	private int prod_amount;
 	
 	
 	
 	
+	
+	
+	public int getProd_amount() {
+		return prod_amount;
+	}
+
+	public void setProd_amount(int prod_amount) {
+		this.prod_amount = prod_amount;
+	}
+
 	public int getReal_prod_price() {
 		return real_prod_price;
 	}
