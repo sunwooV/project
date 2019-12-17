@@ -218,7 +218,7 @@
 
  
 	<form name="payInfo">
-		<h2 style="padding-left: 18%; padding-top: 4%;">주문 및 결제 정보</h2>
+		<h2 style="padding-left: 18%; padding-top: 4%;">📃주문 및 결제 정보</h2>
 		<div class="container" id="pay">
 			<h3>배송지 정보</h3>
 			<!-- 배송정보 테이블 -->
