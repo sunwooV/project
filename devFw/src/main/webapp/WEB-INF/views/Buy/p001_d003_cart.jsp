@@ -47,18 +47,51 @@
 				}
 			}
 		})// end of checkProd click function
+		
+		// 숫자 타입에서 쓸 수 있도록 format() 함수 추가
+		Number.prototype.format = function(){
+		    if(this==0) return 0;
+		 
+		    var reg = /(^[+-]?\d+)(\d{3})/;
+		    var n = (this + '');
+		 
+		    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+		 
+		    return n;
+		};
 
+		// 문자열 타입에서 쓸 수 있도록 format() 함수 추가
+		String.prototype.format = function(){
+		    var num = parseFloat(this);
+		    if( isNaN(num) ) return "0";
+		 
+		    return num.format();
+		};
+
+		//check된 가격만 계산하기
 		var cnt = $("input:checkbox[name=checkProd]:checked"); // 체크된 체크박스 가져오기
 		
-		var prodInfo=[];
-		var total;
+		var priceTtl=[];
+		
+		var total = 0;
 		cnt.each(function(i){
-			prodInfo[i] = cnt.children().children().children().children().children().text();
+			var tr = cnt.parent().parent().eq(i);
+			var td = tr.children();
 			
-			total+=prodInfo[i];
+			priceTtl[i] = td.eq(5).text();
+			var realPrice =[];
+			realPrice[i] = Number(priceTtl[i].substring(0,priceTtl[i].lastIndexOf("원")-1));
+			
+			console.log(realPrice[i]);
+			
+			total = total+realPrice[i];
+			console.log(total);
 		})
 		var subTotal = document.getElementById("subTotal");
-		subTotal.innerHTML = total;
+			subTotal.innerHTML = total.format()+"원";
+		var subTotalPrice = document.getElementById("subTotalPrice");
+		subTotalPrice.value= total;
+		
 		
 	});
 	
@@ -99,21 +132,6 @@
 		}//end of if
 		
 	})
-			
-	//click 시 주문결제로~~
-	function moveToPayInfo() {
-		var frm = document.Mycart;
-		var cnt = $("input:checkbox[name=checkProd]:checked").length;
-		
-		var body = document.getElementsByTagName("body");
-		
-		body.innerHTML = "<input type='hidden' id='cnt' name='cnt' value='"+cnt+"'>";
-		
-		frm.method = "post";
-		frm.submit();
-		frm.action = "/devFw/payInfo.do";
-
-	}
 	
 	//+, - 버튼 눌렀을 때 수량 변경
 	function abuttonClick(pm, num){ //pm:plus,minus / num: prod_number 
@@ -141,7 +159,7 @@
 		var count = $("."+editCount).val();
 		
 	
-		var edit = {
+		var insertOrderInfo = {
 				command:command,
 				memberid:memberId,
 				prod_number:prod_number,
@@ -150,19 +168,19 @@
 		$.ajax({
 			type:"get",
 			async:false,
-			url:"/devFw/editCart.do",
-			data :edit,
+			url:"/devFw/insertOrders.do",
+			data :insertOrderInfo,
 			dataType:"text",
 			
 			success: function(responseData){
-				console.log('수량 변경 성공');		
+				s
 				
 			},
 			error:function(data, textStatus){
 				alert("장바구니에 수정 실패")
 			},
 			complete : function(data, textStatus){
-				alert("장바구니에 상품 옵션 수정완료!")				
+				
 			} // end of second ajax complete
 		});//end of ajax
 	
@@ -193,6 +211,23 @@
 		document.getElementsByName("t"+num)[0].value = total;
 	}
 
+	
+	//click 시 주문결제로~~
+	function moveToPayInfo() {
+		var frm = document.Mycart;
+		var cnt = $("input:checkbox[name=checkProd]:checked").length;
+		
+		var countProd = document.getElementById("countProd");
+		countProd.value=cnt;
+		
+	
+		frm.method = "get";
+		frm.submit();
+		frm.action = "/devFw/payInfo.do";
+
+	}
+	
+	
 	//관심상품 이동 후 카트에서 삭제
 	 
 
@@ -245,9 +280,12 @@ margin-left: 15%
 
 </head>
 <body>
-	<input type="hidden" id="command" name="command" value="edit">
-	<input type="hidden" id="memberId" value="${member.getMemberid()}">
+
 	<form name="Mycart" method="post" action="./payInfo.do">
+	<input type="hidden" id="command" name="command" value="edit">
+	<input type="hidden" id="subTotalPrice" name="subTotalPrice" value="">
+	<input type="hidden" id="countProd" name="countProd" value="">
+	<input type="hidden" id="memberId" value="${member.getMemberid()}">
 		<!-- 장바구니 상단 -->
 		<div class="orderHistoryHeader">
 			<h2>👜장바구니</h2>
@@ -284,14 +322,14 @@ margin-left: 15%
 							</td>
 							<td class="OHC_cont">
 							<input type="button" onClick="abuttonClick('minus',${cartList.prod_number })" value="-">
-							<input type="number" class="a${cartList.prod_number }" id="cart_count" name="count${cartList.prod_number }" min="1" max="${cartList.prod_amount}" style="text-align:center; border: 1px solid white;width: 20%; height: auto;text-align: right;" value="${cartList.cart_count}">
+							<input type="number" class="a${cartList.prod_number }" id="cart_count" name="count${cartList.prod_number }" min="1" max="${cartList.prod_amount}" style="text-align:center; border: 1px solid white; width: 10%; height: auto;text-align: right;" value="${cartList.cart_count}">
 							<input type="button" onClick="abuttonClick('plus',${cartList.prod_number })" class="${cartList.prod_number }" value="+">
 							
 
 							</td>
 							<td class="OHC_cont" id="prod_price"><span class="pri${cartList.prod_number }">${cartList.real_prod_price}</span>원
 							</td>
-							<td class="OHC_cont"><span id="prod_ttl_price" name="t${cartList.prod_number }"><fmt:formatNumber value="${cartList.real_prod_price * cartList.cart_count}" />
+							<td class="OHC_cont"><span id="prod_ttl_price" name="t${cartList.prod_number }">${cartList.real_prod_price * cartList.cart_count}
 							</span>원</td>
 
 						</tr>

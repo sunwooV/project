@@ -5,9 +5,9 @@
 <c:set var="Path" value="${pageContext.request.contextPath}" />
 <%
 	request.setCharacterEncoding("UTF-8");
-	int ttlPrice = Integer.parseInt(request.getParameter("totalPrice"));
+	int ttlPrice = Integer.parseInt(request.getParameter("subTotalPrice"));
 	String title = (String) request.getParameter("prod_title");
-	int cnt = Integer.parseInt(request.getParameter("cnt"));
+	int cnt = Integer.parseInt(request.getParameter("countProd"));
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,7 +101,7 @@
 		};
 		
 		var price = document.getElementById('finalPrice');
-		price.value = <%=ttlPrice+2500 %>;
+		price.value = Number(<%=ttlPrice%>)+2500;
 
 		var finalPrice = price.value.format();
 		
@@ -118,16 +118,11 @@
 		var email = document.getElementById('email').value; //주문자 이메일
 		var phoneNum = document.getElementById('buyerPhone').value; //주문자 연락처
 		var product = <%=title%>;
-		var price = document.getElementById('finalPrice').value;
+		var orderWant = document.getElementById('orderWant').value;
 		
 		var pay_method = $('input[name=size]:checked').val();
-		
-
-		
-		
-		
-		
-		
+				
+		var price = <%=ttlPrice %>;
 		
 		// IMP.request_pay(param, callback) 호출
 		IMP.init("imp43398102"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
@@ -146,12 +141,36 @@
 			
 		}, function(rsp) { // callback
 			if (rsp.success) {
+					
 				var orderInfo ={
 						order_num:rsp.merchant_uid,
 						pay_method:pay_method,
-						
-						
+						order_state: "결제완료",
+						buyer_memberId: buyerMemberId,
+						order_date: new Date(),
+						total_price: price,
+						order_want: orderWant
 				}
+				$.ajax({
+					type:"get",
+					async:false,
+					url:"/devFw/editCart.do",
+					data :edit,
+					dataType:"text",
+					
+					success: function(responseData){
+						console.log('수량 변경 성공');		
+						
+					},
+					error:function(data, textStatus){
+						alert("장바구니에 수정 실패")
+					},
+					complete : function(data, textStatus){
+						console.log("장바구니에 상품 옵션 수정완료!");			
+					}
+				})//end of ajax
+				
+				
 				
 				
 				var msg = '결제가 완료되었습니다.';
@@ -173,6 +192,7 @@
 <body>
 	<input type="hidden" id="buyer_memberId" value="${member.getMemberid()}">
 
+ 
 	<form name="payInfo">
 		<h2 style="padding-left: 18%; padding-top: 4%;">주문 및 결제 정보</h2>
 		<div class="container" id="pay">
@@ -204,8 +224,7 @@
 				</tr>
 				<tr>
 					<th class="OHT_ttl">배송메모</th>
-					<td class="OHC_cont"><input type="text"
-						placeholder="배송메모를 작성해주세요.(200자이내)"></td>
+					<td class="OHC_cont"><input type="text" id="orderWant" placeholder="배송메모를 작성해주세요.(200자이내)"></td>
 				</tr>
 			</table>
 
@@ -225,11 +244,11 @@
 						<input type="radio" name="size" id="PAYCO" value="small" /> <label for="size_3">PAYCO</label>
 					</td>
 				</tr>
-				<tr>
+<!-- 				<tr>
 					<th class="OHT_ttl">포인트</th>
 					<td class="OHC_cont"><input type="number" id="custPoint">&nbsp&nbspP&nbsp&nbsp&nbsp&nbsp보유포인트 </td>
 				</tr>
-
+ -->
 			</table>
 
 			<br> <br> <br> <br> <br> <br>
@@ -240,17 +259,17 @@
 			<table id="form">
 				<tr>
 					<th class="OHT_ttl">상품정보</th>
-					<td class="OHC_cont" id="title"><%=title%>외 <%=cnt%>개의 상품</td>
+					<td class="OHC_cont" id="title"><%=title%>외 </td>
 				</tr>
 				<tr>
 
 					<th class="OHT_ttl">상품 금액</th>
-					<td class="OHC_cont" id="prod_price"><fmt:formatNumber value="<%=ttlPrice %>" />원</td>
+					<td class="OHC_cont" id="prod_price"><%=ttlPrice %>원</td>
 				</tr>
 				<tr>
 
 					<th class="OHT_ttl">총 주문 금액</th>
-					<td class="OHC_cont" id="finalPrice"></td>
+					<td class="OHC_cont" id="finalPrice"><%=ttlPrice %></td>
 				</tr>
 			</table>
 
