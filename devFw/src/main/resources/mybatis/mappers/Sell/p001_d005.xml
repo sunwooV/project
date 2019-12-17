@@ -127,9 +127,17 @@
 			DELETE FROM tag
 		]]>
 		<where>
+		<if test="checkProduct == null"> <!-- 하나만 삭제시 -->
 		<![CDATA[
 			prod_number = #{prod_number}
 		]]>
+		</if>
+		<if test="checkProduct != null"> <!-- 여러개 한 번에 삭제시 -->
+			 prod_number IN 
+          <foreach collection="checkProduct" item="checkProduct" index="index" separator="," open="(" close=")">
+             #{checkProduct}
+          </foreach>
+		</if>
 		</where>
 	</delete>
 	
@@ -138,9 +146,17 @@
 			DELETE FROM product
 		]]>
 		<where>
+		<if test="checkProduct == null"> <!-- 하나만 삭제시 -->
 		<![CDATA[
 			prod_number = #{prod_number}
 		]]>
+		</if>
+		<if test="checkProduct != null"> <!-- 여러개 한 번에 삭제시 -->
+			 prod_number IN 
+          <foreach collection="checkProduct" item="checkProduct" index="index" separator="," open="(" close=")">
+             #{checkProduct}
+          </foreach>
+		</if>
 		</where>
 	</delete>
 	
@@ -149,9 +165,17 @@
 			DELETE FROM auction_bid
 		]]>
 		<where>
+		<if test="checkProduct == null"> <!-- 하나만 삭제시 -->
 		<![CDATA[
 			prod_number = #{prod_number}
 		]]>
+		</if>
+		<if test="checkProduct != null"> <!-- 여러개 한 번에 삭제시 -->
+			 prod_number IN 
+          <foreach collection="checkProduct" item="checkProduct" index="index" separator="," open="(" close=")">
+             #{checkProduct}
+          </foreach>
+		</if>
 		</where>
 	</delete>
 

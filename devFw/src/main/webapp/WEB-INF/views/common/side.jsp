@@ -54,7 +54,7 @@ a {
 			</a>
 		</div>
 		</c:if>
-		<c:if test="${member.getFlea_seller_group() == 'n  ' or member.getFlea_seller_group() == 'N  '}">
+		<c:if test="${member.getFlea_seller_group() == 'y  ' or (member.getSeller_group() == 'y  ' and (member.getFlea_seller_group() == 'n  ' or member.getFlea_seller_group() == 'N  ')) }">
 		<div id="openFlea">
 			<a href="./fleaCreateStoreForm.do"> <img id="side"
 				src="${contextPath }/resources/img/side/open.png">

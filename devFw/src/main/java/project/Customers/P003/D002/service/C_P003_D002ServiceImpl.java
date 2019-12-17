@@ -20,9 +20,9 @@ public class C_P003_D002ServiceImpl implements C_P003_D002Service {
 	private C_P003_D002DAO C_P003_D002DAO;
 
 	@Override
-	public List<C_P003_D002VO> miuCategory(Map<String, Object> searchMap) throws DataAccessException {
-		List<C_P003_D002VO> miuCategory =  C_P003_D002DAO.miuCategory(searchMap); 
-		return miuCategory;
+	public List<C_P003_D002VO> sellerCheck(Map<String, Object> searchMap) throws DataAccessException {
+		List<C_P003_D002VO> sellerCheck =  C_P003_D002DAO.sellerCheck(searchMap); 
+		return sellerCheck;
 	}
 
 	@Override
