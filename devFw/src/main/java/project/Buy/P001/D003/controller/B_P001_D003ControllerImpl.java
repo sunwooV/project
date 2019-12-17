@@ -89,9 +89,10 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 		if(command != null) {
 			b_p001_d003Service.updateCart(dataMap);
 		} else {
+			
 			String memberId = (String) session.getAttribute("memberid");
 			String prod = product.getProd_number();
-			String prodCnt = product.getProd_amount();
+			String prodCnt = request.getParameter("");
 
 			Map<String, Object> resultMap = new HashMap<String, Object>();
 			resultMap.put("memberid", memberId);
@@ -99,11 +100,7 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 			resultMap.put("cart_count", prodCnt);
 
 			b_p001_d003Service.updateCart(resultMap);
-		}
-		
-		
-		
-		
+		}		
 
 	}
 
@@ -114,6 +111,21 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		System.out.println("장바구니 제품 추가 들어옴");
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		Enumeration enu = request.getParameterNames();
+		while (enu.hasMoreElements()) {
+			String name = (String)enu.nextElement();
+			String value = request.getParameter(name);
+			dataMap.put(name, value);
+			System.out.println(dataMap);
+		}
+		
+		String command = request.getParameter("command");
+		
+		if(command !=null) {
+		
+		}else {
 		String memberid = (String) session.getAttribute("memberid");
 		String prod = product.getProd_number();
 		String prodCnt = product.getProd_amount();
@@ -121,13 +133,14 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 
 		System.out.println(realPrice);
 		
-		Map<String, Object> dataMap = new HashMap<String, Object>();
-		dataMap.put("memberid", memberid);
-		dataMap.put("prod_number", prod);
-		dataMap.put("cart_count", prodCnt);
-		dataMap.put("real_prod_price", realPrice);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("memberid", memberid);
+		resultMap.put("prod_number", prod);
+		resultMap.put("cart_count", prodCnt);
+		resultMap.put("real_prod_price", realPrice);
 
-		b_p001_d003Service.insertCart(dataMap);
+		b_p001_d003Service.insertCart(resultMap);
+		}
 
 	}
 

@@ -9,6 +9,99 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
+
+//check box 전체 선택 
+$(document).ready(function(){
+	
+	$("#allCheck").click(function(){
+		if($("#allCheck").prop("checked")){
+			$("input[name=checkProd]").prop("checked",true);
+		}else{
+			$("input[name=checkProd]").prop("checked",false);
+		}
+	})
+	
+	var checkProd = document.getElementsByName("checkProd");
+
+	//모두 체크해서 보내기
+	for(i=0; i < checkProd.length; i++) {
+		checkProd[i].checked = true;
+	}
+	
+//	document.getElementsByName("allCheck")[0].checked = true;
+	
+	$("#checkProd").click(function(){
+		for(i=0; i < checkProd.length; i++) {
+			if(checkProd[i].checked == false){
+				document.getElementsByName("allCheck")[0].checked = false;
+				checkProd[i].checked = false;
+			
+			}
+		}
+	})// end of checkProd click function
+	
+	//장바구니 담기 - 상품에서 바로 장바구니 담기 누를 때
+	$(document).on('click','#basket', function(){
+		var product = $('#checkProd').val();
+		alert(product);
+		var memberId = $('#memberId').val();
+		alert(memberId);
+		var num = 1;
+		
+		var checkData ={
+				prod_number:product,
+				memberId:memberId
+		}
+		
+		var insertCartInfo = {
+				prod_number:product,
+				memberId:memberId,
+				cart_count : num,
+				command:"command"
+		}
+		
+		$.ajax({
+			type:"post",
+			async:false,
+			url: "/devFw/checkCartList.do",
+			data: checkData,
+			dataType : 'text',
+			
+			success:function(responseData){
+				if(responseData == 1){
+					alert("동일한 상품이 장바구니에 담겨있습니다.");
+				}else{
+					$.ajax({
+						type:"get",
+						async:false,
+						url:"/devFw/addCart.do",
+						data: insertCartInfo,
+						dataType: 'text',
+						success:function(responseData){
+							console.log("장바구니 담기 성공");
+							
+						},
+						error:function(data, textStatus){
+							alert("장바구니 담기 실패");
+						},
+						complete:function(data, textStatus){
+							
+						}
+					})//end of ajax
+				}//else end
+			},
+			error:function(data, textStatus){
+				alert("오류가 발생했습니다.")
+			},
+			complete:function(data, textStatus){
+				
+			} // complete end
+			
+			
+		})//ajax end
+			
+	})// 장바구니 담기 처리 끝
+});
 	
 	//관심 상품 삭제
 	$(document).on('click', '#delete', function(){
@@ -151,50 +244,14 @@
 		frm.submit();
 	});
 	
-	//장바구니 담기 - 상품에서 바로 장바구니 담기 누를 때
-	$(document).on('click','#basket', function(){
-		var product = $('#checkProd').val();
-		alert(product);
-		var memberId = $('#memberId').val();
-		alert(memberId);
-		
-		var checkData ={
-				prod_number:product,
-				memberId:memberId
-		}
-		
-		$.ajax({
-			type:"post",
-			async:false,
-			url: "/devFw/checkCartList.do",
-			data: checkData,
-			dataType : 'text',
-			
-			success:function(responseData){
-				if(responseData == 1){
-					alert("동일한 상품이 장바구니에 담겨있습니다.");
-				}else{
-					showChooseOptionTr();
-				}//else end
-			},
-			error:function(data, textStatus){
-				alert("오류가 발생했습니다.")
-			},
-			complete:function(data, textStatus){
-				
-			} // complete end
-			
-			
-		})//ajax end
-			
-	})// 장바구니 담기 처리 끝
 	
-	//tr show&hide
+	
+/* 	//tr show&hide
 	function showChooseOptionTr(){
 		$('#selectOption').css("display","block");
 	}
-	
-	//+, - 버튼 눌렀을 때 수량 변경
+	 */
+	/* //+, - 버튼 눌렀을 때 수량 변경
 	function abuttonClick(pm){ 
 		
  		
@@ -222,7 +279,7 @@
 		
 		
 		
-	})//function end
+	})//function end */
 	
 </script>
 <style type="text/css">
