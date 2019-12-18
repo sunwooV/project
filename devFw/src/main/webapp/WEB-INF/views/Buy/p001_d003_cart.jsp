@@ -21,8 +21,8 @@
    //check box 전체 선택 
    $(document).ready(function(){
       
-      
       $("#allCheck").click(function(){
+    	  
          if($("#allCheck").prop("checked")){
             $("input[name=checkProd]").prop("checked",true);
          }else{
@@ -36,6 +36,7 @@
       for(i=0; i < checkProd.length; i++) {
          checkProd[i].checked = true;
       }
+      
       document.getElementsByName("allCheck")[0].checked = true;
       
       $("#checkProd").click(function(){
@@ -157,7 +158,7 @@
       var editCount = 'a'+prod_number;
       
       var count = $("."+editCount).val();
-      
+      console.log(count);
    
       var insertOrderInfo = {
             command:command,

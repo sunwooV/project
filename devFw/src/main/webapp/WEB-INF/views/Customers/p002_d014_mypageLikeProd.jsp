@@ -19,66 +19,96 @@ $(document).ready(function(){
 		}else{
 			$("input[name=checkProd]").prop("checked",false);
 		}
-	})
+	}) //1번 end
 	
 	var checkProd = document.getElementsByName("checkProd");
 
 	//모두 체크해서 보내기
 	for(i=0; i < checkProd.length; i++) {
 		checkProd[i].checked = true;
-	}
-	
-//	document.getElementsByName("allCheck")[0].checked = true;
+	}//for end
+
+	  document.getElementsByName("allCheck")[0].checked = true;
 	
 	$("#checkProd").click(function(){
 		for(i=0; i < checkProd.length; i++) {
 			if(checkProd[i].checked == false){
 				document.getElementsByName("allCheck")[0].checked = false;
 				checkProd[i].checked = false;
-			
 			}
 		}
 	})// end of checkProd click function
 	
 	//장바구니 담기 - 상품에서 바로 장바구니 담기 누를 때
 	$(document).on('click','#basket', function(){
-		var product = $('#checkProd').val();
-		alert(product);
-		var memberId = $('#memberId').val();
-		alert(memberId);
+// 		var check = $("input:checkbox[name=checkProd]:checked");
+// 		console.log(check.val());
+//		var checkProd =[];
+// 		for(var i =0; i<check.length;i++){
+// 			checkProd[i] = check.val();
+// 		console.log(checkProd[i]);	
+// 		}
+		var ba = document.getElementById("basket");
+		var aa = ba.dataset.prod;
+		alert(aa);
+		var memberId = document.getElementById("memberId").value;
 		var num = 1;
+		var real_prod_price = document.getElementById("prod_price").value;
+		console.log(real_prod_price)
+		
+	/* 	var product =[];
+		check.each(function(i){
+			var tr = check.parent().parent().eq(i);
+			
+			var td = tr.children();
+			console.log(td);
+			
+			product[i] = td.eq(0);
+			console.log(product[i]);
+		})//end of checkEach */
 		
 		var checkData ={
-				prod_number:product,
-				memberId:memberId
+				prod_number:aa,
+				memberid:memberId
 		}
 		
 		var insertCartInfo = {
-				prod_number:product,
-				memberId:memberId,
+				prod_number:aa,
+				memberid:memberId,
 				cart_count : num,
+				real_prod_price:real_prod_price	,
 				command:"command"
+				
+		}
+		
+		var deleteLikeProd = {
+				prod_number:aa,
+				memberid:memberId,
+				command:"delete"
 		}
 		
 		$.ajax({
-			type:"post",
+			type:"get",
 			async:false,
 			url: "/devFw/checkCartList.do",
 			data: checkData,
 			dataType : 'text',
 			
 			success:function(responseData){
-				if(responseData == 1){
-					alert("동일한 상품이 장바구니에 담겨있습니다.");
-				}else{
+				 if(responseData == 1){
+					 alert("동일한 상품이 장바구니에 담겨 있습니다.");
+					 return false;
+				 }else{
+			
 					$.ajax({
 						type:"get",
 						async:false,
 						url:"/devFw/addCart.do",
 						data: insertCartInfo,
-						dataType: 'text',
-						success:function(responseData){
-							console.log("장바구니 담기 성공");
+						dataType: "text",
+						success:function(responsData){
+							
+						console.log("장바구니 담기 성공");
 							
 						},
 						error:function(data, textStatus){
@@ -88,7 +118,8 @@ $(document).ready(function(){
 							
 						}
 					})//end of ajax
-				}//else end
+					
+				 }//end of else
 			},
 			error:function(data, textStatus){
 				alert("오류가 발생했습니다.")
@@ -100,8 +131,9 @@ $(document).ready(function(){
 			
 		})//ajax end
 			
-	})// 장바구니 담기 처리 끝
-});
+	});// 장바구니 담기 처리 끝;
+}); 
+
 	
 	//관심 상품 삭제
 	$(document).on('click', '#delete', function(){
@@ -195,16 +227,6 @@ $(document).ready(function(){
 		
 	});
 
-	//전체 checkbox
-	$(document).on('click', '#allCheck', function(){ //만약 전체 선택 체크박스가 체크된상태일경우 
-		if($("#allCheck").prop("checked")) { //해당화면에 전체 checkbox들을 체크해준다 
-			$("input[type=checkbox]").prop("checked",true); // 전체선택 체크박스가 해제된 경우 
-		} 
-		else { //해당화면에 모든 checkbox들의 체크를해제시킨다. 
-			$("input[type=checkbox]").prop("checked",false); 
-		} 
-	});
-	
 	//선택된 상품 삭제
 	$(document).on('click', '#checkDelete', function(){
 		var frm = document.mypageLikeProd;
@@ -372,7 +394,7 @@ input[type=button]{
 			<!-- 주문 상품 정보 테이블 상단 제목   -->
 			<thead class="orderHistoryTableTitles">
 				<tr class="OHtableTitle">
-					<th class="OHT_ttl"><input type="checkbox" id="allCheck"></th>
+					<th class="OHT_ttl"><input type="checkbox" id="allCheck" name="allCheck"></th>
 					<th class="OHT_ttl"><span>상품이미지</span></th>
 					<th class="OHT_ttl"><span>상품정보</span></th>
 					<th class="OHT_ttl"><span>판매가</span></th>
@@ -389,15 +411,19 @@ input[type=button]{
 					<td class="OHC_cont"><img src="${myLikeProd.represent_image }" class="represent_img"></td>
 					<td class="OHC_cont">${myLikeProd.prod_title }</td>
 					<td class="OHC_cont">
+				
 					<c:choose>
 						<c:when test="${myLikeProd.reused_yn == 'n' and (myLikeProd.auction_yn == 'y' or myLikeProd.auction_yn == 'w' or myLikeProd.auction_yn == 'f') }"> <!-- 경매만 진행 -->
 							<fmt:formatNumber value="${myLikeProd.auction_bid }" type="number" />원
+							<input type="hidden" name="prod_price" id="prod_price" value="${myLikeProd.auction_bid }">
 						</c:when>
 						<c:when test="${myLikeProd.reused_yn == 'y' and (myLikeProd.auction_yn == 'y' or myLikeProd.auction_yn == 'w' or myLikeProd.auction_yn == 'f') }"> <!-- 경매와 중고 진행 -->
 							<fmt:formatNumber value="${myLikeProd.auction_bid }" type="number" />원
+							<input type="hidden" name="prod_price" id="prod_price" value="${myLikeProd.auction_bid }">
 						</c:when>
 						<c:when test="${myLikeProd.reused_yn == 'y' or myLikeProd.flea_yn == 'y' }"> <!-- 플리마켓이거나 중고 가격 표시 -->
 							<fmt:formatNumber value="${myLikeProd.prod_price }" type="number" />원
+							<input type="hidden" name="prod_price" id="prod_price" value="${myLikeProd.prod_price }">
 						</c:when>
 					</c:choose>
 					</td>
@@ -419,7 +445,7 @@ input[type=button]{
 					<td class="OHC_cont">
 						<input type="button" value="주문하기" class="orderButton" id="order">
 						<br>
-						<input type="button" value="장바구니담기" class="orderButton" id="basket"> 
+						<input type="button" value="장바구니담기" class="orderButton" id="basket" data-prod="${myLikeProd.prod_number }"> 
 						<br> 
 						<input type="button" value="X 삭제" class="orderButton" id="delete" name="${myLikeProd.prod_number}">
 					</td>

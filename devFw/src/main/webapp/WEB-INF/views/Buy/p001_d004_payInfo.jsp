@@ -117,20 +117,29 @@
    
    //결제하기 눌렀을 때 결제창 띄우기
    function requestPay() {      
-      var name = document.getElementById('buyerName').value; // 주문자 이름
-      var buyerMemberId = document.getElementById('buyer_memberId').value; //주문자 아이디
-      var postCode = document.getElementById('postcode').value; // 우편번호
-      var detailAddr = document.getElementById('detailAddr').value; //상세주소
+      var name = "<%=session.getAttribute("name")%>"; 
+      var buyer_memberid = document.getElementById('buyer_memberId').value; //주문자 아이디
+      
+      var postCode = "<%=session.getAttribute("address")%>"; // 우편번호
+      var detailAddr = "<%=session.getAttribute("roadAddress")%> <%=session.getAttribute("detailAddress")%>"; //상세주소
+      
       var email = document.getElementById('email').value; //주문자 이메일
-      var phoneNum = document.getElementById('buyerPhone').value; //주문자 연락처
+      
+      var phoneNum = "<%=session.getAttribute("phonenumber")%>"; //주문자 연락처
       var product = "<%=title%>";
+      
       var orderWant = document.getElementById('orderWant').value;
       
       var pay_method = $('input[name=size]:checked').val();
-      console.log(pay_method);
+     
+     
+
+      console.log(phoneNum);
+      
       var price = <%=ttlPrice %>;
       
       var addr = "("+postCode+")"+detailAddr;
+     
       
       // IMP.request_pay(param, callback) 호출
       IMP.init("imp43398102"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
@@ -154,7 +163,7 @@
                   order_num:rsp.merchant_uid,
                   pay_method:pay_method,
                   order_state: "결제완료",
-                  buyer_memberId: buyerMemberId,
+                  buyer_memberid: buyer_memberid,
                   total_price: price,
                   order_want: orderWant
             }
@@ -163,11 +172,11 @@
                   recipient: name,
                   destination_address: addr,
                   call_number:phoneNum,
-                  memberid:buyerMemberId
+                  memberid:buyer_memberid
             }
-            
+            //결제 성공시 오더에 정보 저장
             $.ajax({
-               type:"post",
+               type:"get",
                async:false,
                url:"/devFw/insertOrders.do",
                data :orderInfo,
@@ -220,8 +229,7 @@
 </script>
 </head>
 <body>
-	<input type="hidden" id="buyer_memberId"
-		value="${member.getMemberid()}">
+	<input type="hidden" id="buyer_memberId" value="${member.getMemberid()}">
 
 
 	<form name="payInfo">
@@ -233,9 +241,10 @@
 				value=<%=session.getAttribute("email")%>>
 			<table id="form">
 				<tr id="d1">
-					<th class="OHT_ttl">배송지 선택</th>
-					<td class="OHC_cont"><input type="button" value="새로운 주소+"
-						id="input_new_Address" onClick="newAddress()"></td>
+					<th class="OHT_ttl">배송지 이름</th>
+					<td class="OHC_cont">집
+					<!-- <input type="button" value="새로운 주소+"
+						id="input_new_Address" onClick="newAddress()"> --></td>
 				</tr>
 
 
@@ -246,14 +255,19 @@
 
 				<tr id="d1">
 					<th class="OHT_ttl">연락처</th>
-					<td class="OHC_cont"><span id="buyerPhone"><%=session.getAttribute("phonenumber")%></span></td>
+					<td class="OHC_cont"><span id="buyerPhone"><%=session.getAttribute("phonenumber")%></span>
+					<input type="hidden" name="buyerPhone" id="buyerPhone" value="<%=session.getAttribute("phonenumber")%>">
+					</td>
 				</tr>
 
 				<tr id="d1">
 					<th class="OHT_ttl">주소</th>
 					<td class="OHC_cont"><span id="postcode">(<%=session.getAttribute("address")%>)
 					</span><span id="detailAddr"> <%=session.getAttribute("roadAddress")%>
-							<%=session.getAttribute("detailAddress")%></span></td>
+							<%=session.getAttribute("detailAddress")%></span>
+					<input type="hidden" name="postcode" id="postcode" value="<%=session.getAttribute("address")%>">
+					<input type="hidden" name="detailAddr" id="detailAddr" value="<%=session.getAttribute("roadAddress")%> <%=session.getAttribute("detailAddress")%>">
+							</td>
 				</tr>
 				<tr>
 					<th class="OHT_ttl">배송메모</th>
@@ -271,14 +285,14 @@
 				<tr>
 					<th class="OHT_ttl">결제 수단</th>
 					<td style="padding-left: 1%;">&nbsp&nbsp<input type="radio"
-						name="size" id="kakaopay" value="small" /><label for="size_1">카카오페이</label>&nbsp&nbsp&nbsp&nbsp
-						<input type="radio" name="size" id="card" value="small" /> <label
+						name="size" id="kakaopay" value="kakaopay" /><label for="size_1">카카오페이</label>&nbsp&nbsp&nbsp&nbsp
+						<input type="radio" name="size" id="card" value="card" /> <label
 						for="size_2">신용카드</label>&nbsp&nbsp&nbsp&nbsp <input type="radio"
-						name="size" id="samsungPay" value="small" /> <label for="size_3">삼성페이</label>&nbsp&nbsp&nbsp&nbsp
-						<input type="radio" name="size" id="LPay" value="small" /> <label
+						name="size" id="samsungPay" value="samsungPay" /> <label for="size_3">삼성페이</label>&nbsp&nbsp&nbsp&nbsp
+						<input type="radio" name="size" id="LPay" value="LPay" /> <label
 						for="size_3">L.Pay</label>&nbsp&nbsp&nbsp&nbsp <input type="radio"
-						name="size" id="SSGPay" value="small" /> <label for="size_3">SSGPay</label>&nbsp&nbsp&nbsp&nbsp
-						<input type="radio" name="size" id="PAYCO" value="small" /> <label
+						name="size" id="SSGPay" value="SSGPay" /> <label for="size_3">SSGPay</label>&nbsp&nbsp&nbsp&nbsp
+						<input type="radio" name="size" id="PAYCO" value="PAYCO" /> <label
 						for="size_3">PAYCO</label>
 					</td>
 				</tr>
@@ -300,12 +314,14 @@
 					<td class="OHC_cont"><%=title%>외</td>
 				</tr>
 				<tr>
-
 					<th class="OHT_ttl">상품 금액</th>
 					<td class="OHC_cont" id="prod_price"><%=ttlPrice%>원</td>
 				</tr>
 				<tr>
-
+						<th class="OHT_ttl">배송비</th>
+					<td class="OHC_cont" id="prod_price"><fmt:formatNumber value="2500"/></td>
+				</tr>
+				<tr>
 					<th class="OHT_ttl">총 주문 금액</th>
 					<td class="OHC_cont" id="finalPrice"><%=ttlPrice%></td>
 				</tr>
