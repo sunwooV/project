@@ -128,5 +128,26 @@
 		</where>
 	</select>
 	
+	<!-- 마켓 전체 카운트 -->
+	<select id="marketCnt" resultType="String">
+	<![CDATA[
+         select count(*) as cnt
+         from   flea
+    ]]>
+	</select>
+	
+	<!-- 모집중인 마켓 카운트 -->
+	<select id="recruitCnt" resultType="String">
+	<![CDATA[
+         select count(*) as cnt
+         from   flea
+    ]]>
+    <where>
+    <![CDATA[
+         recruit_yn = 'y'
+    ]]>
+    </where>
+	</select>
+	
 
 </mapper>

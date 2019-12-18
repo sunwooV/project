@@ -54,6 +54,18 @@ public class F_P001_D002DAOImpl implements F_P001_D002DAO {
 	}
 	
 	@Override
+	public String marketCnt(Map<String, Object> searchMap) throws DataAccessException {
+		String marketCnt = sqlSession.selectOne("FleaMarket.p001_d002.marketCnt", searchMap);
+		return marketCnt;
+	}
+	
+	@Override
+	public String recruitCnt(Map<String, Object> searchMap) throws DataAccessException {
+		String recruitCnt = sqlSession.selectOne("FleaMarket.p001_d002.recruitCnt", searchMap);
+		return recruitCnt;
+	}
+	
+	@Override
 	public void updateMember(Map<String, Object> datahMap) throws DataAccessException {
 		sqlSession.update("hm.F_P001_D002.updateMember", datahMap);
 	}
