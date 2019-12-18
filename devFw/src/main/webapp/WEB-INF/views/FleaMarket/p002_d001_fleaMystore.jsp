@@ -37,10 +37,10 @@
 	src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca839997c3bd98863fdc033319b76889&libraries=services"></script>
-<script>
+<script>	
 	$(document).ready(function() {
 		$("#chat-header>i").on("click", addMember);
-
+		
 		function addMember() {
 			$('#user-add').fadeIn();
 		}
@@ -215,8 +215,9 @@
 
 						<div class="user-name">
 							<font size="3"> <c:out value="${flea.flea_name}" /> <a
-								target="_blank" href="#" id="participants_add"><i
-									class="fa fa-user-plus pa-5x"></i></a>
+								target="_blank" href="#" id="participants_add">
+								<!-- <i class="fa fa-user-plus pa-5x"></i> -->
+								</a>
 							</font>
 						</div>
 
@@ -570,13 +571,15 @@
 					<a id="pop-close">&times;</a>
 				</div>
 				<div id="pop-search">
-					<input onkeyup="filter()" type="text" placeholder="새로운 유저 검색" /> <input
-						type="submit" id="value" value="검색">
+					<input onkeyup="filter()" type="text" placeholder="본인 아이디를 입력해주세요." /> <input
+						type="submit" id="value" value="선택">
 				</div>
 				<div id="pop-list"></div>
+				<!--  
 				<div id="pop-footer">
-					<input type="button" value="선택">
+					<input type="button" value="선택" />
 				</div>
+				-->
 				<c:forEach var="flea" items="${searchList}">
 					<input type="hidden" name="flea_code" value="${flea.flea_code}">
 				</c:forEach>
