@@ -1428,13 +1428,13 @@ width:fit-content;
             <input type="hidden" id="prod_number" name="prod_number" value="${product.prod_number }">
             <div class="category">
             <c:if test="${product.flea_yn == 'y' }">
-               <a href="./fleaMain.do">플리마켓</a>
+               <a class="division" href="./fleaMain.do">플리마켓</a>
             </c:if>
-            <c:if test="${product.auction_yn == 'y' }">
-               <a href="./eachMain.do?command=auction">경매</a>
+            <c:if test="${product.auction_yn == 'y' or product.auction_yn == 'w' or product.auction_yn == 'f' }">
+               <a class="division" href="./eachMain.do?command=auction">경매</a>
             </c:if>
             <c:if test="${product.reused_yn == 'y' }">
-               <a href="./eachMain.do?command=reused">중고</a>
+               <a class="division" href="./eachMain.do?command=reused">중고</a>
             </c:if>
                >
                <c:forEach var="high_category" items="${high_category }">

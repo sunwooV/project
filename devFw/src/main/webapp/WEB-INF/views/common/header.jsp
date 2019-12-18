@@ -54,6 +54,63 @@
 	}
 	
 	$(document).ready(function(){
+		
+		var now = window.location.href;
+		var loc = now.split('/');
+		var myDo = loc[4];
+		var param = myDo.split('?');
+		if(param.length > 1){
+			var subparam = param[1].split('&');
+		}
+		
+		
+		if(param[0] == 'eachMain.do' && subparam[0] == 'command=reused'){
+			$(".menuReused").css({
+			    background: "#BDBDBD",
+		    	color: "black"
+			});
+		}else if(param[0] == 'eachMain.do' && subparam[0] == 'command=auction'){
+			
+			$(".menuAuction").css({
+			    background: "#BDBDBD",
+		    	color: "black"
+			});
+		}else if(myDo == 'fleaMain.do' || param[0] == 'fleaMystore.do' || param[0] == 'fleaProduct.do'){
+			
+			$(".menuFlea").css({
+			    background: "#BDBDBD",
+		    	color: "black"
+			});
+		} else if(param[0] == 'eachsearchProduct.do'){
+			if($(".eachTitle").text() == '중고'){
+				$(".menuReused").css({
+				    background: "#BDBDBD",
+			    	color: "black"
+				});
+			} else if ($(".eachTitle").text() == '경매'){
+				$(".menuAuction").css({
+				    background: "#BDBDBD",
+			    	color: "black"
+				});
+			}
+		} else if(param[0] == 'detail.do'){
+			if($(".division").text() == '중고'){
+				$(".menuReused").css({
+				    background: "#BDBDBD",
+			    	color: "black"
+				});
+			} else if ($(".division").text() == '경매'){
+				$(".menuAuction").css({
+				    background: "#BDBDBD",
+			    	color: "black"
+				});
+			} else if ($(".division").text() == '플리마켓'){
+				$(".menuFlea").css({
+				    background: "#BDBDBD",
+			    	color: "black"
+				});
+			}
+		}
 
 		$('#hoverimg').hover(function() {
 			$("#hover").css('display', '');
@@ -80,8 +137,8 @@
 		id="navbartop">
 		<!-- 상단바 -->
 		<a class="navbar-brand" href="./main.do"><img
-			src="${contextPath }/resources/img/main/mmm.PNG"
-			style="width: 144px; height: 54px;" /></a>
+			src="${contextPath }/resources/img/main/final_logo.PNG"
+			style="width: 120px; height: 55px;" /></a>
 		<button class="navbar-toggler collapsed" type="button"
 			data-toggle="collapse" data-target="#navbarColor03"
 			aria-controls="navbarColor03" aria-expanded="false"
@@ -170,7 +227,7 @@
 	<div class="menubar">
 		<ul>
 			<li><a href="${contextPath}/eachMain.do?command=reused"
-				id="current">중고 거래</a> <!-- 				<ul> --> <!-- 					<li><a href="#">패션의류</a></li> -->
+				id="current" class="menuReused">중고 거래</a> <!-- 				<ul> --> <!-- 					<li><a href="#">패션의류</a></li> -->
 				<!-- 					<li><a href="#">뷰티 잡화</a></li> --> <!-- 					<li><a href="#">유아 용품</a></li> -->
 				<!-- 					<li><a href="#">가구 생활</a></li> --> <!-- 					<li><a href="#">취미 컬렉션</a></li> -->
 				<!-- 					<li><a href="#">디지털</a></li> --> <!-- 					<li><a href="#">컴퓨터</a></li> -->
@@ -178,14 +235,14 @@
 				<!-- 					<li><a href="#">생활 가전</a></li> --> <!-- 					<li><a href="#">자동차 공구</a></li> -->
 				<!-- 					<li><a href="#">도서 기타</a></li> --> <!-- 				</ul> --></li>
 			<li><a href="${contextPath}/eachMain.do?command=auction"
-				id="current">경&nbsp&nbsp&nbsp&nbsp&nbsp매</a> <!-- 				<ul> --> <!-- 					<li><a href="#">패션의류</a></li> -->
+				id="current" class="menuAuction">경&nbsp&nbsp&nbsp&nbsp&nbsp매</a> <!-- 				<ul> --> <!-- 					<li><a href="#">패션의류</a></li> -->
 				<!-- 					<li><a href="#">뷰티 잡화</a></li> --> <!-- 					<li><a href="#">유아 용품</a></li> -->
 				<!-- 					<li><a href="#">가구 생활</a></li> --> <!-- 					<li><a href="#">취미 컬렉션</a></li> -->
 				<!-- 					<li><a href="#">디지털</a></li> --> <!-- 					<li><a href="#">컴퓨터</a></li> -->
 				<!-- 					<li><a href="#">스포츠 레저</a></li> --> <!-- 					<li><a href="#">뷰티</a></li> -->
 				<!-- 					<li><a href="#">생활 가전</a></li> --> <!-- 					<li><a href="#">자동차 공구</a></li> -->
 				<!-- 					<li><a href="#">도서 기타</a></li> --> <!-- 				</ul> --></li>
-			<li><a href="/devFw/fleaMain.do" id="current">플리 마켓</a> <!-- 				<ul> -->
+			<li id="menuFlea"><a href="/devFw/fleaMain.do" id="current" class="menuFlea">플리 마켓</a> <!-- 				<ul> -->
 				<!-- 					<li><a href="#">패션의류</a></li> --> <!-- 					<li><a href="#">뷰티 잡화</a></li> -->
 				<!-- 					<li><a href="#">유아 용품</a></li> --> <!-- 					<li><a href="#">가구 생활</a></li> -->
 				<!-- 					<li><a href="#">취미 컬렉션</a></li> --> <!-- 					<li><a href="#">디지털</a></li> -->
