@@ -574,7 +574,7 @@ background-color
 								<li class="ui_grid__item">
 									<div class="ui_card--side">
 										<div class="ui_card__inner">
-											<div class="ui_card__imgcover">
+										<div class="ui_card__imgcover">
 												<img src="${bestStore.profile_photo}" class="ui_card__img"
 													style="width: 230; height: 240;" alt="..."
 													onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code }'">
