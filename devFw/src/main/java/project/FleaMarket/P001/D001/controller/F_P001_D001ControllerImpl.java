@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import project.Customers.P003.D001.service.C_P003_D001Service;
 import project.FleaMarket.P001.D001.service.F_P001_D001Service;
 import project.FleaMarket.P001.D001.vo.F_P001_D001VO;
 
@@ -36,6 +37,8 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 	private static final Logger logger = LoggerFactory.getLogger(F_P001_D001ControllerImpl.class);
 	@Autowired
 	F_P001_D001Service d001Service;
+	@Autowired
+	C_P003_D001Service C_P003_D001Service;
 	@Autowired
 	F_P001_D001VO d001VO;
 
@@ -81,6 +84,7 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		try {
 			d001Service.insertMember(dataMap);
+			C_P003_D001Service.changeSeller(dataMap);
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher("fleaMain.do");
 			dispatch.forward(request, response);

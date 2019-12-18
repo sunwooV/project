@@ -81,13 +81,14 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 			String value = request.getParameter(name);
 			dataMap.put(name, value);
 			System.out.println(dataMap);
-			
 		}
 		
 		String command = (String) dataMap.get("command");
+	
 		
 		if(command != null) {
 			b_p001_d003Service.updateCart(dataMap);
+			
 		} else {
 			
 			String memberId = (String) session.getAttribute("memberid");
@@ -114,14 +115,19 @@ public class B_P001_D003ControllerImpl implements B_P001_D003Controller {
 		
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		Enumeration enu = request.getParameterNames();
+		
 		while (enu.hasMoreElements()) {
 			String name = (String)enu.nextElement();
 			String value = request.getParameter(name);
+			System.out.println(name);
+			System.out.println(value);
 			dataMap.put(name, value);
+			
 			System.out.println(dataMap);
 		}
 		
 		String command = request.getParameter("command");
+		System.out.println(command);
 		
 		if(command !=null) {
 			b_p001_d003Service.insertCart(dataMap);

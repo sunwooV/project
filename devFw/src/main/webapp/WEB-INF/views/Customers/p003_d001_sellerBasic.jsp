@@ -192,7 +192,7 @@ input[type="number"]::-webkit-inner-spin-button {
   <div>
     <label class="desc" id="title4" for="Field4"><br>계좌번호</label>
     <div>
-       <input id="seller_account_number" name="seller_account_number" type="number" spellcheck="false" value="" maxlength="255" tabindex="4" placeholder="숫자만 입력해주세요.">
+       <input id="seller_account_number" name="seller_account_number" style="width: 100%;" type="number" spellcheck="false" value="" maxlength="255" tabindex="4" placeholder="숫자만 입력해주세요.">
     </div>
   </div>
   <br>
