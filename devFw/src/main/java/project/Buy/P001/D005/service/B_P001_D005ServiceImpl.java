@@ -23,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
 
 import project.Buy.P001.D005.dao.B_P001_D005DAO;
 import project.Buy.P001.D005.vo.B_P001_D005VO;
-import project.Buy.P001.D005.vo.kakaopayReadyVo;
+
 
 
 

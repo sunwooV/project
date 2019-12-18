@@ -166,6 +166,7 @@
             prod_number:prod_number,
             cart_count:count
       }
+      
       $.ajax({
          type:"get",
          async:false,

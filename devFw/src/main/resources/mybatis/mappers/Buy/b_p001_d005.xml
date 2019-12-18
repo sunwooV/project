@@ -21,6 +21,7 @@
 		<result property="quantity" column="quantity" />
 		<result property="item_price" column="item_price" />
 		<result property="get_method" column="get_method" />
+		
 		<!-- destination-->
 		
 		<result property="prod_number" column="prod_number" />
