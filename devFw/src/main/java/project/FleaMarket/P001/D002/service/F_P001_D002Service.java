@@ -17,6 +17,9 @@ public interface F_P001_D002Service {
 	 public List<F_P001_D002VO> searchAdd() throws DataAccessException;
 	 public List<F_P001_D002VO> recruit_date_check() throws DataAccessException;
 	 public String likeFlea(Map<String, Object> searchMap) throws DataAccessException;
+	 public String marketCnt(Map<String, Object> searchMap) throws DataAccessException;
+	 public String recruitCnt(Map<String, Object> searchMap) throws DataAccessException;
+	 
 	 
 	 public void updateRecruit(Map<String, Object> datahMap) throws Exception;
 	 public void updateMember(Map<String, Object> datahMap) throws Exception;

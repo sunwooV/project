@@ -227,17 +227,23 @@
 					</c:forEach>
 				</div>
 				<fieldset class="ui-field border-row">
-					<div id="chat-header">
-						<div id="user-info"></div>
-						<i class="fa fa-user-plus pa-5x">참가 신청</i>
-					</div>
+					<button type="button"
+						class="btn btn-s btn-white toggle-heart detail-like pseudo-ico-love"
+						data-name="starred-toolbar" data-starred-type="artist"
+						data-init="" data-starred=""
+						data-target-id="b20eee2f-b3eb-4fee-bc81-735f1e2318d6">
+						<div id="chat-header">
+							<div id="user-info"></div>
+							<i class="fa fa-user-plus pa-5x">참가 신청</i>
+						</div>
+					</button>
 
 					<div id="chat-header">
 						<div id="user-info"></div>
 						<button type="button" class="btn btn-m btn-white pseudo-ico-share"
 							data-ui="url-copy" data-ui-option="short" data-icon-event="hover"
 							data-clipboard-text="#" onclick="location.href='/devFw/fleaSearchInit.do'">
-							<i class="fa fa-user-plus pa-5x"></i>
+							<i class="fa fa-list-alt pa-5x"></i>
 							참여자 리스트<br>
 						</button>
 
@@ -248,9 +254,12 @@
 						data-name="starred-toolbar" data-starred-type="artist"
 						data-init="" data-starred=""
 						data-target-id="b20eee2f-b3eb-4fee-bc81-735f1e2318d6">
-						<i class="ico-img"> <span class="sp-icon icon-heart"></span> <span
-							class="sp-icon icon-heart active"></span>
-						</i> <em class="txt"><i class="fa fa-heart"></i>스토어 찜하기</em>
+						<div id="chat-header">
+							<div id="user-info"></div>
+							<i class="ico-img"> <span class="sp-icon icon-heart"></span> <span
+								class="sp-icon icon-heart active"></span>
+							</i> <em class="txt"><i class="fa fa-heart"></i> 스토어 찜하기</em>
+						</div>
 					</button>
 					<br> <a href="#"
 						class="btn btn-s btn-white pseudo-ico-message"> <i

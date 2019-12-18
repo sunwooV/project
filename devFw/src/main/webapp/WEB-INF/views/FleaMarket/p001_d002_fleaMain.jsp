@@ -510,8 +510,10 @@ background-color
 		<div>
 			<h2>🏡플리마켓 일정</h2>
 			<!-- 컨텐츠 -->
+			<c:set var="marketCnt" value="${marketCnt}" />
+			<c:set var="recruitCnt" value="${recruitCnt}" />
 			<div id="p">
-				<h3>지금까지 5개의 마켓이 열렸고, 3개의 마켓이 셀러를 기다리고 있습니다😃</h3>
+				<h3>지금까지 <c:out value="${marketCnt}" />개의 마켓이 열렸고, <c:out value="${recruitCnt}" />개의 마켓이 셀러를 기다리고 있습니다😃</h3>
 			</div>
 			<!-- 플리마켓 맵
         <div class="fleaMap">
@@ -574,7 +576,7 @@ background-color
 								<li class="ui_grid__item">
 									<div class="ui_card--side">
 										<div class="ui_card__inner">
-										<div class="ui_card__imgcover">
+											<div class="ui_card__imgcover">
 												<img src="${bestStore.profile_photo}" class="ui_card__img"
 													style="width: 230; height: 240;" alt="..."
 													onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code }'">
