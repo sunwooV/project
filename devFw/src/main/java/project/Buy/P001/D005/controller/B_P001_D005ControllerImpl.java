@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import project.Buy.P001.D005.service.B_P001_D005Service;
+import project.Buy.P001.D005.vo.B_P001_D005VO;
 
 
 @Controller("B_P001_D005Controller")
@@ -24,6 +25,8 @@ public class B_P001_D005ControllerImpl implements B_P001_D005Controller{
 	@Autowired
 	B_P001_D005Service b_p001_d005Service;
 
+	@Autowired
+	B_P001_D005VO b_p001_d005vo;
 
 	@Override
 	@RequestMapping(value = "/kakaopay.do", method = { RequestMethod.GET, RequestMethod.POST })

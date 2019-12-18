@@ -33,12 +33,14 @@ public class B_P001_D005DAOImpl implements B_P001_D005DAO {
 
 	@Override
 	public void insertOrders(Map<String, Object> dataMap) {
+		System.out.println("insert order dao 타고가닝?");
 		sqlSession.insert("Buy.P001.D005.insertOrder",dataMap);
 		
 	}
 
 	@Override
 	public void insertDest(Map<String, Object> dataMap) {
+		System.out.println(" insertDest dao 타고가닝?");
 		sqlSession.insert("Buy.P001.D005.InsertDestination",dataMap);
 		
 	}

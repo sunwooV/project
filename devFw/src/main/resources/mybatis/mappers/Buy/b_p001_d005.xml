@@ -5,7 +5,7 @@
 <mapper namespace="Buy.P001.D005">
 	<resultMap id="B_P001_D005Result01" type="B_P001_D005VO">
 		<!-- order_num은 2 테이블 공통 사용-->
-		<result property="order_num" column="order_num" />
+		<result property="order_number" column="order_num" />
 		<!-- order 1번으로 insert -->
 		<result property="seller_memberid" column="seller_memberid" />
 		<result property="buyer_memberid" column="buyer_memberid" />
@@ -30,16 +30,11 @@
 	</resultMap>
 	<insert id="insertOrder" parameterType="java.util.Map">
 		<![CDATA[
-         insert into orders(order_num, buyer_memberid, order_date, total_price, order_want)
-            values(#{order_num},#{buyer_memberid},sysdate,#{total_price},#{order_want})
+         insert into orders(order_number, buyer_memberid, order_date, total_price, order_want,pay_method)
+            values(#{order_number},#{buyer_memberid},sysdate,#{total_price},#{order_want},#{pay_method})
 	  ]]>
 	</insert>
-	<insert id="insertOrderitems" >
-		<![CDATA[
-         insert into orderitmes()
-            values ()
-	  ]]>
-	</insert>
+
 	
 	<insert id="InsertDestination" parameterType="java.util.Map">
 	<!--order=before는 인서트하기전에 한당 -->

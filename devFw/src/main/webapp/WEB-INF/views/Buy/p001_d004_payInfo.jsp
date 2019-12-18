@@ -119,25 +119,14 @@
    function requestPay() {      
       var name = "<%=session.getAttribute("name")%>"; 
       var buyer_memberid = document.getElementById('buyer_memberId').value; //주문자 아이디
-      
       var postCode = "<%=session.getAttribute("address")%>"; // 우편번호
       var detailAddr = "<%=session.getAttribute("roadAddress")%> <%=session.getAttribute("detailAddress")%>"; //상세주소
-      
-      var email = document.getElementById('email').value; //주문자 이메일
-      
+      var email = document.getElementById('email').value; //주문자 이메일  
       var phoneNum = "<%=session.getAttribute("phonenumber")%>"; //주문자 연락처
-      var product = "<%=title%>";
-      
-      var orderWant = document.getElementById('orderWant').value;
-      
+      var product = "<%=title%>"; 
+      var orderWant = document.getElementById('orderWant').value;   
       var pay_method = $('input[name=size]:checked').val();
-     
-     
-
-      console.log(phoneNum);
-      
       var price = <%=ttlPrice %>;
-      
       var addr = "("+postCode+")"+detailAddr;
      
       
@@ -153,14 +142,14 @@
          buyer_name : name,
          buyer_tel : phoneNum,
          buyer_addr : detailAddr,
-         buyer_postcode : postCode
-         
+         buyer_postcode : postCode,
+         m_redirect_url : "/devFw/main.do"
          
       }, function(rsp) { // callback
          if (rsp.success) {
-               
+        	 
             var orderInfo ={
-                  order_num:rsp.merchant_uid,
+                  order_number:rsp.merchant_uid,
                   pay_method:pay_method,
                   order_state: "결제완료",
                   buyer_memberid: buyer_memberid,
@@ -174,56 +163,37 @@
                   call_number:phoneNum,
                   memberid:buyer_memberid
             }
-            //결제 성공시 오더에 정보 저장
-            $.ajax({
-               type:"get",
-               async:false,
-               url:"/devFw/insertOrders.do",
-               data :orderInfo,
-               dataType:"text",
-               
-               success: function(responseData){
-                  console.log('결제성공');
-                  //결제 성공 시 배송지 정보에 저장!
-                  $.ajax({
-                     type:"post",
-                     async:false,
-                     url:"/devFw/insertDest.do",
-                     data :destInfo,
-                     dataType:"text",
-                     
-                     success: function(responseData){
-                        console.log('주문 정보 삽입 성공');      
-                     },
-                     error:function(data, textStatus){
-                        console.log("주문 정보 삽입 실패")
-                     },
-                     complete : function(data, textStatus){
-                              
-                     }
-                  })//end of ajax2
-                  
-               },
-               error:function(data, textStatus){
-                  alert("결제실패")
-               },
-               complete : function(data, textStatus){
-               
-               }
-            })//end of ajax
-               
-            var msg = '결제가 완료되었습니다.';
-            msg += '고유ID : ' + rsp.imp_uid;
-            msg += '상점 거래ID : ' + rsp.merchant_uid;
-            msg += '결제 금액 : ' + rsp.paid_amount;
-            msg += '카드 승인번호 : ' + rsp.apply_num;
+        	 
+          	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+        	jQuery.ajax({
+        		url: "/devFw/insertOrders.do", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+        		type: 'get',
+        		dataType: 'text',
+        		data: orderInfo,
+        		
+        	}).done(function(data) {
+        		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+        		if ( everythings_fine ) {
+        			var msg = '결제가 완료되었습니다.';
+        			msg += '\n고유ID : ' + rsp.imp_uid;
+        			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+        			msg += '\결제 금액 : ' + rsp.paid_amount;
+        			msg += '카드 승인번호 : ' + rsp.apply_num;
 
-         } else {
+        			alert(msg);
+        		} else {
+        			//[3] 아직 제대로 결제가 되지 않았습니다.
+        			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+        		}
+        	});
+        } else {
             var msg = '결제에 실패하였습니다.';
             msg += '에러내용 : ' + rsp.error_msg;
-         }
-         alert(msg);
-      });
+
+            alert(msg);
+        }
+          
+      }); // request.pay
 
    }
 </script>
