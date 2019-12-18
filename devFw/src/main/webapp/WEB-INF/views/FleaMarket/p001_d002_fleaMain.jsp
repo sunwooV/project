@@ -206,7 +206,7 @@ ol, ul {
 }
 
 .ui_card--side .ui_card__imgcover {
-	width: 40%;
+	width: 43%;
 }
 
 .ui_card--side .ui_card__inner>* {
@@ -219,6 +219,7 @@ ol, ul {
 }
 
 .cardlist_section .split-cardlist .ui_card--side {
+	height: 186px;
 	width: 100%;
 }
 
@@ -231,7 +232,7 @@ ol, ul {
 }
 
 .ui_card__txtarea {
-	padding: 15px;
+	padding: 2%;
 }
 
 .ui_card__inner {
@@ -270,7 +271,9 @@ ul li {
 }
 
 #ppp {
-	padding: 6px;
+	padding-bottom: 1%;
+	margin-left: -19%;
+	padding-top: 4%;
 }
 
 .blinkcss {
@@ -304,13 +307,37 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
  
 
 
+
+
+
+
 #FF0000
+
+
+
+
+
+
+
+
 
 
 
@@ -324,13 +351,37 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
  
 
 
+
+
+
+
 #B20000
+
+
+
+
+
+
+
+
 
 
 
@@ -350,13 +401,37 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
  
 
 
+
+
+
+
 #FF0000
+
+
+
+
+
+
+
+
 
 
 
@@ -370,13 +445,37 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
  
 
 
+
+
+
+
 #B20000
+
+
+
+
+
+
+
+
 
 
 
@@ -396,13 +495,37 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
  
 
 
+
+
+
+
 #FF0000
+
+
+
+
+
+
+
+
 
 
 
@@ -416,13 +539,37 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
  
 
 
+
+
+
+
 #B20000
+
+
+
+
+
+
+
+
 
 
 
@@ -442,13 +589,37 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
  
 
 
+
+
+
+
 #FF0000
+
+
+
+
+
+
+
+
 
 
 
@@ -462,13 +633,37 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
  
 
 
+
+
+
+
 #B20000
+
+
+
+
+
+
+
+
 
 
 
@@ -497,8 +692,7 @@ background-color
 					<span class="MarketMain__Quotes-c10k9n-5 byKpAP">"</span>
 					<h1
 						style="color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; font-weight: bold; margin-top: -30px;">
-						Welcome! Flea Market<br>
-						<br>상품이 있다면 마켓인유에 참여해보세요.
+						Welcome! Flea Market<br> <br>상품이 있다면 마켓인유에 참여해보세요.
 					</h1>
 					<ul class="actions">
 						<li><a href="#one" class="button scrolly">Get Started</a></li>
@@ -574,7 +768,7 @@ background-color
 								<li class="ui_grid__item">
 									<div class="ui_card--side">
 										<div class="ui_card__inner">
-										<div class="ui_card__imgcover">
+											<div class="ui_card__imgcover">
 												<img src="${bestStore.profile_photo}" class="ui_card__img"
 													style="width: 230; height: 240;" alt="..."
 													onclick="location.href='./fleaMystore.do?flea_code=${bestStore.flea_code }'">
