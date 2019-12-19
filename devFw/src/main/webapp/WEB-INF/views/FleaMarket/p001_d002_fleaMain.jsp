@@ -270,12 +270,11 @@ ul li {
 	list-style-type: none;
 }
 
-#ppp {
+/* #ppp {
 	padding-bottom: 1%;
 	margin-left: -19%;
 	padding-top: 4%;
-}
-
+} */
 .blinkcss {
 	background-color: #004A7F;
 	-webkit-border-radius: 10px;
@@ -315,7 +314,19 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -329,7 +340,19 @@ background-color
 
 
 
+
+
+
+
 #FF0000
+
+
+
+
+
+
+
+
 
 
 
@@ -359,7 +382,19 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -373,7 +408,19 @@ background-color
 
 
 
+
+
+
+
 #B20000
+
+
+
+
+
+
+
+
 
 
 
@@ -409,7 +456,19 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -423,7 +482,19 @@ background-color
 
 
 
+
+
+
+
 #FF0000
+
+
+
+
+
+
+
+
 
 
 
@@ -453,7 +524,19 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -467,7 +550,19 @@ background-color
 
 
 
+
+
+
+
 #B20000
+
+
+
+
+
+
+
+
 
 
 
@@ -503,7 +598,19 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -517,7 +624,19 @@ background-color
 
 
 
+
+
+
+
 #FF0000
+
+
+
+
+
+
+
+
 
 
 
@@ -547,7 +666,19 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -561,7 +692,19 @@ background-color
 
 
 
+
+
+
+
 #B20000
+
+
+
+
+
+
+
+
 
 
 
@@ -597,7 +740,19 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -611,7 +766,19 @@ background-color
 
 
 
+
+
+
+
 #FF0000
+
+
+
+
+
+
+
+
 
 
 
@@ -641,7 +808,19 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
 :
+
+
+
+
 
 
 
@@ -655,7 +834,19 @@ background-color
 
 
 
+
+
+
+
 #B20000
+
+
+
+
+
+
+
+
 
 
 
@@ -707,7 +898,13 @@ background-color
 			<c:set var="marketCnt" value="${marketCnt}" />
 			<c:set var="recruitCnt" value="${recruitCnt}" />
 			<div id="p">
-				<h3>지금까지 <c:out value="${marketCnt}" />개의 마켓이 열렸고, <c:out value="${recruitCnt}" />개의 마켓이 셀러를 기다리고 있습니다😃</h3>
+				<h3>
+					지금까지
+					<c:out value="${marketCnt}" />
+					개의 마켓이 열렸고,
+					<c:out value="${recruitCnt}" />
+					개의 마켓이 셀러를 기다리고 있습니다😃
+				</h3>
 			</div>
 			<!-- 플리마켓 맵
         <div class="fleaMap">
@@ -839,22 +1036,23 @@ background-color
 														value="1574744451000">
 												</div>
 
+												<div style="padding-top: 8%; margin-left: -19%;">
+													<p id="ppp">
+														<a href="#" class="btn btn-primary" id="ttt3"
+															role="button">메세지 보내기</a>
 
-												<p id="ppp">
-													<a href="#" class="btn btn-primary" id="ttt3" role="button">메세지
-														보내기</a>
 
 
-
-													<c:if test="${bestStore.recruit_yn == 'n'}">
-														<a href="#" class="btn btn-default" id="ttt4"
-															role="button">모집종료</a>
-													</c:if>
-													<c:if test="${bestStore.recruit_yn == 'y'}">
-														<a href="#" class="btn btn-default blinkcss" id="ttt4"
-															role="button" style="background: red;">모집중</a>
-													</c:if>
-												</p>
+														<c:if test="${bestStore.recruit_yn == 'n'}">
+															<a href="#" class="btn btn-default" id="ttt4"
+																role="button">모집종료</a>
+														</c:if>
+														<c:if test="${bestStore.recruit_yn == 'y'}">
+															<a href="#" class="btn btn-default blinkcss" id="ttt4"
+																role="button" style="background: red;">모집중</a>
+														</c:if>
+													</p>
+												</div>
 
 											</div>
 										</div>
