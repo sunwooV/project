@@ -125,7 +125,7 @@
 <style>
 #hover{
 	float: left;
-    left: 597px;
+    left: 420px;
     top: -28px;
     position: relative;
 }
