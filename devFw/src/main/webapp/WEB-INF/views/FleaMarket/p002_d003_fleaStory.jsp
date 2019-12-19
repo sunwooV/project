@@ -384,9 +384,12 @@
 		<div class=".col-sm-4" style="width: 18%;">
 			<aside class="artist-area">
 				<div class="user-info card-style-profile ">
+					<!--
 					<h4>
+					  
 						<a href="/devFw/fleaSearchInit.do">플리마켓 마이페이지(임시)</a>
 					</h4>
+					-->
 
 
 
