@@ -11,21 +11,35 @@
 <meta charset="UTF-8">
 <title>금도끼 은도끼|고객센터 문의내역 작성하기</title>
 <script type="text/javascript">
-	//문의내역 넘기는 함수
-	function submitCsWrite() {
 
-	}
+
+	//문의내역 넘기는 함수
+	$(document).on('click', '#write', function(){
+	
+		var frm = document.privatedetaill;
+		
+		var str = $('#private_qna_content').val();
+		str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+		$('#private_qna_content').val(str);
+
+		frm.method="post";
+		frm.action="./insertboard.do";
+		frm.submit();
+	});
+	
 	//작성취소 후 이전화면으로 돌아가기
 	function cancelCsWrite() {
 		history.back(-1);
 	}
 	
-	
 	//게시글 수정
 	$(document).on('click', '#modify', function(){
 	
 		var frm = document.privatedetail;
-	
+		
+		var str = $('#private_qna_content').val();
+		str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+		$('#private_qna_content').val(str);
 	
 		frm.method="post";
 		frm.action="./updateboard.do";
@@ -59,7 +73,7 @@
 	background-color: darkgray;
 	color: white;
 }
-#modify{
+#modify,#write{
 width: 100px;
 	height: 30px;
 	background-color: darkgray;
@@ -103,7 +117,7 @@ width: 100px;
 	</div>
 	
 	<div id="csWrite" class="csWrite">
-		<textarea id="private_qna_content" class="csWriteDetail"  name="private_qna_content" required>
+		<textarea id="private_qna_contentt" class="csWriteDetail"  name="private_qna_content" required>
 		${boardinfo.private_qna_content }
 		</textarea>
 	</div>
@@ -118,13 +132,13 @@ width: 100px;
 	</form>
 	
 
-
+<form name="privatedetaill">
 	<c:if test="${command != 'modify' }">
 	<div id="csWriteHeader" class="csWriteHeader">
 		<h2>문의 상세내역 작성</h2>
 	</div>
 	<c:forEach var="boardlist" items="${boardlist}" >
-	<form name="submitCsWrite" method="post" action="${contextPath}/insertboard.do">
+	
 	<input type="hidden" id="private_memberid" name ="private_memberid" value="${member.getMemberid() }" />
 		<div class="csWriteTitle">
 		글 제목 :
@@ -151,15 +165,15 @@ width: 100px;
 =>
 </textarea>
 	</div>
-	
+
 	<div class="csWriteSubmitButton" id="csWriteSubmitButton">
-	<button type="submit" id="submitCsWrite">작성완료</button>
+	<input type="button" id="write" value="작성완료">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<button onClick="cancelCsWrite()">작성 취소하기</button>
 	</div>
-	</form>
+	
 	</c:forEach>
 	</c:if>
-
+</form>
 </body>
 </html>
