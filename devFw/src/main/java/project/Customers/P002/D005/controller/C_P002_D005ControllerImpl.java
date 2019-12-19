@@ -61,7 +61,7 @@ public class C_P002_D005ControllerImpl implements C_P002_D005Controller{
 			
 			//메시지로 문의하기 눌렀을 경우
 			if(prod_number != null) {
-				ModelAndView mav = new ModelAndView("Customers/test");
+				ModelAndView mav = new ModelAndView("Customers/p002_d005chat2");
 				searchMap.put("prod_number", prod_number);
 				
 				String sellerId = c_p002_d005_Service.sellerId(searchMap);
