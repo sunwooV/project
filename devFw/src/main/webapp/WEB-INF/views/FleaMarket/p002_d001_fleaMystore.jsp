@@ -500,9 +500,11 @@
 
 										<div class="ui_card__txtarea">
 											<div class="ui_card__info">
-												<a href="#" target="_blank" class="ui_card__title">${bestStore.flea_name }</a>
+												<a href="#" target="_blank" class="ui_card__title"> <12색상> 폼폼♥ 스마트톡/폰케이스</a>
 												<br> <span class="ui_card__para">
-													${bestStore.intro_cotent } </span>
+													다행히 오늘 다같이 모이는 마지막 날이라서 오늘까지 와야했는데!!!했는데 오늘와서 배송은 괜찮았어요. 눈도 이뿌게 달려있고
+													막 털 빠지는 폼폼이 아니라서 좋았어요
+													다같이 모으면 진짜 귀여웅 </span>
 											</div>
 
 											<div class="ui_card__rating">

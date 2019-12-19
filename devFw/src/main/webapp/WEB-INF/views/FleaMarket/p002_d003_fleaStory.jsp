@@ -52,8 +52,7 @@
 <script type="text/javascript"
 	src="${contextPath}/resources/js/jquery-rate-picker.js"></script>
 <script>
-	$(document)
-			.ready(
+	$(document).ready(
 					function() {
 						$("#chat-header>i").on("click", addMember);
 
@@ -184,7 +183,7 @@
 										'click',
 										'.enrollstory',
 										function() {
-											alert("====story 등록 클릭 시 =====");
+											//alert("====story 등록 클릭 시 =====");
 											var story_cotent = $(
 													'#prod_story_text').val();
 											var story_title = $(
@@ -195,10 +194,10 @@
 	;
 											var memberId = $("#memberId").val();
 
-											alert(story_cotent + "/"
-													+ story_title + "/"
-													+ command + "/" + flea_code
-													+ "/" + memberId);
+											//alert(story_cotent + "/"
+											//		+ story_title + "/"
+											//		+ command + "/" + flea_code
+											//		+ "/" + memberId);
 
 											var data = {
 												story_title : story_title,
@@ -217,10 +216,10 @@
 														dataType : 'text',
 														success : function(
 																responseData) {
-															alert("등록 클릭 시 success");
+															//alert("등록 클릭 시 success");
 															var data = JSON
 																	.parse(responseData);
-															alert(data);
+															//alert(data);
 															var list = '';
 
 															for (var i = 0; i < data.length; i++) {
@@ -544,10 +543,14 @@
 					</c:choose>
 				</div>
 				<div class="btn_area">
-					<button type="button" class="btn btn-outline-dark"
+				<!--  
+					<button type="button" class="btn btn-outline-dark" class="enrollstory" id="buy"
 						style="font-size: 15px; size: 14px;">등록</button>
-					<button type="button" class="btn btn-outline-dark"
+					<button type="button" class="btn btn-outline-dark" class="cancelstory" id="cart"
 						style="font-size: 15px; size: 14px;">취소</button>
+				-->
+					<input type="button" class="enrollstory" id="buy" value="등록">
+					<input type="button" class="cancelstory" id="cart" value="취소">
 				</div>
 
 
@@ -555,12 +558,10 @@
 
 			<br> <br>
 
-			<ul class="masonry-grid x2" data-col="2"
-				style="position: relative; height: 71%;">
-				<li class="card-style story" id="storyAdd"><c:forEach
-						var="story" items="${storyList}">
-						<div class="bordering"
-							style="margin-left: 1%; width: 46%; margin-right: 3%; float: left; margin-bottom: 5%;">
+			<ul class="masonry-grid x2" data-col="2" style="position: relative; height: 71%;">
+				<li class="card-style story" id="storyAdd">
+					<c:forEach var="story" items="${storyList}">
+						<div class="bordering" style="margin-left: 1%; width: 46%; margin-right: 3%; float: left; margin-bottom: 5%;">
 
 							<input name="time_stamp" type="hidden" value="1575262761000">
 							<div class="area-txt">
