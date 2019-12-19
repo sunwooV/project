@@ -60,6 +60,8 @@ public class F_P002_D006ControllerImpl implements F_P002_D006Controller {
 	F_P002_D006Service d006Service;
 	@Autowired
 	F_P002_D006VO d006VO;
+	@Autowired
+	private HttpSession session;
 	
 	@Override
 	@RequestMapping(value = "/participantsInsert.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -74,6 +76,10 @@ public class F_P002_D006ControllerImpl implements F_P002_D006Controller {
 			dataMap.put(name, value);
 		}
 		
+		String memberid = (String)session.getAttribute("memberid");
+		System.out.println("멤버아이디는 "+ memberid);
+		dataMap.put("memberid", memberid);
+		
 		System.out.println("dataMap::::::::::" + dataMap);
 		
 		String message;
@@ -87,7 +93,7 @@ public class F_P002_D006ControllerImpl implements F_P002_D006Controller {
 			dispatch.forward(request, response);
 		} catch (Exception e) {
 			message = " <script>";
-			message += " alert('로그인 후 팜여형 플리마켓을 진행해주시기 바랍니다.');";
+			message += " alert('로그인 후 참여형 플리마켓을 진행해주시기 바랍니다.');";
 			message += " location.href='" + request.getContextPath() + "/fleaMystore.do?flea_code=" + flea_code +"'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);

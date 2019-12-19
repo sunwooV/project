@@ -50,6 +50,18 @@ public class F_P001_D002ServiceImpl implements F_P001_D002Service {
 		String likeFlea =  d002DAO.likeFlea(searchMap); 
 		return likeFlea;
 	}
+	
+	@Override
+	public String marketCnt(Map<String, Object> searchMap) throws DataAccessException {
+		String marketCnt =  d002DAO.marketCnt(searchMap); 
+		return marketCnt;
+	}
+	
+	@Override
+	public String recruitCnt(Map<String, Object> searchMap) throws DataAccessException {
+		String recruitCnt =  d002DAO.recruitCnt(searchMap); 
+		return recruitCnt;
+	}
 
 	@Override
 	public void updateMember(Map<String, Object> datahMap) throws Exception {

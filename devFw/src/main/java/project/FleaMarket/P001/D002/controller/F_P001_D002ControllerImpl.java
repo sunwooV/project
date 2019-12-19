@@ -77,8 +77,18 @@ public class F_P001_D002ControllerImpl implements F_P001_D002Controller {
 					//like.put("flea_code", flea_code);
 					//like.put("like", likeFlea);
 					System.out.println("----likeFlea" + likeFlea);
+					
+					String marketCnt = d002Service.marketCnt(searchMap);
+					System.out.println("----marketCnt" + marketCnt);
+					
+					String recruitCnt = d002Service.recruitCnt(searchMap);
+					System.out.println("----recruitCnt" + recruitCnt);
+					
+					
 					//mav.addObject("like", like);
 					mav.addObject("likeFlea", likeFlea);
+					mav.addObject("marketCnt", marketCnt);
+					mav.addObject("recruitCnt", recruitCnt);
 				}
 			}
 		}

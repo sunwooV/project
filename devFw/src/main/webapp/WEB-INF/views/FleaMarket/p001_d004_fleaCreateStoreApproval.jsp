@@ -77,23 +77,23 @@
 						<td><h6>${member.join_offline_time}</h6></td>
 						<td><h6>${member.join_offline_location}</h6></td>
 						<td><h6>${member.join_prepayment_yn}</h6></td>
-						<td>
-						 <c:if test="${member.join_status == 'x' }">
-		               	   <input type="button" value="개설 승인" id="approval_Y" style="margin-bottom: 6%; margin-top: 6%;" onClick="location.href='${contextPath}/fleaApprovalStatusUpdate.do?flea_code=${member.flea_code}&memberid=${member.memberid}&join_name=${member.join_name }&join_offline_date=${member.join_offline_date}&join_offline_time=${member.join_offline_time}&join_offline_location=${member.join_offline_location}&join_prepayment_yn=${member.join_prepayment_yn}&join_date=${member.join_date}'" />
-		                 </c:if>
-		                 <c:if test="${member.join_status == 'o' }">
-		                 	<input type="button" value="개설 승인" id="approval_Y" style="margin-bottom: 6%; margin-top: 6%;" disabled="disabled" />
-		                 </c:if>
-						<input type="hidden" id="join_status"
-						value="${member.join_status}"> <input type="button"
-						style="margin-bottom: 6%;" value="개설 불가" id="approval_N" /></td>
+						<td><c:if test="${member.join_status == 'x' }">
+								<input type="button" value="개설 승인" id="approval_Y"
+									style="margin-bottom: 6%; margin-top: 6%;"
+									onClick="location.href='${contextPath}/fleaApprovalStatusUpdate.do?flea_code=${member.flea_code}&memberid=${member.memberid}&join_name=${member.join_name }&join_offline_date=${member.join_offline_date}&join_offline_time=${member.join_offline_time}&join_offline_location=${member.join_offline_location}&join_prepayment_yn=${member.join_prepayment_yn}&join_date=${member.join_date}'" />
+							</c:if> <c:if test="${member.join_status == 'o' }">
+								<input type="button" value="개설 승인" id="approval_Y"
+									style="margin-bottom: 6%; margin-top: 6%;" disabled="disabled" />
+							</c:if> <input type="hidden" id="join_status"
+							value="${member.join_status}"> <input type="button"
+							style="margin-bottom: 6%;" value="개설 불가" id="approval_N" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
-	
-   <!-- 메뉴사이드바랑 컨텐츠 
+
+	<!-- 메뉴사이드바랑 컨텐츠 
    <div class="container"
       style="padding-bottom: 92px; padding-left: 75px;">
       <h1 style="padding-top: 96px; padding-bottom: 27px; font-size: 32px;">ADMIN</h1>

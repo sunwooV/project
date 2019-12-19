@@ -206,7 +206,7 @@ ol, ul {
 }
 
 .ui_card--side .ui_card__imgcover {
-	width: 40%;
+	width: 43%;
 }
 
 .ui_card--side .ui_card__inner>* {
@@ -219,6 +219,7 @@ ol, ul {
 }
 
 .cardlist_section .split-cardlist .ui_card--side {
+	height: 186px;
 	width: 100%;
 }
 
@@ -231,7 +232,7 @@ ol, ul {
 }
 
 .ui_card__txtarea {
-	padding: 15px;
+	padding: 2%;
 }
 
 .ui_card__inner {
@@ -269,10 +270,11 @@ ul li {
 	list-style-type: none;
 }
 
-#ppp {
-	padding: 6px;
-}
-
+/* #ppp {
+	padding-bottom: 1%;
+	margin-left: -19%;
+	padding-top: 4%;
+} */
 .blinkcss {
 	background-color: #004A7F;
 	-webkit-border-radius: 10px;
@@ -304,13 +306,61 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
  
 
 
+
+
+
+
+
+
+
+
 #FF0000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -324,13 +374,61 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
  
 
 
+
+
+
+
+
+
+
+
 #B20000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -350,13 +448,61 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
  
 
 
+
+
+
+
+
+
+
+
 #FF0000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -370,13 +516,61 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
  
 
 
+
+
+
+
+
+
+
+
 #B20000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -396,13 +590,61 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
  
 
 
+
+
+
+
+
+
+
+
 #FF0000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -416,13 +658,61 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
  
 
 
+
+
+
+
+
+
+
+
 #B20000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -442,13 +732,61 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
  
 
 
+
+
+
+
+
+
+
+
 #FF0000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -462,13 +800,61 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
  
 
 
+
+
+
+
+
+
+
+
 #B20000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -497,8 +883,7 @@ background-color
 					<span class="MarketMain__Quotes-c10k9n-5 byKpAP">"</span>
 					<h1
 						style="color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; font-weight: bold; margin-top: -30px;">
-						Welcome! Flea Market<br>
-						<br>상품이 있다면 마켓인유에 참여해보세요.
+						Welcome! Flea Market<br> <br>상품이 있다면 마켓인유에 참여해보세요.
 					</h1>
 					<ul class="actions">
 						<li><a href="#one" class="button scrolly">Get Started</a></li>
@@ -510,8 +895,16 @@ background-color
 		<div>
 			<h2>🏡플리마켓 일정</h2>
 			<!-- 컨텐츠 -->
+			<c:set var="marketCnt" value="${marketCnt}" />
+			<c:set var="recruitCnt" value="${recruitCnt}" />
 			<div id="p">
-				<h3>지금까지 5개의 마켓이 열렸고, 3개의 마켓이 셀러를 기다리고 있습니다😃</h3>
+				<h3>
+					지금까지
+					<c:out value="${marketCnt}" />
+					개의 마켓이 열렸고,
+					<c:out value="${recruitCnt}" />
+					개의 마켓이 셀러를 기다리고 있습니다😃
+				</h3>
 			</div>
 			<!-- 플리마켓 맵
         <div class="fleaMap">
@@ -643,22 +1036,23 @@ background-color
 														value="1574744451000">
 												</div>
 
+												<div style="padding-top: 8%; margin-left: -19%;">
+													<p id="ppp">
+														<a href="#" class="btn btn-primary" id="ttt3"
+															role="button">메세지 보내기</a>
 
-												<p id="ppp">
-													<a href="#" class="btn btn-primary" id="ttt3" role="button">메세지
-														보내기</a>
 
 
-
-													<c:if test="${bestStore.recruit_yn == 'n'}">
-														<a href="#" class="btn btn-default" id="ttt4"
-															role="button">모집종료</a>
-													</c:if>
-													<c:if test="${bestStore.recruit_yn == 'y'}">
-														<a href="#" class="btn btn-default blinkcss" id="ttt4"
-															role="button" style="background: red;">모집중</a>
-													</c:if>
-												</p>
+														<c:if test="${bestStore.recruit_yn == 'n'}">
+															<a href="#" class="btn btn-default" id="ttt4"
+																role="button">모집종료</a>
+														</c:if>
+														<c:if test="${bestStore.recruit_yn == 'y'}">
+															<a href="#" class="btn btn-default blinkcss" id="ttt4"
+																role="button" style="background: red;">모집중</a>
+														</c:if>
+													</p>
+												</div>
 
 											</div>
 										</div>

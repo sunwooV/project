@@ -84,7 +84,8 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		try {
 			d001Service.insertMember(dataMap);
-			C_P003_D001Service.changeSeller(dataMap);
+			System.out.println("::insertMember완료::");
+			//C_P003_D001Service.changeSeller(dataMap);
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher("fleaMain.do");
 			dispatch.forward(request, response);

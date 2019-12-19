@@ -37,10 +37,10 @@
 	src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca839997c3bd98863fdc033319b76889&libraries=services"></script>
-<script>
+<script>	
 	$(document).ready(function() {
 		$("#chat-header>i").on("click", addMember);
-
+		
 		function addMember() {
 			$('#user-add').fadeIn();
 		}
@@ -215,8 +215,9 @@
 
 						<div class="user-name">
 							<font size="3"> <c:out value="${flea.flea_name}" /> <a
-								target="_blank" href="#" id="participants_add"><i
-									class="fa fa-user-plus pa-5x"></i></a>
+								target="_blank" href="#" id="participants_add">
+								<!-- <i class="fa fa-user-plus pa-5x"></i> -->
+								</a>
 							</font>
 						</div>
 
@@ -226,17 +227,23 @@
 					</c:forEach>
 				</div>
 				<fieldset class="ui-field border-row">
-					<div id="chat-header">
-						<div id="user-info"></div>
-						<i class="fa fa-user-plus pa-5x">참가 신청</i>
-					</div>
+					<button type="button"
+						class="btn btn-s btn-white toggle-heart detail-like pseudo-ico-love"
+						data-name="starred-toolbar" data-starred-type="artist"
+						data-init="" data-starred=""
+						data-target-id="b20eee2f-b3eb-4fee-bc81-735f1e2318d6">
+						<div id="chat-header">
+							<div id="user-info"></div>
+							<i class="fa fa-user-plus pa-5x">참가 신청</i>
+						</div>
+					</button>
 
 					<div id="chat-header">
 						<div id="user-info"></div>
 						<button type="button" class="btn btn-m btn-white pseudo-ico-share"
 							data-ui="url-copy" data-ui-option="short" data-icon-event="hover"
 							data-clipboard-text="#" onclick="location.href='/devFw/fleaSearchInit.do'">
-							<i class="fa fa-user-plus pa-5x"></i>
+							<i class="fa fa-list-alt pa-5x"></i>
 							참여자 리스트<br>
 						</button>
 
@@ -247,9 +254,12 @@
 						data-name="starred-toolbar" data-starred-type="artist"
 						data-init="" data-starred=""
 						data-target-id="b20eee2f-b3eb-4fee-bc81-735f1e2318d6">
-						<i class="ico-img"> <span class="sp-icon icon-heart"></span> <span
-							class="sp-icon icon-heart active"></span>
-						</i> <em class="txt"><i class="fa fa-heart"></i>스토어 찜하기</em>
+						<div id="chat-header">
+							<div id="user-info"></div>
+							<i class="ico-img"> <span class="sp-icon icon-heart"></span> <span
+								class="sp-icon icon-heart active"></span>
+							</i> <em class="txt"><i class="fa fa-heart"></i> 스토어 찜하기</em>
+						</div>
 					</button>
 					<br> <a href="#"
 						class="btn btn-s btn-white pseudo-ico-message"> <i
@@ -570,13 +580,15 @@
 					<a id="pop-close">&times;</a>
 				</div>
 				<div id="pop-search">
-					<input onkeyup="filter()" type="text" placeholder="새로운 유저 검색" /> <input
-						type="submit" id="value" value="검색">
+					<input onkeyup="filter()" type="text" placeholder="본인 아이디를 입력해주세요." /> <input
+						type="submit" id="value" value="선택">
 				</div>
 				<div id="pop-list"></div>
+				<!--  
 				<div id="pop-footer">
-					<input type="button" value="선택">
+					<input type="button" value="선택" />
 				</div>
+				-->
 				<c:forEach var="flea" items="${searchList}">
 					<input type="hidden" name="flea_code" value="${flea.flea_code}">
 				</c:forEach>
