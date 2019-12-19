@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.Main.P001.D001.service.M_P001_D001Service;
+import project.Sell.P001.D002.service.S_P001_D002Service;
 import project.FleaMarket.P002.D001.dao.F_P002_D001DAO;
 import project.FleaMarket.P002.D001.service.F_P002_D001Service;
 import project.FleaMarket.P002.D001.vo.F_P002_D001VO;
@@ -39,7 +40,7 @@ import project.FleaMarket.P002.D003.service.F_P002_D003Service;
 public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 	private static final Logger logger = LoggerFactory.getLogger(F_P002_D001ControllerImpl.class);
 	@Autowired
-	M_P001_D001Service M_P001_D001Service;
+	S_P001_D002Service S_P001_D002Service;
 	@Autowired
 	F_P002_D003Service d003Service;
 	@Autowired
@@ -64,13 +65,18 @@ public class F_P002_D001ControllerImpl implements F_P002_D001Controller {
 		System.out.println("memberid =" +memberid);
 		
 		List list = d001Service.searchList(searchMap);
-		List newProduct = M_P001_D001Service.newProduct(searchMap);
+		List newProduct = S_P001_D002Service.fleaProductList(searchMap);
 		List storyList = d003Service.storyList(searchMap);
 		
 		System.out.println("list="+list);
 		for(int i = 0; i < list.size(); i++)
 		{
 			System.out.println(list.get(i));
+		}
+		System.out.println("fleaProductList="+newProduct);
+		for(int i = 0; i < newProduct.size(); i++)
+		{
+			System.out.println(newProduct.get(i));
 		}
 		System.out.println("확인 필요");
 		System.out.println("storyList="+storyList);

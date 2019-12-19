@@ -547,10 +547,12 @@
 						<ul class="split-cardlist lines5">
 							<li class="ui_card--side">
 								<div class="ui_card__inner">
+								<!--  
 									<div class="ui_card__imgcover">
 										<a href="#" class="ui_card__img"
 											style="background-image: url(https://image.idus.com/image/files/4b1b9b058f5046d99b0ade714ecdc0c4_720.jpg)"></a>
 									</div>
+								-->
 									<div class="ui_card__txtarea ">
 										<div class="ui_card__info">
 											<a href="${contextPath}/FleaMarket/P002/D003/searchList.do"

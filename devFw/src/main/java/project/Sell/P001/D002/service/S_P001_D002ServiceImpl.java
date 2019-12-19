@@ -39,6 +39,12 @@ public class S_P001_D002ServiceImpl implements S_P001_D002Service {
 	}
 	
 	@Override
+	public List<S_P001_D002VO> fleaProductList(Map<String, Object> searchMap) throws DataAccessException {
+		List<S_P001_D002VO> fleaProductList =  S_P001_D002DAO.fleaProductList(searchMap); 
+		return fleaProductList;
+	}
+	
+	@Override
 	public List<S_P001_D002VO> auction_left_date(Map<String, Object> searchMap) throws DataAccessException {
 		List<S_P001_D002VO> list =  S_P001_D002DAO.auction_left_date(searchMap); 
 		return list;
@@ -89,5 +95,6 @@ public class S_P001_D002ServiceImpl implements S_P001_D002Service {
 		System.out.println("updateHeart 해써용");
 		S_P001_D002DAO.updateHeart(datahMap);
 	}
+	
 
 }

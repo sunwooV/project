@@ -23,4 +23,5 @@ public interface S_P001_D002Service {
 	public void deleteLikeProd(Map<String, Object> datahMap) throws Exception;
 	
 	public void updateHeart(Map<String, Object> datahMap) throws Exception;
+	public List<S_P001_D002VO> fleaProductList(Map<String, Object> searchMap) throws DataAccessException;
 }
