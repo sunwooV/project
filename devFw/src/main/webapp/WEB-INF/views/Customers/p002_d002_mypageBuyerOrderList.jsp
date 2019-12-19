@@ -93,7 +93,7 @@
 							</span></th>
 							<th class="OHT_ttl"><span>상품이미지</span></th>
 							<th class="OHT_ttl"><span>상품정보</span></th>
-<!-- 							<th class="OHT_ttl"><span>수량</span></th>
+<!-- 						<th class="OHT_ttl"><span>수량</span></th>
 							<th class="OHT_ttl"><span>상품구매금액</span></th> -->
 							<th class="OHT_ttl"><span>주문처리상태</span></th>
 							<th class="OHT_ttl"><span>제품상태처리</span></th>

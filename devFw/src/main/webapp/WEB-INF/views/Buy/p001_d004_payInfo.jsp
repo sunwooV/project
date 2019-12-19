@@ -90,7 +90,6 @@
 
    //페이지 켜자마자 총 주문 금액 계산
    $(document).ready(function(){
-		console.log('${ArrayToJSon}');
 	   
       Number.prototype.format = function(){
           if(this==0) return 0;
@@ -147,7 +146,7 @@
       var product = "<%=title%>"; 
       var orderWant = document.getElementById('orderWant').value;   
       var pay_method = $('input[name=size]:checked').val();
-      var price = <%=ttlPrice %>;
+      var price = <%=ttlPrice+2500%>;
       var addr = "("+postCode+")"+detailAddr;
      
       // IMP.request_pay(param, callback) 호출
@@ -222,7 +221,6 @@
         	}).done(function(data) {
         		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
         		if ( true ) {
-        			console.log("배송지 입력 성공!");
         		} else {
         			
         		}
@@ -237,7 +235,7 @@
         	}).done(function(data) {
         		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
         		if ( true ) {
-        			console.log("배송지 입력 성공!");
+        			
         		} else {
         			
         		}

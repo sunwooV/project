@@ -54,7 +54,7 @@ public class B_P001_D005ControllerImpl implements B_P001_D005Controller{
 			String name = (String)enu.nextElement();
 			String value = request.getParameter(name);
 			dataMap.put(name, value);
-			System.out.println(dataMap);
+		
 		}
 		b_p001_d005Service.insertOrders(dataMap);
 
@@ -70,7 +70,7 @@ public class B_P001_D005ControllerImpl implements B_P001_D005Controller{
 			String name = (String) enu.nextElement();
 			String value = request.getParameter(name);
 			dataMap.put(name, value);
-			System.out.println(dataMap);
+			
 		}
 		b_p001_d005Service.insertDest(dataMap);
 		
@@ -81,8 +81,7 @@ public class B_P001_D005ControllerImpl implements B_P001_D005Controller{
 		ObjectMapper mapper = new ObjectMapper();
 		String ddd = request.getParameter("prod_number");
 		String order = request.getParameter("order_number");
-		System.out.println(ddd);
-		System.out.println("dPdflsdjflkdfjsdjflsdjfsdkljslda");
+	
 		ArrayList list = mapper.readValue(ddd, ArrayList.class);
 	
 		List<B_P001_D005VO> list2 = new ArrayList<B_P001_D005VO>();
@@ -91,10 +90,9 @@ public class B_P001_D005ControllerImpl implements B_P001_D005Controller{
 			String num = (String) list.get(i);
 			vo.setProd_number(num);
 			vo.setOrder_number(order);
-			System.out.println("@@@@@@@@@num"+num);
 			list2.add(vo);
 		}
-		Map<String, Object> dataMap = new HashMap<String, Object>();
+	
 
 		b_p001_d005Service.insertOrderitems(list2);
 		

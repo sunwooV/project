@@ -82,11 +82,8 @@
          priceTtl[i] = td.eq(5).text();
          var realPrice =[];
          realPrice[i] = Number(priceTtl[i].substring(0,priceTtl[i].lastIndexOf("원")-1));
-         
-         console.log(realPrice[i]);
-         
          total = total+realPrice[i];
-         console.log(total);
+        
       })
       var subTotal = document.getElementById("subTotal");
          subTotal.innerHTML = total.format()+"원";
@@ -102,7 +99,7 @@
       var delProd = [];
       $("input[name=checkProd]:checked").each(function(i){
          delProd[i] = $(this).val();
-         console.log(delProd);
+         
       })
       
       var delCartInfo ={
@@ -158,7 +155,7 @@
       var editCount = 'a'+prod_number;
       
       var count = $("."+editCount).val();
-      console.log(count);
+      
    
       var insertOrderInfo = {
             command:command,
@@ -178,7 +175,7 @@
             
          },
          error:function(data, textStatus){
-            console.log("장바구니에 수정 실패");
+            
          },
          complete : function(data, textStatus){
             
@@ -226,16 +223,15 @@
       
       cnt2.each(function(i){
     	  payProd[i] = $(this).val();
-          console.log(payProd[i]);
+         
        })
+       
        var ArrayToJson = JSON.stringify(payProd);
-      frm.ArrayToJSon.value=ArrayToJson;
-      alert(frm.ArrayToJSon.value);
-      alert(ArrayToJson)
+       frm.ArrayToJSon.value=ArrayToJson;
        
       frm.method = "get";
-  frm.action = "/devFw/payInfo.do"; // action 먼저 그 경로로 넘어가서 
-     frm.submit(); //데이터 전달
+  	  frm.action = "/devFw/payInfo.do"; // action 먼저 그 경로로 넘어가서 
+      frm.submit(); //데이터 전달
 
    }
    

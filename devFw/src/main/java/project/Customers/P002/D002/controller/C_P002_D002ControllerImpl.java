@@ -38,11 +38,10 @@ public class C_P002_D002ControllerImpl implements C_P002_D002Controller{
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		String memberId = (String) session.getAttribute("memberid");
 	
-		System.out.println("마이페이지 "+memberId);
 		
 		dataMap.put("memberId", memberId);
 		searchMap.put("buyer_memberid", memberId);
-		System.out.println("마이페이지 "+searchMap);
+		
 		
 		List myBidList = C_P002_D002Service.myBidList(dataMap);
 		List myBuyerList = C_P002_D002Service.myBuyerList(searchMap);
@@ -50,6 +49,7 @@ public class C_P002_D002ControllerImpl implements C_P002_D002Controller{
 		
 		mav.addObject("myBidList", myBidList);
 		mav.addObject("myBuyerList",myBuyerList);
+		
 		return mav;
 	}
 	
