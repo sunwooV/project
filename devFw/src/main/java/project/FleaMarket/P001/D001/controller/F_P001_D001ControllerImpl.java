@@ -74,6 +74,7 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 		String memberid = (String)session.getAttribute("memberid");
 		System.out.println("멤버아이디는 "+ memberid);
 		dataMap.put("memberid", memberid);
+		dataMap.put("memberId", memberid);
 
 		System.out.println("dataMap::::::::::" + dataMap);
 		
@@ -85,7 +86,8 @@ public class F_P001_D001ControllerImpl implements F_P001_D001Controller {
 		try {
 			d001Service.insertMember(dataMap);
 			System.out.println("::insertMember완료::");
-			//C_P003_D001Service.changeSeller(dataMap);
+			C_P003_D001Service.changeSeller(dataMap);
+			C_P003_D001Service.fleaUpdateSeller(dataMap);
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher("fleaMain.do");
 			dispatch.forward(request, response);

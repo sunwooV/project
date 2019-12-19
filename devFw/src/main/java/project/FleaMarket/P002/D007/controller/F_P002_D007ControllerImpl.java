@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import project.FleaMarket.P002.D007.service.F_P002_D007Service;
 import project.FleaMarket.P002.D007.vo.F_P002_D007VO;
-
+import project.Customers.P003.D001.service.C_P003_D001Service;
 
 @Controller("F_P002_D007Controller")
 public class F_P002_D007ControllerImpl implements F_P002_D007Controller{
@@ -29,6 +29,8 @@ public class F_P002_D007ControllerImpl implements F_P002_D007Controller{
 	F_P002_D007Service f_p002_d007service;
 	@Autowired
 	F_P002_D007VO f_p002_d007vo;
+	@Autowired
+	C_P003_D001Service C_P003_D001Service;
 	
 	//화먼 찾기
 	@Override
@@ -71,6 +73,7 @@ public class F_P002_D007ControllerImpl implements F_P002_D007Controller{
 	public Map fleaSaveData(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		Map<String, String[]> dataMap = new HashMap<String, String[]>(); // 저장할data
+		Map<String, Object> dataMap2 = new HashMap<String, Object>(); // 저장할data
 		Map<String, Object> resultMap = new HashMap<String, Object>(); // 처리결과
 		
 		// 저장DATA추출하기
@@ -79,11 +82,19 @@ public class F_P002_D007ControllerImpl implements F_P002_D007Controller{
 			String name = (String) enu.nextElement();
 			String[] values = request.getParameterValues(name);
 			dataMap.put(name, values);
+			
+			if(name.equals("memberid")) {
+				dataMap2.put("memberId", request.getParameter(name));
+				System.out.println("memberId행방은?" + request.getParameter(name));
+			}
 		}
 		
+		System.out.println("::::::::::::dataset::::::" + dataMap2);
 		Map<String, String> result = new HashMap<String, String>();
 		try {
 			f_p002_d007service.saveData(dataMap);	
+			C_P003_D001Service.fleaUpdateSeller(dataMap2);
+			
 			result.put("Code","0");
 			result.put("Message","저장되었습니다.");
 		}catch(Exception e) {
