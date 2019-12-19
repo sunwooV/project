@@ -763,7 +763,7 @@
 
 				<div id="auctionDaySelect" style="display: none">
 					<a>경매 일자 * &nbsp&nbsp</a> 
-						<input type="checkbox" name="auction_date" value="10" class="checkSelect2" onclick="oneCheckbox(this)" id="test"/><label for="test">1분(test)</label> 
+						<input type="checkbox" name="auction_date" value="10" class="checkSelect2" onclick="oneCheckbox(this)" id="test"/><label for="test">5분(test)</label> 
 						<input type="checkbox" name="auction_date" value="3" class="checkSelect2" onclick="oneCheckbox(this)" id="three"/><label for="three">3일</label> 
 						<input type="checkbox" name="auction_date" value="5" class="checkSelect2" onclick="oneCheckbox(this)" id="five"/><label for="five">5일</label> 
 						<input type="checkbox" name="auction_date" value="7" class="checkSelect2" onclick="oneCheckbox(this)" id="seven"/><label for="seven">7일</label> 
