@@ -198,9 +198,7 @@ label{
 #eachsearchbar{
     width: 65%;
 }
-.eachTitle{
-	margin-left:50px;
-}
+
 </style>
 </head>
 <body>
@@ -212,10 +210,10 @@ label{
 <br><br>
 <div class="mainHeader">
 <c:if test="${command == 'reused' }">
-	<h1 class="eachTitle"><a href="./eachMain.do?command=reused" style="text-decoration:none">🧤중고</a></h1>
+	<h1 class="eachTitle">🧤<a href="./eachMain.do?command=reused" style="text-decoration:none">중고</a></h1>
 </c:if>
 <c:if test="${command == 'auction' }">
-	<h1 class="eachTitle"><a href="./eachMain.do?command=auction" style="text-decoration:none">💰경매</a></h1>
+	<h1 class="eachTitle">💰<a href="./eachMain.do?command=auction" style="text-decoration:none">경매</a></h1>
 </c:if>
 	
 	<form class="form-inline my-2 my-lg-0" id="search" name="searchform" method="POST" action="./eachsearchProduct.do">
