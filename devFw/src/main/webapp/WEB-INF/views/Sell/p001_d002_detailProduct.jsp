@@ -990,6 +990,7 @@ img {
 .description{
    margin-left: 2%;
    float:left;
+   width: 47%;
 }
 .price{
    color:red;
