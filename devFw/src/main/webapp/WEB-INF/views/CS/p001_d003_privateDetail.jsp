@@ -105,7 +105,7 @@ $(document).ready(function(){
 					+ ' </tr>'
 				}
 					   list += '</table>';
-						alert(list);
+						
 			$(".list_comment_inqury").html(list);
 			},
 			error: function(data, textStatus){
@@ -148,7 +148,7 @@ $(document).ready(function(){
 					
 					var data = JSON.parse(responseData);
 					
-					alert(data);
+				
 		            /* if(jsonInfo.error.error_yn == 'Y'){
 		        	   alert(jsonInfo.error.error_text);
 		        	   return;
