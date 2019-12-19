@@ -280,9 +280,8 @@ layout-split:after {
 #chat-header>i {
 	width: initial;
 	height: initial;
-	margin-right: 15px;
-	color: #8da5ee;
-	border-radius: 50%;
+	color: #989d9e;
+	font-weight: bolder;
 }
 
 #chat-header>i:hover {
