@@ -31,6 +31,7 @@
 		<result property="editor" column="editor" />
 		<result property="represent_image" column="represent_image" />
 		<result property="tag_list" column="tag_list" />
+		<result property="fleamarket" column="fleamarket" />
 	</resultMap>
 	<resultMap id="S_P001_D001Result03" type="S_P001_D001VO">
 		<result property="flea_code" column="flea_code" />
@@ -87,7 +88,7 @@
 			<when test="auction_date == 10"> <!-- test -->
 			<![CDATA[
 				INSERT INTO product (prod_number, reused_yn, auction_yn, flea_yn, auction_price, auction_bid, auction_date, auction_start_date, auction_end_date, prod_category_code, memberId, prod_price, prod_amount, prod_title, send_way, post_date, sale_percent, buy_price, direct_area, editor, represent_image)
-				VALUES (#{prod_number}, #{reused_yn}, #{auction_yn}, #{flea_yn}, #{auction_price}, #{auction_price}, #{auction_date}, sysdate, sysdate+1/60/24, #{prod_category_code}, #{memberId}, #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{images})
+				VALUES (#{prod_number}, #{reused_yn}, #{auction_yn}, #{flea_yn}, #{auction_price}, #{auction_price}, #{auction_date}, sysdate, sysdate+5/60/24, #{prod_category_code}, #{memberId}, #{prod_price}, #{prod_amount}, #{prod_title}, #{send_way}, sysdate, #{sale_percent}, #{buy_price}, #{direct_area}, #{editor}, #{images})
 			 ]]>
 			</when>
 			<when test="auction_date != null and auction_date != 10"> <!-- 경매 체크했을 때 -->
@@ -154,6 +155,19 @@
       <where>
       <![CDATA[
       	memberid = #{memberId}
+       ]]>
+      </where>
+	</select>
+	
+	<!-- 플리마켓 판매상품 리스트 -->
+	<select id="fleaProductList" resultMap="S_P001_D001Result02" parameterType="java.util.Map">
+	<![CDATA[
+         select *
+         from product
+       ]]>
+      <where>
+      <![CDATA[
+      	fleamarket = #{flea_code}
        ]]>
       </where>
 	</select>

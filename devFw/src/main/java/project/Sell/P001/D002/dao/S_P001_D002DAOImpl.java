@@ -61,6 +61,12 @@ public class S_P001_D002DAOImpl implements S_P001_D002DAO {
 	}
 	
 	@Override
+	public List<S_P001_D002VO> fleaProductList(Map<String, Object> searchMap) throws DataAccessException {
+		List<S_P001_D002VO> fleaProductList = sqlSession.selectList("Sell.p001_d001.fleaProductList", searchMap);
+		return fleaProductList;
+	}
+	
+	@Override
 	public String fleaName(Map<String, Object> searchMap) throws DataAccessException {
 		String fleaName = sqlSession.selectOne("Sell.p001_d002.fleaName", searchMap);
 		System.out.println("fleaName이다~!~!~!~!~!" + fleaName);

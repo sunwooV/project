@@ -1058,11 +1058,10 @@
 	$(document).on('click', '#cart', function() {
 
 		var memberid = $("#memberId").val();
-		console.log(memberid);
 		var amount = $("#prod_amount").val();
 		var product = $('#prod_number').val();
 		var real_prod_price = $('#prod_price').val();
-		alert("prod_amount 출력 = " + amount);
+		//alert("prod_amount 출력 = " + amount);
 
 		var command = 'insert';
 		//로그인 안했을 때 로그인 창으로
@@ -1094,8 +1093,6 @@
 					//문제지점
 					var parsingData = JSON.parse(responseData);
 
-					alert(parsingData.data);
-
 					if (parsingData.data == 1) {
 
 						$.ajax({
@@ -1110,7 +1107,7 @@
 
 							},
 							error : function(data, textStatus) {
-								alert("장바구니에 수정 실패 ")
+								alert("장바구니에 수정 실패 ");
 							},
 							complete : function(data, textStatus) {
 
