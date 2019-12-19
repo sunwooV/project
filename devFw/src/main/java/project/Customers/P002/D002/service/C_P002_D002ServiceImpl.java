@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import project.Customers.P002.D002.vo.C_P002_D002VO;
+import project.Buy.P001.D005.vo.B_P001_D005VO;
 import project.Customers.P002.D002.dao.C_P002_D002DAO;
 
 @Service("C_P002_D002Service")
@@ -22,6 +23,12 @@ public class C_P002_D002ServiceImpl implements C_P002_D002Service{
 	public List<C_P002_D002VO> myBidList(Map<String, Object> searchMap) throws DataAccessException {
 		List<C_P002_D002VO> myBidList =  C_P002_D002DAO.myBidList(searchMap); 
 		return myBidList;
+	}
+
+	@Override
+	public List<B_P001_D005VO> myBuyerList(Map<String, Object> searchMap) throws DataAccessException {
+		List<B_P001_D005VO> myBuyerList =  C_P002_D002DAO.myBuyerList(searchMap);
+		return myBuyerList;
 	}
 
 //	@Override

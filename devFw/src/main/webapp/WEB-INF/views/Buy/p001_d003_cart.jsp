@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+   pageEncoding="UTF-8" isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
@@ -10,10 +10,10 @@
 <meta charset="UTF-8">
 <title>장바구니</title>
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="${contextPath }/resources/css/main.css">
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+   src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript">
 
@@ -22,7 +22,7 @@
    $(document).ready(function(){
       
       $("#allCheck").click(function(){
-    	  
+         
          if($("#allCheck").prop("checked")){
             $("input[name=checkProd]").prop("checked",true);
          }else{
@@ -32,7 +32,7 @@
       
       var checkProd = document.getElementsByName("checkProd");
 
-      //모두 체크해서 보내기
+      //모두 체크
       for(i=0; i < checkProd.length; i++) {
          checkProd[i].checked = true;
       }
@@ -166,7 +166,6 @@
             prod_number:prod_number,
             cart_count:count
       }
-      
       $.ajax({
          type:"get",
          async:false,
@@ -175,7 +174,7 @@
          dataType:"text",
          
          success: function(responseData){
-            
+        	 location.reload();
             
          },
          error:function(data, textStatus){
@@ -218,14 +217,25 @@
    function moveToPayInfo() {
       var frm = document.Mycart;
       var cnt = $("input:checkbox[name=checkProd]:checked").length;
-      
+      var cnt2 = $("input:checkbox[name=checkProd]:checked");
       var countProd = document.getElementById("countProd");
       countProd.value=cnt;
       
-   
+      var payProd =[];
+      
+      
+      cnt2.each(function(i){
+    	  payProd[i] = $(this).val();
+          console.log(payProd[i]);
+       })
+       var ArrayToJson = JSON.stringify(payProd);
+      frm.ArrayToJSon.value=ArrayToJson;
+      alert(frm.ArrayToJSon.value);
+      alert(ArrayToJson)
+       
       frm.method = "get";
-      frm.submit();
-      frm.action = "/devFw/payInfo.do";
+  frm.action = "/devFw/payInfo.do"; // action 먼저 그 경로로 넘어가서 
+     frm.submit(); //데이터 전달
 
    }
    
@@ -237,148 +247,149 @@
 
 <style type="text/css">
 .orderHistoryContainer {
-	/* padding: 위 오른쪽 아래 왼쪽;*/
-	padding: 1% 15% 1% 15%;
+   /* padding: 위 오른쪽 아래 왼쪽;*/
+   padding: 1% 15% 1% 15%;
 }
 
 .orderHistoryHeader {
-	padding-top: 3%;
-	margin-left: 15%;
+   padding-top: 3%;
+   margin-left: 15%;
 }
 
 .OHT_ttl, .OHC_cont {
-	font-size: 13px;
-	padding: 0.5%;
-	text-align: center;
-	border-bottom: 1px solid lightgray;
+   font-size: 13px;
+   padding: 0.5%;
+   text-align: center;
+   border-bottom: 1px solid lightgray;
 }
 
 .orderHistoryTable {
-	text-align: center;
-	width: -webkit-fill-available;
-	border-top: 1px solid lightgray;
-	border-collapse: collapse;
+   text-align: center;
+   width: -webkit-fill-available;
+   border-top: 1px solid lightgray;
+   border-collapse: collapse;
 }
 
 .OHtableTitle {
-	background-color: #f9f9f9;
+   background-color: #f9f9f9;
 }
 
 .expectCost {
-	width: -webkit-fill-available;
+   width: -webkit-fill-available;
 }
 
 .cta {
-	margin-left: 50%;
+   margin-left: 50%;
 }
 
 .goToPayButton {
-	padding-left: 48%;
+   padding-left: 48%;
 }
 
 .choiceOrder {
-	margin-left: 15%
+   margin-left: 15%
 }
 
 #delProd, #gotoLikeprod, #go {
-	height: 31px;
-	width: 10%;
-	background-color: white;
-	border: 1px solid gray;
-	margin-left: 2%;
-	border-radius: 7px;
+   height: 31px;
+   width: 10%;
+   background-color: white;
+   border: 1px solid gray;
+   margin-left: 2%;
+   border-radius: 7px;
 }
 </style>
 
 </head>
 <body>
 
-	<form name="Mycart" method="post" action="./payInfo.do">
-		<input type="hidden" id="command" name="command" value="edit">
-		<input type="hidden" id="subTotalPrice" name="subTotalPrice" value="">
-		<input type="hidden" id="countProd" name="countProd" value="">
-		<input type="hidden" id="memberId" value="${member.getMemberid()}">
-		<!-- 장바구니 상단 -->
-		<div class="orderHistoryHeader">
-			<h2>👜장바구니</h2>
-		</div>
-		<div class="orderHistoryContainer">
-			<!-- 주문 상품 정보 테이블 시작  -->
-			<table class="orderHistoryTable" id="orderHistoryTable">
-				<!-- 주문 상품 정보 테이블 상단 제목   -->
-				<thead class="orderHistoryTableTitles">
-					<tr class="OHtableTitle">
-						<th class="OHT_ttl"><input type="checkbox" id="allCheck"
-							name="allCheck"></th>
-						<th class="OHT_ttl"><span>상품이미지</span></th>
-						<th class="OHT_ttl"><span>상품정보</span></th>
-						<th class="OHT_ttl"><span>수량</span></th>
-						<th class="OHT_ttl"><span>단가</span></th>
-						<th class="OHT_ttl"><span>총 상품 금액</span></th>
-					</tr>
-					<!-- 상품 내용 cif 처리하기 -->
-					<c:set var="total" value="0" />
-					<c:set var="firstProdTitle" value="" />
-					<c:forEach var="cartList" items="${dataList}" varStatus="status">
-						<input type="hidden" id="prod_price"
-							value="${cartList.prod_price}">
-						<tr class="orderHistoryContents">
-							<td class="OHC_cont"><input type="checkbox" name="checkProd"
-								id="checkProd" value="${cartList.prod_number}"> <%--          <input type="hidden" name="prod_number" value="${cartList.prod_number}"> --%>
-							</td>
-							<td class="OHC_cont"><a
-								href="${contextPath}/detail.do?prod_number=${cartList.prod_number}"><img
-									src="${cartList.represent_image}" name="represent_image"
-									style="width: 100px; height: 125px;"> </a></td>
-							<td class="OHC_cont">${cartList.prod_title}<c:if
-									test="${status.index eq 0 }">
-									<c:set var="firstProdTitle" value="${cartList.prod_title}" />
-								</c:if> <input type="hidden" name="prod_title"
-								value="${firstProdTitle}">
-							</td>
-							<td class="OHC_cont"><input type="button"
-								onClick="abuttonClick('minus',${cartList.prod_number })"
-								value="-"> <input type="number"
-								class="a${cartList.prod_number }" id="cart_count"
-								name="count${cartList.prod_number }" min="1"
-								max="${cartList.prod_amount}"
-								style="text-align: center; border: 1px solid white; width: 10%; height: auto; text-align: right;"
-								value="${cartList.cart_count}"> <input type="button"
-								onClick="abuttonClick('plus',${cartList.prod_number })"
-								class="${cartList.prod_number }" value="+"></td>
-							<td class="OHC_cont" id="prod_price"><span
-								class="pri${cartList.prod_number }">${cartList.real_prod_price}</span>원
-							</td>
-							<td class="OHC_cont"><span id="prod_ttl_price"
-								name="t${cartList.prod_number }">${cartList.real_prod_price * cartList.cart_count}
-							</span>원</td>
+   <form name="Mycart"> 
+    
+      <input type="hidden" id="command" name="command" value="edit">
+      <input type="hidden" id="subTotalPrice" name="subTotalPrice" value="">
+      <input type="hidden" id="countProd" name="countProd" value="">
+      <input type="hidden" id="memberId" value="${member.getMemberid()}">
+      <input type="hidden" name ="ArrayToJSon" id="ArrayToJSon">
+      <!-- 장바구니 상단 -->
+      <div class="orderHistoryHeader">
+         <h2>👜장바구니</h2>
+      </div>
+      <div class="orderHistoryContainer">
+         <!-- 주문 상품 정보 테이블 시작  -->
+         <table class="orderHistoryTable" id="orderHistoryTable">
+            <!-- 주문 상품 정보 테이블 상단 제목   -->
+            <thead class="orderHistoryTableTitles">
+               <tr class="OHtableTitle">
+                  <th class="OHT_ttl"><input type="checkbox" id="allCheck"
+                     name="allCheck"></th>
+                  <th class="OHT_ttl"><span>상품이미지</span></th>
+                  <th class="OHT_ttl"><span>상품정보</span></th>
+                  <th class="OHT_ttl"><span>수량</span></th>
+                  <th class="OHT_ttl"><span>단가</span></th>
+                  <th class="OHT_ttl"><span>총 상품 금액</span></th>
+               </tr>
+               <!-- 상품 내용 cif 처리하기 -->
+               <c:set var="total" value="0" />
+               <c:set var="firstProdTitle" value="" />
+               <c:forEach var="cartList" items="${dataList}" varStatus="status">
+                  <input type="hidden" id="prod_price"
+                     value="${cartList.prod_price}">
+                  <tr class="orderHistoryContents">
+                     <td class="OHC_cont"><input type="checkbox" name="checkProd" id="checkProd" value="${cartList.prod_number}"> 
+                   <%--   <input type="hidden" name="prod_number" value="${cartList.prod_number}">  --%>
+                     </td>
+                     <td class="OHC_cont"><a
+                        href="${contextPath}/detail.do?prod_number=${cartList.prod_number}"><img
+                           src="${cartList.represent_image}" name="represent_image"
+                           style="width: 100px; height: 125px;"> </a></td>
+                     <td class="OHC_cont">${cartList.prod_title}<c:if test="${status.index eq 0 }">
+                           <c:set var="firstProdTitle" value="${cartList.prod_title}" />
+                        </c:if> <input type="hidden" name="prod_title"
+                        value="${firstProdTitle}">
+                     </td>
+                     <td class="OHC_cont"><input type="button"
+                        onClick="abuttonClick('minus',${cartList.prod_number })"
+                        value="-"> <input type="number"
+                        class="a${cartList.prod_number }" id="cart_count"
+                        name="count${cartList.prod_number }" min="1"
+                        max="${cartList.prod_amount}"
+                        style="text-align: center; border: 1px solid white; width: 10%; height: auto; text-align: right;"
+                        value="${cartList.cart_count}"> <input type="button"
+                        onClick="abuttonClick('plus',${cartList.prod_number })"
+                        class="${cartList.prod_number }" value="+"></td>
+                     <td class="OHC_cont" id="prod_price"><span
+                        class="pri${cartList.prod_number }">${cartList.real_prod_price}</span>원
+                     </td>
+                     <td class="OHC_cont"><span id="prod_ttl_price"
+                        name="t${cartList.prod_number }">${cartList.real_prod_price * cartList.cart_count}
+                     </span>원</td>
 
-						</tr>
-					</c:forEach>
-					<tr>
-						<td class="OHC_cont" colspan="6"
-							style="height: 100px; font-size: 35px; text-align: right;">
-							<h3 style="color: #da2626;">
-								예상 결제 금액 = <span id="subTotal"></span>
-							</h3>
+                  </tr>
+               </c:forEach>
+               <tr>
+                  <td class="OHC_cont" colspan="6"
+                     style="height: 100px; font-size: 35px; text-align: right;">
+                     <h3 style="color: #da2626;">
+                        예상 결제 금액 = <span id="subTotal"></span>
+                     </h3>
 
-						</td>
+                  </td>
 
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="choiceOrder">
-			<input type="button" id="delProd" value="선택상품 삭제하기">&nbsp&nbsp
-			<input type="button" id="gotoLikeprod" value="관심상품으로 이동">
-		</div>
-		<div class="goToPayButton">
-			<input type="button" id="go" onClick="moveToPayInfo()"
-				style="font-size: 16px;" value="주문하기">
-		</div>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="choiceOrder">
+         <input type="button" id="delProd" value="선택상품 삭제하기">&nbsp&nbsp
+         <input type="button" id="gotoLikeprod" value="관심상품으로 이동">
+      </div>
+      <div class="goToPayButton">
+         <input type="button" id="go" onClick="moveToPayInfo()"
+            style="font-size: 16px;" value="주문하기">
+      </div>
 
 
-		<!-- End Content -->
-	</form>
+      <!-- End Content -->
+   </form>
 </body>
 </html>

@@ -12,5 +12,6 @@ public interface B_P001_D005DAO {
 	// public B_P001_D005VO kakaopayInfo(String pg_token) throws DataAccessException;
 	public void insertOrders(Map<String, Object> dataMap);
 	public void insertDest(Map<String, Object> dataMap);
+	public void insertOrderitems(List<B_P001_D005VO> list2);
 	
 }

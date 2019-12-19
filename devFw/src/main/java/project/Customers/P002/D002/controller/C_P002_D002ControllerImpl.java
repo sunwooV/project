@@ -35,15 +35,21 @@ public class C_P002_D002ControllerImpl implements C_P002_D002Controller{
 	public ModelAndView mypage(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		Map<String, Object> dataMap = new HashMap<String, Object>();
+		Map<String, Object> searchMap = new HashMap<String, Object>();
 		String memberId = (String) session.getAttribute("memberid");
+	
+		System.out.println("마이페이지 "+memberId);
 		
 		dataMap.put("memberId", memberId);
-		List myBidList = C_P002_D002Service.myBidList(dataMap);
+		searchMap.put("buyer_memberid", memberId);
+		System.out.println("마이페이지 "+searchMap);
 		
+		List myBidList = C_P002_D002Service.myBidList(dataMap);
+		List myBuyerList = C_P002_D002Service.myBuyerList(searchMap);
 		ModelAndView mav = new ModelAndView("Customers/p002_d002_mypageBuyerOrderList");
 		
 		mav.addObject("myBidList", myBidList);
-		
+		mav.addObject("myBuyerList",myBuyerList);
 		return mav;
 	}
 	

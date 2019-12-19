@@ -17,6 +17,35 @@ public class C_P002_D002VO {
 	private String cnt;
 	private String endChk;
 	
+	private Date order_date;
+	private String order_number;
+	private String prod_title;
+	private String total_price;
+	
+	public Date getOrder_date() {
+		return order_date;
+	}
+	public void setOrder_date(Date order_date) {
+		this.order_date = order_date;
+	}
+	public String getOrder_number() {
+		return order_number;
+	}
+	public void setOrder_number(String order_number) {
+		this.order_number = order_number;
+	}
+	public String getProd_title() {
+		return prod_title;
+	}
+	public void setProd_title(String prod_title) {
+		this.prod_title = prod_title;
+	}
+	public String getTotal_price() {
+		return total_price;
+	}
+	public void setTotal_price(String total_price) {
+		this.total_price = total_price;
+	}
 	public String getProd_number() {
 		return prod_number;
 	}

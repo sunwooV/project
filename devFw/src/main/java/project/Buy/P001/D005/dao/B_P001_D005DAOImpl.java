@@ -45,5 +45,12 @@ public class B_P001_D005DAOImpl implements B_P001_D005DAO {
 		
 	}
 
+
+	@Override
+	public void insertOrderitems(List<B_P001_D005VO> list2) {
+		sqlSession.insert("Buy.P001.D005.insertOrderitems",list2);
+		
+	}
+
 	
 }

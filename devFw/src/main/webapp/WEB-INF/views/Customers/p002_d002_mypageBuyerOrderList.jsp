@@ -67,7 +67,7 @@
 </script>
 </head>
 <body>
-
+	<input type="hidden" name="memberId" id="memberId" value="${member.getMemberid()}" >
 	<div class="container">
 		<br> <br>
 		<h1>📦상품 조회</h1>
@@ -93,25 +93,27 @@
 							</span></th>
 							<th class="OHT_ttl"><span>상품이미지</span></th>
 							<th class="OHT_ttl"><span>상품정보</span></th>
-							<th class="OHT_ttl"><span>수량</span></th>
-							<th class="OHT_ttl"><span>상품구매금액</span></th>
+<!-- 							<th class="OHT_ttl"><span>수량</span></th>
+							<th class="OHT_ttl"><span>상품구매금액</span></th> -->
 							<th class="OHT_ttl"><span>주문처리상태</span></th>
 							<th class="OHT_ttl"><span>제품상태처리</span></th>
 						</tr>
 					</thead>
 					<tbody>
 						<!-- 첫 번째 상품 내용 -->
+						<c:set var = "total_price" value="0" />
+						<c:forEach var="myBuyerList" items="${myBuyerList}">
 						<tr class="orderHistoryContents">
-							<td class="OHC_cont"><span class="orderDate" id="orderDate">2019-11-20</span>
-								<br> <a href="#" class="orderNum" id="orderNum">[20191120-0000000]</a></td>
+							<td class="OHC_cont"><span class="orderDate" id="orderDate">${myBuyerList.order_date}</span>
+								<br> <a href="#" class="orderNum" id="orderNum">${myBuyerList.order_number}</a></td>
 
 							<td class="OHC_cont"><span class="prod_1st_img"
-								id="prod_1st_img">이미지</span></td>
+								id="prod_1st_img"><img src ="${myBuyerList.represent_image}" style="width: 100px; height: 125px;"></span></td>
 							<td class="OHC_cont"><span class="prod_short_detail"
-								id="prod_short_detail">상품 정보 설명들어감 제목 + 선택한 옵션</span></td>
-							<td class="OHC_cont"><span class="prod_cnt" id="prod_cnt">2</span></td>
+								id="prod_short_detail">${myBuyerList.prod_title}</span></td>
+							<!-- <td class="OHC_cont"><span class="prod_cnt" id="prod_cnt">2</span></td>
 							<td class="OHC_cont"><span class="ttl_eachProd_price"
-								id="ttl_eachProd_price">29,000원</span></td>
+								id="ttl_eachProd_price">29,000원</span></td> -->
 							<td class="OHC_cont"><span class="order_state"
 								id="order_state">배송준비중</span></td>
 
@@ -122,9 +124,21 @@
 								onClick="reviewPopup()"> <br> <input type="button"
 								value="구매확정하기" class="orderButton" id="confirmBuy_order"
 								onClick="confirmBuyPopup()"></td>
+								<c:set var ="total_price" value="${myBuyerList.total_price }" />
 						</tr>
-						<!-- 2번째 상품 내용 -->
+						</c:forEach>
+						    <tr>
+                  <td class="OHC_cont" colspan="6"
+                     style="height: 100px; font-size: 35px; text-align: right;">
+                     <h3 style="color: #da2626;">
+                       총 결제금액 = <span id="subTotal">${total_price }</span>
+                     </h3>
+
+                  </td>
+
+               </tr>
 					</tbody>
+					
 				</table>
 
 			</div>

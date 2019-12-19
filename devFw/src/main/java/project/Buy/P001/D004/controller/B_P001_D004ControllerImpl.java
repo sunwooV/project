@@ -37,10 +37,12 @@ public class B_P001_D004ControllerImpl implements B_P001_D004Controller{
 
 	@Override
 	@RequestMapping(value = "/payInfo.do", method = { RequestMethod.GET, RequestMethod.POST })
-
 	public ModelAndView insertPaymentInfo(HttpSession session, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		
+		System.out.println("dkanrjak======================="+request.getParameter("ArrayToJSon"));
 		ModelAndView mav = new ModelAndView("Buy/p001_d004_payInfo");
+		mav.addObject("ArrayToJSon",request.getParameter("ArrayToJSon"));
 		return mav;
 	}
 

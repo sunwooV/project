@@ -15,6 +15,12 @@
 		<result property="auction_end_date" column="auction_end_date" />
 		<result property="cnt" column="cnt" />
 		<result property="endChk" column="endChk" />
+		
+		<result property="order_date" column="order_date" />
+		<result property="order_number" column="order_number" />
+		<result property="prod_title" column="prod_title" />
+		<result property="total_price" column="total_price" />
+		<result property="buyer_memberid" column="buyer_memberid" />	
 	</resultMap>
 	
 
@@ -62,5 +68,17 @@
 	]]>
 	</where>
 	</select>
-	
+	<select id="myBuyerList" resultMap="C_P002_D002Result01" parameterType="java.util.Map">
+		<![CDATA[
+			select oi.order_number, o.order_date, p.represent_image, p.prod_title, o.total_price
+			from orders o, orderitems oi, product p
+		]]>
+		<where>
+		<![CDATA[
+		 	o.order_number = oi.order_number
+			and p.prod_number = oi.prod_number
+			and o.buyer_memberid = #{buyer_memberid}
+		]]>
+		</where>
+	</select>
 </mapper>

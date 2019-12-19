@@ -5,7 +5,7 @@
 <mapper namespace="Buy.P001.D005">
 	<resultMap id="B_P001_D005Result01" type="B_P001_D005VO">
 		<!-- order_num은 2 테이블 공통 사용-->
-		<result property="order_number" column="order_num" />
+		<result property="order_number" column="order_number" />
 		<!-- order 1번으로 insert -->
 		<result property="seller_memberid" column="seller_memberid" />
 		<result property="buyer_memberid" column="buyer_memberid" />
@@ -35,19 +35,24 @@
             values(#{order_number},#{buyer_memberid},sysdate,#{total_price},#{order_want},#{pay_method})
 	  ]]>
 	</insert>
-
+	<insert id ="insertOrderitems" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+			INTO orderitems(order_number, prod_number)
+	   		VALUES (#{item.order_number},#{item.prod_number})
+		</foreach>
+	</insert>
 	
 	<insert id="InsertDestination" parameterType="java.util.Map">
 	<!--order=before는 인서트하기전에 한당 -->
 		<selectKey order="BEFORE" resultType="int" keyProperty="destination_number">
 			<![CDATA[ 
-			SELECT nvl2((max(destination_number) + 1), (max(return_number) + 1), 1) 
+			SELECT nvl2((max(destination_number) + 1), (max(destination_number) + 1), 1) 
 			FROM destination 
 			]]>
 		</selectKey>
 	 	<![CDATA[
-         insert into destination(recipient, destination_address, call_number, memberid)
-            values (#{recipient},#{destination_address},#{call_number},#{memberid})
+         insert into destination(destination_number,recipient, destination_address, call_number, memberid)
+            values (#{destination_number},#{recipient},#{destination_address},#{call_number},#{memberid})
 	  ]]>
 	
 	</insert>

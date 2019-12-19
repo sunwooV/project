@@ -16,6 +16,8 @@ public interface B_P001_D005Controller {
 		//insertOrder
 		public void insertOrders(HttpServletRequest request, HttpServletResponse response) throws Exception;
 		public void insertDest(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+		public void insertOrderitems(HttpServletRequest request, HttpServletResponse response) throws Exception;
 		
 
 }

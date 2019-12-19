@@ -8,6 +8,10 @@
    int ttlPrice = Integer.parseInt(request.getParameter("subTotalPrice"));
    String title = (String) request.getParameter("prod_title");
    int cnt = Integer.parseInt(request.getParameter("countProd"));
+   String[] payProd = request.getParameterValues("payProd");
+	String array = request.getParameter("ArrayToJSon");
+   //hidden id =  ArrayToJSon
+		  
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,7 +90,8 @@
 
    //페이지 켜자마자 총 주문 금액 계산
    $(document).ready(function(){
-
+		console.log('${ArrayToJSon}');
+	   
       Number.prototype.format = function(){
           if(this==0) return 0;
        
@@ -116,10 +121,26 @@
    });
    
    //결제하기 눌렀을 때 결제창 띄우기
-   function requestPay() {      
+   function requestPay() {    
+	   
+	   var chk_radio = document.getElementsByName("size");
+	   
+	   var nullChk = null;
+	   
+	   for(var i=0; i<chk_radio.length; i++){
+		   if(chk_radio[i].checked == true){
+			   nullChk = chk_radio[i].value;
+		   }
+	   }
+	   if(nullChk == null ){
+		   alert("결제수단을 선택해주세요");
+		   return false;
+	   }
+	  
+	   
       var name = "<%=session.getAttribute("name")%>"; 
       var buyer_memberid = document.getElementById('buyer_memberId').value; //주문자 아이디
-      var postCode = "<%=session.getAttribute("address")%>"; // 우편번호
+      var postCode = "<%=session.getAttribute("address")%>"; 
       var detailAddr = "<%=session.getAttribute("roadAddress")%> <%=session.getAttribute("detailAddress")%>"; //상세주소
       var email = document.getElementById('email').value; //주문자 이메일  
       var phoneNum = "<%=session.getAttribute("phonenumber")%>"; //주문자 연락처
@@ -129,7 +150,6 @@
       var price = <%=ttlPrice %>;
       var addr = "("+postCode+")"+detailAddr;
      
-      
       // IMP.request_pay(param, callback) 호출
       IMP.init("imp43398102"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
       IMP.request_pay({ // param
@@ -163,6 +183,10 @@
                   call_number:phoneNum,
                   memberid:buyer_memberid
             }
+            var orderItemsInfo ={
+            		order_number:rsp.merchant_uid,
+            		prod_number:'${ArrayToJSon}'	
+            }
         	 
           	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
         	jQuery.ajax({
@@ -180,10 +204,9 @@
         			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
         			msg += '\결제 금액 : ' + rsp.paid_amount;
         			msg += '카드 승인번호 : ' + rsp.apply_num;
-					
-        			
         			
         			alert(msg);
+        			console.log("배송지 입력 성공!")
         		} else {
         			//[3] 아직 제대로 결제가 되지 않았습니다.
         			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
@@ -199,10 +222,24 @@
         	}).done(function(data) {
         		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
         		if ( true ) {
-        			console.log()
+        			console.log("배송지 입력 성공!");
         		} else {
-        			//[3] 아직 제대로 결제가 되지 않았습니다.
-        			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+        			
+        		}
+        	});
+            
+            jQuery.ajax({
+        		url: "/devFw/insertOrderitems.do", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+        		type: 'get',
+        		dataType: 'text',
+        		data: orderItemsInfo,
+        		
+        	}).done(function(data) {
+        		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+        		if ( true ) {
+        			console.log("배송지 입력 성공!");
+        		} else {
+        			
         		}
         	});
         } else {
@@ -274,14 +311,14 @@
 				<tr>
 					<th class="OHT_ttl">결제 수단</th>
 					<td style="padding-left: 1%;">&nbsp&nbsp<input type="radio"
-						name="size" id="kakaopay" value="kakaopay" /><label for="size_1">카카오페이</label>&nbsp&nbsp&nbsp&nbsp
-						<input type="radio" name="size" id="card" value="card" /> <label
+						name="size" id="size" value="kakaopay" /><label for="size_1">카카오페이</label>&nbsp&nbsp&nbsp&nbsp
+						<input type="radio" name="size" id="size" value="card" /> <label
 						for="size_2">신용카드</label>&nbsp&nbsp&nbsp&nbsp <input type="radio"
-						name="size" id="samsungPay" value="samsungPay" /> <label for="size_3">삼성페이</label>&nbsp&nbsp&nbsp&nbsp
-						<input type="radio" name="size" id="LPay" value="LPay" /> <label
+						name="size" id="size" value="samsungPay" /> <label for="size_3">삼성페이</label>&nbsp&nbsp&nbsp&nbsp
+						<input type="radio" name="size" id="size" value="LPay" /> <label
 						for="size_3">L.Pay</label>&nbsp&nbsp&nbsp&nbsp <input type="radio"
-						name="size" id="SSGPay" value="SSGPay" /> <label for="size_3">SSGPay</label>&nbsp&nbsp&nbsp&nbsp
-						<input type="radio" name="size" id="PAYCO" value="PAYCO" /> <label
+						name="size" id="size" value="SSGPay" /> <label for="size_3">SSGPay</label>&nbsp&nbsp&nbsp&nbsp
+						<input type="radio" name="size" id="size" value="PAYCO" /> <label
 						for="size_3">PAYCO</label>
 					</td>
 				</tr>
@@ -300,7 +337,7 @@
 			<table id="form">
 				<tr>
 					<th class="OHT_ttl">상품정보</th>
-					<td class="OHC_cont"><%=title%>외</td>
+					<td class="OHC_cont"><%=title%>외 <%=cnt-1 %>개의 제품</td>
 				</tr>
 				<tr>
 					<th class="OHT_ttl">상품 금액</th>

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component("B_P001_D005VO")
 public class B_P001_D005VO {
 	//2테이블 공통사용
-		private String order_num; 
+		private String order_number; 
 		
 		//order(pay통합)
 		private String seller_memberid;
@@ -75,12 +75,12 @@ public class B_P001_D005VO {
 			this.call_number = call_number;
 		}
 
-		public String getOrder_num() {
-			return order_num;
+		public String getOrder_number() {
+			return order_number;
 		}
 
-		public void setOrder_num(String order_num) {
-			this.order_num = order_num;
+		public void setOrder_number(String order_number) {
+			this.order_number = order_number;
 		}
 
 		public String getSeller_memberid() {

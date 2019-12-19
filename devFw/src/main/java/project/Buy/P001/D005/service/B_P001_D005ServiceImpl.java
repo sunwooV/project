@@ -2,6 +2,7 @@ package project.Buy.P001.D005.service;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,14 @@ public class B_P001_D005ServiceImpl implements B_P001_D005Service{
 	@Override
 	public void insertDest(Map<String, Object> dataMap) {
 		b_p001_d005DAO.insertDest(dataMap);
+		
+	}
+
+
+
+	@Override
+	public void insertOrderitems(List<B_P001_D005VO> list2) {
+		b_p001_d005DAO.insertOrderitems(list2);
 		
 	}
 	
