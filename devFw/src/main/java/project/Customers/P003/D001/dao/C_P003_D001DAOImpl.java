@@ -18,5 +18,11 @@ public class C_P003_D001DAOImpl implements C_P003_D001DAO {
 		sqlSession.update("Customers.p003_d001.insertSellerInfo", datahMap);
 		
 	}
+	
+	@Override
+	public void fleaUpdateSeller(Map<String, Object> datahMap) throws DataAccessException {
+		sqlSession.update("Customers.p003_d001.fleaUpdateSeller", datahMap);
+	}
+
 
 }

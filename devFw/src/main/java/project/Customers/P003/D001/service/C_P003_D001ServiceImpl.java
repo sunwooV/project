@@ -17,4 +17,10 @@ public class C_P003_D001ServiceImpl implements C_P003_D001Service {
 		C_P003_D001DAO.changeSeller(datahMap);
 		
 	}
+	
+	@Override
+	public void fleaUpdateSeller(Map<String, Object> datahMap) throws Exception {
+		C_P003_D001DAO.fleaUpdateSeller(datahMap);
+	}
+
 }

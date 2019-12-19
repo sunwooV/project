@@ -50,7 +50,7 @@ $(document).ready(function(){
 // 		}
 		var ba = document.getElementById("basket");
 		var aa = ba.dataset.prod;
-		alert(aa);
+
 		var memberId = document.getElementById("memberId").value;
 		var num = 1;
 		var real_prod_price = document.getElementById("prod_price").value;

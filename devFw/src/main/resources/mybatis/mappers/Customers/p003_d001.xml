@@ -26,5 +26,18 @@
 	 ]]>			
 	</insert>
 	
+	<!-- flea_seller_group Update -->
+	<update id="fleaUpdateSeller" parameterType="java.util.Map">
+	<![CDATA[
+			UPDATE member
+			SET flea_seller_group='y'
+	 ]]>
+	 <where>
+	 <![CDATA[
+			memberid=#{memberId}
+	 ]]>
+	 </where>
+	</update>
+	
 	
 </mapper>
