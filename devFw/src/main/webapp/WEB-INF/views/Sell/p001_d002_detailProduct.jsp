@@ -1219,7 +1219,7 @@ img {
 .category {
 	font-size: small;
 	font-weight: bold;
-	margin: 1% 20%;
+	margin: 1% 17%;
 	width: 25%;
 }
 
@@ -1247,6 +1247,7 @@ img {
 .content {
 	color: black;
 	font-size: medium;
+	margin-top: -7%;
 }
 
 .pay {
@@ -1329,7 +1330,6 @@ img {
 
 #sold_price {
 	color: black;
-	margin-left: 1%;
 }
 
 #auction_price {
@@ -1606,20 +1606,21 @@ textarea {
 	margin-right: 10px;
 	position: relative;
 }
+
 .arrow_box {
 	margin-top: 2%;
 	margin-bottom: 2%;
 	width: 38%;
 	position: relative;
 	background: #ffffff;
-	border:3px solid #dd5850;
+	border: 3px solid #dd5850;
 	padding: 5%;
 }
 
 .arrow_box:after, .arrow_box:before {
 	top: 100%;
 	left: 50%;
-	border: solid transparent ;
+	border: solid transparent;
 	content: " ";
 	height: 0;
 	width: 0;
@@ -1859,8 +1860,9 @@ textarea {
 						</c:choose>
 
 						<br>
+						<br>
 						<h3 id="gray-text">
-							<span class="heart">${product.heart}</span>명의 회원이 관심을 보였어요!
+							<span class="heart">${product.heart}</span>명의 회원이 관심을 보였어요💓
 						</h3>
 						<br>
 

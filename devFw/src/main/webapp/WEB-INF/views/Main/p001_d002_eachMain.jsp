@@ -212,10 +212,10 @@ label{
 <br><br>
 <div class="mainHeader">
 <c:if test="${command == 'reused' }">
-	<h1 class="eachTitle"><a href="./eachMain.do?command=reused" style="text-decoration:none">중고</a></h1>
+	<h1 class="eachTitle"><a href="./eachMain.do?command=reused" style="text-decoration:none">🧤중고</a></h1>
 </c:if>
 <c:if test="${command == 'auction' }">
-	<h1 class="eachTitle"><a href="./eachMain.do?command=auction" style="text-decoration:none">경매</a></h1>
+	<h1 class="eachTitle"><a href="./eachMain.do?command=auction" style="text-decoration:none">💰경매</a></h1>
 </c:if>
 	
 	<form class="form-inline my-2 my-lg-0" id="search" name="searchform" method="POST" action="./eachsearchProduct.do">
@@ -248,10 +248,10 @@ label{
 		</ul>
 	</div>
 	<br><br><br><br><br><br><br>
-	<p id="left">홈
+	<h4 id="left">🏡홈
 	<c:if test="${highCategoryName != null }">
 		> ${highCategoryName } > <span style="color:tomato;">${middleCategoryName }</span>
-	</c:if></p>
+	</c:if></h4>
 <!-- 	<div id="right"> -->
 <!-- 	<select id="prodOption" name="prodOption"> -->
 <!-- 		<option value="정렬방법" selected="selected">--정렬방법--</option> -->
