@@ -570,12 +570,10 @@ $(document).ready(function(){
 		}
 	});		
 	$("#pop-search>input[type=button]").on("click",function(){
-		alert("aa");
 		popSearch();
 	});
 	
 	function popSearch(/*웹소켓 객체*/){
-		alert("확인;;;");
 		$('#pop-footer>input').prop('disabled',false);
 		var input=$('#pop-search>input[type=text]').toArray()[0];
 		//입력값으로 select날려서 결과받아 뿌리기
@@ -596,7 +594,6 @@ $(document).ready(function(){
 	}
 	
 	function filter(){
-		alert("타는지 확인");
         var value, name, item, i;
 
         value = document.getElementById("value").value.toUpperCase();
@@ -666,17 +663,14 @@ $(document).ready(function(){
 	};
 	
 	$(".selbox_comm").click(function(){
-		alert("ssss");
 		$(".selbox_comm").attr('class', 'selbox_comm v2 on ');
 	});
 	
 	$(document).on('click', '.enrollstory', function(){
-		alert("====story 등록 클릭 시 =====");
 		var story_cotent = $('#prod_story_text').val();
 		var story_title = $('.story_title_text').val();
 		var command = 'insert';
 		
-		alert(story_cotent + "/" + story_title + "/" + command);
 		
 		var data = {
 				story_title: story_title,
@@ -731,7 +725,7 @@ $(document).ready(function(){
 <script>
 $.ratePicker("#rating-2", {
     rate : function (stars){
-        alert('Sample 3\'s Rate is ' + stars);
+       // alert('Sample 3\'s Rate is ' + stars);
     }
 });
 </script>

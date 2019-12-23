@@ -21,6 +21,8 @@ public class C_P002_D009VO {
 	private String phonenumber;
 	private String approval_status;
 	private String verify;
+	private String seller_group;
+	private String flea_seller_group;
 	
 	public String getMemberid() {
 		return memberid;
@@ -105,6 +107,18 @@ public class C_P002_D009VO {
 	}
 	public void setVerify(String verify) {
 		this.verify = verify;
+	}
+	public String getSeller_group() {
+		return seller_group;
+	}
+	public void setSeller_group(String seller_group) {
+		this.seller_group = seller_group;
+	}
+	public String getFlea_seller_group() {
+		return flea_seller_group;
+	}
+	public void setFlea_seller_group(String flea_seller_group) {
+		this.flea_seller_group = flea_seller_group;
 	}
 	
 

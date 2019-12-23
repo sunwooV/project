@@ -170,12 +170,13 @@
 				<c:if test="${ member == null}">
 					<li class="nav-item"><a class="nav-link" href="./joinInit.do">회원가입</a></li>
 				</c:if>
+
 				<c:if test="${ member.verify == 'N'}">
 					<li class="nav-item"><a class="nav-link" href="./mypage.do">마이페이지&nbsp;(${ member.nickname}님)</a></li>
 				</c:if>
 
 				<c:if test="${ member.verify == 'Y'}">
-					
+					 
 					<li class="nav-item"><a class="nav-link" href="./admin.do">Administrator&nbsp;(${ member.nickname}님)
 					</a></li>
 				</c:if>

@@ -154,7 +154,9 @@
        ]]>
       <where>
       <![CDATA[
-      	memberid = #{memberId}
+      	flea_code IN (select flea_code
+                    from togetherlist
+                    where memberid=#{memberId})
        ]]>
       </where>
 	</select>

@@ -1860,7 +1860,7 @@ textarea {
 						</c:choose>
 
 						<br>
-						<br>
+						
 						<h3 id="gray-text">
 							<span class="heart">${product.heart}</span>명의 회원이 관심을 보였어요💓
 						</h3>
@@ -1896,6 +1896,7 @@ textarea {
 									<!--                      수량: <input type="hidden" id="prod_amount" style="width:4%; height:auto; text-align:right;" value="1"> 1 -->
 								</c:when>
 								<c:otherwise>
+								<br>
                      max수량: ${product.prod_amount }
                      <br>
                      수량: 
